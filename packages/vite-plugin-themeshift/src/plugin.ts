@@ -43,6 +43,7 @@ export type ThemeShiftOptions = {
   groups?: ThemeShiftCssGroup[];
   defaultTheme?: 'light' | 'dark';
   outputPrintTheme?: boolean;
+  outputComments?: boolean; // default: false
   watch?: boolean; // default: true
   injectSassTokenFn?: boolean; // default: true
   platforms?: Array<'css' | 'scss' | 'meta'>; // default: all three
@@ -64,6 +65,7 @@ export function themeShift(options: ThemeShiftOptions = {}): Plugin {
   const groups = options.groups;
   const defaultTheme = options.defaultTheme;
   const outputPrintTheme = options.outputPrintTheme ?? false;
+  const outputComments = options.outputComments ?? true;
   const watch = options.watch ?? true;
   const injectSassTokenFn = options.injectSassTokenFn ?? true;
   const platforms = options.platforms ?? ['css', 'scss', 'meta'];
@@ -150,7 +152,9 @@ export function themeShift(options: ThemeShiftOptions = {}): Plugin {
     return sources;
   }
 
-  async function resolvePackageTokenSource(extendSource: ThemeShiftExtendSource) {
+  async function resolvePackageTokenSource(
+    extendSource: ThemeShiftExtendSource
+  ) {
     const descriptor =
       typeof extendSource === 'string'
         ? { package: extendSource }
@@ -194,7 +198,9 @@ export function themeShift(options: ThemeShiftOptions = {}): Plugin {
       );
     }
 
-    const entries = await Array.fromAsync(fs.glob(packageTokensGlob, { cwd: packageRoot }));
+    const entries = await Array.fromAsync(
+      fs.glob(packageTokensGlob, { cwd: packageRoot })
+    );
     const sources: string[] = [];
 
     for (const entry of entries) {
@@ -231,6 +237,7 @@ export function themeShift(options: ThemeShiftOptions = {}): Plugin {
         groups,
         defaultTheme,
         filters,
+        outputComments,
         outputPrintTheme,
       });
 

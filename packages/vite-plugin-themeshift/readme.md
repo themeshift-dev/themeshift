@@ -270,6 +270,7 @@ type themeShiftOptions = {
   groups?: ThemeShiftCssGroup[];
   defaultTheme?: 'light' | 'dark';
   outputPrintTheme?: boolean; // default: false
+  outputComments?: boolean; // default: false
   watch?: boolean; // default: true
   injectSassTokenFn?: boolean; // default: true
   platforms?: Array<'css' | 'scss' | 'meta'>; // default: all three
@@ -447,6 +448,37 @@ themeShift({
   outputPrintTheme: true,
 });
 ```
+
+### outputComments
+
+By default, ThemeShift ignores token `$description` metadata when writing generated
+CSS and Sass outputs.
+
+Set `outputComments: true` to emit those descriptions as comments above token declarations
+in `tokens.css` and `_tokens.static.scss`:
+
+```ts
+themeShift({
+  outputComments: true,
+});
+```
+
+This is useful for documenting authored values like spacing scales without changing the
+actual token values:
+
+```json
+{
+  "space": {
+    "4": {
+      "$value": "1rem",
+      "$description": "16px"
+    }
+  }
+}
+```
+
+With `outputComments: true`, that token will render with a comment like `/* 16px */`
+in generated CSS and Sass output.
 
 ### filters
 

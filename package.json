@@ -11,6 +11,7 @@
     "build:ui-app": "turbo run build --filter=@themeshift/ui-app...",
     "dev": "turbo run dev --parallel",
     "dev:ui-app": "pnpm --filter @themeshift/vite-plugin-themeshift build && pnpm --filter @themeshift/ui build && pnpm --filter @themeshift/ui-app dev",
+    "format": "prettier --write",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:packages": "turbo run test --filter=./packages/*",

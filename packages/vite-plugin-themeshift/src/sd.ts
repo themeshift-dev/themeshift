@@ -60,6 +60,40 @@ function getTokenValue(token: any) {
   return String(value);
 }
 
+function getTokenDescription(token: any) {
+  const description = token.description ?? token.$description;
+
+  if (typeof description !== 'string') {
+    return null;
+  }
+
+  const normalized = description
+    .replace(/\r\n/g, '\n')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .join(' ')
+    .replace(/\*\//g, '*\\/');
+
+  return normalized || null;
+}
+
+function formatTokenComment(
+  token: any,
+  options: { outputComments?: boolean; indent?: string } = {}
+) {
+  if (!options.outputComments) {
+    return null;
+  }
+
+  const description = getTokenDescription(token);
+  if (!description) {
+    return null;
+  }
+
+  return `${options.indent ?? ''}/* ${description} */`;
+}
+
 const DEFAULT_SCSS_FILTER_RULE: ThemeShiftTokenFilterRule = {
   includePrefixes: [
     'radius-',
@@ -143,6 +177,7 @@ export function registerStyleDictionaryThings(
     groups?: ThemeShiftCssGroup[];
     defaultTheme?: 'light' | 'dark';
     filters?: Partial<Record<ThemeShiftPlatform, ThemeShiftTokenFilter>>;
+    outputComments?: boolean;
     outputPrintTheme?: boolean;
   } = {}
 ) {
@@ -151,6 +186,7 @@ export function registerStyleDictionaryThings(
     groups,
     defaultTheme,
     filters,
+    outputComments = false,
     outputPrintTheme = false,
   } =
     options;
@@ -168,6 +204,7 @@ export function registerStyleDictionaryThings(
           typeof filter === 'function' ? '__fn__' : filter,
         ])
       ),
+    outputComments,
     outputPrintTheme,
   });
   if (!(StyleDictionary.__hd_registered instanceof Set)) {
@@ -263,7 +300,15 @@ export function registerStyleDictionaryThings(
               s.tokens
                 .map(
                   (t) =>
-                    `  --${pathToCssVarName(t.name, cssVarPrefix)}: ${getTokenValue(t)};`
+                    [
+                      formatTokenComment(t, {
+                        outputComments,
+                        indent: '  ',
+                      }),
+                      `  --${pathToCssVarName(t.name, cssVarPrefix)}: ${getTokenValue(t)};`,
+                    ]
+                      .filter(Boolean)
+                      .join('\n')
                 )
                 .join('\n')
           )
@@ -274,7 +319,15 @@ export function registerStyleDictionaryThings(
         tokens
           .map(
             (t) =>
-              `    --${pathToCssVarName(t.name, cssVarPrefix)}: ${getTokenValue(t)};`
+              [
+                formatTokenComment(t, {
+                  outputComments,
+                  indent: '    ',
+                }),
+                `    --${pathToCssVarName(t.name, cssVarPrefix)}: ${getTokenValue(t)};`,
+              ]
+                .filter(Boolean)
+                .join('\n')
           )
           .join('\n');
 
@@ -327,6 +380,10 @@ export function registerStyleDictionaryThings(
       lines.push('');
 
       for (const t of tokens) {
+        const comment = formatTokenComment(t, { outputComments });
+        if (comment) {
+          lines.push(comment);
+        }
         lines.push(`${toSassVar(t.name)}: ${getTokenValue(t)};`);
       }
 

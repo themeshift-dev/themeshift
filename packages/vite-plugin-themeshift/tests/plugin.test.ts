@@ -163,6 +163,23 @@ describe('themeShift', () => {
     registerSpy.mockRestore();
   });
 
+  it('passes outputComments through to Style Dictionary registration', async () => {
+    const registerSpy = vi.spyOn(sd, 'registerStyleDictionaryThings');
+    const plugin = themeShift({ outputComments: true });
+
+    plugin.config?.({}, { command: 'build', mode: 'test' } as any);
+    await plugin.buildStart?.();
+
+    expect(registerSpy).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({
+        outputComments: true,
+      })
+    );
+
+    registerSpy.mockRestore();
+  });
+
   it('passes platform filters through to Style Dictionary registration', async () => {
     const registerSpy = vi.spyOn(sd, 'registerStyleDictionaryThings');
     const scssFilter = vi.fn((token) => !token.attributes?.theme);

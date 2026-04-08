@@ -140,6 +140,62 @@ describe('registerStyleDictionaryThings', () => {
     );
   });
 
+  it('does not emit token description comments by default', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary, {
+      cssVarPrefix: 'themeshift',
+    });
+
+    const cssFormat = StyleDictionary.getFormat('css/variables-modes-grouped');
+    const scssFormat = StyleDictionary.getFormat('scss/static-tokens');
+    const dictionary = {
+      allTokens: [
+        {
+          name: 'space-4',
+          value: '1rem',
+          description: '16px',
+          attributes: {},
+        },
+      ],
+    };
+
+    expect(cssFormat?.({ dictionary })).not.toContain('/* 16px */');
+    expect(scssFormat?.({ dictionary })).not.toContain('/* 16px */');
+  });
+
+  it('emits token description comments in css output when outputComments is enabled', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary, {
+      cssVarPrefix: 'themeshift',
+      outputComments: true,
+    });
+
+    const format = StyleDictionary.getFormat('css/variables-modes-grouped');
+    const output = format?.({
+      dictionary: {
+        allTokens: [
+          {
+            name: 'space-4',
+            value: '1rem',
+            description: '16px',
+            attributes: {},
+          },
+          {
+            name: 'grid-gutter-desktop',
+            value: '1.5rem',
+            $description: '24px',
+            attributes: {},
+          },
+        ],
+      },
+    });
+
+    expect(output).toContain('  /* 16px */\n  --themeshift-space-4: 1rem;');
+    expect(output).toContain(
+      '  /* 24px */\n  --themeshift-grid-gutter-desktop: 1.5rem;'
+    );
+  });
+
   it('emits a token values manifest with primitive and object values', () => {
     const StyleDictionary = makeStyleDictionaryMock();
     registerStyleDictionaryThings(StyleDictionary);
@@ -212,6 +268,31 @@ describe('registerStyleDictionaryThings', () => {
     expect(output).toContain('$layout_breakpoints_desktop: 1024px;');
     expect(output).toContain('$layout_site_max_width: 1200px;');
     expect(output).not.toContain('$theme_surface_base: #fff;');
+  });
+
+  it('emits token description comments in scss output when outputComments is enabled', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary, {
+      outputComments: true,
+    });
+
+    const format = StyleDictionary.getFormat('scss/static-tokens');
+    const output = format?.({
+      dictionary: {
+        allTokens: [
+          {
+            name: 'layout-site-max-width',
+            value: '1200px',
+            description: 'Default page container width',
+            attributes: {},
+          },
+        ],
+      },
+    });
+
+    expect(output).toContain(
+      '/* Default page container width */\n$layout_site_max_width: 1200px;'
+    );
   });
 
   it('supports declarative scss include/exclude prefix filters', () => {
