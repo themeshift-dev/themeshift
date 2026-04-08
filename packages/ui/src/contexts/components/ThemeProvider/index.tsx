@@ -4,13 +4,27 @@ import { getSystemTheme } from '../../helpers/getSystemTheme';
 import type { ThemeMode } from '../../types';
 import { ThemeContext } from './ThemeContext';
 
+/** Props for the ThemeShift theme provider. */
 type ThemeProviderProps = {
+  /** Application content that should receive theme context. */
   children: React.ReactNode;
+  /** Theme used when no stored preference is available. */
   defaultTheme?: ThemeMode;
+  /**
+   * Local storage key used to persist the selected theme.
+   *
+   * Example: `<ThemeProvider storageKey="themeshift-docs-theme" />`
+   */
   storageKey?: string;
+  /**
+   * Syncs with the user's system theme when no stored value is present.
+   *
+   * Example: `<ThemeProvider storageKey="" syncWithSystem />`
+   */
   syncWithSystem?: boolean;
 };
 
+/** Provides theme state and applies the active theme to the document root. */
 export function ThemeProvider({
   children,
   defaultTheme,

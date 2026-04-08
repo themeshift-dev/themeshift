@@ -2,7 +2,7 @@
   "components": {
     "button": {
       "padding": {
-        "$value": "0 {grid.padding.medium}"
+        "$value": "0 {space.4}"
       },
       "font": {
         "$value": "{font.family.sans}"

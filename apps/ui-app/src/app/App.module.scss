@@ -1,9 +1,35 @@
+@use '@themeshift/ui/sass/typography';
+
 .header {
   a {
-    color: token("color.white");
+    color: token('color.white');
   }
 }
 
-[data-theme="light"] .header a {
-  color: token("color.black");
+.logo {
+  transition: 0.3s opacity;
+  padding: 0.25rem 0.5rem;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.links {
+  display: flex;
+  flex-flow: row nowrap;
+
+  a {
+    @include typography.style('heading.h3');
+
+    padding: 0.5rem;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+}
+
+[data-theme='light'] .header a {
+  color: token('color.black');
 }

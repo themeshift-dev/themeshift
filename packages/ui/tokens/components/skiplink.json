@@ -1,0 +1,39 @@
+{
+  "components": {
+    "skiplink": {
+      "font": {
+        "$value": "{font.family.sans}"
+      },
+      "x": {
+        "$type": "dimension",
+        "$value": "1rem"
+      },
+      "y": {
+        "$type": "dimension",
+        "$value": "1rem"
+      },
+      "borderRadius": {
+        "$type": "dimension",
+        "$value": "{radius.small}"
+      },
+
+      "light": {
+        "surface": {
+          "$value": "{color.blue.400}"
+        },
+        "fg": {
+          "$value": "{color.blue.400.fg}"
+        }
+      },
+
+      "dark": {
+        "surface": {
+          "$value": "{color.blue.400}"
+        },
+        "fg": {
+          "$value": "{color.blue.400.fg}"
+        }
+      }
+    }
+  }
+}

@@ -14,16 +14,19 @@
   },
   "include": [
     "src/index.ts",
+    "src/entrypoints/**/*.ts",
     "src/components/**/*.ts",
-    "src/ui/**/*.ts",
-    "src/ui/**/*.tsx",
+    "src/components/**/*.tsx",
+    "src/templates/**/*.ts",
+    "src/templates/**/*.tsx",
+    "src/icons/**/*.ts",
+    "src/icons/**/*.tsx",
     "src/contexts/**/*.ts",
     "src/contexts/**/*.tsx"
   ],
   "exclude": [
     "src/main.tsx",
     "src/App.tsx",
-    "src/icons/**",
     "src/**/*.stories.ts",
     "src/**/*.stories.tsx",
     "src/**/*.test.ts",

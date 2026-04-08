@@ -1,0 +1,16 @@
+@use '@/sass/mixins/accessibility';
+@use '@/sass/mixins/components/link';
+
+.container {
+  @include link.base;
+  @include accessibility.focusVisibleRing;
+
+  border-radius: token('radius.small');
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+
+  &:hover {
+    @include link.hover;
+  }
+}

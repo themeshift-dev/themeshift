@@ -12,8 +12,8 @@ export default mergeConfig(viteConfig, defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'lcov'],
-      include: ['src/ui/**/*.tsx'],
-      exclude: ['src/ui/**/*.test.tsx'],
+      include: ['src/components/**/*.tsx', 'src/templates/**/*.tsx'],
+      exclude: ['src/components/**/*.test.tsx', 'src/templates/**/*.test.tsx'],
       thresholds: {
         statements: 90,
         branches: 90,

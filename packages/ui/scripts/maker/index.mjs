@@ -89,36 +89,36 @@ function validateTokenPath(value) {
 }
 
 async function makeComponent(name) {
-  const uiDir = path.join(rootDir, 'src/ui', name);
-  const uiIndexPath = path.join(uiDir, 'index.tsx');
-  const uiStylesPath = path.join(uiDir, `${name}.module.scss`);
-  const wrapperDir = path.join(rootDir, 'src/components', name);
-  const wrapperPath = path.join(wrapperDir, 'index.ts');
+  const componentDir = path.join(rootDir, 'src/components', name);
+  const componentIndexPath = path.join(componentDir, 'index.tsx');
+  const componentStylesPath = path.join(componentDir, `${name}.module.scss`);
+  const entrypointDir = path.join(rootDir, 'src/entrypoints/components');
+  const entrypointPath = path.join(entrypointDir, `${name}.ts`);
 
-  await ensureDoesNotExist(uiDir, `Component already exists: ${name}`);
-  await ensureDoesNotExist(wrapperDir, `Component wrapper already exists: ${name}`);
+  await ensureDoesNotExist(componentDir, `Component already exists: ${name}`);
+  await ensureDoesNotExist(entrypointPath, `Component entrypoint already exists: ${name}`);
 
-  await fs.mkdir(uiDir, { recursive: true });
-  await fs.mkdir(wrapperDir, { recursive: true });
+  await fs.mkdir(componentDir, { recursive: true });
+  await fs.mkdir(entrypointDir, { recursive: true });
 
   const componentTemplate = await readTemplate('component-index.tsx.template');
   const componentSource = componentTemplate
     .replaceAll('__NAME__', name)
     .replaceAll('__SCSS_FILE__', `${name}.module.scss`);
 
-  await fs.writeFile(uiIndexPath, componentSource);
-  await fs.writeFile(uiStylesPath, '');
-  await fs.writeFile(wrapperPath, `export * from '../../ui/${name}';\n`);
+  await fs.writeFile(componentIndexPath, componentSource);
+  await fs.writeFile(componentStylesPath, '');
+  await fs.writeFile(entrypointPath, `export * from '../../components/${name}';\n`);
 
-  await rewriteUiBarrel();
+  await rewriteComponentsBarrel();
   await rewritePackageExports();
   await rewriteComponentEntries();
 
   return [
-    uiIndexPath,
-    uiStylesPath,
-    wrapperPath,
-    path.join(rootDir, 'src/ui/index.ts'),
+    componentIndexPath,
+    componentStylesPath,
+    entrypointPath,
+    path.join(rootDir, 'src/components/index.ts'),
     path.join(rootDir, 'package.json'),
     path.join(rootDir, 'vite.config.components.ts'),
   ];
@@ -134,8 +134,17 @@ async function makeIcon(name) {
 
   await fs.writeFile(iconPath, iconSource);
   await rewriteIconsBarrel();
+  await ensureIconsPackageExport();
+  await ensureIconsEntry();
+  await ensureIconsTypeDeclarations();
 
-  return [iconPath, path.join(rootDir, 'src/icons/index.ts')];
+  return [
+    iconPath,
+    path.join(rootDir, 'src/icons/index.ts'),
+    path.join(rootDir, 'package.json'),
+    path.join(rootDir, 'vite.config.components.ts'),
+    path.join(rootDir, 'tsconfig.build.json'),
+  ];
 }
 
 async function makeTokens(tokenPath) {
@@ -149,15 +158,15 @@ async function makeTokens(tokenPath) {
   return [filePath];
 }
 
-async function rewriteUiBarrel() {
-  const uiRoot = path.join(rootDir, 'src/ui');
-  const entries = await fs.readdir(uiRoot, { withFileTypes: true });
+async function rewriteComponentsBarrel() {
+  const componentsRoot = path.join(rootDir, 'src/components');
+  const entries = await fs.readdir(componentsRoot, { withFileTypes: true });
   const exports = entries
     .filter((entry) => entry.isDirectory())
     .map((entry) => `export * from './${entry.name}';`)
     .sort();
 
-  await fs.writeFile(path.join(uiRoot, 'index.ts'), `${exports.join('\n')}\n`);
+  await fs.writeFile(path.join(componentsRoot, 'index.ts'), `${exports.join('\n')}\n`);
 }
 
 async function rewriteIconsBarrel() {
@@ -173,6 +182,64 @@ async function rewriteIconsBarrel() {
     .sort();
 
   await fs.writeFile(path.join(iconsRoot, 'index.ts'), `${exports.join('\n')}\n`);
+}
+
+async function ensureIconsPackageExport() {
+  const packageJsonPath = path.join(rootDir, 'package.json');
+  const packageJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf8'));
+  const existingExports = packageJson.exports ?? {};
+
+  existingExports['./icons'] = {
+    types: './dist/icons/index.d.ts',
+    import: './dist/icons/index.js',
+  };
+
+  packageJson.exports = Object.fromEntries(
+    Object.entries(existingExports).sort(([left], [right]) => left.localeCompare(right)),
+  );
+
+  await fs.writeFile(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
+}
+
+async function ensureIconsEntry() {
+  const configPath = path.join(rootDir, 'vite.config.components.ts');
+  const source = await fs.readFile(configPath, 'utf8');
+
+  if (source.includes("'icons/index': fileURLToPath(")) {
+    return;
+  }
+
+  const nextSource = source.replace(
+    /('components\/Responsive\/index': fileURLToPath\([\s\S]*?\),\n)/,
+    `$1        'icons/index': fileURLToPath(\n          new URL('./src/entrypoints/icons.ts', import.meta.url)\n        ),\n`,
+  );
+
+  await fs.writeFile(configPath, nextSource);
+}
+
+async function ensureIconsTypeDeclarations() {
+  const configPath = path.join(rootDir, 'tsconfig.build.json');
+  const source = await fs.readFile(configPath, 'utf8');
+
+  let nextSource = source;
+
+  if (!nextSource.includes('"src/icons/**/*.ts"')) {
+    nextSource = nextSource.replace(
+      '"src/components/**/*.ts",\n',
+      '"src/components/**/*.ts",\n    "src/icons/**/*.ts",\n',
+    );
+  }
+
+  if (!nextSource.includes('"src/icons/**/*.tsx"')) {
+    nextSource = nextSource.replace(
+      '"src/icons/**/*.ts",\n',
+      '"src/icons/**/*.ts",\n    "src/icons/**/*.tsx",\n',
+    );
+  }
+
+  nextSource = nextSource.replace(/,\n\s*"src\/icons\/\*\*"/, '');
+
+  await fs.writeFile(configPath, nextSource);
 }
 
 async function rewritePackageExports() {
@@ -211,14 +278,42 @@ async function rewriteComponentEntries() {
   const entryBlock = componentNames
     .map(
       (name) => `        'components/${name}/index': fileURLToPath(
-          new URL('./src/components/${name}/index.ts', import.meta.url),
+          new URL('./src/entrypoints/components/${name}.ts', import.meta.url),
         ),`,
     )
     .join('\n');
 
+  const staticEntries = `        'templates/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/index.ts', import.meta.url)
+        ),
+        'templates/AppShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/AppShell.ts', import.meta.url)
+        ),
+        'templates/AuthShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/AuthShell.ts', import.meta.url)
+        ),
+        'templates/BlankShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/BlankShell.ts', import.meta.url)
+        ),
+        'templates/CenteredShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/CenteredShell.ts', import.meta.url)
+        ),
+        'templates/PageShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/PageShell.ts', import.meta.url)
+        ),
+        'templates/SplitPaneShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/SplitPaneShell.ts', import.meta.url)
+        ),
+        'icons/index': fileURLToPath(
+          new URL('./src/entrypoints/icons.ts', import.meta.url)
+        ),
+        'contexts/index': fileURLToPath(
+          new URL('./src/entrypoints/contexts.ts', import.meta.url)
+        ),`;
+
   const nextSource = source.replace(
     /entry:\s*\{[\s\S]*?\n\s*\},\n\s*formats:/,
-    `entry: {\n${entryBlock}\n      },\n      formats:`,
+    `entry: {\n${entryBlock}\n${staticEntries}\n      },\n      formats:`,
   );
 
   await fs.writeFile(configPath, nextSource);

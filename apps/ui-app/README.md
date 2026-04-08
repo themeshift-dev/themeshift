@@ -33,3 +33,9 @@ If you are already inside this workspace, `pnpm dev` still works.
 - import `@themeshift/ui/css/fonts.css` to use the packaged default Noto Sans files
 - omit that import if you want to provide your own font-face definitions
 - keep `@themeshift/ui/css/base.css` and `@themeshift/ui/css/tokens.css` for the rest of the ThemeShift styling contract
+
+## Token overrides
+
+This app extends `@themeshift/ui` through `@themeshift/vite-plugin-themeshift`, so app-specific token files in [`tokens/`](./tokens) override the shared UI defaults without editing component styles.
+
+The focus ring is customized this way in [`tokens/accessibility.json`](./tokens/accessibility.json), which lets the app keep the shared `:focus-visible` behavior from `@themeshift/ui` while changing the ring color to match the ThemeShift brand palette.

@@ -1,5 +1,7 @@
 @use '@themeshift/vite-plugin-themeshift/token' as themeShift;
 
+// Draws the shared ThemeShift focus ring. Use inside :focus-visible handlers
+// so keyboard and assistive-technology users get a clear visual indicator.
 @mixin focusRing(
   $ringColor: themeShift.token('accessibility.focus.ring'),
   $gapColor: themeShift.token('accessibility.focus.gap'),
@@ -11,13 +13,43 @@
     0 0 0 calc(#{$gapWidth} + #{$ringWidth}) #{$ringColor};
 }
 
+// Applies the defensive focus-visible selector pattern:
+// - remove default outlines only when focus is not focus-visible
+// - let the caller define the visible focus treatment
+@mixin focusVisible {
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    @content;
+  }
+}
+
+// Shared focus-visible ring for interactive controls that use the tokenized
+// box-shadow treatment instead of the browser outline.
+@mixin focusVisibleRing(
+  $ringColor: themeShift.token('accessibility.focus.ring'),
+  $gapColor: themeShift.token('accessibility.focus.gap'),
+  $ringWidth: themeShift.token('accessibility.focus.ringWidth'),
+  $gapWidth: themeShift.token('accessibility.focus.gapWidth')
+) {
+  &:focus:not(:focus-visible) {
+    box-shadow: none;
+  }
+
+  @include focusVisible {
+    outline: none;
+    @include focusRing($ringColor, $gapColor, $ringWidth, $gapWidth);
+  }
+}
+
+// Button-specific alias kept for component-level readability.
 @mixin buttonFocus(
   $ringColor: themeShift.token('accessibility.focus.ring'),
   $gapColor: themeShift.token('accessibility.focus.gap'),
   $ringWidth: themeShift.token('accessibility.focus.ringWidth'),
   $gapWidth: themeShift.token('accessibility.focus.gapWidth')
 ) {
-  @include focusRing($ringColor, $gapColor, $ringWidth, $gapWidth);
-
-  outline: none;
+  @include focusVisibleRing($ringColor, $gapColor, $ringWidth, $gapWidth);
 }

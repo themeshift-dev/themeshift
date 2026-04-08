@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button, Heading } from '@/ui';
+import { Button, Heading } from '@/components';
 import { useTheme } from '@/contexts';
 
 import styles from './App.module.scss';

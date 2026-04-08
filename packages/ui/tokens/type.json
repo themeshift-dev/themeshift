@@ -16,6 +16,11 @@
       "display": {
         "$value": "Georgia, serif",
         "$description": "Display font for hero and editorial headings"
+      },
+
+      "default": {
+        "$value": "{font.family.sans}",
+        "$description": "The default font-family to use for all text"
       }
     },
 

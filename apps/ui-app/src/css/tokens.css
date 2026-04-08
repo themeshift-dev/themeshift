@@ -74,6 +74,7 @@
   --themeshift-color-white: #ffffff;
 
   /* Typography */
+  --themeshift-font-family-default: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-font-family-display: Georgia, serif;
   --themeshift-font-family-sans: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-font-family-serif: Georgia, serif;
@@ -203,24 +204,67 @@
   --themeshift-components-button-sizes-medium: 40px;
   --themeshift-components-button-sizes-small: 32px;
   --themeshift-components-link-font: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-components-link-padding: 0 1rem;
   --themeshift-components-navbar-container-gap: 2rem;
   --themeshift-components-navbar-min-height: 72px;
   --themeshift-components-navbar-padding-block: 0;
-  --themeshift-components-navbar-padding-inline: 2rem;
+  --themeshift-components-navbar-padding-inline: 0;
   --themeshift-components-navbar-section-gap: 1rem;
+  --themeshift-components-skiplink-border-radius: .5rem;
+  --themeshift-components-skiplink-font: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-components-skiplink-x: 1rem;
+  --themeshift-components-skiplink-y: 1rem;
 
   /* Other */
-  --themeshift-grid-padding-large: 2rem;
-  --themeshift-grid-padding-medium: 1rem;
-  --themeshift-grid-padding-small: .5rem;
+  --themeshift-grid-columns-desktop: 12;
+  --themeshift-grid-columns-mobile: 4;
+  --themeshift-grid-columns-tablet: 8;
+  --themeshift-grid-container-content-max-width: 80rem;
+  --themeshift-grid-container-max-width-lg: 80rem;
+  --themeshift-grid-container-max-width-md: 64rem;
+  --themeshift-grid-container-max-width-sm: 40rem;
+  --themeshift-grid-container-max-width-xl: 90rem;
+  --themeshift-grid-container-padding-inline-desktop: 2rem;
+  --themeshift-grid-container-padding-inline-mobile: 1rem;
+  --themeshift-grid-container-padding-inline-tablet: 1.5rem;
+  --themeshift-grid-gutter-desktop: 1.5rem;
+  --themeshift-grid-gutter-mobile: 1rem;
+  --themeshift-grid-gutter-tablet: 1.25rem;
+  --themeshift-grid-row-gap-desktop: 1.5rem;
+  --themeshift-grid-row-gap-mobile: 1rem;
+  --themeshift-grid-row-gap-tablet: 1.25rem;
   --themeshift-layout-breakpoints-desktop: 1024px;
   --themeshift-layout-breakpoints-mobile: 0px;
   --themeshift-layout-breakpoints-tablet: 768px;
+  --themeshift-layout-page-shell-aside-span-desktop: 3;
+  --themeshift-layout-page-shell-aside-span-mobile: 4;
+  --themeshift-layout-page-shell-aside-span-tablet: 8;
+  --themeshift-layout-page-shell-container-max-width: 80rem;
+  --themeshift-layout-page-shell-main-span-desktop: 9;
+  --themeshift-layout-page-shell-main-span-mobile: 4;
+  --themeshift-layout-page-shell-main-span-tablet: 8;
+  --themeshift-layout-site-margin: 1rem;
   --themeshift-layout-site-max-width: 800px;
+  --themeshift-layout-site-padding: 0;
   --themeshift-radius-large: 2rem;
   --themeshift-radius-medium: 1rem;
   --themeshift-radius-small: .5rem;
+  --themeshift-space-0: 0;
+  --themeshift-space-1: 0.25rem;
+  --themeshift-space-10: 3rem;
+  --themeshift-space-11: 3.5rem;
+  --themeshift-space-12: 4rem;
+  --themeshift-space-14: 5rem;
+  --themeshift-space-16: 6rem;
+  --themeshift-space-2: 0.5rem;
+  --themeshift-space-20: 8rem;
+  --themeshift-space-24: 10rem;
+  --themeshift-space-3: 0.75rem;
+  --themeshift-space-4: 1rem;
+  --themeshift-space-5: 1.25rem;
+  --themeshift-space-6: 1.5rem;
+  --themeshift-space-7: 1.75rem;
+  --themeshift-space-8: 2rem;
+  --themeshift-space-9: 2.5rem;
 }
 
 :root[data-theme='light'] {
@@ -228,8 +272,8 @@
   --themeshift-font-weight: 300;
 
   /* Accessibility */
-  --themeshift-accessibility-focus-gap: #ffffff;
-  --themeshift-accessibility-focus-ring: #03a9f4;
+  --themeshift-accessibility-focus-gap: #fcf7fa;
+  --themeshift-accessibility-focus-ring: #e75009;
 
   /* Theme */
   --themeshift-theme-surface-base: #eceff1;
@@ -258,12 +302,14 @@
   --themeshift-components-link-text: #3949ab;
   --themeshift-components-navbar-border: transparent;
   --themeshift-components-navbar-surface: transparent;
+  --themeshift-components-skiplink-fg: #ffffff;
+  --themeshift-components-skiplink-surface: #5c6bc0;
 }
 
 :root[data-theme='dark'] {
   /* Accessibility */
-  --themeshift-accessibility-focus-gap: #ffffff;
-  --themeshift-accessibility-focus-ring: #3f51b5;
+  --themeshift-accessibility-focus-gap: #fcf7fa;
+  --themeshift-accessibility-focus-ring: #e75009;
 
   /* Theme */
   --themeshift-theme-surface-base: #13171b;
@@ -292,4 +338,6 @@
   --themeshift-components-link-text: #29b6f6;
   --themeshift-components-navbar-border: transparent;
   --themeshift-components-navbar-surface: transparent;
+  --themeshift-components-skiplink-fg: #ffffff;
+  --themeshift-components-skiplink-surface: #5c6bc0;
 }

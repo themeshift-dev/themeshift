@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Button } from '@/ui/Button';
-import { Navbar, NavbarContainer, NavbarSection } from '@/ui/Navbar';
+import { Button } from '@/components/Button';
+import { Navbar, NavbarContainer, NavbarSection } from '@/components/Navbar';
 
 const meta = {
   title: 'Components/Navbar',

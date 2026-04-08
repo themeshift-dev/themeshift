@@ -23,6 +23,10 @@
       "types": "./dist/components/Heading/index.d.ts",
       "import": "./dist/components/Heading/index.js"
     },
+    "./components/Link": {
+      "types": "./dist/components/Link/index.d.ts",
+      "import": "./dist/components/Link/index.js"
+    },
     "./components/Navbar": {
       "types": "./dist/components/Navbar/index.d.ts",
       "import": "./dist/components/Navbar/index.js"
@@ -31,9 +35,51 @@
       "types": "./dist/components/Responsive/index.d.ts",
       "import": "./dist/components/Responsive/index.js"
     },
+    "./components/SkipLink": {
+      "types": "./dist/components/SkipLink/index.d.ts",
+      "import": "./dist/components/SkipLink/index.js"
+    },
+    "./templates": {
+      "types": "./dist/templates/index.d.ts",
+      "import": "./dist/templates/index.js"
+    },
+    "./templates/AppShell": {
+      "types": "./dist/templates/AppShell/index.d.ts",
+      "import": "./dist/templates/AppShell/index.js"
+    },
+    "./templates/AuthShell": {
+      "types": "./dist/templates/AuthShell/index.d.ts",
+      "import": "./dist/templates/AuthShell/index.js"
+    },
+    "./templates/BlankShell": {
+      "types": "./dist/templates/BlankShell/index.d.ts",
+      "import": "./dist/templates/BlankShell/index.js"
+    },
+    "./templates/CenteredShell": {
+      "types": "./dist/templates/CenteredShell/index.d.ts",
+      "import": "./dist/templates/CenteredShell/index.js"
+    },
+    "./templates/PageShell": {
+      "types": "./dist/templates/PageShell/index.d.ts",
+      "import": "./dist/templates/PageShell/index.js"
+    },
+    "./templates/SplitPaneShell": {
+      "types": "./dist/templates/SplitPaneShell/index.d.ts",
+      "import": "./dist/templates/SplitPaneShell/index.js"
+    },
+    "./icons": {
+      "types": "./dist/icons/index.d.ts",
+      "import": "./dist/icons/index.js"
+    },
     "./contexts": {
       "types": "./dist/contexts/index.d.ts",
       "import": "./dist/contexts/index.js"
+    },
+    "./sass/typography": {
+      "sass": "./dist/sass/typography.scss"
+    },
+    "./sass/_typography": {
+      "sass": "./dist/sass/typography.scss"
     },
     "./css/fonts.css": "./dist/css/fonts.css",
     "./css/base.css": "./dist/css/base.css",
@@ -61,6 +107,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@themeshift/vite-plugin-themeshift": "^0.3.11",
     "@fontsource-variable/noto-sans": "^5.2.10",
     "classnames": "^2.5.1"
   },
@@ -78,7 +125,6 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@themeshift/vite-plugin-themeshift": "workspace:*",
     "@types/jest-axe": "^3.5.9",
     "@types/node": "^24.12.0",
     "@types/react": "^19.2.14",

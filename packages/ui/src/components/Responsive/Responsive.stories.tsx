@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Responsive } from '@/ui/Responsive';
+import { Responsive } from '@/components/Responsive';
 
 const meta = {
   title: 'Components/Responsive',

@@ -37,19 +37,45 @@ function injectComponentCss(): Plugin {
     generateBundle(_options: unknown, bundle: OutputBundle) {
       const cssAssetsToRemove = new Set<string>();
 
+      const collectImportedCss = (
+        chunk: OutputChunk,
+        visited = new Set<string>()
+      ): string[] => {
+        if (visited.has(chunk.fileName)) {
+          return [];
+        }
+
+        visited.add(chunk.fileName);
+
+        const importedCss = Array.from(chunk.viteMetadata?.importedCss ?? []);
+        const transitiveCss = chunk.imports.flatMap((importedChunkFileName) => {
+          const importedChunk = bundle[importedChunkFileName];
+
+          if (!importedChunk || importedChunk.type !== 'chunk') {
+            return [];
+          }
+
+          return collectImportedCss(importedChunk, visited);
+        });
+
+        return [...importedCss, ...transitiveCss];
+      };
+
       for (const chunk of Object.values(bundle)) {
         if (chunk.type !== 'chunk' || !chunk.isEntry) {
           continue;
         }
 
-        if (
-          !chunk.fileName.startsWith('components/') ||
-          !chunk.fileName.endsWith('/index.js')
-        ) {
+        const isStyleInjectableEntry =
+          (chunk.fileName.startsWith('components/') ||
+            chunk.fileName.startsWith('templates/')) &&
+          chunk.fileName.endsWith('/index.js');
+
+        if (!isStyleInjectableEntry) {
           continue;
         }
 
-        const importedCss = Array.from(chunk.viteMetadata?.importedCss ?? []);
+        const importedCss = collectImportedCss(chunk);
 
         if (importedCss.length === 0) {
           continue;
@@ -116,9 +142,11 @@ export default defineConfig({
           includePrefixes: [
             'radius-',
             'spacing-',
+            'space-',
             'font-',
             'typography-',
             'layout-',
+            'grid-',
           ],
           excludePrefixes: ['theme-', 'components-'],
         },
@@ -133,19 +161,49 @@ export default defineConfig({
     lib: {
       entry: {
         'components/Button/index': fileURLToPath(
-          new URL('./src/components/Button/index.ts', import.meta.url)
+          new URL('./src/entrypoints/components/Button.ts', import.meta.url)
         ),
         'components/Heading/index': fileURLToPath(
-          new URL('./src/components/Heading/index.ts', import.meta.url)
+          new URL('./src/entrypoints/components/Heading.ts', import.meta.url)
+        ),
+        'components/Link/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Link.ts', import.meta.url)
         ),
         'components/Navbar/index': fileURLToPath(
-          new URL('./src/components/Navbar/index.ts', import.meta.url)
+          new URL('./src/entrypoints/components/Navbar.ts', import.meta.url)
         ),
         'components/Responsive/index': fileURLToPath(
-          new URL('./src/components/Responsive/index.ts', import.meta.url)
+          new URL('./src/entrypoints/components/Responsive.ts', import.meta.url)
+        ),
+        'components/SkipLink/index': fileURLToPath(
+          new URL('./src/entrypoints/components/SkipLink.ts', import.meta.url)
+        ),
+        'templates/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/index.ts', import.meta.url)
+        ),
+        'templates/AppShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/AppShell.ts', import.meta.url)
+        ),
+        'templates/AuthShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/AuthShell.ts', import.meta.url)
+        ),
+        'templates/BlankShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/BlankShell.ts', import.meta.url)
+        ),
+        'templates/CenteredShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/CenteredShell.ts', import.meta.url)
+        ),
+        'templates/PageShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/PageShell.ts', import.meta.url)
+        ),
+        'templates/SplitPaneShell/index': fileURLToPath(
+          new URL('./src/entrypoints/templates/SplitPaneShell.ts', import.meta.url)
+        ),
+        'icons/index': fileURLToPath(
+          new URL('./src/entrypoints/icons.ts', import.meta.url)
         ),
         'contexts/index': fileURLToPath(
-          new URL('./src/contexts/index.ts', import.meta.url)
+          new URL('./src/entrypoints/contexts.ts', import.meta.url)
         ),
       },
       formats: ['es'],

@@ -16,9 +16,59 @@
     },
 
     "site": {
+      "margin": {
+        "$description": "The amount of margin outside of the `AppShell` component",
+        "$type": "dimension",
+        "$value": "1rem"
+      },
+
+      "padding": {
+        "$description": "The amount of padding outside of the `AppShell` component",
+        "$type": "dimension",
+        "$value": "0"
+      },
+
       "maxWidth": {
+        "$description": "The max-width allowed by pages on this site",
         "$type": "dimension",
         "$value": "1200px"
+      }
+    },
+
+    "pageShell": {
+      "container": {
+        "maxWidth": {
+          "$type": "dimension",
+          "$value": "{grid.container.contentMaxWidth}"
+        }
+      },
+      "main": {
+        "span": {
+          "$type": "number",
+          "mobile": {
+            "$value": "{grid.columns.mobile}"
+          },
+          "tablet": {
+            "$value": "{grid.columns.tablet}"
+          },
+          "desktop": {
+            "$value": 9
+          }
+        }
+      },
+      "aside": {
+        "span": {
+          "$type": "number",
+          "mobile": {
+            "$value": "{grid.columns.mobile}"
+          },
+          "tablet": {
+            "$value": "{grid.columns.tablet}"
+          },
+          "desktop": {
+            "$value": 3
+          }
+        }
       }
     }
   }

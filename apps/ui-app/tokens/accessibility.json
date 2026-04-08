@@ -1,0 +1,38 @@
+{
+  "accessibility": {
+    "focus": {
+      "gapWidth": {
+        "$type": "dimension",
+        "$value": "2px"
+      },
+      "ringWidth": {
+        "$type": "dimension",
+        "$value": "3px"
+      }
+    },
+    "light": {
+      "focus": {
+        "gap": {
+          "$type": "color",
+          "$value": "#FCF7FA"
+        },
+        "ring": {
+          "$type": "color",
+          "$value": "#E75009"
+        }
+      }
+    },
+    "dark": {
+      "focus": {
+        "gap": {
+          "$type": "color",
+          "$value": "#FCF7FA"
+        },
+        "ring": {
+          "$type": "color",
+          "$value": "#E75009"
+        }
+      }
+    }
+  }
+}

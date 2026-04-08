@@ -5,6 +5,10 @@ import { tokenValues } from './token-values';
 
 describe('ThemeShift token helpers', () => {
   it('reads authored token values from the generated manifest', () => {
+    expect(tokenValue('space.4', { values: tokenValues })).toBe('1rem');
+    expect(tokenValue('grid.gutter.desktop', { values: tokenValues })).toBe(
+      '1.5rem'
+    );
     expect(
       tokenValue('layout.breakpoints.tablet', { values: tokenValues })
     ).toBe('768px');

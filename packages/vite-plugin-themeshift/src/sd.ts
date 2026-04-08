@@ -61,7 +61,15 @@ function getTokenValue(token: any) {
 }
 
 const DEFAULT_SCSS_FILTER_RULE: ThemeShiftTokenFilterRule = {
-  includePrefixes: ['radius-', 'spacing-', 'font-', 'text-', 'layout-'],
+  includePrefixes: [
+    'radius-',
+    'spacing-',
+    'space-',
+    'font-',
+    'text-',
+    'layout-',
+    'grid-',
+  ],
 };
 
 const DEFAULT_CSS_GROUPS: ThemeShiftCssGroup[] = [

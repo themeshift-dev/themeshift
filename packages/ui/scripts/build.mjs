@@ -45,7 +45,9 @@ async function compileBaseCss() {
     readFile(path.join(notoSansDir, 'wght.css'), 'utf8'),
     readFile(path.join(notoSansDir, 'wght-italic.css'), 'utf8'),
   ]);
-  const fontsCss = [notoSansNormalCss, notoSansItalicCss].join('\n');
+  const fontsCss = [notoSansNormalCss, notoSansItalicCss]
+    .join('\n')
+    .replaceAll("format('woff2-variations')", "format('woff2')");
 
   await mkdir(path.join(distDir, 'css'), { recursive: true });
   await cp(path.join(notoSansDir, 'files'), path.join(distDir, 'css', 'files'), {
@@ -63,9 +65,18 @@ async function copyThemeAssets() {
     recursive: true,
   });
 
+  await mkdir(path.join(distDir, 'sass'), { recursive: true });
   await cp(
     path.join(rootDir, 'src/css/tokens.css'),
     path.join(distDir, 'css/tokens.css'),
+  );
+  await cp(
+    path.join(rootDir, 'src/sass/mixins/typography.scss'),
+    path.join(distDir, 'sass/typography.scss'),
+  );
+  await cp(
+    path.join(rootDir, 'src/sass/mixins/typography.scss'),
+    path.join(distDir, 'sass/_typography.scss'),
   );
 
   const contractPath = path.join(rootDir, 'theme-contract.json');
@@ -80,6 +91,7 @@ async function copyThemeAssets() {
 
 async function removeNonPublishedArtifacts() {
   await rm(path.join(distDir, 'index.d.ts'), { force: true });
+  await rm(path.join(distDir, 'entrypoints'), { recursive: true, force: true });
 }
 
 await rm(distDir, { recursive: true, force: true });

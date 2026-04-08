@@ -147,6 +147,29 @@ ThemeShift UI currently includes:
 
 CSS variable names use the `--themeshift-*` namespace to avoid collisions with application-level custom properties.
 
+## Accessibility
+
+Interactive components in ThemeShift UI should use the shared focus mixins from
+[`src/sass/mixins/accessibility.scss`](./src/sass/mixins/accessibility.scss)
+instead of removing focus styles directly.
+
+- Use `focusVisible` when a component needs custom `:focus-visible` behavior.
+- Use `focusVisibleRing` for the standard tokenized focus ring.
+- Use `buttonFocus` when you want the standard button treatment with clearer intent.
+
+These mixins standardize the safer pattern below so keyboard and assistive-technology users keep a visible focus indicator, while most pointer-triggered focus avoids extra visual noise:
+
+```scss
+&:focus:not(:focus-visible) {
+  outline: none;
+}
+
+&:focus-visible {
+  outline: 2px solid blue;
+  outline-offset: 2px;
+}
+```
+
 ## Responsive
 
 ThemeShift UI includes a `Responsive` primitive for CSS-only conditional visibility.

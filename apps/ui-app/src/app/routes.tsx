@@ -1,4 +1,7 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route } from 'react-router';
+import { Heading } from '@themeshift/ui/components/Heading';
+
+import { ComponentsPage } from '@/pages';
 
 type PlaceholderProps = {
   title: React.ReactNode;
@@ -7,7 +10,7 @@ type PlaceholderProps = {
 
 const Placeholder = ({ children, title }: PlaceholderProps) => (
   <div>
-    <h1>{title}</h1>
+    <Heading>{title}</Heading>
     <p>{children}</p>
   </div>
 );
@@ -15,10 +18,7 @@ const Placeholder = ({ children, title }: PlaceholderProps) => (
 const AppRoutes = () => (
   <Routes>
     <Route index element={<Placeholder title="Home">Home page!</Placeholder>} />
-    <Route
-      path="/components"
-      element={<Placeholder title="Components">Components here</Placeholder>}
-    />
+    <Route path="/components" element={<ComponentsPage />} />
     <Route
       path="/plugin"
       element={<Placeholder title="Plugin">Plugin info here</Placeholder>}

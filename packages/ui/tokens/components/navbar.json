@@ -7,7 +7,7 @@
       },
       "padding": {
         "inline": {
-          "$value": "{grid.padding.large}"
+          "$value": "0"
         },
         "block": {
           "$value": "0"
@@ -15,12 +15,12 @@
       },
       "container": {
         "gap": {
-          "$value": "{grid.padding.large}"
+          "$value": "{space.8}"
         }
       },
       "section": {
         "gap": {
-          "$value": "{grid.padding.medium}"
+          "$value": "{space.4}"
         }
       },
       "light": {
