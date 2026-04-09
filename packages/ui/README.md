@@ -2,7 +2,7 @@
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
 ![Build](https://github.com/adamhutch/themeshift/actions/workflows/ci.yml/badge.svg)
-![Coverage](https://codecov.io/gh/adamhutch/themeshift/graph/badge.svg)
+![Coverage](https://codecov.io/gh/adamhutch/themeshift/graph/badge.svg?flag=ui)
 ![npm](https://img.shields.io/npm/v/@themeshift/ui)
 ![Components](https://img.shields.io/badge/components-3-blue.svg)
 

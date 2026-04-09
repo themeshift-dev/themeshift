@@ -2,6 +2,21 @@
 
 ThemeShift is now managed as a single monorepo so the Vite plugin, UI library, and docs app can evolve together without publishing intermediate npm versions.
 
+## Status
+
+### Plugin
+
+![Build](https://github.com/adamhutch/themeshift/actions/workflows/ci.yml/badge.svg)
+![Coverage](https://codecov.io/gh/adamhutch/themeshift/graph/badge.svg?flag=vite-plugin-themeshift)
+![npm](https://img.shields.io/npm/v/@themeshift/vite-plugin-themeshift)
+
+### UI
+
+![Build](https://github.com/adamhutch/themeshift/actions/workflows/ci.yml/badge.svg)
+![Coverage](https://codecov.io/gh/adamhutch/themeshift/graph/badge.svg?flag=ui)
+![npm](https://img.shields.io/npm/v/@themeshift/ui)
+![Components](https://img.shields.io/badge/components-3-blue.svg)
+
 ## Workspace layout
 
 - `packages/vite-plugin-themeshift`: publishes `@themeshift/vite-plugin-themeshift`
