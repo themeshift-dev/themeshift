@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
+import * as sass from 'sass';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { themeShift } from '../src/plugin';
@@ -9,7 +10,6 @@ import {
   mergeScssAdditionalData,
 } from '../src/sassTokenInjection';
 import * as sd from '../src/sd';
-import * as sass from '../playground/node_modules/sass/sass.node.mjs';
 
 const sdMocks = vi.hoisted(() => {
   const buildPlatform = vi.fn(async () => {});
@@ -61,7 +61,10 @@ async function seedLocalTokenModules(targetDir: string) {
       '@use "token-defaults" as _themeShiftDefaults;'
     )
   );
-  await fs.writeFile(path.join(targetDir, 'token-defaults.scss'), tokenDefaultsSource);
+  await fs.writeFile(
+    path.join(targetDir, 'token-defaults.scss'),
+    tokenDefaultsSource
+  );
 }
 
 async function compileConsumerScss(source: string) {
@@ -134,20 +137,25 @@ describe('themeShift', () => {
     sdMocks.registerTransform.mockReset();
     sdMocks.registerFormat.mockReset();
     sdMocks.buildPlatform.mockImplementation(async () => {});
-    sdMocks.extend.mockImplementation(() => ({ buildPlatform: sdMocks.buildPlatform }));
+    sdMocks.extend.mockImplementation(() => ({
+      buildPlatform: sdMocks.buildPlatform,
+    }));
   });
 
   afterEach(async () => {
     await Promise.all(
-      tempRoots.splice(0).map((root) =>
-        fs.rm(root, { recursive: true, force: true })
-      )
+      tempRoots
+        .splice(0)
+        .map((root) => fs.rm(root, { recursive: true, force: true }))
     );
   });
 
   it('passes defaultTheme through to Style Dictionary registration', async () => {
     const registerSpy = vi.spyOn(sd, 'registerStyleDictionaryThings');
-    const plugin = themeShift({ defaultTheme: 'dark', cssVarPrefix: 'themeshift' });
+    const plugin = themeShift({
+      defaultTheme: 'dark',
+      cssVarPrefix: 'themeshift',
+    });
 
     plugin.config?.({}, { command: 'build', mode: 'test' } as any);
     await plugin.buildStart?.();
@@ -257,9 +265,7 @@ describe('themeShift', () => {
         '.button { color: token("components.button.font"); }\n',
         'Button.module.scss'
       )
-    ).toContain(
-      '$theme-shift-default-css-var-prefix: "themeshift"'
-    );
+    ).toContain('$theme-shift-default-css-var-prefix: "themeshift"');
     expect(
       additional(
         '@use "@themeshift/vite-plugin-themeshift/token" as themeShift;\n.button { color: themeShift.token("components.button.font"); }\n',
@@ -279,8 +285,12 @@ describe('themeShift', () => {
     expect(moduleSource).toContain(
       '@use "@themeshift/vite-plugin-themeshift/token-defaults" as _themeShiftDefaults;'
     );
-    expect(moduleSource).toContain('@function _sd_resolve_css_var_prefix($cssVarPrefix: null)');
-    expect(moduleSource).toContain('@function token($path, $cssVarPrefix: null)');
+    expect(moduleSource).toContain(
+      '@function _sd_resolve_css_var_prefix($cssVarPrefix: null)'
+    );
+    expect(moduleSource).toContain(
+      '@function token($path, $cssVarPrefix: null)'
+    );
   });
 
   it('uses an explicit prefix passed to token()', async () => {
@@ -297,7 +307,9 @@ describe('themeShift', () => {
 
   it('falls back to the injected prefix when token() is called without one', async () => {
     const css = await compileConsumerGraph({
-      injection: localizeInjectionForSource(makeSassTokenInjection('theme_shift')),
+      injection: localizeInjectionForSource(
+        makeSassTokenInjection('theme_shift')
+      ),
       rootSource: `
 .button {
   color: token('components.button.font');
@@ -386,7 +398,9 @@ body {
 
   it('supports root stylesheets that rely on plugin injection only', async () => {
     const css = await compileConsumerGraph({
-      injection: localizeInjectionForSource(makeSassTokenInjection('themeshift')),
+      injection: localizeInjectionForSource(
+        makeSassTokenInjection('themeshift')
+      ),
       rootSource: `
 .button {
   color: token('theme.text.base');
@@ -428,7 +442,9 @@ body {
 }
 `,
       },
-      injection: localizeInjectionForSource(makeSassTokenInjection('themeshift')),
+      injection: localizeInjectionForSource(
+        makeSassTokenInjection('themeshift')
+      ),
       rootSource: `@use 'typography';
 
 .button {
@@ -444,7 +460,9 @@ body {
 
   it('supports explicit imports alongside injected defaults in the same compile graph', async () => {
     const css = await compileConsumerGraph({
-      injection: localizeInjectionForSource(makeSassTokenInjection('themeshift')),
+      injection: localizeInjectionForSource(
+        makeSassTokenInjection('themeshift')
+      ),
       rootSource: `@use 'token' as themeShift;
 
 .button {

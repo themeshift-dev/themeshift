@@ -63,6 +63,7 @@
     "@types/node": "^22.0.0",
     "@vitest/coverage-v8": "^4.0.18",
     "prettier": "^3.8.1",
+    "sass": "^1.98.0",
     "tsup": "^8.0.0",
     "typescript": "^5.4.0",
     "vitest": "^4.0.18"
