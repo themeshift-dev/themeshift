@@ -31,8 +31,9 @@ This means:
 
 Make sure these things are ready:
 
-- Your npm user or org has permission to publish `@themeshift/ui`
-- Your npm user or org has permission to publish `@themeshift/vite-plugin-themeshift`
+- npm trusted publishing is enabled for `@themeshift/ui`
+- npm trusted publishing is enabled for `@themeshift/vite-plugin-themeshift`
+- both npm packages trust the GitHub Actions workflow named `release.yml`
 - CI is passing on `main`
 
 Useful checks:
@@ -116,6 +117,8 @@ When you merge the Release PR, GitHub Actions runs the release workflow again.
 
 This time Changesets publishes the versioned public packages to npm.
 
+Publishing uses npm trusted publishing. GitHub Actions does not need a long-lived npm secret for this repo.
+
 ## Publishing from your machine
 
 The repo includes a local publish command:
@@ -131,6 +134,8 @@ changeset publish
 ```
 
 In this repo, the normal and safer path is to let GitHub Actions publish from `main` instead of publishing manually from a local machine.
+
+Local publishing still requires your local npm login to have publish access to the `@themeshift` npm org.
 
 ## Useful commands
 
@@ -181,6 +186,7 @@ pnpm build
 - `workspace:*` dependencies are correct in this monorepo. They should not be replaced with hard-coded package versions for local workspace links.
 - `@themeshift/ui-app` is private, so it will not publish to npm even though its version changes.
 - `@themeshift/vite-plugin-themeshift` is not fixed to `@themeshift/ui`, so it can release on its own schedule.
+- GitHub Actions publishes with npm trusted publishing, not a long-lived npm secret.
 - If there is no new changeset file, the release workflow has nothing new to publish.
 
 ## Troubleshooting
@@ -197,8 +203,9 @@ Check:
 
 Check:
 
-- `NPM_TOKEN` exists in GitHub secrets
 - the Release PR was merged
+- npm trusted publishing is enabled for each public package
+- each npm package trusts `adamhutch/themeshift` and the `release.yml` workflow filename
 - the package names and npm access are correct
 
 ### Versions look wrong in the Release PR
