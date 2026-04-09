@@ -31,7 +31,9 @@ describe('registerStyleDictionaryThings', () => {
     const format = StyleDictionary.getFormat('css/variables-modes-grouped');
     const output = format?.({
       dictionary: {
-        allTokens: [{ name: 'components-button-font', value: '600 1rem/1.2 Inter' }],
+        allTokens: [
+          { name: 'components-button-font', value: '600 1rem/1.2 Inter' },
+        ],
       },
     });
 
@@ -47,14 +49,18 @@ describe('registerStyleDictionaryThings', () => {
     const format = StyleDictionary.getFormat('css/variables-modes-grouped');
     const output = format?.({
       dictionary: {
-        allTokens: [{ name: 'components-button-font', value: '600 1rem/1.2 Inter' }],
+        allTokens: [
+          { name: 'components-button-font', value: '600 1rem/1.2 Inter' },
+        ],
       },
     });
 
     expect(output).toContain(
       '--themeshift-components-button-font: 600 1rem/1.2 Inter;'
     );
-    expect(output).not.toContain('--components-button-font: 600 1rem/1.2 Inter;');
+    expect(output).not.toContain(
+      '--components-button-font: 600 1rem/1.2 Inter;'
+    );
   });
 
   it('serializes typography object values into valid CSS variable values', () => {
@@ -223,7 +229,488 @@ describe('registerStyleDictionaryThings', () => {
 
     expect(output).toContain('"color.brand.primary": "#005fcc"');
     expect(output).toContain('"text.style.title": {');
-    expect(output).toContain('"fontFamily": "\\"Roboto Slab\\", Georgia, serif"');
+    expect(output).toContain(
+      '"fontFamily": "\\"Roboto Slab\\", Georgia, serif"'
+    );
+  });
+
+  it('resolves references to nested sub-values inside composite token originals', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary, {
+      cssVarPrefix: 'themeshift',
+    });
+
+    const format = StyleDictionary.getFormat('css/variables-modes-grouped');
+    const output = format?.({
+      dictionary: {
+        allTokens: [
+          {
+            name: 'color-white',
+            path: ['color', 'white'],
+            value: '#fff',
+            original: {
+              $value: '#fff',
+              $type: 'color',
+            },
+            attributes: {},
+          },
+          {
+            name: 'color-blue-400',
+            path: ['color', 'blue', '400'],
+            value: '#5C6BC0',
+            original: {
+              $value: '#5C6BC0',
+              fg: {
+                $value: '{color.white}',
+                $type: 'color',
+              },
+              $type: 'color',
+            },
+            attributes: {},
+          },
+          {
+            name: 'components-button-light-intents-primary-fg',
+            path: ['components', 'button', 'light', 'intents', 'primary', 'fg'],
+            value: '{color.blue.400.fg}',
+            original: {
+              $value: '{color.blue.400.fg}',
+            },
+            attributes: {
+              theme: 'light',
+            },
+          },
+        ],
+      },
+    });
+
+    expect(output).toContain(
+      '--themeshift-components-button-light-intents-primary-fg: #fff;'
+    );
+  });
+
+  it('keeps css color functions like rgba() as literal token values', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary, {
+      cssVarPrefix: 'themeshift',
+    });
+
+    const format = StyleDictionary.getFormat('css/variables-modes-grouped');
+    const output = format?.({
+      dictionary: {
+        allTokens: [
+          {
+            name: 'color-white-70',
+            path: ['color', 'white', '70'],
+            value: 'rgba(255, 255, 255, .7)',
+            original: {
+              $value: 'rgba(255, 255, 255, .7)',
+              $type: 'color',
+            },
+            attributes: {},
+          },
+          {
+            name: 'theme-dark-text-muted',
+            path: ['theme', 'dark', 'text', 'muted'],
+            value: '{color.white.70}',
+            original: {
+              $value: '{color.white.70}',
+            },
+            attributes: {
+              theme: 'dark',
+            },
+          },
+        ],
+      },
+    });
+
+    expect(output).toContain(
+      '--themeshift-theme-dark-text-muted: rgba(255, 255, 255, .7);'
+    );
+  });
+
+  it('keeps hsl() and hsla() css color functions as literal token values', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary, {
+      cssVarPrefix: 'themeshift',
+    });
+
+    const format = StyleDictionary.getFormat('css/variables-modes-grouped');
+    const output = format?.({
+      dictionary: {
+        allTokens: [
+          {
+            name: 'color-brand-hsl',
+            path: ['color', 'brand', 'hsl'],
+            value: 'hsl(220, 45%, 40%)',
+            original: {
+              $value: 'hsl(220, 45%, 40%)',
+              $type: 'color',
+            },
+            attributes: {},
+          },
+          {
+            name: 'color-brand-hsla',
+            path: ['color', 'brand', 'hsla'],
+            value: 'hsla(220, 45%, 40%, 0.5)',
+            original: {
+              $value: 'hsla(220, 45%, 40%, 0.5)',
+              $type: 'color',
+            },
+            attributes: {},
+          },
+        ],
+      },
+    });
+
+    expect(output).toContain(
+      '--themeshift-color-brand-hsl: hsl(220, 45%, 40%);'
+    );
+    expect(output).toContain(
+      '--themeshift-color-brand-hsla: hsla(220, 45%, 40%, 0.5);'
+    );
+  });
+
+  it('resolves nested references inside typography object values', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary, {
+      filters: {
+        scss: {
+          includePrefixes: ['font-', 'typography-'],
+        },
+      },
+    });
+
+    const format = StyleDictionary.getFormat('scss/static-tokens');
+    const output = format?.({
+      dictionary: {
+        allTokens: [
+          {
+            name: 'font-family-sans',
+            path: ['font', 'family', 'sans'],
+            value: "'Noto Sans Variable', sans-serif",
+          },
+          {
+            name: 'font-weight-bold',
+            path: ['font', 'weight', 'bold'],
+            value: '700',
+          },
+          {
+            name: 'typography-metrics-1-font-size',
+            path: ['typography', 'metrics', '1', 'fontSize'],
+            value: '1rem',
+          },
+          {
+            name: 'typography-metrics-1-line-height',
+            path: ['typography', 'metrics', '1', 'lineHeight'],
+            value: '1.375rem',
+          },
+          {
+            name: 'typography-scales-1-bold',
+            path: ['typography', 'scales', '1', 'bold'],
+            type: 'typography',
+            original: {
+              $type: 'typography',
+              $value: {
+                fontFamily: '{font.family.sans}',
+                fontSize: '{typography.metrics.1.fontSize}',
+                lineHeight: '{typography.metrics.1.lineHeight}',
+                fontWeight: '{font.weight.bold}',
+              },
+            },
+            value: {
+              fontFamily: '{font.family.sans}',
+              fontSize: '{typography.metrics.1.fontSize}',
+              lineHeight: '{typography.metrics.1.lineHeight}',
+              fontWeight: '{font.weight.bold}',
+            },
+            attributes: {},
+          },
+        ],
+      },
+    });
+
+    expect(output).toContain(
+      "$typography_scales_1_bold: 700 1rem/1.375rem 'Noto Sans Variable', sans-serif;"
+    );
+  });
+
+  it('resolves color expressions consistently across css, scss, and token manifests', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary, {
+      cssVarPrefix: 'themeshift',
+      filters: {
+        scss: {
+          includePrefixes: ['components-', 'space-'],
+        },
+      },
+    });
+
+    const cssFormat = StyleDictionary.getFormat('css/variables-modes-grouped');
+    const scssFormat = StyleDictionary.getFormat('scss/static-tokens');
+    const valuesFormat = StyleDictionary.getFormat('token/values-ts');
+    const dictionary = {
+      allTokens: [
+        {
+          name: 'color-blue-300',
+          path: ['color', 'blue', '300'],
+          value: '#7986CB',
+        },
+        {
+          name: 'color-blue-400',
+          path: ['color', 'blue', '400'],
+          value: '#5C6BC0',
+        },
+        {
+          name: 'color-blue-500',
+          path: ['color', 'blue', '500'],
+          value: '#3F51B5',
+        },
+        {
+          name: 'color-white',
+          path: ['color', 'white'],
+          value: '#fff',
+        },
+        {
+          name: 'components-button-padding',
+          path: ['components', 'button', 'padding'],
+          value: '0 {space.4}',
+          original: {
+            value: '0 {space.4}',
+          },
+          attributes: {},
+        },
+        {
+          name: 'space-4',
+          path: ['space', '4'],
+          value: '1rem',
+          attributes: {},
+        },
+        {
+          name: 'components-button-intents-primary-hover',
+          path: ['components', 'button', 'intents', 'primary', 'hover'],
+          value: 'lighten({color.blue.300}, 0.1)',
+          original: {
+            value: 'lighten({color.blue.300}, 0.1)',
+          },
+          attributes: {},
+        },
+        {
+          name: 'components-button-intents-primary-pressed',
+          path: ['components', 'button', 'intents', 'primary', 'pressed'],
+          value: 'darken({color.blue.500}, 0.1)',
+          original: {
+            value: 'darken({color.blue.500}, 0.1)',
+          },
+          attributes: {},
+        },
+        {
+          name: 'components-button-intents-primary-border',
+          path: ['components', 'button', 'intents', 'primary', 'border'],
+          value: 'mix({color.blue.400}, {color.white}, 0.25)',
+          original: {
+            value: 'mix({color.blue.400}, {color.white}, 0.25)',
+          },
+          attributes: {},
+        },
+        {
+          name: 'components-button-intents-primary-overlay',
+          path: ['components', 'button', 'intents', 'primary', 'overlay'],
+          value: 'alpha(mix({color.blue.400}, {color.white}, 0.25), 0.5)',
+          original: {
+            value: 'alpha(mix({color.blue.400}, {color.white}, 0.25), 0.5)',
+          },
+          attributes: {},
+        },
+      ],
+    };
+
+    const cssOutput = cssFormat?.({ dictionary });
+    const scssOutput = scssFormat?.({ dictionary });
+    const valuesOutput = valuesFormat?.({ dictionary });
+
+    expect(cssOutput).toContain(
+      '--themeshift-components-button-intents-primary-hover: #8692d0;'
+    );
+    expect(cssOutput).toContain(
+      '--themeshift-components-button-intents-primary-pressed: #3949a3;'
+    );
+    expect(cssOutput).toContain(
+      '--themeshift-components-button-intents-primary-border: #8590d0;'
+    );
+    expect(cssOutput).toContain(
+      '--themeshift-components-button-intents-primary-overlay: rgba(133, 144, 208, 0.5);'
+    );
+    expect(scssOutput).toContain(
+      '$components_button_intents_primary_hover: #8692d0;'
+    );
+    expect(scssOutput).toContain('$components_button_padding: 0 1rem;');
+    expect(valuesOutput).toContain(
+      '"components.button.intents.primary.hover": "#8692d0"'
+    );
+    expect(valuesOutput).toContain(
+      '"components.button.intents.primary.overlay": "rgba(133, 144, 208, 0.5)"'
+    );
+  });
+
+  it('throws helpful errors for malformed or unsupported color expressions', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary);
+
+    const format = StyleDictionary.getFormat('css/variables-modes-grouped');
+
+    expect(() =>
+      format?.({
+        dictionary: {
+          allTokens: [
+            {
+              name: 'color-blue-300',
+              path: ['color', 'blue', '300'],
+              value: '#7986CB',
+            },
+            {
+              name: 'components-button-hover',
+              path: ['components', 'button', 'hover'],
+              value: 'lighten({color.blue.300}, 0.1',
+              original: {
+                value: 'lighten({color.blue.300}, 0.1',
+              },
+              attributes: {},
+            },
+          ],
+        },
+      })
+    ).toThrow(
+      'Failed to resolve token "components.button.hover": invalid expression syntax "lighten({color.blue.300}, 0.1".'
+    );
+
+    expect(() =>
+      format?.({
+        dictionary: {
+          allTokens: [
+            {
+              name: 'color-blue-300',
+              path: ['color', 'blue', '300'],
+              value: '#7986CB',
+            },
+            {
+              name: 'components-button-hover',
+              path: ['components', 'button', 'hover'],
+              value: 'saturate({color.blue.300}, 0.1)',
+              original: {
+                value: 'saturate({color.blue.300}, 0.1)',
+              },
+              attributes: {},
+            },
+          ],
+        },
+      })
+    ).toThrow(
+      'Failed to resolve token "components.button.hover": unsupported color function "saturate()".'
+    );
+  });
+
+  it('throws a specific error for malformed css color functions', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary);
+
+    const format = StyleDictionary.getFormat('css/variables-modes-grouped');
+
+    expect(() =>
+      format?.({
+        dictionary: {
+          allTokens: [
+            {
+              name: 'theme-text-muted',
+              path: ['theme', 'text', 'muted'],
+              value: 'rgba(255, 255, 255, 2)',
+              original: {
+                value: 'rgba(255, 255, 255, 2)',
+              },
+              attributes: {},
+            },
+          ],
+        },
+      })
+    ).toThrow(
+      'Failed to resolve token "theme.text.muted": "rgba(255, 255, 255, 2)" looks like a CSS color function but is not a valid color value.'
+    );
+  });
+
+  it('throws helpful errors for invalid color arguments, missing references, and cycles', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary);
+
+    const format = StyleDictionary.getFormat('token/values-ts');
+
+    expect(() =>
+      format?.({
+        dictionary: {
+          allTokens: [
+            {
+              name: 'space-4',
+              path: ['space', '4'],
+              value: '1rem',
+            },
+            {
+              name: 'components-button-hover',
+              path: ['components', 'button', 'hover'],
+              value: 'lighten({space.4}, 0.1)',
+              original: {
+                value: 'lighten({space.4}, 0.1)',
+              },
+            },
+          ],
+        },
+      })
+    ).toThrow(
+      'Failed to resolve token "components.button.hover": "1rem" is not a supported color value.'
+    );
+
+    expect(() =>
+      format?.({
+        dictionary: {
+          allTokens: [
+            {
+              name: 'components-button-hover',
+              path: ['components', 'button', 'hover'],
+              value: 'lighten({color.blue.300}, 0.1)',
+              original: {
+                value: 'lighten({color.blue.300}, 0.1)',
+              },
+            },
+          ],
+        },
+      })
+    ).toThrow(
+      'Failed to resolve token "components.button.hover": unknown token reference "color.blue.300".'
+    );
+
+    expect(() =>
+      format?.({
+        dictionary: {
+          allTokens: [
+            {
+              name: 'color-brand-a',
+              path: ['color', 'brand', 'a'],
+              value: '{color.brand.b}',
+              original: {
+                value: '{color.brand.b}',
+              },
+            },
+            {
+              name: 'color-brand-b',
+              path: ['color', 'brand', 'b'],
+              value: '{color.brand.a}',
+              original: {
+                value: '{color.brand.a}',
+              },
+            },
+          ],
+        },
+      })
+    ).toThrow(
+      'Failed to resolve token "color.brand.a": circular token reference "color.brand.a -> color.brand.b -> color.brand.a".'
+    );
   });
 
   it('includes layout tokens in static Sass output with predictable variable names', () => {
@@ -334,7 +821,11 @@ describe('registerStyleDictionaryThings', () => {
     const output = format?.({
       dictionary: {
         allTokens: [
-          { name: 'layout-breakpoints-desktop', value: '1024px', attributes: {} },
+          {
+            name: 'layout-breakpoints-desktop',
+            value: '1024px',
+            attributes: {},
+          },
           { name: 'spacing-md', value: '1rem', attributes: {} },
         ],
       },
@@ -478,7 +969,9 @@ describe('registerStyleDictionaryThings', () => {
       },
     });
 
-    expect(output).toContain(':root {\n  /* Theme */\n  --theme-surface-base: #fff;');
+    expect(output).toContain(
+      ':root {\n  /* Theme */\n  --theme-surface-base: #fff;'
+    );
     expect(output).toContain(
       ":root[data-theme='light'] {\n  /* Theme */\n  --theme-surface-base: #fff;"
     );
@@ -511,7 +1004,9 @@ describe('registerStyleDictionaryThings', () => {
       },
     });
 
-    expect(output).toContain(':root {\n  /* Theme */\n  --theme-surface-base: #111;');
+    expect(output).toContain(
+      ':root {\n  /* Theme */\n  --theme-surface-base: #111;'
+    );
     expect(output).toContain(
       ":root[data-theme='light'] {\n  /* Theme */\n  --theme-surface-base: #fff;"
     );
@@ -728,11 +1223,13 @@ describe('registerStyleDictionaryThings', () => {
       },
     });
 
-    expect(output).toContain("/* Theme */");
-    expect(output).toContain("/* Components */");
+    expect(output).toContain('/* Theme */');
+    expect(output).toContain('/* Components */');
     expect(output).toContain('--component-button-text: #111;');
     expect(output).toContain('--components-button-surface-base: #ccc;');
-    expect(output).not.toContain("/* Other */\n  --components-button-surface-base");
+    expect(output).not.toContain(
+      '/* Other */\n  --components-button-surface-base'
+    );
   });
 
   it('groups unmatched tokens into the Other bucket by default', () => {
@@ -760,8 +1257,14 @@ describe('registerStyleDictionaryThings', () => {
     const StyleDictionary = makeStyleDictionaryMock();
     registerStyleDictionaryThings(StyleDictionary, {
       groups: [
-        { label: 'Buttons', match: (name) => name.startsWith('components-button-') },
-        { label: 'Components', match: (name) => name.startsWith('components-') },
+        {
+          label: 'Buttons',
+          match: (name) => name.startsWith('components-button-'),
+        },
+        {
+          label: 'Components',
+          match: (name) => name.startsWith('components-'),
+        },
         { label: 'Other', match: (_name) => true },
       ],
     });
@@ -784,9 +1287,15 @@ describe('registerStyleDictionaryThings', () => {
       },
     });
 
-    expect(output).toContain('/* Buttons */\n  --components-button-text: #111;');
-    expect(output).toContain('/* Components */\n  --components-card-surface: #fff;');
-    expect(output).not.toContain('/* Components */\n  --components-button-text: #111;');
+    expect(output).toContain(
+      '/* Buttons */\n  --components-button-text: #111;'
+    );
+    expect(output).toContain(
+      '/* Components */\n  --components-card-surface: #fff;'
+    );
+    expect(output).not.toContain(
+      '/* Components */\n  --components-button-text: #111;'
+    );
   });
 
   it('keeps grouping based on raw token names when cssVarPrefix is set', () => {
@@ -794,7 +1303,10 @@ describe('registerStyleDictionaryThings', () => {
     registerStyleDictionaryThings(StyleDictionary, {
       cssVarPrefix: 'themeshift',
       groups: [
-        { label: 'Components', match: (name) => name.startsWith('components-') },
+        {
+          label: 'Components',
+          match: (name) => name.startsWith('components-'),
+        },
         { label: 'Other', match: (_name) => true },
       ],
     });
@@ -846,7 +1358,9 @@ describe('registerStyleDictionaryThings', () => {
       },
     });
 
-    expect(output).toContain(':root {\n  /* Components */\n  --components-button-padding: 1rem 2rem 0;');
+    expect(output).toContain(
+      ':root {\n  /* Components */\n  --components-button-padding: 1rem 2rem 0;'
+    );
     expect(output).toContain(
       ":root[data-theme='light'] {\n  /* Components */\n  --components-button-surface-base: #ccc;"
     );

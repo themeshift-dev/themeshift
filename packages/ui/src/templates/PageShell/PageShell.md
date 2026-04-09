@@ -18,6 +18,9 @@ For general public-facing or standard pages. This shell is kept plain in order t
 - optional aside
 - footer
 
+The skip link renders by default and can be disabled with `showSkipLink` when
+the page is embedded in a larger shell that already provides bypass navigation.
+
 ## What it solves:
 
 - standard page chrome

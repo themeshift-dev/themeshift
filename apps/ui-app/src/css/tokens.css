@@ -1,82 +1,86 @@
 :root {
   /* Colors */
-  --themeshift-color-black: #000000;
-  --themeshift-color-blue-100: #c5cae9;
-  --themeshift-color-blue-200: #9fa8da;
-  --themeshift-color-blue-300: #7986cb;
-  --themeshift-color-blue-400: #5c6bc0;
-  --themeshift-color-blue-50: #ede7f6;
-  --themeshift-color-blue-500: #3f51b5;
-  --themeshift-color-blue-600: #3949ab;
-  --themeshift-color-blue-700: #303f9f;
+  --themeshift-color-black: #000;
+  --themeshift-color-blue-100: #C5CAE9;
+  --themeshift-color-blue-200: #9FA8DA;
+  --themeshift-color-blue-300: #7986CB;
+  --themeshift-color-blue-400: #5C6BC0;
+  --themeshift-color-blue-50: #EDE7F6;
+  --themeshift-color-blue-500: #3F51B5;
+  --themeshift-color-blue-600: #3949AB;
+  --themeshift-color-blue-700: #303F9F;
   --themeshift-color-blue-800: #283593;
-  --themeshift-color-blue-900: #1a237e;
-  --themeshift-color-blue-grey-100: #cfd8dc;
-  --themeshift-color-blue-grey-200: #b0bec5;
-  --themeshift-color-blue-grey-300: #90a4ae;
-  --themeshift-color-blue-grey-400: #78909c;
-  --themeshift-color-blue-grey-50: #eceff1;
-  --themeshift-color-blue-grey-500: #607d8b;
-  --themeshift-color-blue-grey-600: #546e7a;
-  --themeshift-color-blue-grey-700: #455a64;
-  --themeshift-color-blue-grey-800: #37474f;
+  --themeshift-color-blue-900: #1A237E;
+  --themeshift-color-blue-grey-100: #CFD8DC;
+  --themeshift-color-blue-grey-200: #B0BEC5;
+  --themeshift-color-blue-grey-300: #90A4AE;
+  --themeshift-color-blue-grey-400: #78909C;
+  --themeshift-color-blue-grey-50: #ECEFF1;
+  --themeshift-color-blue-grey-500: #607D8B;
+  --themeshift-color-blue-grey-600: #546E7A;
+  --themeshift-color-blue-grey-700: #455A64;
+  --themeshift-color-blue-grey-800: #37474F;
   --themeshift-color-blue-grey-900: #263238;
-  --themeshift-color-gray-100: #f5f5f5;
-  --themeshift-color-gray-200: #eeeeee;
-  --themeshift-color-gray-300: #e0e0e0;
-  --themeshift-color-gray-400: #bdbdbd;
-  --themeshift-color-gray-50: #fafafa;
-  --themeshift-color-gray-500: #9e9e9e;
+  --themeshift-color-gray-100: #F5F5F5;
+  --themeshift-color-gray-200: #EEEEEE;
+  --themeshift-color-gray-300: #E0E0E0;
+  --themeshift-color-gray-400: #BDBDBD;
+  --themeshift-color-gray-50: #FAFAFA;
+  --themeshift-color-gray-500: #9E9E9E;
   --themeshift-color-gray-600: #757575;
   --themeshift-color-gray-700: #616161;
   --themeshift-color-gray-800: #424242;
   --themeshift-color-gray-900: #212121;
-  --themeshift-color-green-100: #c8e6c9;
-  --themeshift-color-green-200: #a5d6a7;
-  --themeshift-color-green-300: #81c784;
-  --themeshift-color-green-400: #66bb6a;
-  --themeshift-color-green-50: #e8f5e9;
-  --themeshift-color-green-500: #4caf50;
-  --themeshift-color-green-600: #43a047;
-  --themeshift-color-green-700: #388e3c;
-  --themeshift-color-green-800: #2e7d32;
-  --themeshift-color-green-900: #1b5e20;
-  --themeshift-color-light-blue-100: #b3e5fc;
-  --themeshift-color-light-blue-200: #81d4fa;
-  --themeshift-color-light-blue-300: #4fc3f7;
-  --themeshift-color-light-blue-400: #29b6f6;
-  --themeshift-color-light-blue-50: #e1f5fe;
-  --themeshift-color-light-blue-500: #03a9f4;
-  --themeshift-color-light-blue-600: #039be5;
-  --themeshift-color-light-blue-700: #0288d1;
-  --themeshift-color-light-blue-800: #0277bd;
-  --themeshift-color-light-blue-900: #01579b;
-  --themeshift-color-red-100: #ffcdd2;
-  --themeshift-color-red-200: #ef9a9a;
-  --themeshift-color-red-300: #e57373;
-  --themeshift-color-red-400: #ef5350;
-  --themeshift-color-red-50: #ffebee;
-  --themeshift-color-red-500: #f44336;
-  --themeshift-color-red-600: #e53935;
-  --themeshift-color-red-700: #d32f2f;
-  --themeshift-color-red-800: #c62828;
-  --themeshift-color-red-900: #b71c1c;
-  --themeshift-color-teal-100: #b2dfdb;
-  --themeshift-color-teal-200: #80cbc4;
-  --themeshift-color-teal-300: #4db6ac;
-  --themeshift-color-teal-400: #26a69a;
-  --themeshift-color-teal-50: #e0f2f1;
+  --themeshift-color-green-100: #C8E6C9;
+  --themeshift-color-green-200: #A5D6A7;
+  --themeshift-color-green-300: #81C784;
+  --themeshift-color-green-400: #66BB6A;
+  --themeshift-color-green-50: #E8F5E9;
+  --themeshift-color-green-500: #4CAF50;
+  --themeshift-color-green-600: #43A047;
+  --themeshift-color-green-700: #388E3C;
+  --themeshift-color-green-800: #2E7D32;
+  --themeshift-color-green-900: #1B5E20;
+  --themeshift-color-light-blue-100: #B3E5FC;
+  --themeshift-color-light-blue-200: #81D4FA;
+  --themeshift-color-light-blue-300: #4FC3F7;
+  --themeshift-color-light-blue-400: #29B6F6;
+  --themeshift-color-light-blue-50: #E1F5FE;
+  --themeshift-color-light-blue-500: #03A9F4;
+  --themeshift-color-light-blue-600: #039BE5;
+  --themeshift-color-light-blue-700: #0288D1;
+  --themeshift-color-light-blue-800: #0277BD;
+  --themeshift-color-light-blue-900: #01579B;
+  --themeshift-color-red-100: #FFCDD2;
+  --themeshift-color-red-200: #EF9A9A;
+  --themeshift-color-red-300: #E57373;
+  --themeshift-color-red-400: #EF5350;
+  --themeshift-color-red-50: #FFEBEE;
+  --themeshift-color-red-500: #F44336;
+  --themeshift-color-red-600: #E53935;
+  --themeshift-color-red-700: #D32F2F;
+  --themeshift-color-red-800: #C62828;
+  --themeshift-color-red-900: #B71C1C;
+  --themeshift-color-teal-100: #B2DFDB;
+  --themeshift-color-teal-200: #80CBC4;
+  --themeshift-color-teal-300: #4DB6AC;
+  --themeshift-color-teal-400: #26A69A;
+  --themeshift-color-teal-50: #E0F2F1;
   --themeshift-color-teal-500: #009688;
-  --themeshift-color-teal-600: #00897b;
-  --themeshift-color-teal-700: #00796b;
-  --themeshift-color-teal-800: #00695c;
-  --themeshift-color-teal-900: #004d40;
-  --themeshift-color-white: #ffffff;
+  --themeshift-color-teal-600: #00897B;
+  --themeshift-color-teal-700: #00796B;
+  --themeshift-color-teal-800: #00695C;
+  --themeshift-color-teal-900: #004D40;
+  --themeshift-color-white: #fff;
 
   /* Typography */
+  /* The default font-family to use for all text */
   --themeshift-font-family-default: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  /* Display font for hero and editorial headings */
   --themeshift-font-family-display: Georgia, serif;
+  /* Primary UI font */
   --themeshift-font-family-sans: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  /* Editorial font */
   --themeshift-font-family-serif: Georgia, serif;
   --themeshift-font-style-italic: italic;
   --themeshift-font-style-normal: normal;
@@ -205,6 +209,10 @@
   --themeshift-components-button-sizes-small: 32px;
   --themeshift-components-link-font: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-components-navbar-container-gap: 2rem;
+  --themeshift-components-navbar-container-max-width: 80rem;
+  --themeshift-components-navbar-container-padding-inline-desktop: 2rem;
+  --themeshift-components-navbar-container-padding-inline-mobile: 1rem;
+  --themeshift-components-navbar-container-padding-inline-tablet: 1.5rem;
   --themeshift-components-navbar-min-height: 72px;
   --themeshift-components-navbar-padding-block: 0;
   --themeshift-components-navbar-padding-inline: 0;
@@ -242,28 +250,46 @@
   --themeshift-layout-page-shell-main-span-desktop: 9;
   --themeshift-layout-page-shell-main-span-mobile: 4;
   --themeshift-layout-page-shell-main-span-tablet: 8;
+  /* The amount of margin outside of the `AppShell` component */
   --themeshift-layout-site-margin: 1rem;
   --themeshift-layout-site-max-width: 800px;
+  /* The amount of padding outside of the `AppShell` component */
   --themeshift-layout-site-padding: 0;
   --themeshift-radius-large: 2rem;
   --themeshift-radius-medium: 1rem;
   --themeshift-radius-small: .5rem;
   --themeshift-space-0: 0;
+  /* 4px */
   --themeshift-space-1: 0.25rem;
+  /* 48px */
   --themeshift-space-10: 3rem;
+  /* 56px */
   --themeshift-space-11: 3.5rem;
+  /* 64px */
   --themeshift-space-12: 4rem;
+  /* 80px */
   --themeshift-space-14: 5rem;
+  /* 96px */
   --themeshift-space-16: 6rem;
+  /* 8px */
   --themeshift-space-2: 0.5rem;
+  /* 128px */
   --themeshift-space-20: 8rem;
+  /* 160px */
   --themeshift-space-24: 10rem;
+  /* 12px */
   --themeshift-space-3: 0.75rem;
+  /* 16px */
   --themeshift-space-4: 1rem;
+  /* 20px */
   --themeshift-space-5: 1.25rem;
+  /* 24px */
   --themeshift-space-6: 1.5rem;
+  /* 28px */
   --themeshift-space-7: 1.75rem;
+  /* 32px */
   --themeshift-space-8: 2rem;
+  /* 40px */
   --themeshift-space-9: 2.5rem;
 }
 
@@ -272,72 +298,72 @@
   --themeshift-font-weight: 300;
 
   /* Accessibility */
-  --themeshift-accessibility-focus-gap: #fcf7fa;
-  --themeshift-accessibility-focus-ring: #e75009;
+  --themeshift-accessibility-focus-gap: #FCF7FA;
+  --themeshift-accessibility-focus-ring: #E75009;
 
   /* Theme */
-  --themeshift-theme-surface-base: #eceff1;
-  --themeshift-theme-surface-raised: #cfd8dc;
-  --themeshift-theme-text-base: #000000;
+  --themeshift-theme-surface-base: #ECEFF1;
+  --themeshift-theme-surface-raised: #CFD8DC;
+  --themeshift-theme-text-base: #000;
   --themeshift-theme-text-muted: rgba(0, 0, 0, .7);
 
   /* Components */
-  --themeshift-components-button-intents-constructive-fg: #000000;
-  --themeshift-components-button-intents-constructive-hover: #81c784;
-  --themeshift-components-button-intents-constructive-pressed: #4caf50;
-  --themeshift-components-button-intents-constructive-surface: #66bb6a;
-  --themeshift-components-button-intents-destructive-fg: #000000;
-  --themeshift-components-button-intents-destructive-hover: #e57373;
-  --themeshift-components-button-intents-destructive-pressed: #f44336;
-  --themeshift-components-button-intents-destructive-surface: #ef5350;
-  --themeshift-components-button-intents-primary-fg: #ffffff;
-  --themeshift-components-button-intents-primary-hover: #7986cb;
-  --themeshift-components-button-intents-primary-pressed: #3f51b5;
-  --themeshift-components-button-intents-primary-surface: #5c6bc0;
-  --themeshift-components-button-intents-secondary-fg: #000000;
-  --themeshift-components-button-intents-secondary-hover: #e0e0e0;
-  --themeshift-components-button-intents-secondary-pressed: #9e9e9e;
-  --themeshift-components-button-intents-secondary-surface: #bdbdbd;
+  --themeshift-components-button-intents-constructive-fg: #000;
+  --themeshift-components-button-intents-constructive-hover: #81C784;
+  --themeshift-components-button-intents-constructive-pressed: #4CAF50;
+  --themeshift-components-button-intents-constructive-surface: #66BB6A;
+  --themeshift-components-button-intents-destructive-fg: #000;
+  --themeshift-components-button-intents-destructive-hover: #E57373;
+  --themeshift-components-button-intents-destructive-pressed: #F44336;
+  --themeshift-components-button-intents-destructive-surface: #EF5350;
+  --themeshift-components-button-intents-primary-fg: #fff;
+  --themeshift-components-button-intents-primary-hover: #7986CB;
+  --themeshift-components-button-intents-primary-pressed: #3F51B5;
+  --themeshift-components-button-intents-primary-surface: #5C6BC0;
+  --themeshift-components-button-intents-secondary-fg: #000;
+  --themeshift-components-button-intents-secondary-hover: #E0E0E0;
+  --themeshift-components-button-intents-secondary-pressed: #9E9E9E;
+  --themeshift-components-button-intents-secondary-surface: #BDBDBD;
   --themeshift-components-link-surface: transparent;
-  --themeshift-components-link-text: #3949ab;
+  --themeshift-components-link-text: #3949AB;
   --themeshift-components-navbar-border: transparent;
   --themeshift-components-navbar-surface: transparent;
-  --themeshift-components-skiplink-fg: #ffffff;
-  --themeshift-components-skiplink-surface: #5c6bc0;
+  --themeshift-components-skiplink-fg: #fff;
+  --themeshift-components-skiplink-surface: #5C6BC0;
 }
 
 :root[data-theme='dark'] {
   /* Accessibility */
-  --themeshift-accessibility-focus-gap: #fcf7fa;
-  --themeshift-accessibility-focus-ring: #e75009;
+  --themeshift-accessibility-focus-gap: #FCF7FA;
+  --themeshift-accessibility-focus-ring: #E75009;
 
   /* Theme */
   --themeshift-theme-surface-base: #13171b;
-  --themeshift-theme-surface-raised: #37474f;
-  --themeshift-theme-text-base: #ffffff;
+  --themeshift-theme-surface-raised: #37474F;
+  --themeshift-theme-text-base: #fff;
   --themeshift-theme-text-muted: rgba(255, 255, 255, .7);
 
   /* Components */
-  --themeshift-components-button-intents-constructive-fg: #000000;
-  --themeshift-components-button-intents-constructive-hover: #81c784;
-  --themeshift-components-button-intents-constructive-pressed: #4caf50;
-  --themeshift-components-button-intents-constructive-surface: #66bb6a;
-  --themeshift-components-button-intents-destructive-fg: #000000;
-  --themeshift-components-button-intents-destructive-hover: #e57373;
-  --themeshift-components-button-intents-destructive-pressed: #f44336;
-  --themeshift-components-button-intents-destructive-surface: #ef5350;
-  --themeshift-components-button-intents-primary-fg: #ffffff;
-  --themeshift-components-button-intents-primary-hover: #7986cb;
-  --themeshift-components-button-intents-primary-pressed: #3f51b5;
-  --themeshift-components-button-intents-primary-surface: #5c6bc0;
-  --themeshift-components-button-intents-secondary-fg: #000000;
-  --themeshift-components-button-intents-secondary-hover: #e0e0e0;
-  --themeshift-components-button-intents-secondary-pressed: #9e9e9e;
-  --themeshift-components-button-intents-secondary-surface: #bdbdbd;
+  --themeshift-components-button-intents-constructive-fg: #000;
+  --themeshift-components-button-intents-constructive-hover: #81C784;
+  --themeshift-components-button-intents-constructive-pressed: #4CAF50;
+  --themeshift-components-button-intents-constructive-surface: #66BB6A;
+  --themeshift-components-button-intents-destructive-fg: #000;
+  --themeshift-components-button-intents-destructive-hover: #E57373;
+  --themeshift-components-button-intents-destructive-pressed: #F44336;
+  --themeshift-components-button-intents-destructive-surface: #EF5350;
+  --themeshift-components-button-intents-primary-fg: #fff;
+  --themeshift-components-button-intents-primary-hover: #7986CB;
+  --themeshift-components-button-intents-primary-pressed: #3F51B5;
+  --themeshift-components-button-intents-primary-surface: #5C6BC0;
+  --themeshift-components-button-intents-secondary-fg: #000;
+  --themeshift-components-button-intents-secondary-hover: #E0E0E0;
+  --themeshift-components-button-intents-secondary-pressed: #9E9E9E;
+  --themeshift-components-button-intents-secondary-surface: #BDBDBD;
   --themeshift-components-link-surface: transparent;
-  --themeshift-components-link-text: #29b6f6;
+  --themeshift-components-link-text: #29B6F6;
   --themeshift-components-navbar-border: transparent;
   --themeshift-components-navbar-surface: transparent;
-  --themeshift-components-skiplink-fg: #ffffff;
-  --themeshift-components-skiplink-surface: #5c6bc0;
+  --themeshift-components-skiplink-fg: #fff;
+  --themeshift-components-skiplink-surface: #5C6BC0;
 }

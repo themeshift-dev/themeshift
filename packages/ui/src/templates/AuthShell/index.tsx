@@ -1,10 +1,13 @@
-import type { ReactNode } from 'react';
+import classNames from 'classnames';
+import type { ElementType, ReactNode } from 'react';
 
+import { SkipLink } from '@/components';
 import type {
   ShellAccessibilityProps,
   ShellSemanticProps,
   ShellStructuralSlots,
 } from '@/templates';
+import { resolveShellA11yProps } from '@/templates/utils';
 
 import styles from './AuthShell.module.scss';
 
@@ -238,115 +241,86 @@ export type AuthShellProps = ShellAccessibilityProps &
  * Keep this shell focused and distraction-light. If you find yourself adding
  * props for testimonials, pricing, feature grids, or campaign content, that
  * likely belongs in a higher-level marketing/auth template, not the shell.
- *
- * @todo Add support for `logo`, `heading`, `supportingContent`, `visual`,
- * `footer`, and `children` regions. Render them only when values are provided.
- *
- * @todo Render a skip link before all other visible content.
- * Use `skipLinkLabel ?? 'Skip to main content'` for safe default text.
- * Use `resolvedSkipLinkHref` as the anchor destination.
- *
- * @todo Render `children` inside the main content landmark, never directly
- * inside the root wrapper.
- *
- * @todo Support polymorphic wrapper elements:
- * - `as` for the outer wrapper
- * - `mainAs` for the main content region
- * Default them to sensible semantic elements.
- *
- * @todo Build the main layout around two primary modes:
- * - centered/focused auth layout
- * - split auth layout when `split === true`
- *
- * @todo In centered mode, render a constrained auth content container using:
- * - `alignment`
- * - `width`
- * - `card`
- * - `padded`
- *
- * @todo In split mode, render:
- * - a primary auth content region
- * - a secondary visual/supporting region
- * Use `visual` as the main secondary slot for the split side.
- *
- * @todo Decide how `supportingContent` should behave in both modes:
- * - stacked with the primary auth content
- * - or placed in a secondary content area near the form
- * Keep the behavior consistent and documented.
- *
- * @todo Translate `alignment`, `width`, `card`, `split`, `fullHeight`,
- * `padded`, and `divider` into stable CSS module class names.
- *
- * @todo Ensure the shell remains usable with no `logo`, no `heading`,
- * no `supportingContent`, and no `visual`.
- * The minimal case should still work cleanly for simple sign-in forms.
- *
- * @todo Keep `AuthShell` structural rather than business-specific.
- * Do not add props for provider lists, auth methods, legal agreements,
- * password requirements, or stepper logic. Those belong in organisms or
- * higher-level templates/content components.
- *
- * @todo Verify the component against at least four realistic layouts:
- * - simple sign-in page with centered card
- * - sign-up page with heading and supporting copy
- * - password reset page with minimal content
- * - split-layout auth page with a visual/brand panel
- *
- * @todo Add tests covering:
- * - default skip-link text
- * - resolved `mainId`
- * - conditional region rendering
- * - centered vs split layout class application
- * - width/alignment/card behavior
- * - landmark semantics
  */
-export const AuthShell = ({ children, mainId }: AuthShellProps) => {
-  /**
-   * Resolved id for the main content region.
-   *
-   * Guidance:
-   * This should remain stable so skip-link behavior is safe by default.
-   */
-  const resolvedMainId = mainId ?? 'main-content';
-
-  /**
-   * Resolved skip-link destination.
-   *
-   * Guidance:
-   * Keep this coupled to the resolved main landmark id.
-   */
-  const resolvedSkipLinkHref = `#${resolvedMainId}`;
-
-  /**
-   * @todo Use `resolvedSkipLinkHref` when rendering the skip link.
-   * Example intent:
-   * `<a href={resolvedSkipLinkHref}>...</a>`
-   */
-  void resolvedSkipLinkHref;
+export const AuthShell = ({
+  alignment = 'center',
+  as,
+  card = false,
+  children,
+  divider = false,
+  footer,
+  fullHeight = true,
+  heading,
+  logo,
+  mainAs,
+  mainId,
+  mainLabel,
+  padded = true,
+  skipLinkLabel,
+  split = false,
+  supportingContent,
+  visual,
+  width = 'content',
+}: AuthShellProps) => {
+  const Component = (as ?? 'div') as ElementType;
+  const MainComponent = (mainAs ?? 'main') as ElementType;
+  const resolvedA11y = resolveShellA11yProps({ mainId, skipLinkLabel });
 
   return (
-    <div className={styles.container}>
-      {/**
-       * @todo Replace this placeholder structure with the actual auth-shell layout.
-       *
-       * Recommended render order:
-       * 1. skip link
-       * 2. outer auth layout wrapper
-       * 3. optional split visual region (if `split`)
-       * 4. primary auth content region
-       * 5. logo
-       * 6. heading
-       * 7. supporting content
-       * 8. main content landmark containing `children`
-       * 9. footer
-       *
-       * Notes:
-       * - only render optional regions when provided
-       * - `children` belongs inside the main landmark
-       * - the shell should stay minimal and task-focused
-       * - auth content should remain easy to scan and complete
-       */}
-      {children}
-    </div>
+    <Component
+      className={classNames(
+        styles.container,
+        fullHeight && styles.fullHeight,
+        padded && styles.padded,
+        split ? styles.split : styles.centered,
+        alignment === 'start' ? styles.alignStart : styles.alignCenter
+      )}
+    >
+      <SkipLink
+        href={resolvedA11y.skipLinkHref}
+        label={resolvedA11y.skipLinkLabel}
+      />
+
+      <div
+        className={classNames(
+          styles.layout,
+          split && styles.splitLayout,
+          divider && split && styles.splitDivider
+        )}
+      >
+        <MainComponent
+          id={resolvedA11y.mainId}
+          aria-label={mainLabel}
+          className={styles.main}
+        >
+          <div
+            className={classNames(
+              styles.mainInner,
+              width === 'narrow' && styles.widthNarrow,
+              width === 'content' && styles.widthContent,
+              width === 'wide' && styles.widthWide,
+              card && styles.card
+            )}
+          >
+            {logo ? <div className={styles.logo}>{logo}</div> : null}
+            {heading ? <div className={styles.heading}>{heading}</div> : null}
+            {supportingContent ? (
+              <div className={styles.supportingContent}>
+                {supportingContent}
+              </div>
+            ) : null}
+            <div className={styles.content}>{children}</div>
+          </div>
+        </MainComponent>
+
+        {split && visual ? (
+          <aside className={styles.visual} aria-hidden="true">
+            <div className={styles.visualInner}>{visual}</div>
+          </aside>
+        ) : null}
+      </div>
+
+      {footer ? <footer className={styles.footer}>{footer}</footer> : null}
+    </Component>
   );
 };

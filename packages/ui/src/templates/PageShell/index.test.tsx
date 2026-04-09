@@ -15,6 +15,15 @@ describe('PageShell', () => {
     expect(screen.getByRole('main')).toHaveAttribute('id', 'main-content');
   });
 
+  it('can omit the skip link while preserving the main landmark defaults', () => {
+    render(<PageShell showSkipLink={false}>Page content</PageShell>);
+
+    expect(
+      screen.queryByRole('link', { name: 'Skip to main content' }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole('main')).toHaveAttribute('id', 'main-content');
+  });
+
   it('renders children inside the main landmark', () => {
     render(<PageShell>Page content</PageShell>);
 

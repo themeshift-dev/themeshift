@@ -14,6 +14,20 @@
         }
       },
       "container": {
+        "maxWidth": {
+          "$value": "{grid.container.contentMaxWidth}"
+        },
+        "paddingInline": {
+          "mobile": {
+            "$value": "{grid.container.paddingInline.mobile}"
+          },
+          "tablet": {
+            "$value": "{grid.container.paddingInline.tablet}"
+          },
+          "desktop": {
+            "$value": "{grid.container.paddingInline.desktop}"
+          }
+        },
         "gap": {
           "$value": "{space.8}"
         }

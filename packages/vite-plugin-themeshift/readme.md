@@ -172,11 +172,53 @@ import { token, tokenValue } from '@themeshift/vite-plugin-themeshift/token';
 import { tokenValues } from './design-tokens/token-values';
 
 const currentTextColor = token('theme.text.base', { prefix: 'themeshift' });
-const authoredTitleStyle = tokenValue('text.style.title', { values: tokenValues });
+const authoredTitleStyle = tokenValue('text.style.title', {
+  values: tokenValues,
+});
 ```
 
 `token()` reads the current computed CSS custom property value in the browser.
 `tokenValue()` reads the authored value from the generated token-values manifest.
+
+### Derived color expressions
+
+ThemeShift can resolve derived color values during token processing. These
+expressions are evaluated at build time, and the generated CSS, Sass, and
+`token-values` outputs all receive the final concrete color value.
+
+Supported functions:
+
+- `mix(color1, color2, amount)`
+- `lighten(color, amount)`
+- `darken(color, amount)`
+- `alpha(color, amount)`
+
+Example:
+
+```json
+{
+  "components": {
+    "button": {
+      "light": {
+        "intents": {
+          "primary": {
+            "surface": { "$value": "{color.blue.400}" },
+            "hover": { "$value": "lighten({color.blue.300}, 0.1)" },
+            "pressed": { "$value": "darken({color.blue.500}, 0.1)" },
+            "overlay": { "$value": "alpha({color.blue.400}, 0.1)" },
+            "border": {
+              "$value": "mix({color.blue.400}, {color.white}, 0.25)"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+`amount` values must be between `0` and `1`, and function arguments can be
+token references or literal color strings.
 
 ### Dark/light mode setup
 

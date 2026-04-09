@@ -1,5 +1,6 @@
 import type { Config, LogConfig } from 'style-dictionary/types';
 
+import { resolveDictionaryTokenValues } from './colorExpressions';
 import { pathToCssVarName } from './cssVar';
 import type {
   ThemeShiftCssGroup,
@@ -110,8 +111,7 @@ const DEFAULT_CSS_GROUPS: ThemeShiftCssGroup[] = [
   { label: 'Colors', match: (n: string) => n.startsWith('color-') },
   {
     label: 'Typography',
-    match: (n: string) =>
-      n.startsWith('font-') || n.startsWith('typography-'),
+    match: (n: string) => n.startsWith('font-') || n.startsWith('typography-'),
   },
   {
     label: 'Accessibility',
@@ -188,8 +188,7 @@ export function registerStyleDictionaryThings(
     filters,
     outputComments = false,
     outputPrintTheme = false,
-  } =
-    options;
+  } = options;
 
   // Prevent double-registration in dev (Vite can re-run plugin code)
   const registrationKey = JSON.stringify({
@@ -256,11 +255,14 @@ export function registerStyleDictionaryThings(
     name: 'css/variables-modes-grouped',
     format: ({ dictionary }: any) => {
       const all = dictionary.allTokens ?? [];
+      const resolvedTokens = resolveDictionaryTokenValues(all);
       const byName = (a: any, b: any) => a.name.localeCompare(b.name);
-      const filtered = applyPlatformFilter(all, 'css', filters);
+      const filtered = applyPlatformFilter(resolvedTokens, 'css', filters);
       const activeGroups = groups ?? DEFAULT_CSS_GROUPS;
 
-      const base = filtered.filter((t: any) => !t.attributes?.theme).sort(byName);
+      const base = filtered
+        .filter((t: any) => !t.attributes?.theme)
+        .sort(byName);
 
       const light = filtered
         .filter((t: any) => t.attributes?.theme === 'light')
@@ -298,17 +300,16 @@ export function registerStyleDictionaryThings(
             (s) =>
               `  /* ${s.label} */\n` +
               s.tokens
-                .map(
-                  (t) =>
-                    [
-                      formatTokenComment(t, {
-                        outputComments,
-                        indent: '  ',
-                      }),
-                      `  --${pathToCssVarName(t.name, cssVarPrefix)}: ${getTokenValue(t)};`,
-                    ]
-                      .filter(Boolean)
-                      .join('\n')
+                .map((t) =>
+                  [
+                    formatTokenComment(t, {
+                      outputComments,
+                      indent: '  ',
+                    }),
+                    `  --${pathToCssVarName(t.name, cssVarPrefix)}: ${getTokenValue(t)};`,
+                  ]
+                    .filter(Boolean)
+                    .join('\n')
                 )
                 .join('\n')
           )
@@ -317,17 +318,16 @@ export function registerStyleDictionaryThings(
 
       const renderLines = (tokens: any[]) =>
         tokens
-          .map(
-            (t) =>
-              [
-                formatTokenComment(t, {
-                  outputComments,
-                  indent: '    ',
-                }),
-                `    --${pathToCssVarName(t.name, cssVarPrefix)}: ${getTokenValue(t)};`,
-              ]
-                .filter(Boolean)
-                .join('\n')
+          .map((t) =>
+            [
+              formatTokenComment(t, {
+                outputComments,
+                indent: '    ',
+              }),
+              `    --${pathToCssVarName(t.name, cssVarPrefix)}: ${getTokenValue(t)};`,
+            ]
+              .filter(Boolean)
+              .join('\n')
           )
           .join('\n');
 
@@ -368,8 +368,11 @@ export function registerStyleDictionaryThings(
     name: 'scss/static-tokens',
     format: ({ dictionary }: any) => {
       const all = dictionary.allTokens ?? [];
+      const resolvedTokens = resolveDictionaryTokenValues(all);
       const byName = (a: any, b: any) => a.name.localeCompare(b.name);
-      const tokens = applyPlatformFilter(all, 'scss', filters).sort(byName);
+      const tokens = applyPlatformFilter(resolvedTokens, 'scss', filters).sort(
+        byName
+      );
 
       const toSassVar = (cssName: string) => `$${cssName.replace(/-/g, '_')}`;
 
@@ -410,7 +413,7 @@ export function registerStyleDictionaryThings(
     name: 'token/paths-json',
     format: ({ dictionary }: any) => {
       const paths = applyPlatformFilter(
-        dictionary.allTokens ?? [],
+        resolveDictionaryTokenValues(dictionary.allTokens ?? []),
         'meta',
         filters
       ).map((t: any) => t.path.join('.'));
@@ -423,7 +426,7 @@ export function registerStyleDictionaryThings(
     name: 'token/paths-ts',
     format: ({ dictionary }: any) => {
       const paths = applyPlatformFilter(
-        dictionary.allTokens ?? [],
+        resolveDictionaryTokenValues(dictionary.allTokens ?? []),
         'meta',
         filters
       )
@@ -440,13 +443,15 @@ export type TokenPath = (typeof tokenPaths)[number];
     name: 'token/values-json',
     format: ({ dictionary }: any) => {
       const values = Object.fromEntries(
-        applyPlatformFilter(dictionary.allTokens ?? [], 'meta', filters)
-          .map(
-            (t: any): [string, unknown] => [
-              t.path.join('.'),
-              t.value ?? t.$value ?? null,
-            ]
-          )
+        applyPlatformFilter(
+          resolveDictionaryTokenValues(dictionary.allTokens ?? []),
+          'meta',
+          filters
+        )
+          .map((t: any): [string, unknown] => [
+            t.path.join('.'),
+            t.value ?? t.$value ?? null,
+          ])
           .sort(([a], [b]) => a.localeCompare(b))
       );
 
@@ -458,13 +463,15 @@ export type TokenPath = (typeof tokenPaths)[number];
     name: 'token/values-ts',
     format: ({ dictionary }: any) => {
       const values = Object.fromEntries(
-        applyPlatformFilter(dictionary.allTokens ?? [], 'meta', filters)
-          .map(
-            (t: any): [string, unknown] => [
-              t.path.join('.'),
-              t.value ?? t.$value ?? null,
-            ]
-          )
+        applyPlatformFilter(
+          resolveDictionaryTokenValues(dictionary.allTokens ?? []),
+          'meta',
+          filters
+        )
+          .map((t: any): [string, unknown] => [
+            t.path.join('.'),
+            t.value ?? t.$value ?? null,
+          ])
           .sort(([a], [b]) => a.localeCompare(b))
       );
 
@@ -476,10 +483,12 @@ export type TokenValuePath = keyof typeof tokenValues;
   });
 }
 
-export function makeStyleDictionaryConfig(options: {
-  log?: LogConfig;
-  source?: string[];
-} = {}): Config {
+export function makeStyleDictionaryConfig(
+  options: {
+    log?: LogConfig;
+    source?: string[];
+  } = {}
+): Config {
   return {
     log: options.log,
     source: options.source ?? ['tokens/**/*.json'],

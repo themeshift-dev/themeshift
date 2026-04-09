@@ -41,6 +41,16 @@ type PageShellAreas = Pick<
  */
 type PageShellOwnProps = {
   /**
+   * Whether the shell should render the skip link.
+   *
+   * Guidance:
+   * Keep this enabled by default. Disable only when the shell is embedded in a
+   * context where bypass navigation is already handled externally or would be
+   * duplicative.
+   */
+  showSkipLink?: boolean;
+
+  /**
    * Whether the header should use sticky positioning.
    *
    * Guidance:
@@ -122,6 +132,7 @@ export const PageShell = ({
   mainLabel,
   navLabel,
   navigation,
+  showSkipLink = true,
   skipLinkLabel,
   stickyHeader = false,
 }: PageShellProps) => {
@@ -131,10 +142,12 @@ export const PageShell = ({
 
   return (
     <Component className={styles.container}>
-      <SkipLink
-        href={resolvedA11y.skipLinkHref}
-        label={resolvedA11y.skipLinkLabel}
-      />
+      {showSkipLink ? (
+        <SkipLink
+          href={resolvedA11y.skipLinkHref}
+          label={resolvedA11y.skipLinkLabel}
+        />
+      ) : null}
 
       {header ? (
         <header

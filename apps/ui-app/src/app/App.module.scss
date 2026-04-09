@@ -20,7 +20,7 @@
   flex-flow: row nowrap;
 
   a {
-    @include typography.style('heading.h3');
+    @include typography.style('body.default');
 
     padding: 0.5rem;
 

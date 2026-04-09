@@ -1,6 +1,11 @@
+@use '../../../../sass/_tokens.static.scss' as *;
+
 .container {
   --navbar-container-gap: #{token('components.navbar.container.gap')};
-  --navbar-max-width: #{token('layout.site.maxWidth')};
+  --navbar-max-width: #{token('components.navbar.container.maxWidth')};
+  --navbar-padding-inline: #{token(
+      'components.navbar.container.paddingInline.mobile'
+    )};
 
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -11,5 +16,17 @@
   min-height: token('components.navbar.minHeight');
   margin-inline: auto;
   padding-block: token('components.navbar.padding.block');
-  padding-inline: token('components.navbar.padding.inline');
+  padding-inline: var(--navbar-padding-inline);
+
+  @media (min-width: $layout_breakpoints_tablet) {
+    --navbar-padding-inline: #{token(
+        'components.navbar.container.paddingInline.tablet'
+      )};
+  }
+
+  @media (min-width: $layout_breakpoints_desktop) {
+    --navbar-padding-inline: #{token(
+        'components.navbar.container.paddingInline.desktop'
+      )};
+  }
 }
