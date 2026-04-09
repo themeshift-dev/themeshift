@@ -28,7 +28,9 @@
   @include button.disabled;
 }
 
-// Button sizes
+/**
+ * Button `size`
+ */
 .small {
   @include typography.style('button.small');
   min-height: token('components.button.sizes.small');
@@ -44,9 +46,11 @@
   min-height: token('components.button.sizes.large');
 }
 
-// Button intents
+/**
+ * Button `intent`
+ */
 .primary {
-  background: token('components.button.intents.primary.surface');
+  background: token('components.button.intents.primary.bg');
   color: token('components.button.intents.primary.fg');
 
   &:not(:disabled):hover {
@@ -55,7 +59,7 @@
 }
 
 .secondary {
-  background: token('components.button.intents.secondary.surface');
+  background: token('components.button.intents.secondary.bg');
   color: token('components.button.intents.secondary.fg');
 
   &:not(:disabled):hover {
@@ -64,8 +68,8 @@
 }
 
 .tertiary {
-  background: token('components.link.surface');
-  color: token('components.link.text');
+  background: token('components.link.bg');
+  color: token('components.link.fg');
 
   &:not(:disabled):hover,
   &:not(:disabled):focus-visible {
@@ -74,7 +78,7 @@
 }
 
 .constructive {
-  background: token('components.button.intents.constructive.surface');
+  background: token('components.button.intents.constructive.bg');
   color: token('components.button.intents.constructive.fg');
 
   &:not(:disabled):hover {
@@ -83,7 +87,7 @@
 }
 
 .destructive {
-  background: token('components.button.intents.destructive.surface');
+  background: token('components.button.intents.destructive.bg');
   color: token('components.button.intents.destructive.fg');
 
   &:not(:disabled):hover {

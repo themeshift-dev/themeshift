@@ -1,75 +1,29 @@
 # @themeshift/vite-plugin-themeshift
 
-ThemeShift is a Vite plugin that makes using Style Dictionary easy as pie.
-It watches your design tokens, regenerates token outputs automatically, and keeps your app
-up to date without extra build scripts. It also injects a global Sass `token()` function so
-you can reference CSS variables ergonomically in SCSS. It can also extend token JSON published
-by UI packages and layer local app overrides on top. It also ships a standalone Sass module
-for explicit `token()` imports.
+ThemeShift is a Vite plugin that makes working with Style Dictionary easy as pie 🥧
 
-This package now lives inside the ThemeShift monorepo. Use the root workspace for local development and `apps/ui-app` for end-to-end verification against the UI library.
+It watches your token files, rebuilds generated outputs, and gives you a simple `token()` helper for Sass. It can also start from tokens published by a UI package and layer app-level overrides on top.
 
----
+This package lives inside the ThemeShift monorepo. Use the repo root for local development and `apps/ui-app` to test the full flow with `@themeshift/ui`.
 
-## Why this exists
+## What it does
 
-If you’re already using Style Dictionary to manage design tokens, you usually end up
-writing custom scripts to rebuild tokens and wire up live reload. ThemeShift moves that
-logic into a Vite plugin so token changes behave like any other frontend change.
+- Watches `tokens/**/*.json`
+- Builds CSS variables, Sass tokens, and token manifests
+- Supports `light`, `dark`, and optional `print` themes
+- Injects a global Sass `token()` helper
+- Ships a standalone Sass and JavaScript `token` module
+- Lets apps extend tokens from installed packages such as `@themeshift/ui`
 
----
+## Quick start
 
-## Features
-
-- 👀 Watches `tokens/**/*.json` and rebuilds on change
-- ⚙️ Runs Style Dictionary programmatically (no extra CLI step)
-- 🎨 Outputs CSS variables for multi-mode theming
-- 🧵 Optional Sass output for static tokens
-- ✨ Injects a global Sass `token()` helper
-- 📦 Ships a standalone Sass `token()` module
-- 📦 Extends tokens from installed UI packages (like `@themeshift/ui`)
-- 🏷️ Supports CSS variable prefixes
-- 🔥 Vite HMR for `tokens.css` (fallback to full reload)
-
----
-
-## Basic usage
-
-```ts
-// vite.config.ts
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { themeShift } from '@themeshift/vite-plugin-themeshift';
-
-export default defineConfig({
-  plugins: [react(), themeShift()],
-});
-```
-
-By default, ThemeShift expects a `tokens/` directory in your project root containing
-Style Dictionary JSON files and outputs:
-
-- `src/css/tokens.css`
-- `src/sass/_tokens.static.scss`
-- `src/design-tokens/token-paths.{json,ts}`
-- `src/design-tokens/token-values.{json,ts}`
-
-Local tokens continue to work exactly as before. If you do nothing, the plugin only reads
-your app's `tokens/**/*.json`.
-
----
-
-## Getting started (new project)
-
-If you're wiring this up for the first time, this is a good baseline setup:
-
-1. Install packages
+Install the package and the tools it needs:
 
 ```bash
 npm install --save-dev @themeshift/vite-plugin-themeshift style-dictionary sass
 ```
 
-2. Add the plugin to `vite.config.ts`
+Add the plugin to `vite.config.ts`:
 
 ```ts
 import { defineConfig } from 'vite';
@@ -80,8 +34,6 @@ export default defineConfig({
   plugins: [react(), themeShift()],
 });
 ```
-
-3. Create your first tokens file
 
 Create `tokens/theme.json`:
 
@@ -95,28 +47,30 @@ Create `tokens/theme.json`:
 }
 ```
 
-4. Import the generated CSS
-
-Import the CSS file that ThemeShift generates. For example in `src/main.tsx`:
+Import the generated CSS:
 
 ```ts
 import './css/tokens.css';
 ```
 
-5. Ignore generated outputs
+By default, ThemeShift writes:
 
-In most apps, these files should be treated as build artifacts rather than source:
+- `src/css/tokens.css`
+- `src/sass/_tokens.static.scss`
+- `src/design-tokens/token-paths.{json,ts}`
+- `src/design-tokens/token-values.{json,ts}`
 
-```gitignore
-src/css/tokens.css
-src/sass/_tokens.static.scss
-src/design-tokens/
+## Common Sass usage
+
+ThemeShift injects a global `token()` helper by default, so this works in app styles:
+
+```scss
+.button {
+  color: token('theme.text.base');
+}
 ```
 
-6. Optional: import the Sass token helper directly
-
-ThemeShift injects `token()` automatically by default. If you prefer explicit Sass imports,
-you can use the published module instead:
+If you prefer an explicit import, use the published Sass module:
 
 ```scss
 @use '@themeshift/vite-plugin-themeshift/token' as themeShift;
@@ -126,18 +80,7 @@ you can use the published module instead:
 }
 ```
 
-If your app uses `cssVarPrefix`, the plugin injects that prefix as the Sass default automatically,
-so the same explicit import still works without module configuration:
-
-```scss
-@use '@themeshift/vite-plugin-themeshift/token' as themeShift;
-
-.button {
-  color: themeShift.token('components.button.font');
-}
-```
-
-You can also pass a prefix explicitly per call:
+If you use `cssVarPrefix`, you can pass it per call:
 
 ```scss
 @use '@themeshift/vite-plugin-themeshift/token' as themeShift;
@@ -147,46 +90,42 @@ You can also pass a prefix explicitly per call:
 }
 ```
 
-For shared mixins and partials, prefer the namespaced import form so they do not depend on
-root-level injection:
+For shared mixins and partials, prefer the namespaced import:
 
 ```scss
 @use '@themeshift/vite-plugin-themeshift/token' as themeShift;
 
-@mixin style($path) {
+@mixin text-style($path) {
   font: themeShift.token('typography.styles.#{$path}.font');
 }
 ```
 
-Root stylesheets can still use the injected global `token()` helper. The plugin now injects
-that helper as a thin wrapper around the canonical token module, so explicit imports and
-root-level injection can coexist in the same Sass compile graph without module configuration
-conflicts.
+## JavaScript helpers
 
-7. Optional: use the JavaScript token helpers
+ThemeShift also ships a JavaScript helper on the same `./token` path.
 
-ThemeShift also ships a JavaScript runtime API on the same `./token` subpath:
+Use `token()` to read the current CSS variable value in the browser:
 
 ```ts
-import { token, tokenValue } from '@themeshift/vite-plugin-themeshift/token';
-import { tokenValues } from './design-tokens/token-values';
+import { token } from '@themeshift/vite-plugin-themeshift/token';
 
-const currentTextColor = token('theme.text.base', { prefix: 'themeshift' });
-const authoredTitleStyle = tokenValue('text.style.title', {
-  values: tokenValues,
-});
+const textColor = token('theme.text.base', { prefix: 'themeshift' });
 ```
 
-`token()` reads the current computed CSS custom property value in the browser.
-`tokenValue()` reads the authored value from the generated token-values manifest.
+Use `tokenValue()` to read a value from the generated token manifest:
 
-### Derived color expressions
+```ts
+import { tokenValue } from '@themeshift/vite-plugin-themeshift/token';
+import { tokenValues } from './design-tokens/token-values';
 
-ThemeShift can resolve derived color values during token processing. These
-expressions are evaluated at build time, and the generated CSS, Sass, and
-`token-values` outputs all receive the final concrete color value.
+const titleStyle = tokenValue('text.style.title', { values: tokenValues });
+```
 
-Supported functions:
+## Derived color expressions
+
+ThemeShift can resolve color helpers at build time.
+
+Supported helpers:
 
 - `mix(color1, color2, amount)`
 - `lighten(color, amount)`
@@ -202,12 +141,40 @@ Example:
       "light": {
         "intents": {
           "primary": {
-            "surface": { "$value": "{color.blue.400}" },
+            "bg": { "$value": "{color.blue.400}" },
             "hover": { "$value": "lighten({color.blue.300}, 0.1)" },
-            "pressed": { "$value": "darken({color.blue.500}, 0.1)" },
-            "overlay": { "$value": "alpha({color.blue.400}, 0.1)" },
-            "border": {
-              "$value": "mix({color.blue.400}, {color.white}, 0.25)"
+            "pressed": { "$value": "darken({color.blue.500}, 0.1)" }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+`amount` must be between `0` and `1`.
+
+## Hybrid token nodes
+
+ThemeShift supports token nodes with both a main value and nested child token values. This is useful for state tokens such as `bg.hover` and `fg.disabled`.
+
+Example:
+
+```json
+{
+  "components": {
+    "button": {
+      "light": {
+        "intents": {
+          "primary": {
+            "bg": {
+              "$value": "{color.blue.400}",
+              "hover": { "$value": "{color.blue.300}" },
+              "disabled": { "$value": "alpha({color.blue.300}, 0.3)" }
+            },
+            "fg": {
+              "$value": "{color.blue.400.fg}",
+              "disabled": { "$value": "alpha({color.blue.400.fg}, 0.5)" }
             }
           }
         }
@@ -217,19 +184,18 @@ Example:
 }
 ```
 
-`amount` values must be between `0` and `1`, and function arguments can be
-token references or literal color strings.
+This gives you token paths like:
 
-### Dark/light mode setup
+- `components.button.light.intents.primary.bg`
+- `components.button.light.intents.primary.bg.hover`
+- `components.button.light.intents.primary.fg`
+- `components.button.light.intents.primary.fg.disabled`
 
-To enable theme modes, split your tokens into separate files:
+## Theme modes
 
-- `tokens/theme.light.json`
-- `tokens/theme.dark.json`
+To support theme modes, split your token files by theme:
 
-Example:
-
-`tokens/theme.light.json`:
+`tokens/theme.light.json`
 
 ```json
 {
@@ -246,7 +212,7 @@ Example:
 }
 ```
 
-`tokens/theme.dark.json`:
+`tokens/theme.dark.json`
 
 ```json
 {
@@ -263,7 +229,7 @@ Example:
 }
 ```
 
-Then set the data-theme attribute on your document root (usually inside of `index.html`):
+Then set `data-theme` on the document root:
 
 ```html
 <html lang="en" data-theme="dark">
@@ -271,74 +237,15 @@ Then set the data-theme attribute on your document root (usually inside of `inde
 </html>
 ```
 
-You can toggle `data-theme` between `light` and `dark` to switch modes at runtime. To easily toggle this on the fly
-you can use a hook like [useDarkMode](https://usehooks-ts.com/react-hook/use-dark-mode) from [useHooks](https://usehooks-ts.com/) (or you can write your own).
-
----
-
-## Playground
-
-This repo includes a playground project under `playground/` to try things locally.
-
-```bash
-npm install
-npm -C playground install
-npm run playground
-```
-
----
-
 ## Plugin options
 
-```ts
-type ThemeShiftExtendSource =
-  | string
-  | {
-      package: string;
-      tokensGlob?: string;
-      contractFile?: string;
-    };
+These are the options most apps use.
 
-type ThemeShiftCssGroup = {
-  label: string;
-  match: (name: string) => boolean;
-};
+### `extends`
 
-type themeShiftOptions = {
-  tokensGlob?: string; // default: "tokens/**/*.json" (watch uses tokensDir)
-  tokensDir?: string; // default: "tokens"
-  extends?: ThemeShiftExtendSource[];
-  cssVarPrefix?: string;
-  groups?: ThemeShiftCssGroup[];
-  defaultTheme?: 'light' | 'dark';
-  outputPrintTheme?: boolean; // default: false
-  outputComments?: boolean; // default: false
-  watch?: boolean; // default: true
-  injectSassTokenFn?: boolean; // default: true
-  platforms?: Array<'css' | 'scss' | 'meta'>; // default: all three
-  filters?: Partial<
-    Record<
-      'css' | 'scss' | 'meta',
-      | {
-          includePrefixes?: string[];
-          excludePrefixes?: string[];
-        }
-      | ((token: any) => boolean)
-    >
-  >;
-  reloadStrategy?: 'hmr' | 'full'; // default: "hmr"
-  log?: {
-    warnings?: 'warn' | 'error' | 'disabled';
-    verbosity?: 'default' | 'silent' | 'verbose';
-    errors?: { brokenReferences?: 'throw' | 'console' };
-  };
-};
-```
+Use `extends` to load token files from an installed package before local tokens. Local files still win.
 
-### extends
-
-Use `extends` to load token JSON from installed packages before local app tokens are loaded.
-Local files always win.
+Simple example:
 
 ```ts
 themeShift({
@@ -347,26 +254,7 @@ themeShift({
 });
 ```
 
-Resolution order is:
-
-1. Extended package tokens
-2. Local `tokens/**/*.json`
-
-If you pass a string entry like `@themeshift/ui`, ThemeShift resolves that package from the
-consuming app root and looks for `theme-contract.json` in the package root by default.
-
-Example contract:
-
-```json
-{
-  "name": "@themeshift/ui",
-  "cssVarPrefix": "themeshift",
-  "tokensGlob": "dist/tokens/**/*.json",
-  "version": "1.0.0"
-}
-```
-
-If you do not want to publish a contract file, use the explicit object form:
+Explicit package config:
 
 ```ts
 themeShift({
@@ -379,24 +267,9 @@ themeShift({
 });
 ```
 
-You can also override the contract filename:
+### `cssVarPrefix`
 
-```ts
-themeShift({
-  extends: [
-    {
-      package: '@themeshift/ui',
-      contractFile: 'dist/theme-contract.json',
-    },
-  ],
-});
-```
-
-If an extended package cannot be resolved, the build fails with a clear error.
-
-### cssVarPrefix
-
-Use `cssVarPrefix` to make generated CSS variable names part of a stable public contract:
+Use `cssVarPrefix` to prefix generated CSS variables.
 
 ```ts
 themeShift({
@@ -404,65 +277,29 @@ themeShift({
 });
 ```
 
-This changes output like:
+This changes:
 
 - `--components-button-font`
 - to `--themeshift-components-button-font`
 
-The injected Sass helper uses the same naming, so `token('components.button.font')`
-resolves to `var(--themeshift-components-button-font)` when a prefix is configured.
+### `groups`
 
-The standalone Sass module uses the same naming contract. It checks the prefix argument first,
-then the plugin-injected default prefix, and finally falls back to an unprefixed CSS variable.
-The plugin configures the shared default prefix before other Sass imports load, then injects a
-local `token()` wrapper for root stylesheets.
-
-### groups
-
-Use `groups` to customize comment sections in the generated
-`css/variables-modes-grouped` output:
+Use `groups` to control comment sections in generated `tokens.css`.
 
 ```ts
 themeShift({
-  cssVarPrefix: 'themeshift',
   groups: [
     { label: 'Colors', match: (name) => name.startsWith('color-') },
-    {
-      label: 'Typography',
-      match: (name) =>
-        name.startsWith('font-') || name.startsWith('typography-'),
-    },
-    {
-      label: 'Accessibility',
-      match: (name) =>
-        name.startsWith('accessibility-') || name.startsWith('a11y-'),
-    },
     { label: 'Theme', match: (name) => name.startsWith('theme-') },
-    {
-      label: 'Components',
-      match: (name) =>
-        name.startsWith('component-') || name.startsWith('components-'),
-    },
-    { label: 'Other', match: (_name) => true },
+    { label: 'Components', match: (name) => name.startsWith('components-') },
+    { label: 'Other', match: () => true },
   ],
 });
 ```
 
-Defaults use the same group list shown above.
+### `defaultTheme`
 
-`groups` fully replaces the defaults, and match order matters. The first matching
-group wins.
-
-Grouping is always based on the raw token name, not the final CSS variable name.
-That means `cssVarPrefix` does not change how tokens are grouped:
-
-- `groups.match(name)` sees `components-button-text`
-- `cssVarPrefix: "themeshift"` renders `--themeshift-components-button-text`
-
-### defaultTheme
-
-Use `defaultTheme` to emit either your `light` or `dark` themed variables into bare `:root`
-as a fallback when the document does not have a `data-theme` attribute.
+Use `defaultTheme` when you want one theme copied into plain `:root` as a fallback.
 
 ```ts
 themeShift({
@@ -470,20 +307,9 @@ themeShift({
 });
 ```
 
-This is useful for published component libraries like `@themeshift/ui`, where you want styles
-to work immediately with zero consumer setup.
+### `outputPrintTheme`
 
-Theme-specific blocks are still emitted, so apps can override the fallback later with:
-
-- `:root[data-theme='light']`
-- `:root[data-theme='dark']`
-
-### outputPrintTheme
-
-By default, ThemeShift does not emit the `:root[data-theme='print']` block or the matching
-`@media print` block.
-
-Set `outputPrintTheme: true` to opt into that output when you have `print` theme tokens:
+Set `outputPrintTheme: true` if you want print theme output.
 
 ```ts
 themeShift({
@@ -491,13 +317,9 @@ themeShift({
 });
 ```
 
-### outputComments
+### `outputComments`
 
-By default, ThemeShift ignores token `$description` metadata when writing generated
-CSS and Sass outputs.
-
-Set `outputComments: true` to emit those descriptions as comments above token declarations
-in `tokens.css` and `_tokens.static.scss`:
+Set `outputComments: true` to include token descriptions in generated CSS and Sass.
 
 ```ts
 themeShift({
@@ -505,8 +327,7 @@ themeShift({
 });
 ```
 
-This is useful for documenting authored values like spacing scales without changing the
-actual token values:
+Example token:
 
 ```json
 {
@@ -519,20 +340,9 @@ actual token values:
 }
 ```
 
-With `outputComments: true`, that token will render with a comment like `/* 16px */`
-in generated CSS and Sass output.
+### `filters`
 
-### filters
-
-Use `filters` to customize which tokens are included per output platform.
-
-By default, ThemeShift preserves its existing behavior:
-
-- `scss` includes non-themed `radius-*`, `spacing-*`, `font-*`, `text-*`, and `layout-*` tokens
-- `css` includes all tokens
-- `meta` includes all tokens
-
-You can override this with declarative include/exclude rules:
+Use `filters` to choose which tokens are written to each output.
 
 ```ts
 themeShift({
@@ -541,19 +351,11 @@ themeShift({
       includePrefixes: ['radius-', 'spacing-', 'font-', 'text-', 'layout-'],
       excludePrefixes: ['theme-', 'components-'],
     },
-    css: {
-      includePrefixes: [],
-      excludePrefixes: [],
-    },
-    meta: {
-      includePrefixes: [],
-      excludePrefixes: [],
-    },
   },
 });
 ```
 
-Or with a predicate function for advanced cases:
+You can also use a function:
 
 ```ts
 themeShift({
@@ -563,27 +365,29 @@ themeShift({
 });
 ```
 
-### reloadStrategy
+### `reloadStrategy`
 
-When tokens change, ThemeShift will try to HMR-reload the generated `tokens.css`. If it
-can’t find the CSS module in Vite’s module graph, it will fallback to a full reload.
-Set `reloadStrategy: "full"` to always reload.
-
-### log
-
-By default, ThemeShift silences Style Dictionary output (`verbosity: "silent"` and
-`warnings: "disabled"`). Override to opt back into logs.
-
-Forwarded to Style Dictionary's logging config. Use this to reduce or silence output.
-For example, to hide warnings:
+Use `reloadStrategy: 'full'` if you want a full page reload instead of HMR when token files change.
 
 ```ts
 themeShift({
-  log: { warnings: 'disabled' },
+  reloadStrategy: 'full',
 });
 ```
 
-To fully silence Style Dictionary output:
+### `log`
+
+Use `log` to show or hide Style Dictionary output.
+
+Show warnings:
+
+```ts
+themeShift({
+  log: { warnings: 'warn' },
+});
+```
+
+Keep output quiet:
 
 ```ts
 themeShift({
@@ -591,40 +395,29 @@ themeShift({
 });
 ```
 
----
+## Playground
 
-## Token workflow notes
+This repo includes a small playground in `playground/`.
 
-- The `token()` Sass helper maps `token("theme.text.base")` → `var(--theme-text-base)`.
-- With `cssVarPrefix: "themeshift"`, the same token becomes `var(--themeshift-theme-text-base)`.
-- The standalone Sass module exposes the same `token()` API via `@use '@themeshift/vite-plugin-themeshift/token'`.
-- The Sass API is `token($path, $cssVarPrefix: null)`, so explicit imports do not require `with (...)`.
-- Shared Sass modules should prefer `@use '@themeshift/vite-plugin-themeshift/token' as themeShift;`.
-- Root stylesheets may use the injected global `token()` helper or an explicit namespaced import.
-- The JavaScript `@themeshift/vite-plugin-themeshift/token` export provides `token()` for computed CSS values and `tokenValue()` for authored values from `token-values`.
-- Pass the token's JSON path to `token()`. CamelCase segments like `gapWidth` are normalized to kebab-case CSS vars like `--...-gap-width`.
-- `groups` matches raw token names; `cssVarPrefix` only changes emitted CSS custom property names.
-- `defaultTheme` duplicates either `light` or `dark` tokens into bare `:root` as a startup fallback.
-- Tokens that include `light`, `dark`, or `print` in their path are treated as mode-specific.
-- Print-theme CSS blocks are only emitted when `outputPrintTheme` is `true`.
-- The CSS output groups tokens for readability, and those groups are configurable.
-- CSS variable names are intended to be a public API for consuming packages and apps.
-
----
+```bash
+npm install
+npm -C playground install
+npm run playground
+```
 
 ## Development
+
+Run the package in watch mode:
 
 ```bash
 npm run dev
 ```
 
-Build:
+Build the package:
 
 ```bash
 npm run build
 ```
-
----
 
 ## License
 

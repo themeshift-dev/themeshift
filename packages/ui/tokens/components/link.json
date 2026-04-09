@@ -6,19 +6,19 @@
       },
 
       "light": {
-        "text": {
+        "fg": {
           "$value": "{color.blue.600}"
         },
-        "surface": {
+        "bg": {
           "$value": "transparent"
         }
       },
 
       "dark": {
-        "text": {
+        "fg": {
           "$value": "{color.lightBlue.400}"
         },
-        "surface": {
+        "bg": {
           "$value": "transparent"
         }
       }

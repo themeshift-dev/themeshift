@@ -2,7 +2,9 @@
 
 `@themeshift/ui-app` is the private documentation and tooling app for the ThemeShift monorepo.
 
-## Purpose
+It is the main place to test `@themeshift/ui` and `@themeshift/vite-plugin-themeshift` together before publishing.
+
+## What it is for
 
 - document `@themeshift/ui`
 - demonstrate token customization powered by `@themeshift/vite-plugin-themeshift`
@@ -18,7 +20,7 @@ pnpm install
 pnpm dev:ui-app
 ```
 
-If you are already inside this workspace, `pnpm dev` still works.
+If you are already working in the repo, `pnpm dev` also works.
 
 ## Deployment
 
@@ -28,14 +30,40 @@ If you are already inside this workspace, `pnpm dev` still works.
 
 ## Font model
 
-`@themeshift/ui` now exposes fonts separately from its base styles:
+`@themeshift/ui` ships fonts separately from its base styles:
 
 - import `@themeshift/ui/css/fonts.css` to use the packaged default Noto Sans files
 - omit that import if you want to provide your own font-face definitions
 - keep `@themeshift/ui/css/base.css` and `@themeshift/ui/css/tokens.css` for the rest of the ThemeShift styling contract
 
+Simple example:
+
+```ts
+import '@themeshift/ui/css/fonts.css';
+import '@themeshift/ui/css/base.css';
+import '@themeshift/ui/css/tokens.css';
+```
+
 ## Token overrides
 
-This app extends `@themeshift/ui` through `@themeshift/vite-plugin-themeshift`, so app-specific token files in [`tokens/`](./tokens) override the shared UI defaults without editing component styles.
+This app extends `@themeshift/ui` through `@themeshift/vite-plugin-themeshift`, so token files in [`tokens/`](./tokens) can override the shared UI defaults without editing component styles.
 
-The focus ring is customized this way in [`tokens/accessibility.json`](./tokens/accessibility.json), which lets the app keep the shared `:focus-visible` behavior from `@themeshift/ui` while changing the ring color to match the ThemeShift brand palette.
+Example:
+
+```ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { themeShift } from '@themeshift/vite-plugin-themeshift';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    themeShift({
+      extends: ['@themeshift/ui'],
+      cssVarPrefix: 'themeshift',
+    }),
+  ],
+});
+```
+
+The focus ring is customized this way in [`tokens/accessibility.json`](./tokens/accessibility.json). That lets the app keep the shared `:focus-visible` behavior from `@themeshift/ui` while changing the ring color to fit the ThemeShift brand palette.

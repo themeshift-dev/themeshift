@@ -18,31 +18,27 @@
       "light": {
         "intents": {
           "primary": {
-            "surface": { "$value": "{color.blue.400}" },
+            "bg": { "$value": "{color.blue.400}" },
             "fg": { "$value": "{color.blue.400.fg}" },
-            "hover": { "$value": "{color.blue.300}" },
-            "pressed": { "$value": "{color.blue.500}" }
+            "hover": { "$value": "{color.blue.300}" }
           },
 
           "secondary": {
-            "surface": { "$value": "{color.gray.400}" },
+            "bg": { "$value": "{color.gray.400}" },
             "fg": { "$value": "{color.gray.400.fg}" },
-            "hover": { "$value": "{color.gray.300}" },
-            "pressed": { "$value": "{color.gray.500}" }
+            "hover": { "$value": "{color.gray.300}" }
           },
 
           "constructive": {
-            "surface": { "$value": "{color.green.400}" },
+            "bg": { "$value": "{color.green.400}" },
             "fg": { "$value": "{color.green.400.fg}" },
-            "hover": { "$value": "{color.green.300}" },
-            "pressed": { "$value": "{color.green.500}" }
+            "hover": { "$value": "{color.green.300}" }
           },
 
           "destructive": {
-            "surface": { "$value": "{color.red.400}" },
+            "bg": { "$value": "{color.red.400}" },
             "fg": { "$value": "{color.red.400.fg}" },
-            "hover": { "$value": "{color.red.300}" },
-            "pressed": { "$value": "{color.red.500}" }
+            "hover": { "$value": "{color.red.300}" }
           }
         }
       },
@@ -50,31 +46,27 @@
       "dark": {
         "intents": {
           "primary": {
-            "surface": { "$value": "{color.blue.400}" },
+            "bg": { "$value": "{color.blue.400}" },
             "fg": { "$value": "{color.blue.400.fg}" },
-            "hover": { "$value": "{color.blue.300}" },
-            "pressed": { "$value": "{color.blue.500}" }
+            "hover": { "$value": "lighten({color.blue.400}, .1)" }
           },
 
           "secondary": {
-            "surface": { "$value": "{color.gray.400}" },
+            "bg": { "$value": "{color.gray.400}" },
             "fg": { "$value": "{color.gray.400.fg}" },
-            "hover": { "$value": "{color.gray.300}" },
-            "pressed": { "$value": "{color.gray.500}" }
+            "hover": { "$value": "{color.gray.300}" }
           },
 
           "constructive": {
-            "surface": { "$value": "{color.green.400}" },
+            "bg": { "$value": "{color.green.400}" },
             "fg": { "$value": "{color.green.400.fg}" },
-            "hover": { "$value": "{color.green.300}" },
-            "pressed": { "$value": "{color.green.500}" }
+            "hover": { "$value": "{color.green.300}" }
           },
 
           "destructive": {
-            "surface": { "$value": "{color.red.400}" },
+            "bg": { "$value": "{color.red.400}" },
             "fg": { "$value": "{color.red.400.fg}" },
-            "hover": { "$value": "{color.red.300}" },
-            "pressed": { "$value": "{color.red.500}" }
+            "hover": { "$value": "{color.red.300}" }
           }
         }
       }

@@ -1,6 +1,14 @@
-import { describe, expect, it } from 'vitest';
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
 
-import { registerStyleDictionaryThings } from '../src/sd';
+import StyleDictionary from 'style-dictionary';
+import { afterEach, describe, expect, it } from 'vitest';
+
+import {
+  makeStyleDictionaryConfig,
+  registerStyleDictionaryThings,
+} from '../src/sd';
 
 function makeStyleDictionaryMock() {
   const formats = new Map<string, ({ dictionary }: any) => string>();
@@ -23,7 +31,17 @@ function makeStyleDictionaryMock() {
   };
 }
 
+const tempRoots: string[] = [];
+
 describe('registerStyleDictionaryThings', () => {
+  afterEach(async () => {
+    await Promise.all(
+      tempRoots
+        .splice(0)
+        .map((root) => fs.rm(root, { recursive: true, force: true }))
+    );
+  });
+
   it('emits unprefixed CSS variables by default', () => {
     const StyleDictionary = makeStyleDictionaryMock();
     registerStyleDictionaryThings(StyleDictionary);
@@ -286,6 +304,153 @@ describe('registerStyleDictionaryThings', () => {
     expect(output).toContain(
       '--themeshift-components-button-light-intents-primary-fg: #fff;'
     );
+  });
+
+  it('emits hybrid parent and child tokens across css, scss, and token manifests', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary, {
+      cssVarPrefix: 'themeshift',
+      filters: {
+        scss: {
+          includePrefixes: ['components-'],
+        },
+      },
+    });
+
+    const cssFormat = StyleDictionary.getFormat('css/variables-modes-grouped');
+    const scssFormat = StyleDictionary.getFormat('scss/static-tokens');
+    const pathsFormat = StyleDictionary.getFormat('token/paths-ts');
+    const valuesFormat = StyleDictionary.getFormat('token/values-ts');
+    const dictionary = {
+      allTokens: [
+        {
+          name: 'color-blue-400',
+          path: ['color', 'blue', '400'],
+          value: '#5C6BC0',
+          original: {
+            $value: '#5C6BC0',
+            $type: 'color',
+          },
+          attributes: {},
+        },
+        {
+          name: 'components-button-light-intents-primary-bg',
+          path: ['components', 'button', 'light', 'intents', 'primary', 'bg'],
+          value: '{color.blue.400}',
+          original: {
+            $value: '{color.blue.400}',
+            hover: {
+              $value:
+                'lighten({components.button.light.intents.primary.bg}, 0.1)',
+            },
+            disabled: {
+              $value:
+                'alpha({components.button.light.intents.primary.bg.hover}, 0.3)',
+            },
+          },
+          attributes: {
+            theme: 'light',
+          },
+        },
+      ],
+    };
+
+    const cssOutput = cssFormat?.({ dictionary });
+    const scssOutput = scssFormat?.({ dictionary });
+    const pathsOutput = pathsFormat?.({ dictionary });
+    const valuesOutput = valuesFormat?.({ dictionary });
+
+    expect(cssOutput).toContain(
+      '--themeshift-components-button-light-intents-primary-bg: #5C6BC0;'
+    );
+    expect(cssOutput).toContain(
+      '--themeshift-components-button-light-intents-primary-bg-hover: #6c7ac6;'
+    );
+    expect(cssOutput).toContain(
+      '--themeshift-components-button-light-intents-primary-bg-disabled: rgba(108, 122, 198, 0.3);'
+    );
+    expect(scssOutput).toContain(
+      '$components_button_light_intents_primary_bg: #5C6BC0;'
+    );
+    expect(scssOutput).toContain(
+      '$components_button_light_intents_primary_bg_hover: #6c7ac6;'
+    );
+    expect(pathsOutput).toContain(
+      '"components.button.light.intents.primary.bg.hover"'
+    );
+    expect(valuesOutput).toContain(
+      '"components.button.light.intents.primary.bg.disabled": "rgba(108, 122, 198, 0.3)"'
+    );
+  });
+
+  it('supports nested hybrid child paths without flattening ordinary composite values', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary, {
+      cssVarPrefix: 'themeshift',
+    });
+
+    const pathsFormat = StyleDictionary.getFormat('token/paths-ts');
+    const valuesFormat = StyleDictionary.getFormat('token/values-ts');
+    const dictionary = {
+      allTokens: [
+        {
+          name: 'color-blue-300',
+          path: ['color', 'blue', '300'],
+          value: '#7986CB',
+          original: {
+            $value: '#7986CB',
+            $type: 'color',
+          },
+          attributes: {},
+        },
+        {
+          name: 'components-button-bg',
+          path: ['components', 'button', 'bg'],
+          value: '{color.blue.300}',
+          original: {
+            $value: '{color.blue.300}',
+            hover: {
+              $value: 'lighten({components.button.bg}, 0.1)',
+              subtle: {
+                $value: 'alpha({components.button.bg.hover}, 0.5)',
+              },
+            },
+          },
+          attributes: {},
+        },
+        {
+          name: 'text-style-title',
+          path: ['text', 'style', 'title'],
+          type: 'typography',
+          original: {
+            $type: 'typography',
+            $value: {
+              fontFamily: '"Roboto Slab", Georgia, serif',
+              fontSize: '1.25rem',
+              lineHeight: '1.3',
+              fontWeight: '400',
+            },
+          },
+          value: {
+            fontFamily: '"Roboto Slab", Georgia, serif',
+            fontSize: '1.25rem',
+            lineHeight: '1.3',
+            fontWeight: '400',
+          },
+          attributes: {},
+        },
+      ],
+    };
+
+    const pathsOutput = pathsFormat?.({ dictionary });
+    const valuesOutput = valuesFormat?.({ dictionary });
+
+    expect(pathsOutput).toContain('"components.button.bg.hover.subtle"');
+    expect(valuesOutput).toContain(
+      '"components.button.bg.hover.subtle": "rgba(134, 146, 208, 0.5)"'
+    );
+    expect(pathsOutput).not.toContain('"text.style.title.fontFamily"');
+    expect(valuesOutput).not.toContain('"text.style.title.fontFamily"');
   });
 
   it('keeps css color functions like rgba() as literal token values', () => {
@@ -710,6 +875,68 @@ describe('registerStyleDictionaryThings', () => {
       })
     ).toThrow(
       'Failed to resolve token "color.brand.a": circular token reference "color.brand.a -> color.brand.b -> color.brand.a".'
+    );
+  });
+
+  it('throws helpful errors for duplicate hybrid child paths and hybrid cycles', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary);
+
+    const valuesFormat = StyleDictionary.getFormat('token/values-ts');
+
+    expect(() =>
+      valuesFormat?.({
+        dictionary: {
+          allTokens: [
+            {
+              name: 'components-button-bg',
+              path: ['components', 'button', 'bg'],
+              value: '#111',
+              original: {
+                $value: '#111',
+                hover: {
+                  $value: '#222',
+                },
+              },
+            },
+            {
+              name: 'components-button-bg-hover',
+              path: ['components', 'button', 'bg', 'hover'],
+              value: '#333',
+              original: {
+                $value: '#333',
+              },
+            },
+          ],
+        },
+      })
+    ).toThrow(
+      'Duplicate token path "components.button.bg.hover" generated by explicit token "components.button.bg.hover"; it conflicts with synthesized nested token "components.button.bg.hover" from "components.button.bg".'
+    );
+
+    expect(() =>
+      valuesFormat?.({
+        dictionary: {
+          allTokens: [
+            {
+              name: 'components-button-bg',
+              path: ['components', 'button', 'bg'],
+              value: '#111',
+              original: {
+                $value: '#111',
+                hover: {
+                  $value: '{components.button.bg.disabled}',
+                },
+                disabled: {
+                  $value: '{components.button.bg.hover}',
+                },
+              },
+            },
+          ],
+        },
+      })
+    ).toThrow(
+      'Failed to resolve token "components.button.bg.hover": circular token reference "components.button.bg.hover -> components.button.bg.disabled -> components.button.bg.hover".'
     );
   });
 
@@ -1373,5 +1600,78 @@ describe('registerStyleDictionaryThings', () => {
     expect(output).not.toContain(
       ":root[data-theme='print'] {\n    --components-button-padding: 1rem 2rem 0;"
     );
+  });
+
+  it('emits hybrid token paths from authored json through real Style Dictionary builds', async () => {
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), 'themeshift-sd-'));
+    tempRoots.push(root);
+
+    await fs.mkdir(path.join(root, 'tokens'), { recursive: true });
+    await fs.writeFile(
+      path.join(root, 'tokens', 'theme.json'),
+      JSON.stringify(
+        {
+          color: {
+            blue: {
+              300: { $value: '#7986CB', $type: 'color' },
+              400: { $value: '#5C6BC0', $type: 'color' },
+            },
+          },
+          components: {
+            button: {
+              light: {
+                intents: {
+                  primary: {
+                    bg: {
+                      $value: '{color.blue.400}',
+                      hover: {
+                        $value:
+                          'lighten({components.button.light.intents.primary.bg}, 0.1)',
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        null,
+        2
+      )
+    );
+
+    const previousCwd = process.cwd();
+    process.chdir(root);
+
+    try {
+      registerStyleDictionaryThings(StyleDictionary, {
+        cssVarPrefix: 'themeshift',
+      });
+
+      const sd = new StyleDictionary(makeStyleDictionaryConfig());
+      await sd.buildPlatform('css');
+      await sd.buildPlatform('meta');
+
+      const cssOutput = await fs.readFile(
+        path.join(root, 'src', 'css', 'tokens.css'),
+        'utf8'
+      );
+      const valuesOutput = await fs.readFile(
+        path.join(root, 'src', 'design-tokens', 'token-values.json'),
+        'utf8'
+      );
+
+      expect(cssOutput).toContain(
+        '--themeshift-components-button-intents-primary-bg: #5C6BC0;'
+      );
+      expect(cssOutput).toContain(
+        '--themeshift-components-button-intents-primary-bg-hover: #6c7ac6;'
+      );
+      expect(valuesOutput).toContain(
+        '"components.button.light.intents.primary.bg.hover": "#6c7ac6"'
+      );
+    } finally {
+      process.chdir(previousCwd);
+    }
   });
 });

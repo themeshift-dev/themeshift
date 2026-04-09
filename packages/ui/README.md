@@ -1,19 +1,19 @@
 # ThemeShift UI
 
-ThemeShift UI is a React UI framework built around design tokens and theme-aware styling. ThemeShift makes creating your own theme-aware components easy as pie.
+ThemeShift UI is a React UI framework built around design tokens and theme-aware styling. ThemeShift makes creating your own theme-aware components easy as pie 🥧
 
 This package now lives inside the ThemeShift monorepo. Use the root workspace for local development and the docs app in `apps/ui-app` for richer examples and integration guides.
 
-## Overview
+## What it includes
 
-ThemeShift UI is designed for apps that want:
+ThemeShift UI is a good fit for apps that want:
 
 - React components with sensible defaults
 - themeable styles powered by CSS variables
 - design-token-driven customization
 - per-component imports instead of a single all-in bundle
 
-ThemeShift UI includes:
+This package includes:
 
 - React components from `@themeshift/ui/components/*`
 - optional default font-face definitions from `@themeshift/ui/css/fonts.css`
@@ -33,7 +33,7 @@ If you want to override the default token values with your own ThemeShift tokens
 npm install -D @themeshift/vite-plugin-themeshift
 ```
 
-## Usage
+## Quick start
 
 Import the components you need directly:
 
@@ -48,15 +48,15 @@ export function Example() {
 }
 ```
 
-Each component loads its own CSS automatically. You only need to import:
+Each component loads its own CSS automatically. In most apps, you only need to import:
 
 - `@themeshift/ui/css/fonts.css` if you want ThemeShift's default Noto Sans font files
 - `@themeshift/ui/css/base.css` for shared base styles
 - `@themeshift/ui/css/tokens.css` for the package's default token values
 
-`fonts.css` is intentionally separate from `base.css`. If you want to use your own font-face setup, omit `fonts.css` and override the typography tokens with your own font families.
+If you want to use your own fonts, skip `fonts.css` and override the typography tokens in your app.
 
-For `light` and `dark` theme-specific token values to apply, set `data-theme` on the document root (`<html>`), not on your React app container:
+To use `light` and `dark` token values, set `data-theme` on the document root (`<html>`), not on your React app container:
 
 ```tsx
 import { useEffect } from 'react';
@@ -74,13 +74,13 @@ export function Example() {
 }
 ```
 
-If you set `data-theme` on a `<div id="root">`, the generated selectors will not match because ThemeShift emits theme variables under `:root[data-theme='...']`.
+If you set `data-theme` on `<div id="root">`, the generated selectors will not match because ThemeShift writes theme variables under `:root[data-theme='...']`.
 
 ## Theming
 
-ThemeShift UI uses CSS variables for theming. Things like typography, spacing, and component colors are all driven by token-based custom properties.
+ThemeShift UI uses CSS variables for theming. Typography, spacing, and component colors all come from token-based custom properties.
 
-If you are happy with the default theme, import:
+If you want the default theme, import:
 
 ```tsx
 import '@themeshift/ui/css/fonts.css';
@@ -88,7 +88,7 @@ import '@themeshift/ui/css/base.css';
 import '@themeshift/ui/css/tokens.css';
 ```
 
-If you want ThemeShift styles but not the default Noto Sans font, import `base.css` and `tokens.css` but skip `fonts.css`.
+If you want ThemeShift styles but not the default Noto Sans font, import `base.css` and `tokens.css` and skip `fonts.css`.
 
 ## Fonts
 
@@ -109,7 +109,9 @@ import '@themeshift/ui/css/base.css';
 import '@themeshift/ui/css/tokens.css';
 ```
 
-Then define your own font-face rules and override the relevant typography tokens in your app token files.
+Then add your own `@font-face` rules and override the typography tokens in your app token files.
+
+## Token overrides
 
 If you want to override the defaults, generate your own token CSS in your app with `@themeshift/vite-plugin-themeshift` and use `@themeshift/ui` as the starting point:
 
@@ -129,7 +131,7 @@ export default defineConfig({
 });
 ```
 
-In that setup, your app-level `tokens/*.json` files override the default values from ThemeShift UI without needing to rebuild this package’s Sass.
+In that setup, your app-level `tokens/*.json` files override the default values from ThemeShift UI without rebuilding this package.
 
 ## Available Imports
 
@@ -149,15 +151,13 @@ CSS variable names use the `--themeshift-*` namespace to avoid collisions with a
 
 ## Accessibility
 
-Interactive components in ThemeShift UI should use the shared focus mixins from
-[`src/sass/mixins/accessibility.scss`](./src/sass/mixins/accessibility.scss)
-instead of removing focus styles directly.
+Interactive components in ThemeShift UI should use the shared focus mixins from [`src/sass/mixins/accessibility.scss`](./src/sass/mixins/accessibility.scss) instead of removing focus styles directly.
 
 - Use `focusVisible` when a component needs custom `:focus-visible` behavior.
 - Use `focusVisibleRing` for the standard tokenized focus ring.
 - Use `buttonFocus` when you want the standard button treatment with clearer intent.
 
-These mixins standardize the safer pattern below so keyboard and assistive-technology users keep a visible focus indicator, while most pointer-triggered focus avoids extra visual noise:
+These mixins help keep a visible focus style for keyboard and assistive-technology users:
 
 ```scss
 &:focus:not(:focus-visible) {

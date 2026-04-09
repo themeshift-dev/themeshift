@@ -21,7 +21,7 @@
   border-radius: token('components.skiplink.borderRadius');
   font-family: token('components.skiplink.font');
   color: token('components.skiplink.fg');
-  background-color: token('components.skiplink.surface');
+  background-color: token('components.skiplink.bg');
   text-decoration: none;
   transform: translateY(calc(-100% - token('space.2')));
   transition:

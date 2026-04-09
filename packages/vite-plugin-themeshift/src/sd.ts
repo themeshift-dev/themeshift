@@ -170,6 +170,10 @@ function applyPlatformFilter(
   return tokens;
 }
 
+function prepareDictionaryTokens(dictionary: { allTokens?: any[] }) {
+  return resolveDictionaryTokenValues(dictionary.allTokens ?? []);
+}
+
 export function registerStyleDictionaryThings(
   StyleDictionary: any,
   options: {
@@ -254,8 +258,7 @@ export function registerStyleDictionaryThings(
   StyleDictionary.registerFormat({
     name: 'css/variables-modes-grouped',
     format: ({ dictionary }: any) => {
-      const all = dictionary.allTokens ?? [];
-      const resolvedTokens = resolveDictionaryTokenValues(all);
+      const resolvedTokens = prepareDictionaryTokens(dictionary);
       const byName = (a: any, b: any) => a.name.localeCompare(b.name);
       const filtered = applyPlatformFilter(resolvedTokens, 'css', filters);
       const activeGroups = groups ?? DEFAULT_CSS_GROUPS;
@@ -367,8 +370,7 @@ export function registerStyleDictionaryThings(
   StyleDictionary.registerFormat({
     name: 'scss/static-tokens',
     format: ({ dictionary }: any) => {
-      const all = dictionary.allTokens ?? [];
-      const resolvedTokens = resolveDictionaryTokenValues(all);
+      const resolvedTokens = prepareDictionaryTokens(dictionary);
       const byName = (a: any, b: any) => a.name.localeCompare(b.name);
       const tokens = applyPlatformFilter(resolvedTokens, 'scss', filters).sort(
         byName
@@ -413,7 +415,7 @@ export function registerStyleDictionaryThings(
     name: 'token/paths-json',
     format: ({ dictionary }: any) => {
       const paths = applyPlatformFilter(
-        resolveDictionaryTokenValues(dictionary.allTokens ?? []),
+        prepareDictionaryTokens(dictionary),
         'meta',
         filters
       ).map((t: any) => t.path.join('.'));
@@ -426,7 +428,7 @@ export function registerStyleDictionaryThings(
     name: 'token/paths-ts',
     format: ({ dictionary }: any) => {
       const paths = applyPlatformFilter(
-        resolveDictionaryTokenValues(dictionary.allTokens ?? []),
+        prepareDictionaryTokens(dictionary),
         'meta',
         filters
       )
@@ -444,7 +446,7 @@ export type TokenPath = (typeof tokenPaths)[number];
     format: ({ dictionary }: any) => {
       const values = Object.fromEntries(
         applyPlatformFilter(
-          resolveDictionaryTokenValues(dictionary.allTokens ?? []),
+          prepareDictionaryTokens(dictionary),
           'meta',
           filters
         )
@@ -464,7 +466,7 @@ export type TokenPath = (typeof tokenPaths)[number];
     format: ({ dictionary }: any) => {
       const values = Object.fromEntries(
         applyPlatformFilter(
-          resolveDictionaryTokenValues(dictionary.allTokens ?? []),
+          prepareDictionaryTokens(dictionary),
           'meta',
           filters
         )

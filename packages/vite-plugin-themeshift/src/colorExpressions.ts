@@ -1,11 +1,15 @@
 type ThemeShiftToken = {
+  name?: string;
   path?: string[];
   value?: unknown;
   $value?: unknown;
-  original?: {
-    value?: unknown;
-    $value?: unknown;
-  };
+  type?: unknown;
+  $type?: unknown;
+  original?: Record<string, unknown>;
+  attributes?: Record<string, unknown>;
+  description?: unknown;
+  $description?: unknown;
+  [key: string]: unknown;
 };
 
 type ColorChannel = {
@@ -90,6 +94,13 @@ const INLINE_REFERENCE_PATTERN = /\{([^}]+)\}/g;
 const FUNCTION_LIKE_PATTERN = /^[a-z]+\(/;
 const CSS_COLOR_FUNCTION_NAMES = new Set(['rgb', 'rgba', 'hsl', 'hsla']);
 
+function normalizeTokenNameSegment(segment: string) {
+  return segment
+    .replace(/_/g, '-')
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .toLowerCase();
+}
+
 /**
  * Returns a stable dot-path for a token when path segments are available.
  *
@@ -102,6 +113,18 @@ const CSS_COLOR_FUNCTION_NAMES = new Set(['rgb', 'rgba', 'hsl', 'hsla']);
  */
 function getTokenPath(token: ThemeShiftToken) {
   return Array.isArray(token.path) ? token.path.join('.') : null;
+}
+
+function getFallbackTokenName(path: string[]) {
+  return path.map((segment) => normalizeTokenNameSegment(segment)).join('-');
+}
+
+function getTokenName(token: ThemeShiftToken) {
+  if (typeof token.name === 'string' && token.name.length > 0) {
+    return token.name;
+  }
+
+  return Array.isArray(token.path) ? getFallbackTokenName(token.path) : '';
 }
 
 /**
@@ -146,6 +169,22 @@ function getRawTokenValue(token: ThemeShiftToken) {
   }
 
   return token.value;
+}
+
+function getNestedTokenSource(token: ThemeShiftToken) {
+  if (token.original && typeof token.original === 'object') {
+    return token.original;
+  }
+
+  if (
+    token.value &&
+    typeof token.value === 'object' &&
+    !Array.isArray(token.value)
+  ) {
+    return token.value as Record<string, unknown>;
+  }
+
+  return null;
 }
 
 /**
@@ -720,13 +759,12 @@ function isNestedTokenValue(value: unknown): value is NestedTokenValue {
  * - `color.blue.400` with nested `fg: { $value: '{color.white}' }`
  *   produces an indexed path for `color.blue.400.fg`
  */
-function collectNestedTokenEntries(
-  token: ThemeShiftToken,
-  basePath: string[]
-): Array<[string, ThemeShiftToken]> {
-  const entries: Array<[string, ThemeShiftToken]> = [];
+function collectNestedTokenEntries(token: ThemeShiftToken): ThemeShiftToken[] {
+  const entries: ThemeShiftToken[] = [];
+  const basePath = token.path ?? [];
+  const baseName = getTokenName(token);
 
-  function visit(value: unknown, currentPath: string[]) {
+  function visit(value: unknown, currentPath: string[], currentName: string) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) {
       return;
     }
@@ -737,40 +775,101 @@ function collectNestedTokenEntries(
       }
 
       const childPath = [...currentPath, key];
+      const childNameSegment = normalizeTokenNameSegment(key);
+      const childName = currentName
+        ? `${currentName}-${childNameSegment}`
+        : childNameSegment;
 
       if (isNestedTokenValue(child)) {
-        entries.push([
-          childPath.join('.'),
-          {
-            ...token,
-            path: childPath,
-            original: child,
-            value:
-              child.$value !== undefined
-                ? child.$value
-                : 'value' in child
-                  ? child.value
-                  : undefined,
-            $value:
-              child.$value !== undefined
-                ? child.$value
-                : 'value' in child
-                  ? child.value
-                  : undefined,
-          },
-        ]);
+        const childValue =
+          child.$value !== undefined
+            ? child.$value
+            : 'value' in child
+              ? child.value
+              : undefined;
+
+        entries.push({
+          ...token,
+          name: childName,
+          path: childPath,
+          original: child,
+          value: childValue,
+          $value: childValue,
+          type: child.type ?? child.$type ?? token.type,
+          $type: child.$type ?? child.type ?? token.$type,
+          description:
+            child.description ?? child.$description ?? token.description,
+          $description:
+            child.$description ?? child.description ?? token.$description,
+        });
       }
 
-      visit(child, childPath);
+      visit(child, childPath, childName);
     }
   }
 
-  const originalValue = token.original;
-  if (originalValue && typeof originalValue === 'object') {
-    visit(originalValue, basePath);
+  const nestedSource = getNestedTokenSource(token);
+  if (nestedSource) {
+    visit(nestedSource, basePath, baseName);
   }
 
   return entries;
+}
+
+function describeTokenOrigin(
+  token: ThemeShiftToken,
+  kind: 'explicit' | 'synthesized'
+) {
+  const tokenPath = getTokenPath(token) ?? 'unknown';
+
+  if (kind === 'explicit') {
+    return `explicit token "${tokenPath}"`;
+  }
+
+  const parentPath =
+    Array.isArray(token.path) && token.path.length > 1
+      ? token.path.slice(0, -1).join('.')
+      : 'unknown';
+
+  return `synthesized nested token "${tokenPath}" from "${parentPath}"`;
+}
+
+export function flattenDictionaryTokens(tokens: ThemeShiftToken[]) {
+  const flattened: ThemeShiftToken[] = [];
+  const seenPaths = new Map<string, string>();
+
+  const registerPath = (
+    token: ThemeShiftToken,
+    kind: 'explicit' | 'synthesized'
+  ) => {
+    const tokenPath = getTokenPath(token);
+    if (!tokenPath) {
+      flattened.push(token);
+      return;
+    }
+
+    const origin = describeTokenOrigin(token, kind);
+    const conflict = seenPaths.get(tokenPath);
+
+    if (conflict) {
+      throw new Error(
+        `Duplicate token path "${tokenPath}" generated by ${origin}; it conflicts with ${conflict}.`
+      );
+    }
+
+    seenPaths.set(tokenPath, origin);
+    flattened.push(token);
+  };
+
+  for (const token of tokens) {
+    registerPath(token, 'explicit');
+
+    for (const nestedToken of collectNestedTokenEntries(token)) {
+      registerPath(nestedToken, 'synthesized');
+    }
+  }
+
+  return flattened;
 }
 
 /**
@@ -788,20 +887,13 @@ function collectNestedTokenEntries(
  * - `alpha(mix({color.blue.400}, {color.white}, 0.25), 0.5)` -> `rgba(...)`
  */
 export function resolveDictionaryTokenValues(tokens: ThemeShiftToken[]) {
+  const flattenedTokens = flattenDictionaryTokens(tokens);
   const byPath = new Map<string, ThemeShiftToken>();
 
-  for (const token of tokens) {
+  for (const token of flattenedTokens) {
     const tokenPath = getTokenPath(token);
     if (tokenPath) {
       byPath.set(tokenPath, token);
-      for (const [nestedPath, nestedToken] of collectNestedTokenEntries(
-        token,
-        token.path ?? []
-      )) {
-        if (!byPath.has(nestedPath)) {
-          byPath.set(nestedPath, nestedToken);
-        }
-      }
     }
   }
 
@@ -1044,7 +1136,7 @@ export function resolveDictionaryTokenValues(tokens: ThemeShiftToken[]) {
     return resolved;
   }
 
-  return tokens.map((token) => {
+  return flattenedTokens.map((token) => {
     const resolvedValue = resolveToken(
       token,
       getTokenPath(token) ? [getTokenPath(token) as string] : [],

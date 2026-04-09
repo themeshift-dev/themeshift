@@ -38,7 +38,7 @@
         }
       },
       "light": {
-        "surface": {
+        "bg": {
           "$value": "transparent"
         },
         "border": {
@@ -46,7 +46,7 @@
         }
       },
       "dark": {
-        "surface": {
+        "bg": {
           "$value": "transparent"
         },
         "border": {
