@@ -12,7 +12,11 @@ export default mergeConfig(
         provider: 'v8',
         reporter: ['text', 'html', 'lcov'],
         include: ['src/components/**/*.tsx', 'src/templates/**/*.tsx'],
-        exclude: ['src/components/**/*.test.tsx', 'src/templates/**/*.test.tsx'],
+        exclude: [
+          'src/components/**/*.stories.tsx',
+          'src/components/**/*.test.tsx',
+          'src/templates/**/*.test.tsx',
+        ],
         thresholds: {
           statements: 90,
           branches: 90,
