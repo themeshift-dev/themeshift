@@ -10,18 +10,46 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
+      # Clone repository into the runner workspace
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # Set up pnpm for workspace installs and scripts
       - uses: pnpm/action-setup@v4
         with:
           version: 10.18.0
 
+      # Set up Node.js using the repo version and enable pnpm caching
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
 
+      # Install workspace dependencies exactly as locked
       - run: pnpm install --frozen-lockfile
+
+      # Run the main validation pipeline used for pull requests and main
       - run: pnpm ci:validate
+
+      # Generate UI package coverage output for Codecov
+      - run: pnpm --filter @themeshift/ui test:coverage
+
+      # Upload UI package coverage to Codecov
+      - name: Upload UI coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./packages/ui/coverage/lcov.info
+          flags: ui
+
+      # Generate plugin package coverage output for Codecov
+      - run: pnpm --filter @themeshift/vite-plugin-themeshift test:coverage
+
+      # Upload plugin package coverage to Codecov
+      - name: Upload vite-plugin-themeshift coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./packages/vite-plugin-themeshift/coverage/lcov.info
+          flags: vite-plugin-themeshift
