@@ -1,6 +1,6 @@
 # Releases
 
-This file explains how to publish packages from the ThemeShift monorepo.
+This repo releases public packages with release-please and GitHub Actions.
 
 ## What gets released
 
@@ -9,23 +9,51 @@ This repo has two public npm packages:
 - `@themeshift/ui`
 - `@themeshift/vite-plugin-themeshift`
 
-This repo also has one private app:
+The private docs app, `@themeshift/ui-app`, is not versioned by release automation and does not publish to npm. App deployments track the commit deployed from `main`.
 
-- `@themeshift/ui-app`
+## Branch flow
 
-`@themeshift/ui-app` does not publish to npm, but it does share version numbers with `@themeshift/ui`.
+Use this flow for normal work:
 
-That is controlled in [.changeset/config.json](/Users/hutch/Web/@themeshift/.changeset/config.json):
-
-```json
-"fixed": [["@themeshift/ui", "@themeshift/ui-app"]]
+```text
+feature branch -> develop -> main -> release-please PR -> publish/deploy
 ```
 
-This means:
+Feature branches target `develop`. When a batch of work is ready for production, open a normal PR from `develop` into `main`.
 
-- `@themeshift/ui` and `@themeshift/ui-app` always get the same version number
-- `@themeshift/ui-app` stays private
-- `@themeshift/vite-plugin-themeshift` can version independently
+After that PR merges, the Release workflow runs release-please on `main`. Release-please opens or updates a release PR with package version bumps and changelog entries. Merging the release PR creates GitHub releases and publishes only the packages that changed.
+
+## Branch names and PR titles
+
+Feature branches into `develop` must use one of these forms:
+
+```text
+feat/TS-123-button-loading-state
+fix/TS-124-skiplink-css
+```
+
+The accepted pattern is:
+
+```text
+^(feat|fix)/[A-Z]+-[0-9]+-[a-z0-9][a-z0-9-]*$
+```
+
+PR titles into `develop` must use Conventional Commit syntax because squash merge commit titles become release-please input.
+
+Examples:
+
+```text
+fix(ui): hide SkipLink until focused
+feat(ui): add loading state to Button
+feat(vite-plugin): support token defaults
+feat(ui)!: change Button variant API
+```
+
+Release-please treats:
+
+- `fix:` as a patch release
+- `feat:` as a minor release
+- `!` or `BREAKING CHANGE:` as a major release
 
 ## Before release
 
@@ -34,7 +62,8 @@ Make sure these things are ready:
 - npm trusted publishing is enabled for `@themeshift/ui`
 - npm trusted publishing is enabled for `@themeshift/vite-plugin-themeshift`
 - both npm packages trust the GitHub Actions workflow named `release.yml`
-- CI is passing on `main`
+- the repo secret `RELEASE_PLEASE_TOKEN` is set to a PAT that can create release PRs and releases
+- CI is passing on the release PR and on `develop`
 
 Useful checks:
 
@@ -42,114 +71,7 @@ Useful checks:
 pnpm release:preflight
 ```
 
-## How releases work in this repo
-
-Releases are handled by Changesets and GitHub Actions.
-
-The release workflow lives in [.github/workflows/release.yml](/Users/hutch/Web/@themeshift/.github/workflows/release.yml).
-
-When you push to `main`, the workflow:
-
-1. Installs dependencies
-2. Runs `pnpm build`
-3. Runs `changesets/action`
-
-That action does one of two things:
-
-1. If there are unreleased changesets, it opens or updates a Release PR
-2. If the Release PR has already been merged, it publishes the versioned packages to npm
-
-## Normal release flow
-
-This is the standard workflow for a new release.
-
-### 1. Create a changeset
-
-Run:
-
-```bash
-pnpm changeset
-```
-
-Changesets will ask which packages changed and what type of bump they need.
-
-For example:
-
-- `patch` for bug fixes and small improvements
-- `minor` for backward-compatible features
-- `major` for breaking changes
-
-Because `@themeshift/ui` and `@themeshift/ui-app` are fixed together, selecting `@themeshift/ui` will keep those versions aligned.
-
-### 2. Commit the changeset
-
-Changesets creates a new markdown file in `.changeset/`.
-
-Commit it with your code changes:
-
-```bash
-git add .
-git commit -m "Add release changeset"
-```
-
-### 3. Push to `main`
-
-Push your branch and merge it to `main`, or push directly if that is your workflow.
-
-Once the changeset reaches `main`, the Release workflow will open or update a Release PR.
-
-### 4. Review the Release PR
-
-The Release PR usually includes:
-
-- version bumps in package manifests
-- changelog updates
-
-Check that:
-
-- `@themeshift/ui` has the expected new version
-- `@themeshift/ui-app` matches the `ui` version
-- `@themeshift/vite-plugin-themeshift` only changes if it was included in the changeset
-
-### 5. Merge the Release PR
-
-When you merge the Release PR, GitHub Actions runs the release workflow again.
-
-This time Changesets publishes the versioned public packages to npm.
-
-Publishing uses npm trusted publishing. GitHub Actions does not need a long-lived npm secret for this repo.
-
-## Publishing from your machine
-
-The repo includes a local publish command:
-
-```bash
-pnpm release
-```
-
-That runs:
-
-```bash
-changeset publish
-```
-
-In this repo, the normal and safer path is to let GitHub Actions publish from `main` instead of publishing manually from a local machine.
-
-Local publishing still requires your local npm login to have publish access to the `@themeshift` npm org.
-
 ## Useful commands
-
-Create a changeset:
-
-```bash
-pnpm changeset
-```
-
-Apply version bumps locally:
-
-```bash
-pnpm changeset:version
-```
 
 Run the release preflight checks:
 
@@ -161,12 +83,6 @@ Run the same checks with full command output:
 
 ```bash
 pnpm release:preflight:verbose
-```
-
-Publish locally:
-
-```bash
-pnpm release
 ```
 
 Run the main validation pipeline:
@@ -181,36 +97,44 @@ Build everything:
 pnpm build
 ```
 
-## Notes for maintainers
+Check generated README badges:
 
-- `workspace:*` dependencies are correct in this monorepo. They should not be replaced with hard-coded package versions for local workspace links.
-- `@themeshift/ui-app` is private, so it will not publish to npm even though its version changes.
-- `@themeshift/vite-plugin-themeshift` is not fixed to `@themeshift/ui`, so it can release on its own schedule.
-- GitHub Actions publishes with npm trusted publishing, not a long-lived npm secret.
-- If there is no new changeset file, the release workflow has nothing new to publish.
+```bash
+pnpm docs:check-badges
+```
+
+Update generated README badges:
+
+```bash
+pnpm docs:update-badges
+```
 
 ## Troubleshooting
 
-### The release workflow does not open a Release PR
+### Release-please does not open a release PR
 
 Check:
 
-- the changeset file was committed
-- the change reached `main`
+- the change was merged into `main`
+- the squash commit title uses Conventional Commit syntax
+- the change affected a configured release package
 - GitHub Actions is enabled
+- `RELEASE_PLEASE_TOKEN` is valid
 
-### The Release PR opens, but npm publish does not happen
+### The release PR opens, but npm publish does not happen
 
 Check:
 
-- the Release PR was merged
+- the release PR was merged
+- release-please created a GitHub release for the changed package
 - npm trusted publishing is enabled for each public package
 - each npm package trusts `adamhutch/themeshift` and the `release.yml` workflow filename
 - the package names and npm access are correct
 
-### Versions look wrong in the Release PR
+### Versions look wrong in the release PR
 
 Check:
 
-- which packages were selected when you ran `pnpm changeset`
-- whether the package is part of a `fixed` group in `.changeset/config.json`
+- the squash commit title uses `fix:`, `feat:`, or `!` correctly
+- the package path is listed in `release-please-config.json`
+- the current version is listed in `.release-please-manifest.json`

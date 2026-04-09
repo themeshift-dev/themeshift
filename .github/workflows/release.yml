@@ -17,23 +17,37 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Create release PR or GitHub releases
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+          target-branch: main
+
       - uses: pnpm/action-setup@v4
+        if: ${{ steps.release.outputs['packages/ui--release_created'] == 'true' || steps.release.outputs['packages/vite-plugin-themeshift--release_created'] == 'true' }}
         with:
           version: 10.18.0
 
       - uses: actions/setup-node@v4
+        if: ${{ steps.release.outputs['packages/ui--release_created'] == 'true' || steps.release.outputs['packages/vite-plugin-themeshift--release_created'] == 'true' }}
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm build
+        if: ${{ steps.release.outputs['packages/ui--release_created'] == 'true' || steps.release.outputs['packages/vite-plugin-themeshift--release_created'] == 'true' }}
 
-      - name: Create release PR or publish
-        uses: changesets/action@v1
-        with:
-          version: pnpm changeset:version
-          publish: pnpm release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: pnpm build
+        if: ${{ steps.release.outputs['packages/ui--release_created'] == 'true' || steps.release.outputs['packages/vite-plugin-themeshift--release_created'] == 'true' }}
+
+      - name: Publish @themeshift/ui
+        if: ${{ steps.release.outputs['packages/ui--release_created'] == 'true' }}
+        run: pnpm --filter @themeshift/ui publish --access public --no-git-checks
+
+      - name: Publish @themeshift/vite-plugin-themeshift
+        if: ${{ steps.release.outputs['packages/vite-plugin-themeshift--release_created'] == 'true' }}
+        run: pnpm --filter @themeshift/vite-plugin-themeshift publish --access public --no-git-checks

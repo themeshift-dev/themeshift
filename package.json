@@ -22,14 +22,11 @@
     "ci:validate": "turbo run lint typecheck test build --affected",
     "docs:check-badges": "node scripts/update-ui-component-badge.mjs --check",
     "docs:update-badges": "node scripts/update-ui-component-badge.mjs",
-    "changeset": "changeset",
+    "pr:check-conventions": "node scripts/check-pr-conventions.mjs",
     "release:preflight": "node scripts/preflight.ts",
-    "release:preflight:verbose": "node scripts/preflight.ts --verbose",
-    "changeset:version": "pnpm docs:update-badges && changeset version",
-    "release": "changeset publish"
+    "release:preflight:verbose": "node scripts/preflight.ts --verbose"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.7",
     "chalk": "^4.1.2",
     "ora": "^8.2.0",
     "prettier": "3.8.1",

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "bootstrap-sha": "a69ab4f82d9c5d3c9b4945b1412cdbd8c1d1d10c",
+  "include-component-in-tag": true,
+  "packages": {
+    "packages/ui": {
+      "package-name": "@themeshift/ui",
+      "release-type": "node"
+    },
+    "packages/vite-plugin-themeshift": {
+      "package-name": "@themeshift/vite-plugin-themeshift",
+      "release-type": "node"
+    }
+  }
+}
