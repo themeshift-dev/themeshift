@@ -21,7 +21,9 @@
     "theme-contract.json"
   ],
   "sideEffects": [
-    "**/*.css"
+    "**/*.css",
+    "./dist/components/**/index.js",
+    "./dist/templates/**/index.js"
   ],
   "exports": {
     "./components/Button": {

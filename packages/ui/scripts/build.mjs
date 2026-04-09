@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process';
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import * as sass from 'sass';
 
@@ -29,7 +29,9 @@ async function run(command, args) {
         return;
       }
 
-      reject(new Error(`${command} ${args.join(' ')} exited with code ${code}`));
+      reject(
+        new Error(`${command} ${args.join(' ')} exited with code ${code}`)
+      );
     });
 
     child.on('error', reject);
@@ -37,10 +39,19 @@ async function run(command, args) {
 }
 
 async function compileBaseCss() {
-  const result = sass.compile(path.join(rootDir, 'src/css/base.scss'), {
-    loadPaths: [path.join(rootDir, 'src'), path.join(rootDir, 'node_modules')],
-    style: 'expanded',
-  });
+  const baseCssPath = path.join(rootDir, 'src/css/base.scss');
+  const baseCssSource = await readFile(baseCssPath, 'utf8');
+  const result = sass.compileString(
+    `@use "@themeshift/vite-plugin-themeshift/token-defaults" as _themeShiftTokenDefaults with ($theme-shift-default-css-var-prefix: "themeshift");\n${baseCssSource}`,
+    {
+      url: pathToFileURL(baseCssPath),
+      loadPaths: [
+        path.join(rootDir, 'src'),
+        path.join(rootDir, 'node_modules'),
+      ],
+      style: 'expanded',
+    }
+  );
   const [notoSansNormalCss, notoSansItalicCss] = await Promise.all([
     readFile(path.join(notoSansDir, 'wght.css'), 'utf8'),
     readFile(path.join(notoSansDir, 'wght-italic.css'), 'utf8'),
@@ -50,14 +61,15 @@ async function compileBaseCss() {
     .replaceAll("format('woff2-variations')", "format('woff2')");
 
   await mkdir(path.join(distDir, 'css'), { recursive: true });
-  await cp(path.join(notoSansDir, 'files'), path.join(distDir, 'css', 'files'), {
-    recursive: true,
-  });
-  await writeFile(path.join(distDir, 'css/fonts.css'), `${fontsCss}\n`);
-  await writeFile(
-    path.join(distDir, 'css/base.css'),
-    `${result.css}\n`
+  await cp(
+    path.join(notoSansDir, 'files'),
+    path.join(distDir, 'css', 'files'),
+    {
+      recursive: true,
+    }
   );
+  await writeFile(path.join(distDir, 'css/fonts.css'), `${fontsCss}\n`);
+  await writeFile(path.join(distDir, 'css/base.css'), `${result.css}\n`);
 }
 
 async function copyThemeAssets() {
@@ -68,15 +80,15 @@ async function copyThemeAssets() {
   await mkdir(path.join(distDir, 'sass'), { recursive: true });
   await cp(
     path.join(rootDir, 'src/css/tokens.css'),
-    path.join(distDir, 'css/tokens.css'),
+    path.join(distDir, 'css/tokens.css')
   );
   await cp(
     path.join(rootDir, 'src/sass/mixins/typography.scss'),
-    path.join(distDir, 'sass/typography.scss'),
+    path.join(distDir, 'sass/typography.scss')
   );
   await cp(
     path.join(rootDir, 'src/sass/mixins/typography.scss'),
-    path.join(distDir, 'sass/_typography.scss'),
+    path.join(distDir, 'sass/_typography.scss')
   );
 
   const contractPath = path.join(rootDir, 'theme-contract.json');
@@ -85,7 +97,7 @@ async function copyThemeAssets() {
 
   await writeFile(
     path.join(distDir, 'theme-contract.json'),
-    `${JSON.stringify(contract, null, 2)}\n`,
+    `${JSON.stringify(contract, null, 2)}\n`
   );
 }
 
@@ -96,7 +108,13 @@ async function removeNonPublishedArtifacts() {
 
 await rm(distDir, { recursive: true, force: true });
 
-await run('pnpm', ['exec', 'vite', 'build', '--config', 'vite.config.components.ts']);
+await run('pnpm', [
+  'exec',
+  'vite',
+  'build',
+  '--config',
+  'vite.config.components.ts',
+]);
 await run('pnpm', ['exec', 'tsc', '-p', 'tsconfig.build.json']);
 await removeNonPublishedArtifacts();
 await compileBaseCss();
