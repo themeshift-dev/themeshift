@@ -663,6 +663,132 @@ body {
     );
   });
 
+  it('falls back to full reload updates when reloadStrategy is full', async () => {
+    const plugin = themeShift({
+      reloadStrategy: 'full',
+      tokensDir: 'tokens',
+      watch: true,
+    });
+    plugin.config?.({}, { command: 'serve', mode: 'test' } as any);
+    const server = makeServerMocks();
+
+    await plugin.configureServer?.(server as any);
+    sdMocks.buildPlatform.mockClear();
+    server.ws.send.mockClear();
+
+    const onChange = server.watcher.on.mock.calls.find(
+      (call) => call[0] === 'change'
+    )?.[1];
+
+    onChange?.(process.cwd() + '/tokens/theme.json');
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    expect(server.ws.send).toHaveBeenCalledWith({ type: 'full-reload' });
+  });
+
+  it('ignores watcher events for files outside the configured token roots', async () => {
+    const plugin = themeShift({ tokensDir: 'tokens', watch: true });
+    plugin.config?.({}, { command: 'serve', mode: 'test' } as any);
+    const server = makeServerMocks();
+
+    await plugin.configureServer?.(server as any);
+    sdMocks.buildPlatform.mockClear();
+    server.ws.send.mockClear();
+
+    const onChange = server.watcher.on.mock.calls.find(
+      (call) => call[0] === 'change'
+    )?.[1];
+
+    onChange?.(process.cwd() + '/not-tokens/theme.json');
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    expect(sdMocks.buildPlatform).not.toHaveBeenCalled();
+    expect(server.ws.send).not.toHaveBeenCalled();
+  });
+
+  it('handles change and unlink watcher events for token files', async () => {
+    const plugin = themeShift({ tokensDir: 'tokens', watch: true });
+    plugin.config?.({}, { command: 'serve', mode: 'test' } as any);
+    const server = makeServerMocks();
+
+    await plugin.configureServer?.(server as any);
+    sdMocks.buildPlatform.mockClear();
+    server.ws.send.mockClear();
+
+    const onChange = server.watcher.on.mock.calls.find(
+      (call) => call[0] === 'change'
+    )?.[1];
+    const onUnlink = server.watcher.on.mock.calls.find(
+      (call) => call[0] === 'unlink'
+    )?.[1];
+
+    onChange?.(process.cwd() + '/tokens/theme.json');
+    onUnlink?.(process.cwd() + '/tokens/theme.json');
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    expect(sdMocks.buildPlatform.mock.calls.length).toBeGreaterThanOrEqual(2);
+    expect(server.ws.send.mock.calls.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it('watches extended token roots and responds to root-level events', async () => {
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), 'themeshift-'));
+
+    try {
+      const packageRoot = path.join(root, 'node_modules', '@themeshift', 'ui');
+      const packageTokensRoot = path.join(packageRoot, 'dist', 'tokens');
+
+      await fs.mkdir(path.join(root, 'tokens'), { recursive: true });
+      await fs.mkdir(packageTokensRoot, {
+        recursive: true,
+      });
+      await fs.writeFile(
+        path.join(packageRoot, 'package.json'),
+        '{"name":"@themeshift/ui","version":"1.0.0"}'
+      );
+      await fs.writeFile(
+        path.join(packageRoot, 'theme-contract.json'),
+        '{"name":"@themeshift/ui","tokensGlob":"dist/tokens/**/*.json"}'
+      );
+      await fs.writeFile(
+        path.join(packageTokensRoot, 'base.json'),
+        '{"components":{"button":{"font":{"value":"500 1rem/1.2 Inter"}}}}'
+      );
+
+      const plugin = themeShift({
+        extends: ['@themeshift/ui'],
+        tokensDir: 'tokens',
+        watch: true,
+      });
+      plugin.config?.({}, { command: 'serve', mode: 'test' } as any);
+      plugin.configResolved?.({ root } as any);
+      const server = makeServerMocks();
+
+      await plugin.configureServer?.(server as any);
+
+      expect(server.watcher.add).toHaveBeenCalledWith(
+        expect.stringMatching(/node_modules\/@themeshift\/ui\/dist\/tokens$/)
+      );
+
+      sdMocks.buildPlatform.mockClear();
+      server.ws.send.mockClear();
+
+      const onChange = server.watcher.on.mock.calls.find(
+        (call) => call[0] === 'change'
+      )?.[1];
+      const realBaseTokenPath = await fs.realpath(
+        path.join(packageTokensRoot, 'base.json')
+      );
+
+      onChange?.(realBaseTokenPath);
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      expect(sdMocks.buildPlatform).toHaveBeenCalled();
+      expect(server.ws.send).toHaveBeenCalled();
+    } finally {
+      await fs.rm(root, { recursive: true, force: true });
+    }
+  });
+
   it('retries transient token parse failures triggered by newly added files', async () => {
     sdMocks.extend
       .mockRejectedValueOnce(
