@@ -157,6 +157,30 @@ describe('Button', () => {
     ).toContainElement(screen.getByTestId('settings-icon'));
   });
 
+  it('renders the busy spinner instead of the icon for icon-only busy buttons', () => {
+    render(
+      <Button
+        aria-label="Loading theme"
+        icon={
+          <svg
+            aria-hidden="true"
+            data-testid="theme-icon"
+            viewBox="0 0 16 16"
+          />
+        }
+        isBusy
+        size="large"
+      />
+    );
+
+    const button = screen.getByRole('button', { name: 'Loading theme' });
+
+    expect(button).toHaveAttribute('aria-busy', 'true');
+    expect(button).toHaveClass(styles.iconOnly);
+    expect(screen.queryByTestId('theme-icon')).not.toBeInTheDocument();
+    expect(button.querySelector('svg')).toHaveAttribute('width', '20');
+  });
+
   it('ignores children when the icon prop is provided', () => {
     render(
       <Button
@@ -177,6 +201,21 @@ describe('Button', () => {
       screen.getByTestId('search-icon')
     );
     expect(screen.queryByText('Ignored child label')).not.toBeInTheDocument();
+  });
+
+  it('does not treat a null icon value as an icon-only button', () => {
+    render(<Button icon={null}>Fallback label</Button>);
+
+    expect(
+      screen.getByRole('button', { name: 'Fallback label' })
+    ).not.toHaveClass(styles.iconOnly);
+  });
+
+  it('does not render a label wrapper when children is null', () => {
+    const { container } = render(<Button>{null}</Button>);
+
+    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.label}`)).toBeNull();
   });
 
   it('applies the visually disabled style without native disabled semantics', () => {
