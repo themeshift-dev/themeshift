@@ -1,0 +1,13 @@
+.container {
+  color: token('theme.text.muted');
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: token('theme.text.base');
+    text-decoration: none;
+  }
+
+  &.copySuccess {
+    color: token('color.green.400');
+  }
+}

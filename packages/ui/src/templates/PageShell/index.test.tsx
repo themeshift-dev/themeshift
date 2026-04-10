@@ -10,7 +10,7 @@ describe('PageShell', () => {
     render(<PageShell>Page content</PageShell>);
 
     expect(
-      screen.getByRole('link', { name: 'Skip to main content' }),
+      screen.getByRole('link', { name: 'Skip to main content' })
     ).toHaveAttribute('href', '#main-content');
     expect(screen.getByRole('main')).toHaveAttribute('id', 'main-content');
   });
@@ -19,7 +19,7 @@ describe('PageShell', () => {
     render(<PageShell showSkipLink={false}>Page content</PageShell>);
 
     expect(
-      screen.queryByRole('link', { name: 'Skip to main content' }),
+      screen.queryByRole('link', { name: 'Skip to main content' })
     ).not.toBeInTheDocument();
     expect(screen.getByRole('main')).toHaveAttribute('id', 'main-content');
   });
@@ -41,7 +41,7 @@ describe('PageShell', () => {
         navigation={<a href="/docs">Documentation</a>}
       >
         Page content
-      </PageShell>,
+      </PageShell>
     );
 
     expect(screen.getByRole('banner')).toHaveTextContent('Header content');
@@ -53,19 +53,24 @@ describe('PageShell', () => {
   it('applies landmark labels when provided', () => {
     render(
       <PageShell
+        aside={<p>Related links</p>}
+        asideLabel="On this page"
         mainLabel="Documentation content"
         navLabel="Section navigation"
         navigation={<a href="/intro">Introduction</a>}
       >
         Page content
-      </PageShell>,
+      </PageShell>
     );
 
     expect(
-      screen.getByRole('main', { name: 'Documentation content' }),
+      screen.getByRole('main', { name: 'Documentation content' })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('navigation', { name: 'Section navigation' }),
+      screen.getByRole('navigation', { name: 'Section navigation' })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('complementary', { name: 'On this page' })
     ).toBeInTheDocument();
   });
 
@@ -79,26 +84,26 @@ describe('PageShell', () => {
         stickyHeader
       >
         Page content
-      </PageShell>,
+      </PageShell>
     );
 
     expect(screen.getByRole('banner')).toHaveClass(
       styles.header,
       styles.stickyHeader,
-      styles.headerDivider,
+      styles.headerDivider
     );
     expect(screen.getByRole('navigation')).toHaveClass(
       styles.navigation,
-      styles.navigationDivider,
+      styles.navigationDivider
     );
     expect(screen.getByRole('main')).toHaveClass(styles.main);
     expect(screen.getByRole('complementary')).toHaveClass(
       styles.aside,
-      styles.asideDivider,
+      styles.asideDivider
     );
 
     expect(screen.getByText('Page content').closest('[class]')).toHaveClass(
-      styles.regionInner,
+      styles.regionInner
     );
   });
 
@@ -111,14 +116,18 @@ describe('PageShell', () => {
   it('applies the two-column content grid modifier only when an aside is present', () => {
     const { rerender } = render(<PageShell>Page content</PageShell>);
 
-    expect(screen.getByRole('main').parentElement).toHaveClass(styles.contentGrid);
-    expect(screen.getByRole('main').parentElement).not.toHaveClass(styles.withAside);
+    expect(screen.getByRole('main').parentElement).toHaveClass(
+      styles.contentGrid
+    );
+    expect(screen.getByRole('main').parentElement).not.toHaveClass(
+      styles.withAside
+    );
 
     rerender(<PageShell aside={<p>Aside</p>}>Page content</PageShell>);
 
     expect(screen.getByRole('main').parentElement).toHaveClass(
       styles.contentGrid,
-      styles.withAside,
+      styles.withAside
     );
   });
 
@@ -126,13 +135,15 @@ describe('PageShell', () => {
     render(
       <PageShell as="section" mainAs="div" mainLabel="Embedded content">
         Page content
-      </PageShell>,
+      </PageShell>
     );
 
-    expect(screen.getByText('Page content').closest('section')).toBeInTheDocument();
+    expect(
+      screen.getByText('Page content').closest('section')
+    ).toBeInTheDocument();
     expect(screen.getByLabelText('Embedded content')).toHaveProperty(
       'tagName',
-      'DIV',
+      'DIV'
     );
   });
 
@@ -152,7 +163,7 @@ describe('PageShell', () => {
           <h2>PageShell</h2>
           <p>Documentation content.</p>
         </article>
-      </PageShell>,
+      </PageShell>
     );
 
     expect(await axe(container)).toHaveNoViolations();
@@ -163,7 +174,7 @@ describe('PageShell', () => {
         header={<h1>Launch with ThemeShift</h1>}
       >
         <p>Marketing page content.</p>
-      </PageShell>,
+      </PageShell>
     );
 
     expect(await axe(container)).toHaveNoViolations();
@@ -183,7 +194,7 @@ describe('PageShell', () => {
           <label htmlFor="timezone">Timezone</label>
           <input id="timezone" name="timezone" />
         </form>
-      </PageShell>,
+      </PageShell>
     );
 
     expect(await axe(container)).toHaveNoViolations();

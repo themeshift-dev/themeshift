@@ -1,7 +1,6 @@
 import { Button } from '@themeshift/ui/components/Button';
 import { Navbar } from '@themeshift/ui/components/Navbar';
 import { useTheme } from '@themeshift/ui/contexts';
-import { PageShell } from '@themeshift/ui/templates/PageShell';
 
 import '@themeshift/ui/css/base.css';
 
@@ -15,34 +14,32 @@ function App() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <PageShell
-      header={
-        <header className={styles.header}>
-          <Navbar>
-            <Navbar.Container>
-              <Navbar.Section align="start">
-                <Link to="/" className={styles.logo}>
-                  <Logo size={120} />
-                </Link>
+    <>
+      <header className={styles.header}>
+        <Navbar>
+          <Navbar.Container>
+            <Navbar.Section align="start">
+              <Link to="/" className={styles.logo}>
+                <Logo size={120} />
+              </Link>
 
-                <div className={styles.links}>
-                  <Link to="/components">Components</Link>
-                  <Link to="/plugin">Plugin</Link>
-                </div>
-              </Navbar.Section>
+              <div className={styles.links}>
+                <Link to="/components">Components</Link>
+                <Link to="/plugin">Plugin</Link>
+              </div>
+            </Navbar.Section>
 
-              <Navbar.Section align="end">
-                <Button onClick={toggleTheme}>
-                  {theme === 'dark' ? 'Dark mode' : 'Light mode'}
-                </Button>
-              </Navbar.Section>
-            </Navbar.Container>
-          </Navbar>
-        </header>
-      }
-    >
+            <Navbar.Section align="end">
+              <Button onClick={toggleTheme}>
+                {theme === 'dark' ? 'Dark mode' : 'Light mode'}
+              </Button>
+            </Navbar.Section>
+          </Navbar.Container>
+        </Navbar>
+      </header>
+
       <Routes />
-    </PageShell>
+    </>
   );
 }
 

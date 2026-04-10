@@ -1,5 +1,9 @@
 @use '@themeshift/ui/sass/typography';
 
+:global(html) {
+  scroll-behavior: smooth;
+}
+
 .header {
   a {
     color: token('color.white');

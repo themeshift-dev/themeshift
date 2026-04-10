@@ -5,6 +5,10 @@ import { defineConfig } from 'vite';
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    // axe-core is lazy-loaded for docs accessibility checks.
+    chunkSizeWarningLimit: 700,
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -16,7 +20,12 @@ export default defineConfig({
   plugins: [
     react(),
     themeShift({
-      extends: ['@themeshift/ui'],
+      extends: [
+        {
+          package: '@themeshift/ui',
+          tokensGlob: 'tokens/**/*.json',
+        },
+      ],
       cssVarPrefix: 'themeshift',
     }),
   ],

@@ -1,0 +1,75 @@
+@use '@/sass/mixins/accessibility';
+
+.nav {
+  display: none;
+
+  @media (min-width: 64rem) {
+    display: block;
+  }
+}
+
+.title {
+  color: token('theme.text.muted');
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 0.75rem;
+}
+
+.list,
+.nestedList {
+  display: grid;
+  gap: 0.375rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  min-width: 0;
+}
+
+.nestedList {
+  margin-top: 0.375rem;
+  padding-left: 0.75rem;
+}
+
+.link {
+  @include accessibility.focusVisibleRing;
+
+  border-radius: token('radius.small');
+  color: token('theme.text.muted');
+  display: inline-block;
+  overflow-wrap: anywhere;
+  padding: 0.125rem 0.25rem;
+  text-decoration: none;
+  transition:
+    0.2s background-color,
+    0.2s color;
+
+  &:hover {
+    color: token('theme.text.base');
+  }
+}
+
+.linkActive {
+  background: token('theme.surface.raised');
+  color: token('theme.text.base');
+}
+
+.linkParentActive {
+  color: token('theme.text.base');
+}
+
+.nestedLink {
+  font-size: 0.9375rem;
+}
+
+.marker {
+  display: block;
+  height: 0;
+  pointer-events: none;
+  scroll-margin-top: var(--table-of-contents-offset-top);
+  visibility: hidden;
+  width: 100%;
+}

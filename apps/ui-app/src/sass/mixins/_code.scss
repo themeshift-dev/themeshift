@@ -1,0 +1,7 @@
+@use '@themeshift/vite-plugin-themeshift/token' as themeShift;
+
+@mixin inline {
+  border-radius: 0.25rem;
+  font: 16px/20px themeShift.token('font.family.mono');
+  padding: 0 0.25rem;
+}

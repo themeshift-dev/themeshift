@@ -332,8 +332,10 @@
   --themeshift-radius-small: .5rem;
 
   /* Theme */
+  --themeshift-theme-border: rgba(255, 255, 255, .1);
   --themeshift-theme-surface-base: #263238;
-  --themeshift-theme-surface-raised: #37474F;
+  --themeshift-theme-surface-raised: rgba(255, 255, 255, .1);
+  --themeshift-theme-surface-sunken: rgba(0, 0, 0, .1);
   --themeshift-theme-text-base: #fff;
   --themeshift-theme-text-muted: rgba(255, 255, 255, .7);
 
@@ -430,8 +432,10 @@
   --themeshift-accessibility-focus-ring: #03A9F4;
 
   /* Theme */
+  --themeshift-theme-border: rgba(0, 0, 0, .1);
   --themeshift-theme-surface-base: #ECEFF1;
   --themeshift-theme-surface-raised: #CFD8DC;
+  --themeshift-theme-surface-sunken: rgba(0, 0, 0, .1);
   --themeshift-theme-text-base: #000;
   --themeshift-theme-text-muted: rgba(0, 0, 0, .7);
 
@@ -462,8 +466,10 @@
   --themeshift-accessibility-focus-ring: #3F51B5;
 
   /* Theme */
+  --themeshift-theme-border: rgba(255, 255, 255, .1);
   --themeshift-theme-surface-base: #263238;
-  --themeshift-theme-surface-raised: #37474F;
+  --themeshift-theme-surface-raised: rgba(255, 255, 255, .1);
+  --themeshift-theme-surface-sunken: rgba(0, 0, 0, .1);
   --themeshift-theme-text-base: #fff;
   --themeshift-theme-text-muted: rgba(255, 255, 255, .7);
 

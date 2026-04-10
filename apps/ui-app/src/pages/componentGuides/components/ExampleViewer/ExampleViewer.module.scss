@@ -1,0 +1,87 @@
+@use '@themeshift/ui/sass/components/button' as button;
+
+$compactMinHeight: 4rem;
+
+.container {
+  background: token('theme.surface.sunken');
+  border: 1px solid token('theme.border');
+  border-radius: token('radius.small');
+  overflow: hidden;
+}
+
+.preview {
+  background: token('theme.surface.raised');
+  display: grid;
+  min-height: 300px;
+  place-items: center;
+  position: relative;
+}
+
+.examples {
+  display: flex;
+  flex-flow: row wrap;
+  gap: token('space.3');
+  left: token('space.4');
+  position: absolute;
+  top: token('space.4');
+}
+
+.exampleButton {
+  @include button.reset;
+
+  color: token('theme.text.muted');
+  transition: 0.2s color;
+
+  &[aria-pressed='true'] {
+    color: token('theme.text.base');
+    text-decoration: underline;
+  }
+
+  &:not([aria-pressed='true']):hover {
+    color: token('theme.text.base');
+  }
+}
+
+.content {
+  margin-top: 2.5rem;
+  padding: 1rem;
+}
+
+.code {
+  background: token('theme.surface.sunken');
+  border-top: 1px solid token('theme.border');
+  max-height: $compactMinHeight;
+  overflow: hidden;
+  position: relative;
+
+  &[data-expanded='true'] {
+    max-height: none;
+  }
+}
+
+.syntaxHighlighter {
+  min-height: $compactMinHeight;
+}
+
+.codeContent {
+  pointer-events: auto;
+
+  [data-expanded='false'] & {
+    padding: token('space.4');
+  }
+}
+
+.codeOverlay {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}
+
+.copyButton {
+  position: absolute;
+  right: token('space.4');
+  top: token('space.4');
+}

@@ -1,9 +1,13 @@
 import type { ReactElement, ReactNode } from 'react';
 
-/** Available button size variants. */
+/**
+ * Button size options.
+ */
 export type ButtonSize = 'small' | 'medium' | 'large';
 
-/** Available button intent variants. */
+/**
+ * Button style variants for different action types.
+ */
 export type ButtonIntent =
   | 'primary'
   | 'secondary'
@@ -13,31 +17,39 @@ export type ButtonIntent =
 
 type ButtonBaseProps = {
   /**
-   * Renders the Button styles onto a single child element instead of a native
-   * button.
+   * Applies Button styles to a single child element instead of rendering a
+   * native button.
+   *
+   * Use this when pairing Button with routing links or other custom elements.
    */
   asChild?: boolean;
 
-  /** Additional class names to append to the button element. */
+  /**
+   * Additional class names for custom styling.
+   */
   className?: string;
 
-  /** Visual treatment used to communicate the action's priority or outcome. */
+  /**
+   * Visual style that communicates the action's priority or outcome.
+   */
   intent?: ButtonIntent;
 
   /**
-   * Renders a Spinner component to indicate to the user this button is working.
+   * Shows a spinner while an action is in progress.
    *
-   * Also applies an `aria-busy` attribute to the component for accessibility.
+   * Also adds `aria-busy` for assistive technology.
    */
   isBusy?: boolean;
 
-  /** Predefined size variant for spacing and typography. */
+  /**
+   * Size option for button spacing and text.
+   */
   size?: ButtonSize;
 
   /**
-   * Applies disabled styling without disabling interaction.
+   * Shows disabled styling without blocking interaction.
    *
-   * Example: `<Button visuallyDisabled onClick={showReason}>Upgrade required</Button>`
+   * Use this when the button should explain why an action is unavailable.
    */
   visuallyDisabled?: boolean;
 };
@@ -65,10 +77,14 @@ type AsChildButtonProps = Omit<
 >;
 
 type ButtonSharedContentProps = {
-  /** Icon content to render before the button label. */
+  /**
+   * Icon shown before the button label.
+   */
   startIcon?: ReactNode;
 
-  /** Icon content to render after the button label. */
+  /**
+   * Icon shown after the button label.
+   */
   endIcon?: ReactNode;
 };
 
@@ -76,35 +92,48 @@ export type SlottableChild = ReactElement<{ children?: ReactNode }>;
 
 type IconButtonAccessibleName =
   | {
-      /** Accessible label for icon-only buttons. */
+      /**
+       * Accessible label for an icon-only button.
+       *
+       * Required when using `icon` without visible text.
+       */
       'aria-label': string;
       'aria-labelledby'?: string;
     }
   | {
-      /** ID of the element that labels icon-only buttons. */
+      /**
+       * ID of the element that labels an icon-only button.
+       *
+       * Required when using `icon` without visible text.
+       */
       'aria-labelledby': string;
       'aria-label'?: string;
     };
 
 type ButtonWithLabelProps = ButtonSharedContentProps & {
-  /** Button label or content. */
+  /**
+   * Visible button label or content.
+   */
   children?: ReactNode;
 
-  /** Icon-only content. When provided, children are ignored. */
+  /**
+   * Icon-only button content.
+   *
+   * For buttons with text and an icon, use `startIcon` or `endIcon` instead.
+   */
   icon?: never;
 };
 
 type ButtonWithIconProps = IconButtonAccessibleName & {
-  /** Button label or content. Ignored when icon is provided. */
+  // Kept for type compatibility. The rendered content comes from `icon`.
   children?: ReactNode;
 
-  /** Icon-only content. When provided, children are ignored. */
   icon: ReactNode;
 
-  /** Use icon for icon-only buttons instead. */
+  // Use `icon` for icon-only buttons.
   startIcon?: ReactNode;
 
-  /** Use icon for icon-only buttons instead. */
+  // Use `icon` for icon-only buttons.
   endIcon?: ReactNode;
 };
 
@@ -118,7 +147,9 @@ type ButtonAsChildProps = {
   children: ReactElement;
 };
 
-/** Props for the ThemeShift button component. */
+/**
+ * Props for the ThemeShift button component.
+ */
 export type ButtonProps =
   | (ButtonBaseProps &
       NativeButtonProps &

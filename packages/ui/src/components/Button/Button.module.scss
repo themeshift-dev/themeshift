@@ -8,12 +8,12 @@
   @include accessibility.buttonFocus;
   @include typography.style('button.medium');
 
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  display: inline-flex;
   gap: token('space.2');
-  white-space: nowrap;
+  justify-content: center;
   transition: 0.15s transform;
+  white-space: nowrap;
 
   /**
    * Remove `text-decoration` by default to support the common use-case

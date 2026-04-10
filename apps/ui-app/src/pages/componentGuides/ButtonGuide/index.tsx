@@ -1,194 +1,180 @@
-import { Button } from '@themeshift/ui/components/Button';
-import { IconMoon } from '@themeshift/ui/icons/IconMoon';
-
-import { ComponentGuide } from '@/templates/ComponentGuide';
-import { CommandCopier, PreviewPane } from '@/pages/componentGuides/components';
-
-import styles from './ButtonGuide.module.scss';
 import { Heading } from '@themeshift/ui/components/Heading';
-import { NavLink } from 'react-router';
 
-const buttonSwatches = [
-  {
-    label: 'Basic usage',
-    sample: <Button>Click me</Button>,
-  },
-  {
-    label: 'Sizes',
-    sample: (
-      <>
-        <Button size="small">Small</Button>
-        <Button>Medium</Button>
-        <Button size="large">Large</Button>
-      </>
-    ),
-  },
+import { ApiReference, TableOfContents } from '@/app/components';
+import { useComponentData } from '@/component-data';
+import {
+  ExampleViewer,
+  StringCopier,
+} from '@/pages/componentGuides/components';
+import { ComponentGuide } from '@/templates/ComponentGuide';
 
-  {
-    label: 'Icon',
-    sample: (
-      <>
-        <Button
-          size="small"
-          aria-label="Toggle theme"
-          icon={<IconMoon size={12} aria-hidden />}
-        />
-        <Button aria-label="Toggle theme" icon={<IconMoon aria-hidden />} />
-        <Button
-          size="large"
-          aria-label="Toggle theme"
-          icon={<IconMoon size={20} aria-hidden />}
-        />
-      </>
-    ),
-  },
-  {
-    label: 'Busy',
-    sample: (
-      <>
-        <Button isBusy size="small">
-          Working
-        </Button>
-        <Button isBusy>Working</Button>
-        <Button isBusy size="large">
-          Working
-        </Button>
-      </>
-    ),
-  },
-  {
-    label: 'Intents',
-    sample: (
-      <>
-        <Button>Primary</Button>
-        <Button intent="secondary">Secondary</Button>
-        <Button intent="tertiary">Tertiary</Button>
-        <Button intent="constructive">Constructive</Button>
-        <Button intent="destructive">Destructive</Button>
-      </>
-    ),
-  },
-  {
-    label: 'Matrix',
-    sample: (
-      <>
-        <div className={styles.buttonGroup}>
-          <Button size="small">Small</Button>
-          <Button>Medium</Button>
-          <Button size="large">Large</Button>
-        </div>
-        <div className={styles.buttonGroup}>
-          <Button disabled size="small">
-            Small
-          </Button>
-          <Button disabled>Medium</Button>
-          <Button disabled size="large">
-            Large
-          </Button>
-        </div>
+import { AccessibilitySection } from './AccessibilitySection';
+import styles from './ButtonGuide.module.scss';
+import * as examples from './examples';
 
-        <div className={styles.buttonGroup}>
-          <Button size="small" isBusy>
-            Small
-          </Button>
-          <Button isBusy>Medium</Button>
-          <Button size="large" isBusy>
-            Large
-          </Button>
-        </div>
-        <div className={styles.buttonGroup}>
-          <Button disabled size="small" isBusy>
-            Small
-          </Button>
-          <Button disabled isBusy>
-            Medium
-          </Button>
-          <Button disabled size="large" isBusy>
-            Large
-          </Button>
-        </div>
+const buttonFallbackImport =
+  "import { Button } from '@themeshift/ui/components/Button';";
 
-        <div className={styles.buttonGroup}>
-          <Button>Primary</Button>
-          <Button intent="secondary">Secondary</Button>
-          <Button intent="tertiary">Tertiary</Button>
-          <Button intent="constructive">Constructive</Button>
-          <Button intent="destructive">Destructive</Button>
-        </div>
-        <div className={styles.buttonGroup}>
-          <Button disabled>Primary</Button>
-          <Button disabled intent="secondary">
-            Secondary
-          </Button>
-          <Button disabled intent="tertiary">
-            Tertiary
-          </Button>
-          <Button disabled intent="constructive">
-            Constructive
-          </Button>
-          <Button disabled intent="destructive">
-            Destructive
-          </Button>
-        </div>
+export const ButtonGuide = () => {
+  const { component } = useComponentData('button');
 
-        <div className={styles.buttonGroup}>
-          <Button isBusy>Primary</Button>
-          <Button intent="secondary" isBusy>
-            Secondary
-          </Button>
-          <Button intent="tertiary" isBusy>
-            Tertiary
-          </Button>
-          <Button intent="constructive" isBusy>
-            Constructive
-          </Button>
-          <Button intent="destructive" isBusy>
-            Destructive
-          </Button>
-        </div>
-        <div className={styles.buttonGroup}>
-          <Button disabled isBusy>
-            Primary
-          </Button>
-          <Button disabled intent="secondary" isBusy>
-            Secondary
-          </Button>
-          <Button disabled intent="tertiary" isBusy>
-            Tertiary
-          </Button>
-          <Button disabled intent="constructive" isBusy>
-            Constructive
-          </Button>
-          <Button disabled intent="destructive" isBusy>
-            Destructive
-          </Button>
-        </div>
-      </>
-    ),
-  },
-];
+  return (
+    <TableOfContents.Root>
+      <TableOfContents.Marker id="intro" label="Intro" />
 
-export const ButtonGuide = () => (
-  <ComponentGuide
-    title="Button"
-    description="A button that's jam-packed with all the bells and whistles you could need"
-  >
-    <section>
-      <PreviewPane swatches={buttonSwatches} />
-    </section>
+      <ComponentGuide
+        aside={<TableOfContents.Nav />}
+        asideLabel="On this page"
+        description="A button that's jam-packed with all the bells and whistles you could need"
+        title="Button"
+      >
+        <section>
+          <ExampleViewer examples={examples.propHighlights} />
+        </section>
 
-    <section>
-      <Heading level={2}>Installation</Heading>
-      <CommandCopier></CommandCopier>
-    </section>
+        <TableOfContents.Marker id="how-to-use" label="How to use" />
+        <section>
+          <Heading level={3}>How to use</Heading>
 
-    <Button asChild>
-      <NavLink to="/">Home</NavLink>
-    </Button>
+          <TableOfContents.Marker id="install" label="Install" level={2} />
+          <div className={styles.group}>
+            <Heading level={4}>Install</Heading>
+            <StringCopier string="npm install @themeshift/ui" />
+          </div>
 
-    <section>
-      <Heading level={2}>Usage</Heading>
-      <pre>{"import { Button } from '@themeshift/ui/components/Button';"}</pre>
-    </section>
-  </ComponentGuide>
-);
+          <TableOfContents.Marker id="import" label="Import" level={2} />
+          <div className={styles.group}>
+            <Heading level={4}>Import</Heading>
+            <StringCopier
+              language="jsx"
+              string={component?.importString ?? buttonFallbackImport}
+            />
+          </div>
+
+          <TableOfContents.Marker
+            id="basic-usage"
+            label="Basic usage"
+            level={2}
+          />
+          <div className={styles.group}>
+            <Heading level={4}>Basic usage</Heading>
+            <StringCopier language="jsx" string="<Button>Click me</Button>" />
+          </div>
+        </section>
+
+        <TableOfContents.Marker id="props" label="Props" />
+        <section>
+          <Heading level={3}>Props</Heading>
+          <ApiReference
+            intro={
+              <p className={styles.apiReferenceIntro}>
+                <code>Button</code> extends the native <code>button</code>{' '}
+                element, and adds these props to add extra functionality and
+                styling.
+              </p>
+            }
+            items={component?.apiReference ?? []}
+          />
+        </section>
+
+        <TableOfContents.Marker id="examples" label="Examples" />
+        <section>
+          <Heading level={3}>Examples</Heading>
+
+          <TableOfContents.Marker id="examples-sizes" label="Sizes" level={2} />
+          <div className={styles.example}>
+            <Heading level={4}>Sizes</Heading>
+            <p>
+              Use the <code>size</code> prop to change the size of the button.
+            </p>
+
+            <ExampleViewer example={examples.sizes} />
+          </div>
+
+          <TableOfContents.Marker
+            id="examples-intents"
+            label="Intents"
+            level={2}
+          />
+          <div className={styles.example}>
+            <Heading level={4}>Intents</Heading>
+            <p>
+              Use the <code>intent</code> prop to render a variant appearance.
+            </p>
+
+            <ExampleViewer example={examples.intents} />
+          </div>
+
+          <TableOfContents.Marker
+            id="examples-icon-only"
+            label="Icon only"
+            level={2}
+          />
+          <div className={styles.example}>
+            <Heading level={4}>Icons</Heading>
+            <p>
+              Use the <code>icon</code> prop to render an icon-only button. When
+              using this prop you should also use <code>aria-label</code> or
+              <code>aria-labelledby</code> to support screen readers;
+            </p>
+
+            <ExampleViewer example={examples.icons} />
+          </div>
+
+          <TableOfContents.Marker
+            id="examples-as-child"
+            label="As Child"
+            level={2}
+          />
+          <div className={styles.example}>
+            <Heading level={4}>As Child</Heading>
+            <p>
+              Use the <code>asChild</code> prop to a child element as a button.
+              This is useful for disguising links, badges and other elements as
+              a button.
+            </p>
+            <ExampleViewer example={examples.asChild} />
+          </div>
+
+          <TableOfContents.Marker
+            id="examples-class-names"
+            label="Class names"
+            level={2}
+          />
+          <div className={styles.example}>
+            <Heading level={4}>Class names</Heading>
+            <p>
+              Use the <code>className</code> prop to a apply extra class names
+              to the button element. This is useful for applying extra styles.
+            </p>
+            <ExampleViewer example={examples.extraClassName} />
+          </div>
+
+          <TableOfContents.Marker
+            id="examples-disabled"
+            label="Disabled"
+            level={2}
+          />
+          <div className={styles.example}>
+            <Heading level={4}>Disabled</Heading>
+            <p>
+              Use <code>disabled</code> to disable a button, which prevents
+              clicks and focus states.
+            </p>
+            <p>
+              Use <code>visuallyDisabled</code> when you want a button to appear
+              disabled, but still be able to receive click/focus events in order
+              to provide feedback to the user.
+            </p>
+            <ExampleViewer example={examples.disabled} />
+          </div>
+        </section>
+
+        <TableOfContents.Marker id="accessibility" label="Accessibility" />
+        <section>
+          <AccessibilitySection />
+        </section>
+      </ComponentGuide>
+    </TableOfContents.Root>
+  );
+};

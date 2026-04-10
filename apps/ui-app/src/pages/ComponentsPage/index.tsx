@@ -1,21 +1,24 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 import { PageShell } from '@themeshift/ui/templates';
 
+import { useComponentData } from '@/component-data';
+
 import { ComponentCard } from './components';
 
-const components = [
-  {
-    name: 'Button',
-    url: '/components/button',
-  },
-];
+export const ComponentsPage = () => {
+  const { components } = useComponentData();
 
-export const ComponentsPage = () => (
-  <PageShell>
-    <Heading>Components</Heading>
+  return (
+    <PageShell>
+      <Heading>Components</Heading>
 
-    {components.map(({ name, url }) => (
-      <ComponentCard name={name} key={name} url={url}></ComponentCard>
-    ))}
-  </PageShell>
-);
+      {components.map(({ component, slug }) => (
+        <ComponentCard
+          key={component}
+          name={component}
+          url={`/components/${slug}`}
+        />
+      ))}
+    </PageShell>
+  );
+};

@@ -1,2 +1,2 @@
-export * from './CommandCopier';
-export * from './PreviewPane';
+export * from './ExampleViewer';
+export * from './StringCopier';

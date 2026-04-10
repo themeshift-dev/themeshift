@@ -1,6 +1,38 @@
+@use 'sass:color';
+@use '@/sass/mixins/code';
+
 .buttonGroup {
-  margin: 0 0 1rem;
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
+  margin: 0 0 1rem;
+}
+
+.group {
+  margin: 2rem 0 1.5rem;
+}
+
+.apiReferenceIntro {
+  margin: 0;
+}
+
+.example {
+  &:not(:last-child) {
+    margin-top: 2rem;
+  }
+
+  p code {
+    @include code.inline;
+
+    background: token('theme.surface.raised');
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+.pinkButton {
+  background: hotpink;
+
+  &:not(:disabled):hover {
+    background: color.adjust(hotpink, $lightness: -0.5%);
+  }
 }
