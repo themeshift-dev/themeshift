@@ -1,24 +1,17 @@
 {
   "theme": {
     "dark": {
-      "surface": {
-        "base": {
-          "$value": "{color.blueGrey.900}"
-        },
+      "border": { "$value": "{color.white.10}" },
 
-        "raised": {
-          "$value": "{color.blueGrey.800}"
-        }
+      "surface": {
+        "base": { "$value": "{color.blueGrey.900}" },
+        "raised": { "$value": "{color.white.10}" },
+        "sunken": { "$value": "{color.black.10}" }
       },
 
       "text": {
-        "base": {
-          "$value": "{color.white}"
-        },
-
-        "muted": {
-          "$value": "{color.white.70}"
-        }
+        "base": { "$value": "{color.white}" },
+        "muted": { "$value": "{color.white.70}" }
       }
     }
   }

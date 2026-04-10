@@ -1,20 +1,32 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import { themeShift } from "@themeshift/vite-plugin-themeshift";
-import { fileURLToPath, URL } from "node:url";
+import { fileURLToPath, URL } from 'node:url';
+import react from '@vitejs/plugin-react';
+import { themeShift } from '@themeshift/vite-plugin-themeshift';
+import { defineConfig } from 'vite';
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    // axe-core is lazy-loaded for docs accessibility checks.
+    chunkSizeWarningLimit: 700,
+  },
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@themeshift/ui/sass': fileURLToPath(
+        new URL('../../packages/ui/dist/sass', import.meta.url)
+      ),
     },
   },
   plugins: [
     react(),
     themeShift({
-      extends: ["@themeshift/ui"],
-      cssVarPrefix: "themeshift",
+      extends: [
+        {
+          package: '@themeshift/ui',
+          tokensGlob: 'tokens/**/*.json',
+        },
+      ],
+      cssVarPrefix: 'themeshift',
     }),
   ],
 });

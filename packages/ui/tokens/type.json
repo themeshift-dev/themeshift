@@ -4,7 +4,7 @@
       "$type": "fontFamily",
 
       "sans": {
-        "$value": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+        "$value": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
         "$description": "Primary UI font"
       },
 
@@ -579,7 +579,7 @@
               "fontFamily": "{font.family.sans}",
               "fontSize": "{typography.metrics.0.fontSize}",
               "lineHeight": "{typography.metrics.0.lineHeight}",
-              "fontWeight": "{font.weight.semiBold}"
+              "fontWeight": "{font.weight.medium}"
             }
           },
           "letterSpacing": {
@@ -598,7 +598,7 @@
               "fontFamily": "{font.family.sans}",
               "fontSize": "{typography.metrics.1.fontSize}",
               "lineHeight": "{typography.metrics.1.lineHeight}",
-              "fontWeight": "{font.weight.semiBold}"
+              "fontWeight": "{font.weight.medium}"
             }
           },
           "letterSpacing": {
@@ -617,7 +617,7 @@
               "fontFamily": "{font.family.sans}",
               "fontSize": "{typography.metrics.2.fontSize}",
               "lineHeight": "{typography.metrics.2.lineHeight}",
-              "fontWeight": "{font.weight.semiBold}"
+              "fontWeight": "{font.weight.medium}"
             }
           },
           "letterSpacing": {

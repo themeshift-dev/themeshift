@@ -1,26 +1,22 @@
 import classNames from 'classnames';
+import type { CSSProperties, SVGProps } from 'react';
 
 import styles from './Icon.module.scss';
-import type { CSSProperties } from 'react';
 
-export interface IconProps {
+export interface IconProps extends Omit<
+  SVGProps<SVGSVGElement>,
+  'color' | 'style'
+> {
   className?: string;
   color?: string;
   fillOpacity?: number;
-  size?: number;
-  style?: CSSProperties & {
-    [key: string]: string | number; // This allows arbitrary string keys
-  };
+  size?: number | string;
+  style?: CSSProperties;
 }
 
-interface IconComponentProps {
+interface IconComponentProps extends IconProps {
   children: React.ReactNode;
-  className?: string;
-  color?: string;
-  fillOpacity?: number;
-  size?: number;
   viewBox: string;
-  style?: CSSProperties;
 }
 
 export const Icon = ({

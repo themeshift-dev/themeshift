@@ -1,10 +1,10 @@
 /* auto-generated */
 export const tokenValues = {
-  "accessibility.dark.focus.gap": "#FCF7FA",
+  "accessibility.dark.focus.gap": "#E75009",
   "accessibility.dark.focus.ring": "#E75009",
   "accessibility.focus.gapWidth": "2px",
   "accessibility.focus.ringWidth": "3px",
-  "accessibility.light.focus.gap": "#FCF7FA",
+  "accessibility.light.focus.gap": "#E75009",
   "accessibility.light.focus.ring": "#E75009",
   "color.black": "#000",
   "color.black.10": "rgba(0, 0, 0, .1)",
@@ -166,38 +166,47 @@ export const tokenValues = {
   "color.white.70": "rgba(255, 255, 255, .7)",
   "color.white.80": "rgba(255, 255, 255, .8)",
   "color.white.90": "rgba(255, 255, 255, .9)",
-  "components.button.dark.intents.constructive.bg": "#66BB6A",
-  "components.button.dark.intents.constructive.fg": "#000",
-  "components.button.dark.intents.constructive.hover": "#81C784",
-  "components.button.dark.intents.destructive.bg": "#EF5350",
-  "components.button.dark.intents.destructive.fg": "#000",
-  "components.button.dark.intents.destructive.hover": "#E57373",
-  "components.button.dark.intents.primary.bg": "#5C6BC0",
-  "components.button.dark.intents.primary.fg": "#fff",
-  "components.button.dark.intents.primary.hover": "#6c7ac6",
-  "components.button.dark.intents.secondary.bg": "#BDBDBD",
-  "components.button.dark.intents.secondary.fg": "#000",
-  "components.button.dark.intents.secondary.hover": "#E0E0E0",
-  "components.button.font": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
-  "components.button.light.intents.constructive.bg": "#66BB6A",
-  "components.button.light.intents.constructive.fg": "#000",
-  "components.button.light.intents.constructive.hover": "#81C784",
-  "components.button.light.intents.destructive.bg": "#EF5350",
-  "components.button.light.intents.destructive.fg": "#000",
-  "components.button.light.intents.destructive.hover": "#E57373",
-  "components.button.light.intents.primary.bg": "#5C6BC0",
-  "components.button.light.intents.primary.fg": "#fff",
-  "components.button.light.intents.primary.hover": "#7986CB",
-  "components.button.light.intents.secondary.bg": "#BDBDBD",
-  "components.button.light.intents.secondary.fg": "#000",
-  "components.button.light.intents.secondary.hover": "#E0E0E0",
+  "components.button.font": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+  "components.button.intents.dark.constructive.bg": "#66BB6A",
+  "components.button.intents.dark.constructive.fg": "#000",
+  "components.button.intents.dark.constructive.hover": "#81C784",
+  "components.button.intents.dark.destructive.bg": "#EF5350",
+  "components.button.intents.dark.destructive.fg": "#000",
+  "components.button.intents.dark.destructive.hover": "#E57373",
+  "components.button.intents.dark.primary.bg": "#5C6BC0",
+  "components.button.intents.dark.primary.fg": "#fff",
+  "components.button.intents.dark.primary.hover": "#6c7ac6",
+  "components.button.intents.dark.secondary.bg": "#BDBDBD",
+  "components.button.intents.dark.secondary.fg": "#000",
+  "components.button.intents.dark.secondary.hover": "#E0E0E0",
+  "components.button.intents.light.constructive.bg": "#66BB6A",
+  "components.button.intents.light.constructive.fg": "#000",
+  "components.button.intents.light.constructive.hover": "#81C784",
+  "components.button.intents.light.destructive.bg": "#EF5350",
+  "components.button.intents.light.destructive.fg": "#000",
+  "components.button.intents.light.destructive.hover": "#E57373",
+  "components.button.intents.light.primary.bg": "#5C6BC0",
+  "components.button.intents.light.primary.fg": "#fff",
+  "components.button.intents.light.primary.hover": "#7986CB",
+  "components.button.intents.light.secondary.bg": "#BDBDBD",
+  "components.button.intents.light.secondary.fg": "#000",
+  "components.button.intents.light.secondary.hover": "#E0E0E0",
   "components.button.padding": "0 1rem",
-  "components.button.sizes.large": "48px",
-  "components.button.sizes.medium": "40px",
-  "components.button.sizes.small": "32px",
+  "components.button.sizes.large.borderRadius": ".5rem",
+  "components.button.sizes.large.height": "3rem",
+  "components.button.sizes.large.padding": "0 2rem",
+  "components.button.sizes.large.padding.iconOnly": "0 1rem",
+  "components.button.sizes.medium.borderRadius": ".5rem",
+  "components.button.sizes.medium.height": "2.5rem",
+  "components.button.sizes.medium.padding": "0 1.5rem",
+  "components.button.sizes.medium.padding.iconOnly": "0 0.75rem",
+  "components.button.sizes.small.borderRadius": ".5rem",
+  "components.button.sizes.small.height": "2rem",
+  "components.button.sizes.small.padding": "0 1rem",
+  "components.button.sizes.small.padding.iconOnly": "0 0.5rem",
   "components.link.dark.bg": "transparent",
   "components.link.dark.fg": "#29B6F6",
-  "components.link.font": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+  "components.link.font": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
   "components.link.light.bg": "transparent",
   "components.link.light.fg": "#3949AB",
   "components.navbar.container.gap": "2rem",
@@ -216,14 +225,48 @@ export const tokenValues = {
   "components.skiplink.borderRadius": ".5rem",
   "components.skiplink.dark.bg": "#5C6BC0",
   "components.skiplink.dark.fg": "#fff",
-  "components.skiplink.font": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+  "components.skiplink.font": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
   "components.skiplink.light.bg": "#5C6BC0",
   "components.skiplink.light.fg": "#fff",
   "components.skiplink.x": "1rem",
   "components.skiplink.y": "1rem",
-  "font.family.default": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+  "components.syntaxHighlighter.dark.attrName": "#4DB6AC",
+  "components.syntaxHighlighter.dark.attrValue": "#81C784",
+  "components.syntaxHighlighter.dark.boolean": "#E57373",
+  "components.syntaxHighlighter.dark.comment": "rgba(255, 255, 255, .7)",
+  "components.syntaxHighlighter.dark.deleted": "#E57373",
+  "components.syntaxHighlighter.dark.fg": "#fff",
+  "components.syntaxHighlighter.dark.function": "#29B6F6",
+  "components.syntaxHighlighter.dark.inserted": "#81C784",
+  "components.syntaxHighlighter.dark.keyword": "#4FC3F7",
+  "components.syntaxHighlighter.dark.lineNumber": "rgba(255, 255, 255, .7)",
+  "components.syntaxHighlighter.dark.number": "#4DB6AC",
+  "components.syntaxHighlighter.dark.operator": "#E57373",
+  "components.syntaxHighlighter.dark.property": "#CFD8DC",
+  "components.syntaxHighlighter.dark.punctuation": "#90A4AE",
+  "components.syntaxHighlighter.dark.string": "#81C784",
+  "components.syntaxHighlighter.dark.tag": "#7986CB",
+  "components.syntaxHighlighter.font": "'Sometype Mono Variable', monospace",
+  "components.syntaxHighlighter.light.attrName": "#00796B",
+  "components.syntaxHighlighter.light.attrValue": "#2E7D32",
+  "components.syntaxHighlighter.light.boolean": "#D32F2F",
+  "components.syntaxHighlighter.light.comment": "rgba(0, 0, 0, .7)",
+  "components.syntaxHighlighter.light.deleted": "#D32F2F",
+  "components.syntaxHighlighter.light.fg": "#000",
+  "components.syntaxHighlighter.light.function": "#0288D1",
+  "components.syntaxHighlighter.light.inserted": "#2E7D32",
+  "components.syntaxHighlighter.light.keyword": "#303F9F",
+  "components.syntaxHighlighter.light.lineNumber": "rgba(0, 0, 0, .7)",
+  "components.syntaxHighlighter.light.number": "#00796B",
+  "components.syntaxHighlighter.light.operator": "#D32F2F",
+  "components.syntaxHighlighter.light.property": "#37474F",
+  "components.syntaxHighlighter.light.punctuation": "#546E7A",
+  "components.syntaxHighlighter.light.string": "#2E7D32",
+  "components.syntaxHighlighter.light.tag": "#303F9F",
+  "font.family.default": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
   "font.family.display": "Georgia, serif",
-  "font.family.sans": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+  "font.family.mono": "'Sometype Mono Variable', monospace",
+  "font.family.sans": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
   "font.family.serif": "Georgia, serif",
   "font.style.italic": "italic",
   "font.style.normal": "normal",
@@ -282,12 +325,16 @@ export const tokenValues = {
   "space.7": "1.75rem",
   "space.8": "2rem",
   "space.9": "2.5rem",
+  "theme.dark.border": "rgba(255, 255, 255, .1)",
   "theme.dark.surface.base": "#13171b",
-  "theme.dark.surface.raised": "#37474F",
+  "theme.dark.surface.raised": "rgba(255, 255, 255, .1)",
+  "theme.dark.surface.sunken": "rgba(0, 0, 0, .1)",
   "theme.dark.text.base": "#fff",
   "theme.dark.text.muted": "rgba(255, 255, 255, .7)",
+  "theme.light.border": "rgba(0, 0, 0, .1)",
   "theme.light.surface.base": "#ECEFF1",
   "theme.light.surface.raised": "#CFD8DC",
+  "theme.light.surface.sunken": "rgba(0, 0, 0, .1)",
   "theme.light.text.base": "#000",
   "theme.light.text.muted": "rgba(0, 0, 0, .7)",
   "typography.metrics.-1.fontSize": "0.75rem",
@@ -318,169 +365,169 @@ export const tokenValues = {
   "typography.metrics.7.letterSpacing": "-0.02em",
   "typography.metrics.7.lineHeight": "3.375rem",
   "typography.scales.-1.bold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "0.75rem",
     "lineHeight": "1rem",
     "fontWeight": "700"
   },
   "typography.scales.-1.regular": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "0.75rem",
     "lineHeight": "1rem",
     "fontWeight": "400"
   },
   "typography.scales.-1.semiBold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "0.75rem",
     "lineHeight": "1rem",
     "fontWeight": "600"
   },
   "typography.scales.0.bold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "0.875rem",
     "lineHeight": "1.125rem",
     "fontWeight": "700"
   },
   "typography.scales.0.regular": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "0.875rem",
     "lineHeight": "1.125rem",
     "fontWeight": "400"
   },
   "typography.scales.0.semiBold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "0.875rem",
     "lineHeight": "1.125rem",
     "fontWeight": "600"
   },
   "typography.scales.1.bold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "700"
   },
   "typography.scales.1.regular": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "400"
   },
   "typography.scales.1.semiBold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "600"
   },
   "typography.scales.2.bold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.125rem",
     "lineHeight": "1.5rem",
     "fontWeight": "700"
   },
   "typography.scales.2.regular": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.125rem",
     "lineHeight": "1.5rem",
     "fontWeight": "400"
   },
   "typography.scales.2.semiBold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.125rem",
     "lineHeight": "1.5rem",
     "fontWeight": "600"
   },
   "typography.scales.3.bold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.25rem",
     "lineHeight": "1.5rem",
     "fontWeight": "700"
   },
   "typography.scales.3.regular": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.25rem",
     "lineHeight": "1.5rem",
     "fontWeight": "400"
   },
   "typography.scales.3.semiBold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.25rem",
     "lineHeight": "1.5rem",
     "fontWeight": "600"
   },
   "typography.scales.4.bold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.375rem",
     "lineHeight": "1.75rem",
     "fontWeight": "700"
   },
   "typography.scales.4.regular": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.375rem",
     "lineHeight": "1.75rem",
     "fontWeight": "400"
   },
   "typography.scales.4.semiBold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.375rem",
     "lineHeight": "1.75rem",
     "fontWeight": "600"
   },
   "typography.scales.5.bold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.5rem",
     "lineHeight": "2.25rem",
     "fontWeight": "700"
   },
   "typography.scales.5.regular": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.5rem",
     "lineHeight": "2.25rem",
     "fontWeight": "400"
   },
   "typography.scales.5.semiBold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.5rem",
     "lineHeight": "2.25rem",
     "fontWeight": "600"
   },
   "typography.scales.6.bold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "2rem",
     "lineHeight": "2.5rem",
     "fontWeight": "700"
   },
   "typography.scales.6.regular": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "2rem",
     "lineHeight": "2.5rem",
     "fontWeight": "400"
   },
   "typography.scales.6.semiBold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "2rem",
     "lineHeight": "2.5rem",
     "fontWeight": "600"
   },
   "typography.scales.7.bold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "3rem",
     "lineHeight": "3.375rem",
     "fontWeight": "700"
   },
   "typography.scales.7.regular": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "3rem",
     "lineHeight": "3.375rem",
     "fontWeight": "400"
   },
   "typography.scales.7.semiBold": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "3rem",
     "lineHeight": "3.375rem",
     "fontWeight": "600"
   },
   "typography.styles.body.default.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "400"
@@ -488,7 +535,7 @@ export const tokenValues = {
   "typography.styles.body.default.fontStyle": "normal",
   "typography.styles.body.default.letterSpacing": "0.01em",
   "typography.styles.body.italic.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "400"
@@ -496,7 +543,7 @@ export const tokenValues = {
   "typography.styles.body.italic.fontStyle": "italic",
   "typography.styles.body.italic.letterSpacing": "0.01em",
   "typography.styles.body.strong.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "600"
@@ -504,31 +551,31 @@ export const tokenValues = {
   "typography.styles.body.strong.fontStyle": "normal",
   "typography.styles.body.strong.letterSpacing": "0.01em",
   "typography.styles.button.large.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.125rem",
     "lineHeight": "1.5rem",
-    "fontWeight": "600"
+    "fontWeight": "500"
   },
   "typography.styles.button.large.fontStyle": "normal",
   "typography.styles.button.large.letterSpacing": "0.01em",
   "typography.styles.button.medium.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
-    "fontWeight": "600"
+    "fontWeight": "500"
   },
   "typography.styles.button.medium.fontStyle": "normal",
   "typography.styles.button.medium.letterSpacing": "0.01em",
   "typography.styles.button.small.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "0.875rem",
     "lineHeight": "1.125rem",
-    "fontWeight": "600"
+    "fontWeight": "500"
   },
   "typography.styles.button.small.fontStyle": "normal",
   "typography.styles.button.small.letterSpacing": "0.02em",
   "typography.styles.caption.default.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "0.75rem",
     "lineHeight": "1rem",
     "fontWeight": "400"
@@ -536,7 +583,7 @@ export const tokenValues = {
   "typography.styles.caption.default.fontStyle": "normal",
   "typography.styles.caption.default.letterSpacing": "0.02em",
   "typography.styles.caption.italic.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "0.75rem",
     "lineHeight": "1rem",
     "fontWeight": "400"
@@ -552,7 +599,7 @@ export const tokenValues = {
   "typography.styles.heading.h1.display.fontStyle": "normal",
   "typography.styles.heading.h1.display.letterSpacing": "0",
   "typography.styles.heading.h1.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.5rem",
     "lineHeight": "2.25rem",
     "fontWeight": "700"
@@ -568,7 +615,7 @@ export const tokenValues = {
   "typography.styles.heading.h2.display.fontStyle": "normal",
   "typography.styles.heading.h2.display.letterSpacing": "0",
   "typography.styles.heading.h2.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.375rem",
     "lineHeight": "1.75rem",
     "fontWeight": "700"
@@ -576,7 +623,7 @@ export const tokenValues = {
   "typography.styles.heading.h2.fontStyle": "normal",
   "typography.styles.heading.h2.letterSpacing": "0",
   "typography.styles.heading.h3.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.25rem",
     "lineHeight": "1.5rem",
     "fontWeight": "700"
@@ -584,7 +631,7 @@ export const tokenValues = {
   "typography.styles.heading.h3.fontStyle": "normal",
   "typography.styles.heading.h3.letterSpacing": "0",
   "typography.styles.heading.h4.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1.125rem",
     "lineHeight": "1.5rem",
     "fontWeight": "700"
@@ -592,7 +639,7 @@ export const tokenValues = {
   "typography.styles.heading.h4.fontStyle": "normal",
   "typography.styles.heading.h4.letterSpacing": "0.01em",
   "typography.styles.heading.h5.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "700"
@@ -600,7 +647,7 @@ export const tokenValues = {
   "typography.styles.heading.h5.fontStyle": "normal",
   "typography.styles.heading.h5.letterSpacing": "0.01em",
   "typography.styles.heading.h6.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "0.875rem",
     "lineHeight": "1.125rem",
     "fontWeight": "700"
@@ -616,7 +663,7 @@ export const tokenValues = {
   "typography.styles.hero.default.display.fontStyle": "normal",
   "typography.styles.hero.default.display.letterSpacing": "-0.02em",
   "typography.styles.hero.default.font": {
-    "fontFamily": "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
     "fontSize": "3rem",
     "lineHeight": "3.375rem",
     "fontWeight": "700"

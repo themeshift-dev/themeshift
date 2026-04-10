@@ -1,0 +1,24 @@
+.container {
+  background: token('theme.surface.sunken');
+  border: 1px solid token('theme.border');
+  border-radius: token('radius.small');
+  color: token('theme.text.muted');
+  padding: token('space.4');
+  position: relative;
+  transition: 0.3s color;
+
+  &:hover {
+    color: token('theme.text.base');
+  }
+}
+
+.string {
+  font-family: token('font.family.mono');
+  white-space: pre;
+}
+
+.copyButton {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}

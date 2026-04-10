@@ -44,6 +44,23 @@
   }
 }
 
+// Shared focus-visible ring for scroll containers and other framed regions
+// where the ring should sit inside the element instead of outside it.
+@mixin focusInner(
+  $ringColor: themeShift.token('accessibility.focus.ring'),
+  $ringWidth: themeShift.token('accessibility.focus.ringWidth')
+) {
+  &:focus:not(:focus-visible) {
+    box-shadow: none;
+    outline: none;
+  }
+
+  &:focus-visible {
+    box-shadow: inset 0 0 0 #{$ringWidth} #{$ringColor};
+    outline: none;
+  }
+}
+
 // Button-specific alias kept for component-level readability.
 @mixin buttonFocus(
   $ringColor: themeShift.token('accessibility.focus.ring'),

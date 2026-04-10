@@ -152,6 +152,74 @@ export function themeShift(options: ThemeShiftOptions = {}): Plugin {
     return sources;
   }
 
+  async function resolveExtendedTokenWatchRoots() {
+    const roots = new Set<string>();
+
+    for (const extendSource of extendsSources) {
+      const descriptor =
+        typeof extendSource === 'string'
+          ? { package: extendSource }
+          : extendSource;
+      const packageName = descriptor.package;
+      const requireFromRoot = createRequire(path.join(root, 'package.json'));
+
+      let packageJsonPath: string;
+      try {
+        packageJsonPath = requireFromRoot.resolve(
+          `${packageName}/package.json`
+        );
+      } catch {
+        continue;
+      }
+
+      const packageRoot = path.dirname(packageJsonPath);
+      const contractFile = descriptor.contractFile ?? 'theme-contract.json';
+      let tokensGlobFromContract: string | undefined;
+
+      if (!descriptor.tokensGlob) {
+        const contractPath = path.resolve(packageRoot, contractFile);
+
+        try {
+          const contractRaw = await fs.readFile(contractPath, 'utf8');
+          const contract = JSON.parse(contractRaw) as { tokensGlob?: string };
+          tokensGlobFromContract = contract.tokensGlob;
+        } catch (error) {
+          if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
+            throw new Error(
+              `[style-dictionary] failed to read theme contract "${contractFile}" from package "${packageName}".`
+            );
+          }
+        }
+      }
+
+      const packageTokensGlob = descriptor.tokensGlob ?? tokensGlobFromContract;
+
+      if (!packageTokensGlob) {
+        continue;
+      }
+
+      const globSegments = packageTokensGlob.split(/[\\\/]/);
+      const staticSegments: string[] = [];
+
+      for (const segment of globSegments) {
+        if (/[*?[\]{}()!+@]/.test(segment)) {
+          break;
+        }
+
+        staticSegments.push(segment);
+      }
+
+      const watchRoot =
+        staticSegments.length > 0
+          ? path.resolve(packageRoot, staticSegments.join(path.sep))
+          : packageRoot;
+
+      roots.add(watchRoot);
+    }
+
+    return Array.from(roots);
+  }
+
   async function resolvePackageTokenSource(
     extendSource: ThemeShiftExtendSource
   ) {
@@ -336,8 +404,7 @@ export function themeShift(options: ThemeShiftOptions = {}): Plugin {
   }
 
   function isTokenJson(file: string) {
-    const rel = path.relative(root, file);
-    return rel.startsWith(tokensDir + path.sep) && rel.endsWith('.json');
+    return file.endsWith('.json');
   }
 
   return {
@@ -396,9 +463,31 @@ export function themeShift(options: ThemeShiftOptions = {}): Plugin {
       if (!watch) return;
 
       server.watcher.add(path.join(root, tokensDir));
+      const extendedWatchRoots = await resolveExtendedTokenWatchRoots();
+
+      for (const watchRoot of extendedWatchRoots) {
+        server.watcher.add(watchRoot);
+      }
+
+      const localTokensRoot = path.join(root, tokensDir);
 
       const onChange = async (file: string) => {
         if (!isTokenJson(file)) return;
+
+        const normalizedFile = path.resolve(file);
+        const isLocalTokenFile =
+          normalizedFile.startsWith(localTokensRoot + path.sep) ||
+          normalizedFile === localTokensRoot;
+        const isExtendedTokenFile = extendedWatchRoots.some(
+          (watchRoot) =>
+            normalizedFile.startsWith(watchRoot + path.sep) ||
+            normalizedFile === watchRoot
+        );
+
+        if (!isLocalTokenFile && !isExtendedTokenFile) {
+          return;
+        }
+
         try {
           await buildWithRetries();
           await notifyTokenOutputsUpdated();

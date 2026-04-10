@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './Heading.module.scss';
 
 /** Supported heading levels. */
-type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 /** Props for the ThemeShift heading component. */
 export type HeadingProps = {

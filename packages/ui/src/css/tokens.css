@@ -163,11 +163,11 @@
 
   /* Typography */
   /* The default font-family to use for all text */
-  --themeshift-font-family-default: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-font-family-default: 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   /* Display font for hero and editorial headings */
   --themeshift-font-family-display: Georgia, serif;
   /* Primary UI font */
-  --themeshift-font-family-sans: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-font-family-sans: 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   /* Editorial font */
   --themeshift-font-family-serif: Georgia, serif;
   --themeshift-font-style-italic: italic;
@@ -203,85 +203,85 @@
   --themeshift-typography-metrics-7-font-size: 3rem;
   --themeshift-typography-metrics-7-letter-spacing: -0.02em;
   --themeshift-typography-metrics-7-line-height: 3.375rem;
-  --themeshift-typography-scales--1-bold: 700 0.75rem/1rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales--1-regular: 400 0.75rem/1rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales--1-semi-bold: 600 0.75rem/1rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-0-bold: 700 0.875rem/1.125rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-0-regular: 400 0.875rem/1.125rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-0-semi-bold: 600 0.875rem/1.125rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-1-bold: 700 1rem/1.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-1-regular: 400 1rem/1.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-1-semi-bold: 600 1rem/1.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-2-bold: 700 1.125rem/1.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-2-regular: 400 1.125rem/1.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-2-semi-bold: 600 1.125rem/1.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-3-bold: 700 1.25rem/1.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-3-regular: 400 1.25rem/1.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-3-semi-bold: 600 1.25rem/1.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-4-bold: 700 1.375rem/1.75rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-4-regular: 400 1.375rem/1.75rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-4-semi-bold: 600 1.375rem/1.75rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-5-bold: 700 1.5rem/2.25rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-5-regular: 400 1.5rem/2.25rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-5-semi-bold: 600 1.5rem/2.25rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-6-bold: 700 2rem/2.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-6-regular: 400 2rem/2.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-6-semi-bold: 600 2rem/2.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-7-bold: 700 3rem/3.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-7-regular: 400 3rem/3.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-scales-7-semi-bold: 600 3rem/3.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --themeshift-typography-styles-body-default-font: 400 1rem/1.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales--1-bold: 700 0.75rem/1rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales--1-regular: 400 0.75rem/1rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales--1-semi-bold: 600 0.75rem/1rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-0-bold: 700 0.875rem/1.125rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-0-regular: 400 0.875rem/1.125rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-0-semi-bold: 600 0.875rem/1.125rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-1-bold: 700 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-1-regular: 400 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-1-semi-bold: 600 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-2-bold: 700 1.125rem/1.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-2-regular: 400 1.125rem/1.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-2-semi-bold: 600 1.125rem/1.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-3-bold: 700 1.25rem/1.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-3-regular: 400 1.25rem/1.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-3-semi-bold: 600 1.25rem/1.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-4-bold: 700 1.375rem/1.75rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-4-regular: 400 1.375rem/1.75rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-4-semi-bold: 600 1.375rem/1.75rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-5-bold: 700 1.5rem/2.25rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-5-regular: 400 1.5rem/2.25rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-5-semi-bold: 600 1.5rem/2.25rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-6-bold: 700 2rem/2.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-6-regular: 400 2rem/2.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-6-semi-bold: 600 2rem/2.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-7-bold: 700 3rem/3.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-7-regular: 400 3rem/3.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-scales-7-semi-bold: 600 3rem/3.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-body-default-font: 400 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-body-default-font-style: normal;
   --themeshift-typography-styles-body-default-letter-spacing: 0.01em;
-  --themeshift-typography-styles-body-italic-font: 400 1rem/1.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-body-italic-font: 400 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-body-italic-font-style: italic;
   --themeshift-typography-styles-body-italic-letter-spacing: 0.01em;
-  --themeshift-typography-styles-body-strong-font: 600 1rem/1.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-body-strong-font: 600 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-body-strong-font-style: normal;
   --themeshift-typography-styles-body-strong-letter-spacing: 0.01em;
-  --themeshift-typography-styles-button-large-font: 600 1.125rem/1.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-button-large-font: 500 1.125rem/1.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-button-large-font-style: normal;
   --themeshift-typography-styles-button-large-letter-spacing: 0.01em;
-  --themeshift-typography-styles-button-medium-font: 600 1rem/1.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-button-medium-font: 500 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-button-medium-font-style: normal;
   --themeshift-typography-styles-button-medium-letter-spacing: 0.01em;
-  --themeshift-typography-styles-button-small-font: 600 0.875rem/1.125rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-button-small-font: 500 0.875rem/1.125rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-button-small-font-style: normal;
   --themeshift-typography-styles-button-small-letter-spacing: 0.02em;
-  --themeshift-typography-styles-caption-default-font: 400 0.75rem/1rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-caption-default-font: 400 0.75rem/1rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-caption-default-font-style: normal;
   --themeshift-typography-styles-caption-default-letter-spacing: 0.02em;
-  --themeshift-typography-styles-caption-italic-font: 400 0.75rem/1rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-caption-italic-font: 400 0.75rem/1rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-caption-italic-font-style: italic;
   --themeshift-typography-styles-caption-italic-letter-spacing: 0.02em;
   --themeshift-typography-styles-heading-h1-display-font: 700 1.5rem/2.25rem Georgia, serif;
   --themeshift-typography-styles-heading-h1-display-font-style: normal;
   --themeshift-typography-styles-heading-h1-display-letter-spacing: 0;
-  --themeshift-typography-styles-heading-h1-font: 700 1.5rem/2.25rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-heading-h1-font: 700 1.5rem/2.25rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-heading-h1-font-style: normal;
   --themeshift-typography-styles-heading-h1-letter-spacing: 0;
   --themeshift-typography-styles-heading-h2-display-font: 700 1.375rem/1.75rem Georgia, serif;
   --themeshift-typography-styles-heading-h2-display-font-style: normal;
   --themeshift-typography-styles-heading-h2-display-letter-spacing: 0;
-  --themeshift-typography-styles-heading-h2-font: 700 1.375rem/1.75rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-heading-h2-font: 700 1.375rem/1.75rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-heading-h2-font-style: normal;
   --themeshift-typography-styles-heading-h2-letter-spacing: 0;
-  --themeshift-typography-styles-heading-h3-font: 700 1.25rem/1.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-heading-h3-font: 700 1.25rem/1.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-heading-h3-font-style: normal;
   --themeshift-typography-styles-heading-h3-letter-spacing: 0;
-  --themeshift-typography-styles-heading-h4-font: 700 1.125rem/1.5rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-heading-h4-font: 700 1.125rem/1.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-heading-h4-font-style: normal;
   --themeshift-typography-styles-heading-h4-letter-spacing: 0.01em;
-  --themeshift-typography-styles-heading-h5-font: 700 1rem/1.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-heading-h5-font: 700 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-heading-h5-font-style: normal;
   --themeshift-typography-styles-heading-h5-letter-spacing: 0.01em;
-  --themeshift-typography-styles-heading-h6-font: 700 0.875rem/1.125rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-heading-h6-font: 700 0.875rem/1.125rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-heading-h6-font-style: normal;
   --themeshift-typography-styles-heading-h6-letter-spacing: 0.02em;
   --themeshift-typography-styles-hero-default-display-font: 700 3rem/3.375rem Georgia, serif;
   --themeshift-typography-styles-hero-default-display-font-style: normal;
   --themeshift-typography-styles-hero-default-display-letter-spacing: -0.02em;
-  --themeshift-typography-styles-hero-default-font: 700 3rem/3.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-hero-default-font: 700 3rem/3.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-hero-default-font-style: normal;
   --themeshift-typography-styles-hero-default-letter-spacing: -0.02em;
 
@@ -332,13 +332,15 @@
   --themeshift-radius-small: .5rem;
 
   /* Theme */
+  --themeshift-theme-border: rgba(255, 255, 255, .1);
   --themeshift-theme-surface-base: #263238;
-  --themeshift-theme-surface-raised: #37474F;
+  --themeshift-theme-surface-raised: rgba(255, 255, 255, .1);
+  --themeshift-theme-surface-sunken: rgba(0, 0, 0, .1);
   --themeshift-theme-text-base: #fff;
   --themeshift-theme-text-muted: rgba(255, 255, 255, .7);
 
   /* Components */
-  --themeshift-components-button-font: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-components-button-font: 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-components-button-intents-constructive-bg: #66BB6A;
   --themeshift-components-button-intents-constructive-fg: #000;
   --themeshift-components-button-intents-constructive-hover: #81C784;
@@ -352,12 +354,21 @@
   --themeshift-components-button-intents-secondary-fg: #000;
   --themeshift-components-button-intents-secondary-hover: #E0E0E0;
   --themeshift-components-button-padding: 0 1rem;
-  --themeshift-components-button-sizes-large: 48px;
-  --themeshift-components-button-sizes-medium: 40px;
-  --themeshift-components-button-sizes-small: 32px;
+  --themeshift-components-button-sizes-large-border-radius: .5rem;
+  --themeshift-components-button-sizes-large-height: 3rem;
+  --themeshift-components-button-sizes-large-padding: 0 2rem;
+  --themeshift-components-button-sizes-large-padding-icon-only: 0 1rem;
+  --themeshift-components-button-sizes-medium-border-radius: .5rem;
+  --themeshift-components-button-sizes-medium-height: 2.5rem;
+  --themeshift-components-button-sizes-medium-padding: 0 1.5rem;
+  --themeshift-components-button-sizes-medium-padding-icon-only: 0 0.75rem;
+  --themeshift-components-button-sizes-small-border-radius: .5rem;
+  --themeshift-components-button-sizes-small-height: 2rem;
+  --themeshift-components-button-sizes-small-padding: 0 1rem;
+  --themeshift-components-button-sizes-small-padding-icon-only: 0 0.5rem;
   --themeshift-components-link-bg: transparent;
   --themeshift-components-link-fg: #29B6F6;
-  --themeshift-components-link-font: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-components-link-font: 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-components-navbar-bg: transparent;
   --themeshift-components-navbar-border: transparent;
   --themeshift-components-navbar-container-gap: 2rem;
@@ -372,7 +383,7 @@
   --themeshift-components-skiplink-bg: #5C6BC0;
   --themeshift-components-skiplink-border-radius: .5rem;
   --themeshift-components-skiplink-fg: #fff;
-  --themeshift-components-skiplink-font: 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-components-skiplink-font: 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-components-skiplink-x: 1rem;
   --themeshift-components-skiplink-y: 1rem;
 
@@ -421,8 +432,10 @@
   --themeshift-accessibility-focus-ring: #03A9F4;
 
   /* Theme */
+  --themeshift-theme-border: rgba(0, 0, 0, .1);
   --themeshift-theme-surface-base: #ECEFF1;
   --themeshift-theme-surface-raised: #CFD8DC;
+  --themeshift-theme-surface-sunken: rgba(0, 0, 0, .1);
   --themeshift-theme-text-base: #000;
   --themeshift-theme-text-muted: rgba(0, 0, 0, .7);
 
@@ -453,8 +466,10 @@
   --themeshift-accessibility-focus-ring: #3F51B5;
 
   /* Theme */
+  --themeshift-theme-border: rgba(255, 255, 255, .1);
   --themeshift-theme-surface-base: #263238;
-  --themeshift-theme-surface-raised: #37474F;
+  --themeshift-theme-surface-raised: rgba(255, 255, 255, .1);
+  --themeshift-theme-surface-sunken: rgba(0, 0, 0, .1);
   --themeshift-theme-text-base: #fff;
   --themeshift-theme-text-muted: rgba(255, 255, 255, .7);
 

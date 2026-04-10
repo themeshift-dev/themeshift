@@ -11,7 +11,7 @@ describe('Button', () => {
     render(<Button>Save changes</Button>);
 
     expect(
-      screen.getByRole('button', { name: 'Save changes' }),
+      screen.getByRole('button', { name: 'Save changes' })
     ).toBeInTheDocument();
   });
 
@@ -19,13 +19,29 @@ describe('Button', () => {
     render(
       <Button type="submit" disabled>
         Submit
-      </Button>,
+      </Button>
     );
 
     const button = screen.getByRole('button', { name: 'Submit' });
 
     expect(button).toHaveAttribute('type', 'submit');
     expect(button).toBeDisabled();
+  });
+
+  it('renders a child element instead of a native button when asChild is true', () => {
+    render(
+      <Button asChild>
+        <a href="/login">Login</a>
+      </Button>
+    );
+
+    const link = screen.getByRole('link', { name: 'Login' });
+
+    expect(link).toHaveAttribute('href', '/login');
+    expect(link).toHaveClass(styles.container);
+    expect(
+      screen.queryByRole('button', { name: 'Login' })
+    ).not.toBeInTheDocument();
   });
 
   it('applies default size and intent styles', () => {
@@ -45,7 +61,9 @@ describe('Button', () => {
   ] as const)('applies the %s size class', (size, className) => {
     render(<Button size={size}>Sized</Button>);
 
-    expect(screen.getByRole('button', { name: 'Sized' })).toHaveClass(className);
+    expect(screen.getByRole('button', { name: 'Sized' })).toHaveClass(
+      className
+    );
   });
 
   it.each([
@@ -57,15 +75,147 @@ describe('Button', () => {
   ] as const)('applies the %s intent class', (intent, className) => {
     render(<Button intent={intent}>Intent</Button>);
 
-    expect(screen.getByRole('button', { name: 'Intent' })).toHaveClass(className);
+    expect(screen.getByRole('button', { name: 'Intent' })).toHaveClass(
+      className
+    );
   });
 
   it('appends a caller-provided className', () => {
     render(<Button className="custom-class">Custom</Button>);
 
     expect(screen.getByRole('button', { name: 'Custom' })).toHaveClass(
-      'custom-class',
+      'custom-class'
     );
+  });
+
+  it('renders start and end icon slots around the label', () => {
+    render(
+      <Button
+        startIcon={
+          <svg
+            aria-hidden="true"
+            data-testid="start-icon"
+            viewBox="0 0 16 16"
+          />
+        }
+        endIcon={
+          <svg aria-hidden="true" data-testid="end-icon" viewBox="0 0 16 16" />
+        }
+      >
+        With icons
+      </Button>
+    );
+
+    const button = screen.getByRole('button', { name: 'With icons' });
+    const startIcon = screen.getByTestId('start-icon');
+    const endIcon = screen.getByTestId('end-icon');
+
+    expect(button).toContainElement(startIcon);
+    expect(button).toContainElement(endIcon);
+    expect(startIcon.parentElement).toHaveClass(styles.iconSlot);
+    expect(endIcon.parentElement).toHaveClass(styles.iconSlot);
+  });
+
+  it('supports icon-only buttons with a caller-provided aria-label', () => {
+    render(
+      <Button
+        aria-label="Toggle theme"
+        icon={
+          <svg
+            aria-hidden="true"
+            data-testid="theme-icon"
+            viewBox="0 0 16 16"
+          />
+        }
+      />
+    );
+
+    expect(
+      screen.getByRole('button', { name: 'Toggle theme' })
+    ).toContainElement(screen.getByTestId('theme-icon'));
+  });
+
+  it('supports icon-only buttons with a caller-provided aria-labelledby', () => {
+    render(
+      <>
+        <span id="label-id">Open settings</span>
+        <Button
+          aria-labelledby="label-id"
+          icon={
+            <svg
+              aria-hidden="true"
+              data-testid="settings-icon"
+              viewBox="0 0 16 16"
+            />
+          }
+        />
+      </>
+    );
+
+    expect(
+      screen.getByRole('button', { name: 'Open settings' })
+    ).toContainElement(screen.getByTestId('settings-icon'));
+  });
+
+  it('renders the busy spinner instead of the icon for icon-only busy buttons', () => {
+    render(
+      <Button
+        aria-label="Loading theme"
+        icon={
+          <svg
+            aria-hidden="true"
+            data-testid="theme-icon"
+            viewBox="0 0 16 16"
+          />
+        }
+        isBusy
+        size="large"
+      />
+    );
+
+    const button = screen.getByRole('button', { name: 'Loading theme' });
+
+    expect(button).toHaveAttribute('aria-busy', 'true');
+    expect(button).toHaveClass(styles.iconOnly);
+    expect(screen.queryByTestId('theme-icon')).not.toBeInTheDocument();
+    expect(button.querySelector('svg')).toHaveAttribute('width', '20');
+  });
+
+  it('ignores children when the icon prop is provided', () => {
+    render(
+      <Button
+        aria-label="Search"
+        icon={
+          <svg
+            aria-hidden="true"
+            data-testid="search-icon"
+            viewBox="0 0 16 16"
+          />
+        }
+      >
+        Ignored child label
+      </Button>
+    );
+
+    expect(screen.getByRole('button', { name: 'Search' })).toContainElement(
+      screen.getByTestId('search-icon')
+    );
+    expect(screen.queryByText('Ignored child label')).not.toBeInTheDocument();
+  });
+
+  it('does not treat a null icon value as an icon-only button', () => {
+    render(<Button icon={null}>Fallback label</Button>);
+
+    expect(
+      screen.getByRole('button', { name: 'Fallback label' })
+    ).not.toHaveClass(styles.iconOnly);
+  });
+
+  it('does not render a label wrapper when children is null', () => {
+    const { container } = render(<Button>{null}</Button>);
+
+    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.label}`)).toBeNull();
   });
 
   it('applies the visually disabled style without native disabled semantics', () => {
@@ -95,7 +245,7 @@ describe('Button', () => {
     render(
       <Button disabled onClick={onClick}>
         Cannot click
-      </Button>,
+      </Button>
     );
 
     await user.click(screen.getByRole('button', { name: 'Cannot click' }));
@@ -110,7 +260,7 @@ describe('Button', () => {
     render(
       <Button visuallyDisabled onClick={onClick}>
         Still interactive
-      </Button>,
+      </Button>
     );
 
     await user.click(screen.getByRole('button', { name: 'Still interactive' }));
@@ -129,7 +279,7 @@ describe('Button', () => {
     rerender(
       <Button disabled intent="destructive">
         Disabled destructive button
-      </Button>,
+      </Button>
     );
     expect(await axe(container)).toHaveNoViolations();
   });

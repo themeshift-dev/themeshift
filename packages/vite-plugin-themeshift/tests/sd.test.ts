@@ -187,6 +187,38 @@ describe('registerStyleDictionaryThings', () => {
     expect(scssFormat?.({ dictionary })).not.toContain('/* 16px */');
   });
 
+  it('skips token description comments when descriptions are invalid or empty after normalization', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary, {
+      cssVarPrefix: 'themeshift',
+      outputComments: true,
+    });
+
+    const cssFormat = StyleDictionary.getFormat('css/variables-modes-grouped');
+    const scssFormat = StyleDictionary.getFormat('scss/static-tokens');
+    const dictionary = {
+      allTokens: [
+        {
+          name: 'space-4',
+          value: '1rem',
+          description: 16,
+          attributes: {},
+        },
+        {
+          name: 'layout-site-max-width',
+          value: '1200px',
+          $description: ' \n ',
+          attributes: {},
+        },
+      ],
+    };
+
+    expect(cssFormat?.({ dictionary })).not.toContain('/* 16');
+    expect(cssFormat?.({ dictionary })).not.toContain('/* *\\/');
+    expect(scssFormat?.({ dictionary })).not.toContain('/* 16');
+    expect(scssFormat?.({ dictionary })).not.toContain('/* *\\/');
+  });
+
   it('emits token description comments in css output when outputComments is enabled', () => {
     const StyleDictionary = makeStyleDictionaryMock();
     registerStyleDictionaryThings(StyleDictionary, {
@@ -1069,6 +1101,57 @@ describe('registerStyleDictionaryThings', () => {
     expect(output).toContain('$layout_breakpoints_desktop: 1024px;');
     expect(output).toContain('$layout_site_max_width: 1200px;');
     expect(output).not.toContain('$theme_surface_base: #fff;');
+  });
+
+  it('stringifies non-typography object values in static Sass output', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary);
+
+    const format = StyleDictionary.getFormat('scss/static-tokens');
+    const output = format?.({
+      dictionary: {
+        allTokens: [
+          {
+            name: 'layout-sidebar',
+            value: {
+              width: '16rem',
+            },
+            attributes: {},
+          },
+        ],
+      },
+    });
+
+    expect(output).toContain('$layout_sidebar: [object Object];');
+  });
+
+  it('emits typography mixins in static Sass output for text-style tokens', () => {
+    const StyleDictionary = makeStyleDictionaryMock();
+    registerStyleDictionaryThings(StyleDictionary);
+
+    const format = StyleDictionary.getFormat('scss/static-tokens');
+    const output = format?.({
+      dictionary: {
+        allTokens: [
+          {
+            name: 'text-style-title',
+            value: {
+              fontFamily: '"Roboto Slab", Georgia, serif',
+              fontSize: '1.25rem',
+              lineHeight: '1.3',
+              fontWeight: '400',
+            },
+            attributes: {},
+          },
+        ],
+      },
+    });
+
+    expect(output).toContain('// Typography mixins');
+    expect(output).toContain('@mixin text_style_title {');
+    expect(output).toContain(
+      '  font: 400 1.25rem/1.3 "Roboto Slab", Georgia, serif;'
+    );
   });
 
   it('emits token description comments in scss output when outputComments is enabled', () => {

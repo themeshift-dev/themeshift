@@ -1,0 +1,10 @@
+@mixin bottom($color, $height: 4rem) {
+  background: linear-gradient(to bottom, transparent, $color);
+  bottom: 0;
+  content: '';
+  height: $height;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}

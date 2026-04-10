@@ -1,0 +1,22 @@
+@use '@/sass/mixins/accessibility';
+@use '@/sass/mixins/fade';
+
+.container {
+  position: relative;
+
+  &[data-overflowing='true'][data-at-bottom='false']::after {
+    @include fade.bottom(token('theme.surface.sunken'));
+  }
+}
+
+.scroller {
+  @include accessibility.focusInner;
+
+  max-height: var(--scroll-fade-max-height, none);
+  overflow-y: auto;
+}
+
+.content {
+  min-width: 0;
+  padding: var(--scroll-fade-padding, 0);
+}

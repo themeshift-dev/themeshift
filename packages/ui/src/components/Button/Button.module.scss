@@ -6,11 +6,20 @@
 .container {
   @include button.reset;
   @include accessibility.buttonFocus;
-
-  padding: token('components.button.padding');
-  border-radius: token('radius.small');
   @include typography.style('button.medium');
+
+  align-items: center;
+  display: inline-flex;
+  gap: token('space.2');
+  justify-content: center;
+  transition: 0.15s transform;
   white-space: nowrap;
+
+  /**
+   * Remove `text-decoration` by default to support the common use-case
+   * of using <Button asChild> with a link
+   */
+  text-decoration: none;
 
   &:not(:last-child) {
     margin-right: 1rem;
@@ -21,11 +30,32 @@
 
     cursor: not-allowed;
   }
+
+  &:not(:disabled, .visuallyDisabled):active {
+    transform: translateY(1px);
+  }
 }
 
 // Utility classes
+.iconSlot,
+.label {
+  display: inline-flex;
+}
+
+.iconSlot {
+  flex: 0 0 auto;
+  line-height: 0;
+
+  > svg {
+    width: 1em;
+    height: 1em;
+  }
+}
+
 .visuallyDisabled {
   @include button.disabled;
+
+  cursor: default;
 }
 
 /**
@@ -33,17 +63,38 @@
  */
 .small {
   @include typography.style('button.small');
-  min-height: token('components.button.sizes.small');
+
+  min-height: token('components.button.sizes.small.height');
+  padding: token('components.button.sizes.small.padding');
+  border-radius: token('components.button.sizes.small.borderRadius');
+
+  &.iconOnly {
+    padding: token('components.button.sizes.small.padding.iconOnly');
+  }
 }
 
 .medium {
   @include typography.style('button.medium');
-  min-height: token('components.button.sizes.medium');
+
+  min-height: token('components.button.sizes.medium.height');
+  padding: token('components.button.sizes.medium.padding');
+  border-radius: token('components.button.sizes.medium.borderRadius');
+
+  &.iconOnly {
+    padding: token('components.button.sizes.medium.padding.iconOnly');
+  }
 }
 
 .large {
   @include typography.style('button.large');
-  min-height: token('components.button.sizes.large');
+
+  min-height: token('components.button.sizes.large.height');
+  padding: token('components.button.sizes.large.padding');
+  border-radius: token('components.button.sizes.large.borderRadius');
+
+  &.iconOnly {
+    padding: token('components.button.sizes.large.padding.iconOnly');
+  }
 }
 
 /**
@@ -53,7 +104,7 @@
   background: token('components.button.intents.primary.bg');
   color: token('components.button.intents.primary.fg');
 
-  &:not(:disabled):hover {
+  &:not(:disabled, .visuallyDisabled):hover {
     background: token('components.button.intents.primary.hover');
   }
 }
@@ -62,7 +113,7 @@
   background: token('components.button.intents.secondary.bg');
   color: token('components.button.intents.secondary.fg');
 
-  &:not(:disabled):hover {
+  &:not(:disabled, .visuallyDisabled):hover {
     background: token('components.button.intents.secondary.hover');
   }
 }
@@ -71,8 +122,8 @@
   background: token('components.link.bg');
   color: token('components.link.fg');
 
-  &:not(:disabled):hover,
-  &:not(:disabled):focus-visible {
+  &:not(:disabled, .visuallyDisabled):hover,
+  &:not(:disabled, .visuallyDisabled):focus-visible {
     @include link.hover;
   }
 }
@@ -81,7 +132,7 @@
   background: token('components.button.intents.constructive.bg');
   color: token('components.button.intents.constructive.fg');
 
-  &:not(:disabled):hover {
+  &:not(:disabled, .visuallyDisabled):hover {
     background: token('components.button.intents.constructive.hover');
   }
 }
@@ -90,7 +141,7 @@
   background: token('components.button.intents.destructive.bg');
   color: token('components.button.intents.destructive.fg');
 
-  &:not(:disabled):hover {
+  &:not(:disabled, .visuallyDisabled):hover {
     background: token('components.button.intents.destructive.hover');
   }
 }

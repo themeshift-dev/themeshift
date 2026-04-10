@@ -47,6 +47,58 @@ describe('token runtime helpers', () => {
     expect(token('theme.text.base', { target: element })).toBe('#111');
   });
 
+  it('supports an explicit document target', () => {
+    class TestDocument {
+      documentElement = { id: 'root-element' } as Element;
+    }
+
+    const documentTarget = new TestDocument() as unknown as Document;
+    const getPropertyValue = vi.fn((name: string) =>
+      name === '--theme-text-base' ? ' #222 ' : ''
+    );
+
+    vi.stubGlobal('document', { documentElement: {} });
+    vi.stubGlobal('Element', class {});
+    vi.stubGlobal('Document', TestDocument);
+    vi.stubGlobal('ShadowRoot', class {});
+    vi.stubGlobal(
+      'getComputedStyle',
+      vi.fn((target: Element) => {
+        expect(target).toBe(documentTarget.documentElement);
+        return { getPropertyValue };
+      })
+    );
+
+    expect(token('theme.text.base', { target: documentTarget })).toBe('#222');
+  });
+
+  it('supports a shadow root target by reading from its host element', () => {
+    class TestElement {}
+    class TestShadowRoot {
+      constructor(public host: Element) {}
+    }
+
+    const host = new TestElement() as unknown as Element;
+    const shadowRoot = new TestShadowRoot(host) as unknown as ShadowRoot;
+    const getPropertyValue = vi.fn((name: string) =>
+      name === '--theme-text-base' ? ' #333 ' : ''
+    );
+
+    vi.stubGlobal('document', { documentElement: {} });
+    vi.stubGlobal('Element', TestElement);
+    vi.stubGlobal('Document', class {});
+    vi.stubGlobal('ShadowRoot', TestShadowRoot);
+    vi.stubGlobal(
+      'getComputedStyle',
+      vi.fn((target: Element) => {
+        expect(target).toBe(host);
+        return { getPropertyValue };
+      })
+    );
+
+    expect(token('theme.text.base', { target: shadowRoot })).toBe('#333');
+  });
+
   it('returns undefined for missing computed CSS variable values', () => {
     const documentElement = {} as Element;
 

@@ -4,8 +4,12 @@
   --page-shell-columns: #{token('grid.columns.mobile')};
   --page-shell-gutter: #{token('grid.gutter.mobile')};
   --page-shell-row-gap: #{token('grid.rowGap.mobile')};
-  --page-shell-container-padding-inline: #{token('grid.container.paddingInline.mobile')};
-  --page-shell-container-max-width: #{token('layout.pageShell.container.maxWidth')};
+  --page-shell-container-padding-inline: #{token(
+      'grid.container.paddingInline.mobile'
+    )};
+  --page-shell-container-max-width: #{token(
+      'layout.pageShell.container.maxWidth'
+    )};
   --page-shell-main-span: #{token('layout.pageShell.main.span.mobile')};
   --page-shell-aside-span: #{token('layout.pageShell.aside.span.mobile')};
 
@@ -19,7 +23,9 @@
     --page-shell-columns: #{token('grid.columns.tablet')};
     --page-shell-gutter: #{token('grid.gutter.tablet')};
     --page-shell-row-gap: #{token('grid.rowGap.tablet')};
-    --page-shell-container-padding-inline: #{token('grid.container.paddingInline.tablet')};
+    --page-shell-container-padding-inline: #{token(
+        'grid.container.paddingInline.tablet'
+      )};
     --page-shell-main-span: #{token('layout.pageShell.main.span.tablet')};
     --page-shell-aside-span: #{token('layout.pageShell.aside.span.tablet')};
   }
@@ -28,7 +34,9 @@
     --page-shell-columns: #{token('grid.columns.desktop')};
     --page-shell-gutter: #{token('grid.gutter.desktop')};
     --page-shell-row-gap: #{token('grid.rowGap.desktop')};
-    --page-shell-container-padding-inline: #{token('grid.container.paddingInline.desktop')};
+    --page-shell-container-padding-inline: #{token(
+        'grid.container.paddingInline.desktop'
+      )};
     --page-shell-main-span: #{token('layout.pageShell.main.span.desktop')};
     --page-shell-aside-span: #{token('layout.pageShell.aside.span.desktop')};
   }
@@ -42,7 +50,7 @@
 }
 
 .withAside {
-  align-items: start;
+  align-items: stretch;
 }
 
 .header,
@@ -55,12 +63,16 @@
 }
 
 .withAside .main {
+  align-self: start;
+
   @media (min-width: $layout_breakpoints_desktop) {
     grid-column: span var(--page-shell-main-span);
   }
 }
 
 .withAside .aside {
+  align-self: stretch;
+
   @media (min-width: $layout_breakpoints_desktop) {
     grid-column: span var(--page-shell-aside-span);
   }
@@ -91,12 +103,16 @@
 }
 
 .regionInner {
-  width: 100%;
-  max-width: var(--page-shell-container-max-width);
   margin-inline: auto;
+  max-width: var(--page-shell-container-max-width);
   padding-inline: var(--page-shell-container-padding-inline);
+  width: 100%;
 }
 
 .main .regionInner {
   width: 100%;
+}
+
+.aside .regionInner {
+  height: 100%;
 }

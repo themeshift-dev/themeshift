@@ -1,0 +1,181 @@
+@use '@/sass/mixins/code';
+
+.tableLayout {
+  display: block;
+  margin: 2rem 0 0;
+
+  @media (max-width: 63.9375rem) {
+    display: none;
+  }
+}
+
+.cardLayout {
+  display: none;
+  margin: 2rem 0 0;
+
+  @media (max-width: 63.9375rem) {
+    display: block;
+  }
+}
+
+.group {
+  &:not(:first-child) {
+    margin-top: 3rem;
+  }
+}
+
+.groupHeading {
+  margin-bottom: 1rem;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+
+  th,
+  td {
+    padding: 1.25rem 1rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    border-bottom: 1px solid token('theme.border');
+    color: token('theme.text.muted');
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid token('theme.border');
+  }
+
+  tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  code {
+    @include code.inline;
+  }
+}
+
+.propColumn {
+  width: 18%;
+}
+
+.typeColumn {
+  width: 18%;
+}
+
+.notesColumn {
+  width: 34%;
+}
+
+.valuesColumn {
+  width: 18%;
+}
+
+.defaultColumn {
+  width: 12%;
+}
+
+.propCell,
+.typeCell {
+  overflow-wrap: anywhere;
+}
+
+.metaCell {
+  color: token('theme.text.muted');
+}
+
+.notes {
+  color: token('theme.text.base');
+
+  p {
+    margin: 0;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+
+  code {
+    @include code.inline;
+
+    background: token('theme.surface.raised');
+  }
+}
+
+.valueList {
+  display: flex;
+  flex-flow: row wrap;
+  gap: token('space.2');
+}
+
+.valueChip {
+  @include code.inline;
+}
+
+.emptyValue {
+  color: token('theme.text.muted');
+}
+
+.cardList {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  background: token('theme.surface.sunken');
+  border: 1px solid token('theme.border');
+  border-radius: token('radius.small');
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.cardHeader {
+  align-items: flex-start;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.cardProp,
+.cardType {
+  @include code.inline;
+
+  overflow-wrap: anywhere;
+}
+
+.cardType {
+  color: token('theme.text.muted');
+}
+
+.cardMeta {
+  display: grid;
+  gap: 0.875rem;
+  margin: 0;
+}
+
+.cardMetaRow {
+  display: grid;
+  gap: 0.5rem;
+
+  dt {
+    color: token('theme.text.muted');
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  dd {
+    margin: 0;
+  }
+}

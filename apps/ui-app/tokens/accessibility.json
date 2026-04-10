@@ -14,7 +14,7 @@
       "focus": {
         "gap": {
           "$type": "color",
-          "$value": "#FCF7FA"
+          "$value": "#E75009"
         },
         "ring": {
           "$type": "color",
@@ -26,7 +26,7 @@
       "focus": {
         "gap": {
           "$type": "color",
-          "$value": "#FCF7FA"
+          "$value": "#E75009"
         },
         "ring": {
           "$type": "color",

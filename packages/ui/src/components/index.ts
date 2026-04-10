@@ -4,3 +4,4 @@ export * from './Link';
 export * from './Navbar';
 export * from './Responsive';
 export * from './SkipLink';
+export * from './Spinner';

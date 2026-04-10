@@ -50,6 +50,54 @@
       "types": "./dist/components/SkipLink/index.d.ts",
       "import": "./dist/components/SkipLink/index.js"
     },
+    "./components/Spinner": {
+      "types": "./dist/components/Spinner/index.d.ts",
+      "import": "./dist/components/Spinner/index.js"
+    },
+    "./contexts": {
+      "types": "./dist/contexts/index.d.ts",
+      "import": "./dist/contexts/index.js"
+    },
+    "./css/base.css": "./dist/css/base.css",
+    "./css/fonts.css": "./dist/css/fonts.css",
+    "./css/tokens.css": "./dist/css/tokens.css",
+    "./icons": {
+      "types": "./dist/icons/index.d.ts",
+      "import": "./dist/icons/index.js"
+    },
+    "./icons/IconMoon": {
+      "types": "./dist/icons/IconMoon.d.ts",
+      "import": "./dist/icons/IconMoon.js"
+    },
+    "./icons/IconSun": {
+      "types": "./dist/icons/IconSun.d.ts",
+      "import": "./dist/icons/IconSun.js"
+    },
+    "./package.json": "./package.json",
+    "./sass/_accessibility": {
+      "sass": "./dist/sass/accessibility.scss"
+    },
+    "./sass/_typography": {
+      "sass": "./dist/sass/typography.scss"
+    },
+    "./sass/accessibility": {
+      "sass": "./dist/sass/accessibility.scss"
+    },
+    "./sass/components/_button": {
+      "sass": "./dist/sass/components/button.scss"
+    },
+    "./sass/components/_link": {
+      "sass": "./dist/sass/components/link.scss"
+    },
+    "./sass/components/button": {
+      "sass": "./dist/sass/components/button.scss"
+    },
+    "./sass/components/link": {
+      "sass": "./dist/sass/components/link.scss"
+    },
+    "./sass/typography": {
+      "sass": "./dist/sass/typography.scss"
+    },
     "./templates": {
       "types": "./dist/templates/index.d.ts",
       "import": "./dist/templates/index.js"
@@ -78,24 +126,6 @@
       "types": "./dist/templates/SplitPaneShell/index.d.ts",
       "import": "./dist/templates/SplitPaneShell/index.js"
     },
-    "./icons": {
-      "types": "./dist/icons/index.d.ts",
-      "import": "./dist/icons/index.js"
-    },
-    "./contexts": {
-      "types": "./dist/contexts/index.d.ts",
-      "import": "./dist/contexts/index.js"
-    },
-    "./sass/typography": {
-      "sass": "./dist/sass/typography.scss"
-    },
-    "./sass/_typography": {
-      "sass": "./dist/sass/typography.scss"
-    },
-    "./css/fonts.css": "./dist/css/fonts.css",
-    "./css/base.css": "./dist/css/base.css",
-    "./css/tokens.css": "./dist/css/tokens.css",
-    "./package.json": "./package.json",
     "./theme-contract.json": "./theme-contract.json",
     "./tokens/*": "./dist/tokens/*"
   },
@@ -118,8 +148,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "@themeshift/vite-plugin-themeshift": "workspace:*",
-    "@fontsource-variable/noto-sans": "^5.2.10",
+    "@fontsource-variable/inter": "^5.2.8",
     "classnames": "^2.5.1"
   },
   "peerDependencies": {

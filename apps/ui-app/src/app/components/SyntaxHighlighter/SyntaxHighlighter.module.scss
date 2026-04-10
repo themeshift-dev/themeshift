@@ -1,0 +1,40 @@
+.container {
+  background: transparent;
+  color: token('components.syntaxHighlighter.fg');
+  font-family: token('components.syntaxHighlighter.font');
+
+  :global(.token) {
+    background: transparent;
+  }
+}
+
+.pre {
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  overflow: auto;
+  white-space: pre;
+}
+
+.code {
+  background: transparent;
+  display: block;
+  font: inherit;
+}
+
+.line {
+  background: transparent;
+  display: block;
+  min-height: 1lh;
+}
+
+.lineNumber {
+  background: transparent;
+  color: token('components.syntaxHighlighter.lineNumber');
+  display: inline-block;
+  margin-right: token('space.3');
+  min-width: 2ch;
+  text-align: right;
+  user-select: none;
+}

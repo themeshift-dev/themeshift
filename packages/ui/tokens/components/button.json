@@ -9,14 +9,39 @@
       },
 
       "sizes": {
-        "$type": "dimension",
-        "small": { "$value": "32px" },
-        "medium": { "$value": "40px" },
-        "large": { "$value": "48px" }
+        "small": {
+          "borderRadius": { "$value": "{radius.small}" },
+          "height": { "$value": "{space.8}" },
+          "padding": {
+            "$value": "0 {space.4}",
+
+            "iconOnly": { "$value": "0 {space.2}" }
+          }
+        },
+
+        "medium": {
+          "borderRadius": { "$value": "{radius.small}" },
+          "height": { "$value": "{space.9}" },
+          "padding": {
+            "$value": "0 {space.6}",
+
+            "iconOnly": { "$value": "0 {space.3}" }
+          }
+        },
+
+        "large": {
+          "borderRadius": { "$value": "{radius.small}" },
+          "height": { "$value": "{space.10}" },
+          "padding": {
+            "$value": "0 {space.8}",
+
+            "iconOnly": { "$value": "0 {space.4}" }
+          }
+        }
       },
 
-      "light": {
-        "intents": {
+      "intents": {
+        "light": {
           "primary": {
             "bg": { "$value": "{color.blue.400}" },
             "fg": { "$value": "{color.blue.400.fg}" },
@@ -40,11 +65,9 @@
             "fg": { "$value": "{color.red.400.fg}" },
             "hover": { "$value": "{color.red.300}" }
           }
-        }
-      },
+        },
 
-      "dark": {
-        "intents": {
+        "dark": {
           "primary": {
             "bg": { "$value": "{color.blue.400}" },
             "fg": { "$value": "{color.blue.400.fg}" },

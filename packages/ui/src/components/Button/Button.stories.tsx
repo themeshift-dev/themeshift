@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import { Button } from '@/components/Button';
+import { IconMoon } from '@/icons/IconMoon';
+import { IconSun } from '@/icons/IconSun';
 
 const meta = {
   title: 'Components/Button',
@@ -18,7 +20,13 @@ const meta = {
   argTypes: {
     intent: {
       control: 'select',
-      options: ['primary', 'secondary', 'tertiary', 'constructive', 'destructive'],
+      options: [
+        'primary',
+        'secondary',
+        'tertiary',
+        'constructive',
+        'destructive',
+      ],
     },
     size: {
       control: 'inline-radio',
@@ -104,6 +112,38 @@ export const Disabled: Story = {
     children: 'Disabled',
     disabled: true,
   },
+};
+
+export const Icons: Story = {
+  render: (args) => (
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '0.75rem',
+      }}
+    >
+      <Button {...args} startIcon={<IconMoon aria-hidden />}>
+        Start icon
+      </Button>
+      <Button {...args} endIcon={<IconSun aria-hidden />}>
+        End icon
+      </Button>
+      <Button
+        {...args}
+        aria-label="Toggle theme"
+        icon={<IconMoon aria-hidden />}
+      />
+    </div>
+  ),
+};
+
+export const AsChild: Story = {
+  render: (args) => (
+    <Button {...args} asChild>
+      <a href="/login">Login</a>
+    </Button>
+  ),
 };
 
 export const CustomClassName: Story = {

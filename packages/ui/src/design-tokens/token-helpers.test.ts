@@ -16,7 +16,7 @@ describe('ThemeShift token helpers', () => {
       tokenValue('typography.scales.7.bold', { values: tokenValues })
     ).toEqual({
       fontFamily:
-        "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+        "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
       fontSize: '3rem',
       lineHeight: '3.375rem',
       fontWeight: '700',
@@ -25,7 +25,7 @@ describe('ThemeShift token helpers', () => {
       tokenValue('typography.scales.1.regular', { values: tokenValues })
     ).toEqual({
       fontFamily:
-        "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+        "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
       fontSize: '1rem',
       lineHeight: '1.375rem',
       fontWeight: '400',
@@ -34,7 +34,7 @@ describe('ThemeShift token helpers', () => {
       tokenValue('typography.scales.-1.semiBold', { values: tokenValues })
     ).toEqual({
       fontFamily:
-        "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+        "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
       fontSize: '0.75rem',
       lineHeight: '1rem',
       fontWeight: '600',
@@ -43,7 +43,7 @@ describe('ThemeShift token helpers', () => {
       tokenValue('typography.styles.body.default.font', { values: tokenValues })
     ).toEqual({
       fontFamily:
-        "'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+        "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
       fontSize: '1rem',
       lineHeight: '1.375rem',
       fontWeight: '400',
@@ -118,7 +118,7 @@ describe('ThemeShift token helpers', () => {
   it('supports consuming typography shorthand and matching letter spacing tokens together', () => {
     document.documentElement.style.setProperty(
       '--themeshift-typography-scales-1-regular',
-      "400 1rem/1.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif"
+      "400 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif"
     );
     document.documentElement.style.setProperty(
       '--themeshift-typography-metrics-1-letter-spacing',
@@ -140,7 +140,7 @@ describe('ThemeShift token helpers', () => {
   it('supports semantic typography style tokens including font style', () => {
     document.documentElement.style.setProperty(
       '--themeshift-typography-styles-body-default-font',
-      "400 1rem/1.375rem 'Noto Sans Variable', 'Helvetica Neue', Arial, system-ui, sans-serif"
+      "400 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif"
     );
     document.documentElement.style.setProperty(
       '--themeshift-typography-styles-body-default-letter-spacing',

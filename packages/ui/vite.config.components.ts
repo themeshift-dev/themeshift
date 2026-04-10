@@ -178,6 +178,9 @@ export default defineConfig({
         'components/SkipLink/index': fileURLToPath(
           new URL('./src/entrypoints/components/SkipLink.ts', import.meta.url)
         ),
+        'components/Spinner/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Spinner.ts', import.meta.url)
+        ),
         'templates/index': fileURLToPath(
           new URL('./src/entrypoints/templates/index.ts', import.meta.url)
         ),
@@ -191,16 +194,28 @@ export default defineConfig({
           new URL('./src/entrypoints/templates/BlankShell.ts', import.meta.url)
         ),
         'templates/CenteredShell/index': fileURLToPath(
-          new URL('./src/entrypoints/templates/CenteredShell.ts', import.meta.url)
+          new URL(
+            './src/entrypoints/templates/CenteredShell.ts',
+            import.meta.url
+          )
         ),
         'templates/PageShell/index': fileURLToPath(
           new URL('./src/entrypoints/templates/PageShell.ts', import.meta.url)
         ),
         'templates/SplitPaneShell/index': fileURLToPath(
-          new URL('./src/entrypoints/templates/SplitPaneShell.ts', import.meta.url)
+          new URL(
+            './src/entrypoints/templates/SplitPaneShell.ts',
+            import.meta.url
+          )
         ),
         'icons/index': fileURLToPath(
           new URL('./src/entrypoints/icons.ts', import.meta.url)
+        ),
+        'icons/IconMoon': fileURLToPath(
+          new URL('./src/icons/IconMoon.tsx', import.meta.url)
+        ),
+        'icons/IconSun': fileURLToPath(
+          new URL('./src/icons/IconSun.tsx', import.meta.url)
         ),
         'contexts/index': fileURLToPath(
           new URL('./src/entrypoints/contexts.ts', import.meta.url)

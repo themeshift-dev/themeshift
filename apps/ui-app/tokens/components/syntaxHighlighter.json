@@ -1,0 +1,43 @@
+{
+  "components": {
+    "syntaxHighlighter": {
+      "dark": {
+        "attrName": { "$value": "{color.teal.300}" },
+        "attrValue": { "$value": "{color.green.300}" },
+        "boolean": { "$value": "{color.red.300}" },
+        "comment": { "$value": "{theme.dark.text.muted}" },
+        "deleted": { "$value": "{color.red.300}" },
+        "fg": { "$value": "{theme.dark.text.base}" },
+        "function": { "$value": "{color.lightBlue.400}" },
+        "inserted": { "$value": "{color.green.300}" },
+        "keyword": { "$value": "{color.lightBlue.300}" },
+        "lineNumber": { "$value": "{theme.dark.text.muted}" },
+        "number": { "$value": "{color.teal.300}" },
+        "operator": { "$value": "{color.red.300}" },
+        "property": { "$value": "{color.blueGrey.100}" },
+        "punctuation": { "$value": "{color.blueGrey.300}" },
+        "string": { "$value": "{color.green.300}" },
+        "tag": { "$value": "{color.blue.300}" }
+      },
+      "font": { "$value": "{font.family.mono}" },
+      "light": {
+        "attrName": { "$value": "{color.teal.700}" },
+        "attrValue": { "$value": "{color.green.800}" },
+        "boolean": { "$value": "{color.red.700}" },
+        "comment": { "$value": "{theme.light.text.muted}" },
+        "deleted": { "$value": "{color.red.700}" },
+        "fg": { "$value": "{theme.light.text.base}" },
+        "function": { "$value": "{color.lightBlue.700}" },
+        "inserted": { "$value": "{color.green.800}" },
+        "keyword": { "$value": "{color.blue.700}" },
+        "lineNumber": { "$value": "{theme.light.text.muted}" },
+        "number": { "$value": "{color.teal.700}" },
+        "operator": { "$value": "{color.red.700}" },
+        "property": { "$value": "{color.blueGrey.800}" },
+        "punctuation": { "$value": "{color.blueGrey.600}" },
+        "string": { "$value": "{color.green.800}" },
+        "tag": { "$value": "{color.blue.700}" }
+      }
+    }
+  }
+}

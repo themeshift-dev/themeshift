@@ -8,11 +8,11 @@ import * as sass from 'sass';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
-const notoSansDir = path.join(
+const interDir = path.join(
   rootDir,
   'node_modules',
   '@fontsource-variable',
-  'noto-sans'
+  'inter'
 );
 
 async function run(command, args) {
@@ -52,22 +52,18 @@ async function compileBaseCss() {
       style: 'expanded',
     }
   );
-  const [notoSansNormalCss, notoSansItalicCss] = await Promise.all([
-    readFile(path.join(notoSansDir, 'wght.css'), 'utf8'),
-    readFile(path.join(notoSansDir, 'wght-italic.css'), 'utf8'),
+  const [interNormalCss, interItalicCss] = await Promise.all([
+    readFile(path.join(interDir, 'wght.css'), 'utf8'),
+    readFile(path.join(interDir, 'wght-italic.css'), 'utf8'),
   ]);
-  const fontsCss = [notoSansNormalCss, notoSansItalicCss]
+  const fontsCss = [interNormalCss, interItalicCss]
     .join('\n')
     .replaceAll("format('woff2-variations')", "format('woff2')");
 
   await mkdir(path.join(distDir, 'css'), { recursive: true });
-  await cp(
-    path.join(notoSansDir, 'files'),
-    path.join(distDir, 'css', 'files'),
-    {
-      recursive: true,
-    }
-  );
+  await cp(path.join(interDir, 'files'), path.join(distDir, 'css', 'files'), {
+    recursive: true,
+  });
   await writeFile(path.join(distDir, 'css/fonts.css'), `${fontsCss}\n`);
   await writeFile(path.join(distDir, 'css/base.css'), `${result.css}\n`);
 }
@@ -78,6 +74,9 @@ async function copyThemeAssets() {
   });
 
   await mkdir(path.join(distDir, 'sass'), { recursive: true });
+  await cp(path.join(rootDir, 'src/sass/mixins'), path.join(distDir, 'sass'), {
+    recursive: true,
+  });
   await cp(
     path.join(rootDir, 'src/css/tokens.css'),
     path.join(distDir, 'css/tokens.css')

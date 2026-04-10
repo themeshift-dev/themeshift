@@ -1,0 +1,33 @@
+.main {
+  width: 100%;
+}
+
+.description {
+  margin: 0 0 1.5rem;
+  max-width: 42rem;
+}
+
+.content {
+  h4 {
+    color: token('theme.text.muted');
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+  }
+
+  section {
+    margin: 0 0 2rem;
+  }
+}
+
+.aside {
+  color: token('theme.text.muted');
+  height: 100%;
+  width: 100%;
+}
+
+.asideInner {
+  @media (min-width: 64rem) {
+    position: sticky;
+    top: calc(var(--themeshift-components-navbar-min-height) + 1rem);
+  }
+}

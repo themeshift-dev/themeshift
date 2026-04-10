@@ -41,6 +41,15 @@ type PageShellAreas = Pick<
  */
 type PageShellOwnProps = {
   /**
+   * Optional accessible label for the complementary aside landmark.
+   *
+   * Guidance:
+   * Provide this when the aside contains navigation or supporting content that
+   * benefits from a clearer purpose for assistive technology users.
+   */
+  asideLabel?: string;
+
+  /**
    * Whether the shell should render the skip link.
    *
    * Guidance:
@@ -123,6 +132,7 @@ export type PageShellProps = ShellAccessibilityProps &
 export const PageShell = ({
   as,
   aside,
+  asideLabel,
   children,
   divider = false,
   footer,
@@ -189,6 +199,7 @@ export const PageShell = ({
 
         {aside ? (
           <aside
+            aria-label={asideLabel}
             className={classNames(styles.aside, divider && styles.asideDivider)}
           >
             <div className={styles.regionInner}>{aside}</div>
