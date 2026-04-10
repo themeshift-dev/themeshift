@@ -5,6 +5,7 @@ import prettier from 'prettier';
 import ts from 'typescript';
 
 import { apiReferenceOverrides } from './collect-component-data.config.mjs';
+import { syncUiComponentBadges } from './update-ui-component-badge.shared.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
@@ -917,5 +918,6 @@ const componentData = componentNames.map((componentName) =>
 );
 
 await writeFile(outputPath, await createOutput(componentData));
+await syncUiComponentBadges({ rootDir });
 
 console.log(`Collected component data for ${componentData.length} components`);
