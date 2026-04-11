@@ -5,15 +5,21 @@ import {
 } from '@/app/components';
 
 import styles from './StringCopier.module.scss';
+import classNames from 'classnames';
 
 type StringCopierProps = {
+  className?: string;
   language?: SyntaxHighlighterLanguage;
   string: string;
 };
 
-export const StringCopier = ({ language, string }: StringCopierProps) => {
+export const StringCopier = ({
+  className,
+  language,
+  string,
+}: StringCopierProps) => {
   return (
-    <div className={styles.container}>
+    <div className={classNames(styles.container, className)}>
       {language ? (
         <SyntaxHighlighter
           code={string}

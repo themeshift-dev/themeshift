@@ -29,7 +29,10 @@ export const ButtonGuide = () => {
         title="Button"
       >
         <section>
-          <ExampleViewer examples={examples.propHighlights} />
+          <ExampleViewer
+            examples={examples.propHighlights}
+            className={styles.exampleViewer}
+          />
         </section>
 
         <TableOfContents.Marker id="how-to-use" label="How to use" />
@@ -51,14 +54,13 @@ export const ButtonGuide = () => {
             />
           </div>
 
-          <TableOfContents.Marker
-            id="basic-usage"
-            label="Basic usage"
-            level={2}
-          />
+          <TableOfContents.Marker id="use" label="Use" level={2} />
           <div className={styles.group}>
-            <Heading level={4}>Basic usage</Heading>
-            <StringCopier language="jsx" string="<Button>Click me</Button>" />
+            <Heading level={4}>Use</Heading>
+            <ExampleViewer
+              example={examples.basicUsage}
+              className={styles.exampleViewer}
+            />
           </div>
         </section>
 
@@ -88,7 +90,10 @@ export const ButtonGuide = () => {
               Use the <code>size</code> prop to change the size of the button.
             </p>
 
-            <ExampleViewer example={examples.sizes} />
+            <ExampleViewer
+              example={examples.sizes}
+              className={styles.exampleViewer}
+            />
           </div>
 
           <TableOfContents.Marker
@@ -102,7 +107,10 @@ export const ButtonGuide = () => {
               Use the <code>intent</code> prop to render a variant appearance.
             </p>
 
-            <ExampleViewer example={examples.intents} />
+            <ExampleViewer
+              example={examples.intents}
+              className={styles.exampleViewer}
+            />
           </div>
 
           <TableOfContents.Marker
@@ -118,7 +126,25 @@ export const ButtonGuide = () => {
               <code>aria-labelledby</code> to support screen readers;
             </p>
 
-            <ExampleViewer example={examples.icons} />
+            <ExampleViewer
+              example={examples.icons}
+              className={styles.exampleViewer}
+            />
+          </div>
+
+          <TableOfContents.Marker id="examples-busy" label="Busy" level={2} />
+          <div className={styles.example}>
+            <Heading level={4}>Busy</Heading>
+            <p>
+              Use the <code>isBusy</code> flag to render a spinner inside the
+              button to indicate the button is working. This prop also applies{' '}
+              <code>aria-busy</code> for screen readers.
+            </p>
+
+            <ExampleViewer
+              example={examples.busy}
+              className={styles.exampleViewer}
+            />
           </div>
 
           <TableOfContents.Marker
@@ -133,7 +159,10 @@ export const ButtonGuide = () => {
               This is useful for disguising links, badges and other elements as
               a button.
             </p>
-            <ExampleViewer example={examples.asChild} />
+            <ExampleViewer
+              example={examples.asChild}
+              className={styles.exampleViewer}
+            />
           </div>
 
           <TableOfContents.Marker
@@ -147,7 +176,10 @@ export const ButtonGuide = () => {
               Use the <code>className</code> prop to a apply extra class names
               to the button element. This is useful for applying extra styles.
             </p>
-            <ExampleViewer example={examples.extraClassName} />
+            <ExampleViewer
+              example={examples.extraClassName}
+              className={styles.exampleViewer}
+            />
           </div>
 
           <TableOfContents.Marker
@@ -166,7 +198,10 @@ export const ButtonGuide = () => {
               disabled, but still be able to receive click/focus events in order
               to provide feedback to the user.
             </p>
-            <ExampleViewer example={examples.disabled} />
+            <ExampleViewer
+              example={examples.disabled}
+              className={styles.exampleViewer}
+            />
           </div>
         </section>
 

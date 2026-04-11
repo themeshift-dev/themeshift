@@ -398,8 +398,8 @@
   --themeshift-font-weight: 300;
 
   /* Accessibility */
-  --themeshift-accessibility-focus-gap: #E75009;
-  --themeshift-accessibility-focus-ring: #E75009;
+  --themeshift-accessibility-focus-gap: #fff;
+  --themeshift-accessibility-focus-ring: #03A9F4;
 
   /* Theme */
   --themeshift-theme-border: rgba(0, 0, 0, .1);
@@ -448,8 +448,8 @@
 
 :root[data-theme='dark'] {
   /* Accessibility */
-  --themeshift-accessibility-focus-gap: #E75009;
-  --themeshift-accessibility-focus-ring: #E75009;
+  --themeshift-accessibility-focus-gap: #fff;
+  --themeshift-accessibility-focus-ring: #3F51B5;
 
   /* Theme */
   --themeshift-theme-border: rgba(255, 255, 255, .1);

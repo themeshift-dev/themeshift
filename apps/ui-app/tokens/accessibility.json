@@ -9,30 +9,6 @@
         "$type": "dimension",
         "$value": "3px"
       }
-    },
-    "light": {
-      "focus": {
-        "gap": {
-          "$type": "color",
-          "$value": "#E75009"
-        },
-        "ring": {
-          "$type": "color",
-          "$value": "#E75009"
-        }
-      }
-    },
-    "dark": {
-      "focus": {
-        "gap": {
-          "$type": "color",
-          "$value": "#E75009"
-        },
-        "ring": {
-          "$type": "color",
-          "$value": "#E75009"
-        }
-      }
     }
   }
 }

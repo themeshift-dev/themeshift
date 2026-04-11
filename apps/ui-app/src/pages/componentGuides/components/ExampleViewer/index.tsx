@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { CopyButton, ScrollFade, SyntaxHighlighter } from '@/app/components';
 
 import styles from './ExampleViewer.module.scss';
+import classNames from 'classnames';
 
 type SerializablePropValue =
   | boolean
@@ -24,6 +25,7 @@ export type ExampleViewerExample<Props extends ExampleArgs = ExampleArgs> = {
 };
 
 export type ExampleViewerProps<Props extends ExampleArgs = ExampleArgs> = {
+  className?: string;
   example?: ExampleViewerExample<Props>;
   examples?: ExampleViewerExample<Props>[];
 };
@@ -116,6 +118,7 @@ function normalizeExamples<Props extends ExampleArgs>({
 }
 
 export const ExampleViewer = <Props extends ExampleArgs = ExampleArgs>({
+  className,
   example,
   examples,
 }: ExampleViewerProps<Props>) => {
@@ -145,7 +148,7 @@ export const ExampleViewer = <Props extends ExampleArgs = ExampleArgs>({
   const hasMultipleExamples = normalizedExamples.length > 1;
 
   return (
-    <div className={styles.container}>
+    <div className={classNames(styles.container, className)}>
       <div className={styles.preview}>
         {hasMultipleExamples && (
           <div className={styles.examples}>

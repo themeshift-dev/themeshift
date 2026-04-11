@@ -31,7 +31,7 @@
     cursor: not-allowed;
   }
 
-  &:not(:disabled, .visuallyDisabled):active {
+  &:not(:disabled):active {
     transform: translateY(1px);
   }
 }

@@ -1,11 +1,11 @@
 /* auto-generated */
 export const tokenValues = {
-  "accessibility.dark.focus.gap": "#E75009",
-  "accessibility.dark.focus.ring": "#E75009",
+  "accessibility.dark.focus.gap": "#fff",
+  "accessibility.dark.focus.ring": "#3F51B5",
   "accessibility.focus.gapWidth": "2px",
   "accessibility.focus.ringWidth": "3px",
-  "accessibility.light.focus.gap": "#E75009",
-  "accessibility.light.focus.ring": "#E75009",
+  "accessibility.light.focus.gap": "#fff",
+  "accessibility.light.focus.ring": "#03A9F4",
   "color.black": "#000",
   "color.black.10": "rgba(0, 0, 0, .1)",
   "color.black.20": "rgba(0, 0, 0, .2)",

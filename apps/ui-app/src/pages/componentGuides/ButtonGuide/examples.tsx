@@ -3,6 +3,12 @@ import { IconMoon } from '@themeshift/ui/icons/IconMoon';
 
 import styles from './ButtonGuide.module.scss';
 
+export const basicUsage = {
+  code: '<Button>Click me</Button>',
+  label: 'Basic usage',
+  sample: <Button>Click me</Button>,
+};
+
 export const sizes = {
   code: `<>
   <Button size="small">Small</Button>
@@ -91,13 +97,28 @@ export const disabled = {
   ),
 };
 
-export const propHighlights = [
-  {
-    code: '<Button>Click me</Button>',
-    label: 'Basic usage',
-    sample: <Button>Click me</Button>,
-  },
+export const busy = {
+  code: `<>
+  <Button isBusy>Working</Button>
+  <Button isBusy disabled>Working</Button>
+  <Button isBusy visuallyDisabled>Working</Button>
+</>`,
+  label: 'Busy',
+  sample: (
+    <>
+      <Button isBusy>Working</Button>
+      <Button isBusy disabled>
+        Working
+      </Button>
+      <Button isBusy visuallyDisabled>
+        Working
+      </Button>
+    </>
+  ),
+};
 
+export const propHighlights = [
+  basicUsage,
   sizes,
   intents,
 
@@ -132,29 +153,9 @@ export const propHighlights = [
       </>
     ),
   },
-  {
-    code: `<>
-  <Button isBusy size="small">
-    Working
-  </Button>
-  <Button isBusy>Working</Button>
-  <Button isBusy size="large">
-    Working
-  </Button>
-</>`,
-    label: 'Busy',
-    sample: (
-      <>
-        <Button isBusy size="small">
-          Working
-        </Button>
-        <Button isBusy>Working</Button>
-        <Button isBusy size="large">
-          Working
-        </Button>
-      </>
-    ),
-  },
+
+  busy,
+
   {
     code: `<>
   <Button size="small">Small</Button>
