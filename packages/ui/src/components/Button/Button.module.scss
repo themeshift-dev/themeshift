@@ -21,10 +21,6 @@
    */
   text-decoration: none;
 
-  &:not(:last-child) {
-    margin-right: 1rem;
-  }
-
   &:disabled {
     @include button.disabled;
 

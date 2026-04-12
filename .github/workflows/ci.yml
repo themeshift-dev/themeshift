@@ -5,6 +5,11 @@ on:
     branches:
       - develop
       - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - edited
   push:
     branches:
       - develop

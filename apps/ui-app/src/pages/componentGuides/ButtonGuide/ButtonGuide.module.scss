@@ -65,6 +65,17 @@
 }
 
 .buttonGroup {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+
+  @media (max-width: 1520px) {
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+}
+
+.matrixButtonGroup {
   align-items: center;
   display: flex;
   justify-content: center;
