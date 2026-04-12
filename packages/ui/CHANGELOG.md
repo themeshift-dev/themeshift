@@ -1,5 +1,12 @@
 # @themeshift/ui
 
+## [0.4.0](https://github.com/adamhutch/themeshift/compare/ui-v0.3.0...ui-v0.4.0) (2026-04-12)
+
+
+### Features
+
+* **ui-app:** Responsive pass for ButtonGuide page ([9a2e568](https://github.com/adamhutch/themeshift/commit/9a2e5686e1b200723af82cd9b5327696f1a26ce2))
+
 ## [0.3.0](https://github.com/adamhutch/themeshift/compare/ui-v0.2.0...ui-v0.3.0) (2026-04-12)
 
 
