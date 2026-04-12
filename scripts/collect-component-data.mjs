@@ -17,7 +17,7 @@ const outputPath = path.join(
 const packageJsonPath = path.join(rootDir, 'packages/ui/package.json');
 const tsConfigPath = path.join(rootDir, 'packages/ui/tsconfig.build.json');
 const sourceCodeUrlBase =
-  'https://github.com/adamhutch/themeshift/tree/develop/packages/ui/src/components';
+  'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components';
 
 const skippedNativeTypeReferences = new Set([
   'ComponentPropsWithoutRef',

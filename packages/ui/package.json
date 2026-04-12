@@ -5,12 +5,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/adamhutch/themeshift.git",
+    "url": "git@github.com:themeshift-dev/themeshift.git",
     "directory": "packages/ui"
   },
-  "homepage": "https://github.com/adamhutch/themeshift/tree/main/packages/ui",
+  "homepage": "https://github.com/themeshift-dev/themeshift/tree/main/packages/ui",
   "bugs": {
-    "url": "https://github.com/adamhutch/themeshift/issues"
+    "url": "https://github.com/themeshift-dev/themeshift/issues"
   },
   "type": "module",
   "publishConfig": {

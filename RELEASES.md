@@ -128,7 +128,7 @@ Check:
 - the release PR was merged
 - release-please created a GitHub release for the changed package
 - npm trusted publishing is enabled for each public package
-- each npm package trusts `adamhutch/themeshift` and the `release.yml` workflow filename
+- each npm package trusts `themeshift-dev/themeshift` and the `release.yml` workflow filename
 - the package names and npm access are correct
 
 ### Versions look wrong in the release PR

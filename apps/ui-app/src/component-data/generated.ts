@@ -117,7 +117,7 @@ export const componentData = [
     importString: "import { Button } from '@themeshift/ui/components/Button';",
     slug: 'button',
     sourceCodeUrl:
-      'https://github.com/adamhutch/themeshift/tree/develop/packages/ui/src/components/Button',
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Button',
   },
   {
     apiReference: [
@@ -143,7 +143,7 @@ export const componentData = [
       "import { Heading } from '@themeshift/ui/components/Heading';",
     slug: 'heading',
     sourceCodeUrl:
-      'https://github.com/adamhutch/themeshift/tree/develop/packages/ui/src/components/Heading',
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Heading',
   },
   {
     apiReference: [
@@ -177,7 +177,7 @@ export const componentData = [
     importString: "import { Link } from '@themeshift/ui/components/Link';",
     slug: 'link',
     sourceCodeUrl:
-      'https://github.com/adamhutch/themeshift/tree/develop/packages/ui/src/components/Link',
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Link',
   },
   {
     apiReference: [
@@ -320,7 +320,7 @@ export const componentData = [
     importString: "import { Navbar } from '@themeshift/ui/components/Navbar';",
     slug: 'navbar',
     sourceCodeUrl:
-      'https://github.com/adamhutch/themeshift/tree/develop/packages/ui/src/components/Navbar',
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Navbar',
   },
   {
     apiReference: [
@@ -362,7 +362,7 @@ export const componentData = [
       "import { Responsive } from '@themeshift/ui/components/Responsive';",
     slug: 'responsive',
     sourceCodeUrl:
-      'https://github.com/adamhutch/themeshift/tree/develop/packages/ui/src/components/Responsive',
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Responsive',
   },
   {
     apiReference: [
@@ -404,7 +404,7 @@ export const componentData = [
       "import { SkipLink } from '@themeshift/ui/components/SkipLink';",
     slug: 'skiplink',
     sourceCodeUrl:
-      'https://github.com/adamhutch/themeshift/tree/develop/packages/ui/src/components/SkipLink',
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/SkipLink',
   },
   {
     apiReference: [
@@ -430,6 +430,6 @@ export const componentData = [
       "import { Spinner } from '@themeshift/ui/components/Spinner';",
     slug: 'spinner',
     sourceCodeUrl:
-      'https://github.com/adamhutch/themeshift/tree/develop/packages/ui/src/components/Spinner',
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Spinner',
   },
 ] satisfies ComponentData[];

@@ -6,12 +6,12 @@
   "author": "",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/adamhutch/themeshift.git",
+    "url": "git@github.com:themeshift-dev/themeshift.git",
     "directory": "packages/vite-plugin-themeshift"
   },
-  "homepage": "https://github.com/adamhutch/themeshift/tree/main/packages/vite-plugin-themeshift",
+  "homepage": "https://github.com/themeshift-dev/themeshift/tree/main/packages/vite-plugin-themeshift",
   "bugs": {
-    "url": "https://github.com/adamhutch/themeshift/issues"
+    "url": "https://github.com/themeshift-dev/themeshift/issues"
   },
   "type": "module",
   "publishConfig": {

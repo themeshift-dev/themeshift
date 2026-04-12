@@ -15,7 +15,7 @@ Feature branches merge into `develop`. When the current batch of work is ready t
 For a fresh clone, install dependencies and check out `develop`:
 
 ```bash
-git clone git@github.com:adamhutch/themeshift.git
+git clone git@github.com:themeshift-dev/themeshift.git
 cd themeshift
 git fetch origin
 git checkout develop

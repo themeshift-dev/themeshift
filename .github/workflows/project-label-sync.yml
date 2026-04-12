@@ -1,0 +1,347 @@
+name: Project Label Sync
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - reopened
+  projects_v2_item:
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to reconcile against the configured project
+        required: false
+        type: number
+
+permissions:
+  contents: read
+  issues: write
+  repository-projects: read
+
+jobs:
+  sync-labels:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NUMBER: ${{ vars.THEMESHIFT_PROJECT_NUMBER }}
+      PROJECT_OWNER: ${{ vars.THEMESHIFT_PROJECT_OWNER || github.repository_owner }}
+    steps:
+      - name: Sync labels from project fields
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const managedLabelMap = {
+              Priority: {
+                High: 'priority:high',
+                Low: 'priority:low',
+                Medium: 'priority:medium',
+              },
+              Type: {
+                Bug: 'type:bug',
+                Feature: 'type:feature',
+                Task: 'type:task',
+              },
+            };
+
+            const managedPrefixes = ['priority:', 'type:'];
+            const projectNumber = Number.parseInt(process.env.PROJECT_NUMBER ?? '', 10);
+            const projectOwner = process.env.PROJECT_OWNER;
+
+            if (!projectOwner || Number.isNaN(projectNumber)) {
+              core.setFailed(
+                'Missing project configuration. Set THEMESHIFT_PROJECT_OWNER and THEMESHIFT_PROJECT_NUMBER via repository variables.'
+              );
+              return;
+            }
+
+            const projectOwnerFragment = `
+              ... on Organization {
+                login
+              }
+              ... on User {
+                login
+              }
+            `;
+
+            function getFieldSelections(fieldValues) {
+              const selections = {};
+
+              for (const fieldValue of fieldValues ?? []) {
+                const fieldName = fieldValue?.field?.name;
+                const optionName = fieldValue?.name;
+
+                if (!fieldName || !optionName) {
+                  continue;
+                }
+
+                selections[fieldName] = optionName;
+              }
+
+              return selections;
+            }
+
+            async function getProjectItemForIssue({ issueNumber, owner, repo }) {
+              const query = `
+                query GetIssueProjectItem(
+                  $issueNumber: Int!
+                  $owner: String!
+                  $repo: String!
+                ) {
+                  repository(owner: $owner, name: $repo) {
+                    issue(number: $issueNumber) {
+                      number
+                      projectItems(first: 100) {
+                        nodes {
+                          fieldValues(first: 20) {
+                            nodes {
+                              ... on ProjectV2ItemFieldSingleSelectValue {
+                                name
+                                field {
+                                  ... on ProjectV2SingleSelectField {
+                                    name
+                                  }
+                                }
+                              }
+                            }
+                          }
+                          id
+                          project {
+                            number
+                            owner {
+                              ${projectOwnerFragment}
+                            }
+                          }
+                        }
+                      }
+                      repository {
+                        name
+                        owner {
+                          login
+                        }
+                      }
+                    }
+                  }
+                }
+              `;
+
+              const response = await github.graphql(query, {
+                issueNumber,
+                owner,
+                repo,
+              });
+
+              const issue = response.repository?.issue;
+
+              if (!issue) {
+                return null;
+              }
+
+              const projectItem = issue.projectItems?.nodes?.find((item) => {
+                return (
+                  item?.project?.number === projectNumber &&
+                  item?.project?.owner?.login === projectOwner
+                );
+              });
+
+              if (!projectItem) {
+                return null;
+              }
+
+              return {
+                fieldSelections: getFieldSelections(projectItem.fieldValues?.nodes),
+                issueNumber: issue.number,
+                owner: issue.repository.owner.login,
+                repo: issue.repository.name,
+              };
+            }
+
+            async function getIssueFromProjectItem(itemNodeId) {
+              const query = `
+                query GetProjectItem($itemId: ID!) {
+                  node(id: $itemId) {
+                    ... on ProjectV2Item {
+                      fieldValues(first: 20) {
+                        nodes {
+                          ... on ProjectV2ItemFieldSingleSelectValue {
+                            name
+                            field {
+                              ... on ProjectV2SingleSelectField {
+                                name
+                              }
+                            }
+                          }
+                        }
+                      }
+                      project {
+                        number
+                        owner {
+                          ${projectOwnerFragment}
+                        }
+                      }
+                      content {
+                        ... on Issue {
+                          number
+                          repository {
+                            name
+                            owner {
+                              login
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              `;
+
+              const response = await github.graphql(query, {
+                itemId: itemNodeId,
+              });
+
+              const item = response.node;
+
+              if (
+                !item ||
+                item.project?.number !== projectNumber ||
+                item.project?.owner?.login !== projectOwner
+              ) {
+                return null;
+              }
+
+              const issue = item.content;
+
+              if (!issue) {
+                return null;
+              }
+
+              return {
+                fieldSelections: getFieldSelections(item.fieldValues?.nodes),
+                issueNumber: issue.number,
+                owner: issue.repository.owner.login,
+                repo: issue.repository.name,
+              };
+            }
+
+            async function resolveIssueContext() {
+              if (context.eventName === 'issues') {
+                return getProjectItemForIssue({
+                  issueNumber: context.payload.issue?.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                });
+              }
+
+              if (context.eventName === 'projects_v2_item') {
+                const itemNodeId =
+                  context.payload.projects_v2_item?.node_id ??
+                  context.payload.projects_v2_item?.id;
+
+                if (!itemNodeId) {
+                  core.info('No project item node id in payload. Skipping.');
+                  return null;
+                }
+
+                return getIssueFromProjectItem(itemNodeId);
+              }
+
+              if (context.eventName === 'workflow_dispatch') {
+                const inputIssueNumber = context.payload.inputs?.issue_number;
+
+                if (!inputIssueNumber) {
+                  core.setFailed(
+                    'workflow_dispatch requires the issue_number input.'
+                  );
+                  return null;
+                }
+
+                return getProjectItemForIssue({
+                  issueNumber: Number.parseInt(inputIssueNumber, 10),
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                });
+              }
+
+              core.info(`Unsupported event ${context.eventName}. Skipping.`);
+              return null;
+            }
+
+            function getDesiredLabels(fieldSelections) {
+              const desired = [];
+
+              for (const [fieldName, options] of Object.entries(managedLabelMap)) {
+                const selection = fieldSelections[fieldName];
+
+                if (!selection) {
+                  continue;
+                }
+
+                const label = options[selection];
+
+                if (label) {
+                  desired.push(label);
+                } else {
+                  core.info(
+                    `No managed label mapping for ${fieldName}=${selection}.`
+                  );
+                }
+              }
+
+              return desired;
+            }
+
+            const issueContext = await resolveIssueContext();
+
+            if (!issueContext) {
+              core.info('Issue is not on the configured project. No labels changed.');
+              return;
+            }
+
+            const { fieldSelections, issueNumber, owner, repo } = issueContext;
+            const desiredLabels = getDesiredLabels(fieldSelections);
+
+            core.info(
+              `Resolved project fields for ${owner}/${repo}#${issueNumber}: ${JSON.stringify(fieldSelections)}`
+            );
+
+            const existingLabelsResponse = await github.rest.issues.listLabelsOnIssue({
+              issue_number: issueNumber,
+              owner,
+              per_page: 100,
+              repo,
+            });
+
+            const existingLabels = existingLabelsResponse.data.map((label) => label.name);
+            const managedExistingLabels = existingLabels.filter((label) =>
+              managedPrefixes.some((prefix) => label.startsWith(prefix))
+            );
+
+            const labelsToRemove = managedExistingLabels.filter(
+              (label) => !desiredLabels.includes(label)
+            );
+            const labelsToAdd = desiredLabels.filter(
+              (label) => !existingLabels.includes(label)
+            );
+
+            core.info(`Existing managed labels: ${managedExistingLabels.join(', ') || '(none)'}`);
+            core.info(`Labels to add: ${labelsToAdd.join(', ') || '(none)'}`);
+            core.info(`Labels to remove: ${labelsToRemove.join(', ') || '(none)'}`);
+
+            for (const label of labelsToRemove) {
+              await github.rest.issues.removeLabel({
+                issue_number: issueNumber,
+                name: label,
+                owner,
+                repo,
+              });
+            }
+
+            if (labelsToAdd.length > 0) {
+              await github.rest.issues.addLabels({
+                issue_number: issueNumber,
+                labels: labelsToAdd,
+                owner,
+                repo,
+              });
+            }
+
+            core.info('Project label sync complete.');
