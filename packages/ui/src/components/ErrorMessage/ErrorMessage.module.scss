@@ -1,0 +1,8 @@
+@use '@/sass/mixins/typography';
+
+.container {
+  @include typography.style('caption.default');
+
+  color: token('components.button.intents.destructive.bg');
+  margin: 0;
+}

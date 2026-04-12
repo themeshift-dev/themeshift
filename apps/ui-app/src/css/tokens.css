@@ -324,6 +324,29 @@
   --themeshift-components-skiplink-x: 1rem;
   --themeshift-components-skiplink-y: 1rem;
   --themeshift-components-syntax-highlighter-font: 'Sometype Mono Variable', monospace;
+  --themeshift-components-toggle-switch-layout-content-gap: 0.25rem;
+  --themeshift-components-toggle-switch-layout-gap: 0.75rem;
+  --themeshift-components-toggle-switch-sizes-large-border-radius: 2rem;
+  --themeshift-components-toggle-switch-sizes-large-height: 2rem;
+  --themeshift-components-toggle-switch-sizes-large-icon-size: 1.25rem;
+  --themeshift-components-toggle-switch-sizes-large-padding: 0;
+  --themeshift-components-toggle-switch-sizes-large-thumb-size: 2rem;
+  --themeshift-components-toggle-switch-sizes-large-thumb-translate: 2rem;
+  --themeshift-components-toggle-switch-sizes-large-width: 4rem;
+  --themeshift-components-toggle-switch-sizes-medium-border-radius: 2rem;
+  --themeshift-components-toggle-switch-sizes-medium-height: 1.75rem;
+  --themeshift-components-toggle-switch-sizes-medium-icon-size: 1rem;
+  --themeshift-components-toggle-switch-sizes-medium-padding: 0;
+  --themeshift-components-toggle-switch-sizes-medium-thumb-size: 1.75rem;
+  --themeshift-components-toggle-switch-sizes-medium-thumb-translate: 1.75rem;
+  --themeshift-components-toggle-switch-sizes-medium-width: 3.5rem;
+  --themeshift-components-toggle-switch-sizes-small-border-radius: 2rem;
+  --themeshift-components-toggle-switch-sizes-small-height: 1.5rem;
+  --themeshift-components-toggle-switch-sizes-small-icon-size: 0.75rem;
+  --themeshift-components-toggle-switch-sizes-small-padding: 0;
+  --themeshift-components-toggle-switch-sizes-small-thumb-size: 1.5rem;
+  --themeshift-components-toggle-switch-sizes-small-thumb-translate: 1.5rem;
+  --themeshift-components-toggle-switch-sizes-small-width: 3rem;
 
   /* Other */
   --themeshift-grid-columns-desktop: 12;
@@ -448,6 +471,18 @@
   --themeshift-components-syntax-highlighter-punctuation: #546E7A;
   --themeshift-components-syntax-highlighter-string: #2E7D32;
   --themeshift-components-syntax-highlighter-tag: #303F9F;
+  --themeshift-components-toggle-switch-disabled-thumb: rgba(0, 0, 0, .2);
+  --themeshift-components-toggle-switch-disabled-track-bg: #F5F5F5;
+  --themeshift-components-toggle-switch-disabled-track-border: rgba(0, 0, 0, .1);
+  --themeshift-components-toggle-switch-intents-constructive-thumb: #66BB6A;
+  --themeshift-components-toggle-switch-intents-destructive-thumb: #EF5350;
+  --themeshift-components-toggle-switch-intents-primary-thumb: #5C6BC0;
+  --themeshift-components-toggle-switch-intents-secondary-thumb: #BDBDBD;
+  --themeshift-components-toggle-switch-intents-tertiary-thumb: #3949AB;
+  --themeshift-components-toggle-switch-invalid-border: #EF5350;
+  --themeshift-components-toggle-switch-track-bg: #EEEEEE;
+  --themeshift-components-toggle-switch-track-border: rgba(0, 0, 0, .2);
+  --themeshift-components-toggle-switch-track-icon: rgba(0, 0, 0, .5);
 }
 
 :root[data-theme='dark'] {
@@ -499,4 +534,16 @@
   --themeshift-components-syntax-highlighter-punctuation: #90A4AE;
   --themeshift-components-syntax-highlighter-string: #81C784;
   --themeshift-components-syntax-highlighter-tag: #7986CB;
+  --themeshift-components-toggle-switch-disabled-thumb: rgba(255, 255, 255, .3);
+  --themeshift-components-toggle-switch-disabled-track-bg: rgba(255, 255, 255, .1);
+  --themeshift-components-toggle-switch-disabled-track-border: rgba(255, 255, 255, .1);
+  --themeshift-components-toggle-switch-intents-constructive-thumb: #66BB6A;
+  --themeshift-components-toggle-switch-intents-destructive-thumb: #EF5350;
+  --themeshift-components-toggle-switch-intents-primary-thumb: #5C6BC0;
+  --themeshift-components-toggle-switch-intents-secondary-thumb: #BDBDBD;
+  --themeshift-components-toggle-switch-intents-tertiary-thumb: #29B6F6;
+  --themeshift-components-toggle-switch-invalid-border: #EF5350;
+  --themeshift-components-toggle-switch-track-bg: rgba(255, 255, 255, .1);
+  --themeshift-components-toggle-switch-track-border: rgba(255, 255, 255, .2);
+  --themeshift-components-toggle-switch-track-icon: rgba(255, 255, 255, .7);
 }

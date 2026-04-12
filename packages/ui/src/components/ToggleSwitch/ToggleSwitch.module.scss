@@ -1,0 +1,338 @@
+@use '@/sass/mixins/accessibility';
+@use '@/sass/mixins/typography';
+
+.container {
+  align-items: center;
+  color: token('theme.text.base');
+  display: inline-flex;
+  gap: token('components.toggleSwitch.layout.gap');
+}
+
+.controlLabel {
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.input {
+  block-size: 100%;
+  cursor: inherit;
+  inline-size: 100%;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.control {
+  display: inline-flex;
+}
+
+.input:focus-visible + .control .track {
+  @include accessibility.focusRing;
+}
+
+.track {
+  align-items: center;
+  background: token('components.toggleSwitch.track.bg');
+  border-radius: token('components.toggleSwitch.sizes.medium.borderRadius');
+  box-shadow: none;
+  display: inline-flex;
+  block-size: token('components.toggleSwitch.sizes.medium.height');
+  inline-size: token('components.toggleSwitch.sizes.medium.width');
+  justify-content: center;
+  padding: token('components.toggleSwitch.sizes.medium.padding');
+  position: relative;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.thumb {
+  background: token('components.toggleSwitch.intents.primary.thumb');
+  block-size: token('components.toggleSwitch.sizes.medium.thumbSize');
+  border-radius: token('components.toggleSwitch.sizes.medium.borderRadius');
+  inline-size: token('components.toggleSwitch.sizes.medium.thumbSize');
+  inset-inline-start: token('components.toggleSwitch.sizes.medium.padding');
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.icon {
+  align-items: center;
+  color: token('components.toggleSwitch.track.icon');
+  display: inline-flex;
+  block-size: token('components.toggleSwitch.sizes.medium.iconSize');
+  inline-size: token('components.toggleSwitch.sizes.medium.iconSize');
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  > svg {
+    block-size: 1em;
+    inline-size: 1em;
+  }
+}
+
+.iconOn {
+  inset-inline-start: calc(
+    (
+        token('components.toggleSwitch.sizes.medium.height') - token(
+            'components.toggleSwitch.sizes.medium.iconSize'
+          )
+      ) /
+      2
+  );
+}
+
+.iconOff {
+  inset-inline-end: calc(
+    (
+        token('components.toggleSwitch.sizes.medium.height') - token(
+            'components.toggleSwitch.sizes.medium.iconSize'
+          )
+      ) /
+      2
+  );
+}
+
+.content {
+  display: grid;
+  gap: token('components.toggleSwitch.layout.contentGap');
+}
+
+.description {
+  @include typography.style('caption.default');
+
+  color: token('theme.text.muted');
+  margin: 0;
+}
+
+.checked {
+  .thumb {
+    transform: translate(
+      token('components.toggleSwitch.sizes.medium.thumbTranslate'),
+      -50%
+    );
+  }
+}
+
+.disabled {
+  .controlLabel {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  .track {
+    background: token('components.toggleSwitch.disabled.trackBg');
+  }
+
+  .thumb {
+    background: token('components.toggleSwitch.disabled.thumb');
+  }
+}
+
+.readOnly {
+  .controlLabel {
+    cursor: default;
+  }
+}
+
+.invalid {
+  .track {
+    box-shadow: inset 0 0 0 1px token('components.toggleSwitch.invalid.border');
+  }
+}
+
+.small {
+  .track {
+    block-size: token('components.toggleSwitch.sizes.small.height');
+    border-radius: token('components.toggleSwitch.sizes.small.borderRadius');
+    inline-size: token('components.toggleSwitch.sizes.small.width');
+    padding: token('components.toggleSwitch.sizes.small.padding');
+  }
+
+  .thumb {
+    block-size: token('components.toggleSwitch.sizes.small.thumbSize');
+    border-radius: token('components.toggleSwitch.sizes.small.borderRadius');
+    inline-size: token('components.toggleSwitch.sizes.small.thumbSize');
+    inset-inline-start: token('components.toggleSwitch.sizes.small.padding');
+  }
+
+  .icon {
+    block-size: token('components.toggleSwitch.sizes.small.iconSize');
+    inline-size: token('components.toggleSwitch.sizes.small.iconSize');
+  }
+
+  .iconOn {
+    inset-inline-start: calc(
+      (
+          token('components.toggleSwitch.sizes.small.height') - token(
+              'components.toggleSwitch.sizes.small.iconSize'
+            )
+        ) /
+        2
+    );
+  }
+
+  .iconOff {
+    inset-inline-end: calc(
+      (
+          token('components.toggleSwitch.sizes.small.height') - token(
+              'components.toggleSwitch.sizes.small.iconSize'
+            )
+        ) /
+        2
+    );
+  }
+
+  &.checked {
+    .thumb {
+      transform: translate(
+        token('components.toggleSwitch.sizes.small.thumbTranslate'),
+        -50%
+      );
+    }
+  }
+}
+
+.medium {
+  .track {
+    block-size: token('components.toggleSwitch.sizes.medium.height');
+    border-radius: token('components.toggleSwitch.sizes.medium.borderRadius');
+    inline-size: token('components.toggleSwitch.sizes.medium.width');
+    padding: token('components.toggleSwitch.sizes.medium.padding');
+  }
+
+  .thumb {
+    block-size: token('components.toggleSwitch.sizes.medium.thumbSize');
+    border-radius: token('components.toggleSwitch.sizes.medium.borderRadius');
+    inline-size: token('components.toggleSwitch.sizes.medium.thumbSize');
+    inset-inline-start: token('components.toggleSwitch.sizes.medium.padding');
+  }
+
+  .icon {
+    block-size: token('components.toggleSwitch.sizes.medium.iconSize');
+    inline-size: token('components.toggleSwitch.sizes.medium.iconSize');
+  }
+
+  .iconOn {
+    inset-inline-start: calc(
+      (
+          token('components.toggleSwitch.sizes.medium.height') - token(
+              'components.toggleSwitch.sizes.medium.iconSize'
+            )
+        ) /
+        2
+    );
+  }
+
+  .iconOff {
+    inset-inline-end: calc(
+      (
+          token('components.toggleSwitch.sizes.medium.height') - token(
+              'components.toggleSwitch.sizes.medium.iconSize'
+            )
+        ) /
+        2
+    );
+  }
+
+  &.checked {
+    .thumb {
+      transform: translate(
+        token('components.toggleSwitch.sizes.medium.thumbTranslate'),
+        -50%
+      );
+    }
+  }
+}
+
+.large {
+  .track {
+    block-size: token('components.toggleSwitch.sizes.large.height');
+    border-radius: token('components.toggleSwitch.sizes.large.borderRadius');
+    inline-size: token('components.toggleSwitch.sizes.large.width');
+    padding: token('components.toggleSwitch.sizes.large.padding');
+  }
+
+  .thumb {
+    block-size: token('components.toggleSwitch.sizes.large.thumbSize');
+    border-radius: token('components.toggleSwitch.sizes.large.borderRadius');
+    inline-size: token('components.toggleSwitch.sizes.large.thumbSize');
+    inset-inline-start: token('components.toggleSwitch.sizes.large.padding');
+  }
+
+  .icon {
+    block-size: token('components.toggleSwitch.sizes.large.iconSize');
+    inline-size: token('components.toggleSwitch.sizes.large.iconSize');
+  }
+
+  .iconOn {
+    inset-inline-start: calc(
+      (
+          token('components.toggleSwitch.sizes.large.height') - token(
+              'components.toggleSwitch.sizes.large.iconSize'
+            )
+        ) /
+        2
+    );
+  }
+
+  .iconOff {
+    inset-inline-end: calc(
+      (
+          token('components.toggleSwitch.sizes.large.height') - token(
+              'components.toggleSwitch.sizes.large.iconSize'
+            )
+        ) /
+        2
+    );
+  }
+
+  &.checked {
+    .thumb {
+      transform: translate(
+        token('components.toggleSwitch.sizes.large.thumbTranslate'),
+        -50%
+      );
+    }
+  }
+}
+
+.primary {
+  .thumb {
+    background: token('components.toggleSwitch.intents.primary.thumb');
+  }
+}
+
+.secondary {
+  .thumb {
+    background: token('components.toggleSwitch.intents.secondary.thumb');
+  }
+}
+
+.tertiary {
+  .thumb {
+    background: token('components.toggleSwitch.intents.tertiary.thumb');
+  }
+}
+
+.constructive {
+  .thumb {
+    background: token('components.toggleSwitch.intents.constructive.thumb');
+  }
+}
+
+.destructive {
+  .thumb {
+    background: token('components.toggleSwitch.intents.destructive.thumb');
+  }
+}

@@ -163,8 +163,17 @@ export default defineConfig({
         'components/Button/index': fileURLToPath(
           new URL('./src/entrypoints/components/Button.ts', import.meta.url)
         ),
+        'components/ErrorMessage/index': fileURLToPath(
+          new URL(
+            './src/entrypoints/components/ErrorMessage.ts',
+            import.meta.url
+          )
+        ),
         'components/Heading/index': fileURLToPath(
           new URL('./src/entrypoints/components/Heading.ts', import.meta.url)
+        ),
+        'components/Label/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Label.ts', import.meta.url)
         ),
         'components/Link/index': fileURLToPath(
           new URL('./src/entrypoints/components/Link.ts', import.meta.url)
@@ -180,6 +189,12 @@ export default defineConfig({
         ),
         'components/Spinner/index': fileURLToPath(
           new URL('./src/entrypoints/components/Spinner.ts', import.meta.url)
+        ),
+        'components/ToggleSwitch/index': fileURLToPath(
+          new URL(
+            './src/entrypoints/components/ToggleSwitch.ts',
+            import.meta.url
+          )
         ),
         'templates/index': fileURLToPath(
           new URL('./src/entrypoints/templates/index.ts', import.meta.url)
@@ -210,12 +225,6 @@ export default defineConfig({
         ),
         'icons/index': fileURLToPath(
           new URL('./src/entrypoints/icons.ts', import.meta.url)
-        ),
-        'icons/IconMoon': fileURLToPath(
-          new URL('./src/icons/IconMoon.tsx', import.meta.url)
-        ),
-        'icons/IconSun': fileURLToPath(
-          new URL('./src/icons/IconSun.tsx', import.meta.url)
         ),
         'contexts/index': fileURLToPath(
           new URL('./src/entrypoints/contexts.ts', import.meta.url)

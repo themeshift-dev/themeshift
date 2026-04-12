@@ -1,0 +1,8 @@
+@use '@/sass/mixins/typography';
+
+.container {
+  @include typography.style('body.strong');
+
+  color: token('theme.text.base');
+  display: inline-flex;
+}
