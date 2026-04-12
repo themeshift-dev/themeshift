@@ -12,7 +12,7 @@ export type StackProps = {
 };
 
 export const Stack = ({
-  align,
+  align = 'center',
   children,
   className,
   gap = '1rem',

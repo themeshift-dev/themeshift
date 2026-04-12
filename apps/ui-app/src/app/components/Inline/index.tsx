@@ -17,7 +17,7 @@ export const Inline = ({
   children,
   className,
   gap = '1rem',
-  justify,
+  justify = 'center',
   wrap = true,
 }: InlineProps) => {
   const style = {

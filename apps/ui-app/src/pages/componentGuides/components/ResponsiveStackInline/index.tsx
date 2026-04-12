@@ -18,6 +18,7 @@ type LayoutBreakpoint = Breakpoint | `(${string})`;
 
 export type ResponsiveStackInlineProps = {
   children?: ReactNode;
+  className?: string;
   from?: LayoutBreakpoint;
   inlineProps?: Omit<InlineProps, 'children'>;
   stackProps?: Omit<StackProps, 'children'>;
@@ -31,6 +32,7 @@ const getMatches = (query: string) =>
 
 export const ResponsiveStackInline = ({
   children,
+  className,
   from = 'tablet',
   inlineProps,
   stackProps,
@@ -55,8 +57,12 @@ export const ResponsiveStackInline = ({
   }, [query]);
 
   return isInline ? (
-    <Inline {...inlineProps}>{children}</Inline>
+    <Inline className={className} {...inlineProps}>
+      {children}
+    </Inline>
   ) : (
-    <Stack {...stackProps}>{children}</Stack>
+    <Stack className={className} {...stackProps}>
+      {children}
+    </Stack>
   );
 };

@@ -18,7 +18,11 @@ export const sizes = {
 </>`,
   label: 'Sizes',
   sample: (
-    <ResponsiveStackInline from="desktop">
+    <ResponsiveStackInline
+      from="desktop"
+      inlineProps={{ justify: 'center' }}
+      stackProps={{ align: 'center' }}
+    >
       <Button size="small">Small</Button>
       <Button>Medium</Button>
       <Button size="large">Large</Button>
@@ -36,7 +40,11 @@ export const intents = {
 </>`,
   label: 'Intents',
   sample: (
-    <ResponsiveStackInline from="desktop">
+    <ResponsiveStackInline
+      from="desktop"
+      inlineProps={{ justify: 'center' }}
+      stackProps={{ align: 'center' }}
+    >
       <Button>Primary</Button>
       <Button intent="secondary">Secondary</Button>
       <Button intent="tertiary">Tertiary</Button>
@@ -54,7 +62,11 @@ export const icons = {
 </>`,
   label: 'Icons',
   sample: (
-    <ResponsiveStackInline from="desktop">
+    <ResponsiveStackInline
+      from="desktop"
+      inlineProps={{ justify: 'center' }}
+      stackProps={{ align: 'center' }}
+    >
       <Button startIcon={<IconMoon aria-hidden />}>Start Icon</Button>
       <Button aria-label="Toggle theme" icon={<IconMoon aria-hidden />} />
       <Button endIcon={<IconMoon aria-hidden />}>End icon</Button>
@@ -91,7 +103,11 @@ export const disabled = {
 </>`,
   label: 'Disabled',
   sample: (
-    <ResponsiveStackInline from="desktop">
+    <ResponsiveStackInline
+      from="desktop"
+      inlineProps={{ justify: 'center' }}
+      stackProps={{ align: 'center' }}
+    >
       <Button disabled>Disabled</Button>
       <Button visuallyDisabled>Visually disabled</Button>
     </ResponsiveStackInline>
@@ -106,7 +122,11 @@ export const busy = {
 </>`,
   label: 'Busy',
   sample: (
-    <ResponsiveStackInline from="desktop">
+    <ResponsiveStackInline
+      from="desktop"
+      inlineProps={{ justify: 'center' }}
+      stackProps={{ align: 'center' }}
+    >
       <Button isBusy>Working</Button>
       <Button isBusy disabled>
         Working
@@ -118,225 +138,4 @@ export const busy = {
   ),
 };
 
-export const propHighlights = [
-  basicUsage,
-  sizes,
-  intents,
-
-  {
-    code: `<>
-  <Button
-    size="small"
-    aria-label="Toggle theme"
-    icon={<IconMoon size={12} aria-hidden />}
-  />
-  <Button aria-label="Toggle theme" icon={<IconMoon aria-hidden />} />
-  <Button
-    size="large"
-    aria-label="Toggle theme"
-    icon={<IconMoon size={20} aria-hidden />}
-  />
-</>`,
-    label: 'Icon',
-    sample: (
-      <ResponsiveStackInline from="desktop">
-        <Button
-          size="small"
-          aria-label="Toggle theme"
-          icon={<IconMoon size={12} aria-hidden />}
-        />
-        <Button aria-label="Toggle theme" icon={<IconMoon aria-hidden />} />
-        <Button
-          size="large"
-          aria-label="Toggle theme"
-          icon={<IconMoon size={20} aria-hidden />}
-        />
-      </ResponsiveStackInline>
-    ),
-  },
-
-  busy,
-
-  {
-    code: `<>
-  <Button size="small">Small</Button>
-  <Button>Medium</Button>
-  <Button size="large">Large</Button>
-
-  <Button disabled size="small">
-    Small
-  </Button>
-  <Button disabled>Medium</Button>
-  <Button disabled size="large">
-    Large
-  </Button>
-
-  <Button size="small" isBusy>
-    Small
-  </Button>
-  <Button isBusy>Medium</Button>
-  <Button size="large" isBusy>
-    Large
-  </Button>
-
-  <Button disabled size="small" isBusy>
-    Small
-  </Button>
-  <Button disabled isBusy>
-    Medium
-  </Button>
-  <Button disabled size="large" isBusy>
-    Large
-  </Button>
-
-
-  <Button>Primary</Button>
-  <Button intent="secondary">Secondary</Button>
-  <Button intent="tertiary">Tertiary</Button>
-  <Button intent="constructive">Constructive</Button>
-  <Button intent="destructive">Destructive</Button>
-
-  <Button disabled>Primary</Button>
-  <Button disabled intent="secondary">
-    Secondary
-  </Button>
-  <Button disabled intent="tertiary">
-    Tertiary
-  </Button>
-  <Button disabled intent="constructive">
-    Constructive
-  </Button>
-  <Button disabled intent="destructive">
-    Destructive
-  </Button>
-
-
-  <Button isBusy>Primary</Button>
-  <Button intent="secondary" isBusy>
-    Secondary
-  </Button>
-  <Button intent="tertiary" isBusy>
-    Tertiary
-  </Button>
-  <Button intent="constructive" isBusy>
-    Constructive
-  </Button>
-  <Button intent="destructive" isBusy>
-    Destructive
-  </Button>
-
-
-  <Button disabled isBusy>
-    Primary
-  </Button>
-  <Button disabled intent="secondary" isBusy>
-    Secondary
-  </Button>
-  <Button disabled intent="tertiary" isBusy>
-    Tertiary
-  </Button>
-  <Button disabled intent="constructive" isBusy>
-    Constructive
-  </Button>
-  <Button disabled intent="destructive" isBusy>
-    Destructive
-  </Button>
-</>`,
-    label: 'Matrix',
-    sample: (
-      <>
-        <div className={styles.matrixButtonGroup}>
-          <Button size="small">Small</Button>
-          <Button>Medium</Button>
-          <Button size="large">Large</Button>
-        </div>
-        <div className={styles.matrixButtonGroup}>
-          <Button disabled size="small">
-            Small
-          </Button>
-          <Button disabled>Medium</Button>
-          <Button disabled size="large">
-            Large
-          </Button>
-        </div>
-
-        <div className={styles.matrixButtonGroup}>
-          <Button size="small" isBusy>
-            Small
-          </Button>
-          <Button isBusy>Medium</Button>
-          <Button size="large" isBusy>
-            Large
-          </Button>
-        </div>
-        <div className={styles.matrixButtonGroup}>
-          <Button disabled size="small" isBusy>
-            Small
-          </Button>
-          <Button disabled isBusy>
-            Medium
-          </Button>
-          <Button disabled size="large" isBusy>
-            Large
-          </Button>
-        </div>
-
-        <div className={styles.matrixButtonGroup}>
-          <Button>Primary</Button>
-          <Button intent="secondary">Secondary</Button>
-          <Button intent="tertiary">Tertiary</Button>
-          <Button intent="constructive">Constructive</Button>
-          <Button intent="destructive">Destructive</Button>
-        </div>
-        <div className={styles.matrixButtonGroup}>
-          <Button disabled>Primary</Button>
-          <Button disabled intent="secondary">
-            Secondary
-          </Button>
-          <Button disabled intent="tertiary">
-            Tertiary
-          </Button>
-          <Button disabled intent="constructive">
-            Constructive
-          </Button>
-          <Button disabled intent="destructive">
-            Destructive
-          </Button>
-        </div>
-
-        <div className={styles.matrixButtonGroup}>
-          <Button isBusy>Primary</Button>
-          <Button intent="secondary" isBusy>
-            Secondary
-          </Button>
-          <Button intent="tertiary" isBusy>
-            Tertiary
-          </Button>
-          <Button intent="constructive" isBusy>
-            Constructive
-          </Button>
-          <Button intent="destructive" isBusy>
-            Destructive
-          </Button>
-        </div>
-        <div className={styles.matrixButtonGroup}>
-          <Button disabled isBusy>
-            Primary
-          </Button>
-          <Button disabled intent="secondary" isBusy>
-            Secondary
-          </Button>
-          <Button disabled intent="tertiary" isBusy>
-            Tertiary
-          </Button>
-          <Button disabled intent="constructive" isBusy>
-            Constructive
-          </Button>
-          <Button disabled intent="destructive" isBusy>
-            Destructive
-          </Button>
-        </div>
-      </>
-    ),
-  },
-];
+export const propHighlights = [basicUsage, sizes, intents, icons, busy];

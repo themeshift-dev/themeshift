@@ -26,6 +26,7 @@ export type ExampleViewerExample<Props extends ExampleArgs = ExampleArgs> = {
 
 export type ExampleViewerProps<Props extends ExampleArgs = ExampleArgs> = {
   className?: string;
+  defaultCodeExpanded?: boolean;
   example?: ExampleViewerExample<Props>;
   examples?: ExampleViewerExample<Props>[];
 };
@@ -119,6 +120,7 @@ function normalizeExamples<Props extends ExampleArgs>({
 
 export const ExampleViewer = <Props extends ExampleArgs = ExampleArgs>({
   className,
+  defaultCodeExpanded = false,
   example,
   examples,
 }: ExampleViewerProps<Props>) => {
@@ -129,7 +131,7 @@ export const ExampleViewer = <Props extends ExampleArgs = ExampleArgs>({
   const [activeExample, setActiveExample] = useState(
     normalizedExamples[0]?.label
   );
-  const [isCodeExpanded, setIsCodeExpanded] = useState(false);
+  const [isCodeExpanded, setIsCodeExpanded] = useState(defaultCodeExpanded);
 
   const currentExample = useMemo(
     () =>

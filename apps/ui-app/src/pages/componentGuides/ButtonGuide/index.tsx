@@ -71,6 +71,17 @@ export const ButtonGuide = () => {
           <StringCopier
             language="jsx"
             string={component?.importString ?? buttonFallbackImport}
+            className={styles.importString}
+          />
+
+          <p className={styles.stepText}>
+            Import base styles (this should be imported globally, usually inside
+            of <code>main.tsx</code>
+          </p>
+
+          <StringCopier
+            language="jsx"
+            string="import '@themeshift/ui/css/base.css';"
           />
         </StepCard>
       </div>
@@ -83,6 +94,7 @@ export const ButtonGuide = () => {
         <ExampleViewer
           example={examples.basicUsage}
           className={styles.stepExampleViewer}
+          defaultCodeExpanded={true}
         />
       </StepCard>
     </div>
@@ -244,12 +256,12 @@ export const ButtonGuide = () => {
     </div>
   );
 
-  const howToUseSection = {
+  const quickStartSection = {
     content: howToUseContent,
-    id: 'how-to-use',
+    id: 'quick-start',
     intro:
       'Get a button onto the page fast, then branch out into the variants and patterns below.',
-    title: 'How to use',
+    title: 'Quick start',
   } satisfies ComponentGuideSection;
 
   const propsGuideSection = {
@@ -290,7 +302,7 @@ export const ButtonGuide = () => {
         description="Implementation guidance, API details, and copy-paste examples for building with Button."
         eyebrow="Button"
         examples={examplesSection}
-        howToUse={howToUseSection}
+        howToUse={quickStartSection}
         intro={intro}
         propsSection={propsGuideSection}
         toc={<TableOfContents.Nav />}
