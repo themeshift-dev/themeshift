@@ -1,5 +1,13 @@
 # @themeshift/ui
 
+## [0.3.0](https://github.com/adamhutch/themeshift/compare/ui-v0.2.0...ui-v0.3.0) (2026-04-12)
+
+
+### Features
+
+* **ui-app:** Total design pass on the ButtonGuide page. Refactors co… ([00d243a](https://github.com/adamhutch/themeshift/commit/00d243a32aaa8c28f264f51af1835f0c49c2a612))
+* **ui-app:** Total design pass on the ButtonGuide page. Refactors commonly used props from ButtonGuide into ComponentGuide ([031f47d](https://github.com/adamhutch/themeshift/commit/031f47d0f33acb18408e7fa84e02a67d525c1ae5))
+
 ## [0.2.0](https://github.com/adamhutch/themeshift/compare/ui-v0.1.14...ui-v0.2.0) (2026-04-10)
 
 
