@@ -43,8 +43,11 @@ $compactMinHeight: 4rem;
 }
 
 .content {
-  margin-top: 2.5rem;
   padding: 1rem;
+
+  &.multipleExamples {
+    margin-top: 2.5rem;
+  }
 }
 
 .code {

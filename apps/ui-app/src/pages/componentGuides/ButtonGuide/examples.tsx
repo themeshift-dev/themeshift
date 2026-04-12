@@ -2,6 +2,7 @@ import { Button } from '@themeshift/ui/components/Button';
 import { IconMoon } from '@themeshift/ui/icons/IconMoon';
 
 import styles from './ButtonGuide.module.scss';
+import { ResponsiveStackInline } from '../components';
 
 export const basicUsage = {
   code: '<Button>Click me</Button>',
@@ -17,11 +18,11 @@ export const sizes = {
 </>`,
   label: 'Sizes',
   sample: (
-    <>
+    <ResponsiveStackInline from="desktop">
       <Button size="small">Small</Button>
       <Button>Medium</Button>
       <Button size="large">Large</Button>
-    </>
+    </ResponsiveStackInline>
   ),
 };
 
@@ -35,13 +36,13 @@ export const intents = {
 </>`,
   label: 'Intents',
   sample: (
-    <>
+    <ResponsiveStackInline from="desktop">
       <Button>Primary</Button>
       <Button intent="secondary">Secondary</Button>
       <Button intent="tertiary">Tertiary</Button>
       <Button intent="constructive">Constructive</Button>
       <Button intent="destructive">Destructive</Button>
-    </>
+    </ResponsiveStackInline>
   ),
 };
 
@@ -53,11 +54,11 @@ export const icons = {
 </>`,
   label: 'Icons',
   sample: (
-    <>
+    <ResponsiveStackInline from="desktop">
       <Button startIcon={<IconMoon aria-hidden />}>Start Icon</Button>
       <Button aria-label="Toggle theme" icon={<IconMoon aria-hidden />} />
       <Button endIcon={<IconMoon aria-hidden />}>End icon</Button>
-    </>
+    </ResponsiveStackInline>
   ),
 };
 
@@ -90,10 +91,10 @@ export const disabled = {
 </>`,
   label: 'Disabled',
   sample: (
-    <>
+    <ResponsiveStackInline from="desktop">
       <Button disabled>Disabled</Button>
       <Button visuallyDisabled>Visually disabled</Button>
-    </>
+    </ResponsiveStackInline>
   ),
 };
 
@@ -105,7 +106,7 @@ export const busy = {
 </>`,
   label: 'Busy',
   sample: (
-    <>
+    <ResponsiveStackInline from="desktop">
       <Button isBusy>Working</Button>
       <Button isBusy disabled>
         Working
@@ -113,7 +114,7 @@ export const busy = {
       <Button isBusy visuallyDisabled>
         Working
       </Button>
-    </>
+    </ResponsiveStackInline>
   ),
 };
 
@@ -138,7 +139,7 @@ export const propHighlights = [
 </>`,
     label: 'Icon',
     sample: (
-      <>
+      <ResponsiveStackInline from="desktop">
         <Button
           size="small"
           aria-label="Toggle theme"
@@ -150,7 +151,7 @@ export const propHighlights = [
           aria-label="Toggle theme"
           icon={<IconMoon size={20} aria-hidden />}
         />
-      </>
+      </ResponsiveStackInline>
     ),
   },
 
@@ -244,12 +245,12 @@ export const propHighlights = [
     label: 'Matrix',
     sample: (
       <>
-        <div className={styles.buttonGroup}>
+        <div className={styles.matrixButtonGroup}>
           <Button size="small">Small</Button>
           <Button>Medium</Button>
           <Button size="large">Large</Button>
         </div>
-        <div className={styles.buttonGroup}>
+        <div className={styles.matrixButtonGroup}>
           <Button disabled size="small">
             Small
           </Button>
@@ -259,7 +260,7 @@ export const propHighlights = [
           </Button>
         </div>
 
-        <div className={styles.buttonGroup}>
+        <div className={styles.matrixButtonGroup}>
           <Button size="small" isBusy>
             Small
           </Button>
@@ -268,7 +269,7 @@ export const propHighlights = [
             Large
           </Button>
         </div>
-        <div className={styles.buttonGroup}>
+        <div className={styles.matrixButtonGroup}>
           <Button disabled size="small" isBusy>
             Small
           </Button>
@@ -280,14 +281,14 @@ export const propHighlights = [
           </Button>
         </div>
 
-        <div className={styles.buttonGroup}>
+        <div className={styles.matrixButtonGroup}>
           <Button>Primary</Button>
           <Button intent="secondary">Secondary</Button>
           <Button intent="tertiary">Tertiary</Button>
           <Button intent="constructive">Constructive</Button>
           <Button intent="destructive">Destructive</Button>
         </div>
-        <div className={styles.buttonGroup}>
+        <div className={styles.matrixButtonGroup}>
           <Button disabled>Primary</Button>
           <Button disabled intent="secondary">
             Secondary
@@ -303,7 +304,7 @@ export const propHighlights = [
           </Button>
         </div>
 
-        <div className={styles.buttonGroup}>
+        <div className={styles.matrixButtonGroup}>
           <Button isBusy>Primary</Button>
           <Button intent="secondary" isBusy>
             Secondary
@@ -318,7 +319,7 @@ export const propHighlights = [
             Destructive
           </Button>
         </div>
-        <div className={styles.buttonGroup}>
+        <div className={styles.matrixButtonGroup}>
           <Button disabled isBusy>
             Primary
           </Button>

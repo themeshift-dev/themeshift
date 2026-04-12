@@ -282,17 +282,19 @@ export const ButtonGuide = () => {
                 icon: <IoHomeSharp />,
               },
               { href: '/components', label: 'Components' },
+              { href: '/components/button', label: 'Button' },
+              { current: true, label: 'Docs' },
             ]}
           />
         }
-        description="A button that's jam-packed with all the bells and whistles you could need"
-        eyebrow="Component"
+        description="Implementation guidance, API details, and copy-paste examples for building with Button."
+        eyebrow="Button"
         examples={examplesSection}
         howToUse={howToUseSection}
         intro={intro}
         propsSection={propsGuideSection}
         toc={<TableOfContents.Nav />}
-        title="Button"
+        title="Docs"
       >
         <TableOfContents.Marker id="accessibility" label="Accessibility" />
         <section>
