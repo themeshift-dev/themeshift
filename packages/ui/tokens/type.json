@@ -571,6 +571,27 @@
           }
         }
       },
+      "eyebrow": {
+        "default": {
+          "font": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{font.family.sans}",
+              "fontSize": "{typography.metrics.0.fontSize}",
+              "lineHeight": "{typography.metrics.0.lineHeight}",
+              "fontWeight": "{font.weight.semiBold}"
+            }
+          },
+          "letterSpacing": {
+            "$type": "letterSpacing",
+            "$value": "0.08em"
+          },
+          "fontStyle": {
+            "$type": "fontStyle",
+            "$value": "{font.style.normal}"
+          }
+        }
+      },
       "button": {
         "small": {
           "font": {

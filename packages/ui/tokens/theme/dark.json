@@ -3,6 +3,8 @@
     "dark": {
       "border": { "$value": "{color.white.10}" },
 
+      "overlay": { "$value": "{color.black.80}" },
+
       "surface": {
         "base": { "$value": "{color.blueGrey.900}" },
         "raised": { "$value": "{color.white.10}" },

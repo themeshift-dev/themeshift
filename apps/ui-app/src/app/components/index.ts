@@ -1,4 +1,5 @@
 export * from './ApiReference';
+export * from './Breadcrumb';
 export * from './CopyButton';
 export * from './Link';
 export * from './Logo';

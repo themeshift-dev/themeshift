@@ -254,6 +254,9 @@
   --themeshift-typography-styles-caption-italic-font: 400 0.75rem/1rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --themeshift-typography-styles-caption-italic-font-style: italic;
   --themeshift-typography-styles-caption-italic-letter-spacing: 0.02em;
+  --themeshift-typography-styles-eyebrow-default-font: 600 0.875rem/1.125rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --themeshift-typography-styles-eyebrow-default-font-style: normal;
+  --themeshift-typography-styles-eyebrow-default-letter-spacing: 0.08em;
   --themeshift-typography-styles-heading-h1-display-font: 700 1.5rem/2.25rem Georgia, serif;
   --themeshift-typography-styles-heading-h1-display-font-style: normal;
   --themeshift-typography-styles-heading-h1-display-letter-spacing: 0;
@@ -333,6 +336,7 @@
 
   /* Theme */
   --themeshift-theme-border: rgba(255, 255, 255, .1);
+  --themeshift-theme-overlay: rgba(0, 0, 0, .8);
   --themeshift-theme-surface-base: #263238;
   --themeshift-theme-surface-raised: rgba(255, 255, 255, .1);
   --themeshift-theme-surface-sunken: rgba(0, 0, 0, .1);
@@ -433,6 +437,7 @@
 
   /* Theme */
   --themeshift-theme-border: rgba(0, 0, 0, .1);
+  --themeshift-theme-overlay: rgba(255, 255, 255, .8);
   --themeshift-theme-surface-base: #ECEFF1;
   --themeshift-theme-surface-raised: #CFD8DC;
   --themeshift-theme-surface-sunken: rgba(0, 0, 0, .1);
@@ -467,6 +472,7 @@
 
   /* Theme */
   --themeshift-theme-border: rgba(255, 255, 255, .1);
+  --themeshift-theme-overlay: rgba(0, 0, 0, .8);
   --themeshift-theme-surface-base: #263238;
   --themeshift-theme-surface-raised: rgba(255, 255, 255, .1);
   --themeshift-theme-surface-sunken: rgba(0, 0, 0, .1);
