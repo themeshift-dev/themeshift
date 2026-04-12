@@ -3,9 +3,12 @@
   border: 1px solid token('theme.border');
   border-radius: token('radius.small');
   color: token('theme.text.muted');
+  min-width: 0;
+  overflow: hidden;
   padding: token('space.4');
   position: relative;
   transition: 0.3s color;
+  width: 100%;
 
   &:hover {
     color: token('theme.text.base');
@@ -15,6 +18,11 @@
 .string {
   font-family: token('font.family.mono');
   white-space: pre;
+}
+
+.container :global(pre) {
+  max-width: 100%;
+  width: 100%;
 }
 
 .copyButton {

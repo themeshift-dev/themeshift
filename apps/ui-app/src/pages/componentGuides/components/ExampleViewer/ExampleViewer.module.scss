@@ -73,11 +73,12 @@ $compactMinHeight: 4rem;
 
 .codeOverlay {
   align-items: center;
-  background: rgba(0, 0, 0, 0.72);
+  background: token('theme.overlay');
   display: flex;
   inset: 0;
   justify-content: center;
   position: absolute;
+  cursor: pointer;
 }
 
 .copyButton {

@@ -1,5 +1,25 @@
+@use '@themeshift/ui/sass/typography';
+
+.container {
+  p {
+    line-height: 1.75rem;
+  }
+}
+
 .main {
   width: 100%;
+}
+
+.breadcrumb {
+  margin: 0 0 1rem;
+}
+
+.eyebrow {
+  @include typography.style('eyebrow.default');
+
+  color: token('theme.text.muted');
+  margin: 0 0 0.25rem;
+  text-transform: uppercase;
 }
 
 .description {
@@ -8,15 +28,25 @@
 }
 
 .content {
+  > * + * {
+    margin-top: 4rem;
+  }
+
   h4 {
-    color: token('theme.text.muted');
+    // color: token('theme.text.muted');
     font-weight: 600;
     margin: 0 0 0.75rem;
   }
+}
 
-  section {
-    margin: 0 0 2rem;
-  }
+.sectionHeader {
+  margin-bottom: 1.5rem;
+  max-width: 42rem;
+}
+
+.sectionIntro {
+  color: token('theme.text.muted');
+  margin: 0.5rem 0 0;
 }
 
 .aside {

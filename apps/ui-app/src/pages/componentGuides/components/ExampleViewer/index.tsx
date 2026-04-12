@@ -1,10 +1,10 @@
 import { Button } from '@themeshift/ui/components/Button';
+import classNames from 'classnames';
 import { useMemo, useState } from 'react';
 
 import { CopyButton, ScrollFade, SyntaxHighlighter } from '@/app/components';
 
 import styles from './ExampleViewer.module.scss';
-import classNames from 'classnames';
 
 type SerializablePropValue =
   | boolean
@@ -146,6 +146,7 @@ export const ExampleViewer = <Props extends ExampleArgs = ExampleArgs>({
   const code = getExampleCode(currentExample);
   const codeContentAttributes = isCodeExpanded ? {} : { inert: true };
   const hasMultipleExamples = normalizedExamples.length > 1;
+  const expandCode = () => setIsCodeExpanded(true);
 
   return (
     <div className={classNames(styles.container, className)}>
@@ -199,12 +200,8 @@ export const ExampleViewer = <Props extends ExampleArgs = ExampleArgs>({
         {isCodeExpanded ? (
           <CopyButton className={styles.copyButton} text={code} />
         ) : (
-          <div className={styles.codeOverlay}>
-            <Button
-              intent="tertiary"
-              onClick={() => setIsCodeExpanded(true)}
-              type="button"
-            >
+          <div className={styles.codeOverlay} onClick={expandCode}>
+            <Button intent="tertiary" onClick={expandCode} type="button">
               Show code
             </Button>
           </div>

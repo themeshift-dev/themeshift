@@ -50,6 +50,13 @@ type PageShellOwnProps = {
   asideLabel?: string;
 
   /**
+   * An extra classname that is applied to the outermost element.
+   *
+   * This is useful for applying extra styles.
+   */
+  className?: string;
+
+  /**
    * Whether the shell should render the skip link.
    *
    * Guidance:
@@ -134,6 +141,7 @@ export const PageShell = ({
   aside,
   asideLabel,
   children,
+  className,
   divider = false,
   footer,
   header,
@@ -151,7 +159,7 @@ export const PageShell = ({
   const resolvedA11y = resolveShellA11yProps({ mainId, skipLinkLabel });
 
   return (
-    <Component className={styles.container}>
+    <Component className={classNames(styles.container, className)}>
       {showSkipLink ? (
         <SkipLink
           href={resolvedA11y.skipLinkHref}

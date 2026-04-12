@@ -1,9 +1,56 @@
-@use '../sass/mixins/typography';
+@use '@themeshift/vite-plugin-themeshift/token' as themeShift;
 
 :root {
   color-scheme: dark light;
-  color: var(--themeshift-theme-text-base);
-  background-color: var(--themeshift-theme-surface-base);
+  color: themeShift.token('theme.text.base');
+  background-color: themeShift.token('theme.surface.base');
 
-  @include typography.style('body.default');
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+}
+
+body {
+  margin: 0;
+}
+
+img,
+picture,
+svg,
+canvas,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+:disabled {
+  cursor: not-allowed;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
