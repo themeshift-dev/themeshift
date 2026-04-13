@@ -1,5 +1,5 @@
 import { Button } from '@themeshift/ui/components/Button';
-import { IconMoon } from '@themeshift/ui/icons/IconMoon';
+import { IconMoon } from '@themeshift/ui/icons';
 
 import styles from './ButtonGuide.module.scss';
 import { ResponsiveStackInline } from '../components';

@@ -15,19 +15,19 @@ describe('ToggleSwitch', () => {
     ).toBeInTheDocument();
   });
 
-  it('supports ariaLabel naming when no visible label is rendered', () => {
-    render(<ToggleSwitch ariaLabel="Enable dark mode" />);
+  it('supports aria-label naming when no visible label is rendered', () => {
+    render(<ToggleSwitch aria-label="Enable dark mode" />);
 
     expect(
       screen.getByRole('switch', { name: 'Enable dark mode' })
     ).toBeInTheDocument();
   });
 
-  it('supports ariaLabelledBy naming when no visible label is rendered', () => {
+  it('supports aria-labelledby naming when no visible label is rendered', () => {
     render(
       <>
         <span id="toggle-title">Email updates</span>
-        <ToggleSwitch ariaLabelledBy="toggle-title" />
+        <ToggleSwitch aria-labelledby="toggle-title" />
       </>
     );
 
@@ -57,7 +57,7 @@ describe('ToggleSwitch', () => {
   });
 
   it('applies default size and intent styles', () => {
-    render(<ToggleSwitch ariaLabel="Default switch" />);
+    render(<ToggleSwitch aria-label="Default switch" />);
 
     const container = screen
       .getByRole('switch', { name: 'Default switch' })
@@ -72,7 +72,7 @@ describe('ToggleSwitch', () => {
     ['medium', styles.medium],
     ['large', styles.large],
   ] as const)('applies the %s size class', (size, className) => {
-    render(<ToggleSwitch ariaLabel="Sized switch" size={size} />);
+    render(<ToggleSwitch aria-label="Sized switch" size={size} />);
 
     expect(
       screen
@@ -88,7 +88,7 @@ describe('ToggleSwitch', () => {
     ['constructive', styles.constructive],
     ['destructive', styles.destructive],
   ] as const)('applies the %s intent class', (intent, className) => {
-    render(<ToggleSwitch ariaLabel="Intent switch" intent={intent} />);
+    render(<ToggleSwitch aria-label="Intent switch" intent={intent} />);
 
     expect(
       screen
@@ -193,10 +193,10 @@ describe('ToggleSwitch', () => {
       <>
         <span id="external-help">External help</span>
         <ToggleSwitch
-          ariaDescribedBy="external-help"
+          aria-invalid
+          aria-describedby="external-help"
           description="Uses your system theme."
           errorMessage="Choose a supported setting."
-          invalid
           label="Theme mode"
         />
       </>
@@ -227,7 +227,7 @@ describe('ToggleSwitch', () => {
   it('renders only the icon for the current state', () => {
     const { rerender } = render(
       <ToggleSwitch
-        ariaLabel="Toggle icons"
+        aria-label="Toggle icons"
         iconOff={
           <svg aria-hidden="true" data-testid="icon-off" viewBox="0 0 16 16" />
         }
@@ -242,7 +242,7 @@ describe('ToggleSwitch', () => {
 
     rerender(
       <ToggleSwitch
-        ariaLabel="Toggle icons"
+        aria-label="Toggle icons"
         checked
         iconOff={
           <svg aria-hidden="true" data-testid="icon-off" viewBox="0 0 16 16" />
@@ -260,7 +260,7 @@ describe('ToggleSwitch', () => {
   it('appends caller-provided class names to the expected nodes', () => {
     render(
       <ToggleSwitch
-        ariaLabel="Styled switch"
+        aria-label="Styled switch"
         className="wrapper"
         label="Styled"
         labelClassName="label"
@@ -278,12 +278,45 @@ describe('ToggleSwitch', () => {
     expect(screen.getByText('Styled')).toHaveClass('label');
   });
 
+  it('allows text selection when allowTextSelection is enabled', () => {
+    render(<ToggleSwitch allowTextSelection label="Selectable label" />);
+
+    const container = screen
+      .getByRole('switch', { name: 'Selectable label' })
+      .closest(`.${styles.container}`);
+
+    expect(container).toHaveClass(styles.allowTextSelection);
+  });
+
+  it('forwards native input props and preserves explicit overrides', async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+
+    render(
+      <ToggleSwitch
+        aria-label="Forwarded switch"
+        data-testid="forwarded-switch"
+        onClick={onClick}
+        title="Forwarded title"
+      />
+    );
+
+    const toggle = screen.getByTestId('forwarded-switch');
+
+    expect(toggle).toHaveAttribute('title', 'Forwarded title');
+    expect(toggle).toHaveAttribute('type', 'checkbox');
+
+    await user.click(toggle);
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
   it('has no basic accessibility violations', async () => {
     const { container } = render(
       <ToggleSwitch
+        aria-invalid
         description="Applies a compact navigation layout."
         errorMessage="Resolve the conflicting preference."
-        invalid
         label="Compact mode"
       />
     );

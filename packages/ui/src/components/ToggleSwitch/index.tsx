@@ -32,6 +32,14 @@ const sizeClassMap = {
   small: styles.small,
 } satisfies Record<ToggleSwitchSize, string>;
 
+/**
+ * Combines external and internally generated description IDs into a single
+ * valid ARIA ID reference list.
+ *
+ * This lets the switch preserve caller-provided `aria-describedby` values
+ * while also appending the generated IDs for `description` and
+ * `errorMessage`.
+ */
 function mergeIds(...idGroups: Array<string | undefined>) {
   const values = new Set(
     idGroups
@@ -45,10 +53,10 @@ function mergeIds(...idGroups: Array<string | undefined>) {
 
 /** A theme-aware switch built on top of a native checkbox input. */
 export const ToggleSwitch = ({
-  ariaDescribedBy,
-  ariaLabel,
-  ariaLabelledBy,
-  autoFocus,
+  'aria-describedby': ariaDescribedBy,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
+  allowTextSelection = false,
   checked,
   className,
   defaultChecked = false,
@@ -59,7 +67,6 @@ export const ToggleSwitch = ({
   iconOn,
   id,
   intent = 'primary',
-  invalid = false,
   label,
   labelClassName,
   labelPosition = 'end',
@@ -73,6 +80,7 @@ export const ToggleSwitch = ({
   thumbClassName,
   trackClassName,
   value,
+  ...inputProps
 }: ToggleSwitchProps) => {
   const reactId = useId();
   const [, forceRender] = useState(0);
@@ -90,6 +98,16 @@ export const ToggleSwitch = ({
     errorMessage !== undefined;
   const accessibleLabel = label === undefined ? ariaLabel : undefined;
   const accessibleLabelledBy = label === undefined ? ariaLabelledBy : undefined;
+  const {
+    onClick: onInputClick,
+    onKeyDown: onInputKeyDown,
+    onKeyUp: onInputKeyUp,
+    onPointerDown: onInputPointerDown,
+    ...nativeInputProps
+  } = inputProps;
+  const isInvalid =
+    nativeInputProps['aria-invalid'] === true ||
+    nativeInputProps['aria-invalid'] === 'true';
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (readOnly) {
@@ -109,6 +127,8 @@ export const ToggleSwitch = ({
   };
 
   const handleClick: MouseEventHandler<HTMLInputElement> = (event) => {
+    onInputClick?.(event);
+
     if (readOnly) {
       event.preventDefault();
       event.currentTarget.checked = isChecked;
@@ -117,6 +137,8 @@ export const ToggleSwitch = ({
   };
 
   const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    onInputKeyDown?.(event);
+
     if (
       readOnly &&
       (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar')
@@ -128,6 +150,8 @@ export const ToggleSwitch = ({
   };
 
   const handleKeyUp: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    onInputKeyUp?.(event);
+
     if (
       readOnly &&
       (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar')
@@ -139,6 +163,8 @@ export const ToggleSwitch = ({
   };
 
   const handlePointerDown: PointerEventHandler<HTMLInputElement> = (event) => {
+    onInputPointerDown?.(event);
+
     if (readOnly) {
       event.preventDefault();
     }
@@ -166,11 +192,12 @@ export const ToggleSwitch = ({
     <div
       className={classNames(
         styles.container,
+        allowTextSelection && styles.allowTextSelection,
         sizeClassMap[size],
         intentClassMap[intent],
         isChecked && styles.checked,
         disabled && styles.disabled,
-        invalid && styles.invalid,
+        isInvalid && styles.invalid,
         readOnly && styles.readOnly,
         className
       )}
@@ -178,13 +205,12 @@ export const ToggleSwitch = ({
       {labelPosition === 'start' ? content : null}
       <span className={styles.controlLabel}>
         <input
+          {...nativeInputProps}
           aria-checked={isChecked}
           aria-describedby={describedBy}
-          aria-invalid={invalid || undefined}
           aria-label={accessibleLabel}
           aria-labelledby={accessibleLabelledBy}
           aria-readonly={readOnly || undefined}
-          autoFocus={autoFocus}
           checked={isChecked}
           className={styles.input}
           disabled={disabled}

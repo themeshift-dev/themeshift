@@ -1,25 +1,24 @@
-import { Button } from '@themeshift/ui/components/Button';
 import { Heading } from '@themeshift/ui/components/Heading';
-import { IconMoon } from '@themeshift/ui/icons';
+import { ToggleSwitch } from '@themeshift/ui/components/ToggleSwitch';
+import { IconMoon, IconSun } from '@themeshift/ui/icons';
 import { useMemo, useState } from 'react';
 
 import { useAccessibilityAudit } from '@/hooks';
 
 import styles from './AccessibilitySection.module.scss';
 
-const buttonIntentOptions = [
+const toggleIntentOptions = [
   'primary',
   'secondary',
   'tertiary',
   'constructive',
   'destructive',
 ] as const;
-const buttonSizeOptions = ['small', 'medium', 'large'] as const;
+const toggleSizeOptions = ['small', 'medium', 'large'] as const;
 
 type AccessibilityResultType = 'violations' | 'incomplete' | 'passes';
-type ButtonPlaygroundIntent = (typeof buttonIntentOptions)[number];
-type ButtonPlaygroundMode = 'text' | 'icon';
-type ButtonPlaygroundSize = (typeof buttonSizeOptions)[number];
+type ToggleIntent = (typeof toggleIntentOptions)[number];
+type ToggleSize = (typeof toggleSizeOptions)[number];
 
 const accessibilityResultLabels = {
   incomplete: 'Needs review',
@@ -28,45 +27,80 @@ const accessibilityResultLabels = {
 } satisfies Record<AccessibilityResultType, string>;
 
 export const AccessibilitySection = () => {
-  const [accessibleName, setAccessibleName] = useState('Toggle theme');
-  const [buttonLabel, setButtonLabel] = useState('Click me');
-  const [intent, setIntent] = useState<ButtonPlaygroundIntent>('primary');
-  const [isBusy, setIsBusy] = useState(false);
+  const [description, setDescription] = useState(
+    'Enable automatic theme changes.'
+  );
+  const [intent, setIntent] = useState<ToggleIntent>('primary');
+  const [invalid, setInvalid] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [mode, setMode] = useState<ButtonPlaygroundMode>('text');
+  const [label, setLabel] = useState('Theme mode');
+  const [readOnly, setReadOnly] = useState(false);
   const [selectedResultType, setSelectedResultType] =
     useState<AccessibilityResultType>('violations');
-  const [size, setSize] = useState<ButtonPlaygroundSize>('medium');
+  const [showIcons, setShowIcons] = useState(true);
+  const [size, setSize] = useState<ToggleSize>('medium');
 
-  const accessibilityButton = useMemo(() => {
-    if (mode === 'icon') {
-      return (
-        <Button
-          aria-label={accessibleName}
-          disabled={isDisabled}
-          icon={<IconMoon aria-hidden />}
-          intent={intent}
-          isBusy={isBusy}
-          size={size}
-        />
-      );
-    }
-
-    return (
-      <Button disabled={isDisabled} intent={intent} isBusy={isBusy} size={size}>
-        {buttonLabel}
-      </Button>
-    );
-  }, [accessibleName, buttonLabel, intent, isBusy, isDisabled, mode, size]);
+  const accessibilityToggle = useMemo(
+    () => (
+      <ToggleSwitch
+        aria-invalid={invalid || undefined}
+        checked={isChecked}
+        description={description}
+        errorMessage={
+          invalid ? 'Resolve the conflicting preference.' : undefined
+        }
+        iconOff={showIcons ? <IconMoon aria-hidden /> : undefined}
+        iconOn={showIcons ? <IconSun aria-hidden /> : undefined}
+        intent={intent}
+        label={label}
+        onCheckedChange={setIsChecked}
+        readOnly={readOnly}
+        disabled={isDisabled}
+        size={size}
+      />
+    ),
+    [
+      description,
+      intent,
+      invalid,
+      isChecked,
+      isDisabled,
+      label,
+      readOnly,
+      showIcons,
+      size,
+    ]
+  );
 
   const accessibilityDependencies = useMemo(
-    () => [accessibleName, buttonLabel, intent, isBusy, isDisabled, mode, size],
-    [accessibleName, buttonLabel, intent, isBusy, isDisabled, mode, size]
+    () => [
+      description,
+      intent,
+      invalid,
+      isChecked,
+      isDisabled,
+      label,
+      readOnly,
+      showIcons,
+      size,
+    ],
+    [
+      description,
+      intent,
+      invalid,
+      isChecked,
+      isDisabled,
+      label,
+      readOnly,
+      showIcons,
+      size,
+    ]
   );
 
   const { auditFrame, error, isReady, isRunning, results } =
     useAccessibilityAudit({
-      children: accessibilityButton,
+      children: accessibilityToggle,
       dependencies: accessibilityDependencies,
     });
 
@@ -79,27 +113,18 @@ export const AccessibilitySection = () => {
       <div className={styles.playground}>
         <div className={styles.controls}>
           <label className={styles.field}>
-            Button mode
-            <select
-              onChange={(event) =>
-                setMode(event.target.value as ButtonPlaygroundMode)
-              }
-              value={mode}
-            >
-              <option value="text">Text button</option>
-              <option value="icon">Icon-only button</option>
-            </select>
+            Label
+            <input
+              onChange={(event) => setLabel(event.target.value)}
+              value={label}
+            />
           </label>
 
           <label className={styles.field}>
-            {mode === 'icon' ? 'Accessible name' : 'Button label'}
+            Description
             <input
-              onChange={(event) =>
-                mode === 'icon'
-                  ? setAccessibleName(event.target.value)
-                  : setButtonLabel(event.target.value)
-              }
-              value={mode === 'icon' ? accessibleName : buttonLabel}
+              onChange={(event) => setDescription(event.target.value)}
+              value={description}
             />
           </label>
 
@@ -107,11 +132,11 @@ export const AccessibilitySection = () => {
             Intent
             <select
               onChange={(event) =>
-                setIntent(event.target.value as ButtonPlaygroundIntent)
+                setIntent(event.target.value as ToggleIntent)
               }
               value={intent}
             >
-              {buttonIntentOptions.map((option) => (
+              {toggleIntentOptions.map((option) => (
                 <option key={option} value={option}>
                   {option}
                 </option>
@@ -122,12 +147,10 @@ export const AccessibilitySection = () => {
           <label className={styles.field}>
             Size
             <select
-              onChange={(event) =>
-                setSize(event.target.value as ButtonPlaygroundSize)
-              }
+              onChange={(event) => setSize(event.target.value as ToggleSize)}
               value={size}
             >
-              {buttonSizeOptions.map((option) => (
+              {toggleSizeOptions.map((option) => (
                 <option key={option} value={option}>
                   {option}
                 </option>
@@ -137,11 +160,20 @@ export const AccessibilitySection = () => {
 
           <label className={styles.checkbox}>
             <input
-              checked={isBusy}
-              onChange={(event) => setIsBusy(event.target.checked)}
+              checked={isChecked}
+              onChange={(event) => setIsChecked(event.target.checked)}
               type="checkbox"
             />
-            Busy
+            Checked
+          </label>
+
+          <label className={styles.checkbox}>
+            <input
+              checked={invalid}
+              onChange={(event) => setInvalid(event.target.checked)}
+              type="checkbox"
+            />
+            Invalid
           </label>
 
           <label className={styles.checkbox}>
@@ -152,9 +184,27 @@ export const AccessibilitySection = () => {
             />
             Disabled
           </label>
+
+          <label className={styles.checkbox}>
+            <input
+              checked={readOnly}
+              onChange={(event) => setReadOnly(event.target.checked)}
+              type="checkbox"
+            />
+            Read only
+          </label>
+
+          <label className={styles.checkbox}>
+            <input
+              checked={showIcons}
+              onChange={(event) => setShowIcons(event.target.checked)}
+              type="checkbox"
+            />
+            Show icons
+          </label>
         </div>
 
-        <div className={styles.preview}>{accessibilityButton}</div>
+        <div className={styles.preview}>{accessibilityToggle}</div>
 
         <p className={styles.note}>
           Automated checks catch common issues, but they do not replace keyboard

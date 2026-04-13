@@ -119,8 +119,8 @@ export const WithDescription: Story = {
 
 export const InvalidWithError: Story = {
   args: {
+    'aria-invalid': true,
     errorMessage: 'This preference conflicts with your current plan.',
-    invalid: true,
     label: 'Enterprise-only setting',
   },
 };
@@ -143,7 +143,7 @@ export const ReadOnly: Story = {
 
 export const WithIcons: Story = {
   args: {
-    ariaLabel: 'Toggle theme',
+    'aria-label': 'Toggle theme',
     defaultChecked: true,
     iconOff: <IconMoon aria-hidden />,
     iconOn: <IconSun aria-hidden />,
@@ -153,7 +153,7 @@ export const WithIcons: Story = {
 
 export const IconOnlyAccessibleName: Story = {
   args: {
-    ariaLabel: 'Enable solar mode',
+    'aria-label': 'Enable solar mode',
     iconOff: <IconMoon aria-hidden />,
     iconOn: <IconSun aria-hidden />,
     label: undefined,

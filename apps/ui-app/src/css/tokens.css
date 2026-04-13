@@ -481,6 +481,7 @@
   --themeshift-components-toggle-switch-intents-tertiary-thumb: #3949AB;
   --themeshift-components-toggle-switch-invalid-border: #EF5350;
   --themeshift-components-toggle-switch-track-bg: #EEEEEE;
+  --themeshift-components-toggle-switch-track-bg-hover: #E0E0E0;
   --themeshift-components-toggle-switch-track-border: rgba(0, 0, 0, .2);
   --themeshift-components-toggle-switch-track-icon: rgba(0, 0, 0, .5);
 }
@@ -544,6 +545,7 @@
   --themeshift-components-toggle-switch-intents-tertiary-thumb: #29B6F6;
   --themeshift-components-toggle-switch-invalid-border: #EF5350;
   --themeshift-components-toggle-switch-track-bg: rgba(255, 255, 255, .1);
+  --themeshift-components-toggle-switch-track-bg-hover: rgba(255, 255, 255, .2);
   --themeshift-components-toggle-switch-track-border: rgba(255, 255, 255, .2);
   --themeshift-components-toggle-switch-track-icon: rgba(255, 255, 255, .7);
 }

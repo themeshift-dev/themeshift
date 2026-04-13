@@ -77,31 +77,39 @@ export const ComponentGuide = ({
   title,
   toc,
   tocLabel = 'On this page',
-}: ComponentGuideProps) => (
-  <PageShell
-    className={classNames(styles.container, className)}
-    aside={
-      toc ? (
-        <div className={styles.aside}>
-          <div className={styles.asideInner}>{toc}</div>
-        </div>
-      ) : undefined
-    }
-    asideLabel={toc ? tocLabel : undefined}
-  >
-    <div className={styles.main}>
-      {breadcrumb && <div className={styles.breadcrumb}>{breadcrumb}</div>}
-      {eyebrow && <div className={styles.eyebrow}>{eyebrow}</div>}
-      {title && <Heading level={2}>{title}</Heading>}
-      {description && <p className={styles.description}>{description}</p>}
+}: ComponentGuideProps) => {
+  const content = (
+    <PageShell
+      className={classNames(styles.container, className)}
+      aside={
+        toc ? (
+          <div className={styles.aside}>
+            <div className={styles.asideInner}>{toc}</div>
+          </div>
+        ) : undefined
+      }
+      asideLabel={toc ? tocLabel : undefined}
+    >
+      <div className={styles.main}>
+        {breadcrumb && <div className={styles.breadcrumb}>{breadcrumb}</div>}
+        {eyebrow && <div className={styles.eyebrow}>{eyebrow}</div>}
+        {title && <Heading level={2}>{title}</Heading>}
+        {description && <p className={styles.description}>{description}</p>}
 
-      <div className={styles.content}>
-        {intro && <section className={styles.section}>{intro}</section>}
-        {howToUse && <GuideSection {...howToUse} />}
-        {propsSection && <GuideSection {...propsSection} />}
-        {examples && <GuideSection {...examples} />}
-        {children}
+        <div className={styles.content}>
+          {intro && <section className={styles.section}>{intro}</section>}
+          {howToUse && <GuideSection {...howToUse} />}
+          {propsSection && <GuideSection {...propsSection} />}
+          {examples && <GuideSection {...examples} />}
+          {children}
+        </div>
       </div>
-    </div>
-  </PageShell>
-);
+    </PageShell>
+  );
+
+  if (!toc) {
+    return content;
+  }
+
+  return <TableOfContents.Root>{content}</TableOfContents.Root>;
+};

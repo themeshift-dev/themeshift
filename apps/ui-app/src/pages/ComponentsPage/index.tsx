@@ -5,6 +5,9 @@ import { useComponentData } from '@/component-data';
 
 import { ComponentCard } from './components';
 
+const toComponentRoute = (componentName: string) =>
+  componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+
 export const ComponentsPage = () => {
   const { components } = useComponentData();
 
@@ -16,7 +19,7 @@ export const ComponentsPage = () => {
         <ComponentCard
           key={component}
           name={component}
-          url={`/components/${slug}`}
+          url={`/components/${toComponentRoute(component ?? slug)}`}
         />
       ))}
     </PageShell>

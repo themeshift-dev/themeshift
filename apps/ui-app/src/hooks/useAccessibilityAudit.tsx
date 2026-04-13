@@ -273,7 +273,8 @@ export function useAccessibilityAudit({
       tabIndex={-1}
       title={title}
     >
-      {frameDocument?.body && createPortal(children, frameDocument.body)}
+      {frameDocument?.body &&
+        createPortal(<main>{children}</main>, frameDocument.body)}
     </iframe>
   );
 

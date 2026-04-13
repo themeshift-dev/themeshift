@@ -1,5 +1,5 @@
 import { Heading } from '@themeshift/ui/components/Heading';
-import { Routes, Route } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
 import { IoHomeSharp } from 'react-icons/io5';
 
 import { Breadcrumb } from '@/app/components';
@@ -20,11 +20,15 @@ const Placeholder = ({ children, title }: PlaceholderProps) => (
 );
 
 type ComponentPlaceholderProps = {
+  componentName: string;
+  componentPath: string;
   description: React.ReactNode;
   title: React.ReactNode;
 };
 
-const ButtonSubpagePlaceholder = ({
+const ComponentSubpagePlaceholder = ({
+  componentName,
+  componentPath,
   description,
   title,
 }: ComponentPlaceholderProps) => (
@@ -38,13 +42,13 @@ const ButtonSubpagePlaceholder = ({
             icon: <IoHomeSharp />,
           },
           { href: '/components', label: 'Components' },
-          { href: '/components/button', label: 'Button' },
+          { href: componentPath, label: componentName },
           { current: true, label: String(title) },
         ]}
       />
     }
     description={description}
-    eyebrow="Button"
+    eyebrow={componentName}
     title={title}
   >
     <p>{description}</p>
@@ -62,7 +66,9 @@ const AppRoutes = () => (
         <Route
           path="customize"
           element={
-            <ButtonSubpagePlaceholder
+            <ComponentSubpagePlaceholder
+              componentName="Button"
+              componentPath="/components/button"
               description="Button customization guidance will live here."
               title="Customize"
             />
@@ -71,13 +77,44 @@ const AppRoutes = () => (
         <Route
           path="playground"
           element={
-            <ButtonSubpagePlaceholder
+            <ComponentSubpagePlaceholder
+              componentName="Button"
+              componentPath="/components/button"
               description="An interactive Button playground will live here."
               title="Playground"
             />
           }
         />
       </Route>
+      <Route path="toggle-switch">
+        <Route index element={<ComponentGuides.ToggleSwitchGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="ToggleSwitch"
+              componentPath="/components/toggle-switch"
+              description="ToggleSwitch customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="ToggleSwitch"
+              componentPath="/components/toggle-switch"
+              description="An interactive ToggleSwitch playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route
+        path="toggleswitch"
+        element={<Navigate replace to="/components/toggle-switch" />}
+      />
     </Route>
 
     <Route

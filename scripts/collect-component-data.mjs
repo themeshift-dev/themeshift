@@ -661,6 +661,17 @@ function formatType(typeNode, typeParameterMap) {
     return 'unknown';
   }
 
+  if (ts.isFunctionTypeNode(typeNode)) {
+    const parameters = typeNode.parameters
+      .map((parameter) => formatFunctionParameter(parameter, typeParameterMap))
+      .join(', ');
+    const returnType = typeNode.type
+      ? formatType(typeNode.type, typeParameterMap)
+      : 'void';
+
+    return `(${parameters}) => ${returnType}`;
+  }
+
   if (ts.isTypeReferenceNode(typeNode)) {
     const typeName = getEntityNameText(typeNode.typeName);
     const mappedTypeNode = typeParameterMap.get(typeName);
@@ -683,6 +694,17 @@ function formatType(typeNode, typeParameterMap) {
   }
 
   return getNodeText(typeNode).replace(/\s+/g, ' ');
+}
+
+function formatFunctionParameter(parameter, typeParameterMap) {
+  const parameterName = getNodeText(parameter.name);
+  const isOptional = !!parameter.questionToken;
+  const isRest = !!parameter.dotDotDotToken;
+  const type = parameter.type
+    ? formatType(parameter.type, typeParameterMap)
+    : 'unknown';
+
+  return `${isRest ? '...' : ''}${parameterName}${isOptional ? '?' : ''}: ${type}`;
 }
 
 function formatLiteralType(literal) {
