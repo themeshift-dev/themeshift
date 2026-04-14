@@ -21,7 +21,7 @@ export const basicUsage = {
 
 export const shorthandContent = {
   code: `<Field
-  description="We\'ll only use this for account updates."
+  description="We'll only use this for account updates."
   label="Email address"
 >
   <Input placeholder="you@example.com" type="email" />
