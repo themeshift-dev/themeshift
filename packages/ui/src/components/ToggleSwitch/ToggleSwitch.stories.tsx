@@ -1,32 +1,49 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
+import { Field } from '@/components/Field';
 import { IconMoon, IconSun } from '@/icons';
 
 import { ToggleSwitch } from './index';
 
 const meta = {
-  title: 'Components/ToggleSwitch',
-  component: ToggleSwitch,
-  tags: ['autodocs'],
   args: {
     intent: 'primary',
-    label: 'Email notifications',
-    labelPosition: 'end',
     size: 'medium',
   },
+  component: ToggleSwitch,
+  tags: ['autodocs'],
+  title: 'Components/ToggleSwitch',
 } satisfies Meta<typeof ToggleSwitch>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => (
+    <label
+      htmlFor="toggle-default"
+      style={{ alignItems: 'center', display: 'inline-flex', gap: '0.75rem' }}
+    >
+      Email notifications
+      <ToggleSwitch {...args} id="toggle-default" />
+    </label>
+  ),
+};
 
 export const Checked: Story = {
   args: {
     defaultChecked: true,
-    label: 'Enabled by default',
   },
+  render: (args) => (
+    <label
+      htmlFor="toggle-checked"
+      style={{ alignItems: 'center', display: 'inline-flex', gap: '0.75rem' }}
+    >
+      Enabled by default
+      <ToggleSwitch {...args} id="toggle-checked" />
+    </label>
+  ),
 };
 
 export const Controlled: Story = {
@@ -34,12 +51,16 @@ export const Controlled: Story = {
     const [checked, setChecked] = useState(false);
 
     return (
-      <ToggleSwitch
-        {...args}
-        checked={checked}
-        label={checked ? 'Controlled on' : 'Controlled off'}
-        onCheckedChange={setChecked}
-      />
+      <Field layout="inline-control">
+        <ToggleSwitch
+          {...args}
+          checked={checked}
+          onCheckedChange={setChecked}
+        />
+        <Field.Label>
+          {checked ? 'Controlled on' : 'Controlled off'}
+        </Field.Label>
+      </Field>
     );
   },
 };
@@ -52,9 +73,18 @@ export const Sizes: Story = {
         gap: '1rem',
       }}
     >
-      <ToggleSwitch {...args} label="Small" size="small" />
-      <ToggleSwitch {...args} label="Medium" size="medium" />
-      <ToggleSwitch {...args} label="Large" size="large" />
+      <Field layout="inline-control">
+        <ToggleSwitch {...args} size="small" />
+        <Field.Label>Small</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch {...args} size="medium" />
+        <Field.Label>Medium</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch {...args} size="large" />
+        <Field.Label>Large</Field.Label>
+      </Field>
     </div>
   ),
 };
@@ -67,95 +97,92 @@ export const Intents: Story = {
         gap: '1rem',
       }}
     >
-      <ToggleSwitch {...args} defaultChecked intent="primary" label="Primary" />
-      <ToggleSwitch
-        {...args}
-        defaultChecked
-        intent="secondary"
-        label="Secondary"
-      />
-      <ToggleSwitch
-        {...args}
-        defaultChecked
-        intent="tertiary"
-        label="Tertiary"
-      />
-      <ToggleSwitch
-        {...args}
-        defaultChecked
-        intent="constructive"
-        label="Constructive"
-      />
-      <ToggleSwitch
-        {...args}
-        defaultChecked
-        intent="destructive"
-        label="Destructive"
-      />
+      <Field layout="inline-control">
+        <ToggleSwitch {...args} defaultChecked intent="primary" />
+        <Field.Label>Primary</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch {...args} defaultChecked intent="secondary" />
+        <Field.Label>Secondary</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch {...args} defaultChecked intent="tertiary" />
+        <Field.Label>Tertiary</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch {...args} defaultChecked intent="constructive" />
+        <Field.Label>Constructive</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch {...args} defaultChecked intent="destructive" />
+        <Field.Label>Destructive</Field.Label>
+      </Field>
     </div>
   ),
-};
-
-export const LabelPositions: Story = {
-  render: (args) => (
-    <div
-      style={{
-        display: 'grid',
-        gap: '1rem',
-      }}
-    >
-      <ToggleSwitch {...args} label="Label at end" labelPosition="end" />
-      <ToggleSwitch {...args} label="Label at start" labelPosition="start" />
-    </div>
-  ),
-};
-
-export const WithDescription: Story = {
-  args: {
-    description: 'Send a digest instead of individual notifications.',
-    label: 'Daily summary',
-  },
 };
 
 export const InvalidWithError: Story = {
-  args: {
-    'aria-invalid': true,
-    errorMessage: 'This preference conflicts with your current plan.',
-    label: 'Enterprise-only setting',
-  },
+  render: (args) => (
+    <Field
+      description="This setting requires enterprise access."
+      error="This preference conflicts with your current plan."
+      label="Enterprise-only setting"
+      layout="inline-control"
+      validationState="invalid"
+    >
+      <ToggleSwitch {...args} />
+    </Field>
+  ),
 };
 
 export const Disabled: Story = {
   args: {
     defaultChecked: true,
     disabled: true,
-    label: 'Disabled setting',
   },
+  render: (args) => (
+    <Field layout="inline-control">
+      <ToggleSwitch {...args} />
+      <Field.Label>Disabled setting</Field.Label>
+    </Field>
+  ),
 };
 
 export const ReadOnly: Story = {
   args: {
     defaultChecked: true,
-    label: 'Read-only setting',
     readOnly: true,
   },
+  render: (args) => (
+    <Field layout="inline-control">
+      <ToggleSwitch {...args} />
+      <Field.Label>Read-only setting</Field.Label>
+    </Field>
+  ),
 };
 
 export const WithIcons: Story = {
   args: {
     'aria-label': 'Toggle theme',
     defaultChecked: true,
-    iconOff: <IconMoon aria-hidden />,
-    iconOn: <IconSun aria-hidden />,
-    label: 'Theme mode',
+    trackIconOff: <IconMoon aria-hidden />,
+    trackIconOn: <IconSun aria-hidden />,
+  },
+};
+
+export const WithThumbIcons: Story = {
+  args: {
+    'aria-label': 'Toggle theme',
+    defaultChecked: true,
+    thumbIconOff: <IconMoon aria-hidden />,
+    thumbIconOn: <IconSun aria-hidden />,
   },
 };
 
 export const IconOnlyAccessibleName: Story = {
   args: {
     'aria-label': 'Enable solar mode',
-    iconOff: <IconMoon aria-hidden />,
-    iconOn: <IconSun aria-hidden />,
-    label: undefined,
+    trackIconOff: <IconMoon aria-hidden />,
+    trackIconOn: <IconSun aria-hidden />,
   },
 };

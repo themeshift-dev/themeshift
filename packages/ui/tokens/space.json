@@ -2,22 +2,23 @@
   "space": {
     "$type": "dimension",
 
-    "0": {
-      "$value": "0"
-    },
+    "0": { "$value": "0" },
 
     "1": {
       "$value": "0.25rem",
       "$description": "4px"
     },
+
     "2": {
       "$value": "0.5rem",
       "$description": "8px"
     },
+
     "3": {
       "$value": "0.75rem",
       "$description": "12px"
     },
+
     "4": {
       "$value": "1rem",
       "$description": "16px"
@@ -27,14 +28,17 @@
       "$value": "1.25rem",
       "$description": "20px"
     },
+
     "6": {
       "$value": "1.5rem",
       "$description": "24px"
     },
+
     "7": {
       "$value": "1.75rem",
       "$description": "28px"
     },
+
     "8": {
       "$value": "2rem",
       "$description": "32px"
@@ -44,14 +48,17 @@
       "$value": "2.5rem",
       "$description": "40px"
     },
+
     "10": {
       "$value": "3rem",
       "$description": "48px"
     },
+
     "11": {
       "$value": "3.5rem",
       "$description": "56px"
     },
+
     "12": {
       "$value": "4rem",
       "$description": "64px"
@@ -61,14 +68,17 @@
       "$value": "5rem",
       "$description": "80px"
     },
+
     "16": {
       "$value": "6rem",
       "$description": "96px"
     },
+
     "20": {
       "$value": "8rem",
       "$description": "128px"
     },
+
     "24": {
       "$value": "10rem",
       "$description": "160px"

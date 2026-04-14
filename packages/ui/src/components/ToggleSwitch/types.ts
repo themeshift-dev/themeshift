@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { InputHTMLAttributes, ReactNode } from 'react';
 
 /**
  * ToggleSwitch size options.
@@ -16,60 +16,25 @@ export type ToggleSwitchIntent =
   | 'destructive';
 
 /**
- * ToggleSwitch label placement options.
+ * Visual validation state options.
  */
-export type ToggleSwitchLabelPosition = 'start' | 'end';
+export type ToggleSwitchValidationState =
+  | 'none'
+  | 'invalid'
+  | 'valid'
+  | 'warning';
 
-type ToggleSwitchBaseProps = {
-  /**
-   * Allows the visible switch text to be selected.
-   */
-  allowTextSelection?: boolean;
-
+/**
+ * Props for the ThemeShift toggle switch component.
+ */
+export type ToggleSwitchProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'onChange' | 'size' | 'type'
+> & {
   /**
    * Additional class name for the outer wrapper.
    */
   className?: string;
-
-  /**
-   * Helper text shown below the label.
-   */
-  description?: ReactNode;
-
-  /**
-   * Error text shown below the description.
-   */
-  errorMessage?: ReactNode;
-
-  /**
-   * Icon shown when the switch is off.
-   */
-  iconOff?: ReactNode;
-
-  /**
-   * Icon shown when the switch is on.
-   */
-  iconOn?: ReactNode;
-
-  /**
-   * Visible label content for the switch.
-   */
-  label?: ReactNode;
-
-  /**
-   * Additional class name for the visible label element.
-   */
-  labelClassName?: string;
-
-  /**
-   * Controls whether the label content appears before or after the switch.
-   */
-  labelPosition?: ToggleSwitchLabelPosition;
-
-  /**
-   * Called with the next checked state after user interaction.
-   */
-  onCheckedChange?: (checked: boolean) => void;
 
   /**
    * Visual style used for the thumb color.
@@ -77,9 +42,24 @@ type ToggleSwitchBaseProps = {
   intent?: ToggleSwitchIntent;
 
   /**
-   * Size option for the track, thumb, and label spacing.
+   * Called with the next checked state after user interaction.
+   */
+  onCheckedChange?: (checked: boolean) => void;
+
+  /**
+   * Size option for the track and thumb.
    */
   size?: ToggleSwitchSize;
+
+  /**
+   * Icon shown inside the track when the switch is off.
+   */
+  trackIconOff?: ReactNode;
+
+  /**
+   * Icon shown inside the track when the switch is on.
+   */
+  trackIconOn?: ReactNode;
 
   /**
    * Additional class name for the thumb element.
@@ -87,17 +67,22 @@ type ToggleSwitchBaseProps = {
   thumbClassName?: string;
 
   /**
+   * Icon shown inside the thumb when the switch is off.
+   */
+  thumbIconOff?: ReactNode;
+
+  /**
+   * Icon shown inside the thumb when the switch is on.
+   */
+  thumbIconOn?: ReactNode;
+
+  /**
    * Additional class name for the track element.
    */
   trackClassName?: string;
+
+  /**
+   * Visual validation state for border feedback.
+   */
+  validationState?: ToggleSwitchValidationState;
 };
-
-type NativeToggleSwitchProps = Omit<
-  ComponentPropsWithoutRef<'input'>,
-  keyof ToggleSwitchBaseProps | 'children' | 'onChange' | 'size' | 'type'
->;
-
-/**
- * Props for the ThemeShift toggle switch component.
- */
-export type ToggleSwitchProps = ToggleSwitchBaseProps & NativeToggleSwitchProps;

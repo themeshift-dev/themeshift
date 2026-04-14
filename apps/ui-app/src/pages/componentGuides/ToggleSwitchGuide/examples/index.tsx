@@ -1,3 +1,4 @@
+import { Field } from '@themeshift/ui/components/Field';
 import { ToggleSwitch } from '@themeshift/ui/components/ToggleSwitch';
 import { IconMoon, IconSun } from '@themeshift/ui/icons';
 
@@ -7,126 +8,177 @@ import { ResponsiveStackInline } from '../../components';
 import { ControlledToggleSwitch } from './ControlledToggleSwitch';
 
 export const basicUsage = {
-  code: '<ToggleSwitch label="Email notifications" />',
+  code: `<label htmlFor="email-notifications">
+  Email notifications
+  <ToggleSwitch id="email-notifications" />
+</label>`,
   label: 'Basic usage',
-  sample: <ToggleSwitch label="Email notifications" />,
+  sample: (
+    <label
+      htmlFor="email-notifications"
+      style={{ alignItems: 'center', display: 'inline-flex', gap: '0.75rem' }}
+    >
+      Email notifications
+      <ToggleSwitch id="email-notifications" />
+    </label>
+  ),
 };
 
 export const sizes = {
   code: `<>
-  <ToggleSwitch label="Small" size="small" />
-  <ToggleSwitch label="Medium" />
-  <ToggleSwitch label="Large" size="large" />
+  <Field layout="inline-control">
+    <ToggleSwitch size="small" />
+    <Field.Label>Small</Field.Label>
+  </Field>
+  <Field layout="inline-control">
+    <ToggleSwitch />
+    <Field.Label>Medium</Field.Label>
+  </Field>
+  <Field layout="inline-control">
+    <ToggleSwitch size="large" />
+    <Field.Label>Large</Field.Label>
+  </Field>
 </>`,
   label: 'Sizes',
   sample: (
-    <ResponsiveStackInline
-      from="desktop"
-      inlineProps={{ align: 'center', justify: 'center', wrap: true }}
-      stackProps={{ align: 'center' }}
-    >
-      <ToggleSwitch label="Small" size="small" />
-      <ToggleSwitch label="Medium" />
-      <ToggleSwitch label="Large" size="large" />
-    </ResponsiveStackInline>
+    <Stack>
+      <Field layout="inline-control">
+        <ToggleSwitch size="small" />
+        <Field.Label>Small</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch />
+        <Field.Label>Medium</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch size="large" />
+        <Field.Label>Large</Field.Label>
+      </Field>
+    </Stack>
   ),
 };
 
 export const intents = {
   code: `<>
-  <ToggleSwitch defaultChecked label="Primary" />
-  <ToggleSwitch defaultChecked intent="secondary" label="Secondary" />
-  <ToggleSwitch defaultChecked intent="tertiary" label="Tertiary" />
-  <ToggleSwitch defaultChecked intent="constructive" label="Constructive" />
-  <ToggleSwitch defaultChecked intent="destructive" label="Destructive" />
+  <Field layout="inline-control">
+    <ToggleSwitch defaultChecked intent="primary" />
+    <Field.Label>Primary</Field.Label>
+  </Field>
+  <Field layout="inline-control">
+    <ToggleSwitch defaultChecked intent="secondary" />
+    <Field.Label>Secondary</Field.Label>
+  </Field>
+  <Field layout="inline-control">
+    <ToggleSwitch defaultChecked intent="tertiary" />
+    <Field.Label>Tertiary</Field.Label>
+  </Field>
+  <Field layout="inline-control">
+    <ToggleSwitch defaultChecked intent="constructive" />
+    <Field.Label>Constructive</Field.Label>
+  </Field>
+  <Field layout="inline-control">
+    <ToggleSwitch defaultChecked intent="destructive" />
+    <Field.Label>Destructive</Field.Label>
+  </Field>
 </>`,
   label: 'Intents',
   sample: (
-    <ResponsiveStackInline
-      from="desktop"
-      inlineProps={{ align: 'center', justify: 'center', wrap: true }}
-      stackProps={{ align: 'center' }}
-    >
-      <ToggleSwitch defaultChecked label="Primary" />
-      <ToggleSwitch defaultChecked intent="secondary" label="Secondary" />
-      <ToggleSwitch defaultChecked intent="tertiary" label="Tertiary" />
-      <ToggleSwitch defaultChecked intent="constructive" label="Constructive" />
-      <ToggleSwitch defaultChecked intent="destructive" label="Destructive" />
-    </ResponsiveStackInline>
-  ),
-};
-
-export const labelPositions = {
-  code: `<>
-  <ToggleSwitch label="Label at end" labelPosition="end" />
-  <ToggleSwitch label="Label at start" labelPosition="start" />
-</>`,
-  label: 'Label positions',
-  sample: (
     <Stack>
-      <ToggleSwitch label="Label at end" labelPosition="end" />
-      <ToggleSwitch label="Label at start" labelPosition="start" />
+      <Field layout="inline-control">
+        <ToggleSwitch defaultChecked intent="primary" />
+        <Field.Label>Primary</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch defaultChecked intent="secondary" />
+        <Field.Label>Secondary</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch defaultChecked intent="tertiary" />
+        <Field.Label>Tertiary</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch defaultChecked intent="constructive" />
+        <Field.Label>Constructive</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch defaultChecked intent="destructive" />
+        <Field.Label>Destructive</Field.Label>
+      </Field>
     </Stack>
   ),
 };
 
-export const descriptions = {
-  code: `<ToggleSwitch
-  label="Automatic updates"
-  description="Install updates in the background."
-/>`,
-  label: 'Description',
+export const withFieldInline = {
+  code: `<Field layout="inline-control">
+  <ToggleSwitch name="notifications" />
+  <Field.Label>Enable notifications</Field.Label>
+</Field>`,
+  label: 'With Field',
   sample: (
-    <ToggleSwitch
-      description="Install updates in the background."
-      label="Automatic updates"
-    />
+    <Field layout="inline-control">
+      <ToggleSwitch name="notifications" />
+      <Field.Label>Enable notifications</Field.Label>
+    </Field>
   ),
 };
 
-export const errorMessages = {
-  code: `<ToggleSwitch
-  aria-invalid
-  label="Beta features"
-  description="Join the opt-in beta channel."
-  errorMessage="Beta access is not enabled for this account."
-/>`,
-  label: 'Error message',
+export const withDescriptionAndError = {
+  code: `<Field align="start" layout="inline-control" validationState="invalid">
+  <ToggleSwitch name="themeSync" required />
+  <div>
+    <Field.Label>Sync with system theme</Field.Label>
+    <Field.Description>
+      Keep your app theme aligned with system settings.
+    </Field.Description>
+    <Field.Error>Theme sync could not be enabled for this account.</Field.Error>
+  </div>
+</Field>`,
+  label: 'Description and error',
   sample: (
-    <ToggleSwitch
-      aria-invalid
-      description="Join the opt-in beta channel."
-      errorMessage="Beta access is not enabled for this account."
-      label="Beta features"
-    />
+    <Field align="start" layout="inline-control" validationState="invalid">
+      <ToggleSwitch name="themeSync" required />
+      <div>
+        <Field.Label>Sync with system theme</Field.Label>
+        <Field.Description>
+          Keep your app theme aligned with system settings.
+        </Field.Description>
+        <Field.Error>
+          Theme sync could not be enabled for this account.
+        </Field.Error>
+      </div>
+    </Field>
   ),
 };
 
 export const checkedChange = {
   code: `const [checked, setChecked] = useState(false);
 
-<ToggleSwitch
-  checked={checked}
-  label={checked ? 'Backups on' : 'Backups off'}
-  onCheckedChange={setChecked}
-/>`,
+<Field layout="inline-control">
+  <ToggleSwitch checked={checked} onCheckedChange={setChecked} />
+  <Field.Label>{checked ? 'Backups on' : 'Backups off'}</Field.Label>
+</Field>`,
   label: 'onCheckedChange',
   sample: <ControlledToggleSwitch />,
 };
 
 export const icons = {
   code: `<>
-  <ToggleSwitch
-    defaultChecked
-    label="Theme mode"
-    iconOff={<IconMoon aria-hidden />}
-    iconOn={<IconSun aria-hidden />}
-  />
-  <ToggleSwitch
-    aria-label="Theme mode"
-    iconOff={<IconMoon aria-hidden />}
-    iconOn={<IconSun aria-hidden />}
-  />
+  <Field layout="inline-control">
+    <ToggleSwitch
+      defaultChecked
+      trackIconOff={<IconMoon aria-hidden />}
+      trackIconOn={<IconSun aria-hidden />}
+    />
+    <Field.Label>Track icons</Field.Label>
+  </Field>
+  <Field layout="inline-control">
+    <ToggleSwitch
+      defaultChecked
+      thumbIconOff={<IconMoon aria-hidden />}
+      thumbIconOn={<IconSun aria-hidden />}
+    />
+    <Field.Label>Thumb icons</Field.Label>
+  </Field>
 </>`,
   label: 'Icons',
   sample: (
@@ -137,39 +189,103 @@ export const icons = {
         justifyItems: 'center',
       }}
     >
-      <ToggleSwitch
-        defaultChecked
-        label="Theme mode"
-        iconOff={<IconMoon aria-hidden />}
-        iconOn={<IconSun aria-hidden />}
-      />
-      <ToggleSwitch
-        aria-label="Theme mode"
-        iconOff={<IconMoon aria-hidden />}
-        iconOn={<IconSun aria-hidden />}
-      />
+      <Field layout="inline-control">
+        <ToggleSwitch
+          defaultChecked
+          trackIconOff={<IconMoon aria-hidden />}
+          trackIconOn={<IconSun aria-hidden />}
+        />
+        <Field.Label>Track icons</Field.Label>
+      </Field>
+
+      <Field layout="inline-control">
+        <ToggleSwitch
+          defaultChecked
+          thumbIconOff={<IconMoon aria-hidden />}
+          thumbIconOn={<IconSun aria-hidden />}
+        />
+        <Field.Label>Thumb icons</Field.Label>
+      </Field>
     </div>
+  ),
+};
+
+export const validationStates = {
+  code: `<>
+  <Field layout="inline-control" validationState="invalid">
+    <ToggleSwitch />
+    <Field.Label>Invalid</Field.Label>
+  </Field>
+  <Field layout="inline-control" validationState="valid">
+    <ToggleSwitch />
+    <Field.Label>Valid</Field.Label>
+  </Field>
+  <Field layout="inline-control" validationState="warning">
+    <ToggleSwitch />
+    <Field.Label>Warning</Field.Label>
+  </Field>
+</>`,
+  label: 'Validation states',
+  sample: (
+    <Stack>
+      <Field layout="inline-control" validationState="invalid">
+        <ToggleSwitch />
+        <Field.Label>Invalid</Field.Label>
+      </Field>
+      <Field layout="inline-control" validationState="valid">
+        <ToggleSwitch />
+        <Field.Label>Valid</Field.Label>
+      </Field>
+      <Field layout="inline-control" validationState="warning">
+        <ToggleSwitch />
+        <Field.Label>Warning</Field.Label>
+      </Field>
+    </Stack>
   ),
 };
 
 export const states = {
   code: `<>
-  <ToggleSwitch defaultChecked label="Checked" />
-  <ToggleSwitch disabled defaultChecked label="Disabled" />
-  <ToggleSwitch readOnly defaultChecked label="Read only" />
+  <Field layout="inline-control">
+    <ToggleSwitch defaultChecked />
+    <Field.Label>Checked</Field.Label>
+  </Field>
+  <Field layout="inline-control">
+    <ToggleSwitch defaultChecked disabled />
+    <Field.Label>Disabled</Field.Label>
+  </Field>
+  <Field layout="inline-control">
+    <ToggleSwitch defaultChecked readOnly />
+    <Field.Label>Read only</Field.Label>
+  </Field>
 </>`,
   label: 'States',
   sample: (
     <ResponsiveStackInline
       from="desktop"
-      inlineProps={{ align: 'center', justify: 'center', wrap: true }}
-      stackProps={{ align: 'center' }}
+      inlineProps={{ align: 'start', justify: 'center', wrap: true }}
+      stackProps={{ align: 'stretch' }}
     >
-      <ToggleSwitch defaultChecked label="Checked" />
-      <ToggleSwitch disabled defaultChecked label="Disabled" />
-      <ToggleSwitch readOnly defaultChecked label="Read only" />
+      <Field layout="inline-control">
+        <ToggleSwitch defaultChecked />
+        <Field.Label>Checked</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch defaultChecked disabled />
+        <Field.Label>Disabled</Field.Label>
+      </Field>
+      <Field layout="inline-control">
+        <ToggleSwitch defaultChecked readOnly />
+        <Field.Label>Read only</Field.Label>
+      </Field>
     </ResponsiveStackInline>
   ),
 };
 
-export const propHighlights = [basicUsage, sizes, intents, icons, states];
+export const propHighlights = [
+  basicUsage,
+  withFieldInline,
+  withDescriptionAndError,
+  icons,
+  states,
+];

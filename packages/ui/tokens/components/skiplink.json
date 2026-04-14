@@ -1,38 +1,31 @@
 {
   "components": {
     "skiplink": {
-      "font": {
-        "$value": "{font.family.sans}"
-      },
+      "font": { "$value": "{font.family.sans}" },
+
       "x": {
         "$type": "dimension",
         "$value": "1rem"
       },
+
       "y": {
         "$type": "dimension",
         "$value": "1rem"
       },
+
       "borderRadius": {
         "$type": "dimension",
         "$value": "{radius.small}"
       },
 
       "light": {
-        "bg": {
-          "$value": "{color.blue.400}"
-        },
-        "fg": {
-          "$value": "{color.blue.400.fg}"
-        }
+        "bg": { "$value": "{color.blue.400}" },
+        "fg": { "$value": "{color.blue.400.fg}" }
       },
 
       "dark": {
-        "bg": {
-          "$value": "{color.blue.400}"
-        },
-        "fg": {
-          "$value": "{color.blue.400.fg}"
-        }
+        "bg": { "$value": "{color.blue.400}" },
+        "fg": { "$value": "{color.blue.400.fg}" }
       }
     }
   }

@@ -1,0 +1,137 @@
+@use '@/sass/mixins/accessibility';
+
+.container {
+  align-items: center;
+  display: inline-flex;
+  inline-size: fit-content;
+}
+
+.fullWidth {
+  inline-size: 100%;
+}
+
+.control {
+  display: inline-flex;
+  position: relative;
+}
+
+.input {
+  appearance: none;
+  background: token('components.checkbox.bg');
+  block-size: token('components.checkbox.sizes.medium.boxSize');
+  border: 1px solid token('components.checkbox.border');
+  border-radius: token('components.checkbox.sizes.medium.borderRadius');
+  cursor: pointer;
+  display: inline-flex;
+  inline-size: token('components.checkbox.sizes.medium.boxSize');
+  margin: 0;
+
+  &:focus-visible {
+    @include accessibility.focusRing;
+  }
+}
+
+.icon {
+  align-items: center;
+  color: token('components.checkbox.checkmark');
+  display: inline-flex;
+  inset: 0;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: scale(0.7);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+
+  > svg {
+    block-size: 68%;
+    inline-size: 68%;
+  }
+}
+
+.minusIcon {
+  > svg {
+    block-size: 56%;
+    inline-size: 56%;
+  }
+}
+
+.input:checked + .checkIcon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.input[data-indeterminate='true'] + .checkIcon {
+  opacity: 0;
+}
+
+.input[data-indeterminate='true'] ~ .minusIcon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.disabled {
+  .input {
+    background: token('components.checkbox.disabled.bg');
+    border-color: token('components.checkbox.disabled.border');
+    cursor: not-allowed;
+  }
+
+  .icon {
+    color: token('components.checkbox.disabled.fg');
+  }
+}
+
+.small {
+  .input {
+    block-size: token('components.checkbox.sizes.small.boxSize');
+    border-radius: token('components.checkbox.sizes.small.borderRadius');
+    inline-size: token('components.checkbox.sizes.small.boxSize');
+  }
+}
+
+.medium {
+  .input {
+    block-size: token('components.checkbox.sizes.medium.boxSize');
+    border-radius: token('components.checkbox.sizes.medium.borderRadius');
+    inline-size: token('components.checkbox.sizes.medium.boxSize');
+  }
+}
+
+.large {
+  .input {
+    block-size: token('components.checkbox.sizes.large.boxSize');
+    border-radius: token('components.checkbox.sizes.large.borderRadius');
+    inline-size: token('components.checkbox.sizes.large.boxSize');
+  }
+}
+
+.none {
+  .input {
+    border-color: token('components.checkbox.border');
+    color: token('components.checkbox.checkmark');
+  }
+}
+
+.invalid {
+  .input {
+    border-color: token('components.checkbox.validation.invalid.border');
+    color: token('components.checkbox.checkmark');
+  }
+}
+
+.valid {
+  .input {
+    border-color: token('components.checkbox.validation.valid.border');
+    color: token('components.checkbox.checkmark');
+  }
+}
+
+.warning {
+  .input {
+    border-color: token('components.checkbox.validation.warning.border');
+    color: token('components.checkbox.checkmark');
+  }
+}

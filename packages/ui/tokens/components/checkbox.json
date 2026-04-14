@@ -1,0 +1,74 @@
+{
+  "components": {
+    "checkbox": {
+      "sizes": {
+        "small": {
+          "borderRadius": { "$value": "{radius.small}" },
+          "boxSize": { "$value": "{space.4}" }
+        },
+
+        "medium": {
+          "borderRadius": { "$value": "{radius.small}" },
+          "boxSize": { "$value": "{space.5}" }
+        },
+
+        "large": {
+          "borderRadius": { "$value": "{radius.small}" },
+          "boxSize": { "$value": "{space.6}" }
+        }
+      },
+
+      "light": {
+        "bg": { "$value": "{color.white}" },
+        "border": { "$value": "{color.black.30}" },
+        "checkmark": { "$value": "{color.black}" },
+
+        "disabled": {
+          "bg": { "$value": "{color.gray.100}" },
+          "border": { "$value": "{color.black.10}" },
+          "fg": { "$value": "{color.black.40}" }
+        },
+
+        "validation": {
+          "invalid": {
+            "border": { "$value": "{color.red.400}" }
+          },
+
+          "valid": {
+            "border": { "$value": "{color.green.400}" }
+          },
+
+          "warning": {
+            "border": { "$value": "{color.lightBlue.400}" }
+          }
+        }
+      },
+
+      "dark": {
+        "bg": { "$value": "{color.white.10}" },
+        "border": { "$value": "{color.white.30}" },
+        "checkmark": { "$value": "{color.white}" },
+
+        "disabled": {
+          "bg": { "$value": "{color.white.10}" },
+          "border": { "$value": "{color.white.10}" },
+          "fg": { "$value": "{color.white.40}" }
+        },
+
+        "validation": {
+          "invalid": {
+            "border": { "$value": "{color.red.400}" }
+          },
+
+          "valid": {
+            "border": { "$value": "{color.green.400}" }
+          },
+
+          "warning": {
+            "border": { "$value": "{color.lightBlue.400}" }
+          }
+        }
+      }
+    }
+  }
+}

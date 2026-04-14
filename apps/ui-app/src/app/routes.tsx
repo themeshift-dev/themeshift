@@ -86,6 +86,131 @@ const AppRoutes = () => (
           }
         />
       </Route>
+      <Route path="checkbox">
+        <Route index element={<ComponentGuides.CheckboxGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Checkbox"
+              componentPath="/components/checkbox"
+              description="Checkbox customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Checkbox"
+              componentPath="/components/checkbox"
+              description="An interactive Checkbox playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route path="field">
+        <Route index element={<ComponentGuides.FieldGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Field"
+              componentPath="/components/field"
+              description="Field customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Field"
+              componentPath="/components/field"
+              description="An interactive Field playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route path="input">
+        <Route index element={<ComponentGuides.InputGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Input"
+              componentPath="/components/input"
+              description="Input customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Input"
+              componentPath="/components/input"
+              description="An interactive Input playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route path="select">
+        <Route index element={<ComponentGuides.SelectGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Select"
+              componentPath="/components/select"
+              description="Select customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Select"
+              componentPath="/components/select"
+              description="An interactive Select playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route path="textarea">
+        <Route index element={<ComponentGuides.TextareaGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Textarea"
+              componentPath="/components/textarea"
+              description="Textarea customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Textarea"
+              componentPath="/components/textarea"
+              description="An interactive Textarea playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
       <Route path="toggle-switch">
         <Route index element={<ComponentGuides.ToggleSwitchGuide />} />
         <Route

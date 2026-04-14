@@ -1,6 +1,6 @@
 import { Heading } from '@themeshift/ui/components/Heading';
-import { IoHomeSharp } from 'react-icons/io5';
 import type { ReactNode } from 'react';
+import { IoHomeSharp } from 'react-icons/io5';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
 import { useComponentData } from '@/component-data';
@@ -86,7 +86,7 @@ export const ToggleSwitchGuide = () => {
       </div>
 
       <StepCard
-        description="Start with a labelled switch, then layer in intent, descriptions, icons, and state props as needed."
+        description="Start with an accessible switch, then compose labels, guidance, and errors with Field when needed."
         number="3."
         title="Use"
       >
@@ -103,9 +103,10 @@ export const ToggleSwitchGuide = () => {
     <ApiReference
       intro={
         <p className={styles.callout}>
-          <code>ToggleSwitch</code> wraps a native <code>checkbox</code> input
-          and adds switch semantics, label content, description and error text,
-          thumb intents, and optional state icons.
+          <code>ToggleSwitch</code> wraps a native{' '}
+          <code>input[type="checkbox"]</code> with <code>role="switch"</code>,
+          supports intent/size/icon styling, and can inherit accessibility state
+          from <code>Field</code>.
         </p>
       }
       items={component?.apiReference ?? []}
@@ -116,11 +117,107 @@ export const ToggleSwitchGuide = () => {
     <div className={styles.examplesGrid}>
       <div className={styles.exampleCard}>
         <div className={styles.exampleText}>
+          <TableOfContents.Marker
+            id="examples-field-inline"
+            label="Field inline"
+            level={2}
+          />
+          <Heading level={4}>With Field inline-control</Heading>
+          <p>
+            Use <code>layout="inline-control"</code> to keep switch and label on
+            one row.
+          </p>
+        </div>
+
+        <ExampleViewer
+          className={styles.exampleViewer}
+          example={examples.withFieldInline}
+        />
+      </div>
+
+      <div className={styles.exampleCard}>
+        <div className={styles.exampleText}>
+          <TableOfContents.Marker
+            id="examples-description-error"
+            label="Description and error"
+            level={2}
+          />
+          <Heading level={4}>Description and error</Heading>
+          <p>
+            Compose helper text and validation with{' '}
+            <code>Field.Description</code> and <code>Field.Error</code>.
+          </p>
+        </div>
+
+        <ExampleViewer
+          className={styles.exampleViewer}
+          example={examples.withDescriptionAndError}
+        />
+      </div>
+
+      <div className={styles.exampleCard}>
+        <div className={styles.exampleText}>
+          <TableOfContents.Marker
+            id="examples-validation"
+            label="Validation"
+            level={2}
+          />
+          <Heading level={4}>Validation states</Heading>
+          <p>
+            Use <code>validationState</code> for border feedback and derived
+            <code>aria-invalid</code> semantics.
+          </p>
+        </div>
+
+        <ExampleViewer
+          className={styles.exampleViewer}
+          example={examples.validationStates}
+        />
+      </div>
+
+      <div className={styles.exampleCard}>
+        <div className={styles.exampleText}>
+          <TableOfContents.Marker
+            id="examples-on-checked-change"
+            label="onCheckedChange"
+            level={2}
+          />
+          <Heading level={4}>onCheckedChange</Heading>
+          <p>
+            Use <code>onCheckedChange</code> with <code>checked</code> to keep
+            switch state synced with external state.
+          </p>
+        </div>
+
+        <ExampleViewer
+          className={styles.exampleViewer}
+          example={examples.checkedChange}
+        />
+      </div>
+
+      <div className={styles.exampleCard}>
+        <div className={styles.exampleText}>
+          <TableOfContents.Marker id="examples-icons" label="Icons" level={2} />
+          <Heading level={4}>Icons</Heading>
+          <p>
+            Use <code>trackIconOff</code>/<code>trackIconOn</code> or
+            <code>thumbIconOff</code>/<code>thumbIconOn</code> for state-aware
+            icon placement.
+          </p>
+        </div>
+
+        <ExampleViewer
+          className={styles.exampleViewer}
+          example={examples.icons}
+        />
+      </div>
+
+      <div className={styles.exampleCard}>
+        <div className={styles.exampleText}>
           <TableOfContents.Marker id="examples-sizes" label="Sizes" level={2} />
           <Heading level={4}>Sizes</Heading>
           <p>
-            Use the <code>size</code> prop to scale the track, thumb, and
-            iconography.
+            Use <code>size</code> to scale track and thumb dimensions.
           </p>
         </div>
 
@@ -139,112 +236,14 @@ export const ToggleSwitchGuide = () => {
           />
           <Heading level={4}>Intents</Heading>
           <p>
-            Use the <code>intent</code> prop to change the thumb color while
-            keeping the track neutral.
+            Use <code>intent</code> to style the thumb while keeping a
+            consistent track treatment.
           </p>
         </div>
 
         <ExampleViewer
           className={styles.exampleViewer}
           example={examples.intents}
-        />
-      </div>
-
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
-          <TableOfContents.Marker
-            id="examples-label-positions"
-            label="Label positions"
-            level={2}
-          />
-          <Heading level={4}>Label positions</Heading>
-          <p>
-            Use <code>labelPosition</code> to place content before or after the
-            switch control.
-          </p>
-        </div>
-
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.labelPositions}
-        />
-      </div>
-
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
-          <TableOfContents.Marker
-            id="examples-description"
-            label="Description"
-            level={2}
-          />
-          <Heading level={4}>Description</Heading>
-          <p>
-            Use <code>description</code> to add supporting guidance below the
-            visible label when the switch needs a little more context.
-          </p>
-        </div>
-
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.descriptions}
-        />
-      </div>
-
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
-          <TableOfContents.Marker
-            id="examples-error-message"
-            label="Error message"
-            level={2}
-          />
-          <Heading level={4}>Error message</Heading>
-          <p>
-            Use <code>errorMessage</code> alongside <code>aria-invalid</code>{' '}
-            when the current selection needs validation feedback.
-          </p>
-        </div>
-
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.errorMessages}
-        />
-      </div>
-
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
-          <TableOfContents.Marker
-            id="examples-on-checked-change"
-            label="onCheckedChange"
-            level={2}
-          />
-          <Heading level={4}>onCheckedChange</Heading>
-          <p>
-            Use <code>onCheckedChange</code> with <code>checked</code> when the
-            switch state needs to drive other UI or stay in sync with external
-            state.
-          </p>
-        </div>
-
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.checkedChange}
-        />
-      </div>
-
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
-          <TableOfContents.Marker id="examples-icons" label="Icons" level={2} />
-          <Heading level={4}>Icons</Heading>
-          <p>
-            Use <code>iconOff</code> and <code>iconOn</code> to show state-aware
-            icons inside the track. For icon-only usage, provide an accessible
-            name with <code>aria-label</code> or <code>aria-labelledby</code>.
-          </p>
-        </div>
-
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.icons}
         />
       </div>
 
@@ -258,8 +257,7 @@ export const ToggleSwitchGuide = () => {
           <Heading level={4}>States</Heading>
           <p>
             Use <code>checked</code>, <code>disabled</code>, and{' '}
-            <code>readOnly</code> to communicate the current interaction mode of
-            the switch.
+            <code>readOnly</code> for interaction state handling.
           </p>
         </div>
 
@@ -275,7 +273,7 @@ export const ToggleSwitchGuide = () => {
     content: quickStartContent,
     id: 'quick-start',
     intro:
-      'Get a switch onto the page quickly, then expand into state, feedback, and icon patterns below.',
+      'Get a switch onto the page quickly, then expand into Field composition, validation, and icon/state patterns.',
     title: 'Quick start',
   } satisfies ComponentGuideSection;
 
@@ -283,7 +281,7 @@ export const ToggleSwitchGuide = () => {
     content: propsContent,
     id: 'props',
     intro:
-      'Use the API reference for the exact prop names, state semantics, and customization hooks supported by ToggleSwitch.',
+      'Use the API reference for exact prop names, native passthrough behavior, and Field-aware accessibility defaults.',
     title: 'Props',
   } satisfies ComponentGuideSection;
 
@@ -291,7 +289,7 @@ export const ToggleSwitchGuide = () => {
     content: examplesContent,
     id: 'examples',
     intro:
-      'Browse the most common switch patterns developers usually need in production: sizing, thumb intents, labels, supporting copy, icons, and state handling.',
+      'Browse common switch patterns for production forms and settings screens.',
     title: 'Examples',
   } satisfies ComponentGuideSection;
 
@@ -311,7 +309,7 @@ export const ToggleSwitchGuide = () => {
           ]}
         />
       }
-      description="A theme-aware switch built on top of a native checkbox input."
+      description="A theme-aware native switch with Field integration and state-aware icon support."
       eyebrow="ToggleSwitch"
       examples={examplesSection}
       howToUse={quickStartSection}

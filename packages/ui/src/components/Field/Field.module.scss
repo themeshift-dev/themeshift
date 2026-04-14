@@ -1,0 +1,62 @@
+@use '@/sass/mixins/typography';
+
+.container {
+  display: grid;
+  gap: token('components.field.layout.gap');
+
+  &[data-layout='inline-control'] {
+    align-items: start;
+    column-gap: token('components.field.layout.inlineControlGap');
+    grid-template-columns: auto minmax(0, 1fr);
+    row-gap: token('components.field.layout.inlineRowGap');
+
+    &[data-align='center'] {
+      align-items: center;
+    }
+  }
+}
+
+.inlineContent {
+  display: grid;
+  gap: token('components.field.layout.gap');
+  min-width: 0;
+}
+
+.label {
+  align-items: baseline;
+  display: inline-flex;
+  gap: token('components.field.layout.labelGap');
+}
+
+.requiredIndicator {
+  color: token('components.field.indicator.required');
+}
+
+.optionalIndicator {
+  @include typography.style('caption.default');
+
+  color: token('components.field.indicator.optional');
+}
+
+.description {
+  @include typography.style('caption.default');
+
+  color: token('components.field.description');
+  margin: 0;
+}
+
+.error {
+  color: token('components.field.error');
+}
+
+.visuallyHidden {
+  block-size: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  inline-size: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+}

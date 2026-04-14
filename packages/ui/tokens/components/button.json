@@ -1,17 +1,14 @@
 {
   "components": {
     "button": {
-      "padding": {
-        "$value": "0 {space.4}"
-      },
-      "font": {
-        "$value": "{font.family.sans}"
-      },
+      "padding": { "$value": "0 {space.4}" },
+      "font": { "$value": "{font.family.sans}" },
 
       "sizes": {
         "small": {
           "borderRadius": { "$value": "{radius.small}" },
           "height": { "$value": "{space.8}" },
+
           "padding": {
             "$value": "0 {space.4}",
 
@@ -22,6 +19,7 @@
         "medium": {
           "borderRadius": { "$value": "{radius.small}" },
           "height": { "$value": "{space.9}" },
+
           "padding": {
             "$value": "0 {space.6}",
 
@@ -32,6 +30,7 @@
         "large": {
           "borderRadius": { "$value": "{radius.small}" },
           "height": { "$value": "{space.10}" },
+
           "padding": {
             "$value": "0 {space.8}",
 
