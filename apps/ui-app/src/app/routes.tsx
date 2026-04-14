@@ -86,6 +86,56 @@ const AppRoutes = () => (
           }
         />
       </Route>
+      <Route path="input">
+        <Route index element={<ComponentGuides.InputGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Input"
+              componentPath="/components/input"
+              description="Input customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Input"
+              componentPath="/components/input"
+              description="An interactive Input playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route path="textarea">
+        <Route index element={<ComponentGuides.TextareaGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Textarea"
+              componentPath="/components/textarea"
+              description="Textarea customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Textarea"
+              componentPath="/components/textarea"
+              description="An interactive Textarea playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
       <Route path="toggle-switch">
         <Route index element={<ComponentGuides.ToggleSwitchGuide />} />
         <Route

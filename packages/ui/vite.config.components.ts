@@ -172,6 +172,9 @@ export default defineConfig({
         'components/Heading/index': fileURLToPath(
           new URL('./src/entrypoints/components/Heading.ts', import.meta.url)
         ),
+        'components/Input/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Input.ts', import.meta.url)
+        ),
         'components/Label/index': fileURLToPath(
           new URL('./src/entrypoints/components/Label.ts', import.meta.url)
         ),
@@ -189,6 +192,9 @@ export default defineConfig({
         ),
         'components/Spinner/index': fileURLToPath(
           new URL('./src/entrypoints/components/Spinner.ts', import.meta.url)
+        ),
+        'components/Textarea/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Textarea.ts', import.meta.url)
         ),
         'components/ToggleSwitch/index': fileURLToPath(
           new URL(

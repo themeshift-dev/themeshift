@@ -1,0 +1,126 @@
+@use '@/sass/mixins/accessibility';
+@use '@/sass/mixins/typography';
+
+.container {
+  @include typography.style('button.medium');
+
+  align-items: center;
+  background: token('components.input.bg');
+  border: 1px solid token('components.input.border');
+  border-radius: token('components.input.sizes.medium.borderRadius');
+  color: token('theme.text.base');
+  display: inline-flex;
+  gap: token('components.input.layout.adornmentGap');
+  min-height: token('components.input.sizes.medium.height');
+  padding-inline: token('components.input.sizes.medium.paddingInline');
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  width: fit-content;
+
+  &:has(.input:focus-visible) {
+    @include accessibility.focusRing;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.input {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  flex: 1 1 auto;
+  min-width: 0;
+  outline: none;
+  padding: 0;
+  width: 100%;
+
+  &::placeholder {
+    color: token('components.input.placeholder');
+  }
+}
+
+.adornment {
+  align-items: center;
+  color: token('components.input.adornment');
+  display: inline-flex;
+  flex: 0 0 auto;
+  line-height: 0;
+
+  > svg {
+    block-size: 1em;
+    inline-size: 1em;
+  }
+}
+
+.disabled {
+  background: token('components.input.disabled.bg');
+  border-color: token('components.input.disabled.border');
+  color: token('components.input.disabled.fg');
+
+  .adornment,
+  .input::placeholder {
+    color: token('components.input.disabled.placeholder');
+  }
+}
+
+.small {
+  @include typography.style('button.small');
+
+  border-radius: token('components.input.sizes.small.borderRadius');
+  min-height: token('components.input.sizes.small.height');
+  padding-inline: token('components.input.sizes.small.paddingInline');
+}
+
+.medium {
+  @include typography.style('button.medium');
+
+  border-radius: token('components.input.sizes.medium.borderRadius');
+  min-height: token('components.input.sizes.medium.height');
+  padding-inline: token('components.input.sizes.medium.paddingInline');
+}
+
+.large {
+  @include typography.style('button.large');
+
+  border-radius: token('components.input.sizes.large.borderRadius');
+  min-height: token('components.input.sizes.large.height');
+  padding-inline: token('components.input.sizes.large.paddingInline');
+}
+
+.withStartAdornment {
+  gap: token('space.1');
+  padding-inline-start: token('space.3');
+}
+
+.withEndAdornment {
+  gap: token('space.1');
+  padding-inline-end: token('space.3');
+}
+
+.withStartAdornmentInteractive {
+  padding-inline-start: token('space.2');
+}
+
+.withEndAdornmentInteractive {
+  padding-inline-end: token('space.1');
+}
+
+.none {
+  border-color: token('components.input.border');
+}
+
+.invalid {
+  border-color: token('components.input.validation.invalid.border');
+}
+
+.valid {
+  border-color: token('components.input.validation.valid.border');
+}
+
+.warning {
+  border-color: token('components.input.validation.warning.border');
+}

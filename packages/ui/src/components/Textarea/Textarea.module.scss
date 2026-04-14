@@ -1,0 +1,102 @@
+@use '@/sass/mixins/accessibility';
+@use '@/sass/mixins/typography';
+
+.container {
+  @include typography.style('button.medium');
+
+  background: token('components.textarea.bg');
+  border: 1px solid token('components.textarea.border');
+  border-radius: token('components.textarea.sizes.medium.borderRadius');
+  color: token('theme.text.base');
+  min-height: token('components.textarea.sizes.medium.minHeight');
+  outline: none;
+  padding: token('components.textarea.sizes.medium.padding');
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  width: fit-content;
+
+  &::placeholder {
+    color: token('components.textarea.placeholder');
+  }
+
+  &:focus-visible {
+    @include accessibility.focusRing;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.disabled {
+  background: token('components.textarea.disabled.bg');
+  border-color: token('components.textarea.disabled.border');
+  color: token('components.textarea.disabled.fg');
+
+  &::placeholder {
+    color: token('components.textarea.disabled.placeholder');
+  }
+}
+
+.resizeNone {
+  resize: none;
+}
+
+.resizeVertical {
+  resize: vertical;
+}
+
+.resizeHorizontal {
+  resize: horizontal;
+}
+
+.resizeBoth {
+  resize: both;
+}
+
+.resizeAuto {
+  overflow-y: hidden;
+  resize: none;
+}
+
+.small {
+  @include typography.style('button.small');
+
+  border-radius: token('components.textarea.sizes.small.borderRadius');
+  min-height: token('components.textarea.sizes.small.minHeight');
+  padding: token('components.textarea.sizes.small.padding');
+}
+
+.medium {
+  @include typography.style('button.medium');
+
+  border-radius: token('components.textarea.sizes.medium.borderRadius');
+  min-height: token('components.textarea.sizes.medium.minHeight');
+  padding: token('components.textarea.sizes.medium.padding');
+}
+
+.large {
+  @include typography.style('button.large');
+
+  border-radius: token('components.textarea.sizes.large.borderRadius');
+  min-height: token('components.textarea.sizes.large.minHeight');
+  padding: token('components.textarea.sizes.large.padding');
+}
+
+.none {
+  border-color: token('components.textarea.border');
+}
+
+.invalid {
+  border-color: token('components.textarea.validation.invalid.border');
+}
+
+.valid {
+  border-color: token('components.textarea.validation.valid.border');
+}
+
+.warning {
+  border-color: token('components.textarea.validation.warning.border');
+}

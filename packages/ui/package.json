@@ -38,6 +38,10 @@
       "types": "./dist/components/Heading/index.d.ts",
       "import": "./dist/components/Heading/index.js"
     },
+    "./components/Input": {
+      "types": "./dist/components/Input/index.d.ts",
+      "import": "./dist/components/Input/index.js"
+    },
     "./components/Label": {
       "types": "./dist/components/Label/index.d.ts",
       "import": "./dist/components/Label/index.js"
@@ -61,6 +65,10 @@
     "./components/Spinner": {
       "types": "./dist/components/Spinner/index.d.ts",
       "import": "./dist/components/Spinner/index.js"
+    },
+    "./components/Textarea": {
+      "types": "./dist/components/Textarea/index.d.ts",
+      "import": "./dist/components/Textarea/index.js"
     },
     "./components/ToggleSwitch": {
       "types": "./dist/components/ToggleSwitch/index.d.ts",
@@ -160,10 +168,11 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
     "@radix-ui/react-slot": "^1.2.4",
     "@themeshift/vite-plugin-themeshift": "workspace:*",
-    "@fontsource-variable/inter": "^5.2.8",
-    "classnames": "^2.5.1"
+    "classnames": "^2.5.1",
+    "react-textarea-autosize": "^8.5.9"
   },
   "peerDependencies": {
     "react": "^19.2.4",

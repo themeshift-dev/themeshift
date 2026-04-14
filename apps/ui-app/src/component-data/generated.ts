@@ -155,6 +155,63 @@ export const componentData = [
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Heading',
   },
   {
+    apiReference: [
+      {
+        comments: 'Decorative or functional content after the input.',
+        defaultValue: null,
+        displayName: 'Input',
+        propName: 'endAdornment',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Makes the input span the full width of its container.',
+        defaultValue: null,
+        displayName: 'Input',
+        propName: 'fullWidth',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Additional class name for the input element.',
+        defaultValue: null,
+        displayName: 'Input',
+        propName: 'inputClassName',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Visual size for the control.',
+        defaultValue: null,
+        displayName: 'Input',
+        propName: 'size',
+        type: 'InputSize',
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments: 'Decorative or functional content before the input.',
+        defaultValue: null,
+        displayName: 'Input',
+        propName: 'startAdornment',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Visual validation state for border and state colors.',
+        defaultValue: null,
+        displayName: 'Input',
+        propName: 'validationState',
+        type: 'InputValidationState',
+        values: ['none', 'invalid', 'valid', 'warning'],
+      },
+    ],
+    component: 'Input',
+    importString: "import { Input } from '@themeshift/ui/components/Input';",
+    slug: 'input',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Input',
+  },
+  {
     apiReference: [],
     component: 'Label',
     importString: "import { Label } from '@themeshift/ui/components/Label';",
@@ -448,6 +505,64 @@ export const componentData = [
     slug: 'spinner',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Spinner',
+  },
+  {
+    apiReference: [
+      {
+        comments: 'Makes the textarea span the full width of its container.',
+        defaultValue: null,
+        displayName: 'Textarea',
+        propName: 'fullWidth',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Maximum rows when `resize="auto"`.',
+        defaultValue: null,
+        displayName: 'Textarea',
+        propName: 'maxRows',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Minimum rows when `resize="auto"`.',
+        defaultValue: null,
+        displayName: 'Textarea',
+        propName: 'minRows',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Resize behavior for the control.',
+        defaultValue: null,
+        displayName: 'Textarea',
+        propName: 'resize',
+        type: 'TextareaResize',
+        values: ['none', 'vertical', 'horizontal', 'both', 'auto'],
+      },
+      {
+        comments: 'Visual size for the control.',
+        defaultValue: null,
+        displayName: 'Textarea',
+        propName: 'size',
+        type: 'TextareaSize',
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments: 'Visual validation state for border and state colors.',
+        defaultValue: null,
+        displayName: 'Textarea',
+        propName: 'validationState',
+        type: 'TextareaValidationState',
+        values: ['none', 'invalid', 'valid', 'warning'],
+      },
+    ],
+    component: 'Textarea',
+    importString:
+      "import { Textarea } from '@themeshift/ui/components/Textarea';",
+    slug: 'textarea',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Textarea',
   },
   {
     apiReference: [
