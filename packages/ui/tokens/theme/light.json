@@ -2,7 +2,6 @@
   "theme": {
     "light": {
       "border": { "$value": "{color.black.10}" },
-
       "overlay": { "$value": "{color.white.80}" },
 
       "surface": {
@@ -13,7 +12,6 @@
 
       "text": {
         "base": { "$value": "{color.black}" },
-
         "muted": { "$value": "{color.black.70}" }
       }
     }

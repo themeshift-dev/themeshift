@@ -2,6 +2,7 @@
   "grid": {
     "columns": {
       "$type": "number",
+
       "mobile": { "$value": 4 },
       "tablet": { "$value": 8 },
       "desktop": { "$value": 12 }
@@ -9,6 +10,7 @@
 
     "gutter": {
       "$type": "dimension",
+
       "mobile": { "$value": "{space.4}" },
       "tablet": { "$value": "{space.5}" },
       "desktop": { "$value": "{space.6}" }
@@ -16,6 +18,7 @@
 
     "rowGap": {
       "$type": "dimension",
+
       "mobile": { "$value": "{space.4}" },
       "tablet": { "$value": "{space.5}" },
       "desktop": { "$value": "{space.6}" }
@@ -24,17 +27,21 @@
     "container": {
       "paddingInline": {
         "$type": "dimension",
+
         "mobile": { "$value": "{space.4}" },
         "tablet": { "$value": "{space.6}" },
         "desktop": { "$value": "{space.8}" }
       },
+
       "maxWidth": {
         "$type": "dimension",
+
         "sm": { "$value": "40rem" },
         "md": { "$value": "64rem" },
         "lg": { "$value": "80rem" },
         "xl": { "$value": "90rem" }
       },
+
       "contentMaxWidth": {
         "$type": "dimension",
         "$value": "{grid.container.maxWidth.lg}"

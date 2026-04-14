@@ -34,7 +34,7 @@
     @include accessibility.focusRing;
   }
 
-  &:not(:read-only):hover + .control .track {
+  &:not([aria-readonly='true']):hover + .control .track {
     background: token('components.toggleSwitch.track.bg.hover');
   }
 }

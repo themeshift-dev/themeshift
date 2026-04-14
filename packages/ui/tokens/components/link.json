@@ -1,26 +1,16 @@
 {
   "components": {
     "link": {
-      "font": {
-        "$value": "{font.family.sans}"
-      },
+      "font": { "$value": "{font.family.sans}" },
 
       "light": {
-        "fg": {
-          "$value": "{color.blue.600}"
-        },
-        "bg": {
-          "$value": "transparent"
-        }
+        "fg": { "$value": "{color.blue.600}" },
+        "bg": { "$value": "transparent" }
       },
 
       "dark": {
-        "fg": {
-          "$value": "{color.lightBlue.400}"
-        },
-        "bg": {
-          "$value": "transparent"
-        }
+        "fg": { "$value": "{color.lightBlue.400}" },
+        "bg": { "$value": "transparent" }
       }
     }
   }

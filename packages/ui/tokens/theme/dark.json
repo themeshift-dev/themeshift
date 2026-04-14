@@ -2,7 +2,6 @@
   "theme": {
     "dark": {
       "border": { "$value": "{color.white.10}" },
-
       "overlay": { "$value": "{color.black.80}" },
 
       "surface": {

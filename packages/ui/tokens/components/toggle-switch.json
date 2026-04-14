@@ -40,12 +40,14 @@
 
       "light": {
         "track": {
+          "border": { "$value": "{color.black.20}" },
+          "icon": { "$value": "{color.black.50}" },
+
           "bg": {
             "$value": "{color.gray.200}",
+
             "hover": { "$value": "{color.gray.300}" }
-          },
-          "border": { "$value": "{color.black.20}" },
-          "icon": { "$value": "{color.black.50}" }
+          }
         },
 
         "disabled": {
@@ -61,12 +63,14 @@
 
       "dark": {
         "track": {
+          "border": { "$value": "{color.white.20}" },
+          "icon": { "$value": "{color.white.70}" },
+
           "bg": {
             "$value": "{color.white.10}",
+
             "hover": { "$value": "{color.white.20}" }
-          },
-          "border": { "$value": "{color.white.20}" },
-          "icon": { "$value": "{color.white.70}" }
+          }
         },
 
         "disabled": {
