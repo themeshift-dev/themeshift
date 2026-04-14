@@ -1,3 +1,4 @@
+import { Field } from '@themeshift/ui/components/Field';
 import { Textarea } from '@themeshift/ui/components/Textarea';
 
 import { ResponsiveStackInline } from '../../components';
@@ -114,6 +115,38 @@ export const autoResize = {
   ),
 };
 
+export const withField = {
+  code: `<Field
+  description="Add context your teammates should know before publishing."
+  label="Release notes"
+  validationState="invalid"
+>
+  <Textarea
+    maxRows={8}
+    minRows={3}
+    placeholder="Summarize what changed..."
+    resize="auto"
+  />
+  <Field.Error>Please include at least one user-facing change.</Field.Error>
+</Field>`,
+  label: 'With Field',
+  sample: (
+    <Field
+      description="Add context your teammates should know before publishing."
+      label="Release notes"
+      validationState="invalid"
+    >
+      <Textarea
+        maxRows={8}
+        minRows={3}
+        placeholder="Summarize what changed..."
+        resize="auto"
+      />
+      <Field.Error>Please include at least one user-facing change.</Field.Error>
+    </Field>
+  ),
+};
+
 export const widths = {
   code: `<>
   <Textarea aria-label="Full width textarea" placeholder="Full width (default)" />
@@ -182,5 +215,6 @@ export const propHighlights = [
   sizes,
   validationStates,
   autoResize,
+  withField,
   resizeModes,
 ];

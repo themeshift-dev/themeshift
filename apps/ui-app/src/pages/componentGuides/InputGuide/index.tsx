@@ -192,6 +192,23 @@ export const InputGuide = () => {
 
       <div className={styles.exampleCard}>
         <div className={styles.exampleText}>
+          <TableOfContents.Marker id="examples-field" label="Field" level={2} />
+          <Heading level={4}>With Field</Heading>
+          <p>
+            Pair <code>Input</code> with <code>Field</code> to centralize
+            labels, descriptions, and error messaging while the control stays a
+            thin native wrapper.
+          </p>
+        </div>
+
+        <ExampleViewer
+          className={styles.exampleViewer}
+          example={examples.withField}
+        />
+      </div>
+
+      <div className={styles.exampleCard}>
+        <div className={styles.exampleText}>
           <TableOfContents.Marker
             id="examples-width"
             label="Widths"

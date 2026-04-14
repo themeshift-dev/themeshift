@@ -1,3 +1,4 @@
+import { Field } from '@themeshift/ui/components/Field';
 import { Heading } from '@themeshift/ui/components/Heading';
 import { ToggleSwitch } from '@themeshift/ui/components/ToggleSwitch';
 import { IconMoon, IconSun } from '@themeshift/ui/icons';
@@ -43,22 +44,24 @@ export const AccessibilitySection = () => {
 
   const accessibilityToggle = useMemo(
     () => (
-      <ToggleSwitch
-        aria-invalid={invalid || undefined}
-        checked={isChecked}
-        description={description}
-        errorMessage={
-          invalid ? 'Resolve the conflicting preference.' : undefined
-        }
-        iconOff={showIcons ? <IconMoon aria-hidden /> : undefined}
-        iconOn={showIcons ? <IconSun aria-hidden /> : undefined}
-        intent={intent}
+      <Field
+        description={description || undefined}
+        error={invalid ? 'Resolve the conflicting preference.' : undefined}
         label={label}
-        onCheckedChange={setIsChecked}
-        readOnly={readOnly}
-        disabled={isDisabled}
-        size={size}
-      />
+        layout="inline-control"
+        validationState={invalid ? 'invalid' : 'none'}
+      >
+        <ToggleSwitch
+          checked={isChecked}
+          disabled={isDisabled}
+          intent={intent}
+          onCheckedChange={setIsChecked}
+          readOnly={readOnly}
+          size={size}
+          trackIconOff={showIcons ? <IconMoon aria-hidden /> : undefined}
+          trackIconOn={showIcons ? <IconSun aria-hidden /> : undefined}
+        />
+      </Field>
     ),
     [
       description,
@@ -258,31 +261,33 @@ export const AccessibilitySection = () => {
               className={styles.issue}
               key={`${selectedResultType}-${issue.id}`}
             >
-              <div className={styles.issueHeader}>
-                <strong>{issue.help}</strong>
-                <span className={styles.issueMeta}>
-                  {accessibilityResultLabels[selectedResultType]}
-                  {issue.impact ? ` / ${issue.impact}` : ''}
-                </span>
-              </div>
+              <header className={styles.issueHeader}>
+                <strong>{issue.id}</strong>
+                <span className={styles.issueMeta}>{issue.impact}</span>
+              </header>
 
               <p>{issue.description}</p>
 
-              <a href={issue.helpUrl} rel="noreferrer" target="_blank">
-                Learn about {issue.id}
-              </a>
+              <p>
+                Learn more:{' '}
+                <a href={issue.helpUrl} rel="noreferrer" target="_blank">
+                  {issue.help}
+                </a>
+              </p>
 
               <div className={styles.nodes}>
-                {issue.nodes.slice(0, 3).map((node, index) => (
-                  <code key={`${issue.id}-${index}`}>{node.html}</code>
+                {issue.nodes.map((node) => (
+                  <code key={node.target.join('-')}>
+                    {node.target.join(', ')}
+                  </code>
                 ))}
               </div>
             </article>
           ))}
         </div>
-      </div>
 
-      {auditFrame}
+        {auditFrame}
+      </div>
     </>
   );
 };

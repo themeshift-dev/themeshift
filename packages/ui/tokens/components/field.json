@@ -1,0 +1,32 @@
+{
+  "components": {
+    "field": {
+      "layout": {
+        "gap": { "$value": "{space.2}" },
+        "inlineControlGap": { "$value": "{space.3}" },
+        "inlineRowGap": { "$value": "{space.1}" },
+        "labelGap": { "$value": "{space.1}" }
+      },
+
+      "light": {
+        "description": { "$value": "{color.black.60}" },
+        "error": { "$value": "{color.red.400}" },
+
+        "indicator": {
+          "optional": { "$value": "{color.black.50}" },
+          "required": { "$value": "{color.red.400}" }
+        }
+      },
+
+      "dark": {
+        "description": { "$value": "{color.white.70}" },
+        "error": { "$value": "{color.red.400}" },
+
+        "indicator": {
+          "optional": { "$value": "{color.white.60}" },
+          "required": { "$value": "{color.red.400}" }
+        }
+      }
+    }
+  }
+}

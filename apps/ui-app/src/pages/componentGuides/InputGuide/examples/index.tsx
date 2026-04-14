@@ -1,4 +1,5 @@
 import { Button } from '@themeshift/ui/components/Button';
+import { Field } from '@themeshift/ui/components/Field';
 import { Input } from '@themeshift/ui/components/Input';
 import { IconMoon } from '@themeshift/ui/icons';
 import { FaSearch } from 'react-icons/fa';
@@ -199,10 +200,31 @@ export const withAction = {
   ),
 };
 
+export const withField = {
+  code: `<Field
+  description="We'll only use this for account updates."
+  label="Email address"
+  required
+>
+  <Input placeholder="you@example.com" type="email" />
+</Field>`,
+  label: 'With Field',
+  sample: (
+    <Field
+      description="We'll only use this for account updates."
+      label="Email address"
+      required
+    >
+      <Input placeholder="you@example.com" type="email" />
+    </Field>
+  ),
+};
+
 export const propHighlights = [
   basicUsage,
   sizes,
   validationStates,
   adornments,
+  withField,
   withAction,
 ];

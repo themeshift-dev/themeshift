@@ -1,11 +1,6 @@
 {
   "components": {
     "toggleSwitch": {
-      "layout": {
-        "contentGap": { "$value": "{space.1}" },
-        "gap": { "$value": "{space.3}" }
-      },
-
       "sizes": {
         "small": {
           "borderRadius": { "$value": "{radius.large}" },
@@ -56,8 +51,18 @@
           "trackBorder": { "$value": "{color.black.10}" }
         },
 
-        "invalid": {
-          "border": { "$value": "{color.red.400}" }
+        "validation": {
+          "invalid": {
+            "border": { "$value": "{color.red.400}" }
+          },
+
+          "valid": {
+            "border": { "$value": "{color.green.400}" }
+          },
+
+          "warning": {
+            "border": { "$value": "{color.lightBlue.400}" }
+          }
         }
       },
 
@@ -79,8 +84,18 @@
           "trackBorder": { "$value": "{color.white.10}" }
         },
 
-        "invalid": {
-          "border": { "$value": "{color.red.400}" }
+        "validation": {
+          "invalid": {
+            "border": { "$value": "{color.red.400}" }
+          },
+
+          "valid": {
+            "border": { "$value": "{color.green.400}" }
+          },
+
+          "warning": {
+            "border": { "$value": "{color.lightBlue.400}" }
+          }
         }
       },
 

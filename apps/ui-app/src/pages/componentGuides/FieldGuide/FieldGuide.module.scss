@@ -1,0 +1,116 @@
+@use '@/sass/mixins/code';
+
+.introSection {
+  margin-bottom: 3rem;
+}
+
+.quickstartLayout {
+  display: grid;
+  gap: 2rem;
+
+  @media (min-width: 64rem) {
+    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.quickstartColumn {
+  display: grid;
+  gap: 2rem;
+}
+
+.stepCard {
+  align-content: start;
+  display: grid;
+  min-width: 0;
+
+  h4 {
+    color: token('theme.text.base');
+    margin: 0;
+  }
+
+  > * {
+    min-width: 0;
+  }
+}
+
+.stepNumber {
+  color: color-mix(in srgb, token('theme.text.base') 28%, transparent);
+  display: block;
+  font-size: clamp(2.75rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin: -0.2rem 0 1rem;
+}
+
+.stepText {
+  color: token('theme.text.muted');
+  margin: 0 0 1rem;
+}
+
+.stepExampleViewer {
+  margin: 0;
+  max-width: none;
+}
+
+.importString {
+  margin: 0 0 1.5rem;
+}
+
+.callout {
+  background: token('theme.surface.sunken');
+  border: 1px solid token('theme.border');
+  border-radius: token('radius.small');
+  color: token('theme.text.muted');
+  margin: 0;
+  padding: 1rem 1.25rem;
+
+  code {
+    @include code.inline;
+
+    background: token('theme.surface.raised');
+    font-size: 1rem;
+  }
+}
+
+.examplesGrid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.exampleCard {
+  display: grid;
+  gap: 1rem;
+
+  @media (min-width: 64rem) {
+    align-items: start;
+    gap: 1.5rem;
+    grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
+  }
+}
+
+.exampleText {
+  max-width: 24rem;
+
+  p {
+    color: token('theme.text.muted');
+    margin: 0;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+
+  p code {
+    @include code.inline;
+
+    background: token('theme.surface.raised');
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+.exampleViewer {
+  margin: 0;
+  max-width: none;
+}

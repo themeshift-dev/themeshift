@@ -193,6 +193,23 @@ export const TextareaGuide = () => {
 
       <div className={styles.exampleCard}>
         <div className={styles.exampleText}>
+          <TableOfContents.Marker id="examples-field" label="Field" level={2} />
+          <Heading level={4}>With Field</Heading>
+          <p>
+            Pair <code>Textarea</code> with <code>Field</code> to share label,
+            helper text, and error semantics while keeping multiline input
+            behavior native.
+          </p>
+        </div>
+
+        <ExampleViewer
+          className={styles.exampleViewer}
+          example={examples.withField}
+        />
+      </div>
+
+      <div className={styles.exampleCard}>
+        <div className={styles.exampleText}>
           <TableOfContents.Marker
             id="examples-width"
             label="Widths"

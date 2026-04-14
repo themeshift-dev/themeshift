@@ -2,6 +2,7 @@ import { Heading } from '@themeshift/ui/components/Heading';
 import { Fragment, type ReactNode } from 'react';
 
 import { Markdown } from '@/app/components/Markdown';
+import { TableOfContents } from '@/app/components/TableOfContents';
 import type { ApiReferenceItem } from '@/component-data/types';
 
 import styles from './ApiReference.module.scss';
@@ -16,6 +17,12 @@ type ApiReferenceGroup = {
   displayName: string;
   items: ApiReferenceItem[];
 };
+
+const getGroupMarkerId = (displayName: string) =>
+  `api-reference-${displayName
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')}`;
 
 const emptyValue = <span className={styles.emptyValue}>-</span>;
 
@@ -82,6 +89,12 @@ const ApiReferenceTable = ({
     <div className={styles.tableLayout}>
       {groups.map((group) => (
         <section className={styles.group} key={group.displayName}>
+          <TableOfContents.Marker
+            id={getGroupMarkerId(group.displayName)}
+            label={group.displayName}
+            level={2}
+          />
+
           {hasGroups && (
             <Heading className={styles.groupHeading} level={4}>
               {group.displayName}
@@ -112,9 +125,7 @@ const ApiReferenceTable = ({
                 {group.items.map(
                   ({ comments, defaultValue, propName, type, values }) => (
                     <tr key={propName}>
-                      <td className={styles.propCell}>
-                        <code>{propName}</code>
-                      </td>
+                      <td className={styles.propCell}>{propName}</td>
                       <td className={styles.typeCell}>
                         <code>{type}</code>
                       </td>

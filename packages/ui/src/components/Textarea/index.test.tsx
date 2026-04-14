@@ -3,6 +3,8 @@ import { axe } from 'jest-axe';
 import { createRef, type ComponentPropsWithoutRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
+import { Field } from '@/components/Field';
+
 import styles from './Textarea.module.scss';
 import { Textarea } from './index';
 
@@ -232,6 +234,55 @@ describe('Textarea', () => {
     expect(
       screen.getByRole('textbox', { name: 'Explicit aria' })
     ).toHaveAttribute('aria-invalid', 'false');
+  });
+
+  it('uses Field defaults for ids and shared accessibility wiring', () => {
+    render(
+      <Field
+        description="Field description"
+        error="Field error"
+        id="message-field"
+        label="Message"
+        readOnly
+        validationState="invalid"
+      >
+        <Textarea />
+      </Field>
+    );
+
+    const textarea = screen.getByRole('textbox', { name: 'Message' });
+
+    expect(textarea).toHaveAttribute('id', 'message-field-control');
+    expect(textarea).toHaveAttribute('readonly');
+    expect(textarea).toHaveAttribute('aria-invalid', 'true');
+    expect(textarea).toHaveAttribute(
+      'aria-describedby',
+      expect.stringContaining('message-field-description')
+    );
+    expect(textarea).toHaveAttribute(
+      'aria-describedby',
+      expect.stringContaining('message-field-error')
+    );
+  });
+
+  it('lets explicit Textarea props override Field defaults', () => {
+    render(
+      <Field disabled label="Message" readOnly validationState="invalid">
+        <Textarea
+          aria-invalid={false}
+          disabled={false}
+          readOnly={false}
+          validationState="valid"
+        />
+      </Field>
+    );
+
+    const textarea = screen.getByRole('textbox', { name: 'Message' });
+
+    expect(textarea).not.toBeDisabled();
+    expect(textarea).not.toHaveAttribute('readonly');
+    expect(textarea).toHaveAttribute('aria-invalid', 'false');
+    expect(textarea).toHaveClass(styles.valid);
   });
 
   it('has no accessibility violations for representative states', async () => {

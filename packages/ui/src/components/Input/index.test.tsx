@@ -3,6 +3,8 @@ import { axe } from 'jest-axe';
 import { createRef } from 'react';
 import { describe, expect, it } from 'vitest';
 
+import { Field } from '@/components/Field';
+
 import styles from './Input.module.scss';
 import { Input } from './index';
 
@@ -228,6 +230,55 @@ describe('Input', () => {
     expect(
       screen.getByRole('textbox', { name: 'Explicit aria' })
     ).toHaveAttribute('aria-invalid', 'false');
+  });
+
+  it('uses Field defaults for ids and shared accessibility wiring', () => {
+    render(
+      <Field
+        description="Field description"
+        error="Field error"
+        id="email-field"
+        label="Email"
+        required
+        validationState="invalid"
+      >
+        <Input />
+      </Field>
+    );
+
+    const input = screen.getByRole('textbox', { name: 'Email' });
+
+    expect(input).toHaveAttribute('id', 'email-field-control');
+    expect(input).toHaveAttribute('required');
+    expect(input).toHaveAttribute('aria-invalid', 'true');
+    expect(input).toHaveAttribute(
+      'aria-describedby',
+      expect.stringContaining('email-field-description')
+    );
+    expect(input).toHaveAttribute(
+      'aria-describedby',
+      expect.stringContaining('email-field-error')
+    );
+  });
+
+  it('lets explicit Input props override Field defaults', () => {
+    render(
+      <Field disabled label="Email" required validationState="invalid">
+        <Input
+          aria-invalid={false}
+          disabled={false}
+          required={false}
+          validationState="valid"
+        />
+      </Field>
+    );
+
+    const input = screen.getByRole('textbox', { name: 'Email' });
+
+    expect(input).not.toBeDisabled();
+    expect(input).not.toHaveAttribute('required');
+    expect(input).toHaveAttribute('aria-invalid', 'false');
+    expect(input.parentElement).toHaveClass(styles.valid);
   });
 
   it('has no accessibility violations for representative states', async () => {

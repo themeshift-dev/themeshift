@@ -163,11 +163,17 @@ export default defineConfig({
         'components/Button/index': fileURLToPath(
           new URL('./src/entrypoints/components/Button.ts', import.meta.url)
         ),
+        'components/Checkbox/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Checkbox.ts', import.meta.url)
+        ),
         'components/ErrorMessage/index': fileURLToPath(
           new URL(
             './src/entrypoints/components/ErrorMessage.ts',
             import.meta.url
           )
+        ),
+        'components/Field/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Field.ts', import.meta.url)
         ),
         'components/Heading/index': fileURLToPath(
           new URL('./src/entrypoints/components/Heading.ts', import.meta.url)
@@ -186,6 +192,9 @@ export default defineConfig({
         ),
         'components/Responsive/index': fileURLToPath(
           new URL('./src/entrypoints/components/Responsive.ts', import.meta.url)
+        ),
+        'components/Select/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Select.ts', import.meta.url)
         ),
         'components/SkipLink/index': fileURLToPath(
           new URL('./src/entrypoints/components/SkipLink.ts', import.meta.url)

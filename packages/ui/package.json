@@ -30,9 +30,17 @@
       "types": "./dist/components/Button/index.d.ts",
       "import": "./dist/components/Button/index.js"
     },
+    "./components/Checkbox": {
+      "types": "./dist/components/Checkbox/index.d.ts",
+      "import": "./dist/components/Checkbox/index.js"
+    },
     "./components/ErrorMessage": {
       "types": "./dist/components/ErrorMessage/index.d.ts",
       "import": "./dist/components/ErrorMessage/index.js"
+    },
+    "./components/Field": {
+      "types": "./dist/components/Field/index.d.ts",
+      "import": "./dist/components/Field/index.js"
     },
     "./components/Heading": {
       "types": "./dist/components/Heading/index.d.ts",
@@ -57,6 +65,10 @@
     "./components/Responsive": {
       "types": "./dist/components/Responsive/index.d.ts",
       "import": "./dist/components/Responsive/index.js"
+    },
+    "./components/Select": {
+      "types": "./dist/components/Select/index.d.ts",
+      "import": "./dist/components/Select/index.js"
     },
     "./components/SkipLink": {
       "types": "./dist/components/SkipLink/index.d.ts",

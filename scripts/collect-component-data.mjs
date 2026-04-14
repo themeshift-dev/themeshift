@@ -96,12 +96,12 @@ function createAnalyzer(program) {
           normalizePath(path.join(componentsDir, componentName))
         )
       );
-      const declarations = getLocalTypeDeclarations(componentSourceFiles);
-      const defaults = getComponentDefaults(
+      const targets = getApiReferenceTargets(
         componentName,
         componentSourceFiles
       );
-      const targets = getApiReferenceTargets(componentName);
+      const declarations = getLocalTypeDeclarations(componentSourceFiles);
+      const defaults = getComponentDefaults(componentSourceFiles, targets);
 
       return targets.flatMap((target) =>
         collectTargetProps({
@@ -115,25 +115,14 @@ function createAnalyzer(program) {
   };
 }
 
-function getApiReferenceTargets(componentName) {
-  if (componentName === 'Navbar') {
-    return [
-      {
-        displayName: 'Navbar',
-        implementationName: 'NavbarRoot',
-        propsTypeName: 'NavbarProps',
-      },
-      {
-        displayName: 'Navbar.Container',
-        implementationName: 'NavbarContainer',
-        propsTypeName: 'NavbarContainerProps',
-      },
-      {
-        displayName: 'Navbar.Section',
-        implementationName: 'NavbarSection',
-        propsTypeName: 'NavbarSectionProps',
-      },
-    ];
+function getApiReferenceTargets(componentName, sourceFiles) {
+  const compoundTargets = getCompoundApiReferenceTargets(
+    componentName,
+    sourceFiles
+  );
+
+  if (compoundTargets) {
+    return compoundTargets;
   }
 
   return [
@@ -143,6 +132,145 @@ function getApiReferenceTargets(componentName) {
       propsTypeName: `${componentName}Props`,
     },
   ];
+}
+
+function getCompoundApiReferenceTargets(componentName, sourceFiles) {
+  for (const sourceFile of sourceFiles) {
+    const targets = getCompoundTargetsFromSourceFile(componentName, sourceFile);
+
+    if (targets) {
+      return targets;
+    }
+  }
+
+  return null;
+}
+
+function getCompoundTargetsFromSourceFile(componentName, sourceFile) {
+  let targets = null;
+
+  ts.forEachChild(sourceFile, function visit(node) {
+    if (targets) {
+      return;
+    }
+
+    if (
+      ts.isVariableStatement(node) &&
+      node.modifiers?.some(
+        (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword
+      )
+    ) {
+      for (const declaration of node.declarationList.declarations) {
+        if (
+          !ts.isIdentifier(declaration.name) ||
+          declaration.name.text !== componentName ||
+          !declaration.initializer
+        ) {
+          continue;
+        }
+
+        const objectAssignCall = getObjectAssignCall(declaration.initializer);
+
+        if (!objectAssignCall || objectAssignCall.arguments.length < 2) {
+          continue;
+        }
+
+        const rootImplementationName = getIdentifierText(
+          objectAssignCall.arguments[0]
+        );
+        const membersArgument = objectAssignCall.arguments[1];
+
+        if (
+          !rootImplementationName ||
+          !membersArgument ||
+          !ts.isObjectLiteralExpression(membersArgument)
+        ) {
+          continue;
+        }
+
+        const nextTargets = [
+          {
+            displayName: componentName,
+            implementationName: rootImplementationName,
+            propsTypeName: `${componentName}Props`,
+          },
+        ];
+
+        for (const property of membersArgument.properties) {
+          if (!ts.isPropertyAssignment(property)) {
+            continue;
+          }
+
+          const memberName = getPropertyName(property.name);
+          const implementationName = getIdentifierText(property.initializer);
+
+          if (!memberName || !implementationName) {
+            continue;
+          }
+
+          nextTargets.push({
+            displayName: `${componentName}.${memberName}`,
+            implementationName,
+            propsTypeName: `${implementationName}Props`,
+          });
+        }
+
+        if (nextTargets.length > 1) {
+          targets = nextTargets;
+          return;
+        }
+      }
+    }
+
+    ts.forEachChild(node, visit);
+  });
+
+  return targets;
+}
+
+function getObjectAssignCall(expression) {
+  const unwrappedExpression = unwrapExpression(expression);
+
+  if (
+    !ts.isCallExpression(unwrappedExpression) ||
+    !ts.isPropertyAccessExpression(unwrappedExpression.expression)
+  ) {
+    return null;
+  }
+
+  const callTarget = unwrappedExpression.expression;
+
+  if (
+    !ts.isIdentifier(callTarget.expression) ||
+    callTarget.expression.text !== 'Object' ||
+    callTarget.name.text !== 'assign'
+  ) {
+    return null;
+  }
+
+  return unwrappedExpression;
+}
+
+function getIdentifierText(expression) {
+  const unwrappedExpression = unwrapExpression(expression);
+
+  if (ts.isIdentifier(unwrappedExpression)) {
+    return unwrappedExpression.text;
+  }
+
+  return null;
+}
+
+function unwrapExpression(expression) {
+  if (
+    ts.isAsExpression(expression) ||
+    ts.isSatisfiesExpression(expression) ||
+    ts.isParenthesizedExpression(expression)
+  ) {
+    return unwrapExpression(expression.expression);
+  }
+
+  return expression;
 }
 
 function getLocalTypeDeclarations(sourceFiles) {
@@ -164,10 +292,10 @@ function getLocalTypeDeclarations(sourceFiles) {
   return declarations;
 }
 
-function getComponentDefaults(componentName, sourceFiles) {
+function getComponentDefaults(sourceFiles, targets) {
   const defaultsByImplementation = new Map();
 
-  for (const target of getApiReferenceTargets(componentName)) {
+  for (const target of targets) {
     defaultsByImplementation.set(target.implementationName, new Map());
   }
 

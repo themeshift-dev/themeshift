@@ -2,6 +2,8 @@ import classNames from 'classnames';
 import { forwardRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
+import { mergeIds, useFieldContextOptional } from '@/components/Field/context';
+
 import styles from './Textarea.module.scss';
 import type {
   TextareaProps,
@@ -42,23 +44,46 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       resize = 'vertical',
       size = 'medium',
       style,
-      validationState = 'none',
+      validationState,
       ...textareaProps
     },
     ref
   ) => {
-    const hasCallerAriaInvalid = textareaProps['aria-invalid'] !== undefined;
+    const fieldContext = useFieldContextOptional();
+    const {
+      'aria-describedby': ariaDescribedBy,
+      'aria-invalid': ariaInvalid,
+      disabled: disabledProp,
+      id: idProp,
+      readOnly: readOnlyProp,
+      required: requiredProp,
+      ...nativeTextareaProps
+    } = textareaProps;
+    const hasCallerAriaInvalid = ariaInvalid !== undefined;
+    const resolvedDisabled = disabledProp ?? fieldContext?.disabled;
+    const resolvedId = idProp ?? fieldContext?.controlId;
+    const resolvedReadOnly = readOnlyProp ?? fieldContext?.readOnly;
+    const resolvedRequired = requiredProp ?? fieldContext?.required;
+    const resolvedValidationState =
+      validationState === undefined
+        ? (fieldContext?.validationState ?? 'none')
+        : validationState;
+    const describedBy = mergeIds(
+      ariaDescribedBy,
+      fieldContext?.hasDescription ? fieldContext.descriptionId : undefined,
+      fieldContext?.hasError ? fieldContext.errorId : undefined
+    );
 
     const derivedAriaInvalid = hasCallerAriaInvalid
-      ? textareaProps['aria-invalid']
-      : validationState === 'invalid'
+      ? ariaInvalid
+      : resolvedValidationState === 'invalid'
         ? true
-        : validationState === 'valid'
+        : resolvedValidationState === 'valid'
           ? false
           : undefined;
 
     const hasConflictingRows =
-      resize === 'auto' && textareaProps.rows !== undefined;
+      resize === 'auto' && nativeTextareaProps.rows !== undefined;
     const hasConflictingHeight =
       resize === 'auto' && style?.height !== undefined;
 
@@ -75,25 +100,30 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const controlClassName = classNames(
       styles.container,
       sizeClassMap[size],
-      validationStateClassMap[validationState],
+      validationStateClassMap[resolvedValidationState],
       resizeClassMap[resize],
       fullWidth && styles.fullWidth,
-      textareaProps.disabled && styles.disabled,
+      resolvedDisabled && styles.disabled,
       className
     );
 
     if (resize === 'auto') {
-      const { rows: _rows, ...nativeTextareaProps } = textareaProps;
+      const { rows: _rows, ...autosizeTextareaProps } = nativeTextareaProps;
       const { height: _height, ...autosizeStyle } = style ?? {};
 
       return (
         <TextareaAutosize
-          {...nativeTextareaProps}
+          {...autosizeTextareaProps}
+          aria-describedby={describedBy}
           aria-invalid={derivedAriaInvalid}
           className={controlClassName}
+          disabled={resolvedDisabled}
+          id={resolvedId}
           maxRows={maxRows}
           minRows={minRows}
+          readOnly={resolvedReadOnly}
           ref={ref}
+          required={resolvedRequired}
           style={autosizeStyle}
         />
       );
@@ -101,10 +131,15 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <textarea
-        {...textareaProps}
+        {...nativeTextareaProps}
+        aria-describedby={describedBy}
         aria-invalid={derivedAriaInvalid}
         className={controlClassName}
+        disabled={resolvedDisabled}
+        id={resolvedId}
+        readOnly={resolvedReadOnly}
         ref={ref}
+        required={resolvedRequired}
         style={style}
       />
     );

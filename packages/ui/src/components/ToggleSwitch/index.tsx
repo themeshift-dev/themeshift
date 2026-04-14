@@ -1,21 +1,22 @@
 import classNames from 'classnames';
 import {
-  useId,
+  forwardRef,
   useState,
   type ChangeEventHandler,
+  type ForwardedRef,
   type KeyboardEventHandler,
   type MouseEventHandler,
   type PointerEventHandler,
 } from 'react';
 
-import { ErrorMessage } from '../ErrorMessage';
-import { Label } from '../Label';
+import { mergeIds, useFieldContextOptional } from '@/components/Field/context';
 
 import styles from './ToggleSwitch.module.scss';
 import type {
   ToggleSwitchIntent,
   ToggleSwitchProps,
   ToggleSwitchSize,
+  ToggleSwitchValidationState,
 } from './types';
 
 const intentClassMap = {
@@ -32,230 +33,227 @@ const sizeClassMap = {
   small: styles.small,
 } satisfies Record<ToggleSwitchSize, string>;
 
-/**
- * Combines external and internally generated description IDs into a single
- * valid ARIA ID reference list.
- *
- * This lets the switch preserve caller-provided `aria-describedby` values
- * while also appending the generated IDs for `description` and
- * `errorMessage`.
- */
-function mergeIds(...idGroups: Array<string | undefined>) {
-  const values = new Set(
-    idGroups
-      .flatMap((idGroup) => idGroup?.split(/\s+/) ?? [])
-      .map((value) => value.trim())
-      .filter(Boolean)
-  );
+const validationStateClassMap = {
+  invalid: styles.invalid,
+  none: styles.none,
+  valid: styles.valid,
+  warning: styles.warning,
+} satisfies Record<ToggleSwitchValidationState, string>;
 
-  return values.size > 0 ? Array.from(values).join(' ') : undefined;
+function setRef<T>(ref: ForwardedRef<T>, value: T | null) {
+  if (typeof ref === 'function') {
+    ref(value);
+    return;
+  }
+
+  if (ref) {
+    ref.current = value;
+  }
 }
 
-/** A theme-aware switch built on top of a native checkbox input. */
-export const ToggleSwitch = ({
-  'aria-describedby': ariaDescribedBy,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledBy,
-  allowTextSelection = false,
-  checked,
-  className,
-  defaultChecked = false,
-  description,
-  disabled = false,
-  errorMessage,
-  iconOff,
-  iconOn,
-  id,
-  intent = 'primary',
-  label,
-  labelClassName,
-  labelPosition = 'end',
-  name,
-  onBlur,
-  onCheckedChange,
-  onFocus,
-  readOnly = false,
-  required = false,
-  size = 'medium',
-  thumbClassName,
-  trackClassName,
-  value,
-  ...inputProps
-}: ToggleSwitchProps) => {
-  const reactId = useId();
-  const [, forceRender] = useState(0);
-  const [uncontrolledChecked, setUncontrolledChecked] =
-    useState(defaultChecked);
-  const inputId = id ?? `toggle-switch-${reactId}`;
-  const descriptionId = description ? `${inputId}-description` : undefined;
-  const errorId = errorMessage ? `${inputId}-error` : undefined;
-  const describedBy = mergeIds(ariaDescribedBy, descriptionId, errorId);
-  const isChecked = checked ?? uncontrolledChecked;
-  const activeIcon = isChecked ? iconOn : iconOff;
-  const hasContent =
-    label !== undefined ||
-    description !== undefined ||
-    errorMessage !== undefined;
-  const accessibleLabel = label === undefined ? ariaLabel : undefined;
-  const accessibleLabelledBy = label === undefined ? ariaLabelledBy : undefined;
-  const {
-    onClick: onInputClick,
-    onKeyDown: onInputKeyDown,
-    onKeyUp: onInputKeyUp,
-    onPointerDown: onInputPointerDown,
-    ...nativeInputProps
-  } = inputProps;
-  const isInvalid =
-    nativeInputProps['aria-invalid'] === true ||
-    nativeInputProps['aria-invalid'] === 'true';
+/**
+ * A theme-aware switch built on top of a native checkbox input.
+ *
+ * Use `Field` to render label, description, and error messaging.
+ */
+export const ToggleSwitch = forwardRef<HTMLInputElement, ToggleSwitchProps>(
+  (
+    {
+      checked,
+      className,
+      defaultChecked = false,
+      intent = 'primary',
+      onCheckedChange,
+      size = 'medium',
+      thumbClassName,
+      thumbIconOff,
+      thumbIconOn,
+      trackClassName,
+      trackIconOff,
+      trackIconOn,
+      validationState,
+      ...inputProps
+    },
+    ref
+  ) => {
+    const fieldContext = useFieldContextOptional();
+    const [, forceRender] = useState(0);
+    const [uncontrolledChecked, setUncontrolledChecked] =
+      useState(defaultChecked);
+    const {
+      'aria-describedby': ariaDescribedBy,
+      'aria-invalid': ariaInvalid,
+      disabled: disabledProp,
+      id: idProp,
+      onClick: onInputClick,
+      onKeyDown: onInputKeyDown,
+      onKeyUp: onInputKeyUp,
+      onPointerDown: onInputPointerDown,
+      readOnly: readOnlyProp,
+      required: requiredProp,
+      ...nativeInputProps
+    } = inputProps;
+    const hasCallerAriaInvalid = ariaInvalid !== undefined;
+    const isChecked = checked ?? uncontrolledChecked;
+    const activeThumbIcon = isChecked ? thumbIconOn : thumbIconOff;
+    const activeTrackIcon = isChecked ? trackIconOn : trackIconOff;
+    const resolvedDisabled = disabledProp ?? fieldContext?.disabled ?? false;
+    const resolvedId = idProp ?? fieldContext?.controlId;
+    const resolvedReadOnly = readOnlyProp ?? fieldContext?.readOnly ?? false;
+    const resolvedRequired = requiredProp ?? fieldContext?.required ?? false;
+    const resolvedValidationState =
+      validationState === undefined
+        ? (fieldContext?.validationState ?? 'none')
+        : validationState;
+    const describedBy = mergeIds(
+      ariaDescribedBy,
+      fieldContext?.hasDescription ? fieldContext.descriptionId : undefined,
+      fieldContext?.hasError ? fieldContext.errorId : undefined
+    );
+    const derivedAriaInvalid = hasCallerAriaInvalid
+      ? ariaInvalid
+      : resolvedValidationState === 'invalid'
+        ? true
+        : resolvedValidationState === 'valid'
+          ? false
+          : undefined;
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    if (readOnly) {
-      event.preventDefault();
-      event.currentTarget.checked = isChecked;
-      forceRender((value) => value + 1);
-      return;
-    }
+    const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+      if (resolvedReadOnly) {
+        event.preventDefault();
+        event.currentTarget.checked = isChecked;
+        forceRender((value) => value + 1);
+        return;
+      }
 
-    const nextChecked = event.currentTarget.checked;
+      const nextChecked = event.currentTarget.checked;
 
-    if (checked === undefined) {
-      setUncontrolledChecked(nextChecked);
-    }
+      if (checked === undefined) {
+        setUncontrolledChecked(nextChecked);
+      }
 
-    onCheckedChange?.(nextChecked);
-  };
+      onCheckedChange?.(nextChecked);
+    };
 
-  const handleClick: MouseEventHandler<HTMLInputElement> = (event) => {
-    onInputClick?.(event);
+    const handleClick: MouseEventHandler<HTMLInputElement> = (event) => {
+      onInputClick?.(event);
 
-    if (readOnly) {
-      event.preventDefault();
-      event.currentTarget.checked = isChecked;
-      forceRender((value) => value + 1);
-    }
-  };
+      if (resolvedReadOnly) {
+        event.preventDefault();
+        event.currentTarget.checked = isChecked;
+        forceRender((value) => value + 1);
+      }
+    };
 
-  const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
-    onInputKeyDown?.(event);
+    const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+      onInputKeyDown?.(event);
 
-    if (
-      readOnly &&
-      (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar')
-    ) {
-      event.preventDefault();
-      event.currentTarget.checked = isChecked;
-      forceRender((value) => value + 1);
-    }
-  };
+      if (
+        resolvedReadOnly &&
+        (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar')
+      ) {
+        event.preventDefault();
+        event.currentTarget.checked = isChecked;
+        forceRender((value) => value + 1);
+      }
+    };
 
-  const handleKeyUp: KeyboardEventHandler<HTMLInputElement> = (event) => {
-    onInputKeyUp?.(event);
+    const handleKeyUp: KeyboardEventHandler<HTMLInputElement> = (event) => {
+      onInputKeyUp?.(event);
 
-    if (
-      readOnly &&
-      (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar')
-    ) {
-      event.preventDefault();
-      event.currentTarget.checked = isChecked;
-      forceRender((value) => value + 1);
-    }
-  };
+      if (
+        resolvedReadOnly &&
+        (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar')
+      ) {
+        event.preventDefault();
+        event.currentTarget.checked = isChecked;
+        forceRender((value) => value + 1);
+      }
+    };
 
-  const handlePointerDown: PointerEventHandler<HTMLInputElement> = (event) => {
-    onInputPointerDown?.(event);
+    const handlePointerDown: PointerEventHandler<HTMLInputElement> = (
+      event
+    ) => {
+      onInputPointerDown?.(event);
 
-    if (readOnly) {
-      event.preventDefault();
-    }
-  };
+      if (resolvedReadOnly) {
+        event.preventDefault();
+      }
+    };
 
-  const content = hasContent ? (
-    <div className={styles.content}>
-      {label !== undefined ? (
-        <Label className={labelClassName} htmlFor={inputId}>
-          {label}
-        </Label>
-      ) : null}
-      {description !== undefined ? (
-        <p className={styles.description} id={descriptionId}>
-          {description}
-        </p>
-      ) : null}
-      {errorMessage !== undefined ? (
-        <ErrorMessage id={errorId}>{errorMessage}</ErrorMessage>
-      ) : null}
-    </div>
-  ) : null;
-
-  return (
-    <div
-      className={classNames(
-        styles.container,
-        allowTextSelection && styles.allowTextSelection,
-        sizeClassMap[size],
-        intentClassMap[intent],
-        isChecked && styles.checked,
-        disabled && styles.disabled,
-        isInvalid && styles.invalid,
-        readOnly && styles.readOnly,
-        className
-      )}
-    >
-      {labelPosition === 'start' ? content : null}
-      <span className={styles.controlLabel}>
-        <input
-          {...nativeInputProps}
-          aria-checked={isChecked}
-          aria-describedby={describedBy}
-          aria-label={accessibleLabel}
-          aria-labelledby={accessibleLabelledBy}
-          aria-readonly={readOnly || undefined}
-          checked={isChecked}
-          className={styles.input}
-          disabled={disabled}
-          id={inputId}
-          name={name}
-          onBlur={onBlur}
-          onChange={handleChange}
-          onClick={handleClick}
-          onFocus={onFocus}
-          onKeyDown={handleKeyDown}
-          onKeyUp={handleKeyUp}
-          onPointerDown={handlePointerDown}
-          required={required}
-          role="switch"
-          type="checkbox"
-          value={value}
-        />
-        <span className={styles.control}>
-          <span className={classNames(styles.track, trackClassName)}>
-            {activeIcon !== undefined ? (
+    return (
+      <span
+        className={classNames(
+          styles.container,
+          sizeClassMap[size],
+          intentClassMap[intent],
+          validationStateClassMap[resolvedValidationState],
+          isChecked && styles.checked,
+          resolvedDisabled && styles.disabled,
+          resolvedReadOnly && styles.readOnly,
+          className
+        )}
+      >
+        <span className={styles.controlLabel}>
+          <input
+            {...nativeInputProps}
+            aria-checked={isChecked}
+            aria-describedby={describedBy}
+            aria-invalid={derivedAriaInvalid}
+            aria-readonly={resolvedReadOnly || undefined}
+            checked={isChecked}
+            className={styles.input}
+            disabled={resolvedDisabled}
+            id={resolvedId}
+            onChange={handleChange}
+            onClick={handleClick}
+            onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
+            onPointerDown={handlePointerDown}
+            readOnly={resolvedReadOnly}
+            ref={(node) => {
+              setRef(ref, node);
+            }}
+            required={resolvedRequired}
+            role="switch"
+            type="checkbox"
+          />
+          <span className={styles.control}>
+            <span className={classNames(styles.track, trackClassName)}>
+              {activeTrackIcon !== undefined ? (
+                <span
+                  aria-hidden="true"
+                  className={classNames(
+                    styles.trackIcon,
+                    isChecked ? styles.trackIconOn : styles.trackIconOff
+                  )}
+                >
+                  {activeTrackIcon}
+                </span>
+              ) : null}
               <span
                 aria-hidden="true"
-                className={classNames(
-                  styles.icon,
-                  isChecked ? styles.iconOn : styles.iconOff
-                )}
+                className={classNames(styles.thumb, thumbClassName)}
               >
-                {activeIcon}
+                {activeThumbIcon !== undefined ? (
+                  <span aria-hidden="true" className={styles.thumbIcon}>
+                    {activeThumbIcon}
+                  </span>
+                ) : null}
               </span>
-            ) : null}
-            <span
-              aria-hidden="true"
-              className={classNames(styles.thumb, thumbClassName)}
-            />
+            </span>
           </span>
         </span>
       </span>
-      {labelPosition === 'end' ? content : null}
-    </div>
-  );
-};
+    );
+  }
+);
+
+ToggleSwitch.displayName = 'ToggleSwitch';
 
 export type {
   ToggleSwitchIntent,
-  ToggleSwitchLabelPosition,
   ToggleSwitchProps,
   ToggleSwitchSize,
+  ToggleSwitchValidationState,
 } from './types';
