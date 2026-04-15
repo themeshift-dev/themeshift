@@ -1038,11 +1038,170 @@ function getKeywordTypeText(kind) {
   return keywordTypes[kind] ?? '';
 }
 
-function createComponentData(componentName, analyzer) {
+async function readComponentMeta(componentName) {
+  const metaPath = path.join(
+    componentsDir,
+    componentName,
+    `${componentName}.meta.ts`
+  );
+
+  try {
+    const sourceText = await readFile(metaPath, 'utf8');
+    const sourceFile = ts.createSourceFile(
+      metaPath,
+      sourceText,
+      ts.ScriptTarget.Latest,
+      true,
+      ts.ScriptKind.TS
+    );
+
+    return getMetaFromSourceFile(sourceFile);
+  } catch (error) {
+    if (
+      error &&
+      typeof error === 'object' &&
+      'code' in error &&
+      error.code === 'ENOENT'
+    ) {
+      return null;
+    }
+
+    throw error;
+  }
+}
+
+function getMetaFromSourceFile(sourceFile) {
+  let meta = null;
+
+  ts.forEachChild(sourceFile, (node) => {
+    if (
+      !ts.isVariableStatement(node) ||
+      !node.modifiers?.some(
+        (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword
+      )
+    ) {
+      return;
+    }
+
+    for (const declaration of node.declarationList.declarations) {
+      if (
+        !ts.isIdentifier(declaration.name) ||
+        declaration.name.text !== 'meta'
+      ) {
+        continue;
+      }
+
+      if (!declaration.initializer) {
+        throw new Error(
+          `Found exported meta in ${sourceFile.fileName}, but it has no initializer.`
+        );
+      }
+
+      meta = evaluateMetaExpression(
+        declaration.initializer,
+        sourceFile.fileName
+      );
+    }
+  });
+
+  return meta;
+}
+
+function evaluateMetaExpression(expression, filePath) {
+  const unwrapped = unwrapExpression(expression);
+
+  if (!ts.isObjectLiteralExpression(unwrapped)) {
+    throw new Error(
+      `Expected exported meta in ${filePath} to be an object literal.`
+    );
+  }
+
+  return evaluateObjectLiteral(unwrapped, filePath);
+}
+
+function evaluateObjectLiteral(node, filePath) {
+  const result = {};
+
+  for (const property of node.properties) {
+    if (ts.isPropertyAssignment(property)) {
+      const key = getPropertyName(property.name);
+
+      if (!key) {
+        throw new Error(`Unsupported meta property name in ${filePath}.`);
+      }
+
+      result[key] = evaluateMetaValue(property.initializer, filePath);
+      continue;
+    }
+
+    if (ts.isShorthandPropertyAssignment(property)) {
+      throw new Error(
+        `Shorthand properties are not supported in meta files: ${filePath}`
+      );
+    }
+
+    throw new Error(`Unsupported property syntax in meta file: ${filePath}`);
+  }
+
+  return result;
+}
+
+function evaluateMetaValue(expression, filePath) {
+  const unwrapped = unwrapExpression(expression);
+
+  if (
+    ts.isStringLiteral(unwrapped) ||
+    ts.isNoSubstitutionTemplateLiteral(unwrapped)
+  ) {
+    return unwrapped.text;
+  }
+
+  if (ts.isNumericLiteral(unwrapped)) {
+    return Number(unwrapped.text);
+  }
+
+  if (unwrapped.kind === ts.SyntaxKind.TrueKeyword) {
+    return true;
+  }
+
+  if (unwrapped.kind === ts.SyntaxKind.FalseKeyword) {
+    return false;
+  }
+
+  if (unwrapped.kind === ts.SyntaxKind.NullKeyword) {
+    return null;
+  }
+
+  if (ts.isArrayLiteralExpression(unwrapped)) {
+    return unwrapped.elements.map((element) =>
+      evaluateMetaValue(element, filePath)
+    );
+  }
+
+  if (ts.isObjectLiteralExpression(unwrapped)) {
+    return evaluateObjectLiteral(unwrapped, filePath);
+  }
+
+  if (
+    ts.isPrefixUnaryExpression(unwrapped) &&
+    ts.isNumericLiteral(unwrapped.operand)
+  ) {
+    return unwrapped.operator === ts.SyntaxKind.MinusToken
+      ? -Number(unwrapped.operand.text)
+      : Number(unwrapped.operand.text);
+  }
+
+  throw new Error(
+    `Unsupported meta value in ${filePath}: ${unwrapped.getText()}`
+  );
+}
+
+async function createComponentData(componentName, analyzer) {
   return {
     apiReference: analyzer.collectApiReference(componentName),
     component: componentName,
     importString: `import { ${componentName} } from '@themeshift/ui/components/${componentName}';`,
+    meta: await readComponentMeta(componentName),
     slug: componentName.toLowerCase(),
     sourceCodeUrl: `${sourceCodeUrlBase}/${componentName}`,
   };
@@ -1063,8 +1222,10 @@ export const componentData = ${JSON.stringify(componentData, null, 2)} satisfies
 
 const componentNames = await getComponentNames();
 const analyzer = createAnalyzer(createProgram());
-const componentData = componentNames.map((componentName) =>
-  createComponentData(componentName, analyzer)
+const componentData = await Promise.all(
+  componentNames.map((componentName) =>
+    createComponentData(componentName, analyzer)
+  )
 );
 
 await writeFile(outputPath, await createOutput(componentData));

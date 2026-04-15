@@ -1,3 +1,5 @@
+import { type ComponentMeta } from '../../../../packages/ui/src/types';
+
 export type ApiReferenceDefaultValue =
   | string
   | number
@@ -20,6 +22,7 @@ export type ComponentData = {
   importString: string;
   slug: string;
   sourceCodeUrl: string;
+  meta: ComponentMeta | null;
 };
 
 export type ComponentDataContextValue = {

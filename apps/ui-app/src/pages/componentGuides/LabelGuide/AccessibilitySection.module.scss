@@ -1,0 +1,113 @@
+@use '@/sass/mixins/code';
+
+.playground {
+  border: 1px solid token('theme.border');
+  border-radius: token('radius.small');
+  display: grid;
+  gap: token('space.4');
+  margin: 2rem 0;
+  padding: token('space.4');
+}
+
+.controls {
+  display: grid;
+  gap: token('space.3');
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.field {
+  display: grid;
+  gap: token('space.2');
+
+  input,
+  select {
+    background: token('theme.surface.raised');
+    border: 1px solid token('theme.border');
+    border-radius: token('radius.small');
+    color: token('theme.text.base');
+    font: inherit;
+    padding: token('space.2');
+  }
+}
+
+.checkbox {
+  align-items: center;
+  display: flex;
+  gap: token('space.2');
+}
+
+.preview {
+  align-items: center;
+  background: token('theme.surface.raised');
+  border: 1px solid token('theme.border');
+  border-radius: token('radius.small');
+  display: flex;
+  justify-content: center;
+  min-height: 8rem;
+  padding: token('space.4');
+}
+
+.note,
+.status {
+  color: token('theme.text.muted');
+  margin: 0;
+}
+
+.results {
+  display: grid;
+  gap: token('space.3');
+}
+
+.summary {
+  display: flex;
+  flex-flow: row wrap;
+  gap: token('space.2');
+}
+
+.summaryItem {
+  background: token('theme.surface.raised');
+  border: 1px solid token('theme.border');
+  border-radius: token('radius.small');
+  color: token('theme.text.base');
+  cursor: pointer;
+  font: inherit;
+  padding: token('space.2');
+
+  &[aria-pressed='true'] {
+    border-color: token('theme.text.base');
+  }
+}
+
+.issue {
+  background: token('theme.surface.raised');
+  border: 1px solid token('theme.border');
+  border-radius: token('radius.small');
+  display: grid;
+  gap: token('space.2');
+  padding: token('space.3');
+
+  p {
+    margin: 0;
+  }
+}
+
+.issueHeader {
+  align-items: baseline;
+  display: flex;
+  flex-flow: row wrap;
+  gap: token('space.2');
+  justify-content: space-between;
+}
+
+.issueMeta {
+  color: token('theme.text.muted');
+}
+
+.nodes {
+  display: grid;
+  gap: token('space.2');
+
+  code {
+    @include code.inline;
+  }
+}

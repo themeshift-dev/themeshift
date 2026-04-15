@@ -115,6 +115,16 @@ export const componentData = [
     ],
     component: 'Button',
     importString: "import { Button } from '@themeshift/ui/components/Button';",
+    meta: {
+      category: 'actions',
+      description: 'Triggers an action or event.',
+      tags: ['action', 'click', 'trigger'],
+      order: 10,
+      status: 'stable',
+      featured: true,
+      aliases: ['CTA'],
+      related: ['Link', 'CopyButton', 'ProgressButton'],
+    },
     slug: 'button',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Button',
@@ -159,6 +169,15 @@ export const componentData = [
     component: 'Checkbox',
     importString:
       "import { Checkbox } from '@themeshift/ui/components/Checkbox';",
+    meta: {
+      category: 'inputs-forms',
+      description: 'Allows selecting a single boolean option.',
+      tags: ['form', 'input', 'boolean', 'selection'],
+      order: 40,
+      status: 'stable',
+      featured: true,
+      related: ['Field', 'Label', 'RadioButton', 'ToggleSwitch'],
+    },
     slug: 'checkbox',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Checkbox',
@@ -168,6 +187,14 @@ export const componentData = [
     component: 'ErrorMessage',
     importString:
       "import { ErrorMessage } from '@themeshift/ui/components/ErrorMessage';",
+    meta: {
+      category: 'inputs-forms',
+      description: 'Displays validation or field-level error text.',
+      tags: ['form', 'validation', 'error', 'feedback'],
+      order: 80,
+      status: 'stable',
+      related: ['Field', 'Input', 'Label', 'Select', 'Textarea'],
+    },
     slug: 'errormessage',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/ErrorMessage',
@@ -341,6 +368,23 @@ export const componentData = [
     ],
     component: 'Field',
     importString: "import { Field } from '@themeshift/ui/components/Field';",
+    meta: {
+      category: 'inputs-forms',
+      description:
+        'Composes labels, controls, and supporting text into a form field.',
+      tags: ['form', 'field', 'composition', 'accessibility'],
+      order: 20,
+      status: 'stable',
+      featured: true,
+      related: [
+        'Label',
+        'ErrorMessage',
+        'Input',
+        'Select',
+        'Textarea',
+        'Checkbox',
+      ],
+    },
     slug: 'field',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Field',
@@ -367,6 +411,14 @@ export const componentData = [
     component: 'Heading',
     importString:
       "import { Heading } from '@themeshift/ui/components/Heading';",
+    meta: {
+      category: 'data-display',
+      description: 'Renders semantic section and page headings.',
+      tags: ['typography', 'content', 'semantic', 'title'],
+      order: 10,
+      status: 'stable',
+      related: ['Link', 'Label'],
+    },
     slug: 'heading',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Heading',
@@ -424,6 +476,15 @@ export const componentData = [
     ],
     component: 'Input',
     importString: "import { Input } from '@themeshift/ui/components/Input';",
+    meta: {
+      category: 'inputs-forms',
+      description: 'Collects single-line text or text-like input.',
+      tags: ['form', 'input', 'text', 'control'],
+      order: 30,
+      status: 'stable',
+      featured: true,
+      related: ['Field', 'Label', 'ErrorMessage', 'Textarea', 'Select'],
+    },
     slug: 'input',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Input',
@@ -432,6 +493,14 @@ export const componentData = [
     apiReference: [],
     component: 'Label',
     importString: "import { Label } from '@themeshift/ui/components/Label';",
+    meta: {
+      category: 'inputs-forms',
+      description: 'Provides an accessible label for a form control.',
+      tags: ['form', 'label', 'accessibility', 'text'],
+      order: 70,
+      status: 'stable',
+      related: ['Field', 'Input', 'Select', 'Textarea', 'Checkbox'],
+    },
     slug: 'label',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Label',
@@ -466,6 +535,15 @@ export const componentData = [
     ],
     component: 'Link',
     importString: "import { Link } from '@themeshift/ui/components/Link';",
+    meta: {
+      category: 'navigation-structure',
+      description: 'Navigates to another page, route, or resource.',
+      tags: ['navigation', 'anchor', 'routing', 'action'],
+      order: 20,
+      status: 'stable',
+      featured: true,
+      related: ['Button', 'Navbar', 'SkipLink'],
+    },
     slug: 'link',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Link',
@@ -609,6 +687,15 @@ export const componentData = [
     ],
     component: 'Navbar',
     importString: "import { Navbar } from '@themeshift/ui/components/Navbar';",
+    meta: {
+      category: 'navigation-structure',
+      description: 'Provides top-level navigation and global actions.',
+      tags: ['navigation', 'layout', 'header', 'menu'],
+      order: 10,
+      status: 'stable',
+      featured: true,
+      related: ['Link', 'Sidebar', 'SkipLink', 'Responsive'],
+    },
     slug: 'navbar',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Navbar',
@@ -651,6 +738,15 @@ export const componentData = [
     component: 'Responsive',
     importString:
       "import { Responsive } from '@themeshift/ui/components/Responsive';",
+    meta: {
+      category: 'layout-utilities',
+      description: 'Shows or hides content based on responsive breakpoints.',
+      tags: ['responsive', 'breakpoints', 'layout', 'utility'],
+      order: 30,
+      status: 'stable',
+      featured: true,
+      related: ['Navbar', 'Flexbox', 'Grid'],
+    },
     slug: 'responsive',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Responsive',
@@ -718,6 +814,15 @@ export const componentData = [
     ],
     component: 'Select',
     importString: "import { Select } from '@themeshift/ui/components/Select';",
+    meta: {
+      category: 'inputs-forms',
+      description: 'Allows choosing a value from a list of options.',
+      tags: ['form', 'input', 'selection', 'dropdown'],
+      order: 50,
+      status: 'stable',
+      featured: true,
+      related: ['Field', 'Label', 'ErrorMessage', 'Input', 'Combobox'],
+    },
     slug: 'select',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Select',
@@ -760,6 +865,15 @@ export const componentData = [
     component: 'SkipLink',
     importString:
       "import { SkipLink } from '@themeshift/ui/components/SkipLink';",
+    meta: {
+      category: 'navigation-structure',
+      description: 'Lets keyboard users skip directly to main content.',
+      tags: ['accessibility', 'navigation', 'keyboard', 'a11y'],
+      order: 5,
+      status: 'stable',
+      featured: true,
+      related: ['Link', 'Navbar'],
+    },
     slug: 'skiplink',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/SkipLink',
@@ -786,6 +900,15 @@ export const componentData = [
     component: 'Spinner',
     importString:
       "import { Spinner } from '@themeshift/ui/components/Spinner';",
+    meta: {
+      category: 'feedback-status',
+      description: 'Indicates that content or an action is loading.',
+      tags: ['loading', 'feedback', 'status', 'async'],
+      order: 10,
+      status: 'stable',
+      featured: true,
+      related: ['Placeholder', 'ProgressBar', 'ProgressButton', 'LoadingState'],
+    },
     slug: 'spinner',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Spinner',
@@ -844,6 +967,15 @@ export const componentData = [
     component: 'Textarea',
     importString:
       "import { Textarea } from '@themeshift/ui/components/Textarea';",
+    meta: {
+      category: 'inputs-forms',
+      description: 'Collects multi-line text input.',
+      tags: ['form', 'input', 'text', 'multiline'],
+      order: 60,
+      status: 'stable',
+      featured: true,
+      related: ['Field', 'Label', 'ErrorMessage', 'Input'],
+    },
     slug: 'textarea',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Textarea',
@@ -948,6 +1080,16 @@ export const componentData = [
     component: 'ToggleSwitch',
     importString:
       "import { ToggleSwitch } from '@themeshift/ui/components/ToggleSwitch';",
+    meta: {
+      category: 'inputs-forms',
+      description: 'Toggles a setting between on and off states.',
+      tags: ['form', 'toggle', 'boolean', 'switch'],
+      order: 45,
+      status: 'stable',
+      featured: true,
+      aliases: ['Switch'],
+      related: ['Checkbox', 'ToggleButton', 'Field', 'Label'],
+    },
     slug: 'toggleswitch',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/ToggleSwitch',

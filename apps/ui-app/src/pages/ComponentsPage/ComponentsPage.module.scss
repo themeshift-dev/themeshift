@@ -1,20 +1,14 @@
-.components {
-  display: flex;
-  flex-flow: row wrap;
+.cardGrid {
+  display: grid;
   gap: 1rem;
-  margin: 2rem 0;
-  justify-content: start;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-.component {
-  width: 250px;
-  background: token('theme.surface.raised');
-  padding: token('space.4');
-  border-radius: token('radius.small');
-  color: token('theme.text.base');
-  text-decoration: none;
+.sectionHeading {
+  grid-column: 1 / -1;
+  margin: 1rem 0 0.5rem;
+}
 
-  &:hover {
-    text-decoration: underline;
-  }
+.card {
+  min-width: 0;
 }
