@@ -111,6 +111,31 @@ const AppRoutes = () => (
           }
         />
       </Route>
+      <Route path="error-message">
+        <Route index element={<ComponentGuides.ErrorMessageGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="ErrorMessage"
+              componentPath="/components/error-message"
+              description="ErrorMessage customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="ErrorMessage"
+              componentPath="/components/error-message"
+              description="An interactive ErrorMessage playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
       <Route path="field">
         <Route index element={<ComponentGuides.FieldGuide />} />
         <Route
@@ -131,6 +156,31 @@ const AppRoutes = () => (
               componentName="Field"
               componentPath="/components/field"
               description="An interactive Field playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route path="heading">
+        <Route index element={<ComponentGuides.HeadingGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Heading"
+              componentPath="/components/heading"
+              description="Heading customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Heading"
+              componentPath="/components/heading"
+              description="An interactive Heading playground will live here."
               title="Playground"
             />
           }
@@ -161,6 +211,106 @@ const AppRoutes = () => (
           }
         />
       </Route>
+      <Route path="label">
+        <Route index element={<ComponentGuides.LabelGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Label"
+              componentPath="/components/label"
+              description="Label customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Label"
+              componentPath="/components/label"
+              description="An interactive Label playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route path="link">
+        <Route index element={<ComponentGuides.LinkGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Link"
+              componentPath="/components/link"
+              description="Link customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Link"
+              componentPath="/components/link"
+              description="An interactive Link playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route path="navbar">
+        <Route index element={<ComponentGuides.NavbarGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Navbar"
+              componentPath="/components/navbar"
+              description="Navbar customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Navbar"
+              componentPath="/components/navbar"
+              description="An interactive Navbar playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route path="responsive">
+        <Route index element={<ComponentGuides.ResponsiveGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Responsive"
+              componentPath="/components/responsive"
+              description="Responsive customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Responsive"
+              componentPath="/components/responsive"
+              description="An interactive Responsive playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
       <Route path="select">
         <Route index element={<ComponentGuides.SelectGuide />} />
         <Route
@@ -181,6 +331,56 @@ const AppRoutes = () => (
               componentName="Select"
               componentPath="/components/select"
               description="An interactive Select playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route path="skip-link">
+        <Route index element={<ComponentGuides.SkipLinkGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="SkipLink"
+              componentPath="/components/skip-link"
+              description="SkipLink customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="SkipLink"
+              componentPath="/components/skip-link"
+              description="An interactive SkipLink playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+      <Route path="spinner">
+        <Route index element={<ComponentGuides.SpinnerGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Spinner"
+              componentPath="/components/spinner"
+              description="Spinner customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Spinner"
+              componentPath="/components/spinner"
+              description="An interactive Spinner playground will live here."
               title="Playground"
             />
           }
