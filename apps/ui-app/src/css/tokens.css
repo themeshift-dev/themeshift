@@ -533,6 +533,9 @@
   --themeshift-components-select-validation-invalid-border: #EF5350;
   --themeshift-components-select-validation-valid-border: #66BB6A;
   --themeshift-components-select-validation-warning-border: #29B6F6;
+  --themeshift-components-skeleton-pulse-bg: rgba(0, 0, 0, .1);
+  --themeshift-components-skeleton-shimmer-band: rgba(0, 0, 0, .04);
+  --themeshift-components-skeleton-shimmer-base: rgba(0, 0, 0, .02);
   --themeshift-components-skiplink-bg: #5C6BC0;
   --themeshift-components-skiplink-fg: #fff;
   --themeshift-components-syntax-highlighter-attr-name: #00796B;
@@ -647,6 +650,9 @@
   --themeshift-components-select-validation-invalid-border: #EF5350;
   --themeshift-components-select-validation-valid-border: #66BB6A;
   --themeshift-components-select-validation-warning-border: #29B6F6;
+  --themeshift-components-skeleton-pulse-bg: rgba(255, 255, 255, .1);
+  --themeshift-components-skeleton-shimmer-band: rgba(255, 255, 255, .06);
+  --themeshift-components-skeleton-shimmer-base: rgba(255, 255, 255, .02);
   --themeshift-components-skiplink-bg: #5C6BC0;
   --themeshift-components-skiplink-fg: #fff;
   --themeshift-components-syntax-highlighter-attr-name: #4DB6AC;

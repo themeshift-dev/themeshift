@@ -1,0 +1,56 @@
+.container {
+  background: token('components.skeleton.pulse.bg');
+}
+
+.pulse {
+  animation: pulse 1.5s linear infinite;
+}
+
+.shimmer {
+  background-image: linear-gradient(
+    to right,
+    token('components.skeleton.shimmer.base') 0%,
+    token('components.skeleton.shimmer.band') 20%,
+    token('components.skeleton.shimmer.base') 40%
+  );
+  background-size: 200% 100%;
+  background-position-x: -100%;
+  background-attachment: fixed;
+  animation: shimmer 2s linear infinite;
+}
+
+:global([dir='rtl']) .shimmer {
+  background-position-x: 100%;
+  animation-name: shimmer-rtl;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse,
+  .shimmer {
+    animation: none;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position-x: -100%;
+  }
+  100% {
+    background-position-x: 100%;
+  }
+}
+
+@keyframes shimmer-rtl {
+  0% {
+    background-position-x: 100%;
+  }
+  100% {
+    background-position-x: -100%;
+  }
+}

@@ -70,6 +70,10 @@
       "types": "./dist/components/Select/index.d.ts",
       "import": "./dist/components/Select/index.js"
     },
+    "./components/Skeleton": {
+      "types": "./dist/components/Skeleton/index.d.ts",
+      "import": "./dist/components/Skeleton/index.js"
+    },
     "./components/SkipLink": {
       "types": "./dist/components/SkipLink/index.d.ts",
       "import": "./dist/components/SkipLink/index.js"

@@ -1,0 +1,66 @@
+@use '@/sass/mixins/code';
+
+.section {
+  border-radius: token('radius.small');
+  display: grid;
+  gap: token('space.4');
+  margin: 2rem 0;
+}
+
+.note {
+  color: token('theme.text.muted');
+  margin: 0;
+  max-width: 60ch;
+}
+
+.guidelines {
+  display: grid;
+  gap: token('space.3');
+}
+
+.guideline {
+  background: token('theme.surface.raised');
+  border: 1px solid token('theme.border');
+  border-radius: token('radius.small');
+  display: grid;
+  gap: token('space.2');
+  padding: token('space.3');
+
+  p {
+    margin: 0;
+  }
+
+  code {
+    @include code.inline;
+  }
+}
+
+.exampleViewer {
+  margin: 0;
+  max-width: none;
+}
+
+.loadingRow {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: token('space.3');
+}
+
+.loadingText {
+  display: grid;
+  gap: token('space.2');
+  min-width: 12rem;
+}
+
+.visuallyHidden {
+  block-size: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  inline-size: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+}

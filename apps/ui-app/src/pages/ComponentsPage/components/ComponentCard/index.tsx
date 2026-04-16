@@ -18,7 +18,7 @@ export const ComponentCard = ({
 }: ComponentCardProps) => {
   return (
     <Link className={classNames(styles.container, className)} to={href}>
-      <div className={styles.title}>{componentData.component}</div>
+      <div className={styles.title}>{componentData.name}</div>
 
       <div className={styles.description}>
         {componentData.meta?.description}

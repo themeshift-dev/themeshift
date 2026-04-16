@@ -25,6 +25,7 @@ function App() {
 
               <div className={styles.links}>
                 <Link to="/components">Components</Link>
+                <Link to="/tokens">Design Tokens</Link>
                 <Link to="/plugin">Plugin</Link>
               </div>
             </Navbar.Section>

@@ -61,6 +61,7 @@ const AppRoutes = () => (
 
     <Route path="/components">
       <Route index element={<ComponentsPage />} />
+
       <Route path="button">
         <Route index element={<ComponentGuides.ButtonGuide />} />
         <Route
@@ -86,6 +87,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="checkbox">
         <Route index element={<ComponentGuides.CheckboxGuide />} />
         <Route
@@ -111,6 +113,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="error-message">
         <Route index element={<ComponentGuides.ErrorMessageGuide />} />
         <Route
@@ -136,6 +139,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="field">
         <Route index element={<ComponentGuides.FieldGuide />} />
         <Route
@@ -161,6 +165,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="heading">
         <Route index element={<ComponentGuides.HeadingGuide />} />
         <Route
@@ -186,6 +191,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="input">
         <Route index element={<ComponentGuides.InputGuide />} />
         <Route
@@ -211,6 +217,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="label">
         <Route index element={<ComponentGuides.LabelGuide />} />
         <Route
@@ -236,6 +243,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="link">
         <Route index element={<ComponentGuides.LinkGuide />} />
         <Route
@@ -261,6 +269,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="navbar">
         <Route index element={<ComponentGuides.NavbarGuide />} />
         <Route
@@ -286,6 +295,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="responsive">
         <Route index element={<ComponentGuides.ResponsiveGuide />} />
         <Route
@@ -311,6 +321,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="select">
         <Route index element={<ComponentGuides.SelectGuide />} />
         <Route
@@ -336,6 +347,11 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
+      <Route path="skeleton">
+        <Route index element={<ComponentGuides.SkeletonGuide />} />
+      </Route>
+
       <Route path="skip-link">
         <Route index element={<ComponentGuides.SkipLinkGuide />} />
         <Route
@@ -361,6 +377,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="spinner">
         <Route index element={<ComponentGuides.SpinnerGuide />} />
         <Route
@@ -386,6 +403,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="textarea">
         <Route index element={<ComponentGuides.TextareaGuide />} />
         <Route
@@ -411,6 +429,7 @@ const AppRoutes = () => (
           }
         />
       </Route>
+
       <Route path="toggle-switch">
         <Route index element={<ComponentGuides.ToggleSwitchGuide />} />
         <Route
@@ -446,8 +465,9 @@ const AppRoutes = () => (
       path="/plugin"
       element={<Placeholder title="Plugin">Plugin info here</Placeholder>}
     />
+
     <Route
-      path="/tokens"
+      path="/design-tokens"
       element={<Placeholder title="Tokens">Tokens page here</Placeholder>}
     />
   </Routes>

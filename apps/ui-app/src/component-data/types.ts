@@ -18,9 +18,12 @@ export type ApiReferenceItem = {
 
 export type ComponentData = {
   apiReference: ApiReferenceItem[];
-  component: string;
+  name: string;
+  exportName: string;
+  importPath: string;
   importString: string;
   slug: string;
+  routeSlug: string;
   sourceCodeUrl: string;
   meta: ComponentMeta | null;
 };

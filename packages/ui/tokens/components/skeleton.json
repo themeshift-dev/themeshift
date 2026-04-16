@@ -1,0 +1,27 @@
+{
+  "components": {
+    "skeleton": {
+      "dark": {
+        "pulse": {
+          "bg": { "$value": "{color.white.10}" }
+        },
+
+        "shimmer": {
+          "base": { "$value": "rgba(255, 255, 255, .02)" },
+          "band": { "$value": "rgba(255, 255, 255, .06)" }
+        }
+      },
+
+      "light": {
+        "pulse": {
+          "bg": { "$value": "{color.black.10}" }
+        },
+
+        "shimmer": {
+          "base": { "$value": "rgba(0, 0, 0, .02)" },
+          "band": { "$value": "rgba(0, 0, 0, .04)" }
+        }
+      }
+    }
+  }
+}

@@ -113,7 +113,9 @@ export const componentData = [
         values: [],
       },
     ],
-    component: 'Button',
+    name: 'Button',
+    exportName: 'Button',
+    importPath: '@themeshift/ui/components/Button',
     importString: "import { Button } from '@themeshift/ui/components/Button';",
     meta: {
       category: 'actions',
@@ -126,6 +128,7 @@ export const componentData = [
       related: ['Link', 'CopyButton', 'ProgressButton'],
     },
     slug: 'button',
+    routeSlug: 'button',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Button',
   },
@@ -166,7 +169,9 @@ export const componentData = [
         values: ['none', 'invalid', 'valid', 'warning'],
       },
     ],
-    component: 'Checkbox',
+    name: 'Checkbox',
+    exportName: 'Checkbox',
+    importPath: '@themeshift/ui/components/Checkbox',
     importString:
       "import { Checkbox } from '@themeshift/ui/components/Checkbox';",
     meta: {
@@ -179,12 +184,15 @@ export const componentData = [
       related: ['Field', 'Label', 'RadioButton', 'ToggleSwitch'],
     },
     slug: 'checkbox',
+    routeSlug: 'checkbox',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Checkbox',
   },
   {
     apiReference: [],
-    component: 'ErrorMessage',
+    name: 'ErrorMessage',
+    exportName: 'ErrorMessage',
+    importPath: '@themeshift/ui/components/ErrorMessage',
     importString:
       "import { ErrorMessage } from '@themeshift/ui/components/ErrorMessage';",
     meta: {
@@ -196,118 +204,12 @@ export const componentData = [
       related: ['Field', 'Input', 'Label', 'Select', 'Textarea'],
     },
     slug: 'errormessage',
+    routeSlug: 'error-message',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/ErrorMessage',
   },
   {
     apiReference: [
-      {
-        comments: 'Vertical alignment used when `layout="inline-control"`.',
-        defaultValue: 'start',
-        displayName: 'Field',
-        propName: 'align',
-        type: 'FieldAlign',
-        values: ['start', 'center'],
-      },
-      {
-        comments:
-          'Field contents, usually a control and optional field subcomponents.',
-        defaultValue: null,
-        displayName: 'Field',
-        propName: 'children',
-        type: 'ReactNode',
-        values: [],
-      },
-      {
-        comments: 'Helper text shown below the control.',
-        defaultValue: null,
-        displayName: 'Field',
-        propName: 'description',
-        type: 'ReactNode',
-        values: [],
-      },
-      {
-        comments: 'Disables the control and related field content.',
-        defaultValue: null,
-        displayName: 'Field',
-        propName: 'disabled',
-        type: 'boolean',
-        values: [],
-      },
-      {
-        comments: 'Validation message shown when the field is invalid.',
-        defaultValue: null,
-        displayName: 'Field',
-        propName: 'error',
-        type: 'ReactNode',
-        values: [],
-      },
-      {
-        comments:
-          'Whether label text should be visually hidden but still accessible.',
-        defaultValue: false,
-        displayName: 'Field',
-        propName: 'hideLabel',
-        type: 'boolean',
-        values: [],
-      },
-      {
-        comments: 'Optional stable ID base. If omitted, an ID is generated.',
-        defaultValue: null,
-        displayName: 'Field',
-        propName: 'id',
-        type: 'string',
-        values: [],
-      },
-      {
-        comments: 'Visible label content for the control.',
-        defaultValue: null,
-        displayName: 'Field',
-        propName: 'label',
-        type: 'ReactNode',
-        values: [],
-      },
-      {
-        comments: 'Layout style for control and supporting content.',
-        defaultValue: 'stacked',
-        displayName: 'Field',
-        propName: 'layout',
-        type: 'FieldLayout',
-        values: ['stacked', 'inline-control'],
-      },
-      {
-        comments: 'Marks the field as optional for presentation.',
-        defaultValue: false,
-        displayName: 'Field',
-        propName: 'optional',
-        type: 'boolean',
-        values: [],
-      },
-      {
-        comments: 'Makes the control read-only while keeping it focusable.',
-        defaultValue: null,
-        displayName: 'Field',
-        propName: 'readOnly',
-        type: 'boolean',
-        values: [],
-      },
-      {
-        comments: 'Marks the control as required.',
-        defaultValue: null,
-        displayName: 'Field',
-        propName: 'required',
-        type: 'boolean',
-        values: [],
-      },
-      {
-        comments:
-          'Sets the field validation state used for styling and accessibility.',
-        defaultValue: 'none',
-        displayName: 'Field',
-        propName: 'validationState',
-        type: 'ValidationState',
-        values: ['none', 'invalid', 'valid', 'warning'],
-      },
       {
         comments: 'Helper text content associated with the control.',
         defaultValue: null,
@@ -366,7 +268,9 @@ export const componentData = [
         values: [],
       },
     ],
-    component: 'Field',
+    name: 'Field',
+    exportName: 'Field',
+    importPath: '@themeshift/ui/components/Field',
     importString: "import { Field } from '@themeshift/ui/components/Field';",
     meta: {
       category: 'inputs-forms',
@@ -386,6 +290,7 @@ export const componentData = [
       ],
     },
     slug: 'field',
+    routeSlug: 'field',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Field',
   },
@@ -408,7 +313,9 @@ export const componentData = [
         values: [],
       },
     ],
-    component: 'Heading',
+    name: 'Heading',
+    exportName: 'Heading',
+    importPath: '@themeshift/ui/components/Heading',
     importString:
       "import { Heading } from '@themeshift/ui/components/Heading';",
     meta: {
@@ -420,6 +327,7 @@ export const componentData = [
       related: ['Link', 'Label'],
     },
     slug: 'heading',
+    routeSlug: 'heading',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Heading',
   },
@@ -474,7 +382,9 @@ export const componentData = [
         values: ['none', 'invalid', 'valid', 'warning'],
       },
     ],
-    component: 'Input',
+    name: 'Input',
+    exportName: 'Input',
+    importPath: '@themeshift/ui/components/Input',
     importString: "import { Input } from '@themeshift/ui/components/Input';",
     meta: {
       category: 'inputs-forms',
@@ -486,12 +396,15 @@ export const componentData = [
       related: ['Field', 'Label', 'ErrorMessage', 'Textarea', 'Select'],
     },
     slug: 'input',
+    routeSlug: 'input',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Input',
   },
   {
     apiReference: [],
-    component: 'Label',
+    name: 'Label',
+    exportName: 'Label',
+    importPath: '@themeshift/ui/components/Label',
     importString: "import { Label } from '@themeshift/ui/components/Label';",
     meta: {
       category: 'inputs-forms',
@@ -502,6 +415,7 @@ export const componentData = [
       related: ['Field', 'Input', 'Select', 'Textarea', 'Checkbox'],
     },
     slug: 'label',
+    routeSlug: 'label',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Label',
   },
@@ -533,7 +447,9 @@ export const componentData = [
         values: [],
       },
     ],
-    component: 'Link',
+    name: 'Link',
+    exportName: 'Link',
+    importPath: '@themeshift/ui/components/Link',
     importString: "import { Link } from '@themeshift/ui/components/Link';",
     meta: {
       category: 'navigation-structure',
@@ -545,44 +461,12 @@ export const componentData = [
       related: ['Button', 'Navbar', 'SkipLink'],
     },
     slug: 'link',
+    routeSlug: 'link',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Link',
   },
   {
     apiReference: [
-      {
-        comments:
-          'HTML element or component to render instead of the default element.',
-        defaultValue: null,
-        displayName: 'Navbar',
-        propName: 'as',
-        type: 'ElementType',
-        values: [],
-      },
-      {
-        comments: 'Navbar content.',
-        defaultValue: null,
-        displayName: 'Navbar',
-        propName: 'children',
-        type: 'ReactNode',
-        values: [],
-      },
-      {
-        comments: 'Additional class names to append to the root element.',
-        defaultValue: null,
-        displayName: 'Navbar',
-        propName: 'className',
-        type: 'string',
-        values: [],
-      },
-      {
-        comments: 'CSS positioning mode for the navbar wrapper.',
-        defaultValue: 'static',
-        displayName: 'Navbar',
-        propName: 'position',
-        type: 'NavbarPosition',
-        values: ['static', 'absolute', 'fixed', 'sticky'],
-      },
       {
         comments:
           'HTML element or component to render instead of the default element.',
@@ -685,7 +569,9 @@ export const componentData = [
         values: [],
       },
     ],
-    component: 'Navbar',
+    name: 'Navbar',
+    exportName: 'Navbar',
+    importPath: '@themeshift/ui/components/Navbar',
     importString: "import { Navbar } from '@themeshift/ui/components/Navbar';",
     meta: {
       category: 'navigation-structure',
@@ -697,6 +583,7 @@ export const componentData = [
       related: ['Link', 'Sidebar', 'SkipLink', 'Responsive'],
     },
     slug: 'navbar',
+    routeSlug: 'navbar',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Navbar',
   },
@@ -735,7 +622,9 @@ export const componentData = [
         values: [],
       },
     ],
-    component: 'Responsive',
+    name: 'Responsive',
+    exportName: 'Responsive',
+    importPath: '@themeshift/ui/components/Responsive',
     importString:
       "import { Responsive } from '@themeshift/ui/components/Responsive';",
     meta: {
@@ -748,6 +637,7 @@ export const componentData = [
       related: ['Navbar', 'Flexbox', 'Grid'],
     },
     slug: 'responsive',
+    routeSlug: 'responsive',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Responsive',
   },
@@ -812,7 +702,9 @@ export const componentData = [
         values: ['none', 'invalid', 'valid', 'warning'],
       },
     ],
-    component: 'Select',
+    name: 'Select',
+    exportName: 'Select',
+    importPath: '@themeshift/ui/components/Select',
     importString: "import { Select } from '@themeshift/ui/components/Select';",
     meta: {
       category: 'inputs-forms',
@@ -824,8 +716,197 @@ export const componentData = [
       related: ['Field', 'Label', 'ErrorMessage', 'Input', 'Combobox'],
     },
     slug: 'select',
+    routeSlug: 'select',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Select',
+  },
+  {
+    apiReference: [
+      {
+        comments:
+          'Controls the animation used.\n\nUse `"none"` for static placeholders. Animations are also disabled when the user enables reduced motion.',
+        defaultValue: 'pulse',
+        displayName: 'Skeleton',
+        propName: 'animation',
+        type: 'SkeletonAnimation',
+        values: ['pulse', 'shimmer', 'none'],
+      },
+      {
+        comments:
+          'When set, the element renders as a circle.\n\nThis overrides `radius`.',
+        defaultValue: null,
+        displayName: 'Skeleton',
+        propName: 'circle',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Additional class names for custom styling.',
+        defaultValue: null,
+        displayName: 'Skeleton',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Controls rendered height of the element.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"1.25rem"`).',
+        defaultValue: '1rem',
+        displayName: 'Skeleton',
+        propName: 'height',
+        type: 'number | string',
+        values: [],
+      },
+      {
+        comments:
+          'Applies border radius to the element.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"9999px"`).',
+        defaultValue: '.5rem',
+        displayName: 'Skeleton',
+        propName: 'radius',
+        type: 'number | string',
+        values: [],
+      },
+      {
+        comments:
+          'Controls rendered size of the element.\n\nWhen set, this overrides both `height` and `width`.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"2rem"`).',
+        defaultValue: null,
+        displayName: 'Skeleton',
+        propName: 'size',
+        type: 'number | string',
+        values: [],
+      },
+      {
+        comments:
+          'Controls rendered width of the element.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"50%"`).',
+        defaultValue: '100%',
+        displayName: 'Skeleton',
+        propName: 'width',
+        type: 'number | string',
+        values: [],
+      },
+      {
+        comments:
+          'Controls the animation used.\n\nUse `"none"` for static placeholders. Animations are also disabled when the user enables reduced motion.',
+        defaultValue: 'pulse',
+        displayName: 'Skeleton.Text',
+        propName: 'animation',
+        type: 'SkeletonAnimation',
+        values: ['pulse', 'shimmer', 'none'],
+      },
+      {
+        comments: 'Additional class names for custom styling.',
+        defaultValue: null,
+        displayName: 'Skeleton.Text',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Space between lines.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"0.75rem"`).',
+        defaultValue: '.5rem',
+        displayName: 'Skeleton.Text',
+        propName: 'gap',
+        type: 'number | string',
+        values: [],
+      },
+      {
+        comments:
+          'Width of the last line.\n\nThis is typically used to mimic the ragged edge of a paragraph.',
+        defaultValue: '40%',
+        displayName: 'Skeleton.Text',
+        propName: 'lastLineWidth',
+        type: 'number | string',
+        values: [],
+      },
+      {
+        comments:
+          'Height of each line.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"1em"`).',
+        defaultValue: '1rem',
+        displayName: 'Skeleton.Text',
+        propName: 'lineHeight',
+        type: 'number | string',
+        values: [],
+      },
+      {
+        comments: 'Additional props applied to each rendered skeleton line.',
+        defaultValue: null,
+        displayName: 'Skeleton.Text',
+        propName: 'lineProps',
+        type: 'Omit',
+        values: [],
+      },
+      {
+        comments:
+          'Border radius applied to each line.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value.',
+        defaultValue: null,
+        displayName: 'Skeleton.Text',
+        propName: 'lineRadius',
+        type: 'number | string',
+        values: [],
+      },
+      {
+        comments: 'Number of lines to render.',
+        defaultValue: 3,
+        displayName: 'Skeleton.Text',
+        propName: 'lines',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Controls the animation used.',
+        defaultValue: 'pulse',
+        displayName: 'Skeleton.Avatar',
+        propName: 'animation',
+        type: 'SkeletonAnimation',
+        values: ['pulse', 'shimmer', 'none'],
+      },
+      {
+        comments: 'When set, the element renders as a circle.',
+        defaultValue: true,
+        displayName: 'Skeleton.Avatar',
+        propName: 'circle',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Additional class names for custom styling.',
+        defaultValue: null,
+        displayName: 'Skeleton.Avatar',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Controls rendered size of the element.\n\nWhen set, this overrides both `height` and `width`.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"3rem"`).',
+        defaultValue: 48,
+        displayName: 'Skeleton.Avatar',
+        propName: 'size',
+        type: 'number | string',
+        values: [],
+      },
+    ],
+    name: 'Skeleton',
+    exportName: 'Skeleton',
+    importPath: '@themeshift/ui/components/Skeleton',
+    importString:
+      "import { Skeleton } from '@themeshift/ui/components/Skeleton';",
+    meta: {
+      category: 'feedback-status',
+      description:
+        'Make placeholders for when data is loading, helping reduce layout shift.',
+      tags: ['loading', 'placeholder', 'skeleton', 'shimmer'],
+      order: 20,
+      status: 'stable',
+      featured: true,
+      aliases: ['loading-placeholder', 'shimmer'],
+      related: ['spinner', 'progress'],
+    },
+    slug: 'skeleton',
+    routeSlug: 'skeleton',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Skeleton',
   },
   {
     apiReference: [
@@ -862,7 +943,9 @@ export const componentData = [
         values: [],
       },
     ],
-    component: 'SkipLink',
+    name: 'SkipLink',
+    exportName: 'SkipLink',
+    importPath: '@themeshift/ui/components/SkipLink',
     importString:
       "import { SkipLink } from '@themeshift/ui/components/SkipLink';",
     meta: {
@@ -875,6 +958,7 @@ export const componentData = [
       related: ['Link', 'Navbar'],
     },
     slug: 'skiplink',
+    routeSlug: 'skip-link',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/SkipLink',
   },
@@ -897,7 +981,9 @@ export const componentData = [
         values: [],
       },
     ],
-    component: 'Spinner',
+    name: 'Spinner',
+    exportName: 'Spinner',
+    importPath: '@themeshift/ui/components/Spinner',
     importString:
       "import { Spinner } from '@themeshift/ui/components/Spinner';",
     meta: {
@@ -910,6 +996,7 @@ export const componentData = [
       related: ['Placeholder', 'ProgressBar', 'ProgressButton', 'LoadingState'],
     },
     slug: 'spinner',
+    routeSlug: 'spinner',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Spinner',
   },
@@ -964,7 +1051,9 @@ export const componentData = [
         values: ['none', 'invalid', 'valid', 'warning'],
       },
     ],
-    component: 'Textarea',
+    name: 'Textarea',
+    exportName: 'Textarea',
+    importPath: '@themeshift/ui/components/Textarea',
     importString:
       "import { Textarea } from '@themeshift/ui/components/Textarea';",
     meta: {
@@ -977,6 +1066,7 @@ export const componentData = [
       related: ['Field', 'Label', 'ErrorMessage', 'Input'],
     },
     slug: 'textarea',
+    routeSlug: 'textarea',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Textarea',
   },
@@ -1077,7 +1167,9 @@ export const componentData = [
         values: ['none', 'invalid', 'valid', 'warning'],
       },
     ],
-    component: 'ToggleSwitch',
+    name: 'ToggleSwitch',
+    exportName: 'ToggleSwitch',
+    importPath: '@themeshift/ui/components/ToggleSwitch',
     importString:
       "import { ToggleSwitch } from '@themeshift/ui/components/ToggleSwitch';",
     meta: {
@@ -1091,6 +1183,7 @@ export const componentData = [
       related: ['Checkbox', 'ToggleButton', 'Field', 'Label'],
     },
     slug: 'toggleswitch',
+    routeSlug: 'toggle-switch',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/ToggleSwitch',
   },

@@ -1,7 +1,7 @@
-import classNames from 'classnames';
-import type { ReactNode } from 'react';
 import { Heading } from '@themeshift/ui/components/Heading';
 import { PageShell } from '@themeshift/ui/templates';
+import classNames from 'classnames';
+import type { ReactNode } from 'react';
 
 import { TableOfContents } from '@/app/components';
 

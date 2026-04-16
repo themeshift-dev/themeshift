@@ -9,6 +9,7 @@ export * from './LinkGuide';
 export * from './NavbarGuide';
 export * from './ResponsiveGuide';
 export * from './SelectGuide';
+export * from './SkeletonGuide';
 export * from './SkipLinkGuide';
 export * from './SpinnerGuide';
 export * from './TextareaGuide';

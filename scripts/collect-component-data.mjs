@@ -192,7 +192,7 @@ function getCompoundTargetsFromSourceFile(componentName, sourceFile) {
           {
             displayName: componentName,
             implementationName: rootImplementationName,
-            propsTypeName: `${componentName}Props`,
+            propsTypeName: `${rootImplementationName}Props`,
           },
         ];
 
@@ -1197,12 +1197,19 @@ function evaluateMetaValue(expression, filePath) {
 }
 
 async function createComponentData(componentName, analyzer) {
+  const importPath = `@themeshift/ui/components/${componentName}`;
+
   return {
     apiReference: analyzer.collectApiReference(componentName),
-    component: componentName,
-    importString: `import { ${componentName} } from '@themeshift/ui/components/${componentName}';`,
+    name: componentName,
+    exportName: componentName,
+    importPath,
+    importString: `import { ${componentName} } from '${importPath}';`,
     meta: await readComponentMeta(componentName),
     slug: componentName.toLowerCase(),
+    routeSlug: componentName
+      .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+      .toLowerCase(),
     sourceCodeUrl: `${sourceCodeUrlBase}/${componentName}`,
   };
 }

@@ -9,6 +9,7 @@ export * from './Link';
 export * from './Navbar';
 export * from './Responsive';
 export * from './Select';
+export * from './Skeleton';
 export * from './SkipLink';
 export * from './Spinner';
 export * from './Textarea';

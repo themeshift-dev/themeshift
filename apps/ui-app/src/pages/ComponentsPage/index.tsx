@@ -6,9 +6,6 @@ import { useComponentData } from '@/component-data';
 import { ComponentCard } from './components';
 import styles from './ComponentsPage.module.scss';
 
-const toComponentRoute = (componentName: string) =>
-  componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-
 export const ComponentsPage = () => {
   const { groupedComponents } = useComponentData();
 
@@ -25,10 +22,10 @@ export const ComponentsPage = () => {
 
             {group.components.map((component) => (
               <ComponentCard
-                href={`/components/${toComponentRoute(component.component ?? component.slug)}`}
+                href={`/components/${component.routeSlug}`}
                 className={styles.card}
                 componentData={component}
-                key={component.component}
+                key={component.name}
               />
             ))}
           </>

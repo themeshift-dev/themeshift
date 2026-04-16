@@ -48,7 +48,7 @@ function sortComponents(a: ComponentData, b: ComponentData) {
     return aOrder - bOrder;
   }
 
-  return a.component.localeCompare(b.component);
+  return a.name.localeCompare(b.name);
 }
 
 export function useComponentData(slug?: string): UseComponentDataValue {
