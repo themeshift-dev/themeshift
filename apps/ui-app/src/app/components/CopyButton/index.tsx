@@ -1,8 +1,7 @@
 import { Button } from '@themeshift/ui/components/Button';
+import { useCopyToClipboard } from '@themeshift/ui/hooks/useCopyToClipboard';
 import classNames from 'classnames';
 import { LuCheck, LuCopy } from 'react-icons/lu';
-
-import { useCopyToClipboard } from '@/hooks';
 
 import styles from './CopyButton.module.scss';
 

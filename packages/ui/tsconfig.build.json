@@ -21,6 +21,8 @@
     "src/templates/**/*.tsx",
     "src/icons/**/*.ts",
     "src/icons/**/*.tsx",
+    "src/hooks/**/*.ts",
+    "src/hooks/**/*.tsx",
     "src/contexts/**/*.ts",
     "src/contexts/**/*.tsx"
   ],

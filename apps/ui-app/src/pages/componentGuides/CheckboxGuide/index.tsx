@@ -1,121 +1,68 @@
 import { Heading } from '@themeshift/ui/components/Heading';
-import type { ReactNode } from 'react';
-import { IoHomeSharp } from 'react-icons/io5';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
-  StringCopier,
+  GuideExampleCard,
+  GuideExampleText,
+  GuideIntro,
+  GuideExampleViewer,
+  GuideExamplesGrid,
+  GuideCallout,
+  createAccessibilityGuidelinesSection,
+  createComponentBreadcrumbItems,
+  createExamplesSection,
+  createPropsSection,
+  createQuickStartSection,
 } from '@/pages/componentGuides/components';
-import {
-  ComponentGuide,
-  type ComponentGuideSection,
-} from '@/templates/ComponentGuide';
+import { ComponentGuide } from '@/templates/ComponentGuide';
 
-import { AccessibilitySection } from './AccessibilitySection';
-import styles from './CheckboxGuide.module.scss';
 import * as examples from './examples';
 
 const checkboxFallbackImport =
   "import { Checkbox } from '@themeshift/ui/components/Checkbox';";
 
-type StepCardProps = {
-  children: ReactNode;
-  description: ReactNode;
-  number: string;
-  title: string;
-};
-
-const StepCard = ({ children, description, number, title }: StepCardProps) => (
-  <div className={styles.stepCard}>
-    <span aria-hidden="true" className={styles.stepNumber}>
-      {number}
-    </span>
-    <Heading className={styles.stepHeading} level={4}>
-      {title}
-    </Heading>
-    <p className={styles.stepText}>{description}</p>
-    {children}
-  </div>
-);
-
 export const CheckboxGuide = () => {
-  const { component } = useComponentData('checkbox');
+  const { component } = useApiReference({ component: 'checkbox' });
 
   const intro = (
-    <section className={styles.introSection}>
-      <ExampleViewer
-        className={styles.exampleViewer}
-        examples={examples.propHighlights}
-      />
-    </section>
+    <GuideIntro>
+      <GuideExampleViewer>
+        <ExampleViewer examples={examples.propHighlights} />
+      </GuideExampleViewer>
+    </GuideIntro>
   );
 
-  const quickStartContent = (
-    <div className={styles.quickstartLayout}>
-      <div className={styles.quickstartColumn}>
-        <StepCard
-          description="Add the package to your project."
-          number="1."
-          title="Install"
-        >
-          <StringCopier string="npm install @themeshift/ui" />
-        </StepCard>
-
-        <StepCard
-          description="Import the component directly from the UI package."
-          number="2."
-          title="Import"
-        >
-          <StringCopier
-            className={styles.importString}
-            language="jsx"
-            string={component?.importString ?? checkboxFallbackImport}
-          />
-
-          <p className={styles.stepText}>
-            Import base styles globally, usually inside <code>main.tsx</code>.
-          </p>
-
-          <StringCopier
-            language="jsx"
-            string="import '@themeshift/ui/css/base.css';"
-          />
-        </StepCard>
-      </div>
-
-      <StepCard
-        description="Start with a native checkbox, then layer in validation state, indeterminate behavior, and Field integration as needed."
-        number="3."
-        title="Use"
-      >
-        <ExampleViewer
-          className={styles.stepExampleViewer}
-          defaultCodeExpanded={true}
-          example={examples.basicUsage}
-        />
-      </StepCard>
-    </div>
-  );
+  const quickStartSection = createQuickStartSection({
+    componentImport: component?.importString ?? checkboxFallbackImport,
+    intro:
+      'Get a checkbox onto the page quickly, then expand into indeterminate, validation, and Field composition patterns.',
+    useDescription:
+      'Start with a native checkbox, then layer in validation state, indeterminate behavior, and Field integration as needed.',
+    useExample: (
+      <ExampleViewer defaultCodeExpanded={true} example={examples.basicUsage} />
+    ),
+  });
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
-        <p className={styles.callout}>
+        <GuideCallout>
           <code>Checkbox</code> wraps a native{' '}
           <code>input[type="checkbox"]</code> and adds size, validation,
           indeterminate behavior, and optional Field integration.
-        </p>
+        </GuideCallout>
       }
       items={component?.apiReference ?? []}
     />
   );
 
   const examplesContent = (
-    <div className={styles.examplesGrid}>
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+    <GuideExamplesGrid>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-field-inline"
             label="Field inline"
@@ -126,16 +73,15 @@ export const CheckboxGuide = () => {
             Use <code>layout="inline-control"</code> to align checkbox and label
             in one row.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.withFieldInline}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.withFieldInline} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-description-error"
             label="Description and error"
@@ -146,16 +92,15 @@ export const CheckboxGuide = () => {
             Pair checkbox with Field subcomponents for helper text and
             validation messaging.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.withDescriptionAndError}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.withDescriptionAndError} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-indeterminate"
             label="Indeterminate"
@@ -166,16 +111,15 @@ export const CheckboxGuide = () => {
             Use <code>indeterminate</code> for partial selection states in
             grouped checklists.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.indeterminate}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.indeterminate} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-validation"
             label="Validation"
@@ -186,16 +130,15 @@ export const CheckboxGuide = () => {
             Use <code>validationState</code> for border feedback and derived
             <code>aria-invalid</code> semantics.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.validationStates}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.validationStates} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-disabled"
             label="Disabled"
@@ -206,70 +149,90 @@ export const CheckboxGuide = () => {
             Use native <code>disabled</code> to prevent toggling and reflect
             unavailable options.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.disabled}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.disabled} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-sizes" label="Sizes" level={2} />
           <Heading level={4}>Sizes</Heading>
           <p>
             Use <code>size</code> to scale the control for compact or spacious
             interfaces.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.sizes}
-        />
-      </div>
-    </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.sizes} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+    </GuideExamplesGrid>
   );
 
-  const quickStartSection = {
-    content: quickStartContent,
-    id: 'quick-start',
-    intro:
-      'Get a checkbox onto the page quickly, then expand into indeterminate, validation, and Field composition patterns.',
-    title: 'Quick start',
-  } satisfies ComponentGuideSection;
-
-  const propsSection = {
+  const propsSection = createPropsSection({
     content: propsContent,
-    id: 'props',
     intro:
       'Use the API reference for exact prop names, native passthrough behavior, and Field-aware accessibility defaults.',
-    title: 'Props',
-  } satisfies ComponentGuideSection;
+  });
 
-  const examplesSection = {
+  const examplesSection = createExamplesSection({
     content: examplesContent,
-    id: 'examples',
     intro:
       'Browse common boolean-input patterns: inline layout, helper text, indeterminate state, and validation feedback.',
-    title: 'Examples',
-  } satisfies ComponentGuideSection;
+  });
+
+  const accessibilitySection = createAccessibilityGuidelinesSection({
+    intro: 'Notes for labeling and validation semantics.',
+    items: [
+      {
+        content: (
+          <p>
+            Ensure the checkbox has a programmatic label. Use a native{' '}
+            <code>label</code> or pair with <code>Field</code> so the entire
+            label area toggles the control.
+          </p>
+        ),
+        example: examples.withFieldInline,
+        title: 'Provide a label',
+      },
+      {
+        content: (
+          <p>
+            Use <code>Field.Description</code> and <code>Field.Error</code> to
+            keep helper text and validation messages associated with the
+            checkbox for assistive technology.
+          </p>
+        ),
+        example: examples.withDescriptionAndError,
+        title: 'Associate help text and errors',
+      },
+      {
+        content: (
+          <p>
+            Indeterminate is a visual “partial selection” state. If the checkbox
+            is unlabeled, provide an accessible name via <code>aria-label</code>
+            .
+          </p>
+        ),
+        example: examples.indeterminate,
+        title: 'Label indeterminate states',
+      },
+    ],
+  });
 
   return (
     <ComponentGuide
       breadcrumb={
         <Breadcrumb
-          items={[
-            {
-              ariaLabel: 'Home',
-              href: '/',
-              icon: <IoHomeSharp />,
-            },
-            { href: '/components', label: 'Components' },
-            { href: '/components/checkbox', label: 'Checkbox' },
-            { current: true, label: 'Docs' },
-          ]}
+          showHome
+          items={createComponentBreadcrumbItems({
+            componentHref: '/ui/checkbox',
+            componentLabel: 'Checkbox',
+          })}
         />
       }
       description="A theme-aware native checkbox with Field integration and indeterminate support."
@@ -278,10 +241,9 @@ export const CheckboxGuide = () => {
       howToUse={quickStartSection}
       intro={intro}
       propsSection={propsSection}
+      accessibility={accessibilitySection}
       title="Docs"
       toc={<TableOfContents.Nav />}
-    >
-      <AccessibilitySection />
-    </ComponentGuide>
+    />
   );
 };

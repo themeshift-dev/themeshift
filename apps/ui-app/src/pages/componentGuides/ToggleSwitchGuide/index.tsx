@@ -1,122 +1,69 @@
 import { Heading } from '@themeshift/ui/components/Heading';
-import type { ReactNode } from 'react';
-import { IoHomeSharp } from 'react-icons/io5';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
-  StringCopier,
+  GuideExampleCard,
+  GuideExampleText,
+  GuideIntro,
+  GuideExampleViewer,
+  GuideExamplesGrid,
+  GuideCallout,
+  createAccessibilityGuidelinesSection,
+  createComponentBreadcrumbItems,
+  createExamplesSection,
+  createPropsSection,
+  createQuickStartSection,
 } from '@/pages/componentGuides/components';
-import {
-  ComponentGuide,
-  type ComponentGuideSection,
-} from '@/templates/ComponentGuide';
+import { ComponentGuide } from '@/templates/ComponentGuide';
 
-import { AccessibilitySection } from './AccessibilitySection';
-import styles from './ToggleSwitchGuide.module.scss';
 import * as examples from './examples';
 
 const toggleSwitchFallbackImport =
   "import { ToggleSwitch } from '@themeshift/ui/components/ToggleSwitch';";
 
-type StepCardProps = {
-  children: ReactNode;
-  description: ReactNode;
-  number: string;
-  title: string;
-};
-
-const StepCard = ({ children, description, number, title }: StepCardProps) => (
-  <div className={styles.stepCard}>
-    <span aria-hidden="true" className={styles.stepNumber}>
-      {number}
-    </span>
-    <Heading className={styles.stepHeading} level={4}>
-      {title}
-    </Heading>
-    <p className={styles.stepText}>{description}</p>
-    {children}
-  </div>
-);
-
 export const ToggleSwitchGuide = () => {
-  const { component } = useComponentData('toggleswitch');
+  const { component } = useApiReference({ component: 'toggleswitch' });
 
   const intro = (
-    <section className={styles.introSection}>
-      <ExampleViewer
-        className={styles.exampleViewer}
-        examples={examples.propHighlights}
-      />
-    </section>
+    <GuideIntro>
+      <GuideExampleViewer>
+        <ExampleViewer examples={examples.propHighlights} />
+      </GuideExampleViewer>
+    </GuideIntro>
   );
 
-  const quickStartContent = (
-    <div className={styles.quickstartLayout}>
-      <div className={styles.quickstartColumn}>
-        <StepCard
-          description="Add the package to your project."
-          number="1."
-          title="Install"
-        >
-          <StringCopier string="npm install @themeshift/ui" />
-        </StepCard>
-
-        <StepCard
-          description="Import the component directly from the UI package."
-          number="2."
-          title="Import"
-        >
-          <StringCopier
-            className={styles.importString}
-            language="jsx"
-            string={component?.importString ?? toggleSwitchFallbackImport}
-          />
-
-          <p className={styles.stepText}>
-            Import base styles globally, usually inside <code>main.tsx</code>.
-          </p>
-
-          <StringCopier
-            language="jsx"
-            string="import '@themeshift/ui/css/base.css';"
-          />
-        </StepCard>
-      </div>
-
-      <StepCard
-        description="Start with an accessible switch, then compose labels, guidance, and errors with Field when needed."
-        number="3."
-        title="Use"
-      >
-        <ExampleViewer
-          className={styles.stepExampleViewer}
-          defaultCodeExpanded={true}
-          example={examples.basicUsage}
-        />
-      </StepCard>
-    </div>
-  );
+  const quickStartSection = createQuickStartSection({
+    componentImport: component?.importString ?? toggleSwitchFallbackImport,
+    intro:
+      'Get a switch onto the page quickly, then expand into Field composition, validation, and icon/state patterns.',
+    useDescription:
+      'Start with an accessible switch, then compose labels, guidance, and errors with Field when needed.',
+    useExample: (
+      <ExampleViewer defaultCodeExpanded={true} example={examples.basicUsage} />
+    ),
+  });
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
-        <p className={styles.callout}>
+        <GuideCallout>
           <code>ToggleSwitch</code> wraps a native{' '}
           <code>input[type="checkbox"]</code> with <code>role="switch"</code>,
           supports intent/size/icon styling, and can inherit accessibility state
           from <code>Field</code>.
-        </p>
+        </GuideCallout>
       }
       items={component?.apiReference ?? []}
     />
   );
 
   const examplesContent = (
-    <div className={styles.examplesGrid}>
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+    <GuideExamplesGrid>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-field-inline"
             label="Field inline"
@@ -127,16 +74,15 @@ export const ToggleSwitchGuide = () => {
             Use <code>layout="inline-control"</code> to keep switch and label on
             one row.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.withFieldInline}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.withFieldInline} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-description-error"
             label="Description and error"
@@ -147,16 +93,15 @@ export const ToggleSwitchGuide = () => {
             Compose helper text and validation with{' '}
             <code>Field.Description</code> and <code>Field.Error</code>.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.withDescriptionAndError}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.withDescriptionAndError} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-validation"
             label="Validation"
@@ -167,16 +112,15 @@ export const ToggleSwitchGuide = () => {
             Use <code>validationState</code> for border feedback and derived
             <code>aria-invalid</code> semantics.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.validationStates}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.validationStates} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-on-checked-change"
             label="onCheckedChange"
@@ -187,16 +131,15 @@ export const ToggleSwitchGuide = () => {
             Use <code>onCheckedChange</code> with <code>checked</code> to keep
             switch state synced with external state.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.checkedChange}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.checkedChange} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-icons" label="Icons" level={2} />
           <Heading level={4}>Icons</Heading>
           <p>
@@ -204,31 +147,29 @@ export const ToggleSwitchGuide = () => {
             <code>thumbIconOff</code>/<code>thumbIconOn</code> for state-aware
             icon placement.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.icons}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.icons} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-sizes" label="Sizes" level={2} />
           <Heading level={4}>Sizes</Heading>
           <p>
             Use <code>size</code> to scale track and thumb dimensions.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.sizes}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.sizes} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-intents"
             label="Intents"
@@ -239,16 +180,15 @@ export const ToggleSwitchGuide = () => {
             Use <code>intent</code> to style the thumb while keeping a
             consistent track treatment.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.intents}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.intents} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-states"
             label="States"
@@ -259,54 +199,75 @@ export const ToggleSwitchGuide = () => {
             Use <code>checked</code>, <code>disabled</code>, and{' '}
             <code>readOnly</code> for interaction state handling.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.states}
-        />
-      </div>
-    </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.states} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+    </GuideExamplesGrid>
   );
 
-  const quickStartSection = {
-    content: quickStartContent,
-    id: 'quick-start',
-    intro:
-      'Get a switch onto the page quickly, then expand into Field composition, validation, and icon/state patterns.',
-    title: 'Quick start',
-  } satisfies ComponentGuideSection;
-
-  const propsSection = {
+  const propsSection = createPropsSection({
     content: propsContent,
-    id: 'props',
     intro:
       'Use the API reference for exact prop names, native passthrough behavior, and Field-aware accessibility defaults.',
-    title: 'Props',
-  } satisfies ComponentGuideSection;
+  });
 
-  const examplesSection = {
+  const examplesSection = createExamplesSection({
     content: examplesContent,
-    id: 'examples',
     intro:
       'Browse common switch patterns for production forms and settings screens.',
-    title: 'Examples',
-  } satisfies ComponentGuideSection;
+  });
+
+  const accessibilitySection = createAccessibilityGuidelinesSection({
+    intro: 'Notes for labeling and state announcements.',
+    items: [
+      {
+        content: (
+          <p>
+            Switches need a programmatic label. Pair <code>ToggleSwitch</code>{' '}
+            with a native <code>label</code> or <code>Field</code> so screen
+            readers announce what the switch controls.
+          </p>
+        ),
+        example: examples.withFieldInline,
+        title: 'Provide a label',
+      },
+      {
+        content: (
+          <p>
+            Use descriptions and errors to explain what the setting does and
+            what went wrong. Keep the help text and error text associated with
+            the switch using <code>Field</code>.
+          </p>
+        ),
+        example: examples.withDescriptionAndError,
+        title: 'Associate guidance and errors',
+      },
+      {
+        content: (
+          <p>
+            If the visible label changes based on state, make sure the announced
+            label is updated too (for example, reflect the current on/off
+            meaning in the label text).
+          </p>
+        ),
+        example: examples.checkedChange,
+        title: 'Keep state labels accurate',
+      },
+    ],
+  });
 
   return (
     <ComponentGuide
       breadcrumb={
         <Breadcrumb
-          items={[
-            {
-              ariaLabel: 'Home',
-              href: '/',
-              icon: <IoHomeSharp />,
-            },
-            { href: '/components', label: 'Components' },
-            { href: '/components/toggle-switch', label: 'ToggleSwitch' },
-            { current: true, label: 'Docs' },
-          ]}
+          showHome
+          items={createComponentBreadcrumbItems({
+            componentHref: '/ui/toggle-switch',
+            componentLabel: 'ToggleSwitch',
+          })}
         />
       }
       description="A theme-aware native switch with Field integration and state-aware icon support."
@@ -315,10 +276,9 @@ export const ToggleSwitchGuide = () => {
       howToUse={quickStartSection}
       intro={intro}
       propsSection={propsSection}
+      accessibility={accessibilitySection}
       title="Docs"
       toc={<TableOfContents.Nav />}
-    >
-      <AccessibilitySection />
-    </ComponentGuide>
+    />
   );
 };

@@ -1,136 +1,82 @@
 import { Heading } from '@themeshift/ui/components/Heading';
-import type { ReactNode } from 'react';
-import { IoHomeSharp } from 'react-icons/io5';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
-  StringCopier,
+  GuideExampleCard,
+  GuideExampleText,
+  GuideIntro,
+  GuideExampleViewer,
+  GuideExamplesGrid,
+  GuideCallout,
+  createAccessibilityGuidelinesSection,
+  createComponentBreadcrumbItems,
+  createExamplesSection,
+  createPropsSection,
+  createQuickStartSection,
 } from '@/pages/componentGuides/components';
-import {
-  ComponentGuide,
-  type ComponentGuideSection,
-} from '@/templates/ComponentGuide';
+import { ComponentGuide } from '@/templates/ComponentGuide';
 
-import { AccessibilitySection } from './AccessibilitySection';
-import styles from './InputGuide.module.scss';
 import * as examples from './examples';
 
 const inputFallbackImport =
   "import { Input } from '@themeshift/ui/components/Input';";
 
-type StepCardProps = {
-  children: ReactNode;
-  description: ReactNode;
-  number: string;
-  title: string;
-};
-
-const StepCard = ({ children, description, number, title }: StepCardProps) => (
-  <div className={styles.stepCard}>
-    <span aria-hidden="true" className={styles.stepNumber}>
-      {number}
-    </span>
-    <Heading className={styles.stepHeading} level={4}>
-      {title}
-    </Heading>
-    <p className={styles.stepText}>{description}</p>
-    {children}
-  </div>
-);
-
 export const InputGuide = () => {
-  const { component } = useComponentData('input');
+  const { component } = useApiReference({ component: 'input' });
 
   const intro = (
-    <section className={styles.introSection}>
-      <ExampleViewer
-        className={styles.exampleViewer}
-        examples={examples.propHighlights}
-      />
-    </section>
+    <GuideIntro>
+      <GuideExampleViewer>
+        <ExampleViewer examples={examples.propHighlights} />
+      </GuideExampleViewer>
+    </GuideIntro>
   );
 
-  const quickStartContent = (
-    <div className={styles.quickstartLayout}>
-      <div className={styles.quickstartColumn}>
-        <StepCard
-          description="Add the package to your project."
-          number="1."
-          title="Install"
-        >
-          <StringCopier string="npm install @themeshift/ui" />
-        </StepCard>
-
-        <StepCard
-          description="Import the component directly from the UI package."
-          number="2."
-          title="Import"
-        >
-          <StringCopier
-            className={styles.importString}
-            language="jsx"
-            string={component?.importString ?? inputFallbackImport}
-          />
-
-          <p className={styles.stepText}>
-            Import base styles globally, usually inside <code>main.tsx</code>.
-          </p>
-
-          <StringCopier
-            language="jsx"
-            string="import '@themeshift/ui/css/base.css';"
-          />
-        </StepCard>
-      </div>
-
-      <StepCard
-        description="Start with a labelled input, then layer in size, adornments, width, and validation state props as needed."
-        number="3."
-        title="Use"
-      >
-        <ExampleViewer
-          className={styles.stepExampleViewer}
-          defaultCodeExpanded={true}
-          example={examples.basicUsage}
-        />
-      </StepCard>
-    </div>
-  );
+  const quickStartSection = createQuickStartSection({
+    componentImport: component?.importString ?? inputFallbackImport,
+    intro:
+      'Get an input onto the page quickly, then expand into validation, adornments, and layout patterns below.',
+    useDescription:
+      'Start with a labelled input, then layer in size, adornments, width, and validation state props as needed.',
+    useExample: (
+      <ExampleViewer defaultCodeExpanded={true} example={examples.basicUsage} />
+    ),
+  });
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
-        <p className={styles.callout}>
+        <GuideCallout>
           <code>Input</code> wraps a native <code>input</code> element and adds
           size, validation, adornment, and layout props while preserving native
           text entry behavior.
-        </p>
+        </GuideCallout>
       }
       items={component?.apiReference ?? []}
     />
   );
 
   const examplesContent = (
-    <div className={styles.examplesGrid}>
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+    <GuideExamplesGrid>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-sizes" label="Sizes" level={2} />
           <Heading level={4}>Sizes</Heading>
           <p>
             Use <code>size</code> to scale control height, padding, and text.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.sizes}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.sizes} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-validation"
             label="Validation"
@@ -142,16 +88,15 @@ export const InputGuide = () => {
             valid states also derive <code>aria-invalid</code> when you do not
             pass it explicitly.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.validationStates}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.validationStates} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-adornments"
             label="Adornments"
@@ -162,16 +107,15 @@ export const InputGuide = () => {
             Use <code>startAdornment</code> and <code>endAdornment</code> for
             icons, helper text, or inline actions.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.adornments}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.adornments} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-action"
             label="Action"
@@ -182,16 +126,15 @@ export const InputGuide = () => {
             Adornments can include interactive content when inline actions make
             sense for the workflow.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.withAction}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.withAction} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-field" label="Field" level={2} />
           <Heading level={4}>With Field</Heading>
           <p>
@@ -199,16 +142,15 @@ export const InputGuide = () => {
             labels, descriptions, and error messaging while the control stays a
             thin native wrapper.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.withField}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.withField} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-width"
             label="Widths"
@@ -219,16 +161,15 @@ export const InputGuide = () => {
             Inputs are full width by default. Set <code>fullWidth</code> to{' '}
             <code>false</code> for inline forms.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.widths}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.widths} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-class-names"
             label="Class names"
@@ -239,16 +180,15 @@ export const InputGuide = () => {
             Use <code>className</code> for the wrapper and{' '}
             <code>inputClassName</code> for the native input element.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.classNames}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.classNames} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-disabled"
             label="Disabled"
@@ -259,54 +199,64 @@ export const InputGuide = () => {
             Use native <code>disabled</code> to prevent edits and reflect a
             read-only interaction moment in the UI.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.disabled}
-        />
-      </div>
-    </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.disabled} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+    </GuideExamplesGrid>
   );
 
-  const quickStartSection = {
-    content: quickStartContent,
-    id: 'quick-start',
-    intro:
-      'Get an input onto the page quickly, then expand into validation, adornments, and layout patterns below.',
-    title: 'Quick start',
-  } satisfies ComponentGuideSection;
-
-  const propsSection = {
+  const propsSection = createPropsSection({
     content: propsContent,
-    id: 'props',
     intro:
       'Use the API reference for exact prop names, native passthrough behavior, and wrapper-specific customization hooks.',
-    title: 'Props',
-  } satisfies ComponentGuideSection;
+  });
 
-  const examplesSection = {
+  const examplesSection = createExamplesSection({
     content: examplesContent,
-    id: 'examples',
     intro:
       'Browse common text input patterns you will likely need in production: sizing, state feedback, adornments, and width control.',
-    title: 'Examples',
-  } satisfies ComponentGuideSection;
+  });
+
+  const accessibilitySection = createAccessibilityGuidelinesSection({
+    intro: 'Notes for labels, adornments, and validation announcements.',
+    items: [
+      {
+        content: (
+          <p>
+            Prefer a visible label by pairing <code>Input</code> with{' '}
+            <code>Field</code>. Use <code>aria-label</code> only when a visible
+            label is not appropriate.
+          </p>
+        ),
+        example: examples.withField,
+        title: 'Provide an accessible name',
+      },
+      {
+        content: (
+          <p>
+            For adornments, mark decorative icons as <code>aria-hidden</code>.
+            If an adornment is interactive (like a button), ensure it has an
+            accessible name and an explicit <code>type="button"</code>.
+          </p>
+        ),
+        example: examples.withAction,
+        title: 'Keep adornments accessible',
+      },
+    ],
+  });
 
   return (
     <ComponentGuide
       breadcrumb={
         <Breadcrumb
-          items={[
-            {
-              ariaLabel: 'Home',
-              href: '/',
-              icon: <IoHomeSharp />,
-            },
-            { href: '/components', label: 'Components' },
-            { href: '/components/input', label: 'Input' },
-            { current: true, label: 'Docs' },
-          ]}
+          showHome
+          items={createComponentBreadcrumbItems({
+            componentHref: '/ui/input',
+            componentLabel: 'Input',
+          })}
         />
       }
       description="A theme-aware text input with native behavior and optional adornments."
@@ -315,10 +265,9 @@ export const InputGuide = () => {
       howToUse={quickStartSection}
       intro={intro}
       propsSection={propsSection}
+      accessibility={accessibilitySection}
       title="Docs"
       toc={<TableOfContents.Nav />}
-    >
-      <AccessibilitySection />
-    </ComponentGuide>
+    />
   );
 };

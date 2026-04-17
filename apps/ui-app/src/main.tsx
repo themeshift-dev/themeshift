@@ -6,17 +6,17 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router';
 
 import App from '@/app';
-import { ComponentDataProvider } from '@/component-data';
+import { ApiReferenceProvider } from '@/apiReference';
 import '@/index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>
-      <ComponentDataProvider>
+      <ApiReferenceProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </ComponentDataProvider>
+      </ApiReferenceProvider>
     </ThemeProvider>
   </StrictMode>
 );

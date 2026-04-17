@@ -5,6 +5,10 @@ import { TableOfContents } from '@/app/components';
 import {
   ExampleViewer,
   type ExampleViewerExample,
+  GuideExampleCard,
+  GuideExampleText,
+  GuideExampleViewer,
+  GuideExamplesGrid,
 } from '@/pages/componentGuides/components';
 
 import styles from './AccessibilityGuidelinesSection.module.scss';
@@ -58,43 +62,44 @@ const keepStructureExample = {
 export const AccessibilityGuidelinesSection = () => {
   return (
     <section className={styles.section}>
-      <TableOfContents.Marker
-        id="accessibility-guidelines"
-        label="Accessibility guidelines"
-      />
-      <Heading level={3}>Accessibility guidelines</Heading>
+      <TableOfContents.Marker id="accessibility" label="Accessibility" />
+      <Heading level={3}>Accessibility</Heading>
 
       <p className={styles.note}>
         Skeleton placeholders are decorative and hidden from assistive
         technology. Use real text and state attributes to communicate progress.
       </p>
 
-      <div className={styles.guidelines}>
-        <article className={styles.guideline}>
-          <strong>Announce loading state with real text</strong>
-          <p>
-            Use <code>role=&quot;status&quot;</code> and/or{' '}
-            <code>aria-busy</code> on the region that is loading. Skeletons
-            themselves should stay silent.
-          </p>
-          <ExampleViewer
-            className={styles.exampleViewer}
-            example={busyRegionExample}
-          />
-        </article>
+      <GuideExamplesGrid>
+        <GuideExampleCard>
+          <GuideExampleText>
+            <Heading level={4}>Announce loading state with real text</Heading>
+            <p>
+              Use <code>role=&quot;status&quot;</code> and/or{' '}
+              <code>aria-busy</code> on the region that is loading. Skeletons
+              themselves should stay silent.
+            </p>
+          </GuideExampleText>
 
-        <article className={styles.guideline}>
-          <strong>Keep headings and landmarks stable</strong>
-          <p>
-            Maintain structure while data loads so screen reader users do not
-            lose context. Replace the body content with skeleton placeholders.
-          </p>
-          <ExampleViewer
-            className={styles.exampleViewer}
-            example={keepStructureExample}
-          />
-        </article>
-      </div>
+          <GuideExampleViewer>
+            <ExampleViewer example={busyRegionExample} defaultCodeExpanded />
+          </GuideExampleViewer>
+        </GuideExampleCard>
+
+        <GuideExampleCard>
+          <GuideExampleText>
+            <Heading level={4}>Keep headings and landmarks stable</Heading>
+            <p>
+              Maintain structure while data loads so screen reader users do not
+              lose context. Replace the body content with skeleton placeholders.
+            </p>
+          </GuideExampleText>
+
+          <GuideExampleViewer>
+            <ExampleViewer example={keepStructureExample} defaultCodeExpanded />
+          </GuideExampleViewer>
+        </GuideExampleCard>
+      </GuideExamplesGrid>
     </section>
   );
 };

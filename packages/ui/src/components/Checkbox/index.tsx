@@ -56,12 +56,22 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       'aria-checked': ariaChecked,
       'aria-describedby': ariaDescribedBy,
       'aria-invalid': ariaInvalid,
+      defaultChecked: defaultCheckedProp,
       disabled: disabledProp,
       id: idProp,
+      name: nameProp,
+      onBlur: onBlurProp,
+      onChange: onChangeProp,
       readOnly: readOnlyProp,
       required: requiredProp,
       ...nativeCheckboxProps
     } = checkboxProps;
+    const shouldAutoRegister =
+      nameProp === undefined && !!fieldContext?.form && !!fieldContext?.name;
+    const registration = shouldAutoRegister
+      ? fieldContext.form?.register(fieldContext.name as never)
+      : undefined;
+    const resolvedName = nameProp ?? registration?.name;
     const hasCallerAriaInvalid = ariaInvalid !== undefined;
     const resolvedDisabled = disabledProp ?? fieldContext?.disabled;
     const resolvedId = idProp ?? fieldContext?.controlId;
@@ -85,6 +95,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           : undefined;
     const derivedAriaChecked =
       indeterminate && ariaChecked === undefined ? 'mixed' : ariaChecked;
+    const resolvedDefaultChecked =
+      defaultCheckedProp ??
+      (nativeCheckboxProps.checked === undefined
+        ? registration?.defaultChecked
+        : undefined);
 
     useEffect(() => {
       if (!inputRef.current) {
@@ -113,12 +128,31 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             aria-invalid={derivedAriaInvalid}
             className={styles.input}
             data-indeterminate={indeterminate ? 'true' : undefined}
+            defaultChecked={resolvedDefaultChecked}
             disabled={resolvedDisabled}
             id={resolvedId}
             readOnly={resolvedReadOnly}
+            name={resolvedName}
+            onBlur={
+              registration
+                ? (event) => {
+                    registration.onBlur(event);
+                    onBlurProp?.(event);
+                  }
+                : onBlurProp
+            }
+            onChange={
+              registration
+                ? (event) => {
+                    registration.onChange(event);
+                    onChangeProp?.(event);
+                  }
+                : onChangeProp
+            }
             ref={(node) => {
               inputRef.current = node;
               setRef(ref, node);
+              registration?.ref(node);
             }}
             required={resolvedRequired}
             type="checkbox"

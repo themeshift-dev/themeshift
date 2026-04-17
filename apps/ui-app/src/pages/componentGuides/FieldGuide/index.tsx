@@ -1,122 +1,68 @@
 import { Heading } from '@themeshift/ui/components/Heading';
-import type { ReactNode } from 'react';
-import { IoHomeSharp } from 'react-icons/io5';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
-  StringCopier,
+  GuideExampleCard,
+  GuideExampleText,
+  GuideIntro,
+  GuideExampleViewer,
+  GuideExamplesGrid,
+  GuideCallout,
+  createAccessibilityGuidelinesSection,
+  createComponentBreadcrumbItems,
+  createExamplesSection,
+  createPropsSection,
+  createQuickStartSection,
 } from '@/pages/componentGuides/components';
-import {
-  ComponentGuide,
-  type ComponentGuideSection,
-} from '@/templates/ComponentGuide';
+import { ComponentGuide } from '@/templates/ComponentGuide';
 
-import { AccessibilitySection } from './AccessibilitySection';
 import * as examples from './examples';
-import styles from './FieldGuide.module.scss';
 
 const fieldFallbackImport =
   "import { Field } from '@themeshift/ui/components/Field';";
 
-type StepCardProps = {
-  children: ReactNode;
-  description: ReactNode;
-  number: string;
-  title: string;
-};
-
-const StepCard = ({ children, description, number, title }: StepCardProps) => (
-  <div className={styles.stepCard}>
-    <span aria-hidden="true" className={styles.stepNumber}>
-      {number}
-    </span>
-    <Heading className={styles.stepHeading} level={4}>
-      {title}
-    </Heading>
-    <p className={styles.stepText}>{description}</p>
-    {children}
-  </div>
-);
-
 export const FieldGuide = () => {
-  const { component } = useComponentData('field');
+  const { component } = useApiReference({ component: 'field' });
 
   const intro = (
-    <section className={styles.introSection}>
-      <ExampleViewer
-        className={styles.exampleViewer}
-        examples={examples.propHighlights}
-      />
-    </section>
+    <GuideIntro>
+      <GuideExampleViewer>
+        <ExampleViewer examples={examples.propHighlights} />
+      </GuideExampleViewer>
+    </GuideIntro>
   );
 
-  const quickStartContent = (
-    <div className={styles.quickstartLayout}>
-      <div className={styles.quickstartColumn}>
-        <StepCard
-          description="Add the package to your project."
-          number="1."
-          title="Install"
-        >
-          <StringCopier string="npm install @themeshift/ui" />
-        </StepCard>
-
-        <StepCard
-          description="Import the component directly from the UI package."
-          number="2."
-          title="Import"
-        >
-          <StringCopier
-            className={styles.importString}
-            language="jsx"
-            string={component?.importString ?? fieldFallbackImport}
-          />
-
-          <p className={styles.stepText}>
-            Import base styles globally, usually inside <code>main.tsx</code>.
-          </p>
-
-          <StringCopier
-            language="jsx"
-            string="import '@themeshift/ui/css/base.css';"
-          />
-        </StepCard>
-      </div>
-
-      <StepCard
-        description="Start with a labelled field, then layer in description, error states, and composable subcomponents when you need more control."
-        number="3."
-        title="Use"
-      >
-        <ExampleViewer
-          className={styles.stepExampleViewer}
-          defaultCodeExpanded={true}
-          example={examples.basicUsage}
-        />
-      </StepCard>
-    </div>
-  );
+  const quickStartSection = createQuickStartSection({
+    componentImport: component?.importString ?? fieldFallbackImport,
+    intro:
+      'Get a field wired quickly, then expand into shorthand content, composable slots, and shared control state.',
+    useDescription:
+      'Start with a labelled field, then layer in description, error states, and composable subcomponents when you need more control.',
+    useExample: (
+      <ExampleViewer defaultCodeExpanded={true} example={examples.basicUsage} />
+    ),
+  });
 
   const propsContent = (
     <ApiReference
       intro={
-        <p className={styles.callout}>
+        <GuideCallout>
           <code>Field</code> coordinates IDs, <code>aria-describedby</code>,{' '}
           <code>aria-invalid</code>, and shared form state while controls like{' '}
           <code>Input</code> and <code>Textarea</code> stay thin wrappers around
           native elements.
-        </p>
+        </GuideCallout>
       }
       items={component?.apiReference ?? []}
     />
   );
 
   const examplesContent = (
-    <div className={styles.examplesGrid}>
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+    <GuideExamplesGrid>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-shorthand"
             label="Shorthand"
@@ -127,16 +73,15 @@ export const FieldGuide = () => {
             Pass <code>label</code>, <code>description</code>, and{' '}
             <code>error</code> directly to <code>Field</code> for a concise API.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.shorthandContent}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.shorthandContent} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-composable"
             label="Composable"
@@ -148,16 +93,15 @@ export const FieldGuide = () => {
             <code>Field.Error</code> when layout and conditional rendering need
             explicit control.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.composableContent}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.composableContent} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-required-optional"
             label="Required and optional"
@@ -168,16 +112,15 @@ export const FieldGuide = () => {
             Use <code>required</code> and <code>optional</code> to keep
             indicator presentation consistent with your form language.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.optionalAndRequired}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.optionalAndRequired} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-inline-shorthand"
             label="Inline shorthand"
@@ -188,16 +131,15 @@ export const FieldGuide = () => {
             Use <code>layout="inline-control"</code> when the control and main
             label should appear in one row, such as checkboxes.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.inlineControlShorthand}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.inlineControlShorthand} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-inline-composable"
             label="Inline composable"
@@ -208,16 +150,15 @@ export const FieldGuide = () => {
             Use composable children when checkbox-style controls need custom
             wrapper structure for labels and support text.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.inlineControlComposable}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.inlineControlComposable} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-with-textarea"
             label="With Textarea"
@@ -228,16 +169,15 @@ export const FieldGuide = () => {
             The same wiring applies to multiline controls, including autosize
             textareas.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.withTextarea}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.withTextarea} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-shared-state"
             label="Shared state"
@@ -249,16 +189,15 @@ export const FieldGuide = () => {
             <code>validationState</code> at the field level to keep control
             behavior synchronized.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.sharedState}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.sharedState} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-hide-label"
             label="Hide label"
@@ -269,54 +208,64 @@ export const FieldGuide = () => {
             Set <code>hideLabel</code> when a visible label is not desired,
             while preserving accessible naming.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.hideLabel}
-        />
-      </div>
-    </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.hideLabel} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+    </GuideExamplesGrid>
   );
 
-  const quickStartSection = {
-    content: quickStartContent,
-    id: 'quick-start',
-    intro:
-      'Get a field wired quickly, then expand into shorthand content, composable slots, and shared control state.',
-    title: 'Quick start',
-  } satisfies ComponentGuideSection;
-
-  const propsSection = {
+  const propsSection = createPropsSection({
     content: propsContent,
-    id: 'props',
     intro:
       'Use the API reference for Field root props and shared state primitives that integrate with field-aware controls.',
-    title: 'Props',
-  } satisfies ComponentGuideSection;
+  });
 
-  const examplesSection = {
+  const examplesSection = createExamplesSection({
     content: examplesContent,
-    id: 'examples',
     intro:
       'Browse practical form composition patterns: shorthand, explicit composition, state propagation, and hidden-label layouts.',
-    title: 'Examples',
-  } satisfies ComponentGuideSection;
+  });
+
+  const accessibilitySection = createAccessibilityGuidelinesSection({
+    intro: 'Notes for accessible form labeling and error messaging.',
+    items: [
+      {
+        content: (
+          <p>
+            Use <code>Field</code> to keep labels, descriptions, and errors
+            programmatically associated with the control. This ensures assistive
+            technology announces the right context.
+          </p>
+        ),
+        example: examples.shorthandContent,
+        title: 'Let Field wire labels and help text',
+      },
+      {
+        content: (
+          <p>
+            If a visual label is not desired, use <code>hideLabel</code> so the
+            field still has an accessible name. Avoid relying on placeholders as
+            the only label.
+          </p>
+        ),
+        example: examples.hideLabel,
+        title: 'Hide labels visually (not semantically)',
+      },
+    ],
+  });
 
   return (
     <ComponentGuide
       breadcrumb={
         <Breadcrumb
-          items={[
-            {
-              ariaLabel: 'Home',
-              href: '/',
-              icon: <IoHomeSharp />,
-            },
-            { href: '/components', label: 'Components' },
-            { href: '/components/field', label: 'Field' },
-            { current: true, label: 'Docs' },
-          ]}
+          showHome
+          items={createComponentBreadcrumbItems({
+            componentHref: '/ui/field',
+            componentLabel: 'Field',
+          })}
         />
       }
       description="A field composition primitive that owns labels, helper text, errors, and shared control semantics."
@@ -325,10 +274,9 @@ export const FieldGuide = () => {
       howToUse={quickStartSection}
       intro={intro}
       propsSection={propsSection}
+      accessibility={accessibilitySection}
       title="Docs"
       toc={<TableOfContents.Nav />}
-    >
-      <AccessibilitySection />
-    </ComponentGuide>
+    />
   );
 };

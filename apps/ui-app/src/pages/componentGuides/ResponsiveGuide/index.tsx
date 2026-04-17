@@ -1,120 +1,67 @@
 import { Heading } from '@themeshift/ui/components/Heading';
-import type { ReactNode } from 'react';
-import { IoHomeSharp } from 'react-icons/io5';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
-  StringCopier,
+  GuideExampleCard,
+  GuideExampleText,
+  GuideIntro,
+  GuideExampleViewer,
+  GuideExamplesGrid,
+  GuideCallout,
+  createAccessibilityGuidelinesSection,
+  createComponentBreadcrumbItems,
+  createExamplesSection,
+  createPropsSection,
+  createQuickStartSection,
 } from '@/pages/componentGuides/components';
-import {
-  ComponentGuide,
-  type ComponentGuideSection,
-} from '@/templates/ComponentGuide';
+import { ComponentGuide } from '@/templates/ComponentGuide';
 
-import { AccessibilitySection } from './AccessibilitySection';
 import * as examples from './examples';
-import styles from './ResponsiveGuide.module.scss';
 
 const responsiveFallbackImport =
   "import { Responsive } from '@themeshift/ui/components/Responsive';";
 
-type StepCardProps = {
-  children: ReactNode;
-  description: ReactNode;
-  number: string;
-  title: string;
-};
-
-const StepCard = ({ children, description, number, title }: StepCardProps) => (
-  <div className={styles.stepCard}>
-    <span aria-hidden="true" className={styles.stepNumber}>
-      {number}
-    </span>
-    <Heading className={styles.stepHeading} level={4}>
-      {title}
-    </Heading>
-    <p className={styles.stepText}>{description}</p>
-    {children}
-  </div>
-);
-
 export const ResponsiveGuide = () => {
-  const { component } = useComponentData('responsive');
+  const { component } = useApiReference({ component: 'responsive' });
 
   const intro = (
-    <section className={styles.introSection}>
-      <ExampleViewer
-        className={styles.exampleViewer}
-        examples={examples.propHighlights}
-      />
-    </section>
+    <GuideIntro>
+      <GuideExampleViewer>
+        <ExampleViewer examples={examples.propHighlights} />
+      </GuideExampleViewer>
+    </GuideIntro>
   );
 
-  const quickStartContent = (
-    <div className={styles.quickstartLayout}>
-      <div className={styles.quickstartColumn}>
-        <StepCard
-          description="Add the package to your project."
-          number="1."
-          title="Install"
-        >
-          <StringCopier string="npm install @themeshift/ui" />
-        </StepCard>
-
-        <StepCard
-          description="Import the component directly from the UI package."
-          number="2."
-          title="Import"
-        >
-          <StringCopier
-            className={styles.importString}
-            language="jsx"
-            string={component?.importString ?? responsiveFallbackImport}
-          />
-
-          <p className={styles.stepText}>
-            Import base styles globally, usually inside <code>main.tsx</code>.
-          </p>
-
-          <StringCopier
-            language="jsx"
-            string="import '@themeshift/ui/css/base.css';"
-          />
-        </StepCard>
-      </div>
-
-      <StepCard
-        description="Start with one simple breakpoint rule, then compose range-based visibility for multi-layout UIs."
-        number="3."
-        title="Use"
-      >
-        <ExampleViewer
-          className={styles.stepExampleViewer}
-          defaultCodeExpanded={true}
-          example={examples.basicUsage}
-        />
-      </StepCard>
-    </div>
-  );
+  const quickStartSection = createQuickStartSection({
+    componentImport: component?.importString ?? responsiveFallbackImport,
+    intro:
+      'Gate content by breakpoint quickly, then scale into range-based responsive layouts.',
+    useDescription:
+      'Start with one simple breakpoint rule, then compose range-based visibility for multi-layout UIs.',
+    useExample: (
+      <ExampleViewer defaultCodeExpanded={true} example={examples.basicUsage} />
+    ),
+  });
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
-        <p className={styles.callout}>
+        <GuideCallout>
           <code>Responsive</code> conditionally displays content based on
           breakpoint rules using a simple <code>when</code> prop contract.
-        </p>
+        </GuideCallout>
       }
       items={component?.apiReference ?? []}
     />
   );
 
   const examplesContent = (
-    <div className={styles.examplesGrid}>
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+    <GuideExamplesGrid>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-tablet-up"
             label="Tablet and up"
@@ -125,16 +72,15 @@ export const ResponsiveGuide = () => {
             Use <code>from</code> when content should appear at a breakpoint and
             remain visible for larger viewports.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.tabletAndUp}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.tabletAndUp} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-ranges"
             label="Ranges"
@@ -145,16 +91,15 @@ export const ResponsiveGuide = () => {
             Combine <code>from</code>, <code>to</code>, <code>above</code>, and
             <code>below</code> to target visibility windows.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.ranges}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.ranges} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-polymorphic"
             label="Polymorphic"
@@ -165,54 +110,71 @@ export const ResponsiveGuide = () => {
             Use <code>as</code> to preserve semantic structure while applying
             responsive visibility rules.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.asElement}
-        />
-      </div>
-    </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.asElement} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+    </GuideExamplesGrid>
   );
 
-  const quickStartSection = {
-    content: quickStartContent,
-    id: 'quick-start',
-    intro:
-      'Gate content by breakpoint quickly, then scale into range-based responsive layouts.',
-    title: 'Quick start',
-  } satisfies ComponentGuideSection;
-
-  const propsSection = {
+  const propsSection = createPropsSection({
     content: propsContent,
-    id: 'props',
     intro:
       'Use the API reference for breakpoint rule shapes and polymorphic rendering options.',
-    title: 'Props',
-  } satisfies ComponentGuideSection;
+  });
 
-  const examplesSection = {
+  const examplesSection = createExamplesSection({
     content: examplesContent,
-    id: 'examples',
     intro:
       'Browse common visibility patterns for mobile-only, tablet-up, and bounded range content.',
-    title: 'Examples',
-  } satisfies ComponentGuideSection;
+  });
+
+  const accessibilitySection = createAccessibilityGuidelinesSection({
+    intro: 'Responsive visibility impacts assistive technology.',
+    items: [
+      {
+        content: (
+          <p>
+            Avoid rendering duplicate interactive controls across breakpoint
+            variants. When content is <code>display: none</code>, it is also
+            removed from the accessibility tree.
+          </p>
+        ),
+        title: 'Avoid duplicated interactive targets',
+      },
+      {
+        content: (
+          <p>
+            Duplicated IDs can happen when rendering multiple breakpoint
+            variants. Keep IDs unique or refactor to render a single instance
+            per breakpoint.
+          </p>
+        ),
+        title: 'Keep IDs unique across variants',
+      },
+      {
+        content: (
+          <p>
+            Keyboard and screen reader behavior can change when layout shifts.
+            Validate focus order and announcements at each breakpoint.
+          </p>
+        ),
+        title: 'Test at each breakpoint',
+      },
+    ],
+  });
 
   return (
     <ComponentGuide
       breadcrumb={
         <Breadcrumb
-          items={[
-            {
-              ariaLabel: 'Home',
-              href: '/',
-              icon: <IoHomeSharp />,
-            },
-            { href: '/components', label: 'Components' },
-            { href: '/components/responsive', label: 'Responsive' },
-            { current: true, label: 'Docs' },
-          ]}
+          showHome
+          items={createComponentBreadcrumbItems({
+            componentHref: '/ui/responsive',
+            componentLabel: 'Responsive',
+          })}
         />
       }
       description="Implementation guidance, API details, and copy-paste examples for building with Responsive."
@@ -221,10 +183,9 @@ export const ResponsiveGuide = () => {
       howToUse={quickStartSection}
       intro={intro}
       propsSection={propsSection}
+      accessibility={accessibilitySection}
       title="Docs"
       toc={<TableOfContents.Nav />}
-    >
-      <AccessibilitySection />
-    </ComponentGuide>
+    />
   );
 };

@@ -1,137 +1,83 @@
 import { Heading } from '@themeshift/ui/components/Heading';
-import type { ReactNode } from 'react';
-import { IoHomeSharp } from 'react-icons/io5';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
-  StringCopier,
+  GuideExampleCard,
+  GuideExampleText,
+  GuideIntro,
+  GuideExampleViewer,
+  GuideExamplesGrid,
+  GuideCallout,
+  createAccessibilityGuidelinesSection,
+  createComponentBreadcrumbItems,
+  createExamplesSection,
+  createPropsSection,
+  createQuickStartSection,
 } from '@/pages/componentGuides/components';
-import {
-  ComponentGuide,
-  type ComponentGuideSection,
-} from '@/templates/ComponentGuide';
+import { ComponentGuide } from '@/templates/ComponentGuide';
 
-import { AccessibilitySection } from './AccessibilitySection';
-import styles from './TextareaGuide.module.scss';
 import * as examples from './examples';
 
 const textareaFallbackImport =
   "import { Textarea } from '@themeshift/ui/components/Textarea';";
 
-type StepCardProps = {
-  children: ReactNode;
-  description: ReactNode;
-  number: string;
-  title: string;
-};
-
-const StepCard = ({ children, description, number, title }: StepCardProps) => (
-  <div className={styles.stepCard}>
-    <span aria-hidden="true" className={styles.stepNumber}>
-      {number}
-    </span>
-    <Heading className={styles.stepHeading} level={4}>
-      {title}
-    </Heading>
-    <p className={styles.stepText}>{description}</p>
-    {children}
-  </div>
-);
-
 export const TextareaGuide = () => {
-  const { component } = useComponentData('textarea');
+  const { component } = useApiReference({ component: 'textarea' });
 
   const intro = (
-    <section className={styles.introSection}>
-      <ExampleViewer
-        className={styles.exampleViewer}
-        examples={examples.propHighlights}
-      />
-    </section>
+    <GuideIntro>
+      <GuideExampleViewer>
+        <ExampleViewer examples={examples.propHighlights} />
+      </GuideExampleViewer>
+    </GuideIntro>
   );
 
-  const quickStartContent = (
-    <div className={styles.quickstartLayout}>
-      <div className={styles.quickstartColumn}>
-        <StepCard
-          description="Add the package to your project."
-          number="1."
-          title="Install"
-        >
-          <StringCopier string="npm install @themeshift/ui" />
-        </StepCard>
-
-        <StepCard
-          description="Import the component directly from the UI package."
-          number="2."
-          title="Import"
-        >
-          <StringCopier
-            className={styles.importString}
-            language="jsx"
-            string={component?.importString ?? textareaFallbackImport}
-          />
-
-          <p className={styles.stepText}>
-            Import base styles globally, usually inside <code>main.tsx</code>.
-          </p>
-
-          <StringCopier
-            language="jsx"
-            string="import '@themeshift/ui/css/base.css';"
-          />
-        </StepCard>
-      </div>
-
-      <StepCard
-        description="Start with a labelled textarea, then layer in sizing, resize behavior, and validation props as needed."
-        number="3."
-        title="Use"
-      >
-        <ExampleViewer
-          className={styles.stepExampleViewer}
-          defaultCodeExpanded={true}
-          example={examples.basicUsage}
-        />
-      </StepCard>
-    </div>
-  );
+  const quickStartSection = createQuickStartSection({
+    componentImport: component?.importString ?? textareaFallbackImport,
+    intro:
+      'Get a textarea onto the page quickly, then expand into resize, autosize, and validation patterns below.',
+    useDescription:
+      'Start with a labelled textarea, then layer in sizing, resize behavior, and validation props as needed.',
+    useExample: (
+      <ExampleViewer defaultCodeExpanded={true} example={examples.basicUsage} />
+    ),
+  });
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
-        <p className={styles.callout}>
+        <GuideCallout>
           <code>Textarea</code> wraps a native <code>textarea</code> and adds
           size, validation, resize control, and optional autosize behavior via{' '}
           <code>resize="auto"</code>.
-        </p>
+        </GuideCallout>
       }
       items={component?.apiReference ?? []}
     />
   );
 
   const examplesContent = (
-    <div className={styles.examplesGrid}>
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+    <GuideExamplesGrid>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-sizes" label="Sizes" level={2} />
           <Heading level={4}>Sizes</Heading>
           <p>
             Use <code>size</code> to control textarea typography, spacing, and
             minimum height.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.sizes}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.sizes} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-validation"
             label="Validation"
@@ -143,16 +89,15 @@ export const TextareaGuide = () => {
             valid states derive <code>aria-invalid</code> when not explicitly
             provided.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.validationStates}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.validationStates} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-resize"
             label="Resize modes"
@@ -163,16 +108,15 @@ export const TextareaGuide = () => {
             Use <code>resize</code> to control user resizing behavior. Choose
             from none, vertical, horizontal, or both.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.resizeModes}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.resizeModes} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-auto-resize"
             label="Auto resize"
@@ -183,16 +127,15 @@ export const TextareaGuide = () => {
             Set <code>resize</code> to <code>auto</code> to use autosizing, then
             bound growth with <code>minRows</code> and <code>maxRows</code>.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.autoResize}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.autoResize} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-field" label="Field" level={2} />
           <Heading level={4}>With Field</Heading>
           <p>
@@ -200,16 +143,15 @@ export const TextareaGuide = () => {
             helper text, and error semantics while keeping multiline input
             behavior native.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.withField}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.withField} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-width"
             label="Widths"
@@ -220,16 +162,15 @@ export const TextareaGuide = () => {
             Textareas are full width by default. Set <code>fullWidth</code> to{' '}
             <code>false</code> for inline layouts.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.widths}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.widths} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-disabled"
             label="Disabled"
@@ -240,54 +181,64 @@ export const TextareaGuide = () => {
             Use native <code>disabled</code> to prevent edits while preserving
             value visibility.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.disabled}
-        />
-      </div>
-    </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.disabled} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+    </GuideExamplesGrid>
   );
 
-  const quickStartSection = {
-    content: quickStartContent,
-    id: 'quick-start',
-    intro:
-      'Get a textarea onto the page quickly, then expand into resize, autosize, and validation patterns below.',
-    title: 'Quick start',
-  } satisfies ComponentGuideSection;
-
-  const propsSection = {
+  const propsSection = createPropsSection({
     content: propsContent,
-    id: 'props',
     intro:
       'Use the API reference for exact prop names, native passthrough behavior, and autosize-specific controls.',
-    title: 'Props',
-  } satisfies ComponentGuideSection;
+  });
 
-  const examplesSection = {
+  const examplesSection = createExamplesSection({
     content: examplesContent,
-    id: 'examples',
     intro:
       'Browse common multiline input patterns teams typically need in production: size variants, validation feedback, and resize behavior.',
-    title: 'Examples',
-  } satisfies ComponentGuideSection;
+  });
+
+  const accessibilitySection = createAccessibilityGuidelinesSection({
+    intro: 'Notes for accessible labeling and error messaging.',
+    items: [
+      {
+        content: (
+          <p>
+            Ensure the textarea has an accessible name via a visible{' '}
+            <code>Field</code> label, or use <code>aria-label</code> when a
+            visual label is not appropriate.
+          </p>
+        ),
+        example: examples.withField,
+        title: 'Provide a label and description',
+      },
+      {
+        content: (
+          <p>
+            Keep error messaging programmatically associated with the control so
+            assistive tech announces it on focus. Pair{' '}
+            <code>validationState</code> with an explicit error message.
+          </p>
+        ),
+        example: examples.withField,
+        title: 'Announce validation feedback',
+      },
+    ],
+  });
 
   return (
     <ComponentGuide
       breadcrumb={
         <Breadcrumb
-          items={[
-            {
-              ariaLabel: 'Home',
-              href: '/',
-              icon: <IoHomeSharp />,
-            },
-            { href: '/components', label: 'Components' },
-            { href: '/components/textarea', label: 'Textarea' },
-            { current: true, label: 'Docs' },
-          ]}
+          showHome
+          items={createComponentBreadcrumbItems({
+            componentHref: '/ui/textarea',
+            componentLabel: 'Textarea',
+          })}
         />
       }
       description="A theme-aware textarea with native and autosize resize modes."
@@ -296,10 +247,9 @@ export const TextareaGuide = () => {
       howToUse={quickStartSection}
       intro={intro}
       propsSection={propsSection}
+      accessibility={accessibilitySection}
       title="Docs"
       toc={<TableOfContents.Nav />}
-    >
-      <AccessibilitySection />
-    </ComponentGuide>
+    />
   );
 };

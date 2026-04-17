@@ -13,7 +13,7 @@ export const basicUsage = {
     </Navbar.Section>
 
     <Navbar.Section align="center">
-      <a href="/components">Components</a>
+      <a href="/ui">UI</a>
       <a href="/tokens">Tokens</a>
     </Navbar.Section>
 
@@ -31,7 +31,7 @@ export const basicUsage = {
         </Navbar.Section>
 
         <Navbar.Section align="center">
-          <a href="/components">Components</a>
+          <a href="/ui">UI</a>
           <a href="/tokens">Tokens</a>
         </Navbar.Section>
 

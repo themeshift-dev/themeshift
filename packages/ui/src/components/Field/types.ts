@@ -1,5 +1,7 @@
 import type { HTMLAttributes, LabelHTMLAttributes, ReactNode } from 'react';
 
+import type { FormApi } from '@/hooks/useForm';
+
 /**
  * Shared validation states used by Field and field-aware controls.
  */
@@ -72,11 +74,13 @@ export type FieldContextValue = {
   error?: ReactNode;
   errorId: string;
   fieldId: string;
+  form?: FormApi<Record<string, unknown>>;
   hasDescription: boolean;
   hasError: boolean;
   hideLabel?: boolean;
   label?: ReactNode;
   labelId: string;
+  name?: string;
   optional?: boolean;
   readOnly?: boolean;
   required?: boolean;
@@ -111,6 +115,11 @@ export type FieldProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
     id?: string;
 
     /**
+     * Optional form API used for integrated Field wiring.
+     */
+    form?: FormApi<Record<string, unknown>>;
+
+    /**
      * Layout style for control and supporting content.
      */
     layout?: FieldLayout;
@@ -119,6 +128,11 @@ export type FieldProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
      * Marks the field as optional for presentation.
      */
     optional?: boolean;
+
+    /**
+     * Field name used for integrated form wiring.
+     */
+    name?: string;
   };
 
 /**
@@ -127,27 +141,36 @@ export type FieldProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
 export type FieldLabelProps = Omit<
   LabelHTMLAttributes<HTMLLabelElement>,
   'children' | 'htmlFor'
-> & {
-  /**
-   * Label text or custom label content.
-   */
-  children?: ReactNode;
+> &
+  Omit<HTMLAttributes<HTMLLegendElement>, 'children'> & {
+    /**
+     * Element to render for the label.
+     *
+     * Use `as="legend"` when labeling a grouped control rendered in a
+     * `<fieldset>`, such as `Radio.Group`.
+     */
+    as?: 'label' | 'legend';
 
-  /**
-   * Overrides optional indicator rendering.
-   */
-  showOptionalIndicator?: boolean;
+    /**
+     * Label text or custom label content.
+     */
+    children?: ReactNode;
 
-  /**
-   * Overrides required indicator rendering.
-   */
-  showRequiredIndicator?: boolean;
+    /**
+     * Overrides optional indicator rendering.
+     */
+    showOptionalIndicator?: boolean;
 
-  /**
-   * Visually hides label text while keeping it accessible.
-   */
-  visuallyHidden?: boolean;
-};
+    /**
+     * Overrides required indicator rendering.
+     */
+    showRequiredIndicator?: boolean;
+
+    /**
+     * Visually hides label text while keeping it accessible.
+     */
+    visuallyHidden?: boolean;
+  };
 
 /**
  * Props for field-aware helper text.

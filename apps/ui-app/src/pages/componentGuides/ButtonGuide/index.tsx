@@ -1,137 +1,82 @@
 import { Heading } from '@themeshift/ui/components/Heading';
-import { IoHomeSharp } from 'react-icons/io5';
-import type { ReactNode } from 'react';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
-  StringCopier,
+  GuideIntro,
+  GuideExampleCard,
+  GuideExampleText,
+  GuideExampleViewer,
+  GuideExamplesGrid,
+  GuideCallout,
+  createAccessibilityGuidelinesSection,
+  createComponentBreadcrumbItems,
+  createExamplesSection,
+  createPropsSection,
+  createQuickStartSection,
 } from '@/pages/componentGuides/components';
-import {
-  ComponentGuide,
-  type ComponentGuideSection,
-} from '@/templates/ComponentGuide';
+import { ComponentGuide } from '@/templates/ComponentGuide';
 
-import { AccessibilitySection } from './AccessibilitySection';
-import styles from './ButtonGuide.module.scss';
 import * as examples from './examples';
 
 const buttonFallbackImport =
   "import { Button } from '@themeshift/ui/components/Button';";
 
-type StepCardProps = {
-  children: ReactNode;
-  description: ReactNode;
-  number: string;
-  title: string;
-};
-
-const StepCard = ({ children, description, number, title }: StepCardProps) => (
-  <div className={styles.stepCard}>
-    <span aria-hidden="true" className={styles.stepNumber}>
-      {number}
-    </span>
-    <Heading level={4} className={styles.stepHeading}>
-      {title}
-    </Heading>
-    <p className={styles.stepText}>{description}</p>
-    {children}
-  </div>
-);
-
 export const ButtonGuide = () => {
-  const { component } = useComponentData('button');
+  const { component } = useApiReference({ component: 'button' });
 
   const intro = (
-    <section className={styles.introSection}>
-      <ExampleViewer
-        examples={examples.propHighlights}
-        className={styles.exampleViewer}
-      />
-    </section>
+    <GuideIntro>
+      <GuideExampleViewer>
+        <ExampleViewer examples={examples.propHighlights} />
+      </GuideExampleViewer>
+    </GuideIntro>
   );
 
-  const howToUseContent = (
-    <div className={styles.quickstartLayout}>
-      <div className={styles.quickstartColumn}>
-        <StepCard
-          description="Add the package to your project."
-          number="1."
-          title="Install"
-        >
-          <StringCopier string="npm install @themeshift/ui" />
-        </StepCard>
-
-        <StepCard
-          description="Pull in the component directly from the UI package."
-          number="2."
-          title="Import"
-        >
-          <StringCopier
-            language="jsx"
-            string={component?.importString ?? buttonFallbackImport}
-            className={styles.importString}
-          />
-
-          <p className={styles.stepText}>
-            Import base styles (this should be imported globally, usually inside
-            of <code>main.tsx</code>
-          </p>
-
-          <StringCopier
-            language="jsx"
-            string="import '@themeshift/ui/css/base.css';"
-          />
-        </StepCard>
-      </div>
-
-      <StepCard
-        description="Start with the default button, then layer on intent, size, and state props as needed."
-        number="3."
-        title="Use"
-      >
-        <ExampleViewer
-          example={examples.basicUsage}
-          className={styles.stepExampleViewer}
-          defaultCodeExpanded={true}
-        />
-      </StepCard>
-    </div>
-  );
+  const quickStartSection = createQuickStartSection({
+    componentImport: component?.importString ?? buttonFallbackImport,
+    importDescription: 'Pull in the component directly from the UI package.',
+    intro:
+      'Get a button onto the page fast, then branch out into the variants and patterns below.',
+    useDescription:
+      'Start with the default button, then layer on intent, size, and state props as needed.',
+    useExample: (
+      <ExampleViewer defaultCodeExpanded={true} example={examples.basicUsage} />
+    ),
+  });
 
   const propsContent = (
     <ApiReference
       intro={
-        <p className={styles.callout}>
+        <GuideCallout>
           <code>Button</code> extends the native <code>button</code> element and
           adds extra props for appearance, icon support, loading states, and
           composition.
-        </p>
+        </GuideCallout>
       }
       items={component?.apiReference ?? []}
     />
   );
 
   const examplesContent = (
-    <div className={styles.examplesGrid}>
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+    <GuideExamplesGrid>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-sizes" label="Sizes" level={2} />
           <Heading level={4}>Sizes</Heading>
           <p>
             Use the <code>size</code> prop to change the size of the button.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          example={examples.sizes}
-          className={styles.exampleViewer}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.sizes} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-intents"
             label="Intents"
@@ -141,16 +86,15 @@ export const ButtonGuide = () => {
           <p>
             Use the <code>intent</code> prop to render a variant appearance.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          example={examples.intents}
-          className={styles.exampleViewer}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.intents} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-icon-only"
             label="Icon only"
@@ -166,16 +110,15 @@ export const ButtonGuide = () => {
             Use <code>startIcon</code> or <code>endIcon</code> to place an icon
             next to button text.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          example={examples.icons}
-          className={styles.exampleViewer}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.icons} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-busy" label="Busy" level={2} />
           <Heading level={4}>Busy</Heading>
           <p>
@@ -183,16 +126,15 @@ export const ButtonGuide = () => {
             button and communicate work in progress. This also applies{' '}
             <code>aria-busy</code> for assistive tech.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          example={examples.busy}
-          className={styles.exampleViewer}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.busy} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-as-child"
             label="As Child"
@@ -204,15 +146,14 @@ export const ButtonGuide = () => {
             button. This works well when you need a link, badge or other
             primitive to inherit button styling and behavior.
           </p>
-        </div>
-        <ExampleViewer
-          example={examples.asChild}
-          className={styles.exampleViewer}
-        />
-      </div>
+        </GuideExampleText>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.asChild} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-class-names"
             label="Class names"
@@ -223,15 +164,14 @@ export const ButtonGuide = () => {
             Use the <code>className</code> prop to apply extra class names to
             the button element when you need local styling tweaks.
           </p>
-        </div>
-        <ExampleViewer
-          example={examples.extraClassName}
-          className={styles.exampleViewer}
-        />
-      </div>
+        </GuideExampleText>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.extraClassName} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-disabled"
             label="Disabled"
@@ -247,72 +187,74 @@ export const ButtonGuide = () => {
             unavailable but still needs to receive events so you can explain why
             the action is blocked.
           </p>
-        </div>
-        <ExampleViewer
-          example={examples.disabled}
-          className={styles.exampleViewer}
-        />
-      </div>
-    </div>
+        </GuideExampleText>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.disabled} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+    </GuideExamplesGrid>
   );
 
-  const quickStartSection = {
-    content: howToUseContent,
-    id: 'quick-start',
-    intro:
-      'Get a button onto the page fast, then branch out into the variants and patterns below.',
-    title: 'Quick start',
-  } satisfies ComponentGuideSection;
-
-  const propsGuideSection = {
+  const propsSection = createPropsSection({
     content: propsContent,
-    id: 'props',
     intro:
       'Use the API reference when you need exact prop names, supported values, and default behavior.',
-    title: 'Props',
-  } satisfies ComponentGuideSection;
+  });
 
-  const examplesSection = {
+  const examplesSection = createExamplesSection({
     content: examplesContent,
-    id: 'examples',
     intro:
       'Browse the common patterns developers usually need in production. Copy and paste what you need to get going quickly.',
-    title: 'Examples',
-  } satisfies ComponentGuideSection;
+  });
+
+  const accessibilitySection = createAccessibilityGuidelinesSection({
+    intro: 'Best practices for naming and state feedback.',
+    items: [
+      {
+        content: (
+          <p>
+            Icon-only buttons need an explicit accessible name. Use{' '}
+            <code>aria-label</code> or <code>aria-labelledby</code>, and mark
+            decorative icons as <code>aria-hidden</code>.
+          </p>
+        ),
+        example: examples.icons,
+        title: 'Name icon-only buttons',
+      },
+      {
+        content: (
+          <p>
+            When using <code>isBusy</code>, keep the label stable so assistive
+            tech still announces the action. Prefer <code>disabled</code> for
+            actions that should not be triggered while busy.
+          </p>
+        ),
+        example: examples.busy,
+        title: 'Communicate loading state',
+      },
+    ],
+  });
 
   return (
-    <TableOfContents.Root>
-      <TableOfContents.Marker id="intro" label="Intro" />
-
-      <ComponentGuide
-        breadcrumb={
-          <Breadcrumb
-            items={[
-              {
-                ariaLabel: 'Home',
-                href: '/',
-                icon: <IoHomeSharp />,
-              },
-              { href: '/components', label: 'Components' },
-              { href: '/components/button', label: 'Button' },
-              { current: true, label: 'Docs' },
-            ]}
-          />
-        }
-        description="Implementation guidance, API details, and copy-paste examples for building with Button."
-        eyebrow="Button"
-        examples={examplesSection}
-        howToUse={quickStartSection}
-        intro={intro}
-        propsSection={propsGuideSection}
-        toc={<TableOfContents.Nav />}
-        title="Docs"
-      >
-        <TableOfContents.Marker id="accessibility" label="Accessibility" />
-        <section>
-          <AccessibilitySection />
-        </section>
-      </ComponentGuide>
-    </TableOfContents.Root>
+    <ComponentGuide
+      breadcrumb={
+        <Breadcrumb
+          showHome
+          items={createComponentBreadcrumbItems({
+            componentHref: '/ui/button',
+            componentLabel: 'Button',
+          })}
+        />
+      }
+      description="Implementation guidance, API details, and copy-paste examples for building with Button."
+      eyebrow="Button"
+      examples={examplesSection}
+      howToUse={quickStartSection}
+      intro={intro}
+      propsSection={propsSection}
+      accessibility={accessibilitySection}
+      toc={<TableOfContents.Nav />}
+      title="Docs"
+    />
   );
 };

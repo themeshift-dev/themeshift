@@ -7,6 +7,7 @@ export * from './InputGuide';
 export * from './LabelGuide';
 export * from './LinkGuide';
 export * from './NavbarGuide';
+export * from './RadiosGuide';
 export * from './ResponsiveGuide';
 export * from './SelectGuide';
 export * from './SkeletonGuide';

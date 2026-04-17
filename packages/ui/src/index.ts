@@ -1,1 +1,1 @@
-export * from '@/entrypoints';
+export * from './entrypoints';

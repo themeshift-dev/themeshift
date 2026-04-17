@@ -26,6 +26,10 @@
     "./dist/templates/**/index.js"
   ],
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./components/Button": {
       "types": "./dist/components/Button/index.d.ts",
       "import": "./dist/components/Button/index.js"
@@ -62,6 +66,10 @@
       "types": "./dist/components/Navbar/index.d.ts",
       "import": "./dist/components/Navbar/index.js"
     },
+    "./components/Radio": {
+      "types": "./dist/components/Radio/index.d.ts",
+      "import": "./dist/components/Radio/index.js"
+    },
     "./components/Responsive": {
       "types": "./dist/components/Responsive/index.d.ts",
       "import": "./dist/components/Responsive/index.js"
@@ -93,6 +101,18 @@
     "./contexts": {
       "types": "./dist/contexts/index.d.ts",
       "import": "./dist/contexts/index.js"
+    },
+    "./hooks": {
+      "types": "./dist/hooks/index.d.ts",
+      "import": "./dist/hooks/index.js"
+    },
+    "./hooks/useCopyToClipboard": {
+      "types": "./dist/hooks/useCopyToClipboard/index.d.ts",
+      "import": "./dist/hooks/useCopyToClipboard/index.js"
+    },
+    "./hooks/useForm": {
+      "types": "./dist/hooks/useForm/index.d.ts",
+      "import": "./dist/hooks/useForm/index.js"
     },
     "./css/base.css": "./dist/css/base.css",
     "./css/fonts.css": "./dist/css/fonts.css",
@@ -204,6 +224,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
+    "@themeshift/docs-types": "workspace:*",
     "@types/jest-axe": "^3.5.9",
     "@types/node": "^24.12.0",
     "@types/react": "^19.2.14",

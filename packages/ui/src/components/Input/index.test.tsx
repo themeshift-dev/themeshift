@@ -1,9 +1,11 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 import { createRef } from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { Field } from '@/components/Field';
+import { useForm } from '@/hooks/useForm';
 
 import styles from './Input.module.scss';
 import { Input } from './index';
@@ -296,5 +298,36 @@ describe('Input', () => {
 
     rerender(<Input aria-label="Accessible input" validationState="valid" />);
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('calls local handlers while registered through Field integration', async () => {
+    const user = userEvent.setup();
+    const onBlur = vi.fn();
+    const onChange = vi.fn();
+
+    const Example = () => {
+      const form = useForm<{ email: string }>({
+        defaultValues: { email: '' },
+      });
+
+      return (
+        <Field form={form} name="email">
+          <Input
+            aria-label="Integrated handlers"
+            onBlur={onBlur}
+            onChange={onChange}
+          />
+        </Field>
+      );
+    };
+
+    render(<Example />);
+
+    const input = screen.getByRole('textbox', { name: 'Integrated handlers' });
+    await user.type(input, 'x');
+    await user.tab();
+
+    expect(onChange).toHaveBeenCalled();
+    expect(onBlur).toHaveBeenCalled();
   });
 });

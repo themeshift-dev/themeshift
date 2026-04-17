@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import type { ReactNode } from 'react';
+import { IoHomeSharp } from 'react-icons/io5';
 
 import { Link } from '@/app/components/Link';
 
@@ -16,7 +17,15 @@ export type BreadcrumbItem = {
 export type BreadcrumbProps = {
   ariaLabel?: string;
   className?: string;
+  homeItem?: BreadcrumbItem;
   items: BreadcrumbItem[];
+  showHome?: boolean;
+};
+
+const defaultHomeItem: BreadcrumbItem = {
+  ariaLabel: 'Home',
+  href: '/',
+  icon: <IoHomeSharp />,
 };
 
 const getCurrentItemIndex = (items: BreadcrumbItem[]) => {
@@ -42,21 +51,27 @@ const renderItemContent = ({ icon, label }: BreadcrumbItem) => (
 export const Breadcrumb = ({
   ariaLabel = 'Breadcrumb',
   className,
+  homeItem,
   items,
+  showHome = false,
 }: BreadcrumbProps) => {
-  if (!items.length) {
+  const resolvedItems = showHome
+    ? [{ ...defaultHomeItem, ...homeItem }, ...items]
+    : items;
+
+  if (!resolvedItems.length) {
     return null;
   }
 
-  const currentItemIndex = getCurrentItemIndex(items);
+  const currentItemIndex = getCurrentItemIndex(resolvedItems);
 
   return (
     <nav
       aria-label={ariaLabel}
-      className={classNames(styles.continer, className)}
+      className={classNames(styles.container, className)}
     >
       <ol className={styles.list}>
-        {items.map((item, index) => {
+        {resolvedItems.map((item, index) => {
           const isCurrent = index === currentItemIndex;
           const key =
             item.href ?? item.label ?? item.ariaLabel ?? String(index);
@@ -85,7 +100,7 @@ export const Breadcrumb = ({
                 </span>
               )}
 
-              {index < items.length - 1 && (
+              {index < resolvedItems.length - 1 && (
                 <span aria-hidden="true" className={styles.separator}>
                   /
                 </span>

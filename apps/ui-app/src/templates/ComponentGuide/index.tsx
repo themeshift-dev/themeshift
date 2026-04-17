@@ -55,6 +55,7 @@ type ComponentGuideProps = {
   className?: string;
   description?: ReactNode;
   eyebrow?: ReactNode;
+  accessibility?: ComponentGuideSection;
   examples?: ComponentGuideSection;
   howToUse?: ComponentGuideSection;
   intro?: ReactNode;
@@ -65,6 +66,7 @@ type ComponentGuideProps = {
 };
 
 export const ComponentGuide = ({
+  accessibility,
   breadcrumb,
   children,
   className,
@@ -101,6 +103,7 @@ export const ComponentGuide = ({
           {howToUse && <GuideSection {...howToUse} />}
           {propsSection && <GuideSection {...propsSection} />}
           {examples && <GuideSection {...examples} />}
+          {accessibility && <GuideSection {...accessibility} />}
           {children}
         </div>
       </div>

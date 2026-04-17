@@ -1,4 +1,4 @@
-import type { ComponentMeta } from '@/types/ComponentMeta';
+import type { ComponentMeta } from '@themeshift/docs-types';
 
 export const meta = {
   category: 'layout-utilities',

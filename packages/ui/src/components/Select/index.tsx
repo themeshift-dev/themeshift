@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { forwardRef } from 'react';
+import { forwardRef, type ForwardedRef } from 'react';
 
 import { mergeIds, useFieldContextOptional } from '@/components/Field/context';
 import { IconSelectChevron } from '@/icons';
@@ -24,6 +24,17 @@ const validationStateClassMap = {
   valid: styles.valid,
   warning: styles.warning,
 } satisfies Record<SelectValidationState, string>;
+
+function setRef<T>(ref: ForwardedRef<T>, value: T | null) {
+  if (typeof ref === 'function') {
+    ref(value);
+    return;
+  }
+
+  if (ref) {
+    ref.current = value;
+  }
+}
 
 const renderOptions = (options: SelectOption[]) =>
   options.map(({ label, value }) => (
@@ -57,11 +68,21 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     const {
       'aria-describedby': ariaDescribedBy,
       'aria-invalid': ariaInvalid,
+      defaultValue: defaultValueProp,
       disabled: disabledProp,
       id: idProp,
+      name: nameProp,
+      onBlur: onBlurProp,
+      onChange: onChangeProp,
       required: requiredProp,
       ...nativeSelectProps
     } = selectProps;
+    const shouldAutoRegister =
+      nameProp === undefined && !!fieldContext?.form && !!fieldContext?.name;
+    const registration = shouldAutoRegister
+      ? fieldContext.form?.register(fieldContext.name as never)
+      : undefined;
+    const resolvedName = nameProp ?? registration?.name;
     const hasCallerAriaInvalid = ariaInvalid !== undefined;
     const resolvedDisabled = disabledProp ?? fieldContext?.disabled;
     const resolvedId = idProp ?? fieldContext?.controlId;
@@ -83,6 +104,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ? false
           : undefined;
 
+    const resolvedDefaultValue =
+      defaultValueProp ??
+      (nativeSelectProps.value === undefined
+        ? registration?.defaultValue
+        : undefined);
+
     const content = options === undefined ? children : renderOptions(options);
 
     return (
@@ -101,9 +128,30 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           aria-describedby={describedBy}
           aria-invalid={derivedAriaInvalid}
           className={styles.select}
+          defaultValue={resolvedDefaultValue as never}
           disabled={resolvedDisabled}
           id={resolvedId}
-          ref={ref}
+          name={resolvedName}
+          onBlur={
+            registration
+              ? (event) => {
+                  registration.onBlur(event);
+                  onBlurProp?.(event);
+                }
+              : onBlurProp
+          }
+          onChange={
+            registration
+              ? (event) => {
+                  registration.onChange(event);
+                  onChangeProp?.(event);
+                }
+              : onChangeProp
+          }
+          ref={(node) => {
+            setRef(ref, node);
+            registration?.ref(node);
+          }}
           required={resolvedRequired}
         >
           {placeholder ? (

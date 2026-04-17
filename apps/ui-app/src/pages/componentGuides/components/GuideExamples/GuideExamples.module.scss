@@ -1,0 +1,42 @@
+@use '@/sass/mixins/code';
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.card {
+  display: grid;
+  gap: 1rem;
+
+  @media (min-width: 64rem) {
+    align-items: start;
+    gap: 1.5rem;
+    grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
+  }
+}
+
+.text {
+  max-width: 24rem;
+
+  p {
+    color: token('theme.text.muted');
+    margin: 0;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+
+  p code {
+    @include code.inline;
+
+    background: token('theme.surface.raised');
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+.viewer {
+  margin: 0;
+  max-width: none;
+}

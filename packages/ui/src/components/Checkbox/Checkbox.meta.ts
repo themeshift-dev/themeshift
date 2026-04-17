@@ -1,4 +1,4 @@
-import type { ComponentMeta } from '@/types/ComponentMeta';
+import type { ComponentMeta } from '@themeshift/docs-types';
 
 export const meta = {
   category: 'inputs-forms',
@@ -7,5 +7,5 @@ export const meta = {
   order: 40,
   status: 'stable',
   featured: true,
-  related: ['Field', 'Label', 'RadioButton', 'ToggleSwitch'],
+  related: ['Field', 'Label', 'Radio', 'ToggleSwitch'],
 } satisfies ComponentMeta;

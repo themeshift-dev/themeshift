@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import classNames from 'classnames';
 import {
+  Children,
   useCallback,
   useEffect,
   useId,
@@ -29,6 +30,7 @@ const hasRenderableContent = (value: ReactNode) =>
   value !== null && value !== undefined;
 
 export const FieldLabel = ({
+  as = 'label',
   children,
   className,
   showOptionalIndicator,
@@ -48,7 +50,27 @@ export const FieldLabel = ({
     (!!fieldContext?.optional && !fieldContext?.required);
   const hidden = visuallyHidden ?? fieldContext?.hideLabel ?? false;
 
-  return (
+  return as === 'legend' ? (
+    <legend
+      {...labelProps}
+      className={classNames(
+        styles.legend,
+        styles.label,
+        hidden && styles.visuallyHidden,
+        className
+      )}
+      id={fieldContext?.labelId}
+    >
+      <span>{children}</span>
+      {isRequired ? (
+        <span aria-hidden="true" className={styles.requiredIndicator}>
+          *
+        </span>
+      ) : isOptional ? (
+        <span className={styles.optionalIndicator}>(optional)</span>
+      ) : null}
+    </legend>
+  ) : (
     <Label
       {...labelProps}
       className={classNames(
@@ -114,7 +136,11 @@ export const FieldError = ({
   ...errorProps
 }: FieldErrorProps) => {
   const fieldContext = useFieldContext('Field.Error');
-  const hasContent = hasRenderableContent(children);
+  const resolvedChildren =
+    children === null || children === undefined
+      ? fieldContext?.error
+      : children;
+  const hasContent = hasRenderableContent(resolvedChildren);
   const isInvalid = fieldContext?.validationState === 'invalid';
   const shouldRender = hasContent && (forceMount || isInvalid || !fieldContext);
 
@@ -141,7 +167,7 @@ export const FieldError = ({
       id={fieldContext?.errorId}
       role={role}
     >
-      {children}
+      {resolvedChildren}
     </ErrorMessage>
   );
 };
@@ -152,15 +178,17 @@ export const FieldRoot = ({
   className,
   description,
   disabled,
-  error,
+  error: errorProp,
+  form,
   hideLabel = false,
   id,
   label,
   layout = 'stacked',
+  name,
   optional = false,
   readOnly,
   required,
-  validationState = 'none',
+  validationState: validationStateProp,
   ...rootProps
 }: FieldProps) => {
   const reactId = useId();
@@ -171,11 +199,18 @@ export const FieldRoot = ({
   const labelId = `${fieldId}-label`;
   const [descriptionRegistrations, setDescriptionRegistrations] = useState(0);
   const [errorRegistrations, setErrorRegistrations] = useState(0);
+  const integratedFieldState =
+    form && name ? form.field(name as never) : undefined;
+  const integratedError = integratedFieldState?.error;
+  const resolvedValidationState =
+    validationStateProp ?? (integratedFieldState?.invalid ? 'invalid' : 'none');
   const hasDescription =
     hasRenderableContent(description) || descriptionRegistrations > 0;
   const hasError =
-    validationState === 'invalid' &&
-    (hasRenderableContent(error) || errorRegistrations > 0);
+    resolvedValidationState === 'invalid' &&
+    (hasRenderableContent(errorProp) ||
+      hasRenderableContent(integratedError) ||
+      errorRegistrations > 0);
 
   const registerDescription = useCallback(() => {
     setDescriptionRegistrations((count) => count + 1);
@@ -201,15 +236,17 @@ export const FieldRoot = ({
         description,
         descriptionId,
         disabled,
-        error,
+        error: errorProp ?? integratedError,
         errorId,
         fieldId,
+        form,
         hasDescription,
         hasError,
         hideLabel,
         label,
         labelId,
         layout,
+        name,
         optional,
         readOnly,
         registerDescription,
@@ -217,7 +254,7 @@ export const FieldRoot = ({
         required,
         unregisterDescription,
         unregisterError,
-        validationState,
+        validationState: resolvedValidationState,
       }) satisfies FieldContextInternalValue,
     [
       align,
@@ -225,15 +262,17 @@ export const FieldRoot = ({
       description,
       descriptionId,
       disabled,
-      error,
+      errorProp,
       errorId,
       fieldId,
+      form,
       hasDescription,
       hasError,
       hideLabel,
       label,
       labelId,
       layout,
+      name,
       optional,
       readOnly,
       registerDescription,
@@ -241,14 +280,15 @@ export const FieldRoot = ({
       required,
       unregisterDescription,
       unregisterError,
-      validationState,
+      integratedError,
+      resolvedValidationState,
     ]
   );
 
   const shouldRenderShorthand =
     hasRenderableContent(label) ||
     hasRenderableContent(description) ||
-    hasRenderableContent(error);
+    hasRenderableContent(errorProp);
 
   let fieldContent = children;
 
@@ -260,7 +300,9 @@ export const FieldRoot = ({
         {hasRenderableContent(description) ? (
           <FieldDescription>{description}</FieldDescription>
         ) : null}
-        {hasRenderableContent(error) ? <FieldError>{error}</FieldError> : null}
+        {hasRenderableContent(errorProp) ? (
+          <FieldError>{errorProp}</FieldError>
+        ) : null}
       </>
     );
   }
@@ -276,12 +318,26 @@ export const FieldRoot = ({
           {hasRenderableContent(description) ? (
             <FieldDescription>{description}</FieldDescription>
           ) : null}
-          {hasRenderableContent(error) ? (
-            <FieldError>{error}</FieldError>
+          {hasRenderableContent(errorProp) ? (
+            <FieldError>{errorProp}</FieldError>
           ) : null}
         </div>
       </>
     );
+  }
+
+  if (!shouldRenderShorthand && layout === 'inline-control') {
+    const inlineChildren = Children.toArray(children);
+    const [control, ...content] = inlineChildren;
+
+    if (content.length > 0) {
+      fieldContent = (
+        <>
+          {control}
+          <div className={styles.inlineContent}>{content}</div>
+        </>
+      );
+    }
   }
 
   return (
@@ -291,7 +347,7 @@ export const FieldRoot = ({
         className={classNames(styles.container, className)}
         data-align={align as FieldAlign}
         data-layout={layout as FieldLayout}
-        data-validation-state={validationState as ValidationState}
+        data-validation-state={resolvedValidationState as ValidationState}
       >
         {fieldContent}
       </div>

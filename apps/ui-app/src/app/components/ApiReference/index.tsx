@@ -1,16 +1,18 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 import { Fragment, type ReactNode } from 'react';
 
+import type { ApiReferenceItem } from '@/apiReference';
 import { Markdown } from '@/app/components/Markdown';
 import { TableOfContents } from '@/app/components/TableOfContents';
-import type { ApiReferenceItem } from '@/component-data/types';
 
 import styles from './ApiReference.module.scss';
 
 type ApiReferenceProps = {
   emptyState?: ReactNode;
+  hideColumns?: Array<'defaultValue' | 'values'>;
   intro?: ReactNode;
   items: ApiReferenceItem[];
+  nameColumnLabel?: string;
 };
 
 type ApiReferenceGroup = {
@@ -79,21 +81,29 @@ const groupItems = (items: ApiReferenceItem[]): ApiReferenceGroup[] => {
 };
 
 const ApiReferenceTable = ({
+  hideDefaultValueColumn,
   hasGroups,
+  hideValuesColumn,
   groups,
+  nameColumnLabel,
 }: {
   groups: ApiReferenceGroup[];
   hasGroups: boolean;
+  hideDefaultValueColumn: boolean;
+  hideValuesColumn: boolean;
+  nameColumnLabel: string;
 }) => {
   return (
     <div className={styles.tableLayout}>
       {groups.map((group) => (
         <section className={styles.group} key={group.displayName}>
-          <TableOfContents.Marker
-            id={getGroupMarkerId(group.displayName)}
-            label={group.displayName}
-            level={2}
-          />
+          {hasGroups && (
+            <TableOfContents.Marker
+              id={getGroupMarkerId(group.displayName)}
+              label={group.displayName}
+              level={2}
+            />
+          )}
 
           {hasGroups && (
             <Heading className={styles.groupHeading} level={4}>
@@ -107,17 +117,21 @@ const ApiReferenceTable = ({
                 <col className={styles.propColumn} />
                 <col className={styles.typeColumn} />
                 <col className={styles.notesColumn} />
-                <col className={styles.valuesColumn} />
-                <col className={styles.defaultColumn} />
+                {!hideValuesColumn && <col className={styles.valuesColumn} />}
+                {!hideDefaultValueColumn && (
+                  <col className={styles.defaultColumn} />
+                )}
               </colgroup>
 
               <thead>
                 <tr>
-                  <th scope="col">Prop</th>
+                  <th scope="col">{nameColumnLabel}</th>
                   <th scope="col">Type</th>
                   <th scope="col">Notes</th>
-                  <th scope="col">Values</th>
-                  <th scope="col">Default value</th>
+                  {!hideValuesColumn && <th scope="col">Values</th>}
+                  {!hideDefaultValueColumn && (
+                    <th scope="col">Default value</th>
+                  )}
                 </tr>
               </thead>
 
@@ -135,12 +149,16 @@ const ApiReferenceTable = ({
                           markdown={comments}
                         />
                       </td>
-                      <td className={styles.metaCell}>
-                        {formatValues(values)}
-                      </td>
-                      <td className={styles.metaCell}>
-                        {formatDefaultValue(defaultValue)}
-                      </td>
+                      {!hideValuesColumn && (
+                        <td className={styles.metaCell}>
+                          {formatValues(values)}
+                        </td>
+                      )}
+                      {!hideDefaultValueColumn && (
+                        <td className={styles.metaCell}>
+                          {formatDefaultValue(defaultValue)}
+                        </td>
+                      )}
                     </tr>
                   )
                 )}
@@ -154,11 +172,15 @@ const ApiReferenceTable = ({
 };
 
 const ApiReferenceCards = ({
+  hideDefaultValueColumn,
   hasGroups,
+  hideValuesColumn,
   groups,
 }: {
   groups: ApiReferenceGroup[];
   hasGroups: boolean;
+  hideDefaultValueColumn: boolean;
+  hideValuesColumn: boolean;
 }) => {
   return (
     <div className={styles.cardLayout}>
@@ -182,15 +204,19 @@ const ApiReferenceCards = ({
                   <Markdown className={styles.notes} markdown={comments} />
 
                   <dl className={styles.cardMeta}>
-                    <div className={styles.cardMetaRow}>
-                      <dt>Values</dt>
-                      <dd>{formatValues(values)}</dd>
-                    </div>
+                    {!hideValuesColumn && (
+                      <div className={styles.cardMetaRow}>
+                        <dt>Values</dt>
+                        <dd>{formatValues(values)}</dd>
+                      </div>
+                    )}
 
-                    <div className={styles.cardMetaRow}>
-                      <dt>Default value</dt>
-                      <dd>{formatDefaultValue(defaultValue)}</dd>
-                    </div>
+                    {!hideDefaultValueColumn && (
+                      <div className={styles.cardMetaRow}>
+                        <dt>Default value</dt>
+                        <dd>{formatDefaultValue(defaultValue)}</dd>
+                      </div>
+                    )}
                   </dl>
                 </article>
               )
@@ -204,8 +230,10 @@ const ApiReferenceCards = ({
 
 export const ApiReference = ({
   emptyState,
+  hideColumns = [],
   intro,
   items,
+  nameColumnLabel = 'Prop',
 }: ApiReferenceProps) => {
   if (!items.length) {
     return <>{emptyState ?? null}</>;
@@ -213,12 +241,25 @@ export const ApiReference = ({
 
   const groups = groupItems(items);
   const hasGroups = groups.length > 1;
+  const hideDefaultValueColumn = hideColumns.includes('defaultValue');
+  const hideValuesColumn = hideColumns.includes('values');
 
   return (
     <Fragment>
       {intro}
-      <ApiReferenceTable groups={groups} hasGroups={hasGroups} />
-      <ApiReferenceCards groups={groups} hasGroups={hasGroups} />
+      <ApiReferenceTable
+        groups={groups}
+        hasGroups={hasGroups}
+        hideDefaultValueColumn={hideDefaultValueColumn}
+        hideValuesColumn={hideValuesColumn}
+        nameColumnLabel={nameColumnLabel}
+      />
+      <ApiReferenceCards
+        groups={groups}
+        hasGroups={hasGroups}
+        hideDefaultValueColumn={hideDefaultValueColumn}
+        hideValuesColumn={hideValuesColumn}
+      />
     </Fragment>
   );
 };

@@ -1,121 +1,67 @@
 import { Heading } from '@themeshift/ui/components/Heading';
-import type { ReactNode } from 'react';
-import { IoHomeSharp } from 'react-icons/io5';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
-  StringCopier,
+  GuideExampleCard,
+  GuideExampleText,
+  GuideIntro,
+  GuideExampleViewer,
+  GuideExamplesGrid,
+  GuideCallout,
+  createAccessibilityGuidelinesSection,
+  createComponentBreadcrumbItems,
+  createExamplesSection,
+  createPropsSection,
+  createQuickStartSection,
 } from '@/pages/componentGuides/components';
-import {
-  ComponentGuide,
-  type ComponentGuideSection,
-} from '@/templates/ComponentGuide';
+import { ComponentGuide } from '@/templates/ComponentGuide';
 
-import { AccessibilitySection } from './AccessibilitySection';
 import * as examples from './examples';
-import styles from './NavbarGuide.module.scss';
 
 const navbarFallbackImport =
   "import { Navbar } from '@themeshift/ui/components/Navbar';";
 
-type StepCardProps = {
-  children: ReactNode;
-  description: ReactNode;
-  number: string;
-  title: string;
-};
-
-const StepCard = ({ children, description, number, title }: StepCardProps) => (
-  <div className={styles.stepCard}>
-    <span aria-hidden="true" className={styles.stepNumber}>
-      {number}
-    </span>
-    <Heading className={styles.stepHeading} level={4}>
-      {title}
-    </Heading>
-    <p className={styles.stepText}>{description}</p>
-    {children}
-  </div>
-);
-
 export const NavbarGuide = () => {
-  const { component } = useComponentData('navbar');
+  const { component } = useApiReference({ component: 'navbar' });
 
   const intro = (
-    <section className={styles.introSection}>
-      <ExampleViewer
-        className={styles.exampleViewer}
-        examples={examples.propHighlights}
-      />
-    </section>
+    <GuideIntro>
+      <GuideExampleViewer>
+        <ExampleViewer examples={examples.propHighlights} />
+      </GuideExampleViewer>
+    </GuideIntro>
   );
 
-  const quickStartContent = (
-    <div className={styles.quickstartLayout}>
-      <div className={styles.quickstartColumn}>
-        <StepCard
-          description="Add the package to your project."
-          number="1."
-          title="Install"
-        >
-          <StringCopier string="npm install @themeshift/ui" />
-        </StepCard>
-
-        <StepCard
-          description="Import the component directly from the UI package."
-          number="2."
-          title="Import"
-        >
-          <StringCopier
-            className={styles.importString}
-            language="jsx"
-            string={component?.importString ?? navbarFallbackImport}
-          />
-
-          <p className={styles.stepText}>
-            Import base styles globally, usually inside <code>main.tsx</code>.
-          </p>
-
-          <StringCopier
-            language="jsx"
-            string="import '@themeshift/ui/css/base.css';"
-          />
-        </StepCard>
-      </div>
-
-      <StepCard
-        description="Start with the compound API, then tune section alignment and container spacing for your navigation layout."
-        number="3."
-        title="Use"
-      >
-        <ExampleViewer
-          className={styles.stepExampleViewer}
-          defaultCodeExpanded={true}
-          example={examples.basicUsage}
-        />
-      </StepCard>
-    </div>
-  );
+  const quickStartSection = createQuickStartSection({
+    componentImport: component?.importString ?? navbarFallbackImport,
+    intro:
+      'Build a usable navbar quickly, then fine-tune spacing, alignment, and wrapping behavior.',
+    useDescription:
+      'Start with the compound API, then tune section alignment and container spacing for your navigation layout.',
+    useExample: (
+      <ExampleViewer defaultCodeExpanded={true} example={examples.basicUsage} />
+    ),
+  });
 
   const propsContent = (
     <ApiReference
       intro={
-        <p className={styles.callout}>
+        <GuideCallout>
           <code>Navbar</code> is a compound layout primitive with
           <code>Navbar.Container</code> and <code>Navbar.Section</code> helpers
           for aligned navigation rows.
-        </p>
+        </GuideCallout>
       }
       items={component?.apiReference ?? []}
     />
   );
 
   const examplesContent = (
-    <div className={styles.examplesGrid}>
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+    <GuideExamplesGrid>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-container-gap"
             label="Container and gap"
@@ -126,16 +72,15 @@ export const NavbarGuide = () => {
             Use <code>maxWidth</code> and <code>gap</code> to tune navbar layout
             spacing without custom wrappers.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.containerControls}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.containerControls} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-primitives"
             label="Primitives"
@@ -146,16 +91,15 @@ export const NavbarGuide = () => {
             Use <code>NavbarContainer</code> and <code>NavbarSection</code>
             directly when a full navbar root is not required.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.standalonePrimitives}
-        />
-      </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.standalonePrimitives} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
 
-      <div className={styles.exampleCard}>
-        <div className={styles.exampleText}>
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker
             id="examples-wrapping-links"
             label="Wrapping links"
@@ -166,54 +110,63 @@ export const NavbarGuide = () => {
             Enable <code>wrap</code> on sections when nav items should flow onto
             multiple lines in constrained spaces.
           </p>
-        </div>
+        </GuideExampleText>
 
-        <ExampleViewer
-          className={styles.exampleViewer}
-          example={examples.wrappedSection}
-        />
-      </div>
-    </div>
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.wrappedSection} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+    </GuideExamplesGrid>
   );
 
-  const quickStartSection = {
-    content: quickStartContent,
-    id: 'quick-start',
-    intro:
-      'Build a usable navbar quickly, then fine-tune spacing, alignment, and wrapping behavior.',
-    title: 'Quick start',
-  } satisfies ComponentGuideSection;
-
-  const propsSection = {
+  const propsSection = createPropsSection({
     content: propsContent,
-    id: 'props',
     intro:
       'Use the API reference for root, container, and section prop details in one place.',
-    title: 'Props',
-  } satisfies ComponentGuideSection;
+  });
 
-  const examplesSection = {
+  const examplesSection = createExamplesSection({
     content: examplesContent,
-    id: 'examples',
     intro:
       'Browse common navbar layouts for product headers, utility links, and wrapping nav rows.',
-    title: 'Examples',
-  } satisfies ComponentGuideSection;
+  });
+
+  const accessibilitySection = createAccessibilityGuidelinesSection({
+    intro: 'Notes for landmarks, focus order, and sticky navigation.',
+    items: [
+      {
+        content: (
+          <p>
+            Label navigation landmarks with <code>aria-label</code> or{' '}
+            <code>aria-labelledby</code>, especially when multiple nav regions
+            exist on a page.
+          </p>
+        ),
+        example: examples.basicUsage,
+        title: 'Label the navigation landmark',
+      },
+      {
+        content: (
+          <p>
+            Keep DOM order aligned with visual order so keyboard focus moves
+            predictably. If the navbar is sticky, ensure skip links and in-page
+            anchors land on visible content.
+          </p>
+        ),
+        title: 'Maintain predictable focus order',
+      },
+    ],
+  });
 
   return (
     <ComponentGuide
       breadcrumb={
         <Breadcrumb
-          items={[
-            {
-              ariaLabel: 'Home',
-              href: '/',
-              icon: <IoHomeSharp />,
-            },
-            { href: '/components', label: 'Components' },
-            { href: '/components/navbar', label: 'Navbar' },
-            { current: true, label: 'Docs' },
-          ]}
+          showHome
+          items={createComponentBreadcrumbItems({
+            componentHref: '/ui/navbar',
+            componentLabel: 'Navbar',
+          })}
         />
       }
       description="Implementation guidance, API details, and copy-paste examples for building with Navbar."
@@ -222,10 +175,9 @@ export const NavbarGuide = () => {
       howToUse={quickStartSection}
       intro={intro}
       propsSection={propsSection}
+      accessibility={accessibilitySection}
       title="Docs"
       toc={<TableOfContents.Nav />}
-    >
-      <AccessibilitySection />
-    </ComponentGuide>
+    />
   );
 };

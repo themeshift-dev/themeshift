@@ -7,7 +7,8 @@
     "module": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@themeshift/ui/hooks/*": ["../../packages/ui/src/hooks/*/index.ts"]
     },
     "types": ["vite/client"],
     "skipLibCheck": true,
