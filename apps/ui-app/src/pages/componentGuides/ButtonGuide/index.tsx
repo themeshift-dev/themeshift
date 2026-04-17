@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideIntro,
@@ -24,7 +24,7 @@ const buttonFallbackImport =
   "import { Button } from '@themeshift/ui/components/Button';";
 
 export const ButtonGuide = () => {
-  const { component } = useComponentData('button');
+  const { component } = useApiReference({ component: 'button' });
 
   const intro = (
     <GuideIntro>
@@ -241,7 +241,7 @@ export const ButtonGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/button',
+            componentHref: '/ui/button',
             componentLabel: 'Button',
           })}
         />

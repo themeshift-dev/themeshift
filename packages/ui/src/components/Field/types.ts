@@ -1,5 +1,7 @@
 import type { HTMLAttributes, LabelHTMLAttributes, ReactNode } from 'react';
 
+import type { FormApi } from '@/hooks/useForm';
+
 /**
  * Shared validation states used by Field and field-aware controls.
  */
@@ -72,11 +74,13 @@ export type FieldContextValue = {
   error?: ReactNode;
   errorId: string;
   fieldId: string;
+  form?: FormApi<any>;
   hasDescription: boolean;
   hasError: boolean;
   hideLabel?: boolean;
   label?: ReactNode;
   labelId: string;
+  name?: string;
   optional?: boolean;
   readOnly?: boolean;
   required?: boolean;
@@ -111,6 +115,11 @@ export type FieldProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
     id?: string;
 
     /**
+     * Optional form API used for integrated Field wiring.
+     */
+    form?: FormApi<any>;
+
+    /**
      * Layout style for control and supporting content.
      */
     layout?: FieldLayout;
@@ -119,6 +128,11 @@ export type FieldProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
      * Marks the field as optional for presentation.
      */
     optional?: boolean;
+
+    /**
+     * Field name used for integrated form wiring.
+     */
+    name?: string;
   };
 
 /**

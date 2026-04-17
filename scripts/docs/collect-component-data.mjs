@@ -1,4 +1,4 @@
-import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import prettier from 'prettier';
@@ -12,7 +12,7 @@ const rootDir = path.resolve(__dirname, '../..');
 const componentsDir = path.join(rootDir, 'packages/ui/src/components');
 const outputPath = path.join(
   rootDir,
-  'apps/ui-app/src/component-data/generated.ts'
+  'apps/ui-app/src/apiReference/generated/components.ts'
 );
 const packageJsonPath = path.join(rootDir, 'packages/ui/package.json');
 const tsConfigPath = path.join(rootDir, 'packages/ui/tsconfig.build.json');
@@ -1198,6 +1198,7 @@ function evaluateMetaValue(expression, filePath) {
 
 async function createComponentData(componentName, analyzer) {
   const importPath = `@themeshift/ui/components/${componentName}`;
+  const meta = await readComponentMeta(componentName);
 
   return {
     apiReference: analyzer.collectApiReference(componentName),
@@ -1205,19 +1206,20 @@ async function createComponentData(componentName, analyzer) {
     exportName: componentName,
     importPath,
     importString: `import { ${componentName} } from '${importPath}';`,
-    meta: await readComponentMeta(componentName),
+    meta: meta ? { ...meta, type: 'component' } : null,
     slug: componentName.toLowerCase(),
     routeSlug: componentName
       .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
       .toLowerCase(),
     sourceCodeUrl: `${sourceCodeUrlBase}/${componentName}`,
+    type: 'component',
   };
 }
 
 async function createOutput(componentData) {
-  const output = `import type { ComponentData } from './types';
+  const output = `import type { ApiReferenceComponent } from '../types';
 
-export const componentData = ${JSON.stringify(componentData, null, 2)} satisfies ComponentData[];
+export const components = ${JSON.stringify(componentData, null, 2)} satisfies ApiReferenceComponent[];
 `;
 
   return prettier.format(output, {
@@ -1235,6 +1237,7 @@ const componentData = await Promise.all(
   )
 );
 
+await mkdir(path.dirname(outputPath), { recursive: true });
 await writeFile(outputPath, await createOutput(componentData));
 await syncUiComponentBadges({ rootDir });
 

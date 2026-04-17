@@ -257,6 +257,9 @@ export default defineConfig({
         'hooks/useCopyToClipboard/index': fileURLToPath(
           new URL('./src/hooks/useCopyToClipboard/index.ts', import.meta.url)
         ),
+        'hooks/useForm/index': fileURLToPath(
+          new URL('./src/hooks/useForm/index.ts', import.meta.url)
+        ),
       },
       formats: ['es'],
     },

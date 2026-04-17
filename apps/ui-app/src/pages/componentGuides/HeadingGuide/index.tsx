@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const headingFallbackImport =
   "import { Heading } from '@themeshift/ui/components/Heading';";
 
 export const HeadingGuide = () => {
-  const { component } = useComponentData('heading');
+  const { component } = useApiReference({ component: 'heading' });
 
   const intro = (
     <GuideIntro>
@@ -159,7 +159,7 @@ export const HeadingGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/heading',
+            componentHref: '/ui/heading',
             componentLabel: 'Heading',
           })}
         />

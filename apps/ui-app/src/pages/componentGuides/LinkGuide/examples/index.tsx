@@ -2,9 +2,9 @@ import { Link } from '@themeshift/ui/components/Link';
 import { Link as RouterLink } from 'react-router';
 
 export const basicUsage = {
-  code: '<Link href="/components/button">Read Button docs</Link>',
+  code: '<Link href="/ui/button">Read Button docs</Link>',
   label: 'Basic usage',
-  sample: <Link href="/components/button">Read Button docs</Link>,
+  sample: <Link href="/ui/button">Read Button docs</Link>,
 };
 
 export const external = {
@@ -29,28 +29,28 @@ export const external = {
 
 export const asChild = {
   code: `<Link asChild>
-  <RouterLink to="/components/input">Open Input guide</RouterLink>
+  <RouterLink to="/ui/input">Open Input guide</RouterLink>
 </Link>`,
   label: 'asChild',
   sample: (
     <Link asChild>
-      <RouterLink to="/components/input">Open Input guide</RouterLink>
+      <RouterLink to="/ui/input">Open Input guide</RouterLink>
     </Link>
   ),
 };
 
 export const groupedLinks = {
   code: `<>
-  <Link href="/components/input">Input</Link>
-  <Link href="/components/select">Select</Link>
-  <Link href="/components/textarea">Textarea</Link>
+  <Link href="/ui/input">Input</Link>
+  <Link href="/ui/select">Select</Link>
+  <Link href="/ui/textarea">Textarea</Link>
 </>`,
   label: 'Grouped links',
   sample: (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-      <Link href="/components/input">Input</Link>
-      <Link href="/components/select">Select</Link>
-      <Link href="/components/textarea">Textarea</Link>
+      <Link href="/ui/input">Input</Link>
+      <Link href="/ui/select">Select</Link>
+      <Link href="/ui/textarea">Textarea</Link>
     </div>
   ),
 };

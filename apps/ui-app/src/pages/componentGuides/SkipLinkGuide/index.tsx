@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const skipLinkFallbackImport =
   "import { SkipLink } from '@themeshift/ui/components/SkipLink';";
 
 export const SkipLinkGuide = () => {
-  const { component } = useComponentData('skiplink');
+  const { component } = useApiReference({ component: 'skiplink' });
 
   const intro = (
     <GuideIntro>
@@ -47,6 +47,7 @@ export const SkipLinkGuide = () => {
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
         <GuideCallout>
           <code>SkipLink</code> is a focus-revealed anchor that helps keyboard
@@ -163,7 +164,7 @@ export const SkipLinkGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/skip-link',
+            componentHref: '/ui/skip-link',
             componentLabel: 'SkipLink',
           })}
         />

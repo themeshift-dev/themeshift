@@ -1,7 +1,7 @@
 import type { ComponentMeta } from '@themeshift/docs-types';
 
 export const meta = {
-  category: 'inputs-forms',
+  category: 'actions',
   description:
     'Copies text to the clipboard and provides a transient `wasCopied` flag.',
   tags: ['clipboard', 'copy'],

@@ -110,6 +110,10 @@
       "types": "./dist/hooks/useCopyToClipboard/index.d.ts",
       "import": "./dist/hooks/useCopyToClipboard/index.js"
     },
+    "./hooks/useForm": {
+      "types": "./dist/hooks/useForm/index.d.ts",
+      "import": "./dist/hooks/useForm/index.js"
+    },
     "./css/base.css": "./dist/css/base.css",
     "./css/fonts.css": "./dist/css/fonts.css",
     "./css/tokens.css": "./dist/css/tokens.css",

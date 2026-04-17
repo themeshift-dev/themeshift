@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const errorMessageFallbackImport =
   "import { ErrorMessage } from '@themeshift/ui/components/ErrorMessage';";
 
 export const ErrorMessageGuide = () => {
-  const { component } = useComponentData('errormessage');
+  const { component } = useApiReference({ component: 'errormessage' });
 
   const intro = (
     <GuideIntro>
@@ -171,7 +171,7 @@ export const ErrorMessageGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/error-message',
+            componentHref: '/ui/error-message',
             componentLabel: 'ErrorMessage',
           })}
         />

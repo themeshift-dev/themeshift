@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const navbarFallbackImport =
   "import { Navbar } from '@themeshift/ui/components/Navbar';";
 
 export const NavbarGuide = () => {
-  const { component } = useComponentData('navbar');
+  const { component } = useApiReference({ component: 'navbar' });
 
   const intro = (
     <GuideIntro>
@@ -164,7 +164,7 @@ export const NavbarGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/navbar',
+            componentHref: '/ui/navbar',
             componentLabel: 'Navbar',
           })}
         />

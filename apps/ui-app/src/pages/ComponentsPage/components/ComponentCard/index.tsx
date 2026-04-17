@@ -1,13 +1,13 @@
+import classNames from 'classnames';
+
+import type { ApiReferenceComponent } from '@/apiReference';
 import { Link } from '@/app/components';
 
-import { type ComponentData } from '@/component-data';
-
 import styles from './ComponentCard.module.scss';
-import classNames from 'classnames';
 
 type ComponentCardProps = {
   className?: string;
-  componentData: ComponentData;
+  componentData: ApiReferenceComponent;
   href: string;
 };
 

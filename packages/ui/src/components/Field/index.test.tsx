@@ -1,10 +1,12 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 import { describe, expect, it, vi } from 'vitest';
 
 import { Checkbox } from '@/components/Checkbox';
 import { Input } from '@/components/Input';
 import { Textarea } from '@/components/Textarea';
+import { useForm } from '@/hooks/useForm';
 
 import { Field } from './index';
 import styles from './Field.module.scss';
@@ -277,6 +279,30 @@ describe('Field', () => {
     ).toBeInTheDocument();
   });
 
+  it('keeps composable inline-control error content in the inline content column', () => {
+    render(
+      <Field layout="inline-control" validationState="invalid">
+        <Checkbox required />
+        <Field.Label>I agree to the terms</Field.Label>
+        <Field.Error>You must accept the terms to continue.</Field.Error>
+      </Field>
+    );
+
+    const checkbox = screen.getByRole('checkbox', {
+      name: 'I agree to the terms',
+    });
+    const container = checkbox.closest(`.${styles.container}`);
+    const inlineContent = screen
+      .getByText('I agree to the terms')
+      .closest(`.${styles.inlineContent}`);
+    const error = screen.getByText('You must accept the terms to continue.');
+
+    expect(container).toHaveAttribute('data-layout', 'inline-control');
+    expect(inlineContent).toHaveClass(styles.inlineContent);
+    expect(error.closest(`.${styles.inlineContent}`)).toBe(inlineContent);
+    expect(inlineContent).not.toContainElement(checkbox);
+  });
+
   it('has no accessibility violations for representative shorthand and composable renders', async () => {
     const { container, rerender } = render(
       <Field
@@ -300,5 +326,38 @@ describe('Field', () => {
     );
 
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('supports integrated wiring with useForm for native-ish controls and Field.Error', async () => {
+    const user = userEvent.setup();
+
+    function Example() {
+      const form = useForm<{ email: string }>({
+        defaultValues: { email: '' },
+        validate: {
+          email: (value) => (!value ? 'Email is required' : undefined),
+        },
+      });
+
+      return (
+        <form onSubmit={form.handleSubmit(() => undefined)}>
+          <Field form={form} name="email">
+            <Field.Label>Email</Field.Label>
+            <Input type="email" />
+            <Field.Error />
+          </Field>
+          <button type="submit">Submit</button>
+        </form>
+      );
+    }
+
+    render(<Example />);
+
+    const input = screen.getByRole('textbox', { name: 'Email' });
+    expect(input).toHaveAttribute('name', 'email');
+
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(screen.getByText('Email is required')).toBeInTheDocument();
+    expect(input).toHaveAttribute('aria-invalid', 'true');
   });
 });

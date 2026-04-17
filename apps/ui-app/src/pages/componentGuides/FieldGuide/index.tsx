@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const fieldFallbackImport =
   "import { Field } from '@themeshift/ui/components/Field';";
 
 export const FieldGuide = () => {
-  const { component } = useComponentData('field');
+  const { component } = useApiReference({ component: 'field' });
 
   const intro = (
     <GuideIntro>
@@ -263,7 +263,7 @@ export const FieldGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/field',
+            componentHref: '/ui/field',
             componentLabel: 'Field',
           })}
         />

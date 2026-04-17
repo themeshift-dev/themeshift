@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const linkFallbackImport =
   "import { Link } from '@themeshift/ui/components/Link';";
 
 export const LinkGuide = () => {
-  const { component } = useComponentData('link');
+  const { component } = useApiReference({ component: 'link' });
 
   const intro = (
     <GuideIntro>
@@ -47,6 +47,7 @@ export const LinkGuide = () => {
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
         <GuideCallout>
           <code>Link</code> styles native anchors and can decorate compatible
@@ -173,7 +174,7 @@ export const LinkGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/link',
+            componentHref: '/ui/link',
             componentLabel: 'Link',
           })}
         />

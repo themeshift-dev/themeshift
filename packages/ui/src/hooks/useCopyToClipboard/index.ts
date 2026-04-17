@@ -10,9 +10,25 @@ type UseCopyToClipboardOptions = {
   clearDelay?: number;
 };
 
+type UseCopyToClipboardReturn = [
+  /**
+   * `true` after a successful copy, then resets to `false` after `clearDelay`.
+   *
+   * Use this flag to render transient success feedback.
+   */
+  wasCopied: boolean,
+  /**
+   * Copies text to the clipboard.
+   *
+   * Resolves to `true` when the copy succeeds and `false` when it fails or
+   * clipboard APIs are unavailable.
+   */
+  copy: CopyFn,
+];
+
 export function useCopyToClipboard({
   clearDelay = 2000,
-}: UseCopyToClipboardOptions = {}): [boolean, CopyFn] {
+}: UseCopyToClipboardOptions = {}): UseCopyToClipboardReturn {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined
   );

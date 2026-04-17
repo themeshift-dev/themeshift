@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { forwardRef } from 'react';
+import { forwardRef, type ForwardedRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import { mergeIds, useFieldContextOptional } from '@/components/Field/context';
@@ -33,6 +33,17 @@ const validationStateClassMap = {
   warning: styles.warning,
 } satisfies Record<TextareaValidationState, string>;
 
+function setRef<T>(ref: ForwardedRef<T>, value: T | null) {
+  if (typeof ref === 'function') {
+    ref(value);
+    return;
+  }
+
+  if (ref) {
+    ref.current = value;
+  }
+}
+
 /** A theme-aware textarea with native and autosize resize modes. */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
@@ -53,12 +64,22 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const {
       'aria-describedby': ariaDescribedBy,
       'aria-invalid': ariaInvalid,
+      defaultValue: defaultValueProp,
       disabled: disabledProp,
       id: idProp,
+      name: nameProp,
+      onBlur: onBlurProp,
+      onChange: onChangeProp,
       readOnly: readOnlyProp,
       required: requiredProp,
       ...nativeTextareaProps
     } = textareaProps;
+    const shouldAutoRegister =
+      nameProp === undefined && !!fieldContext?.form && !!fieldContext?.name;
+    const registration = shouldAutoRegister
+      ? fieldContext.form?.register(fieldContext.name as never)
+      : undefined;
+    const resolvedName = nameProp ?? registration?.name;
     const hasCallerAriaInvalid = ariaInvalid !== undefined;
     const resolvedDisabled = disabledProp ?? fieldContext?.disabled;
     const resolvedId = idProp ?? fieldContext?.controlId;
@@ -81,6 +102,16 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         : resolvedValidationState === 'valid'
           ? false
           : undefined;
+
+    const resolvedDefaultValue =
+      defaultValueProp ??
+      (nativeTextareaProps.value === undefined
+        ? registration?.defaultValue
+        : undefined);
+    const defaultValueForDom =
+      resolvedDefaultValue === undefined || resolvedDefaultValue === null
+        ? undefined
+        : String(resolvedDefaultValue);
 
     const hasConflictingRows =
       resize === 'auto' && nativeTextareaProps.rows !== undefined;
@@ -119,12 +150,33 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-describedby={describedBy}
           aria-invalid={derivedAriaInvalid}
           className={controlClassName}
+          defaultValue={defaultValueForDom}
           disabled={resolvedDisabled}
           id={resolvedId}
           maxRows={maxRows}
           minRows={minRows}
+          name={resolvedName}
+          onBlur={
+            registration
+              ? (event) => {
+                  registration.onBlur(event);
+                  onBlurProp?.(event);
+                }
+              : onBlurProp
+          }
+          onChange={
+            registration
+              ? (event) => {
+                  registration.onChange(event);
+                  onChangeProp?.(event);
+                }
+              : onChangeProp
+          }
           readOnly={resolvedReadOnly}
-          ref={ref}
+          ref={(node) => {
+            setRef(ref, node);
+            registration?.ref(node);
+          }}
           required={resolvedRequired}
           style={autosizeStyle}
         />
@@ -137,10 +189,31 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         aria-describedby={describedBy}
         aria-invalid={derivedAriaInvalid}
         className={controlClassName}
+        defaultValue={defaultValueForDom}
         disabled={resolvedDisabled}
         id={resolvedId}
+        name={resolvedName}
+        onBlur={
+          registration
+            ? (event) => {
+                registration.onBlur(event);
+                onBlurProp?.(event);
+              }
+            : onBlurProp
+        }
+        onChange={
+          registration
+            ? (event) => {
+                registration.onChange(event);
+                onChangeProp?.(event);
+              }
+            : onChangeProp
+        }
         readOnly={resolvedReadOnly}
-        ref={ref}
+        ref={(node) => {
+          setRef(ref, node);
+          registration?.ref(node);
+        }}
         required={resolvedRequired}
         style={style}
       />

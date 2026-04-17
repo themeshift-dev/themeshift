@@ -1,4 +1,4 @@
-import { readFile, readdir, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import prettier from 'prettier';
@@ -7,7 +7,10 @@ import ts from 'typescript';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '../..');
 const hooksDir = path.join(rootDir, 'packages/ui/src/hooks');
-const outputPath = path.join(rootDir, 'apps/ui-app/src/hook-data/generated.ts');
+const outputPath = path.join(
+  rootDir,
+  'apps/ui-app/src/apiReference/generated/hooks.ts'
+);
 const packageJsonPath = path.join(rootDir, 'packages/ui/package.json');
 const tsConfigPath = path.join(rootDir, 'packages/ui/tsconfig.build.json');
 const sourceCodeUrlBase =
@@ -111,6 +114,25 @@ function createAnalyzer(program) {
         optionsTypeName,
       });
     },
+    collectReturnReference(hookName) {
+      const hookSourceFiles = sourceFiles.filter((sourceFile) =>
+        normalizePath(sourceFile.fileName).startsWith(
+          normalizePath(path.join(hooksDir, hookName))
+        )
+      );
+      const declarations = getLocalTypeDeclarations(hookSourceFiles);
+      const hookFunction = findExportedHookFunction(hookName, hookSourceFiles);
+
+      if (!hookFunction?.type) {
+        return [];
+      }
+
+      return collectHookReturnReference({
+        declarations,
+        hookName,
+        returnTypeNode: hookFunction.type,
+      });
+    },
   };
 }
 
@@ -198,6 +220,12 @@ function collectHookDefaults(hookFunction) {
   }
 
   if (!ts.isObjectBindingPattern(optionsParameter.name)) {
+    const fallbackDefaults = collectHookFallbackDefaults(hookFunction);
+
+    for (const [key, value] of fallbackDefaults.entries()) {
+      defaults.set(key, value);
+    }
+
     return defaults;
   }
 
@@ -208,6 +236,60 @@ function collectHookDefaults(hookFunction) {
       defaults.set(propName, formatDefaultValue(element.initializer));
     }
   }
+
+  return defaults;
+}
+
+function collectHookFallbackDefaults(hookFunction) {
+  const defaults = new Map();
+  const optionsParameter = hookFunction.parameters[0];
+
+  if (!hookFunction.body || !optionsParameter?.name) {
+    return defaults;
+  }
+
+  if (!ts.isIdentifier(optionsParameter.name)) {
+    return defaults;
+  }
+
+  const optionsName = optionsParameter.name.text;
+
+  ts.forEachChild(hookFunction.body, function visit(node) {
+    if (
+      ts.isBinaryExpression(node) &&
+      node.operatorToken.kind === ts.SyntaxKind.QuestionQuestionToken
+    ) {
+      const left = unwrapExpression(node.left);
+      const rightDefault = formatDefaultValue(node.right);
+
+      if (
+        left &&
+        (ts.isPropertyAccessExpression(left) || ts.isPropertyAccessChain(left))
+      ) {
+        const target = left.expression;
+
+        if (
+          ts.isIdentifier(target) &&
+          target.text === optionsName &&
+          ts.isIdentifier(left.name)
+        ) {
+          const propName = left.name.text;
+
+          if (
+            typeof rightDefault === 'string' ||
+            typeof rightDefault === 'number' ||
+            typeof rightDefault === 'boolean'
+          ) {
+            if (rightDefault !== 'object') {
+              defaults.set(propName, rightDefault);
+            }
+          }
+        }
+      }
+    }
+
+    ts.forEachChild(node, visit);
+  });
 
   return defaults;
 }
@@ -223,43 +305,45 @@ function getBindingElementName(element) {
 }
 
 function formatDefaultValue(expression) {
+  const unwrapped = unwrapExpression(expression);
+
   if (
-    ts.isStringLiteral(expression) ||
-    ts.isNoSubstitutionTemplateLiteral(expression)
+    ts.isStringLiteral(unwrapped) ||
+    ts.isNoSubstitutionTemplateLiteral(unwrapped)
   ) {
-    return expression.text;
+    return unwrapped.text;
   }
 
-  if (ts.isNumericLiteral(expression)) {
-    return Number(expression.text);
+  if (ts.isNumericLiteral(unwrapped)) {
+    return Number(unwrapped.text);
   }
 
-  if (expression.kind === ts.SyntaxKind.TrueKeyword) {
+  if (unwrapped.kind === ts.SyntaxKind.TrueKeyword) {
     return true;
   }
 
-  if (expression.kind === ts.SyntaxKind.FalseKeyword) {
+  if (unwrapped.kind === ts.SyntaxKind.FalseKeyword) {
     return false;
   }
 
   if (
-    ts.isArrayLiteralExpression(expression) ||
-    ts.isArrowFunction(expression) ||
-    ts.isCallExpression(expression) ||
-    ts.isFunctionExpression(expression) ||
-    ts.isNewExpression(expression) ||
-    ts.isObjectLiteralExpression(expression)
+    ts.isArrayLiteralExpression(unwrapped) ||
+    ts.isArrowFunction(unwrapped) ||
+    ts.isCallExpression(unwrapped) ||
+    ts.isFunctionExpression(unwrapped) ||
+    ts.isNewExpression(unwrapped) ||
+    ts.isObjectLiteralExpression(unwrapped)
   ) {
     return 'object';
   }
 
   if (
-    ts.isPrefixUnaryExpression(expression) &&
-    ts.isNumericLiteral(expression.operand)
+    ts.isPrefixUnaryExpression(unwrapped) &&
+    ts.isNumericLiteral(unwrapped.operand)
   ) {
-    return expression.operator === ts.SyntaxKind.MinusToken
-      ? -Number(expression.operand.text)
-      : Number(expression.operand.text);
+    return unwrapped.operator === ts.SyntaxKind.MinusToken
+      ? -Number(unwrapped.operand.text)
+      : Number(unwrapped.operand.text);
   }
 
   return null;
@@ -331,11 +415,7 @@ function getLiteralUnionValues(typeNode) {
   return values;
 }
 
-function getTypeText(typeNode) {
-  if (!typeNode) {
-    return 'unknown';
-  }
-
+function getKeywordTypeText(kind) {
   const keywordTypes = {
     [ts.SyntaxKind.AnyKeyword]: 'any',
     [ts.SyntaxKind.BigIntKeyword]: 'bigint',
@@ -351,15 +431,183 @@ function getTypeText(typeNode) {
     [ts.SyntaxKind.VoidKeyword]: 'void',
   };
 
-  if (typeNode.kind in keywordTypes) {
-    return keywordTypes[typeNode.kind];
+  return keywordTypes[kind] ?? '';
+}
+
+function formatLiteralType(literal) {
+  if (ts.isStringLiteral(literal)) {
+    return JSON.stringify(literal.text);
+  }
+
+  if (ts.isNumericLiteral(literal)) {
+    return literal.text;
+  }
+
+  if (literal.kind === ts.SyntaxKind.TrueKeyword) {
+    return 'true';
+  }
+
+  if (literal.kind === ts.SyntaxKind.FalseKeyword) {
+    return 'false';
+  }
+
+  if (
+    ts.isPrefixUnaryExpression(literal) &&
+    ts.isNumericLiteral(literal.operand)
+  ) {
+    return literal.operator === ts.SyntaxKind.MinusToken
+      ? `-${literal.operand.text}`
+      : literal.operand.text;
+  }
+
+  return '';
+}
+
+function getNodeText(node) {
+  if (ts.isIdentifier(node)) {
+    return node.text;
+  }
+
+  if (ts.isTypeReferenceNode(node)) {
+    const typeArguments = node.typeArguments
+      ? `<${node.typeArguments.map(getNodeText).join(', ')}>`
+      : '';
+
+    return `${getEntityNameText(node.typeName)}${typeArguments}`;
+  }
+
+  if (ts.isIndexedAccessTypeNode(node)) {
+    return `${getNodeText(node.objectType)}[${getNodeText(node.indexType)}]`;
+  }
+
+  if (ts.isLiteralTypeNode(node)) {
+    return formatLiteralType(node.literal);
+  }
+
+  if (ts.isUnionTypeNode(node) || ts.isIntersectionTypeNode(node)) {
+    const separator = ts.isUnionTypeNode(node) ? ' | ' : ' & ';
+
+    return node.types.map(getNodeText).join(separator);
+  }
+
+  if (ts.isTypeLiteralNode(node)) {
+    return 'object';
+  }
+
+  if (ts.isArrayTypeNode(node)) {
+    return `${getNodeText(node.elementType)}[]`;
+  }
+
+  if (ts.isTypeOperatorNode(node)) {
+    return `${ts.tokenToString(node.operator) ?? ''} ${getNodeText(node.type)}`.trim();
+  }
+
+  if (ts.isFunctionTypeNode(node) || ts.isConstructorTypeNode(node)) {
+    return safeGetNodeText(node) || formatFunctionType(node) || 'function';
+  }
+
+  return safeGetNodeText(node) || getKeywordTypeText(node.kind);
+}
+
+function formatFunctionType(node) {
+  const typeParametersText = node.typeParameters?.length
+    ? `<${node.typeParameters.map(formatTypeParameter).join(', ')}>`
+    : '';
+  const parametersText = node.parameters
+    .map(formatFunctionParameter)
+    .join(', ');
+  const returnTypeText = node.type ? getTypeText(node.type) : 'void';
+  const prefix = ts.isConstructorTypeNode(node) ? 'new ' : '';
+
+  return `${prefix}${typeParametersText}(${parametersText}) => ${returnTypeText}`;
+}
+
+function formatFunctionParameter(parameter) {
+  const restText = parameter.dotDotDotToken ? '...' : '';
+  const nameText = getFunctionParameterName(parameter.name);
+  const optionalText = parameter.questionToken ? '?' : '';
+  const typeText = parameter.type ? getTypeText(parameter.type) : 'unknown';
+
+  return `${restText}${nameText}${optionalText}: ${typeText}`;
+}
+
+function formatTypeParameter(parameter) {
+  const nameText = parameter.name.text;
+  const constraintText = parameter.constraint
+    ? ` extends ${getTypeText(parameter.constraint)}`
+    : '';
+  const defaultText = parameter.default
+    ? ` = ${getTypeText(parameter.default)}`
+    : '';
+
+  return `${nameText}${constraintText}${defaultText}`;
+}
+
+function getFunctionParameterName(nameNode) {
+  if (ts.isIdentifier(nameNode)) {
+    return nameNode.text;
+  }
+
+  if (
+    ts.isObjectBindingPattern(nameNode) ||
+    ts.isArrayBindingPattern(nameNode)
+  ) {
+    return safeGetNodeText(nameNode) || 'arg';
+  }
+
+  return safeGetNodeText(nameNode) || 'arg';
+}
+
+function safeGetNodeText(node) {
+  const sourceFile = node.getSourceFile?.();
+
+  if (sourceFile) {
+    try {
+      return node.getText(sourceFile).trim();
+    } catch {
+      // fall through
+    }
   }
 
   try {
-    return typeNode.getText(typeNode.getSourceFile());
+    return node.getText().trim();
   } catch {
+    if (!sourceFile) {
+      return '';
+    }
+
+    try {
+      return ts
+        .createPrinter({ removeComments: true })
+        .printNode(ts.EmitHint.Unspecified, node, sourceFile)
+        .trim();
+    } catch {
+      if (
+        typeof node.pos === 'number' &&
+        typeof node.end === 'number' &&
+        node.pos >= 0 &&
+        node.end > node.pos
+      ) {
+        return sourceFile.text.slice(node.pos, node.end).trim();
+      }
+
+      return '';
+    }
+  }
+}
+
+function getTypeText(typeNode) {
+  if (!typeNode) {
     return 'unknown';
   }
+
+  const keyword = getKeywordTypeText(typeNode.kind);
+
+  if (keyword) {
+    return keyword;
+  }
+
+  return getNodeText(typeNode) || 'unknown';
 }
 
 function collectTargetOptions({
@@ -509,6 +757,348 @@ function collectMembers({
       values: getLiteralUnionValues(member.type),
     });
   }
+}
+
+const scalarReturnKinds = new Set([
+  ts.SyntaxKind.AnyKeyword,
+  ts.SyntaxKind.BigIntKeyword,
+  ts.SyntaxKind.BooleanKeyword,
+  ts.SyntaxKind.NeverKeyword,
+  ts.SyntaxKind.NullKeyword,
+  ts.SyntaxKind.NumberKeyword,
+  ts.SyntaxKind.StringKeyword,
+  ts.SyntaxKind.SymbolKeyword,
+  ts.SyntaxKind.UndefinedKeyword,
+  ts.SyntaxKind.UnknownKeyword,
+  ts.SyntaxKind.VoidKeyword,
+]);
+
+function createApiReferenceItem({
+  comments = '',
+  displayName,
+  propName,
+  type,
+  values = [],
+}) {
+  return {
+    comments,
+    defaultValue: null,
+    displayName,
+    propName,
+    type,
+    values,
+  };
+}
+
+function collectHookReturnReference({
+  declarations,
+  hookName,
+  returnTypeNode,
+}) {
+  const returnType = unwrapTypeNode(returnTypeNode);
+
+  if (ts.isTupleTypeNode(returnType)) {
+    return collectTupleReturnItems(returnType, hookName);
+  }
+
+  if (isScalarReturnType(returnType)) {
+    return [
+      createApiReferenceItem({
+        comments: '',
+        displayName: hookName,
+        propName: 'value',
+        type: getTypeText(returnType),
+        values: getLiteralUnionValues(returnType),
+      }),
+    ];
+  }
+
+  if (ts.isTypeReferenceNode(returnType)) {
+    const typeName = getEntityNameText(returnType.typeName);
+    const topLevelItems = collectMembersFromTypeName({
+      declarations,
+      displayName: hookName,
+      typeName,
+      visited: new Set(),
+    });
+
+    if (hookName === 'useForm') {
+      return expandUseFormStateItems({
+        declarations,
+        displayName: hookName,
+        items: topLevelItems,
+        visited: new Set(),
+      });
+    }
+
+    return topLevelItems;
+  }
+
+  if (ts.isTypeLiteralNode(returnType)) {
+    return collectTypeLiteralItems({
+      displayName: hookName,
+      members: returnType.members,
+    });
+  }
+
+  return [];
+}
+
+function unwrapTypeNode(typeNode) {
+  if (ts.isParenthesizedTypeNode(typeNode)) {
+    return unwrapTypeNode(typeNode.type);
+  }
+
+  return typeNode;
+}
+
+function isScalarReturnType(typeNode) {
+  return scalarReturnKinds.has(typeNode.kind);
+}
+
+function collectMembersFromTypeName({
+  declarations,
+  displayName,
+  typeName,
+  visited,
+}) {
+  const declaration = declarations.get(typeName);
+
+  if (!declaration || visited.has(typeName)) {
+    return [];
+  }
+
+  visited.add(typeName);
+
+  if (ts.isInterfaceDeclaration(declaration)) {
+    return collectTypeLiteralItems({
+      displayName,
+      members: declaration.members,
+    });
+  }
+
+  if (ts.isTypeAliasDeclaration(declaration)) {
+    return collectItemsFromTypeNode({
+      declarations,
+      displayName,
+      typeNode: declaration.type,
+      visited,
+    });
+  }
+
+  return [];
+}
+
+function collectItemsFromTypeNode({
+  declarations,
+  displayName,
+  typeNode,
+  visited,
+}) {
+  const node = unwrapTypeNode(typeNode);
+
+  if (ts.isTypeLiteralNode(node)) {
+    return collectTypeLiteralItems({
+      displayName,
+      members: node.members,
+    });
+  }
+
+  if (ts.isIntersectionTypeNode(node)) {
+    return node.types.flatMap((part) =>
+      collectItemsFromTypeNode({
+        declarations,
+        displayName,
+        typeNode: part,
+        visited,
+      })
+    );
+  }
+
+  if (ts.isTupleTypeNode(node)) {
+    return collectTupleReturnItems(node, displayName);
+  }
+
+  if (isScalarReturnType(node)) {
+    return [
+      createApiReferenceItem({
+        comments: '',
+        displayName,
+        propName: 'value',
+        type: getTypeText(node),
+        values: getLiteralUnionValues(node),
+      }),
+    ];
+  }
+
+  if (ts.isTypeReferenceNode(node)) {
+    return collectMembersFromTypeName({
+      declarations,
+      displayName,
+      typeName: getEntityNameText(node.typeName),
+      visited,
+    });
+  }
+
+  return [];
+}
+
+function collectTypeLiteralItems({ displayName, members }) {
+  const items = [];
+
+  for (const member of members) {
+    if (!ts.isPropertySignature(member)) {
+      continue;
+    }
+
+    const propName = member.name ? getPropertyName(member.name) : null;
+
+    if (!propName) {
+      continue;
+    }
+
+    items.push(
+      createApiReferenceItem({
+        comments: getJsDocText(member),
+        displayName,
+        propName,
+        type: getTypeText(member.type),
+        values: getLiteralUnionValues(member.type),
+      })
+    );
+  }
+
+  return items.sort((first, second) =>
+    first.propName.localeCompare(second.propName)
+  );
+}
+
+function collectTupleReturnItems(tupleTypeNode, hookName) {
+  return tupleTypeNode.elements.map((element, index) => {
+    const elementType = ts.isNamedTupleMember(element) ? element.type : element;
+    const label = ts.isNamedTupleMember(element)
+      ? getPropertyName(element.name)
+      : null;
+    const propName = label ?? String(index);
+    const comments = ts.isNamedTupleMember(element)
+      ? getJsDocText(element)
+      : '';
+
+    return createApiReferenceItem({
+      comments,
+      displayName: hookName,
+      propName,
+      type: getTypeText(elementType),
+      values: getLiteralUnionValues(elementType),
+    });
+  });
+}
+
+function expandUseFormStateItems({
+  declarations,
+  displayName,
+  items,
+  visited,
+}) {
+  const expanded = [];
+  const formStateItems = collectNestedPropertyItemsFromTypeName({
+    declarations,
+    displayName,
+    propertyName: 'formState',
+    typeName: 'FormApi',
+    visited: new Set(visited),
+  });
+
+  for (const item of items) {
+    expanded.push(item);
+
+    if (item.propName !== 'formState') {
+      continue;
+    }
+
+    for (const formStateItem of formStateItems) {
+      expanded.push({
+        ...formStateItem,
+        propName: `formState.${formStateItem.propName}`,
+      });
+    }
+  }
+
+  return expanded.sort((first, second) =>
+    first.propName.localeCompare(second.propName)
+  );
+}
+
+function collectNestedPropertyItemsFromTypeName({
+  declarations,
+  displayName,
+  propertyName,
+  typeName,
+  visited,
+}) {
+  const declaration = declarations.get(typeName);
+
+  if (!declaration || visited.has(typeName)) {
+    return [];
+  }
+
+  visited.add(typeName);
+
+  if (ts.isInterfaceDeclaration(declaration)) {
+    return collectNestedPropertyItemsFromMembers({
+      declarations,
+      displayName,
+      members: declaration.members,
+      propertyName,
+      visited,
+    });
+  }
+
+  if (ts.isTypeAliasDeclaration(declaration)) {
+    const node = unwrapTypeNode(declaration.type);
+
+    if (ts.isTypeLiteralNode(node)) {
+      return collectNestedPropertyItemsFromMembers({
+        declarations,
+        displayName,
+        members: node.members,
+        propertyName,
+        visited,
+      });
+    }
+  }
+
+  return [];
+}
+
+function collectNestedPropertyItemsFromMembers({
+  declarations,
+  displayName,
+  members,
+  propertyName,
+  visited,
+}) {
+  const nestedProperty = members.find(
+    (member) =>
+      ts.isPropertySignature(member) &&
+      member.name &&
+      getPropertyName(member.name) === propertyName
+  );
+
+  if (!nestedProperty || !ts.isPropertySignature(nestedProperty)) {
+    return [];
+  }
+
+  if (!nestedProperty.type) {
+    return [];
+  }
+
+  return collectItemsFromTypeNode({
+    declarations,
+    displayName,
+    typeNode: nestedProperty.type,
+    visited,
+  });
 }
 
 async function readHookMeta(hookName) {
@@ -679,24 +1269,27 @@ function evaluateMetaValue(expression, filePath) {
 
 async function createHookData(hookName, analyzer) {
   const importPath = `@themeshift/ui/hooks/${hookName}`;
+  const meta = await readHookMeta(hookName);
 
   return {
     apiReference: analyzer.collectApiReference(hookName),
+    returnReference: analyzer.collectReturnReference(hookName),
     name: hookName,
     exportName: hookName,
     importPath,
     importString: `import { ${hookName} } from '${importPath}';`,
-    meta: await readHookMeta(hookName),
+    meta: meta ? { ...meta, type: 'hook' } : null,
     slug: hookName.toLowerCase(),
     routeSlug: hookName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase(),
     sourceCodeUrl: `${sourceCodeUrlBase}/${hookName}`,
+    type: 'hook',
   };
 }
 
 async function createOutput(hookData) {
-  const output = `import type { HookData } from './types';
+  const output = `import type { ApiReferenceHook } from '../types';
 
-export const hookData = ${JSON.stringify(hookData, null, 2)} satisfies HookData[];
+export const hooks = ${JSON.stringify(hookData, null, 2)} satisfies ApiReferenceHook[];
 `;
 
   return prettier.format(output, {
@@ -712,6 +1305,7 @@ const hookData = await Promise.all(
   hookNames.map((hookName) => createHookData(hookName, analyzer))
 );
 
+await mkdir(path.dirname(outputPath), { recursive: true });
 await writeFile(outputPath, await createOutput(hookData));
 
 console.log(`Collected hook data for ${hookData.length} hooks`);

@@ -1,6 +1,6 @@
-import type { ComponentData } from './types';
+import type { ApiReferenceComponent } from '../types';
 
-export const componentData = [
+export const components = [
   {
     apiReference: [
       {
@@ -126,11 +126,13 @@ export const componentData = [
       featured: true,
       aliases: ['CTA'],
       related: ['Link', 'CopyButton', 'ProgressButton'],
+      type: 'component',
     },
     slug: 'button',
     routeSlug: 'button',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Button',
+    type: 'component',
   },
   {
     apiReference: [
@@ -182,11 +184,13 @@ export const componentData = [
       status: 'stable',
       featured: true,
       related: ['Field', 'Label', 'Radio', 'ToggleSwitch'],
+      type: 'component',
     },
     slug: 'checkbox',
     routeSlug: 'checkbox',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Checkbox',
+    type: 'component',
   },
   {
     apiReference: [],
@@ -202,11 +206,13 @@ export const componentData = [
       order: 80,
       status: 'stable',
       related: ['Field', 'Input', 'Label', 'Select', 'Textarea'],
+      type: 'component',
     },
     slug: 'errormessage',
     routeSlug: 'error-message',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/ErrorMessage',
+    type: 'component',
   },
   {
     apiReference: [
@@ -297,11 +303,13 @@ export const componentData = [
         'Textarea',
         'Checkbox',
       ],
+      type: 'component',
     },
     slug: 'field',
     routeSlug: 'field',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Field',
+    type: 'component',
   },
   {
     apiReference: [
@@ -334,11 +342,13 @@ export const componentData = [
       order: 10,
       status: 'stable',
       related: ['Link', 'Label'],
+      type: 'component',
     },
     slug: 'heading',
     routeSlug: 'heading',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Heading',
+    type: 'component',
   },
   {
     apiReference: [
@@ -403,11 +413,13 @@ export const componentData = [
       status: 'stable',
       featured: true,
       related: ['Field', 'Label', 'ErrorMessage', 'Textarea', 'Select'],
+      type: 'component',
     },
     slug: 'input',
     routeSlug: 'input',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Input',
+    type: 'component',
   },
   {
     apiReference: [],
@@ -422,11 +434,13 @@ export const componentData = [
       order: 70,
       status: 'stable',
       related: ['Field', 'Input', 'Select', 'Textarea', 'Checkbox'],
+      type: 'component',
     },
     slug: 'label',
     routeSlug: 'label',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Label',
+    type: 'component',
   },
   {
     apiReference: [
@@ -468,11 +482,13 @@ export const componentData = [
       status: 'stable',
       featured: true,
       related: ['Button', 'Navbar', 'SkipLink'],
+      type: 'component',
     },
     slug: 'link',
     routeSlug: 'link',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Link',
+    type: 'component',
   },
   {
     apiReference: [
@@ -590,11 +606,13 @@ export const componentData = [
       status: 'stable',
       featured: true,
       related: ['Link', 'Sidebar', 'SkipLink', 'Responsive'],
+      type: 'component',
     },
     slug: 'navbar',
     routeSlug: 'navbar',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Navbar',
+    type: 'component',
   },
   {
     apiReference: [
@@ -715,11 +733,13 @@ export const componentData = [
       status: 'stable',
       featured: true,
       related: ['Field', 'Label', 'Checkbox', 'ToggleSwitch'],
+      type: 'component',
     },
     slug: 'radio',
     routeSlug: 'radio',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Radio',
+    type: 'component',
   },
   {
     apiReference: [
@@ -769,11 +789,13 @@ export const componentData = [
       status: 'stable',
       featured: true,
       related: ['Navbar', 'Flexbox', 'Grid'],
+      type: 'component',
     },
     slug: 'responsive',
     routeSlug: 'responsive',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Responsive',
+    type: 'component',
   },
   {
     apiReference: [
@@ -848,11 +870,13 @@ export const componentData = [
       status: 'stable',
       featured: true,
       related: ['Field', 'Label', 'ErrorMessage', 'Input', 'Combobox'],
+      type: 'component',
     },
     slug: 'select',
     routeSlug: 'select',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Select',
+    type: 'component',
   },
   {
     apiReference: [
@@ -1036,11 +1060,13 @@ export const componentData = [
       featured: true,
       aliases: ['loading-placeholder', 'shimmer'],
       related: ['spinner', 'progress'],
+      type: 'component',
     },
     slug: 'skeleton',
     routeSlug: 'skeleton',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Skeleton',
+    type: 'component',
   },
   {
     apiReference: [
@@ -1090,11 +1116,13 @@ export const componentData = [
       status: 'stable',
       featured: true,
       related: ['Link', 'Navbar'],
+      type: 'component',
     },
     slug: 'skiplink',
     routeSlug: 'skip-link',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/SkipLink',
+    type: 'component',
   },
   {
     apiReference: [
@@ -1128,11 +1156,13 @@ export const componentData = [
       status: 'stable',
       featured: true,
       related: ['Placeholder', 'ProgressBar', 'ProgressButton', 'LoadingState'],
+      type: 'component',
     },
     slug: 'spinner',
     routeSlug: 'spinner',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Spinner',
+    type: 'component',
   },
   {
     apiReference: [
@@ -1198,11 +1228,13 @@ export const componentData = [
       status: 'stable',
       featured: true,
       related: ['Field', 'Label', 'ErrorMessage', 'Input'],
+      type: 'component',
     },
     slug: 'textarea',
     routeSlug: 'textarea',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Textarea',
+    type: 'component',
   },
   {
     apiReference: [
@@ -1315,10 +1347,12 @@ export const componentData = [
       featured: true,
       aliases: ['Switch'],
       related: ['Checkbox', 'ToggleButton', 'Field', 'Label'],
+      type: 'component',
     },
     slug: 'toggleswitch',
     routeSlug: 'toggle-switch',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/ToggleSwitch',
+    type: 'component',
   },
-] satisfies ComponentData[];
+] satisfies ApiReferenceComponent[];

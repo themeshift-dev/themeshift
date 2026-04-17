@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const spinnerFallbackImport =
   "import { Spinner } from '@themeshift/ui/components/Spinner';";
 
 export const SpinnerGuide = () => {
-  const { component } = useComponentData('spinner');
+  const { component } = useApiReference({ component: 'spinner' });
 
   const intro = (
     <GuideIntro>
@@ -184,7 +184,7 @@ export const SpinnerGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/spinner',
+            componentHref: '/ui/spinner',
             componentLabel: 'Spinner',
           })}
         />

@@ -24,7 +24,7 @@ function App() {
               </Link>
 
               <div className={styles.links}>
-                <Link to="/components">Components</Link>
+                <Link to="/ui">UI</Link>
                 <Link to="/tokens">Design Tokens</Link>
                 <Link to="/plugin">Plugin</Link>
               </div>

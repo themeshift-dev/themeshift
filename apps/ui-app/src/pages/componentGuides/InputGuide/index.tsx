@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const inputFallbackImport =
   "import { Input } from '@themeshift/ui/components/Input';";
 
 export const InputGuide = () => {
-  const { component } = useComponentData('input');
+  const { component } = useApiReference({ component: 'input' });
 
   const intro = (
     <GuideIntro>
@@ -47,6 +47,7 @@ export const InputGuide = () => {
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
         <GuideCallout>
           <code>Input</code> wraps a native <code>input</code> element and adds
@@ -253,7 +254,7 @@ export const InputGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/input',
+            componentHref: '/ui/input',
             componentLabel: 'Input',
           })}
         />
