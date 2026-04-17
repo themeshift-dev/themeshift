@@ -1,5 +1,12 @@
 import classNames from 'classnames';
-import { forwardRef, isValidElement, type ReactNode } from 'react';
+import {
+  type ChangeEventHandler,
+  forwardRef,
+  type FocusEventHandler,
+  isValidElement,
+  type ForwardedRef,
+  type ReactNode,
+} from 'react';
 
 import { mergeIds, useFieldContextOptional } from '@/components/Field/context';
 
@@ -21,6 +28,17 @@ const validationStateClassMap = {
 
 const interactiveRoles = new Set(['button', 'link']);
 const interactiveTags = new Set(['a', 'button', 'input', 'select', 'textarea']);
+
+function setRef<T>(ref: ForwardedRef<T>, value: T | null) {
+  if (typeof ref === 'function') {
+    ref(value);
+    return;
+  }
+
+  if (ref) {
+    ref.current = value;
+  }
+}
 
 const isInteractiveAdornment = (adornment: ReactNode) => {
   if (!isValidElement(adornment)) {
@@ -89,10 +107,20 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       'aria-invalid': ariaInvalid,
       disabled: disabledProp,
       id: idProp,
+      name: nameProp,
+      defaultValue: defaultValueProp,
+      onBlur: onBlurProp,
+      onChange: onChangeProp,
       readOnly: readOnlyProp,
       required: requiredProp,
       ...nativeInputProps
     } = inputProps;
+    const shouldAutoRegister =
+      nameProp === undefined && !!fieldContext?.form && !!fieldContext?.name;
+    const registration = shouldAutoRegister
+      ? fieldContext.form?.register(fieldContext.name as never)
+      : undefined;
+    const resolvedName = nameProp ?? registration?.name;
     const hasCallerAriaInvalid = ariaInvalid !== undefined;
     const resolvedId = idProp ?? fieldContext?.controlId;
     const resolvedDisabled = disabledProp ?? fieldContext?.disabled;
@@ -115,6 +143,26 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         : resolvedValidationState === 'valid'
           ? false
           : undefined;
+
+    const resolvedDefaultValue =
+      defaultValueProp ??
+      (nativeInputProps.value === undefined
+        ? registration?.defaultValue
+        : undefined);
+    const defaultValueForDom =
+      resolvedDefaultValue === undefined || resolvedDefaultValue === null
+        ? undefined
+        : String(resolvedDefaultValue);
+
+    const handleBlur: FocusEventHandler<HTMLInputElement> = (event) => {
+      registration?.onBlur(event);
+      onBlurProp?.(event);
+    };
+
+    const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+      registration?.onChange(event);
+      onChangeProp?.(event);
+    };
 
     return (
       <div
@@ -139,10 +187,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           aria-describedby={describedBy}
           aria-invalid={derivedAriaInvalid}
           className={classNames(styles.input, inputClassName)}
+          defaultValue={defaultValueForDom}
           disabled={resolvedDisabled}
           id={resolvedId}
+          name={resolvedName}
+          onBlur={registration ? handleBlur : onBlurProp}
+          onChange={registration ? handleChange : onChangeProp}
           readOnly={resolvedReadOnly}
-          ref={ref}
+          ref={(node) => {
+            setRef(ref, node);
+            registration?.ref(node);
+          }}
           required={resolvedRequired}
         />
         {hasEndAdornment ? (

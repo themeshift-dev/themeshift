@@ -2,9 +2,10 @@ import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { Field } from '@/components/Field';
+import { useForm } from '@/hooks/useForm';
 
 import styles from './Checkbox.module.scss';
 import { Checkbox } from './index';
@@ -236,6 +237,43 @@ describe('Checkbox', () => {
     expect(checkbox).not.toHaveAttribute('required');
     expect(checkbox).toHaveAttribute('aria-invalid', 'false');
     expect(checkbox.closest(`.${styles.container}`)).toHaveClass(styles.valid);
+  });
+
+  it('auto-registers with Field form integration without explicit register wiring', async () => {
+    const user = userEvent.setup();
+    const onValid = vi.fn();
+
+    const Example = () => {
+      const form = useForm<{ terms: boolean }>({
+        defaultValues: { terms: true },
+      });
+
+      return (
+        <form onSubmit={form.handleSubmit(onValid)}>
+          <Field form={form} label="Accept terms" name="terms">
+            <Checkbox />
+          </Field>
+          <button type="submit">Submit</button>
+        </form>
+      );
+    };
+
+    render(<Example />);
+
+    const checkbox = screen.getByRole('checkbox', { name: 'Accept terms' });
+    expect(checkbox).toBeChecked();
+
+    await user.click(checkbox);
+    expect(checkbox).not.toBeChecked();
+
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(onValid).toHaveBeenCalledWith(
+      { terms: false },
+      expect.objectContaining({
+        nativeEvent: expect.any(Event),
+        preventDefault: expect.any(Function),
+      })
+    );
   });
 
   it('has no accessibility violations for representative states', async () => {

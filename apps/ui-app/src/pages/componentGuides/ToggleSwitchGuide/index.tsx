@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const toggleSwitchFallbackImport =
   "import { ToggleSwitch } from '@themeshift/ui/components/ToggleSwitch';";
 
 export const ToggleSwitchGuide = () => {
-  const { component } = useComponentData('toggleswitch');
+  const { component } = useApiReference({ component: 'toggleswitch' });
 
   const intro = (
     <GuideIntro>
@@ -47,6 +47,7 @@ export const ToggleSwitchGuide = () => {
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
         <GuideCallout>
           <code>ToggleSwitch</code> wraps a native{' '}
@@ -264,7 +265,7 @@ export const ToggleSwitchGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/toggle-switch',
+            componentHref: '/ui/toggle-switch',
             componentLabel: 'ToggleSwitch',
           })}
         />

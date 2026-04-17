@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const responsiveFallbackImport =
   "import { Responsive } from '@themeshift/ui/components/Responsive';";
 
 export const ResponsiveGuide = () => {
-  const { component } = useComponentData('responsive');
+  const { component } = useApiReference({ component: 'responsive' });
 
   const intro = (
     <GuideIntro>
@@ -47,6 +47,7 @@ export const ResponsiveGuide = () => {
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
         <GuideCallout>
           <code>Responsive</code> conditionally displays content based on
@@ -171,7 +172,7 @@ export const ResponsiveGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/responsive',
+            componentHref: '/ui/responsive',
             componentLabel: 'Responsive',
           })}
         />

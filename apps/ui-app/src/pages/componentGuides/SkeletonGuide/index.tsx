@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const skeletonFallbackImport =
   "import { Skeleton } from '@themeshift/ui/components/Skeleton';";
 
 export const SkeletonGuide = () => {
-  const { component } = useComponentData('skeleton');
+  const { component } = useApiReference({ component: 'skeleton' });
 
   const intro = (
     <GuideIntro>
@@ -140,7 +140,7 @@ export const SkeletonGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/skeleton',
+            componentHref: '/ui/skeleton',
             componentLabel: 'Skeleton',
           })}
         />

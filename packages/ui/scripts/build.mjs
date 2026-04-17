@@ -101,7 +101,6 @@ async function copyThemeAssets() {
 }
 
 async function removeNonPublishedArtifacts() {
-  await rm(path.join(distDir, 'index.d.ts'), { force: true });
   await rm(path.join(distDir, 'entrypoints'), { recursive: true, force: true });
 }
 

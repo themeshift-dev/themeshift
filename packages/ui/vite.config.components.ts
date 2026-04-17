@@ -160,6 +160,7 @@ export default defineConfig({
     cssCodeSplit: true,
     lib: {
       entry: {
+        index: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
         'components/Button/index': fileURLToPath(
           new URL('./src/entrypoints/components/Button.ts', import.meta.url)
         ),
@@ -249,6 +250,15 @@ export default defineConfig({
         ),
         'contexts/index': fileURLToPath(
           new URL('./src/entrypoints/contexts.ts', import.meta.url)
+        ),
+        'hooks/index': fileURLToPath(
+          new URL('./src/entrypoints/hooks.ts', import.meta.url)
+        ),
+        'hooks/useCopyToClipboard/index': fileURLToPath(
+          new URL('./src/hooks/useCopyToClipboard/index.ts', import.meta.url)
+        ),
+        'hooks/useForm/index': fileURLToPath(
+          new URL('./src/hooks/useForm/index.ts', import.meta.url)
         ),
       },
       formats: ['es'],

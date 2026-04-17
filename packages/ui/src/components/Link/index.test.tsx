@@ -28,4 +28,10 @@ describe('Link', () => {
       'custom-link'
     );
   });
+
+  it('throws when asChild is set without a valid React element child', () => {
+    expect(() => render(<Link asChild>Documentation</Link>)).toThrowError(
+      'ThemeShift Link with asChild expects a single React element child.'
+    );
+  });
 });

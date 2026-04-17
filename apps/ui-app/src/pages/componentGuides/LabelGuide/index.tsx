@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const labelFallbackImport =
   "import { Label } from '@themeshift/ui/components/Label';";
 
 export const LabelGuide = () => {
-  const { component } = useComponentData('label');
+  const { component } = useApiReference({ component: 'label' });
 
   const intro = (
     <GuideIntro>
@@ -164,7 +164,7 @@ export const LabelGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/label',
+            componentHref: '/ui/label',
             componentLabel: 'Label',
           })}
         />

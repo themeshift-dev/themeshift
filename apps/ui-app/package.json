@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@fontsource-variable/sometype-mono": "^5.2.7",
+    "@themeshift/docs-types": "workspace:*",
     "@themeshift/ui": "workspace:*",
     "axe-core": "^4.11.2",
     "classnames": "^2.5.1",

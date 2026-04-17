@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const selectFallbackImport =
   "import { Select } from '@themeshift/ui/components/Select';";
 
 export const SelectGuide = () => {
-  const { component } = useComponentData('select');
+  const { component } = useApiReference({ component: 'select' });
 
   const intro = (
     <GuideIntro>
@@ -47,6 +47,7 @@ export const SelectGuide = () => {
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
         <GuideCallout>
           <code>Select</code> wraps a native <code>select</code> element and
@@ -234,7 +235,7 @@ export const SelectGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/select',
+            componentHref: '/ui/select',
             componentLabel: 'Select',
           })}
         />

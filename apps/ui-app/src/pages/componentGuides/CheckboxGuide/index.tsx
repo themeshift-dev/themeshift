@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const checkboxFallbackImport =
   "import { Checkbox } from '@themeshift/ui/components/Checkbox';";
 
 export const CheckboxGuide = () => {
-  const { component } = useComponentData('checkbox');
+  const { component } = useApiReference({ component: 'checkbox' });
 
   const intro = (
     <GuideIntro>
@@ -47,6 +47,7 @@ export const CheckboxGuide = () => {
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
         <GuideCallout>
           <code>Checkbox</code> wraps a native{' '}
@@ -229,7 +230,7 @@ export const CheckboxGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/checkbox',
+            componentHref: '/ui/checkbox',
             componentLabel: 'Checkbox',
           })}
         />

@@ -165,4 +165,53 @@ describe('Radio', () => {
 
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it('supports standalone radio onChange and preserves preventDefault semantics in groups', async () => {
+    const user = userEvent.setup();
+    const standaloneOnChange = vi.fn();
+    const groupOnValueChange = vi.fn();
+
+    render(
+      <>
+        <Radio
+          aria-label="Standalone"
+          name="standalone"
+          onChange={standaloneOnChange}
+          value="alone"
+        >
+          Standalone
+        </Radio>
+
+        <Radio.Group name="grouped" onValueChange={groupOnValueChange}>
+          <Radio
+            onChange={(event) => {
+              event.preventDefault();
+            }}
+            value="blocked"
+          >
+            Blocked
+          </Radio>
+        </Radio.Group>
+      </>
+    );
+
+    await user.click(screen.getByRole('radio', { name: 'Standalone' }));
+    expect(standaloneOnChange).toHaveBeenCalledTimes(1);
+
+    await user.click(screen.getByRole('radio', { name: 'Blocked' }));
+    expect(groupOnValueChange).not.toHaveBeenCalled();
+  });
+
+  it('derives aria-invalid false for valid groups', () => {
+    render(
+      <Radio.Group name="valid-group" validationState="valid">
+        <Radio value="email">Email</Radio>
+      </Radio.Group>
+    );
+
+    expect(screen.getByRole('radio', { name: 'Email' })).toHaveAttribute(
+      'aria-invalid',
+      'false'
+    );
+  });
 });

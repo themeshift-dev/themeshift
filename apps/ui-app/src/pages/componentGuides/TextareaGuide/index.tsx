@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideExampleCard,
@@ -24,7 +24,7 @@ const textareaFallbackImport =
   "import { Textarea } from '@themeshift/ui/components/Textarea';";
 
 export const TextareaGuide = () => {
-  const { component } = useComponentData('textarea');
+  const { component } = useApiReference({ component: 'textarea' });
 
   const intro = (
     <GuideIntro>
@@ -47,6 +47,7 @@ export const TextareaGuide = () => {
 
   const propsContent = (
     <ApiReference
+      hideColumns={['defaultValue']}
       intro={
         <GuideCallout>
           <code>Textarea</code> wraps a native <code>textarea</code> and adds
@@ -235,7 +236,7 @@ export const TextareaGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/textarea',
+            componentHref: '/ui/textarea',
             componentLabel: 'Textarea',
           })}
         />

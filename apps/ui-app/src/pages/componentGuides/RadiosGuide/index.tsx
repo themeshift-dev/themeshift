@@ -1,7 +1,7 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
 import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
-import { useComponentData } from '@/component-data';
+import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
   GuideCallout,
@@ -24,7 +24,7 @@ const radioFallbackImport =
   "import { Radio } from '@themeshift/ui/components/Radio';";
 
 export const RadiosGuide = () => {
-  const { component } = useComponentData('radio');
+  const { component } = useApiReference({ component: 'radio' });
 
   const intro = (
     <GuideIntro>
@@ -192,7 +192,7 @@ export const RadiosGuide = () => {
         <Breadcrumb
           showHome
           items={createComponentBreadcrumbItems({
-            componentHref: '/components/radio',
+            componentHref: '/ui/radio',
             componentLabel: 'Radio',
           })}
         />
