@@ -7,5 +7,5 @@ export const meta = {
   order: 40,
   status: 'stable',
   featured: true,
-  related: ['Field', 'Label', 'RadioButton', 'ToggleSwitch'],
+  related: ['Field', 'Label', 'Radio', 'ToggleSwitch'],
 } satisfies ComponentMeta;

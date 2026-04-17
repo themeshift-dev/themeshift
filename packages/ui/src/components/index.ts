@@ -7,6 +7,7 @@ export * from './Input';
 export * from './Label';
 export * from './Link';
 export * from './Navbar';
+export * from './Radio';
 export * from './Responsive';
 export * from './Select';
 export * from './Skeleton';

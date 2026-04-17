@@ -181,7 +181,7 @@ export const componentData = [
       order: 40,
       status: 'stable',
       featured: true,
-      related: ['Field', 'Label', 'RadioButton', 'ToggleSwitch'],
+      related: ['Field', 'Label', 'Radio', 'ToggleSwitch'],
     },
     slug: 'checkbox',
     routeSlug: 'checkbox',
@@ -234,6 +234,15 @@ export const componentData = [
         propName: 'forceMount',
         type: 'boolean',
         values: [],
+      },
+      {
+        comments:
+          'Element to render for the label.\n\nUse `as="legend"` when labeling a grouped control rendered in a `<fieldset>`, such as `Radio.Group`.',
+        defaultValue: 'label',
+        displayName: 'Field.Label',
+        propName: 'as',
+        type: "'label' | 'legend'",
+        values: ['label', 'legend'],
       },
       {
         comments: 'Label text or custom label content.',
@@ -586,6 +595,131 @@ export const componentData = [
     routeSlug: 'navbar',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Navbar',
+  },
+  {
+    apiReference: [
+      {
+        comments:
+          'Radio label content.\n\nThis can include multiple lines and custom layout.',
+        defaultValue: null,
+        displayName: 'Radio',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments:
+          'Disables the radio option.\n\nThis overrides the group state when used inside `Radio.Group`.',
+        defaultValue: null,
+        displayName: 'Radio',
+        propName: 'disabled',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Submitted value for the radio option.',
+        defaultValue: null,
+        displayName: 'Radio',
+        propName: 'value',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Radio options and any supporting content, such as `<Field.Label as="legend">`.',
+        defaultValue: null,
+        displayName: 'Radio.Group',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Sets an initial selected value for uncontrolled usage.',
+        defaultValue: null,
+        displayName: 'Radio.Group',
+        propName: 'defaultValue',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Disables the entire group.\n\nThis also disables all descendant radio inputs.',
+        defaultValue: null,
+        displayName: 'Radio.Group',
+        propName: 'disabled',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments:
+          'Name shared by all radios in the group.\n\nIf omitted, a stable name is generated so the group still behaves like a single selection set. Provide a name to include the value in form submits.',
+        defaultValue: null,
+        displayName: 'Radio.Group',
+        propName: 'name',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Called with the next selected value after user interaction.',
+        defaultValue: null,
+        displayName: 'Radio.Group',
+        propName: 'onValueChange',
+        type: '(value: string) => void',
+        values: [],
+      },
+      {
+        comments:
+          'Marks the group as required.\n\nThis is forwarded to each radio input so native validation works.',
+        defaultValue: null,
+        displayName: 'Radio.Group',
+        propName: 'required',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments:
+          'Visual size for the radio control.\n\nThis value is inherited by all `Radio` children.',
+        defaultValue: 'medium',
+        displayName: 'Radio.Group',
+        propName: 'size',
+        type: 'RadioGroupSize',
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments:
+          'Sets the group validation state used for styling and accessibility.',
+        defaultValue: null,
+        displayName: 'Radio.Group',
+        propName: 'validationState',
+        type: 'RadioValidationState',
+        values: [],
+      },
+      {
+        comments: 'Controls the selected value in controlled usage.',
+        defaultValue: null,
+        displayName: 'Radio.Group',
+        propName: 'value',
+        type: 'string',
+        values: [],
+      },
+    ],
+    name: 'Radio',
+    exportName: 'Radio',
+    importPath: '@themeshift/ui/components/Radio',
+    importString: "import { Radio } from '@themeshift/ui/components/Radio';",
+    meta: {
+      category: 'inputs-forms',
+      description: 'Allows selecting a single option from a group.',
+      tags: ['form', 'input', 'selection', 'single-choice'],
+      order: 45,
+      status: 'stable',
+      featured: true,
+      related: ['Field', 'Label', 'Checkbox', 'ToggleSwitch'],
+    },
+    slug: 'radio',
+    routeSlug: 'radio',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Radio',
   },
   {
     apiReference: [

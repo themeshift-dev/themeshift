@@ -161,52 +161,61 @@ export default defineConfig({
     lib: {
       entry: {
         'components/Button/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Button.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Button.ts', import.meta.url)
         ),
         'components/Checkbox/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Checkbox.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Checkbox.ts', import.meta.url)
         ),
         'components/ErrorMessage/index': fileURLToPath(
-          new URL('./src/entrypoints/components/ErrorMessage.ts', import.meta.url),
+          new URL(
+            './src/entrypoints/components/ErrorMessage.ts',
+            import.meta.url
+          )
         ),
         'components/Field/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Field.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Field.ts', import.meta.url)
         ),
         'components/Heading/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Heading.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Heading.ts', import.meta.url)
         ),
         'components/Input/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Input.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Input.ts', import.meta.url)
         ),
         'components/Label/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Label.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Label.ts', import.meta.url)
         ),
         'components/Link/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Link.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Link.ts', import.meta.url)
         ),
         'components/Navbar/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Navbar.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Navbar.ts', import.meta.url)
+        ),
+        'components/Radio/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Radio.ts', import.meta.url)
         ),
         'components/Responsive/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Responsive.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Responsive.ts', import.meta.url)
         ),
         'components/Select/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Select.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Select.ts', import.meta.url)
         ),
         'components/Skeleton/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Skeleton.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Skeleton.ts', import.meta.url)
         ),
         'components/SkipLink/index': fileURLToPath(
-          new URL('./src/entrypoints/components/SkipLink.ts', import.meta.url),
+          new URL('./src/entrypoints/components/SkipLink.ts', import.meta.url)
         ),
         'components/Spinner/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Spinner.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Spinner.ts', import.meta.url)
         ),
         'components/Textarea/index': fileURLToPath(
-          new URL('./src/entrypoints/components/Textarea.ts', import.meta.url),
+          new URL('./src/entrypoints/components/Textarea.ts', import.meta.url)
         ),
         'components/ToggleSwitch/index': fileURLToPath(
-          new URL('./src/entrypoints/components/ToggleSwitch.ts', import.meta.url),
+          new URL(
+            './src/entrypoints/components/ToggleSwitch.ts',
+            import.meta.url
+          )
         ),
         'templates/index': fileURLToPath(
           new URL('./src/entrypoints/templates/index.ts', import.meta.url)
@@ -221,13 +230,19 @@ export default defineConfig({
           new URL('./src/entrypoints/templates/BlankShell.ts', import.meta.url)
         ),
         'templates/CenteredShell/index': fileURLToPath(
-          new URL('./src/entrypoints/templates/CenteredShell.ts', import.meta.url)
+          new URL(
+            './src/entrypoints/templates/CenteredShell.ts',
+            import.meta.url
+          )
         ),
         'templates/PageShell/index': fileURLToPath(
           new URL('./src/entrypoints/templates/PageShell.ts', import.meta.url)
         ),
         'templates/SplitPaneShell/index': fileURLToPath(
-          new URL('./src/entrypoints/templates/SplitPaneShell.ts', import.meta.url)
+          new URL(
+            './src/entrypoints/templates/SplitPaneShell.ts',
+            import.meta.url
+          )
         ),
         'icons/index': fileURLToPath(
           new URL('./src/entrypoints/icons.ts', import.meta.url)

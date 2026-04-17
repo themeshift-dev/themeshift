@@ -127,27 +127,36 @@ export type FieldProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
 export type FieldLabelProps = Omit<
   LabelHTMLAttributes<HTMLLabelElement>,
   'children' | 'htmlFor'
-> & {
-  /**
-   * Label text or custom label content.
-   */
-  children?: ReactNode;
+> &
+  Omit<HTMLAttributes<HTMLLegendElement>, 'children'> & {
+    /**
+     * Element to render for the label.
+     *
+     * Use `as="legend"` when labeling a grouped control rendered in a
+     * `<fieldset>`, such as `Radio.Group`.
+     */
+    as?: 'label' | 'legend';
 
-  /**
-   * Overrides optional indicator rendering.
-   */
-  showOptionalIndicator?: boolean;
+    /**
+     * Label text or custom label content.
+     */
+    children?: ReactNode;
 
-  /**
-   * Overrides required indicator rendering.
-   */
-  showRequiredIndicator?: boolean;
+    /**
+     * Overrides optional indicator rendering.
+     */
+    showOptionalIndicator?: boolean;
 
-  /**
-   * Visually hides label text while keeping it accessible.
-   */
-  visuallyHidden?: boolean;
-};
+    /**
+     * Overrides required indicator rendering.
+     */
+    showRequiredIndicator?: boolean;
+
+    /**
+     * Visually hides label text while keeping it accessible.
+     */
+    visuallyHidden?: boolean;
+  };
 
 /**
  * Props for field-aware helper text.

@@ -28,6 +28,13 @@
   gap: token('components.field.layout.labelGap');
 }
 
+.legend {
+  @include typography.style('body.strong');
+
+  color: token('theme.text.base');
+  padding: 0;
+}
+
 .requiredIndicator {
   color: token('components.field.indicator.required');
 }

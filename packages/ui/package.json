@@ -62,6 +62,10 @@
       "types": "./dist/components/Navbar/index.d.ts",
       "import": "./dist/components/Navbar/index.js"
     },
+    "./components/Radio": {
+      "types": "./dist/components/Radio/index.d.ts",
+      "import": "./dist/components/Radio/index.js"
+    },
     "./components/Responsive": {
       "types": "./dist/components/Responsive/index.d.ts",
       "import": "./dist/components/Responsive/index.js"
