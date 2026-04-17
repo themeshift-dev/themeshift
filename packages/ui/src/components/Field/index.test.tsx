@@ -53,6 +53,23 @@ describe('Field', () => {
     expect(screen.getByText('This username is taken.')).toBeInTheDocument();
   });
 
+  it('allows rendering Field.Label as a legend for grouped controls', () => {
+    render(
+      <Field required>
+        <fieldset>
+          <Field.Label as="legend">Preferred contact method</Field.Label>
+        </fieldset>
+      </Field>
+    );
+
+    const legend = screen
+      .getByText('Preferred contact method')
+      .closest('legend');
+
+    expect(legend).toBeInTheDocument();
+    expect(screen.getByText('*')).toBeInTheDocument();
+  });
+
   it('uses a stable custom id when provided', () => {
     render(
       <Field id="email-field" label="Email">

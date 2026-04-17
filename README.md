@@ -15,7 +15,7 @@ ThemeShift is now managed as a single monorepo so the Vite plugin, UI library, a
 ![Build](https://github.com/themeshift-dev/themeshift/actions/workflows/ci.yml/badge.svg)
 ![Coverage](https://codecov.io/gh/themeshift-dev/themeshift/graph/badge.svg?flag=ui)
 ![npm](https://img.shields.io/npm/v/@themeshift/ui)
-![Components](https://img.shields.io/badge/components-16-blue.svg)
+![Components](https://img.shields.io/badge/components-17-blue.svg)
 
 ## Workspace layout
 

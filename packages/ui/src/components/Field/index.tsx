@@ -29,6 +29,7 @@ const hasRenderableContent = (value: ReactNode) =>
   value !== null && value !== undefined;
 
 export const FieldLabel = ({
+  as = 'label',
   children,
   className,
   showOptionalIndicator,
@@ -48,7 +49,27 @@ export const FieldLabel = ({
     (!!fieldContext?.optional && !fieldContext?.required);
   const hidden = visuallyHidden ?? fieldContext?.hideLabel ?? false;
 
-  return (
+  return as === 'legend' ? (
+    <legend
+      {...labelProps}
+      className={classNames(
+        styles.legend,
+        styles.label,
+        hidden && styles.visuallyHidden,
+        className
+      )}
+      id={fieldContext?.labelId}
+    >
+      <span>{children}</span>
+      {isRequired ? (
+        <span aria-hidden="true" className={styles.requiredIndicator}>
+          *
+        </span>
+      ) : isOptional ? (
+        <span className={styles.optionalIndicator}>(optional)</span>
+      ) : null}
+    </legend>
+  ) : (
     <Label
       {...labelProps}
       className={classNames(

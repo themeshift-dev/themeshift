@@ -110,6 +110,32 @@ const AppRoutes = () => (
         />
       </Route>
 
+      <Route path="radio">
+        <Route index element={<ComponentGuides.RadiosGuide />} />
+        <Route
+          path="customize"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Radio"
+              componentPath="/components/radio"
+              description="Radio customization guidance will live here."
+              title="Customize"
+            />
+          }
+        />
+        <Route
+          path="playground"
+          element={
+            <ComponentSubpagePlaceholder
+              componentName="Radio"
+              componentPath="/components/radio"
+              description="An interactive Radio playground will live here."
+              title="Playground"
+            />
+          }
+        />
+      </Route>
+
       <Route path="error-message">
         <Route index element={<ComponentGuides.ErrorMessageGuide />} />
         <Route
