@@ -14,7 +14,7 @@ permissions:
   checks: write
   contents: read
   issues: write
-  pull-requests: read
+  pull-requests: write
   statuses: write
 
 jobs:
@@ -26,6 +26,25 @@ jobs:
       github.event.pull_request.head.repo.full_name != github.repository)
     runs-on: ubuntu-latest
     steps:
+      - name: Log workflow context
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.info(`event_name: ${context.eventName}`);
+            core.info(`repo: ${context.repo.owner}/${context.repo.repo}`);
+            core.info(`pr_number: ${context.payload.pull_request?.number ?? 'n/a'}`);
+            core.info(`base_ref: ${context.payload.pull_request?.base?.ref ?? 'n/a'}`);
+            core.info(`head_ref: ${context.payload.pull_request?.head?.ref ?? 'n/a'}`);
+            core.info(
+              `head_repo: ${context.payload.pull_request?.head?.repo?.full_name ?? 'n/a'}`
+            );
+            core.info(
+              `is_same_repo_pr: ${
+                context.payload.pull_request?.head?.repo?.full_name ===
+                `${context.repo.owner}/${context.repo.repo}`
+              }`
+            );
+
       - name: Detect component changes
         id: changed
         uses: actions/github-script@v7
