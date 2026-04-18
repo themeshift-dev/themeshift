@@ -16,7 +16,7 @@ on:
 
 jobs:
   conventions:
-    if: ${{ github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request' && (github.event.action != 'edited' || github.event.changes.title != null) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -40,6 +40,7 @@ jobs:
           PR_TITLE: ${{ github.event.pull_request.title }}
 
   validate:
+    if: ${{ github.event_name != 'pull_request' || github.event.action != 'edited' }}
     runs-on: ubuntu-latest
     steps:
       # Clone repository into the runner workspace

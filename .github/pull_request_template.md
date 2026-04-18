@@ -73,12 +73,10 @@ Use this checklist when creating or reviewing UI components in `packages/ui`.
 
 ## 8. Testing and Verification
 
-- [ ] Unit tests cover critical behavior and state transitions.
 - [ ] `jest-axe` coverage exists for representative states.
 - [ ] Manual keyboard test completed.
 - [ ] Manual screen reader smoke test completed (VoiceOver/NVDA/JAWS as available).
 - [ ] LTR and RTL visual behavior checked.
-- [ ] Typecheck and formatting pass for touched files.
 
 ## Follow-ups
 
