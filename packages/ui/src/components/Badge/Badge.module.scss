@@ -1,0 +1,298 @@
+@use '@/sass/mixins/accessibility';
+@use '@/sass/mixins/typography';
+
+.root {
+  @include accessibility.focusVisibleRing;
+
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: token('components.badge.sizes.medium.borderRadius');
+  display: inline-flex;
+  gap: token('components.badge.layout.iconGap');
+  justify-content: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+
+  &:visited {
+    color: inherit;
+  }
+}
+
+.root:where(button) {
+  appearance: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  margin: 0;
+  text-align: inherit;
+}
+
+.small {
+  @include typography.style('caption.default');
+
+  border-radius: token('components.badge.sizes.small.borderRadius');
+  min-height: token('components.badge.sizes.small.height');
+  padding-inline: token('components.badge.sizes.small.paddingInline');
+}
+
+.medium {
+  @include typography.scale(0);
+
+  border-radius: token('components.badge.sizes.medium.borderRadius');
+  min-height: token('components.badge.sizes.medium.height');
+  padding-inline: token('components.badge.sizes.medium.paddingInline');
+}
+
+.iconSlot,
+.label {
+  display: inline-flex;
+}
+
+.iconSlot {
+  line-height: 0;
+
+  > svg {
+    block-size: 1em;
+    inline-size: 1em;
+  }
+}
+
+.toneNeutralSoft {
+  background-color: token('components.badge.tones.neutral.soft.bg');
+  border-color: token('components.badge.tones.neutral.soft.border');
+  color: token('components.badge.tones.neutral.soft.fg');
+}
+
+.toneNeutralSolid {
+  background-color: token('components.badge.tones.neutral.solid.bg');
+  border-color: token('components.badge.tones.neutral.solid.border');
+  color: token('components.badge.tones.neutral.solid.fg');
+}
+
+.toneNeutralOutline {
+  background-color: token('components.badge.tones.neutral.outline.bg');
+  border-color: token('components.badge.tones.neutral.outline.border');
+  color: token('components.badge.tones.neutral.outline.fg');
+}
+
+.toneInfoSoft {
+  background-color: token('components.badge.tones.info.soft.bg');
+  border-color: token('components.badge.tones.info.soft.border');
+  color: token('components.badge.tones.info.soft.fg');
+}
+
+.toneInfoSolid {
+  background-color: token('components.badge.tones.info.solid.bg');
+  border-color: token('components.badge.tones.info.solid.border');
+  color: token('components.badge.tones.info.solid.fg');
+}
+
+.toneInfoOutline {
+  background-color: token('components.badge.tones.info.outline.bg');
+  border-color: token('components.badge.tones.info.outline.border');
+  color: token('components.badge.tones.info.outline.fg');
+}
+
+.toneSuccessSoft {
+  background-color: token('components.badge.tones.success.soft.bg');
+  border-color: token('components.badge.tones.success.soft.border');
+  color: token('components.badge.tones.success.soft.fg');
+}
+
+.toneSuccessSolid {
+  background-color: token('components.badge.tones.success.solid.bg');
+  border-color: token('components.badge.tones.success.solid.border');
+  color: token('components.badge.tones.success.solid.fg');
+}
+
+.toneSuccessOutline {
+  background-color: token('components.badge.tones.success.outline.bg');
+  border-color: token('components.badge.tones.success.outline.border');
+  color: token('components.badge.tones.success.outline.fg');
+}
+
+.toneWarningSoft {
+  background-color: token('components.badge.tones.warning.soft.bg');
+  border-color: token('components.badge.tones.warning.soft.border');
+  color: token('components.badge.tones.warning.soft.fg');
+}
+
+.toneWarningSolid {
+  background-color: token('components.badge.tones.warning.solid.bg');
+  border-color: token('components.badge.tones.warning.solid.border');
+  color: token('components.badge.tones.warning.solid.fg');
+}
+
+.toneWarningOutline {
+  background-color: token('components.badge.tones.warning.outline.bg');
+  border-color: token('components.badge.tones.warning.outline.border');
+  color: token('components.badge.tones.warning.outline.fg');
+}
+
+.toneDangerSoft {
+  background-color: token('components.badge.tones.danger.soft.bg');
+  border-color: token('components.badge.tones.danger.soft.border');
+  color: token('components.badge.tones.danger.soft.fg');
+}
+
+.toneDangerSolid {
+  background-color: token('components.badge.tones.danger.solid.bg');
+  border-color: token('components.badge.tones.danger.solid.border');
+  color: token('components.badge.tones.danger.solid.fg');
+}
+
+.toneDangerOutline {
+  background-color: token('components.badge.tones.danger.outline.bg');
+  border-color: token('components.badge.tones.danger.outline.border');
+  color: token('components.badge.tones.danger.outline.fg');
+}
+
+.colorGray {
+  background-color: token('components.badge.colors.gray.bg');
+  border-color: token('components.badge.colors.gray.border');
+  color: token('components.badge.colors.gray.fg');
+}
+
+.colorBlue {
+  background-color: token('components.badge.colors.blue.bg');
+  border-color: token('components.badge.colors.blue.border');
+  color: token('components.badge.colors.blue.fg');
+}
+
+.colorGreen {
+  background-color: token('components.badge.colors.green.bg');
+  border-color: token('components.badge.colors.green.border');
+  color: token('components.badge.colors.green.fg');
+}
+
+.colorYellow {
+  background-color: token('components.badge.colors.yellow.bg');
+  border-color: token('components.badge.colors.yellow.border');
+  color: token('components.badge.colors.yellow.fg');
+}
+
+.colorOrange {
+  background-color: token('components.badge.colors.orange.bg');
+  border-color: token('components.badge.colors.orange.border');
+  color: token('components.badge.colors.orange.fg');
+}
+
+.colorRed {
+  background-color: token('components.badge.colors.red.bg');
+  border-color: token('components.badge.colors.red.border');
+  color: token('components.badge.colors.red.fg');
+}
+
+.colorPink {
+  background-color: token('components.badge.colors.pink.bg');
+  border-color: token('components.badge.colors.pink.border');
+  color: token('components.badge.colors.pink.fg');
+}
+
+.colorPurple {
+  background-color: token('components.badge.colors.purple.bg');
+  border-color: token('components.badge.colors.purple.border');
+  color: token('components.badge.colors.purple.fg');
+}
+
+.countRoot {
+  @include typography.scale(0, semiBold);
+
+  display: inline-flex;
+}
+
+.anchored {
+  position: relative;
+}
+
+.anchor {
+  display: inline-flex;
+}
+
+.indicator {
+  align-items: center;
+  background-color: token('components.badge.count.bg');
+  border: 1px solid token('components.badge.count.border');
+  border-radius: token('components.badge.count.borderRadius');
+  color: token('components.badge.count.fg');
+  display: inline-flex;
+  font-variant-numeric: tabular-nums;
+  justify-content: center;
+  line-height: 1;
+  min-block-size: token('components.badge.count.minSize');
+  min-inline-size: token('components.badge.count.minSize');
+  padding-inline: token('components.badge.count.paddingInline');
+  text-align: center;
+}
+
+.numeric {
+  line-height: 1;
+}
+
+.textDot {
+  font-size: 1.1em;
+}
+
+.dot {
+  min-block-size: token('components.badge.count.dotSize');
+  min-inline-size: token('components.badge.count.dotSize');
+  padding-inline: 0;
+}
+
+.topStart .indicator,
+.topEnd .indicator,
+.bottomStart .indicator,
+.bottomEnd .indicator {
+  position: absolute;
+}
+
+.topStart .indicator {
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  transform: translate(-50%, -50%);
+}
+
+.topEnd .indicator {
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  transform: translate(50%, -50%);
+}
+
+.bottomStart .indicator {
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  transform: translate(-50%, 50%);
+}
+
+.bottomEnd .indicator {
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  transform: translate(50%, 50%);
+}
+
+:global([dir='rtl']) .topStart .indicator {
+  transform: translate(50%, -50%);
+}
+
+:global([dir='rtl']) .topEnd .indicator {
+  transform: translate(-50%, -50%);
+}
+
+:global([dir='rtl']) .bottomStart .indicator {
+  transform: translate(50%, 50%);
+}
+
+:global([dir='rtl']) .bottomEnd .indicator {
+  transform: translate(-50%, 50%);
+}
+
+.standalone {
+  align-items: center;
+  justify-content: center;
+}
+
+.inlineIndicator {
+  position: static;
+}

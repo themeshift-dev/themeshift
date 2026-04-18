@@ -724,7 +724,7 @@ function matchesApiReferenceOverride(item, match) {
 }
 
 function mergeTypes(currentType, nextType) {
-  const typeParts = [
+  let typeParts = [
     ...new Set(
       [...currentType.split('|'), ...nextType.split('|')]
         .map((typePart) => typePart.trim())
@@ -732,14 +732,18 @@ function mergeTypes(currentType, nextType) {
     ),
   ];
 
+  const nonNeverTypeParts = typeParts.filter(
+    (typePart) => typePart !== 'never'
+  );
+
+  if (nonNeverTypeParts.length > 0) {
+    typeParts = nonNeverTypeParts;
+  }
+
   if (typeParts.includes('boolean')) {
     return typeParts
       .filter((typePart) => typePart !== 'true' && typePart !== 'false')
       .join(' | ');
-  }
-
-  if (typeParts.includes('ReactNode')) {
-    return typeParts.filter((typePart) => typePart !== 'never').join(' | ');
   }
 
   return typeParts.join(' | ');
@@ -812,9 +816,18 @@ function formatType(typeNode, typeParameterMap) {
   }
 
   if (ts.isUnionTypeNode(typeNode)) {
-    return typeNode.types
+    const typeParts = typeNode.types
       .map((childTypeNode) => formatType(childTypeNode, typeParameterMap))
-      .join(' | ');
+      .filter(Boolean);
+    const nonNeverTypeParts = typeParts.filter(
+      (typePart) => typePart !== 'never'
+    );
+
+    if (nonNeverTypeParts.length === 0) {
+      return 'never';
+    }
+
+    return nonNeverTypeParts.join(' | ');
   }
 
   if (ts.isLiteralTypeNode(typeNode)) {

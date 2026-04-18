@@ -30,6 +30,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./components/Badge": {
+      "types": "./dist/components/Badge/index.d.ts",
+      "import": "./dist/components/Badge/index.js"
+    },
     "./components/Button": {
       "types": "./dist/components/Button/index.d.ts",
       "import": "./dist/components/Button/index.js"
@@ -102,6 +106,9 @@
       "types": "./dist/contexts/index.d.ts",
       "import": "./dist/contexts/index.js"
     },
+    "./css/base.css": "./dist/css/base.css",
+    "./css/fonts.css": "./dist/css/fonts.css",
+    "./css/tokens.css": "./dist/css/tokens.css",
     "./hooks": {
       "types": "./dist/hooks/index.d.ts",
       "import": "./dist/hooks/index.js"
@@ -114,9 +121,6 @@
       "types": "./dist/hooks/useForm/index.d.ts",
       "import": "./dist/hooks/useForm/index.js"
     },
-    "./css/base.css": "./dist/css/base.css",
-    "./css/fonts.css": "./dist/css/fonts.css",
-    "./css/tokens.css": "./dist/css/tokens.css",
     "./icons": {
       "types": "./dist/icons/index.d.ts",
       "import": "./dist/icons/index.js"
