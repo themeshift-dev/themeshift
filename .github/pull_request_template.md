@@ -1,84 +1,67 @@
-## Audit summary
+## Changes
 
-<!-- Add a short summary of what you audited. -->
-<!-- Set scope + status. For non-applicable checks, mark the checkbox as complete and append `N/A: <reason>`. -->
+<!-- What changed and why? Keep this short and concrete. -->
+
+## Release Impact
+
+- Breaking change: `yes` | `no`
+- If yes, migration notes:
+
+## Screenshots or Recordings
+
+<!-- Add before/after screenshots or a short video/GIF for visual/interaction changes. -->
+
+## How To Verify
+
+<!-- Commands run + manual smoke-test steps -->
+
+## Audit Summary
 
 - Scope: `<component(s)>`
 - Status: `Pass` | `Pass with follow-ups` | `Blocked`
 
 # Component Library Audit Checklist
 
-Use this checklist when creating or reviewing UI components in `packages/ui`.
+For deeper audits, use: [`COMPONENT_LIBRARY_AUDIT_CHECKLIST.md`](https://github.com/themeshift-dev/themeshift/blob/develop/COMPONENT_LIBRARY_AUDIT_CHECKLIST.md)
 
-## How to use this
+If an item is not applicable, check the box and append `N/A: <reason>`.
 
-- Run this checklist before merging component PRs.
-- Include a short audit summary in the PR description.
-- If an item is not applicable, check the box and add `N/A: <one-line reason>`.
+## 1. Accessibility Smoke Test
 
-## 1. Semantics and Structure
+- [ ] Keyboard-only flow works (focus order, visible focus, no trap).
+- [ ] Screen reader naming/context is correct for main interactions.
+- [ ] Visual accessibility basics pass (contrast and not color-only meaning).
+- [ ] RTL/LTR behavior is correct for any directional layout/placement.
 
-- [ ] Uses correct native element semantics before adding ARIA.
-- [ ] Interactive controls are real interactive elements (`button`, `a`, `input`, etc.).
-- [ ] No redundant or conflicting ARIA roles/attributes.
-- [ ] Decorative icons/ornaments are hidden from assistive tech (`aria-hidden="true"`).
-- [ ] Component can receive a clear accessible name when needed.
+## 2. Documentation Quality
 
-## 2. Keyboard and Focus
+- [ ] Public API docs were updated for behavioral/a11y changes.
+- [ ] Guide examples were updated for changed behavior.
+- [ ] At least one example shows accessible usage for this change.
+- [ ] Direction usage is documented when start/end behavior exists.
 
-- [ ] Full functionality is available with keyboard only.
-- [ ] Tab order follows visual and logical reading order.
-- [ ] Focus is always visible and has sufficient contrast.
-- [ ] No keyboard trap.
-- [ ] `disabled`, `readOnly`, and other non-interactive states are correctly enforced.
+## 3. Test Coverage
 
-## 3. Screen Reader Behavior
+- [ ] Unit tests cover core behavior and critical edge/state transitions.
+- [ ] `jest-axe` coverage exists for representative rendered states.
+- [ ] Manual smoke test completed for changed UX paths.
+- [ ] Typecheck + format pass for touched files.
 
-- [ ] Labels, descriptions, errors, and hints are announced correctly.
-- [ ] State changes are announced appropriately (`aria-live` only when needed).
-- [ ] Dynamic content does not cause noisy/redundant announcements.
-- [ ] Numeric/status indicators include context (for example: "Notifications, 3 unread").
-- [ ] Decorative counters/badges are hidden from AT when parent already announces context.
+## 4. Risk and Follow-ups
 
-## 4. RTL, LTR, and Internationalization
+- [ ] Breaking changes are documented (or `N/A: none`).
+- [ ] Any known gaps are tracked with a follow-up item.
+- [ ] PR description includes clear rollback/mitigation notes when needed.
+- [ ] Reviewer focus areas are called out explicitly.
 
-- [ ] Uses logical CSS properties (`margin-inline`, `padding-inline`, `inset-inline`, etc.).
-- [ ] Start/end placement behaves correctly in both `dir="ltr"` and `dir="rtl"`.
-- [ ] No hardcoded left/right positioning unless intentionally direction-agnostic.
-- [ ] Works with long translated strings (no critical overflow or clipping).
-- [ ] Handles mixed-direction content without broken layout.
+## Optional Reviewer Notes
 
-## 5. Visual Accessibility
-
-- [ ] Text and UI color contrast meets WCAG expectations for component usage.
-- [ ] Information is not conveyed by color alone.
-- [ ] Touch/mouse targets are large enough for intended usage.
-- [ ] Component remains usable at 200%+ zoom and in narrow viewports.
-- [ ] Supports high-contrast / forced-colors mode where relevant.
-
-## 6. Motion and Sensory Considerations
-
-- [ ] Animations are not required to understand state.
-- [ ] Honors `prefers-reduced-motion` where motion exists.
-- [ ] No flashing/strobing behavior.
-- [ ] Loading/skeleton behavior does not create confusion for assistive tech.
-
-## 7. API and Documentation Quality
-
-- [ ] API docs explain accessibility expectations and pitfalls.
-- [ ] Guide includes at least one accessible usage example.
-- [ ] Guide includes direction-aware example (LTR/RTL) when layout/placement is directional.
-- [ ] Docs clarify when to use `aria-label`, `aria-labelledby`, `aria-hidden`, and `aria-live`.
-- [ ] Examples avoid anti-patterns (placeholder-only labels, contextless numbers, etc.).
-
-## 8. Testing and Verification
-
-- [ ] `jest-axe` coverage exists for representative states.
-- [ ] Manual keyboard test completed.
-- [ ] Manual screen reader smoke test completed (VoiceOver/NVDA/JAWS as available).
-- [ ] LTR and RTL visual behavior checked.
-
-## Follow-ups
-
-1. `<item or N/A>`
-2. `<item or N/A>`
+- Reviewer focus:
+  - `<highest-risk area>`
+  - `<second-risk area>`
+- Out of scope:
+  - `<explicitly not covered in this PR>`
+- Performance impact:
+- Browser/device edge cases:
+- Localization nuances:
+- Additional follow-up tickets:
