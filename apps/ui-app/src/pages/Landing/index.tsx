@@ -5,8 +5,8 @@ import { type ElementType, type ReactNode } from 'react';
 import {
   FaBookOpen,
   FaCode,
+  FaGlobe,
   FaGithub,
-  FaPalette,
   FaRegCheckCircle,
   FaStar,
   FaTree,
@@ -33,7 +33,52 @@ type FeatureCard = {
   title: string;
 };
 
-const FEATURE_CARDS: FeatureCard[] = [
+type WhyItem = {
+  body: string;
+  title: string;
+};
+
+const WHY_ITEMS: WhyItem[] = [
+  {
+    body: 'Keyboard behavior, focus states, and ARIA patterns are built in so you ship usable interfaces from day one.',
+    title: 'Accessibility First',
+  },
+  {
+    body: 'Components are designed for both LTR and RTL layouts, so internationalization does not require rewrites later.',
+    title: 'Global by Default',
+  },
+  {
+    body: 'Guides, examples, and API references are written to answer implementation questions quickly.',
+    title: 'Docs You Can Trust',
+  },
+];
+
+const ACCESSIBILITY_BULLETS = [
+  'Keyboard interactions and focus management are part of core component behavior.',
+  'ARIA guidance is documented alongside component usage.',
+  'Patterns are backed by representative accessibility tests in-repo.',
+  'Built to reduce regressions when teams move fast.',
+];
+
+const CORE_FEATURES: FeatureCard[] = [
+  {
+    body: 'Patterns prioritize keyboard support, semantic structure, and practical accessibility defaults.',
+    icon: <IoAccessibility aria-hidden />,
+    title: 'Accessibility-First Components',
+  },
+  {
+    body: 'Use the same component APIs across left-to-right and right-to-left interfaces without rebuilding layouts.',
+    icon: <FaGlobe aria-hidden />,
+    title: 'LTR + RTL Support',
+  },
+  {
+    body: 'Component guides combine examples, API references, and usage guidance that hold up in production work.',
+    icon: <FaBookOpen aria-hidden />,
+    title: 'Documentation That Delivers',
+  },
+];
+
+const FOUNDATION_FEATURES: FeatureCard[] = [
   {
     body: 'Typed component and hook APIs designed for TypeScript-first React apps.',
     icon: <FaCode aria-hidden />,
@@ -45,24 +90,9 @@ const FEATURE_CARDS: FeatureCard[] = [
     title: 'Tree-Shakable',
   },
   {
-    body: 'Build your own look with design tokens and theme-aware CSS variables.',
-    icon: <FaPalette aria-hidden />,
-    title: 'Token-Driven Customization',
-  },
-  {
-    body: 'Component guides include examples, API tables, and accessibility guidance.',
-    icon: <FaBookOpen aria-hidden />,
-    title: 'Well Documented',
-  },
-  {
-    body: 'Open source under MIT with contribution-friendly workflows in public.',
+    body: 'MIT licensed and built in public with contribution-friendly workflows.',
     icon: <FaGithub aria-hidden />,
     title: 'Open Source',
-  },
-  {
-    body: 'Representative accessibility tests and focus patterns are built into the repo.',
-    icon: <IoAccessibility aria-hidden />,
-    title: 'Accessibility-Minded',
   },
 ];
 
@@ -71,6 +101,13 @@ type OssAction = {
   icon: ElementType;
   label: string;
 };
+
+const TRUST_SIGNALS = [
+  '{componentsCount} production-ready components',
+  '{hooksCount} reusable hooks',
+  'MIT licensed and free to use',
+  'Actively developed in public (issues + PRs open)',
+];
 
 const OSS_ACTIONS: OssAction[] = [
   {
@@ -92,29 +129,33 @@ const OSS_ACTIONS: OssAction[] = [
 
 export const Landing = () => {
   const { components, hooks } = useApiReference();
+  const trustSignals = TRUST_SIGNALS.map((signal) =>
+    signal
+      .replace('{componentsCount}', String(components.length))
+      .replace('{hooksCount}', String(hooks.length))
+  );
 
   return (
     <main aria-label="ThemeShift UI home" className={styles.main}>
       <section aria-labelledby="landing-hero-title" className={styles.hero}>
         <p className={styles.eyebrow}>ThemeShift UI</p>
         <Heading className={styles.heroTitle} level={1}>
-          Build React interfaces faster with thoughtful defaults.
+          Build accessible, global-ready React apps without fighting your UI
+          kit.
         </Heading>
         <p className={styles.heroLead}>
-          We&apos;ve got the pieces you need to start building your app: typed
-          components, clear docs, and design-token customization you can
-          actually grow with.
+          ThemeShift ships production-ready components with accessibility built
+          in, first-class LTR/RTL support, and docs developers can trust when
+          deadlines are real.
         </p>
 
         <div className={styles.heroActions}>
-          <Button asChild intent="tertiary">
-            <NavLink to={PRIMARY_DOCS_ROUTE}>Explore the docs</NavLink>
+          <Button asChild>
+            <NavLink to={PRIMARY_DOCS_ROUTE}>Start Building</NavLink>
           </Button>
 
           <Button asChild intent="tertiary">
-            <a href={GITHUB_REPO_URL} rel="noreferrer" target="_blank">
-              View on GitHub
-            </a>
+            <NavLink to={PRIMARY_DOCS_ROUTE}>Explore docs</NavLink>
           </Button>
         </div>
 
@@ -131,21 +172,75 @@ export const Landing = () => {
         </div>
       </section>
 
+      <section aria-labelledby="landing-why-title" className={styles.section}>
+        <Heading id="landing-why-title" level={2}>
+          Why ThemeShift?
+        </Heading>
+
+        <div className={styles.whyGrid}>
+          {WHY_ITEMS.map((item) => (
+            <article className={styles.whyCard} key={item.title}>
+              <Heading className={styles.cardTitle} level={3}>
+                {item.title}
+              </Heading>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="landing-accessibility-title"
+        className={`${styles.section} ${styles.accessibilitySection}`}
+      >
+        <Heading id="landing-accessibility-title" level={2}>
+          Accessibility You Can Ship With Confidence
+        </Heading>
+        <p className={styles.sectionLead}>
+          Accessible behavior is treated as shipping quality, not a cleanup
+          task.
+        </p>
+
+        <ul className={styles.accessibilityList}>
+          {ACCESSIBILITY_BULLETS.map((bullet) => (
+            <li key={bullet}>{bullet}</li>
+          ))}
+        </ul>
+      </section>
+
       <section
         aria-labelledby="landing-features-title"
         className={styles.section}
       >
         <Heading id="landing-features-title" level={2}>
-          Features
+          Features for Production Teams
         </Heading>
+        <p className={styles.sectionLead}>
+          Start with the differences that matter most, then rely on the
+          foundations you already expect.
+        </p>
 
         <div className={styles.featureGrid}>
-          {FEATURE_CARDS.map((feature) => (
+          {CORE_FEATURES.map((feature) => (
             <article className={styles.featureCard} key={feature.title}>
               <div className={styles.featureIcon} aria-hidden>
                 {feature.icon}
               </div>
               <Heading className={styles.cardTitle} level={3}>
+                {feature.title}
+              </Heading>
+              <p>{feature.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.foundationRow}>
+          {FOUNDATION_FEATURES.map((feature) => (
+            <article className={styles.foundationFeature} key={feature.title}>
+              <div className={styles.featureIcon} aria-hidden>
+                {feature.icon}
+              </div>
+              <Heading className={styles.foundationTitle} level={3}>
                 {feature.title}
               </Heading>
               <p>{feature.body}</p>
@@ -206,6 +301,28 @@ export const Landing = () => {
       </section>
 
       <section
+        aria-labelledby="landing-trust-title"
+        className={`${styles.section} ${styles.centerSection} ${styles.withDivider}`}
+      >
+        <Heading id="landing-trust-title" level={2}>
+          Built in the Open, Ready for Real Projects
+        </Heading>
+        <ul className={styles.trustSignals}>
+          {trustSignals.map((signal) => (
+            <li key={signal}>{signal}</li>
+          ))}
+        </ul>
+
+        <div className={styles.actionsRow}>
+          <Button asChild intent="tertiary">
+            <a href={GITHUB_REPO_URL} rel="noreferrer" target="_blank">
+              View activity on GitHub
+            </a>
+          </Button>
+        </div>
+      </section>
+
+      <section
         aria-labelledby="landing-pricing-title"
         className={`${styles.section} ${styles.centerSection} ${styles.withDivider}`}
       >
@@ -213,8 +330,8 @@ export const Landing = () => {
           Pricing
         </Heading>
         <p className={styles.centerLead}>
-          Just kidding. ThemeShift UI is free and open source. If it helps your
-          team, there are a few great ways to support it.
+          Just kidding. ThemeShift UI is free and open source. No tiers, no seat
+          limits, no lock-in, use it however your team ships best.
         </p>
 
         <div className={styles.actionsRow}>
