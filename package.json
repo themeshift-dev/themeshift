@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build-storybook": "turbo run build-storybook --filter=@themeshift/ui",
+    "build:audit": "pnpm -C packages/ui run build:audit",
     "build:ui-app": "turbo run build --filter=@themeshift/ui-app...",
     "build:ui": "turbo run build --filter=@themeshift/ui...",
     "build": "turbo run build",

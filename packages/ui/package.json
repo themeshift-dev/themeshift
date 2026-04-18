@@ -190,22 +190,23 @@
     "./tokens/*": "./dist/tokens/*"
   },
   "scripts": {
-    "dev": "vite",
     "build": "pnpm run build:components",
     "build:app": "vite build",
+    "build:audit": "pnpm run build:components -- --silent && node scripts/build-audit.mjs",
     "build:components": "node scripts/build.mjs",
+    "build-storybook": "storybook build",
+    "dev": "vite",
+    "lint": "eslint .",
     "make:component": "node scripts/maker/index.mjs component",
     "make:icon": "node scripts/maker/index.mjs icon",
     "make:tokens": "node scripts/maker/index.mjs tokens",
-    "test": "vitest run --config vitest.unit.config.ts",
-    "test:watch": "vitest --config vitest.unit.config.ts",
-    "test:coverage": "vitest run --coverage --config vitest.unit.config.ts",
-    "test:storybook": "vitest run --config vitest.config.ts --project storybook",
-    "lint": "eslint .",
-    "typecheck": "tsc -p tsconfig.build.json --pretty false --noEmit",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "test": "vitest run --config vitest.unit.config.ts",
+    "test:coverage": "vitest run --coverage --config vitest.unit.config.ts",
+    "test:storybook": "vitest run --config vitest.config.ts --project storybook",
+    "test:watch": "vitest --config vitest.unit.config.ts",
+    "typecheck": "tsc -p tsconfig.build.json --pretty false --noEmit"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",

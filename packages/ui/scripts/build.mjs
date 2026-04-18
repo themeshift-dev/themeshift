@@ -14,19 +14,42 @@ const interDir = path.join(
   '@fontsource-variable',
   'inter'
 );
+const isSilent = process.argv.includes('--silent');
 
 async function run(command, args) {
   await new Promise((resolve, reject) => {
+    let stdout = '';
+    let stderr = '';
     const child = spawn(command, args, {
       cwd: rootDir,
-      stdio: 'inherit',
+      stdio: isSilent ? 'pipe' : 'inherit',
       shell: process.platform === 'win32',
     });
+
+    if (isSilent) {
+      child.stdout?.setEncoding('utf8');
+      child.stderr?.setEncoding('utf8');
+      child.stdout?.on('data', (chunk) => {
+        stdout += chunk;
+      });
+      child.stderr?.on('data', (chunk) => {
+        stderr += chunk;
+      });
+    }
 
     child.on('exit', (code) => {
       if (code === 0) {
         resolve();
         return;
+      }
+
+      if (isSilent) {
+        if (stdout) {
+          process.stdout.write(stdout);
+        }
+        if (stderr) {
+          process.stderr.write(stderr);
+        }
       }
 
       reject(
@@ -106,13 +129,19 @@ async function removeNonPublishedArtifacts() {
 
 await rm(distDir, { recursive: true, force: true });
 
-await run('pnpm', [
+const viteArgs = [
   'exec',
   'vite',
   'build',
   '--config',
   'vite.config.components.ts',
-]);
+];
+
+if (isSilent) {
+  viteArgs.push('--logLevel', 'silent');
+}
+
+await run('pnpm', viteArgs);
 await run('pnpm', ['exec', 'tsc', '-p', 'tsconfig.build.json']);
 await removeNonPublishedArtifacts();
 await compileBaseCss();
