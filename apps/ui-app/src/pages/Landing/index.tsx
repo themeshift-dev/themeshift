@@ -276,14 +276,16 @@ export const Landing = () => {
         </p>
 
         <div className={styles.componentGrid}>
-          {COMPONENT_PREVIEWS.map((item) => (
+          {COMPONENT_PREVIEWS.map(({ label, Preview }) => (
             <article
-              aria-label={item.label}
+              aria-label={label}
               className={styles.componentPreviewCard}
-              key={item.label}
+              key={label}
             >
-              <span className={styles.srOnly}>{item.label}</span>
-              <div className={styles.previewBody}>{item.preview}</div>
+              <span className={styles.srOnly}>{label}</span>
+              <div className={styles.previewBody}>
+                <Preview />
+              </div>
             </article>
           ))}
         </div>

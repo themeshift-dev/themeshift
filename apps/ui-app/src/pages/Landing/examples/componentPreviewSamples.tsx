@@ -4,46 +4,11 @@ import { Input } from '@themeshift/ui/components/Input';
 import { Select } from '@themeshift/ui/components/Select';
 import { Skeleton } from '@themeshift/ui/components/Skeleton';
 import { ToggleSwitch } from '@themeshift/ui/components/ToggleSwitch';
-import { type ReactNode, useState } from 'react';
+import { useState } from 'react';
 
 import styles from './componentPreviews.module.scss';
 
-type ComponentPreview = {
-  label: string;
-  preview: ReactNode;
-};
-
-const ComponentsPaymentPreview = () => (
-  <div className={styles.previewStack}>
-    <Input aria-label="Cardholder name" placeholder="Name on card" />
-    <Input aria-label="Card number" placeholder="Card number" />
-    <div className={styles.previewSplit}>
-      <Select aria-label="Month" defaultValue="" placeholder="MM" />
-      <Input aria-label="Year" placeholder="YYYY" />
-    </div>
-    <Button size="small">Submit payment</Button>
-  </div>
-);
-
-const ComponentsTeamPreview = () => (
-  <div className={styles.previewStack}>
-    <div className={styles.badgeRow}>
-      <Badge tone="success" variant="soft">
-        Synced
-      </Badge>
-      <Badge tone="info" variant="outline">
-        Active
-      </Badge>
-      <Badge.Count count={3} max={99} />
-    </div>
-    <Input aria-label="Invite member" placeholder="Send an invite..." />
-    <Button intent="secondary" size="small">
-      Invite members
-    </Button>
-  </div>
-);
-
-const ComponentsAuthPreview = () => (
+export const ComponentsAuthPreview = () => (
   <div className={styles.previewStack}>
     <div className={styles.previewInlineBetween}>
       <span>Two-factor authentication</span>
@@ -61,7 +26,32 @@ const ComponentsAuthPreview = () => (
   </div>
 );
 
-const ComponentsSurveyPreview = () => (
+export const ComponentsLoadingPreview = () => (
+  <div className={styles.previewStack}>
+    <div className={styles.skeletonRow}>
+      <Skeleton.Avatar animation="shimmer" aria-hidden size="2.75rem" />
+      <div className={styles.skeletonText}>
+        <Skeleton aria-hidden animation="shimmer" height="1rem" width="90%" />
+        <Skeleton aria-hidden animation="shimmer" height="1rem" width="60%" />
+      </div>
+    </div>
+    <Skeleton aria-hidden animation="shimmer" height="2.25rem" width="100%" />
+  </div>
+);
+
+export const ComponentsPaymentPreview = () => (
+  <div className={styles.previewStack}>
+    <Input aria-label="Cardholder name" placeholder="Name on card" />
+    <Input aria-label="Card number" placeholder="Card number" />
+    <div className={styles.previewSplit}>
+      <Select aria-label="Month" defaultValue="" placeholder="MM" />
+      <Input aria-label="Year" placeholder="YYYY" />
+    </div>
+    <Button size="small">Submit payment</Button>
+  </div>
+);
+
+export const ComponentsSurveyPreview = () => (
   <div className={styles.previewStack}>
     <div className={styles.badgeRow}>
       <Badge tone="info" variant="outline">
@@ -87,7 +77,25 @@ const ComponentsSurveyPreview = () => (
   </div>
 );
 
-const ComponentsTogglePreview = () => {
+export const ComponentsTeamPreview = () => (
+  <div className={styles.previewStack}>
+    <div className={styles.badgeRow}>
+      <Badge tone="success" variant="soft">
+        Synced
+      </Badge>
+      <Badge tone="info" variant="outline">
+        Active
+      </Badge>
+      <Badge.Count count={3} max={99} />
+    </div>
+    <Input aria-label="Invite member" placeholder="Send an invite..." />
+    <Button intent="secondary" size="small">
+      Invite members
+    </Button>
+  </div>
+);
+
+export const ComponentsTogglePreview = () => {
   const [alertsEnabled, setAlertsEnabled] = useState(true);
   const [statusEnabled, setStatusEnabled] = useState(false);
 
@@ -115,31 +123,3 @@ const ComponentsTogglePreview = () => {
     </div>
   );
 };
-
-const ComponentsLoadingPreview = () => (
-  <div className={styles.previewStack}>
-    <div className={styles.skeletonRow}>
-      <Skeleton.Avatar animation="shimmer" aria-hidden size="2.75rem" />
-      <div className={styles.skeletonText}>
-        <Skeleton aria-hidden animation="shimmer" height="1rem" width="90%" />
-        <Skeleton aria-hidden animation="shimmer" height="1rem" width="60%" />
-      </div>
-    </div>
-    <Skeleton aria-hidden animation="shimmer" height="2.25rem" width="100%" />
-  </div>
-);
-
-export const COMPONENT_PREVIEWS: ComponentPreview[] = [
-  { label: 'Payment form example', preview: <ComponentsPaymentPreview /> },
-  { label: 'Team collaboration example', preview: <ComponentsTeamPreview /> },
-  {
-    label: 'Authentication settings example',
-    preview: <ComponentsAuthPreview />,
-  },
-  { label: 'Survey input example', preview: <ComponentsSurveyPreview /> },
-  {
-    label: 'Preferences toggles example',
-    preview: <ComponentsTogglePreview />,
-  },
-  { label: 'Loading states example', preview: <ComponentsLoadingPreview /> },
-];
