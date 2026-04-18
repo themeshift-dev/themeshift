@@ -50,6 +50,13 @@ pnpm typecheck
 - `apps/ui-app` is configured to build from the monorepo root with `pnpm turbo run build --filter=@themeshift/ui-app...`.
 - `@themeshift/ui` publishes fonts separately via `@themeshift/ui/css/fonts.css` so consumers can opt into the default Noto Sans assets or provide their own fonts.
 
+## Open a PR
+
+- Feature PR to `develop` (replace `YOUR_BRANCH`):  
+  https://github.com/themeshift-dev/themeshift/compare/develop...YOUR_BRANCH?expand=1&template=feature.md
+- Release PR `develop` -> `main`:  
+  https://github.com/themeshift-dev/themeshift/compare/main...develop?expand=1&template=release.md
+
 ## README strategy
 
 - Keep this root README focused on repository structure and contributor workflows.

@@ -1,0 +1,74 @@
+name: PR release checklist
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  checks: write
+  contents: read
+  pull-requests: read
+  statuses: write
+
+jobs:
+  release-checklist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Detect develop to main release PR
+        id: release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const baseRef = context.payload.pull_request?.base?.ref;
+            const headRef = context.payload.pull_request?.head?.ref;
+            const isReleaseMerge = baseRef === 'main' && headRef === 'develop';
+
+            core.setOutput('is_release_merge', isReleaseMerge ? 'true' : 'false');
+            core.info(`Release PR (develop -> main): ${isReleaseMerge}`);
+
+      - name: Check release task list
+        if: steps.release.outputs.is_release_merge == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.pull_request?.body ?? '';
+            const sectionHeader = '# Release Checklist';
+            const sectionStart = body.indexOf(sectionHeader);
+
+            if (sectionStart === -1) {
+              core.setFailed('Missing "Release Checklist" section in PR body.');
+              return;
+            }
+
+            const checklistSection = body.slice(sectionStart);
+            const taskLines = [
+              ...checklistSection.matchAll(/^\s*-\s*\[( |x|X)\]\s+(.+)$/gm),
+            ];
+
+            if (taskLines.length === 0) {
+              core.setFailed(
+                'No checklist task items found under "Release Checklist".'
+              );
+              return;
+            }
+
+            const unchecked = taskLines
+              .filter(([, state]) => state === ' ')
+              .map(([, , label]) => label.trim());
+
+            if (unchecked.length > 0) {
+              core.setFailed(
+                `Release checklist has ${unchecked.length} unchecked item(s):\n- ${unchecked.join('\n- ')}`
+              );
+              return;
+            }
+
+            core.info(
+              `Release checklist validation passed with ${taskLines.length} checked item(s).`
+            );
+
+      - name: Skip checklist when PR is not develop to main
+        if: steps.release.outputs.is_release_merge != 'true'
+        run: echo "PR does not target a develop -> main release merge; skipping release checklist enforcement."
