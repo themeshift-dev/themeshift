@@ -22,7 +22,7 @@ export const ComponentsAuthPreview = () => (
         View
       </Button>
     </div>
-    <Input aria-label="Domain" placeholder="https://" />
+    <Input aria-label="Domain" startAdornment="https://" />
   </div>
 );
 

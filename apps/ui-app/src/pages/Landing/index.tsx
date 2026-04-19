@@ -1,5 +1,6 @@
 import { Badge } from '@themeshift/ui/components/Badge';
 import { Button } from '@themeshift/ui/components/Button';
+import { Card } from '@themeshift/ui/components/Card';
 import { Heading } from '@themeshift/ui/components/Heading';
 import { type ElementType, type ReactNode } from 'react';
 import {
@@ -277,16 +278,21 @@ export const Landing = () => {
 
         <div className={styles.componentGrid}>
           {COMPONENT_PREVIEWS.map(({ label, Preview }) => (
-            <article
+            <Card
+              as="article"
               aria-label={label}
               className={styles.componentPreviewCard}
               key={label}
+              padding="small"
+              radius="small"
+              surface="elevated"
+              border={false}
             >
               <span className={styles.srOnly}>{label}</span>
               <div className={styles.previewBody}>
                 <Preview />
               </div>
-            </article>
+            </Card>
           ))}
         </div>
 

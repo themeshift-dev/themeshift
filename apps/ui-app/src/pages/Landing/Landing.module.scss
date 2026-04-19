@@ -232,12 +232,9 @@
 }
 
 .componentPreviewCard {
-  background: token('theme.surface.base');
-  border: 1px solid token('theme.border');
-  border-radius: token('radius.small');
+  align-items: stretch;
   min-height: 14rem;
   overflow: hidden;
-  padding: 0.9rem;
   position: relative;
 
   &:nth-child(1),
@@ -265,6 +262,7 @@
   min-height: 12.25rem;
   padding: 0.85rem;
   position: relative;
+  width: 100%;
   z-index: 1;
 }
 
