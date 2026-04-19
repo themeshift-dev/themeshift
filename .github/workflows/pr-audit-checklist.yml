@@ -113,8 +113,6 @@ jobs:
               marker,
               '# Component Library Audit Checklist',
               '',
-              '---',
-              '',
               '_This PR includes changes to component files. Please complete the audit checklist before merging._',
               '',
               'Audit Checklist',
