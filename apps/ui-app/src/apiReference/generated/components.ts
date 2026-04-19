@@ -859,6 +859,136 @@ export const components = [
     type: 'component',
   },
   {
+    apiReference: [
+      {
+        comments:
+          'Accessible name for icon-only copy buttons.\n\nYou can pass a string or derive the label from the current copied state.',
+        defaultValue: null,
+        displayName: 'CopyButton',
+        propName: 'aria-label',
+        type: 'CopyButtonDynamicValue',
+        values: [],
+      },
+      {
+        comments:
+          'Label content shown inside the button.\n\nYou can pass static content or derive it from the current copied state.',
+        defaultValue: null,
+        displayName: 'CopyButton',
+        propName: 'children',
+        type: 'CopyButtonDynamicValue',
+        values: [],
+      },
+      {
+        comments:
+          'Time in milliseconds before the copied state clears.\n\nThis maps to `useCopyToClipboard({ clearDelay })`.',
+        defaultValue: 2000,
+        displayName: 'CopyButton',
+        propName: 'clearDelay',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments:
+          'Message shown after a successful copy when no custom children resolver is provided.',
+        defaultValue: null,
+        displayName: 'CopyButton',
+        propName: 'confirmationMessage',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments:
+          'Icon content shown after the button label.\n\nYou can pass static content or derive it from the current copied state.',
+        defaultValue: null,
+        displayName: 'CopyButton',
+        propName: 'endIcon',
+        type: 'CopyButtonDynamicValue',
+        values: [],
+      },
+      {
+        comments:
+          'Message shown after a failed copy attempt when no custom children resolver is provided.',
+        defaultValue: null,
+        displayName: 'CopyButton',
+        propName: 'errorMessage',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments:
+          'Icon-only content for the button.\n\nYou can pass static content or derive it from the current copied state.',
+        defaultValue: null,
+        displayName: 'CopyButton',
+        propName: 'icon',
+        type: 'CopyButtonDynamicValue',
+        values: [],
+      },
+      {
+        comments: 'Called when a copy attempt fails.',
+        defaultValue: null,
+        displayName: 'CopyButton',
+        propName: 'onCopyError',
+        type: '(error: unknown, value: string) => void',
+        values: [],
+      },
+      {
+        comments: 'Called when a copy attempt succeeds.',
+        defaultValue: null,
+        displayName: 'CopyButton',
+        propName: 'onCopySuccess',
+        type: '(value: string) => void',
+        values: [],
+      },
+      {
+        comments:
+          'Icon content shown before the button label.\n\nYou can pass static content or derive it from the current copied state.',
+        defaultValue: null,
+        displayName: 'CopyButton',
+        propName: 'startIcon',
+        type: 'CopyButtonDynamicValue',
+        values: [],
+      },
+      {
+        comments:
+          'Title attribute value shown on hover in supporting browsers.\n\nYou can pass a string or derive it from the current copied state.',
+        defaultValue: null,
+        displayName: 'CopyButton',
+        propName: 'title',
+        type: 'CopyButtonDynamicValue',
+        values: [],
+      },
+      {
+        comments: 'Text value written to the clipboard.',
+        defaultValue: null,
+        displayName: 'CopyButton',
+        propName: 'value',
+        type: 'string',
+        values: [],
+      },
+    ],
+    name: 'CopyButton',
+    exportName: 'CopyButton',
+    importPath: '@themeshift/ui/components/CopyButton',
+    importString:
+      "import { CopyButton } from '@themeshift/ui/components/CopyButton';",
+    meta: {
+      category: 'actions',
+      description:
+        'Combines Button and useCopyToClipboard for quick copy interactions with stateful feedback.',
+      tags: ['clipboard', 'copy', 'button'],
+      order: 11,
+      status: 'stable',
+      featured: true,
+      related: ['Button', 'Link', 'Spinner'],
+      type: 'component',
+    },
+    slug: 'copybutton',
+    routeSlug: 'copy-button',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/CopyButton',
+    type: 'component',
+  },
+  {
     apiReference: [],
     name: 'ErrorMessage',
     exportName: 'ErrorMessage',
@@ -1461,6 +1591,130 @@ export const components = [
     routeSlug: 'responsive',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Responsive',
+    type: 'component',
+  },
+  {
+    apiReference: [
+      {
+        comments:
+          'Toggles progress countdown announcements for assistive tech.',
+        defaultValue: false,
+        displayName: 'SafetyButton',
+        propName: 'announceProgress',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Accessible name for icon-only safety buttons.',
+        defaultValue: null,
+        displayName: 'SafetyButton',
+        propName: 'aria-label',
+        type: 'SafetyButtonDynamicValue',
+        values: [],
+      },
+      {
+        comments: 'Label content shown inside the button.',
+        defaultValue: null,
+        displayName: 'SafetyButton',
+        propName: 'children',
+        type: 'SafetyButtonDynamicValue',
+        values: [],
+      },
+      {
+        comments: 'Duration in milliseconds required before confirming.',
+        defaultValue: 2500,
+        displayName: 'SafetyButton',
+        propName: 'confirmationDelay',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Icon content shown after the button label.',
+        defaultValue: null,
+        displayName: 'SafetyButton',
+        propName: 'endIcon',
+        type: 'SafetyButtonDynamicValue',
+        values: [],
+      },
+      {
+        comments: 'Icon-only content for the button.',
+        defaultValue: null,
+        displayName: 'SafetyButton',
+        propName: 'icon',
+        type: 'SafetyButtonDynamicValue',
+        values: [],
+      },
+      {
+        comments: 'Called when a hold attempt starts.',
+        defaultValue: null,
+        displayName: 'SafetyButton',
+        propName: 'onAttemptStart',
+        type: '(event: PointerEvent | KeyboardEvent) => void',
+        values: [],
+      },
+      {
+        comments:
+          'Called when an active hold is interrupted before confirmation.',
+        defaultValue: null,
+        displayName: 'SafetyButton',
+        propName: 'onCancel',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments: 'Called when the hold duration completes.',
+        defaultValue: null,
+        displayName: 'SafetyButton',
+        propName: 'onConfirm',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments:
+          'Called with progress updates while pressing, then `undefined` when idle.',
+        defaultValue: null,
+        displayName: 'SafetyButton',
+        propName: 'onProgress',
+        type: '(progress?: number, timeRemaining?: number) => void',
+        values: [],
+      },
+      {
+        comments:
+          'Announcement interval for screen readers when `announceProgress` is true.',
+        defaultValue: null,
+        displayName: 'SafetyButton',
+        propName: 'progressAnnounceIntervalMs',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Icon content shown before the button label.',
+        defaultValue: null,
+        displayName: 'SafetyButton',
+        propName: 'startIcon',
+        type: 'SafetyButtonDynamicValue',
+        values: [],
+      },
+    ],
+    name: 'SafetyButton',
+    exportName: 'SafetyButton',
+    importPath: '@themeshift/ui/components/SafetyButton',
+    importString:
+      "import { SafetyButton } from '@themeshift/ui/components/SafetyButton';",
+    meta: {
+      category: 'actions',
+      description:
+        'A hold-to-confirm button for destructive actions with progress feedback and cancellation support.',
+      tags: ['button', 'confirm', 'destructive', 'hold'],
+      order: 12,
+      status: 'experimental',
+      related: ['Button', 'CopyButton'],
+      type: 'component',
+    },
+    slug: 'safetybutton',
+    routeSlug: 'safety-button',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/SafetyButton',
     type: 'component',
   },
   {

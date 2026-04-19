@@ -1,5 +1,4 @@
-import { Button } from '@themeshift/ui/components/Button';
-import { useCopyToClipboard } from '@themeshift/ui/hooks/useCopyToClipboard';
+import { CopyButton as BaseCopyButton } from '@themeshift/ui/components/CopyButton';
 import classNames from 'classnames';
 import { LuCheck, LuCopy } from 'react-icons/lu';
 
@@ -11,20 +10,19 @@ export type CopyButtonProps = {
 };
 
 export const CopyButton = ({ className, text }: CopyButtonProps) => {
-  const [wasCopied, copy] = useCopyToClipboard();
-
   return (
-    <Button
-      aria-label={wasCopied ? 'Copied' : 'Copy'}
-      className={classNames(
-        styles.container,
-        className,
-        wasCopied && styles.copySuccess
-      )}
-      icon={wasCopied ? <LuCheck size={20} /> : <LuCopy size={20} />}
+    <BaseCopyButton
+      aria-label={(wasCopied) => (wasCopied ? 'Copied' : 'Copy')}
+      className={classNames(styles.container, className)}
+      icon={(wasCopied) =>
+        wasCopied ? (
+          <LuCheck aria-hidden className={styles.successIcon} size={20} />
+        ) : (
+          <LuCopy aria-hidden size={20} />
+        )
+      }
       intent="tertiary"
-      onClick={() => copy(text)}
-      type="button"
+      value={text}
     />
   );
 };

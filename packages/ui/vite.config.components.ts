@@ -172,6 +172,9 @@ export default defineConfig({
         'components/Checkbox/index': fileURLToPath(
           new URL('./src/entrypoints/components/Checkbox.ts', import.meta.url)
         ),
+        'components/CopyButton/index': fileURLToPath(
+          new URL('./src/entrypoints/components/CopyButton.ts', import.meta.url)
+        ),
         'components/ErrorMessage/index': fileURLToPath(
           new URL(
             './src/entrypoints/components/ErrorMessage.ts',
@@ -201,6 +204,12 @@ export default defineConfig({
         ),
         'components/Responsive/index': fileURLToPath(
           new URL('./src/entrypoints/components/Responsive.ts', import.meta.url)
+        ),
+        'components/SafetyButton/index': fileURLToPath(
+          new URL(
+            './src/entrypoints/components/SafetyButton.ts',
+            import.meta.url
+          )
         ),
         'components/Select/index': fileURLToPath(
           new URL('./src/entrypoints/components/Select.ts', import.meta.url)
@@ -264,6 +273,9 @@ export default defineConfig({
         ),
         'hooks/useForm/index': fileURLToPath(
           new URL('./src/hooks/useForm/index.ts', import.meta.url)
+        ),
+        'hooks/useHoldToConfirm/index': fileURLToPath(
+          new URL('./src/hooks/useHoldToConfirm/index.ts', import.meta.url)
         ),
       },
       formats: ['es'],

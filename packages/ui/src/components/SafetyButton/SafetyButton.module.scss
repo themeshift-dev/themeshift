@@ -1,0 +1,80 @@
+.container {
+  --safety-progress: 0;
+
+  overflow: hidden;
+  position: relative;
+}
+
+.container::before {
+  background: var(--safety-progress-fill, transparent);
+  border-radius: inherit;
+  content: '';
+  inline-size: 100%;
+  inset-block: 0;
+  inset-inline-start: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: scaleX(var(--safety-progress-scale, 0));
+  transform-origin: left center;
+  transition: transform 0.05s linear;
+}
+
+:global([dir='rtl']) .container::before {
+  transform-origin: right center;
+}
+
+.container > * {
+  position: relative;
+  z-index: 1;
+}
+
+.container.pressing {
+  background: token('components.safetyButton.hold.bg');
+  color: token('components.safetyButton.hold.fg');
+}
+
+.container.pressing:not(:disabled):hover {
+  background: token('components.safetyButton.hold.bg');
+}
+
+.intentPrimary {
+  --safety-progress-fill: #{token(
+      'components.safetyButton.intents.primary.fill'
+    )};
+}
+
+.intentSecondary {
+  --safety-progress-fill: #{token(
+      'components.safetyButton.intents.secondary.fill'
+    )};
+}
+
+.intentTertiary {
+  --safety-progress-fill: #{token(
+      'components.safetyButton.intents.tertiary.fill'
+    )};
+}
+
+.intentConstructive {
+  --safety-progress-fill: #{token(
+      'components.safetyButton.intents.constructive.fill'
+    )};
+}
+
+.intentDestructive {
+  --safety-progress-fill: #{token(
+      'components.safetyButton.intents.destructive.fill'
+    )};
+}
+
+.visuallyHidden {
+  block-size: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  inline-size: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+}

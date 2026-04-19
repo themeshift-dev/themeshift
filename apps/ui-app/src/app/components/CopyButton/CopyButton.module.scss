@@ -1,14 +1,21 @@
 .container {
-  color: token('components.copyButton.fg');
   background: token('components.copyButton.bg');
+  transition:
+    0.2s color,
+    0.2s background;
+
+  // Duplicating selector purposely for higher specificity
+  &.container {
+    color: token('components.copyButton.fg');
+  }
 
   &:hover {
     background: token('components.copyButton.bg.hover');
     color: token('components.copyButton.fg.hover');
     text-decoration: none;
   }
+}
 
-  &.copySuccess {
-    color: token('color.green.400');
-  }
+.successIcon {
+  color: token('color.green.400');
 }

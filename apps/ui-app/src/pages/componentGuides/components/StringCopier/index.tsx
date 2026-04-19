@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+
 import {
   CopyButton,
   SyntaxHighlighter,
@@ -5,7 +7,6 @@ import {
 } from '@/app/components';
 
 import styles from './StringCopier.module.scss';
-import classNames from 'classnames';
 
 type StringCopierProps = {
   className?: string;

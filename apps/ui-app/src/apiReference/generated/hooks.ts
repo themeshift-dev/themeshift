@@ -69,7 +69,7 @@ export const hooks = [
         defaultValue: null,
         displayName: 'useForm',
         propName: 'validate',
-        type: 'Partial<Record<FieldName<TValues>, FieldValidator<any, TValues>>>',
+        type: 'Partial<Record<FieldName<TValues>, FieldValidator<unknown, TValues>>>',
         values: [],
       },
       {
@@ -234,6 +234,147 @@ export const hooks = [
     routeSlug: 'use-form',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useForm',
+    type: 'hook',
+  },
+  {
+    apiReference: [
+      {
+        comments:
+          'Duration in milliseconds the user must hold before confirming.',
+        defaultValue: 2500,
+        displayName: 'useHoldToConfirm',
+        propName: 'confirmationDelay',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments:
+          'Time in milliseconds before the `wasConfirmed` state resets to `false`.',
+        defaultValue: 1000,
+        displayName: 'useHoldToConfirm',
+        propName: 'confirmResetDelay',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments:
+          'Called when an in-progress hold is cancelled before confirmation.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'onCancel',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments: 'Called once the hold duration completes successfully.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'onConfirm',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments:
+          'Called during active holds with progress (`0..100`) and milliseconds\nremaining. Called with `undefined` values when the hook returns to idle.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'onProgress',
+        type: '(progress?: number, timeRemaining?: number) => void',
+        values: [],
+      },
+    ],
+    returnReference: [
+      {
+        comments: 'Cancels the current hold attempt.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'cancel',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments: 'Forces immediate confirmation when a hold is active.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'confirm',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments: '`true` while a hold attempt is currently active.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'isPressing',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Current progress from `0` to `100` during an active hold.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'progress',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Resets all interaction state back to idle.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'reset',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments: 'Starts a hold attempt.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'start',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments: 'Milliseconds remaining before confirmation while pressing.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'timeRemaining',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments:
+          '`true` after a progressed hold was cancelled before confirmation.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'wasCancelled',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: '`true` immediately after confirmation succeeds.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'wasConfirmed',
+        type: 'boolean',
+        values: [],
+      },
+    ],
+    name: 'useHoldToConfirm',
+    exportName: 'useHoldToConfirm',
+    importPath: '@themeshift/ui/hooks/useHoldToConfirm',
+    importString:
+      "import { useHoldToConfirm } from '@themeshift/ui/hooks/useHoldToConfirm';",
+    meta: {
+      category: 'actions',
+      description:
+        'Tracks press-and-hold confirmation lifecycle with progress, cancel, and confirm callbacks.',
+      tags: ['confirm', 'hold', 'progress', 'safety'],
+      status: 'experimental',
+      type: 'hook',
+    },
+    slug: 'useholdtoconfirm',
+    routeSlug: 'use-hold-to-confirm',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useHoldToConfirm',
     type: 'hook',
   },
 ] satisfies ApiReferenceHook[];

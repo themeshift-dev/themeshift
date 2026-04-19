@@ -126,6 +126,10 @@ const AppRoutes = () => (
           path="use-copy-to-clipboard"
           element={<HookGuides.UseCopyToClipboardGuide />}
         />
+        <Route
+          path="use-hold-to-confirm"
+          element={<HookGuides.UseHoldToConfirmGuide />}
+        />
         <Route path="use-form" element={<HookGuides.UseFormGuide />} />
         <Route path=":hookId" element={<HookPlaceholder />} />
       </Route>
@@ -177,6 +181,58 @@ const AppRoutes = () => (
                 componentName="Button"
                 componentPath="/ui/component/button"
                 description="An interactive Button playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
+        <Route path="copy-button">
+          <Route index element={<ComponentGuides.CopyButtonGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="CopyButton"
+                componentPath="/ui/component/copy-button"
+                description="CopyButton customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="CopyButton"
+                componentPath="/ui/component/copy-button"
+                description="An interactive CopyButton playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
+        <Route path="safety-button">
+          <Route index element={<ComponentGuides.SafetyButtonGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="SafetyButton"
+                componentPath="/ui/component/safety-button"
+                description="SafetyButton customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="SafetyButton"
+                componentPath="/ui/component/safety-button"
+                description="An interactive SafetyButton playground will live here."
                 title="Playground"
               />
             }

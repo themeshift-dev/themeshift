@@ -46,6 +46,10 @@
       "types": "./dist/components/Checkbox/index.d.ts",
       "import": "./dist/components/Checkbox/index.js"
     },
+    "./components/CopyButton": {
+      "types": "./dist/components/CopyButton/index.d.ts",
+      "import": "./dist/components/CopyButton/index.js"
+    },
     "./components/ErrorMessage": {
       "types": "./dist/components/ErrorMessage/index.d.ts",
       "import": "./dist/components/ErrorMessage/index.js"
@@ -81,6 +85,10 @@
     "./components/Responsive": {
       "types": "./dist/components/Responsive/index.d.ts",
       "import": "./dist/components/Responsive/index.js"
+    },
+    "./components/SafetyButton": {
+      "types": "./dist/components/SafetyButton/index.d.ts",
+      "import": "./dist/components/SafetyButton/index.js"
     },
     "./components/Select": {
       "types": "./dist/components/Select/index.d.ts",
@@ -124,6 +132,10 @@
     "./hooks/useForm": {
       "types": "./dist/hooks/useForm/index.d.ts",
       "import": "./dist/hooks/useForm/index.js"
+    },
+    "./hooks/useHoldToConfirm": {
+      "types": "./dist/hooks/useHoldToConfirm/index.d.ts",
+      "import": "./dist/hooks/useHoldToConfirm/index.js"
     },
     "./icons": {
       "types": "./dist/icons/index.d.ts",
