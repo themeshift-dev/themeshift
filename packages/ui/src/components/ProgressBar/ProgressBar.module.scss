@@ -1,0 +1,269 @@
+@use '@/sass/mixins/typography';
+
+.container {
+  --progress-fill: #{token('components.progressBar.tones.primary.fill')};
+  --progress-radius: #{token('components.progressBar.radius.full')};
+  --progress-track-block-size: #{token(
+      'components.progressBar.sizes.medium.trackBlock'
+    )};
+  --progress-track-vertical-block-size: #{token(
+      'components.progressBar.sizes.medium.verticalTrackBlock'
+    )};
+  --progress-track-vertical-inline-size: #{token(
+      'components.progressBar.sizes.medium.verticalTrackInline'
+    )};
+
+  display: grid;
+  gap: token('components.progressBar.layout.gap');
+}
+
+.label {
+  @include typography.style('body.strong');
+
+  color: token('theme.text.base');
+}
+
+.track {
+  background: token('theme.surface.raised');
+  block-size: var(--progress-track-block-size);
+  border-radius: var(--progress-radius);
+  inline-size: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.trackInset {
+  padding: 1px;
+}
+
+.indicator {
+  background: var(--progress-fill);
+  block-size: 100%;
+  inline-size: 100%;
+  position: relative;
+  transform: scaleX(var(--progress-ratio, 0));
+  transform-origin: left center;
+  transition: transform 0.12s linear;
+}
+
+:global([dir='rtl']) .horizontal .indicator {
+  transform-origin: right center;
+}
+
+.vertical .track {
+  block-size: var(--progress-track-vertical-block-size);
+  inline-size: var(--progress-track-vertical-inline-size);
+}
+
+.vertical .indicator {
+  transform: scaleY(var(--progress-ratio, 0));
+  transform-origin: center bottom;
+}
+
+.indicatorStriped {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 0,
+    rgba(255, 255, 255, 0.2) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.indeterminate {
+  inline-size: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: none;
+}
+
+.vertical .indeterminate {
+  block-size: 100%;
+  inline-size: 100%;
+  transform: scaleY(0);
+  transform-origin: center bottom;
+}
+
+.indeterminateHorizontalAnimated {
+  animation: progressIndeterminateHorizontalLtr 5s ease-in-out infinite;
+}
+
+:global([dir='rtl']) .horizontal .indeterminateHorizontalAnimated {
+  animation-name: progressIndeterminateHorizontalRtl;
+}
+
+.indeterminateVerticalAnimated {
+  animation: progressIndeterminateVertical 5s ease-in-out infinite;
+}
+
+.value {
+  @include typography.style('caption.strong');
+
+  color: token('theme.text.base');
+}
+
+.description {
+  @include typography.style('caption.default');
+
+  color: token('theme.text.muted');
+  margin: 0;
+}
+
+.horizontal {
+  justify-items: stretch;
+  min-inline-size: 12rem;
+}
+
+.vertical {
+  inline-size: max-content;
+  justify-items: center;
+}
+
+.small {
+  --progress-track-block-size: #{token(
+      'components.progressBar.sizes.small.trackBlock'
+    )};
+  --progress-track-vertical-block-size: #{token(
+      'components.progressBar.sizes.small.verticalTrackBlock'
+    )};
+  --progress-track-vertical-inline-size: #{token(
+      'components.progressBar.sizes.small.verticalTrackInline'
+    )};
+}
+
+.medium {
+  --progress-track-block-size: #{token(
+      'components.progressBar.sizes.medium.trackBlock'
+    )};
+  --progress-track-vertical-block-size: #{token(
+      'components.progressBar.sizes.medium.verticalTrackBlock'
+    )};
+  --progress-track-vertical-inline-size: #{token(
+      'components.progressBar.sizes.medium.verticalTrackInline'
+    )};
+}
+
+.large {
+  --progress-track-block-size: #{token(
+      'components.progressBar.sizes.large.trackBlock'
+    )};
+  --progress-track-vertical-block-size: #{token(
+      'components.progressBar.sizes.large.verticalTrackBlock'
+    )};
+  --progress-track-vertical-inline-size: #{token(
+      'components.progressBar.sizes.large.verticalTrackInline'
+    )};
+}
+
+.tonePrimary {
+  --progress-fill: #{token('components.progressBar.tones.primary.fill')};
+}
+
+.toneSecondary {
+  --progress-fill: #{token('components.progressBar.tones.secondary.fill')};
+}
+
+.toneConstructive {
+  --progress-fill: #{token('components.progressBar.tones.constructive.fill')};
+}
+
+.toneDestructive {
+  --progress-fill: #{token('components.progressBar.tones.destructive.fill')};
+}
+
+.radiusNone {
+  --progress-radius: #{token('components.progressBar.radius.none')};
+}
+
+.radiusSmall {
+  --progress-radius: #{token('components.progressBar.radius.small')};
+}
+
+.radiusMedium {
+  --progress-radius: #{token('components.progressBar.radius.medium')};
+}
+
+.radiusLarge {
+  --progress-radius: #{token('components.progressBar.radius.large')};
+}
+
+.radiusFull {
+  --progress-radius: #{token('components.progressBar.radius.full')};
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    transition-duration: 0.01ms;
+  }
+
+  .indeterminateHorizontalAnimated,
+  .indeterminateVerticalAnimated {
+    animation: none;
+  }
+}
+
+@keyframes progressIndeterminateHorizontalLtr {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  49.999% {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
+  50% {
+    transform: scaleX(1);
+    transform-origin: right center;
+  }
+
+  100% {
+    transform: scaleX(0);
+    transform-origin: right center;
+  }
+}
+
+@keyframes progressIndeterminateHorizontalRtl {
+  0% {
+    transform: scaleX(0);
+    transform-origin: right center;
+  }
+
+  49.999% {
+    transform: scaleX(1);
+    transform-origin: right center;
+  }
+
+  50% {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
+  100% {
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+}
+
+@keyframes progressIndeterminateVertical {
+  0% {
+    transform: scaleY(0);
+    transform-origin: center bottom;
+  }
+
+  49.999% {
+    transform: scaleY(1);
+    transform-origin: center bottom;
+  }
+
+  50% {
+    transform: scaleY(1);
+    transform-origin: center top;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: center top;
+  }
+}

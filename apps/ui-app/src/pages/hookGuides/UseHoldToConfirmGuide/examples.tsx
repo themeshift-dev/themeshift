@@ -1,4 +1,5 @@
 import { Button } from '@themeshift/ui/components/Button';
+import { ProgressBar } from '@themeshift/ui/components/ProgressBar';
 import { useHoldToConfirm } from '@themeshift/ui/hooks/useHoldToConfirm';
 import { useState } from 'react';
 
@@ -77,25 +78,11 @@ const HoldButton = ({
         {children}
       </Button>
 
-      <div
-        aria-hidden
-        style={{
-          background: 'rgba(255,255,255,.12)',
-          borderRadius: 999,
-          height: 8,
-          overflow: 'hidden',
-          width: '100%',
-        }}
-      >
-        <div
-          style={{
-            background: '#66BB6A',
-            height: '100%',
-            transition: 'width .06s linear',
-            width: `${progress}%`,
-          }}
-        />
-      </div>
+      <ProgressBar
+        aria-label="Hold confirmation progress"
+        max={100}
+        value={progress}
+      />
 
       <p style={{ margin: 0 }}>
         {isPressing

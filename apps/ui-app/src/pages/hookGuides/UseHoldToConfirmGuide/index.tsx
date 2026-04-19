@@ -144,18 +144,11 @@ export const UseHoldToConfirmGuide = () => {
       }}
       notes={{
         content: (
-          <>
-            <GuideCallout>
-              <code>useHoldToConfirm</code> is interaction-agnostic. You choose
-              which events call <code>start</code> and <code>cancel</code>{' '}
-              (pointer, keyboard, focus/blur, or custom gestures).
-            </GuideCallout>
-            {hook?.sourceCodeUrl ? (
-              <p>
-                <Link to={hook.sourceCodeUrl}>View source</Link>
-              </p>
-            ) : null}
-          </>
+          <GuideCallout>
+            <code>useHoldToConfirm</code> is interaction-agnostic. You choose
+            which events call <code>start</code> and <code>cancel</code>{' '}
+            (pointer, keyboard, focus/blur, or custom gestures).
+          </GuideCallout>
         ),
         id: 'notes',
         title: 'Notes & caveats',

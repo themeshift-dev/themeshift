@@ -5,7 +5,7 @@
       "overlay": { "$value": "{color.white.80}" },
 
       "surface": {
-        "base": { "$value": "{color.blueGrey.50}" },
+        "base": { "$value": "#dfe6e9" },
         "raised": { "$value": "{color.blueGrey.100}" },
         "sunken": { "$value": "{color.black.10}" }
       },

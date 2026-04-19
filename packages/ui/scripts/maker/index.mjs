@@ -301,6 +301,7 @@ async function rewriteComponentEntries() {
   const configPath = path.join(rootDir, 'vite.config.components.ts');
   const source = await fs.readFile(configPath, 'utf8');
   const componentNames = await listComponentNames();
+  const hookEntryNames = await listHookEntryNames();
 
   const entryBlock = componentNames
     .map(
@@ -340,12 +341,13 @@ async function rewriteComponentEntries() {
         'hooks/index': fileURLToPath(
           new URL('./src/entrypoints/hooks.ts', import.meta.url)
         ),
-        'hooks/useCopyToClipboard/index': fileURLToPath(
-          new URL('./src/hooks/useCopyToClipboard/index.ts', import.meta.url)
-        ),
-        'hooks/useForm/index': fileURLToPath(
-          new URL('./src/hooks/useForm/index.ts', import.meta.url)
-        ),`;
+${hookEntryNames
+  .map(
+    (hookName) => `        'hooks/${hookName}/index': fileURLToPath(
+          new URL('./src/hooks/${hookName}/index.ts', import.meta.url)
+        ),`
+  )
+  .join('\n')}`;
 
   const nextSource = source.replace(
     /entry:\s*\{[\s\S]*?\n\s*\},\n\s*formats:/,
@@ -363,6 +365,31 @@ async function listComponentNames() {
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
     .sort();
+}
+
+async function listHookEntryNames() {
+  const hooksRoot = path.join(rootDir, 'src/hooks');
+  const entries = await fs.readdir(hooksRoot, { withFileTypes: true });
+  const hookNames = [];
+
+  for (const entry of entries) {
+    if (!entry.isDirectory()) {
+      continue;
+    }
+
+    const hookIndexPath = path.join(hooksRoot, entry.name, 'index.ts');
+
+    try {
+      await fs.access(hookIndexPath);
+      hookNames.push(entry.name);
+    } catch (error) {
+      if (error?.code !== 'ENOENT') {
+        throw error;
+      }
+    }
+  }
+
+  return hookNames.sort();
 }
 
 function makeTokenObject(tokenPath) {

@@ -499,6 +499,32 @@ const AppRoutes = () => (
           />
         </Route>
 
+        <Route path="progress-bar">
+          <Route index element={<ComponentGuides.ProgressBarGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="ProgressBar"
+                componentPath="/ui/component/progress-bar"
+                description="ProgressBar customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="ProgressBar"
+                componentPath="/ui/component/progress-bar"
+                description="An interactive ProgressBar playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
         <Route path="responsive">
           <Route index element={<ComponentGuides.ResponsiveGuide />} />
           <Route

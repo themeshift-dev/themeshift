@@ -10,6 +10,7 @@ export * from './Input';
 export * from './Label';
 export * from './Link';
 export * from './Navbar';
+export * from './ProgressBar';
 export * from './Radio';
 export * from './Responsive';
 export * from './SafetyButton';

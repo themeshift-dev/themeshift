@@ -78,6 +78,10 @@
       "types": "./dist/components/Navbar/index.d.ts",
       "import": "./dist/components/Navbar/index.js"
     },
+    "./components/ProgressBar": {
+      "types": "./dist/components/ProgressBar/index.d.ts",
+      "import": "./dist/components/ProgressBar/index.js"
+    },
     "./components/Radio": {
       "types": "./dist/components/Radio/index.d.ts",
       "import": "./dist/components/Radio/index.js"

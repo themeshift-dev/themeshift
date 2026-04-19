@@ -199,6 +199,12 @@ export default defineConfig({
         'components/Navbar/index': fileURLToPath(
           new URL('./src/entrypoints/components/Navbar.ts', import.meta.url)
         ),
+        'components/ProgressBar/index': fileURLToPath(
+          new URL(
+            './src/entrypoints/components/ProgressBar.ts',
+            import.meta.url
+          )
+        ),
         'components/Radio/index': fileURLToPath(
           new URL('./src/entrypoints/components/Radio.ts', import.meta.url)
         ),
