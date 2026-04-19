@@ -1,11 +1,6 @@
 import { Heading } from '@themeshift/ui/components/Heading';
 
-import {
-  ApiReference,
-  Breadcrumb,
-  Link,
-  TableOfContents,
-} from '@/app/components';
+import { ApiReference, Breadcrumb, TableOfContents } from '@/app/components';
 import { useApiReference } from '@/apiReference';
 import {
   ExampleViewer,
