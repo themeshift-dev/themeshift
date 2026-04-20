@@ -30,8 +30,6 @@ export default defineConfig({
   ],
 });`;
 
-const GENERATED_TOKENS_IMPORT = `import './css/tokens.css';`;
-
 export const DocsHome = () => {
   return (
     <TableOfContents.Root>
