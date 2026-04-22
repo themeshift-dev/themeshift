@@ -40,11 +40,9 @@ export const asChild = {
 };
 
 export const groupedLinks = {
-  code: `<>
-  <Link href="/ui/input">Input</Link>
-  <Link href="/ui/select">Select</Link>
-  <Link href="/ui/textarea">Textarea</Link>
-</>`,
+  code: `<Link href="/ui/input">Input</Link>
+<Link href="/ui/select">Select</Link>
+<Link href="/ui/textarea">Textarea</Link>`,
   label: 'Grouped links',
   sample: (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>

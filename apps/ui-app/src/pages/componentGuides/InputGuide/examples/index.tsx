@@ -14,11 +14,9 @@ export const basicUsage = {
 };
 
 export const sizes = {
-  code: `<>
-  <Input aria-label="Small" placeholder="Small" size="small" />
-  <Input aria-label="Medium" placeholder="Medium" />
-  <Input aria-label="Large" placeholder="Large" size="large" />
-</>`,
+  code: `<Input aria-label="Small" placeholder="Small" size="small" />
+<Input aria-label="Medium" placeholder="Medium" />
+<Input aria-label="Large" placeholder="Large" size="large" />`,
   label: 'Sizes',
   sample: (
     <ResponsiveStackInline
@@ -34,12 +32,10 @@ export const sizes = {
 };
 
 export const validationStates = {
-  code: `<>
-  <Input aria-label="Default state" placeholder="Default" />
-  <Input aria-label="Invalid state" placeholder="Invalid" validationState="invalid" />
-  <Input aria-label="Valid state" placeholder="Valid" validationState="valid" />
-  <Input aria-label="Warning state" placeholder="Warning" validationState="warning" />
-</>`,
+  code: `<Input aria-label="Default state" placeholder="Default" />
+<Input aria-label="Invalid state" placeholder="Invalid" validationState="invalid" />
+<Input aria-label="Valid state" placeholder="Valid" validationState="valid" />
+<Input aria-label="Warning state" placeholder="Warning" validationState="warning" />`,
   label: 'Validation states',
   sample: (
     <ResponsiveStackInline
@@ -68,18 +64,16 @@ export const validationStates = {
 };
 
 export const adornments = {
-  code: `<>
-  <Input
-    aria-label="Search"
-    placeholder="Search docs"
-    startAdornment={<IconMoon aria-hidden />}
-  />
-  <Input
-    aria-label="Domain"
-    placeholder="your-handle"
-    endAdornment={<span>.com</span>}
-  />
-</>`,
+  code: `<Input
+  aria-label="Search"
+  placeholder="Search docs"
+  startAdornment={<IconMoon aria-hidden />}
+/>
+<Input
+  aria-label="Domain"
+  placeholder="your-handle"
+  endAdornment={<span>.com</span>}
+/>`,
   label: 'Adornments',
   sample: (
     <ResponsiveStackInline
@@ -101,18 +95,16 @@ export const adornments = {
   ),
 };
 
-const directionCode = `<>
-  <Input
-    aria-label="Search"
-    placeholder="Search docs"
-    startAdornment={<IconMoon aria-hidden />}
-  />
-  <Input
-    aria-label="Domain"
-    placeholder="your-handle"
-    endAdornment={<span>.com</span>}
-  />
-</>`;
+const directionCode = `<Input
+  aria-label="Search"
+  placeholder="Search docs"
+  startAdornment={<IconMoon aria-hidden />}
+/>
+<Input
+  aria-label="Domain"
+  placeholder="your-handle"
+  endAdornment={<span>.com</span>}
+/>`;
 
 export const directionLTR = {
   code: directionCode,
@@ -163,15 +155,13 @@ export const directionRTL = {
 };
 
 export const widths = {
-  code: `<>
-  <Input aria-label="Full width input" placeholder="Full width (default)" />
-  <Input
-    aria-label="Inline input"
-    fullWidth={false}
-    placeholder="Inline"
-    size="small"
-  />
-</>`,
+  code: `<Input aria-label="Full width input" placeholder="Full width (default)" />
+<Input
+  aria-label="Inline input"
+  fullWidth={false}
+  placeholder="Inline"
+  size="small"
+/>`,
   label: 'Widths',
   sample: (
     <ResponsiveStackInline
@@ -209,10 +199,8 @@ export const classNames = {
 };
 
 export const disabled = {
-  code: `<>
-  <Input aria-label="Disabled input" disabled placeholder="Disabled" />
-  <Input aria-label="Disabled with adornment" disabled placeholder="Disabled" startAdornment={<IconMoon aria-hidden />} />
-</>`,
+  code: `<Input aria-label="Disabled input" disabled placeholder="Disabled" />
+<Input aria-label="Disabled with adornment" disabled placeholder="Disabled" startAdornment={<IconMoon aria-hidden />} />`,
   label: 'Disabled',
   sample: (
     <ResponsiveStackInline

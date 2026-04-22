@@ -138,7 +138,11 @@ export const Landing = () => {
   );
 
   return (
-    <main aria-label="ThemeShift UI home" className={styles.main}>
+    <main
+      aria-label="ThemeShift UI home"
+      className={styles.main}
+      id="main-content"
+    >
       <section aria-labelledby="landing-hero-title" className={styles.hero}>
         <p className={styles.eyebrow}>ThemeShift UI</p>
         <Heading className={styles.heroTitle} level={1}>

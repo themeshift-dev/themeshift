@@ -83,6 +83,7 @@ export const ComponentGuide = ({
   const content = (
     <PageShell
       className={classNames(styles.container, className)}
+      showSkipLink={false}
       aside={
         toc ? (
           <div className={styles.aside}>

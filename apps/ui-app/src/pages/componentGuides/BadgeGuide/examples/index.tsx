@@ -15,11 +15,9 @@ export const basicUsage = {
 };
 
 export const tonesAndVariants = {
-  code: `<>
-  <Badge tone="success" variant="soft">Active</Badge>
-  <Badge tone="warning" variant="solid">Pending</Badge>
-  <Badge tone="danger" variant="outline">Failed</Badge>
-</>`,
+  code: `<Badge tone="success" variant="soft">Active</Badge>
+<Badge tone="warning" variant="solid">Pending</Badge>
+<Badge tone="danger" variant="outline">Failed</Badge>`,
   label: 'Tones and variants',
   sample: (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -37,11 +35,9 @@ export const tonesAndVariants = {
 };
 
 export const colors = {
-  code: `<>
-  <Badge color="blue">Frontend</Badge>
-  <Badge color="purple">Design</Badge>
-  <Badge color="pink">Marketing</Badge>
-</>`,
+  code: `<Badge color="blue">Frontend</Badge>
+<Badge color="purple">Design</Badge>
+<Badge color="pink">Marketing</Badge>`,
   label: 'Curated colors',
   sample: (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -53,15 +49,13 @@ export const colors = {
 };
 
 export const interactiveAsChild = {
-  code: `<>
-  <Badge asChild tone="warning">
-    <a aria-label="View pending" href="/pending">Pending</a>
-  </Badge>
+  code: `<Badge asChild tone="warning">
+  <a aria-label="View pending" href="/pending">Pending</a>
+</Badge>
 
-  <Badge asChild tone="danger">
-    <button aria-label="Sort by failed jobs" type="button">Failed</button>
-  </Badge>
-</>`,
+<Badge asChild tone="danger">
+  <button aria-label="Sort by failed jobs" type="button">Failed</button>
+</Badge>`,
   label: 'Interactive with asChild',
   sample: (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -81,15 +75,13 @@ export const interactiveAsChild = {
 };
 
 export const interactiveAs = {
-  code: `<>
-  <Badge as={NavLink} to="/ui/component/badge" tone="info">
-    Badge docs
-  </Badge>
+  code: `<Badge as={NavLink} to="/ui/component/badge" tone="info">
+  Badge docs
+</Badge>
 
-  <Badge as="a" href="/pending" tone="warning">
-    Pending
-  </Badge>
-</>`,
+<Badge as="a" href="/pending" tone="warning">
+  Pending
+</Badge>`,
   label: 'Interactive with as',
   sample: (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -145,12 +137,10 @@ export const countAnchored = {
 };
 
 export const countStandalone = {
-  code: `<>
-  <Badge.Count count={3} />
-  <Badge.Count count={120} max={99} />
-  <Badge.Count textDot />
-  <Badge.Count dot />
-</>`,
+  code: `<Badge.Count count={3} />
+<Badge.Count count={120} max={99} />
+<Badge.Count textDot />
+<Badge.Count dot />`,
   label: 'Standalone count and dot',
   sample: (
     <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
@@ -174,20 +164,18 @@ export const countLiveAnnouncements = {
   ),
 };
 
-const placementCode = `<>
-  <Badge.Count count={2} placement="top-start">
-    <Button>Top start</Button>
-  </Badge.Count>
-  <Badge.Count count={2} placement="top-end">
-    <Button>Top end</Button>
-  </Badge.Count>
-  <Badge.Count count={2} placement="bottom-start">
-    <Button>Bottom start</Button>
-  </Badge.Count>
-  <Badge.Count count={2} placement="bottom-end">
-    <Button>Bottom end</Button>
-  </Badge.Count>
-</>`;
+const placementCode = `<Badge.Count count={2} placement="top-start">
+  <Button>Top start</Button>
+</Badge.Count>
+<Badge.Count count={2} placement="top-end">
+  <Button>Top end</Button>
+</Badge.Count>
+<Badge.Count count={2} placement="bottom-start">
+  <Button>Bottom start</Button>
+</Badge.Count>
+<Badge.Count count={2} placement="bottom-end">
+  <Button>Bottom end</Button>
+</Badge.Count>`;
 
 export const placementLTR = {
   code: placementCode,

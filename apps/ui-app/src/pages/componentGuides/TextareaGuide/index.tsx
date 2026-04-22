@@ -214,6 +214,7 @@ export const TextareaGuide = () => {
           </p>
         ),
         example: examples.withField,
+        tocLabel: 'Label & description',
         title: 'Provide a label and description',
       },
       {

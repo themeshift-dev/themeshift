@@ -176,10 +176,10 @@ export const SelectGuide = () => {
         <GuideExampleText>
           <TableOfContents.Marker
             id="examples-direction"
-            label="Direction"
+            label="Direction (LTR/RTL)"
             level={2}
           />
-          <Heading level={4}>Direction (LTR and RTL)</Heading>
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
           <p>
             Placeholder text, value text, and chevron placement should follow
             logical start/end behavior automatically.

@@ -65,11 +65,9 @@ export const withPlaceholder = {
 };
 
 export const sizes = {
-  code: `<>
-  <Select aria-label="Small" size="small" />
-  <Select aria-label="Medium" />
-  <Select aria-label="Large" size="large" />
-</>`,
+  code: `<Select aria-label="Small" size="small" />
+<Select aria-label="Medium" />
+<Select aria-label="Large" size="large" />`,
   label: 'Sizes',
   sample: (
     <ResponsiveStackInline
@@ -95,12 +93,10 @@ export const sizes = {
 };
 
 export const validationStates = {
-  code: `<>
-  <Select aria-label="Default state" />
-  <Select aria-label="Invalid state" validationState="invalid" />
-  <Select aria-label="Valid state" validationState="valid" />
-  <Select aria-label="Warning state" validationState="warning" />
-</>`,
+  code: `<Select aria-label="Default state" />
+<Select aria-label="Invalid state" validationState="invalid" />
+<Select aria-label="Valid state" validationState="valid" />
+<Select aria-label="Warning state" validationState="warning" />`,
   label: 'Validation states',
   sample: (
     <ResponsiveStackInline
@@ -136,14 +132,12 @@ export const validationStates = {
 };
 
 export const disabled = {
-  code: `<>
-  <Select aria-label="Disabled select" disabled />
-  <Select
-    aria-label="Disabled invalid"
-    disabled
-    validationState="invalid"
-  />
-</>`,
+  code: `<Select aria-label="Disabled select" disabled />
+<Select
+  aria-label="Disabled invalid"
+  disabled
+  validationState="invalid"
+/>`,
   label: 'Disabled',
   sample: (
     <ResponsiveStackInline

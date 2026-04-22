@@ -160,6 +160,25 @@ export const CopyButtonGuide = () => {
       <GuideExampleCard>
         <GuideExampleText>
           <TableOfContents.Marker
+            id="examples-direction"
+            label="Direction (LTR/RTL)"
+            level={2}
+          />
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
+          <p>
+            CopyButton inherits Button layout behavior, so start and end icon
+            slots should mirror correctly in RTL contexts.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer examples={examples.directionExamples} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
+          <TableOfContents.Marker
             id="examples-toolbar"
             label="Toolbars"
             level={2}
@@ -214,6 +233,7 @@ export const CopyButtonGuide = () => {
           </p>
         ),
         example: examples.failureFeedback,
+        tocLabel: 'Success & failure',
         title: 'Communicate success and failure',
       },
       {

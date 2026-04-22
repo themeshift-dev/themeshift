@@ -117,11 +117,11 @@ export const InputGuide = () => {
       <GuideExampleCard>
         <GuideExampleText>
           <TableOfContents.Marker
-            id="examples-direction"
-            label="Direction"
+            id="examples-input-direction"
+            label="Direction (LTR/RTL)"
             level={2}
           />
-          <Heading level={4}>Direction (LTR and RTL)</Heading>
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
           <p>
             Start and end adornments should mirror with writing direction
             without changing component props.
@@ -251,6 +251,7 @@ export const InputGuide = () => {
           </p>
         ),
         example: examples.withField,
+        tocLabel: 'Accessible names',
         title: 'Provide an accessible name',
       },
       {
@@ -262,6 +263,7 @@ export const InputGuide = () => {
           </p>
         ),
         example: examples.withAction,
+        tocLabel: 'Adornments',
         title: 'Keep adornments accessible',
       },
     ],

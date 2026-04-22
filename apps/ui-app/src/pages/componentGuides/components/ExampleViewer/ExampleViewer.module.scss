@@ -10,10 +10,13 @@ $compactMinHeight: 4rem;
 }
 
 .preview {
+  -webkit-overflow-scrolling: touch;
+  align-items: center;
   background: token('theme.surface.raised');
   display: grid;
+  justify-items: safe center;
   min-height: 300px;
-  place-items: center;
+  overflow-x: auto;
   position: relative;
   white-space: pre;
 }
@@ -23,8 +26,9 @@ $compactMinHeight: 4rem;
   top: token('space.4');
   left: token('space.4');
   right: token('space.4');
+  overflow-x: auto;
   padding-bottom: 0.75rem;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .examples {
@@ -51,7 +55,13 @@ $compactMinHeight: 4rem;
 }
 
 .content {
+  display: grid;
+  justify-items: center;
+  margin-inline: auto;
+  min-width: 100%;
   padding: 1rem;
+  white-space: normal;
+  width: fit-content;
 
   &.multipleExamples {
     margin-top: 2.5rem;

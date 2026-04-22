@@ -159,10 +159,10 @@ export const ProgressBarGuide = () => {
         <GuideExampleText>
           <TableOfContents.Marker
             id="examples-direction"
-            label="Direction (LTR and RTL)"
+            label="Direction (LTR/RTL)"
             level={2}
           />
-          <Heading level={4}>Direction (LTR and RTL)</Heading>
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
           <p>
             Horizontal fill direction follows document writing direction
             automatically.
@@ -215,6 +215,7 @@ export const ProgressBarGuide = () => {
           </p>
         ),
         example: examples.withLabelAndValue,
+        tocLabel: 'Meaningful names',
         title: 'Provide a meaningful name',
       },
       {
@@ -225,6 +226,7 @@ export const ProgressBarGuide = () => {
           </p>
         ),
         example: examples.indeterminate,
+        tocLabel: 'Progress mode',
         title: 'Choose determinate vs indeterminate correctly',
       },
       {
@@ -235,6 +237,7 @@ export const ProgressBarGuide = () => {
           </p>
         ),
         example: examples.composition,
+        tocLabel: 'Progress text',
         title: 'Pair progress with explanatory text',
       },
     ],

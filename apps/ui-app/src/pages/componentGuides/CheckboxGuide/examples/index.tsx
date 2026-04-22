@@ -60,6 +60,35 @@ export const withDescriptionAndError = {
   ),
 };
 
+const directionCode = `<Field layout="inline-control">
+  <Checkbox name="notifications" />
+  <Field.Label>Enable notifications</Field.Label>
+</Field>`;
+
+export const directionLTR = {
+  code: directionCode,
+  label: 'LTR',
+  sample: (
+    <Field layout="inline-control">
+      <Checkbox name="notifications" />
+      <Field.Label>Enable notifications</Field.Label>
+    </Field>
+  ),
+};
+
+export const directionRTL = {
+  code: directionCode,
+  label: 'RTL',
+  sample: (
+    <div dir="rtl">
+      <Field layout="inline-control">
+        <Checkbox name="notifications" />
+        <Field.Label>Enable notifications</Field.Label>
+      </Field>
+    </div>
+  ),
+};
+
 export const indeterminate = {
   code: `<Checkbox aria-label="Partially selected" indeterminate />`,
   label: 'Indeterminate',
@@ -67,12 +96,10 @@ export const indeterminate = {
 };
 
 export const validationStates = {
-  code: `<>
-  <Checkbox aria-label="Default state" />
-  <Checkbox aria-label="Invalid state" validationState="invalid" />
-  <Checkbox aria-label="Valid state" validationState="valid" />
-  <Checkbox aria-label="Warning state" validationState="warning" />
-</>`,
+  code: `<Checkbox aria-label="Default state" />
+<Checkbox aria-label="Invalid state" validationState="invalid" />
+<Checkbox aria-label="Valid state" validationState="valid" />
+<Checkbox aria-label="Warning state" validationState="warning" />`,
   label: 'Validation states',
   sample: (
     <ResponsiveStackInline
@@ -89,10 +116,8 @@ export const validationStates = {
 };
 
 export const disabled = {
-  code: `<>
-  <Checkbox aria-label="Disabled" disabled />
-  <Checkbox aria-label="Disabled checked" defaultChecked disabled />
-</>`,
+  code: `<Checkbox aria-label="Disabled" disabled />
+<Checkbox aria-label="Disabled checked" defaultChecked disabled />`,
   label: 'Disabled',
   sample: (
     <ResponsiveStackInline
@@ -107,11 +132,9 @@ export const disabled = {
 };
 
 export const sizes = {
-  code: `<>
-  <Checkbox aria-label="Small" size="small" />
-  <Checkbox aria-label="Medium" />
-  <Checkbox aria-label="Large" size="large" />
-</>`,
+  code: `<Checkbox aria-label="Small" size="small" />
+<Checkbox aria-label="Medium" />
+<Checkbox aria-label="Large" size="large" />`,
   label: 'Sizes',
   sample: (
     <ResponsiveStackInline
@@ -133,3 +156,5 @@ export const propHighlights = [
   indeterminate,
   validationStates,
 ];
+
+export const directionExamples = [directionLTR, directionRTL];
