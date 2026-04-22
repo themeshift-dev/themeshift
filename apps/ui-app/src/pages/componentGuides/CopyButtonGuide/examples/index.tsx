@@ -123,4 +123,56 @@ export const inToolbar = {
   ),
 };
 
+const directionCode = `<CopyButton
+  endIcon={(wasCopied) => (wasCopied ? <LuCheck aria-hidden /> : <LuCopy aria-hidden />)}
+  startIcon={<LuCopy aria-hidden />}
+  value={shareCode}
+>
+  Copy share code
+</CopyButton>`;
+
+export const directionLTR = {
+  code: directionCode,
+  label: 'LTR',
+  sample: (
+    <CopyButton
+      endIcon={(wasCopied) =>
+        wasCopied ? (
+          <LuCheck aria-hidden size={16} />
+        ) : (
+          <LuCopy aria-hidden size={16} />
+        )
+      }
+      startIcon={<LuCopy aria-hidden size={16} />}
+      value="TS-4821"
+    >
+      Copy share code
+    </CopyButton>
+  ),
+};
+
+export const directionRTL = {
+  code: directionCode,
+  label: 'RTL',
+  sample: (
+    <div dir="rtl">
+      <CopyButton
+        endIcon={(wasCopied) =>
+          wasCopied ? (
+            <LuCheck aria-hidden size={16} />
+          ) : (
+            <LuCopy aria-hidden size={16} />
+          )
+        }
+        startIcon={<LuCopy aria-hidden size={16} />}
+        value="TS-4821"
+      >
+        Copy share code
+      </CopyButton>
+    </div>
+  ),
+};
+
 export const propHighlights = [basicUsage, iconOnly, renderPropChildren];
+
+export const directionExamples = [directionLTR, directionRTL];

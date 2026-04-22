@@ -125,10 +125,10 @@ export const SafetyButtonGuide = () => {
         <GuideExampleText>
           <TableOfContents.Marker
             id="examples-direction"
-            label="Direction (LTR and RTL)"
+            label="Direction (LTR/RTL)"
             level={2}
           />
-          <Heading level={4}>Direction (LTR and RTL)</Heading>
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
           <p>
             Progress fill follows writing direction automatically, including RTL
             interfaces.
@@ -188,6 +188,7 @@ export const SafetyButtonGuide = () => {
           </p>
         ),
         example: examples.iconOnly,
+        tocLabel: 'Destructive controls',
         title: 'Name destructive controls clearly',
       },
       {
@@ -198,6 +199,7 @@ export const SafetyButtonGuide = () => {
           </p>
         ),
         example: examples.countdownLabel,
+        tocLabel: 'Textual feedback',
         title: 'Pair color with textual feedback',
       },
       {
@@ -208,6 +210,7 @@ export const SafetyButtonGuide = () => {
           </p>
         ),
         example: examples.keyboardHold,
+        tocLabel: 'Keyboard & direction',
         title: 'Validate keyboard and direction behavior',
       },
     ],

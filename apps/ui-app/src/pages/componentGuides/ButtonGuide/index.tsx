@@ -144,6 +144,25 @@ export const ButtonGuide = () => {
 
       <GuideExampleCard>
         <GuideExampleText>
+          <TableOfContents.Marker
+            id="examples-direction"
+            label="Direction (LTR/RTL)"
+            level={2}
+          />
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
+          <p>
+            Start and end icon slots should mirror automatically between LTR and
+            RTL writing modes.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer examples={examples.directionExamples} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-busy" label="Busy" level={2} />
           <Heading level={4}>Busy</Heading>
           <p>

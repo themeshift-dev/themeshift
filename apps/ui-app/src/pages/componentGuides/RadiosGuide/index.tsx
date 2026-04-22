@@ -119,6 +119,25 @@ export const RadiosGuide = () => {
 
       <GuideExampleCard>
         <GuideExampleText>
+          <TableOfContents.Marker
+            id="examples-direction"
+            label="Direction (LTR/RTL)"
+            level={2}
+          />
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
+          <p>
+            Radio groups should preserve logical reading and control order in
+            both LTR and RTL contexts.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer examples={examples.directionExamples} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-sizes" label="Sizes" level={2} />
           <Heading level={4}>Sizes</Heading>
           <p>
@@ -168,6 +187,7 @@ export const RadiosGuide = () => {
           </p>
         ),
         example: examples.withField,
+        tocLabel: 'Help & errors',
         title: 'Associate help text and errors',
       },
       {
@@ -181,6 +201,7 @@ export const RadiosGuide = () => {
           </p>
         ),
         example: examples.basicUsage,
+        tocLabel: 'Form names',
         title: 'Provide a name for forms',
       },
     ],

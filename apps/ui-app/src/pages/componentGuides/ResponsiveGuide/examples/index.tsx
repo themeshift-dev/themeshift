@@ -25,13 +25,11 @@ export const tabletAndUp = {
 };
 
 export const ranges = {
-  code: `<>
-  <Responsive when={{ to: 'tablet' }}>Up to tablet</Responsive>
-  <Responsive when={{ from: 'tablet', to: 'desktop' }}>
-    Tablet through desktop
-  </Responsive>
-  <Responsive when={{ above: 'tablet' }}>Above tablet</Responsive>
-</>`,
+  code: `<Responsive when={{ to: 'tablet' }}>Up to tablet</Responsive>
+<Responsive when={{ from: 'tablet', to: 'desktop' }}>
+  Tablet through desktop
+</Responsive>
+<Responsive when={{ above: 'tablet' }}>Above tablet</Responsive>`,
   label: 'Breakpoint ranges',
   sample: (
     <div style={{ display: 'grid', gap: '0.75rem' }}>

@@ -205,7 +205,7 @@ const mediaCardCode = `<Card border radius="large" shadow="small" surface="defau
 
   <Card.Header>
     <Card.Title>Astronaut portrait</Card.Title>
-    <Card.Description>Reusable sample image for media and avatar demos.</Card.Description>
+    <Card.Description>Place images inside of cards using Card.Media</Card.Description>
   </Card.Header>
 
   <Card.Footer justify="end">
@@ -230,7 +230,7 @@ export const mediaTop = {
       <Card.Header align="center">
         <Card.Title>Astronaut portrait</Card.Title>
         <Card.Description>
-          Reusable sample image for media and avatar demos.
+          Place images inside of cards using <code>Card.Media</code>.
         </Card.Description>
       </Card.Header>
 
@@ -251,7 +251,7 @@ export const mediaBottom = {
       <Card.Header>
         <Card.Title>Astronaut portrait</Card.Title>
         <Card.Description>
-          Reusable sample image for media and avatar demos.
+          Place images inside of cards using <code>Card.Media</code>.
         </Card.Description>
       </Card.Header>
 
@@ -416,15 +416,13 @@ export const badgePlacementsRTL = {
 };
 
 export const badgeAsVsAsChild = {
-  code: `<>
-  <Card.Badge as={NavLink} to="/ui/component/badge" tone="info">
-    Badge docs
-  </Card.Badge>
+  code: `<Card.Badge as={NavLink} to="/ui/component/badge" tone="info">
+  Badge docs
+</Card.Badge>
 
-  <Card.Badge asChild tone="warning">
-    <a href="/pending">Pending</a>
-  </Card.Badge>
-</>`,
+<Card.Badge asChild tone="warning">
+  <a href="/pending">Pending</a>
+</Card.Badge>`,
   label: 'Badge as vs asChild',
   sample: (
     <Card>

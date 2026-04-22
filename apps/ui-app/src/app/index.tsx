@@ -1,5 +1,6 @@
 import { Button } from '@themeshift/ui/components/Button';
 import { Navbar } from '@themeshift/ui/components/Navbar';
+import { SkipLink } from '@themeshift/ui/components/SkipLink';
 import { useTheme } from '@themeshift/ui/contexts';
 
 import '@themeshift/ui/css/base.css';
@@ -15,6 +16,8 @@ function App() {
 
   return (
     <>
+      <SkipLink href="#main-content">Skip to main content</SkipLink>
+
       <header className={styles.header}>
         <Navbar>
           <Navbar.Container>

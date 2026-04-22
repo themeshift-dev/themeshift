@@ -11,7 +11,11 @@ export const asProp = {
 </Button>`,
   label: 'as prop',
   sample: (
-    <Button as={NavLink} to="/ui/component/button">
+    <Button
+      as={NavLink}
+      to="/ui/component/button"
+      onClick={(e) => e.preventDefault()}
+    >
       View Button docs
     </Button>
   ),
@@ -25,7 +29,7 @@ export const asChild = {
 </Button>`,
   label: 'As Child',
   sample: (
-    <Button asChild>
+    <Button asChild onClick={(e) => e.preventDefault()}>
       <a href="https://google.com" target="__google">
         Open Google
       </a>
@@ -40,11 +44,9 @@ export const basicUsage = {
 };
 
 export const busy = {
-  code: `<>
-  <Button isBusy>Working</Button>
-  <Button isBusy disabled>Working</Button>
-  <Button isBusy visuallyDisabled>Working</Button>
-</>`,
+  code: `<Button isBusy>Working</Button>
+<Button isBusy disabled>Working</Button>
+<Button isBusy visuallyDisabled>Working</Button>`,
   label: 'Busy',
   sample: (
     <ResponsiveStackInline
@@ -64,10 +66,8 @@ export const busy = {
 };
 
 export const disabled = {
-  code: `<>
-  <Button disabled>Disabled</Button>
-  <Button visuallyDisabled>Visually disabled</Button>
-</>`,
+  code: `<Button disabled>Disabled</Button>
+<Button visuallyDisabled>Visually disabled</Button>`,
   label: 'Disabled',
   sample: (
     <ResponsiveStackInline
@@ -88,11 +88,9 @@ export const extraClassName = {
 };
 
 export const icons = {
-  code: `<>
-  <Button startIcon={<IconMoon aria-hidden />}>Start Icon</Button>
-  <Button aria-label="Toggle theme" icon={<IconMoon aria-hidden />} />
-  <Button endIcon={<IconMoon aria-hidden />}>End icon</Button>
-</>`,
+  code: `<Button startIcon={<IconMoon aria-hidden />}>Start Icon</Button>
+<Button aria-label="Toggle theme" icon={<IconMoon aria-hidden />} />
+<Button endIcon={<IconMoon aria-hidden />}>End icon</Button>`,
   label: 'Icons',
   sample: (
     <ResponsiveStackInline
@@ -107,14 +105,47 @@ export const icons = {
   ),
 };
 
+const directionCode = `<Button startIcon={<IconMoon aria-hidden />}>Start icon</Button>
+<Button endIcon={<IconMoon aria-hidden />}>End icon</Button>`;
+
+export const directionLTR = {
+  code: directionCode,
+  label: 'LTR',
+  sample: (
+    <ResponsiveStackInline
+      from="desktop"
+      inlineProps={{ justify: 'center' }}
+      stackProps={{ align: 'center' }}
+    >
+      <Button startIcon={<IconMoon aria-hidden />}>Start icon</Button>
+      <Button endIcon={<IconMoon aria-hidden />}>End icon</Button>
+    </ResponsiveStackInline>
+  ),
+};
+
+export const directionRTL = {
+  code: directionCode,
+  label: 'RTL',
+  sample: (
+    <div dir="rtl">
+      <ResponsiveStackInline
+        from="desktop"
+        inlineProps={{ justify: 'center' }}
+        stackProps={{ align: 'center' }}
+      >
+        <Button startIcon={<IconMoon aria-hidden />}>Start icon</Button>
+        <Button endIcon={<IconMoon aria-hidden />}>End icon</Button>
+      </ResponsiveStackInline>
+    </div>
+  ),
+};
+
 export const intents = {
-  code: `<>
-  <Button>Primary</Button>
-  <Button intent="secondary">Secondary</Button>
-  <Button intent="tertiary">Tertiary</Button>
-  <Button intent="constructive">Constructive</Button>
-  <Button intent="destructive">Destructive</Button>
-</>`,
+  code: `<Button>Primary</Button>
+<Button intent="secondary">Secondary</Button>
+<Button intent="tertiary">Tertiary</Button>
+<Button intent="constructive">Constructive</Button>
+<Button intent="destructive">Destructive</Button>`,
   label: 'Intents',
   sample: (
     <ResponsiveStackInline
@@ -132,12 +163,11 @@ export const intents = {
 };
 
 export const sizes = {
-  code: `<>
-  <Button size="small">Small</Button>
-  <Button>Medium</Button>
-  <Button size="large">Large</Button>
-  <Button size="hero">Hero</Button>
-</>`,
+  code: `<Button size="small">Small</Button>
+<Button>Medium</Button>
+<Button size="large">Large</Button>
+<Button size="hero">Hero</Button>
+`,
   label: 'Sizes',
   sample: (
     <ResponsiveStackInline
@@ -173,11 +203,4 @@ export const heroSize = {
   ),
 };
 
-export const propHighlights = [
-  basicUsage,
-  heroSize,
-  sizes,
-  asProp,
-  icons,
-  busy,
-];
+export const propHighlights = [basicUsage, sizes, asProp, icons, busy];

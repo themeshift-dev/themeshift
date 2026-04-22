@@ -102,10 +102,10 @@ export const NavbarGuide = () => {
         <GuideExampleText>
           <TableOfContents.Marker
             id="examples-direction"
-            label="Direction"
+            label="Direction (LTR/RTL)"
             level={2}
           />
-          <Heading level={4}>Direction (LTR and RTL)</Heading>
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
           <p>
             Start and end sections should mirror automatically as writing
             direction changes.
@@ -162,6 +162,7 @@ export const NavbarGuide = () => {
           </p>
         ),
         example: examples.basicUsage,
+        tocLabel: 'Nav landmark',
         title: 'Label the navigation landmark',
       },
       {
@@ -172,6 +173,7 @@ export const NavbarGuide = () => {
             anchors land on visible content.
           </p>
         ),
+        tocLabel: 'Focus order',
         title: 'Maintain predictable focus order',
       },
     ],

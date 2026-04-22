@@ -102,10 +102,10 @@ export const SkipLinkGuide = () => {
         <GuideExampleText>
           <TableOfContents.Marker
             id="examples-direction"
-            label="Direction"
+            label="Direction (LTR/RTL)"
             level={2}
           />
-          <Heading level={4}>Direction (LTR and RTL)</Heading>
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
           <p>
             SkipLink placement follows logical inline-start positioning, so it
             should mirror correctly in RTL regions.
@@ -162,6 +162,7 @@ export const SkipLinkGuide = () => {
           </p>
         ),
         example: examples.basicUsage,
+        tocLabel: 'Landmark target',
         title: 'Target a real landmark',
       },
       {
@@ -172,6 +173,7 @@ export const SkipLinkGuide = () => {
             and the destination.
           </p>
         ),
+        tocLabel: 'Order & focus',
         title: 'Place skip links first and test focus',
       },
     ],

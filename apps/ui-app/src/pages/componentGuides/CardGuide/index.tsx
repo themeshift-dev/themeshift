@@ -173,7 +173,7 @@ export const CardGuide = () => {
             label="Direction (LTR/RTL)"
             level={2}
           />
-          <Heading level={4}>Direction (LTR and RTL)</Heading>
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
           <p>
             Start/end alignment uses logical directions, so layout mirrors
             correctly in both writing modes.
@@ -292,6 +292,7 @@ export const CardGuide = () => {
           </p>
         ),
         example: examples.structuredUsage,
+        tocLabel: 'Card semantics',
         title: 'Pick semantics that match content intent',
       },
       {
@@ -314,6 +315,7 @@ export const CardGuide = () => {
           </p>
         ),
         example: examples.mediaTop,
+        tocLabel: 'Media alt text',
         title: 'Treat media alt text intentionally',
       },
       {
@@ -325,6 +327,7 @@ export const CardGuide = () => {
           </p>
         ),
         example: examples.linkOverlay,
+        tocLabel: 'LinkOverlay controls',
         title: 'Preserve nested interactive controls with LinkOverlay',
       },
       {
@@ -336,6 +339,7 @@ export const CardGuide = () => {
           </p>
         ),
         example: examples.linkOverlay,
+        tocLabel: 'Full-surface links',
         title: 'Use full-surface links intentionally',
       },
     ],

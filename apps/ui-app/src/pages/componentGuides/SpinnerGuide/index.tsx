@@ -173,6 +173,7 @@ export const SpinnerGuide = () => {
           </p>
         ),
         example: examples.inButtons,
+        tocLabel: 'Busy state',
         title: 'Expose busy state on the right element',
       },
     ],

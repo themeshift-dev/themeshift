@@ -225,6 +225,7 @@ export const BadgeGuide = () => {
           </p>
         ),
         example: examples.tonesAndVariants,
+        tocLabel: 'Badge hierarchy',
         title: 'Keep badges secondary to primary labels',
       },
       {
@@ -236,6 +237,7 @@ export const BadgeGuide = () => {
           </p>
         ),
         example: examples.countLiveAnnouncements,
+        tocLabel: 'Live announcements',
         title: 'Opt into live announcements intentionally',
       },
       {
@@ -249,6 +251,7 @@ export const BadgeGuide = () => {
           </p>
         ),
         example: examples.countAnchored,
+        tocLabel: 'Anchor names',
         title: 'Ensure anchor controls have accessible names',
       },
     ],

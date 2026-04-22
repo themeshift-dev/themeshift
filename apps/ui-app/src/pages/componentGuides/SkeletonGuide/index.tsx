@@ -115,10 +115,10 @@ export const SkeletonGuide = () => {
         <GuideExampleText>
           <TableOfContents.Marker
             id="examples-direction"
-            label="Direction"
+            label="Direction (LTR/RTL)"
             level={2}
           />
-          <Heading level={4}>Direction (LTR and RTL)</Heading>
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
           <p>
             Shimmer direction adapts to writing direction. Set <code>dir</code>{' '}
             on parent regions to support both LTR and RTL interfaces.

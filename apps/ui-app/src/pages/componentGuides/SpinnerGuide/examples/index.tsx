@@ -8,11 +8,9 @@ export const basicUsage = {
 };
 
 export const sizes = {
-  code: `<>
-  <Spinner aria-label="Loading small" size={16} />
-  <Spinner aria-label="Loading medium" size={24} />
-  <Spinner aria-label="Loading large" size={40} />
-</>`,
+  code: `<Spinner aria-label="Loading small" size={16} />
+<Spinner aria-label="Loading medium" size={24} />
+<Spinner aria-label="Loading large" size={40} />`,
   label: 'Sizes',
   sample: (
     <div style={{ alignItems: 'center', display: 'flex', gap: '1rem' }}>
@@ -24,13 +22,11 @@ export const sizes = {
 };
 
 export const inButtons = {
-  code: `<>
-  <Button isBusy>Saving</Button>
-  <Button intent="secondary" isBusy>
-    Updating
-  </Button>
-  <Button aria-label="Loading" icon={<Spinner aria-hidden />} />
-</>`,
+  code: `<Button isBusy>Saving</Button>
+<Button intent="secondary" isBusy>
+  Updating
+</Button>
+<Button aria-label="Loading" icon={<Spinner aria-hidden />} />`,
   label: 'In buttons',
   sample: (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>

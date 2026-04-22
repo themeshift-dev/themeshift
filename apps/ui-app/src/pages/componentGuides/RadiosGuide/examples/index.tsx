@@ -101,4 +101,29 @@ export const sizes = {
   sample: <SizesSample />,
 };
 
+const directionCode = `<Radio.Group name="contactMethodDirection" defaultValue="email">
+  <legend>Preferred contact method</legend>
+  <Radio value="email">Email</Radio>
+  <Radio value="phone">Phone</Radio>
+  <Radio value="sms">SMS</Radio>
+</Radio.Group>`;
+
+export const directionLTR = {
+  code: directionCode,
+  label: 'LTR',
+  sample: <BasicUsageSample />,
+};
+
+export const directionRTL = {
+  code: directionCode,
+  label: 'RTL',
+  sample: (
+    <div dir="rtl">
+      <BasicUsageSample />
+    </div>
+  ),
+};
+
 export const propHighlights = [basicUsage, withField, controlled, disabled];
+
+export const directionExamples = [directionLTR, directionRTL];

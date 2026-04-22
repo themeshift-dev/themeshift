@@ -25,10 +25,8 @@ export const withField = {
 };
 
 export const assertiveAndPolite = {
-  code: `<>
-  <ErrorMessage>Unable to save your changes.</ErrorMessage>
-  <ErrorMessage role="status">Checking username availability...</ErrorMessage>
-</>`,
+  code: `<ErrorMessage>Unable to save your changes.</ErrorMessage>
+<ErrorMessage role="status">Checking username availability...</ErrorMessage>`,
   label: 'Alert and status roles',
   sample: (
     <div style={{ display: 'grid', gap: '0.75rem' }}>

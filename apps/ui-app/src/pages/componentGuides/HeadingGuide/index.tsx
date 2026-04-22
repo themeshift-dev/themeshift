@@ -138,6 +138,7 @@ export const HeadingGuide = () => {
           </p>
         ),
         example: examples.levels,
+        tocLabel: 'Heading levels',
         title: 'Use heading levels for structure',
       },
       {

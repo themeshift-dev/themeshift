@@ -158,10 +158,10 @@ export const ToggleSwitchGuide = () => {
         <GuideExampleText>
           <TableOfContents.Marker
             id="examples-direction"
-            label="Direction"
+            label="Direction (LTR/RTL)"
             level={2}
           />
-          <Heading level={4}>Direction (LTR and RTL)</Heading>
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
           <p>
             Start and end icon positions should mirror automatically across
             writing directions.
@@ -262,6 +262,7 @@ export const ToggleSwitchGuide = () => {
           </p>
         ),
         example: examples.withDescriptionAndError,
+        tocLabel: 'Guidance & errors',
         title: 'Associate guidance and errors',
       },
       {
@@ -273,6 +274,7 @@ export const ToggleSwitchGuide = () => {
           </p>
         ),
         example: examples.checkedChange,
+        tocLabel: 'State labels',
         title: 'Keep state labels accurate',
       },
     ],
