@@ -203,4 +203,6 @@ export const heroSize = {
   ),
 };
 
+export const directionExamples = [directionLTR, directionRTL];
+
 export const propHighlights = [basicUsage, sizes, asProp, icons, busy];
