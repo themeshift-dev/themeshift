@@ -1,12 +1,12 @@
 @use '@/sass/mixins/typography';
 
 .heading {
-  color: token('theme.text.base');
+  color: token('text.primary');
   margin: 0;
 }
 
 .muted {
-  color: token('theme.text.muted');
+  color: token('text.muted');
 }
 
 .h1 {

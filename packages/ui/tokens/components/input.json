@@ -1,83 +1,62 @@
 {
   "components": {
     "input": {
-      "layout": {
-        "adornmentGap": { "$value": "{space.2}" }
-      },
-
-      "sizes": {
+      "layout": { "adornmentGap": { "$value": "{space.2}" } },
+      "size": {
         "small": {
           "borderRadius": { "$value": "{radius.small}" },
-          "height": { "$value": "{space.8}" },
-          "paddingInline": { "$value": "{space.3}" }
+          "height": { "$value": "{size.control.small.height}" },
+          "paddingInline": { "$value": "{size.control.small.paddingInline}" }
         },
 
         "medium": {
           "borderRadius": { "$value": "{radius.small}" },
-          "height": { "$value": "{space.9}" },
-          "paddingInline": { "$value": "{space.4}" }
+          "height": { "$value": "{size.control.medium.height}" },
+          "paddingInline": { "$value": "{size.control.medium.paddingInline}" }
         },
 
         "large": {
           "borderRadius": { "$value": "{radius.small}" },
-          "height": { "$value": "{space.10}" },
-          "paddingInline": { "$value": "{space.5}" }
+          "height": { "$value": "{size.control.large.height}" },
+          "paddingInline": { "$value": "{size.control.large.paddingInline}" }
         }
       },
 
       "light": {
-        "bg": { "$value": "{color.white}" },
+        "background": { "$value": "{color.white}" },
         "border": { "$value": "{color.black.20}" },
         "placeholder": { "$value": "{color.black.50}" },
         "adornment": { "$value": "{color.black.70}" },
-
         "disabled": {
-          "bg": { "$value": "{color.gray.100}" },
+          "background": { "$value": "{color.gray.100}" },
           "border": { "$value": "{color.black.10}" },
-          "fg": { "$value": "{color.black.50}" },
+          "text": { "$value": "{color.black.50}" },
           "placeholder": { "$value": "{color.black.40}" }
         },
 
         "validation": {
-          "invalid": {
-            "border": { "$value": "{color.red.400}" }
-          },
-
-          "valid": {
-            "border": { "$value": "{color.green.400}" }
-          },
-
-          "warning": {
-            "border": { "$value": "{color.lightBlue.400}" }
-          }
+          "invalid": { "border": { "$value": "{color.red.400}" } },
+          "valid": { "border": { "$value": "{color.green.400}" } },
+          "warning": { "border": { "$value": "{color.lightBlue.400}" } }
         }
       },
 
       "dark": {
-        "bg": { "$value": "{color.white.10}" },
+        "background": { "$value": "{color.white.10}" },
         "border": { "$value": "{color.white.20}" },
         "placeholder": { "$value": "{color.white.50}" },
         "adornment": { "$value": "{color.white.70}" },
-
         "disabled": {
-          "bg": { "$value": "{color.white.10}" },
+          "background": { "$value": "{color.white.10}" },
           "border": { "$value": "{color.white.10}" },
-          "fg": { "$value": "{color.white.50}" },
+          "text": { "$value": "{color.white.50}" },
           "placeholder": { "$value": "{color.white.40}" }
         },
 
         "validation": {
-          "invalid": {
-            "border": { "$value": "{color.red.400}" }
-          },
-
-          "valid": {
-            "border": { "$value": "{color.green.400}" }
-          },
-
-          "warning": {
-            "border": { "$value": "{color.lightBlue.400}" }
-          }
+          "invalid": { "border": { "$value": "{color.red.400}" } },
+          "valid": { "border": { "$value": "{color.green.400}" } },
+          "warning": { "border": { "$value": "{color.lightBlue.400}" } }
         }
       }
     }

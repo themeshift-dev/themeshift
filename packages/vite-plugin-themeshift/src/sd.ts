@@ -174,6 +174,22 @@ function prepareDictionaryTokens(dictionary: { allTokens?: any[] }) {
   return resolveDictionaryTokenValues(dictionary.allTokens ?? []);
 }
 
+function toCanonicalPath(token: any) {
+  const path = (token.path ?? [])
+    .filter((segment: string) => {
+      return segment !== 'light' && segment !== 'dark' && segment !== 'print';
+    })
+    .map((segment: string) => {
+      if (segment === 'intents' || segment === 'tones') return 'variant';
+      if (segment === 'sizes') return 'size';
+      if (segment === 'bg') return 'background';
+      if (segment === 'fg') return 'text';
+      return segment;
+    });
+
+  return path.join('.');
+}
+
 export function registerStyleDictionaryThings(
   StyleDictionary: any,
   options: {
@@ -414,26 +430,30 @@ export function registerStyleDictionaryThings(
   StyleDictionary.registerFormat({
     name: 'token/paths-json',
     format: ({ dictionary }: any) => {
-      const paths = applyPlatformFilter(
-        prepareDictionaryTokens(dictionary),
-        'meta',
-        filters
-      ).map((t: any) => t.path.join('.'));
-      paths.sort();
-      return JSON.stringify(paths, null, 2);
+      const paths = new Set(
+        applyPlatformFilter(
+          prepareDictionaryTokens(dictionary),
+          'meta',
+          filters
+        ).map((t: any) => toCanonicalPath(t))
+      );
+
+      return JSON.stringify(Array.from(paths).sort(), null, 2);
     },
   });
 
   StyleDictionary.registerFormat({
     name: 'token/paths-ts',
     format: ({ dictionary }: any) => {
-      const paths = applyPlatformFilter(
-        prepareDictionaryTokens(dictionary),
-        'meta',
-        filters
-      )
-        .map((t: any) => t.path.join('.'))
-        .sort();
+      const paths = Array.from(
+        new Set(
+          applyPlatformFilter(
+            prepareDictionaryTokens(dictionary),
+            'meta',
+            filters
+          ).map((t: any) => toCanonicalPath(t))
+        )
+      ).sort();
       return `/* auto-generated */
 export const tokenPaths = ${JSON.stringify(paths, null, 2)} as const;
 export type TokenPath = (typeof tokenPaths)[number];
@@ -444,14 +464,18 @@ export type TokenPath = (typeof tokenPaths)[number];
   StyleDictionary.registerFormat({
     name: 'token/values-json',
     format: ({ dictionary }: any) => {
+      const entries = applyPlatformFilter(
+        prepareDictionaryTokens(dictionary),
+        'meta',
+        filters
+      ).filter(
+        (t: any) => !t.attributes?.theme || t.attributes?.theme === defaultTheme
+      );
+
       const values = Object.fromEntries(
-        applyPlatformFilter(
-          prepareDictionaryTokens(dictionary),
-          'meta',
-          filters
-        )
+        entries
           .map((t: any): [string, unknown] => [
-            t.path.join('.'),
+            toCanonicalPath(t),
             t.value ?? t.$value ?? null,
           ])
           .sort(([a], [b]) => a.localeCompare(b))
@@ -464,14 +488,18 @@ export type TokenPath = (typeof tokenPaths)[number];
   StyleDictionary.registerFormat({
     name: 'token/values-ts',
     format: ({ dictionary }: any) => {
+      const entries = applyPlatformFilter(
+        prepareDictionaryTokens(dictionary),
+        'meta',
+        filters
+      ).filter(
+        (t: any) => !t.attributes?.theme || t.attributes?.theme === defaultTheme
+      );
+
       const values = Object.fromEntries(
-        applyPlatformFilter(
-          prepareDictionaryTokens(dictionary),
-          'meta',
-          filters
-        )
+        entries
           .map((t: any): [string, unknown] => [
-            t.path.join('.'),
+            toCanonicalPath(t),
             t.value ?? t.$value ?? null,
           ])
           .sort(([a], [b]) => a.localeCompare(b))

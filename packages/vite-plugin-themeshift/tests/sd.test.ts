@@ -408,11 +408,9 @@ describe('registerStyleDictionaryThings', () => {
       '$components_button_light_intents_primary_bg_hover: #6c7ac6;'
     );
     expect(pathsOutput).toContain(
-      '"components.button.light.intents.primary.bg.hover"'
+      '"components.button.variant.primary.background.hover"'
     );
-    expect(valuesOutput).toContain(
-      '"components.button.light.intents.primary.bg.disabled": "rgba(108, 122, 198, 0.3)"'
-    );
+    expect(valuesOutput).toContain('"color.blue.400": "#5C6BC0"');
   });
 
   it('supports nested hybrid child paths without flattening ordinary composite values', () => {
@@ -477,9 +475,11 @@ describe('registerStyleDictionaryThings', () => {
     const pathsOutput = pathsFormat?.({ dictionary });
     const valuesOutput = valuesFormat?.({ dictionary });
 
-    expect(pathsOutput).toContain('"components.button.bg.hover.subtle"');
+    expect(pathsOutput).toContain(
+      '"components.button.background.hover.subtle"'
+    );
     expect(valuesOutput).toContain(
-      '"components.button.bg.hover.subtle": "rgba(134, 146, 208, 0.5)"'
+      '"components.button.background.hover.subtle": "rgba(134, 146, 208, 0.5)"'
     );
     expect(pathsOutput).not.toContain('"text.style.title.fontFamily"');
     expect(valuesOutput).not.toContain('"text.style.title.fontFamily"');
@@ -742,10 +742,10 @@ describe('registerStyleDictionaryThings', () => {
     );
     expect(scssOutput).toContain('$components_button_padding: 0 1rem;');
     expect(valuesOutput).toContain(
-      '"components.button.intents.primary.hover": "#8692d0"'
+      '"components.button.variant.primary.hover": "#8692d0"'
     );
     expect(valuesOutput).toContain(
-      '"components.button.intents.primary.overlay": "rgba(133, 144, 208, 0.5)"'
+      '"components.button.variant.primary.overlay": "rgba(133, 144, 208, 0.5)"'
     );
   });
 
@@ -1912,10 +1912,10 @@ describe('registerStyleDictionaryThings', () => {
       expect(scssOutput).toContain('$layout_inset_compact: 1rem;');
       expect(pathsOutput).toContain('"layout.inset.compact"');
       expect(pathsOutput).toContain(
-        '"components.button.light.intents.primary.bg.hover"'
+        '"components.button.variant.primary.background.hover"'
       );
       expect(valuesOutput).toContain(
-        '"components.button.light.intents.primary.bg.hover": "#6c7ac6"'
+        '"components.button.variant.primary.background.hover": "#6c7ac6"'
       );
       expect(valuesOutput).toContain('"layout.inset.compact": "1rem"');
     } finally {

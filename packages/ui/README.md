@@ -209,7 +209,7 @@ Breakpoint semantics:
 - `above` is exclusive
 - `below` is exclusive
 
-Breakpoint values are token-driven through `layout.breakpoints.*`.
+Breakpoint values are token-driven through `breakpoint.*`.
 
 ## License
 

@@ -1,16 +1,14 @@
 {
   "components": {
     "button": {
-      "padding": { "$value": "0 {space.4}" },
       "font": { "$value": "{font.family.sans}" },
-
-      "sizes": {
+      "padding": { "$value": "0 {space.4}" },
+      "size": {
         "small": {
           "borderRadius": { "$value": "{radius.small}" },
-          "height": { "$value": "{space.8}" },
-
+          "height": { "$value": "{size.control.small.height}" },
           "padding": {
-            "$value": "0 {space.4}",
+            "$value": "0 {size.control.small.paddingInline}",
 
             "iconOnly": { "$value": "0 {space.2}" }
           }
@@ -18,10 +16,9 @@
 
         "medium": {
           "borderRadius": { "$value": "{radius.small}" },
-          "height": { "$value": "{space.9}" },
-
+          "height": { "$value": "{size.control.medium.height}" },
           "padding": {
-            "$value": "0 {space.6}",
+            "$value": "0 {size.control.medium.paddingInline}",
 
             "iconOnly": { "$value": "0 {space.3}" }
           }
@@ -29,10 +26,9 @@
 
         "large": {
           "borderRadius": { "$value": "{radius.small}" },
-          "height": { "$value": "{space.10}" },
-
+          "height": { "$value": "{size.control.large.height}" },
           "padding": {
-            "$value": "0 {space.8}",
+            "$value": "0 {size.control.large.paddingInline}",
 
             "iconOnly": { "$value": "0 {space.4}" }
           }
@@ -46,9 +42,9 @@
           },
 
           "fontSize": {
-            "min": { "$value": "{typography.metrics.1.fontSize}" },
+            "min": { "$value": "{typography.label.medium.fontSize}" },
             "fluid": { "$value": "0.4vw + 0.92rem" },
-            "max": { "$value": "{typography.metrics.3.fontSize}" }
+            "max": { "$value": "{typography.heading.small.fontSize}" }
           },
 
           "height": {
@@ -58,15 +54,15 @@
           },
 
           "letterSpacing": {
-            "min": { "$value": "{typography.metrics.1.letterSpacing}" },
+            "min": { "$value": "{typography.label.medium.letterSpacing}" },
             "fluid": { "$value": "0.002vw + 0.0095em" },
-            "max": { "$value": "{typography.metrics.3.letterSpacing}" }
+            "max": { "$value": "{typography.heading.small.letterSpacing}" }
           },
 
           "lineHeight": {
-            "min": { "$value": "{typography.metrics.1.lineHeight}" },
+            "min": { "$value": "{typography.label.medium.lineHeight}" },
             "fluid": { "$value": "0.25vw + 1.25rem" },
-            "max": { "$value": "{typography.metrics.3.lineHeight}" }
+            "max": { "$value": "{typography.heading.small.lineHeight}" }
           },
 
           "padding": {
@@ -87,55 +83,55 @@
         }
       },
 
-      "intents": {
+      "variant": {
         "light": {
           "primary": {
-            "bg": { "$value": "{color.blue.400}" },
-            "fg": { "$value": "{color.blue.400.fg}" },
+            "background": { "$value": "{color.blue.400}" },
+            "text": { "$value": "{color.blue.400.text}" },
             "hover": { "$value": "{color.blue.300}" }
           },
 
           "secondary": {
-            "bg": { "$value": "{color.gray.400}" },
-            "fg": { "$value": "{color.gray.400.fg}" },
+            "background": { "$value": "{color.gray.400}" },
+            "text": { "$value": "{color.gray.400.text}" },
             "hover": { "$value": "{color.gray.300}" }
           },
 
           "constructive": {
-            "bg": { "$value": "{color.green.400}" },
-            "fg": { "$value": "{color.green.400.fg}" },
+            "background": { "$value": "{color.green.400}" },
+            "text": { "$value": "{color.green.400.text}" },
             "hover": { "$value": "{color.green.300}" }
           },
 
           "destructive": {
-            "bg": { "$value": "{color.red.400}" },
-            "fg": { "$value": "{color.red.400.fg}" },
+            "background": { "$value": "{color.red.400}" },
+            "text": { "$value": "{color.red.400.text}" },
             "hover": { "$value": "{color.red.300}" }
           }
         },
 
         "dark": {
           "primary": {
-            "bg": { "$value": "{color.blue.400}" },
-            "fg": { "$value": "{color.blue.400.fg}" },
+            "background": { "$value": "{color.blue.400}" },
+            "text": { "$value": "{color.blue.400.text}" },
             "hover": { "$value": "lighten({color.blue.400}, .1)" }
           },
 
           "secondary": {
-            "bg": { "$value": "{color.gray.400}" },
-            "fg": { "$value": "{color.gray.400.fg}" },
+            "background": { "$value": "{color.gray.400}" },
+            "text": { "$value": "{color.gray.400.text}" },
             "hover": { "$value": "{color.gray.300}" }
           },
 
           "constructive": {
-            "bg": { "$value": "{color.green.400}" },
-            "fg": { "$value": "{color.green.400.fg}" },
+            "background": { "$value": "{color.green.400}" },
+            "text": { "$value": "{color.green.400.text}" },
             "hover": { "$value": "{color.green.300}" }
           },
 
           "destructive": {
-            "bg": { "$value": "{color.red.400}" },
-            "fg": { "$value": "{color.red.400.fg}" },
+            "background": { "$value": "{color.red.400}" },
+            "text": { "$value": "{color.red.400.text}" },
             "hover": { "$value": "{color.red.300}" }
           }
         }

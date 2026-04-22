@@ -13,12 +13,12 @@
   --page-shell-main-span: #{token('layout.pageShell.main.span.mobile')};
   --page-shell-aside-span: #{token('layout.pageShell.aside.span.mobile')};
 
-  color: token('theme.text.base');
+  color: token('text.primary');
   margin: token('layout.site.margin');
   padding: token('layout.site.padding');
   font-family: token('font.family.default');
 
-  @media (min-width: $layout_breakpoints_tablet) {
+  @media (min-width: $layout_breakpoint_tablet) {
     --page-shell-columns: #{token('grid.columns.tablet')};
     --page-shell-gutter: #{token('grid.gutter.tablet')};
     --page-shell-row-gap: #{token('grid.rowGap.tablet')};
@@ -29,7 +29,7 @@
     --page-shell-aside-span: #{token('layout.pageShell.aside.span.tablet')};
   }
 
-  @media (min-width: $layout_breakpoints_desktop) {
+  @media (min-width: $layout_breakpoint_desktop) {
     --page-shell-columns: #{token('grid.columns.desktop')};
     --page-shell-gutter: #{token('grid.gutter.desktop')};
     --page-shell-row-gap: #{token('grid.rowGap.desktop')};
@@ -64,7 +64,7 @@
 .withAside .main {
   align-self: start;
 
-  @media (min-width: $layout_breakpoints_desktop) {
+  @media (min-width: $layout_breakpoint_desktop) {
     grid-column: span var(--page-shell-main-span);
   }
 }
@@ -72,7 +72,7 @@
 .withAside .aside {
   align-self: stretch;
 
-  @media (min-width: $layout_breakpoints_desktop) {
+  @media (min-width: $layout_breakpoint_desktop) {
     grid-column: span var(--page-shell-aside-span);
   }
 }
@@ -81,23 +81,23 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: token('theme.surface.base');
+  background-color: token('background.surface');
 }
 
 .headerDivider,
 .navigationDivider,
 .footerDivider {
-  border-block-end: 1px solid token('theme.surface.raised');
+  border-block-end: 1px solid token('background.surfaceRaised');
 }
 
 .footerDivider {
-  border-block-start: 1px solid token('theme.surface.raised');
+  border-block-start: 1px solid token('background.surfaceRaised');
   border-block-end: 0;
 }
 
 .asideDivider {
-  @media (min-width: $layout_breakpoints_desktop) {
-    border-inline-start: 1px solid token('theme.surface.raised');
+  @media (min-width: $layout_breakpoint_desktop) {
+    border-inline-start: 1px solid token('background.surfaceRaised');
   }
 }
 

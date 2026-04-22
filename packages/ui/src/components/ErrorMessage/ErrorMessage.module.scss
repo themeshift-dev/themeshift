@@ -3,6 +3,6 @@
 .container {
   @include typography.style('caption.default');
 
-  color: token('components.button.intents.destructive.bg');
+  color: token('components.button.variant.destructive.background');
   margin: 0;
 }

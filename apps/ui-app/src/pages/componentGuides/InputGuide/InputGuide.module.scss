@@ -1,8 +1,9 @@
 .customInputWrapper {
   border-radius: token('radius.small');
-  box-shadow: inset 0 0 0 1px token('components.button.intents.constructive.bg');
+  box-shadow: inset 0 0 0 1px
+    token('components.button.variant.constructive.background');
 }
 
 .customInput {
-  color: token('components.button.intents.constructive.bg');
+  color: token('components.button.variant.constructive.background');
 }

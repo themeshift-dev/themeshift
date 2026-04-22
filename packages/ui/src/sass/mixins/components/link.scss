@@ -1,8 +1,8 @@
 @use '@themeshift/vite-plugin-themeshift/token' as themeShift;
 
 @mixin base {
-  color: themeShift.token('components.link.fg');
-  background: themeShift.token('components.link.bg');
+  color: themeShift.token('components.link.text');
+  background: themeShift.token('components.link.background');
   font-family: themeShift.token('components.link.font');
   padding: themeShift.token('components.link.padding');
 }

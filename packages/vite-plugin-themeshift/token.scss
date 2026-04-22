@@ -1,8 +1,12 @@
-@use "sass:string" as _themeShiftString;
-@use "@themeshift/vite-plugin-themeshift/token-defaults" as _themeShiftDefaults;
+@use 'sass:string' as _themeShiftString;
+@use './token-defaults' as _themeShiftDefaults;
 
 @function _sd_trim_leading_hyphens($value) {
-  @if _themeShiftString.length($value) == 0 or _themeShiftString.slice($value, 1, 1) != "-" {
+  @if _themeShiftString.length($value) ==
+    0 or
+    _themeShiftString.slice($value, 1, 1) !=
+    '-'
+  {
     @return $value;
   }
 
@@ -12,7 +16,7 @@
 @function _sd_trim_trailing_hyphens($value) {
   $length: _themeShiftString.length($value);
 
-  @if $length == 0 or _themeShiftString.slice($value, $length, $length) != "-" {
+  @if $length == 0 or _themeShiftString.slice($value, $length, $length) != '-' {
     @return $value;
   }
 
@@ -26,7 +30,7 @@
     @return null;
   }
 
-  $normalized: "";
+  $normalized: '';
   $length: _themeShiftString.length($prefix);
 
   @if $length == 0 {
@@ -35,8 +39,8 @@
 
   @for $i from 1 through $length {
     $ch: _themeShiftString.slice($prefix, $i, $i);
-    @if $ch == "_" {
-      $normalized: $normalized + "-";
+    @if $ch == '_' {
+      $normalized: $normalized + '-';
     } @else {
       $normalized: $normalized + $ch;
     }
@@ -45,7 +49,7 @@
   $normalized: _sd_trim_leading_hyphens($normalized);
   $normalized: _sd_trim_trailing_hyphens($normalized);
 
-  @if $normalized == "" {
+  @if $normalized == '' {
     @return null;
   }
 
@@ -63,28 +67,29 @@
 }
 
 @function _sd_is_uppercase($ch) {
-  @return $ch != _themeShiftString.to-lower-case($ch) and $ch == _themeShiftString.to-upper-case($ch);
+  @return $ch != _themeShiftString.to-lower-case($ch) and $ch ==
+    _themeShiftString.to-upper-case($ch);
 }
 
 @function _sd_to_css_var_name($path, $cssVarPrefix: null) {
   $resolved-prefix: _sd_resolve_css_var_prefix($cssVarPrefix);
-  $out: "";
+  $out: '';
 
   @if $resolved-prefix != null {
-    $out: $resolved-prefix + "-";
+    $out: $resolved-prefix + '-';
   }
 
   @for $i from 1 through _themeShiftString.length($path) {
     $ch: _themeShiftString.slice($path, $i, $i);
-    @if $ch == "." {
-      $out: $out + "-";
-    } @else if $ch == "_" {
-      $out: $out + "-";
+    @if $ch == '.' {
+      $out: $out + '-';
+    } @else if $ch == '_' {
+      $out: $out + '-';
     } @else if _sd_is_uppercase($ch) {
       @if $i > 1 {
         $prev: _themeShiftString.slice($path, $i - 1, $i - 1);
-        @if $prev != "." and $prev != "_" and $prev != "-" {
-          $out: $out + "-";
+        @if $prev != '.' and $prev != '_' and $prev != '-' {
+          $out: $out + '-';
         }
       }
       $out: $out + _themeShiftString.to-lower-case($ch);
@@ -92,7 +97,7 @@
       $out: $out + $ch;
     }
   }
-  @return "--" + $out;
+  @return '--' + $out;
 }
 
 @function token($path, $cssVarPrefix: null) {

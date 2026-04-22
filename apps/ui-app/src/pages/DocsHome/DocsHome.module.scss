@@ -7,7 +7,7 @@
 }
 
 .aside {
-  color: token('theme.text.muted');
+  color: token('text.muted');
   height: 100%;
   width: 100%;
 }
@@ -26,13 +26,13 @@
 .eyebrow {
   @include typography.style('eyebrow.default');
 
-  color: token('theme.text.muted');
+  color: token('text.muted');
   margin: 0 0 0.5rem;
   text-transform: uppercase;
 }
 
 .lead {
-  color: token('theme.text.muted');
+  color: token('text.muted');
   margin: 1rem 0 0;
   max-width: 64ch;
 }
@@ -57,21 +57,21 @@
 
 .table {
   border-collapse: collapse;
-  border: 1px solid token('theme.border');
+  border: 1px solid token('border.default');
   border-radius: token('radius.small');
   min-width: 42rem;
   width: 100%;
 
   th,
   td {
-    border: 1px solid token('theme.border');
+    border: 1px solid token('border.default');
     padding: 0.75rem;
     text-align: left;
     vertical-align: top;
   }
 
   th {
-    background: token('theme.surface.raised');
+    background: token('background.surfaceRaised');
   }
 
   tbody th {

@@ -2,7 +2,6 @@
   "font": {
     "family": {
       "$type": "fontFamily",
-
       "mono": {
         "$value": "'Sometype Mono Variable', monospace",
         "$description": "Primary UI font"

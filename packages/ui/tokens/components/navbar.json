@@ -1,38 +1,25 @@
 {
   "components": {
     "navbar": {
-      "minHeight": {
-        "$type": "dimension",
-        "$value": "72px"
-      },
-
-      "padding": {
-        "inline": { "$value": "0" },
-        "block": { "$value": "0" }
-      },
-
+      "minHeight": { "$type": "dimension", "$value": "72px" },
+      "padding": { "inline": { "$value": "0" }, "block": { "$value": "0" } },
       "container": {
         "maxWidth": { "$value": "{grid.container.contentMaxWidth}" },
         "gap": { "$value": "{space.8}" },
-
         "paddingInline": {
           "mobile": { "$value": "{grid.container.paddingInline.mobile}" },
           "tablet": { "$value": "{grid.container.paddingInline.tablet}" },
           "desktop": { "$value": "{grid.container.paddingInline.desktop}" }
         }
       },
-
-      "section": {
-        "gap": { "$value": "{space.4}" }
-      },
-
+      "section": { "gap": { "$value": "{space.4}" } },
       "light": {
-        "bg": { "$value": "transparent" },
+        "background": { "$value": "transparent" },
         "border": { "$value": "transparent" }
       },
 
       "dark": {
-        "bg": { "$value": "transparent" },
+        "background": { "$value": "transparent" },
         "border": { "$value": "transparent" }
       }
     }

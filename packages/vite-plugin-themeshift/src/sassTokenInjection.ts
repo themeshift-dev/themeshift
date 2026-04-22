@@ -1,4 +1,9 @@
 import { normalizeCssVarPrefix } from './cssVar';
+import { fileURLToPath } from 'node:url';
+
+const tokenDefaultsPath = fileURLToPath(
+  new URL('./token-defaults.scss', import.meta.url)
+).replace(/\\/g, '/');
 
 export type SassTokenInjection = {
   prelude: string;
@@ -6,14 +11,16 @@ export type SassTokenInjection = {
   body: string;
 };
 
-export function makeSassTokenInjection(cssVarPrefix?: string): SassTokenInjection {
+export function makeSassTokenInjection(
+  cssVarPrefix?: string
+): SassTokenInjection {
   const prefix = normalizeCssVarPrefix(cssVarPrefix) ?? null;
   const defaultPrefix = prefix === null ? 'null' : JSON.stringify(prefix);
 
   return {
     prelude:
       '@use "sass:string" as _themeShiftString;\n' +
-      `@use "@themeshift/vite-plugin-themeshift/token-defaults" as _themeShiftTokenDefaults with (\n  $theme-shift-default-css-var-prefix: ${defaultPrefix}\n);\n`,
+      `@use "${tokenDefaultsPath}" as _themeShiftTokenDefaults with (\n  $theme-shift-default-css-var-prefix: ${defaultPrefix}\n);\n`,
     directives: '',
     body:
       `

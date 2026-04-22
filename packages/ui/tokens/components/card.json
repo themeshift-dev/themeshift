@@ -14,9 +14,7 @@
         "layer": { "$value": "1" },
         "interactiveLayer": { "$value": "2" }
       },
-
       "dividerThickness": { "$value": "1px" },
-
       "badgeOffset": {
         "small": { "$value": "{space.2}" },
         "medium": { "$value": "{space.3}" }
@@ -42,24 +40,22 @@
       },
 
       "light": {
-        "border": { "$value": "{theme.light.border}" },
-        "divider": { "$value": "{theme.light.border}" },
-
+        "border": { "$value": "{border.light.default}" },
+        "divider": { "$value": "{border.light.default}" },
         "surface": {
-          "default": { "$value": "{theme.light.surface.base}" },
-          "subtle": { "$value": "{theme.light.surface.sunken}" },
-          "elevated": { "$value": "{theme.light.surface.raised}" }
+          "default": { "$value": "{background.light.surface}" },
+          "subtle": { "$value": "{background.light.surfaceSunken}" },
+          "elevated": { "$value": "{background.light.surfaceRaised}" }
         }
       },
 
       "dark": {
-        "border": { "$value": "{theme.dark.border}" },
-        "divider": { "$value": "{theme.dark.border}" },
-
+        "border": { "$value": "{border.dark.default}" },
+        "divider": { "$value": "{border.dark.default}" },
         "surface": {
-          "default": { "$value": "{theme.dark.surface.base}" },
-          "subtle": { "$value": "{theme.dark.surface.sunken}" },
-          "elevated": { "$value": "{theme.dark.surface.raised}" }
+          "default": { "$value": "{background.dark.surface}" },
+          "subtle": { "$value": "{background.dark.surfaceSunken}" },
+          "elevated": { "$value": "{background.dark.surfaceRaised}" }
         }
       }
     }

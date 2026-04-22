@@ -6,7 +6,7 @@
 
   align-items: center;
   border: 1px solid transparent;
-  border-radius: token('components.badge.sizes.medium.borderRadius');
+  border-radius: token('components.badge.size.medium.borderRadius');
   display: inline-flex;
   gap: token('components.badge.layout.iconGap');
   justify-content: center;
@@ -32,17 +32,17 @@
 .small {
   @include typography.style('caption.default');
 
-  border-radius: token('components.badge.sizes.small.borderRadius');
-  min-height: token('components.badge.sizes.small.height');
-  padding-inline: token('components.badge.sizes.small.paddingInline');
+  border-radius: token('components.badge.size.small.borderRadius');
+  min-height: token('components.badge.size.small.height');
+  padding-inline: token('components.badge.size.small.paddingInline');
 }
 
 .medium {
   @include typography.scale(0);
 
-  border-radius: token('components.badge.sizes.medium.borderRadius');
-  min-height: token('components.badge.sizes.medium.height');
-  padding-inline: token('components.badge.sizes.medium.paddingInline');
+  border-radius: token('components.badge.size.medium.borderRadius');
+  min-height: token('components.badge.size.medium.height');
+  padding-inline: token('components.badge.size.medium.paddingInline');
 }
 
 .iconSlot,
@@ -60,141 +60,147 @@
 }
 
 .toneNeutralSoft {
-  background-color: token('components.badge.tones.neutral.soft.bg');
-  border-color: token('components.badge.tones.neutral.soft.border');
-  color: token('components.badge.tones.neutral.soft.fg');
+  background-color: token('components.badge.variant.neutral.soft.background');
+  border-color: token('components.badge.variant.neutral.soft.border');
+  color: token('components.badge.variant.neutral.soft.text');
 }
 
 .toneNeutralSolid {
-  background-color: token('components.badge.tones.neutral.solid.bg');
-  border-color: token('components.badge.tones.neutral.solid.border');
-  color: token('components.badge.tones.neutral.solid.fg');
+  background-color: token('components.badge.variant.neutral.solid.background');
+  border-color: token('components.badge.variant.neutral.solid.border');
+  color: token('components.badge.variant.neutral.solid.text');
 }
 
 .toneNeutralOutline {
-  background-color: token('components.badge.tones.neutral.outline.bg');
-  border-color: token('components.badge.tones.neutral.outline.border');
-  color: token('components.badge.tones.neutral.outline.fg');
+  background-color: token(
+    'components.badge.variant.neutral.outline.background'
+  );
+  border-color: token('components.badge.variant.neutral.outline.border');
+  color: token('components.badge.variant.neutral.outline.text');
 }
 
 .toneInfoSoft {
-  background-color: token('components.badge.tones.info.soft.bg');
-  border-color: token('components.badge.tones.info.soft.border');
-  color: token('components.badge.tones.info.soft.fg');
+  background-color: token('components.badge.variant.info.soft.background');
+  border-color: token('components.badge.variant.info.soft.border');
+  color: token('components.badge.variant.info.soft.text');
 }
 
 .toneInfoSolid {
-  background-color: token('components.badge.tones.info.solid.bg');
-  border-color: token('components.badge.tones.info.solid.border');
-  color: token('components.badge.tones.info.solid.fg');
+  background-color: token('components.badge.variant.info.solid.background');
+  border-color: token('components.badge.variant.info.solid.border');
+  color: token('components.badge.variant.info.solid.text');
 }
 
 .toneInfoOutline {
-  background-color: token('components.badge.tones.info.outline.bg');
-  border-color: token('components.badge.tones.info.outline.border');
-  color: token('components.badge.tones.info.outline.fg');
+  background-color: token('components.badge.variant.info.outline.background');
+  border-color: token('components.badge.variant.info.outline.border');
+  color: token('components.badge.variant.info.outline.text');
 }
 
 .toneSuccessSoft {
-  background-color: token('components.badge.tones.success.soft.bg');
-  border-color: token('components.badge.tones.success.soft.border');
-  color: token('components.badge.tones.success.soft.fg');
+  background-color: token('components.badge.variant.success.soft.background');
+  border-color: token('components.badge.variant.success.soft.border');
+  color: token('components.badge.variant.success.soft.text');
 }
 
 .toneSuccessSolid {
-  background-color: token('components.badge.tones.success.solid.bg');
-  border-color: token('components.badge.tones.success.solid.border');
-  color: token('components.badge.tones.success.solid.fg');
+  background-color: token('components.badge.variant.success.solid.background');
+  border-color: token('components.badge.variant.success.solid.border');
+  color: token('components.badge.variant.success.solid.text');
 }
 
 .toneSuccessOutline {
-  background-color: token('components.badge.tones.success.outline.bg');
-  border-color: token('components.badge.tones.success.outline.border');
-  color: token('components.badge.tones.success.outline.fg');
+  background-color: token(
+    'components.badge.variant.success.outline.background'
+  );
+  border-color: token('components.badge.variant.success.outline.border');
+  color: token('components.badge.variant.success.outline.text');
 }
 
 .toneWarningSoft {
-  background-color: token('components.badge.tones.warning.soft.bg');
-  border-color: token('components.badge.tones.warning.soft.border');
-  color: token('components.badge.tones.warning.soft.fg');
+  background-color: token('components.badge.variant.warning.soft.background');
+  border-color: token('components.badge.variant.warning.soft.border');
+  color: token('components.badge.variant.warning.soft.text');
 }
 
 .toneWarningSolid {
-  background-color: token('components.badge.tones.warning.solid.bg');
-  border-color: token('components.badge.tones.warning.solid.border');
-  color: token('components.badge.tones.warning.solid.fg');
+  background-color: token('components.badge.variant.warning.solid.background');
+  border-color: token('components.badge.variant.warning.solid.border');
+  color: token('components.badge.variant.warning.solid.text');
 }
 
 .toneWarningOutline {
-  background-color: token('components.badge.tones.warning.outline.bg');
-  border-color: token('components.badge.tones.warning.outline.border');
-  color: token('components.badge.tones.warning.outline.fg');
+  background-color: token(
+    'components.badge.variant.warning.outline.background'
+  );
+  border-color: token('components.badge.variant.warning.outline.border');
+  color: token('components.badge.variant.warning.outline.text');
 }
 
 .toneDangerSoft {
-  background-color: token('components.badge.tones.danger.soft.bg');
-  border-color: token('components.badge.tones.danger.soft.border');
-  color: token('components.badge.tones.danger.soft.fg');
+  background-color: token('components.badge.variant.danger.soft.background');
+  border-color: token('components.badge.variant.danger.soft.border');
+  color: token('components.badge.variant.danger.soft.text');
 }
 
 .toneDangerSolid {
-  background-color: token('components.badge.tones.danger.solid.bg');
-  border-color: token('components.badge.tones.danger.solid.border');
-  color: token('components.badge.tones.danger.solid.fg');
+  background-color: token('components.badge.variant.danger.solid.background');
+  border-color: token('components.badge.variant.danger.solid.border');
+  color: token('components.badge.variant.danger.solid.text');
 }
 
 .toneDangerOutline {
-  background-color: token('components.badge.tones.danger.outline.bg');
-  border-color: token('components.badge.tones.danger.outline.border');
-  color: token('components.badge.tones.danger.outline.fg');
+  background-color: token('components.badge.variant.danger.outline.background');
+  border-color: token('components.badge.variant.danger.outline.border');
+  color: token('components.badge.variant.danger.outline.text');
 }
 
 .colorGray {
-  background-color: token('components.badge.colors.gray.bg');
+  background-color: token('components.badge.colors.gray.background');
   border-color: token('components.badge.colors.gray.border');
-  color: token('components.badge.colors.gray.fg');
+  color: token('components.badge.colors.gray.text');
 }
 
 .colorBlue {
-  background-color: token('components.badge.colors.blue.bg');
+  background-color: token('components.badge.colors.blue.background');
   border-color: token('components.badge.colors.blue.border');
-  color: token('components.badge.colors.blue.fg');
+  color: token('components.badge.colors.blue.text');
 }
 
 .colorGreen {
-  background-color: token('components.badge.colors.green.bg');
+  background-color: token('components.badge.colors.green.background');
   border-color: token('components.badge.colors.green.border');
-  color: token('components.badge.colors.green.fg');
+  color: token('components.badge.colors.green.text');
 }
 
 .colorYellow {
-  background-color: token('components.badge.colors.yellow.bg');
+  background-color: token('components.badge.colors.yellow.background');
   border-color: token('components.badge.colors.yellow.border');
-  color: token('components.badge.colors.yellow.fg');
+  color: token('components.badge.colors.yellow.text');
 }
 
 .colorOrange {
-  background-color: token('components.badge.colors.orange.bg');
+  background-color: token('components.badge.colors.orange.background');
   border-color: token('components.badge.colors.orange.border');
-  color: token('components.badge.colors.orange.fg');
+  color: token('components.badge.colors.orange.text');
 }
 
 .colorRed {
-  background-color: token('components.badge.colors.red.bg');
+  background-color: token('components.badge.colors.red.background');
   border-color: token('components.badge.colors.red.border');
-  color: token('components.badge.colors.red.fg');
+  color: token('components.badge.colors.red.text');
 }
 
 .colorPink {
-  background-color: token('components.badge.colors.pink.bg');
+  background-color: token('components.badge.colors.pink.background');
   border-color: token('components.badge.colors.pink.border');
-  color: token('components.badge.colors.pink.fg');
+  color: token('components.badge.colors.pink.text');
 }
 
 .colorPurple {
-  background-color: token('components.badge.colors.purple.bg');
+  background-color: token('components.badge.colors.purple.background');
   border-color: token('components.badge.colors.purple.border');
-  color: token('components.badge.colors.purple.fg');
+  color: token('components.badge.colors.purple.text');
 }
 
 .countRoot {
@@ -213,10 +219,10 @@
 
 .indicator {
   align-items: center;
-  background-color: token('components.badge.count.bg');
+  background-color: token('components.badge.count.background');
   border: 1px solid token('components.badge.count.border');
   border-radius: token('components.badge.count.borderRadius');
-  color: token('components.badge.count.fg');
+  color: token('components.badge.count.text');
   display: inline-flex;
   font-variant-numeric: tabular-nums;
   justify-content: center;

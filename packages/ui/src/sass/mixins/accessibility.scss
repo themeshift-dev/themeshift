@@ -3,10 +3,10 @@
 // Draws the shared ThemeShift focus ring. Use inside :focus-visible handlers
 // so keyboard and assistive-technology users get a clear visual indicator.
 @mixin focusRing(
-  $ringColor: themeShift.token('accessibility.focus.ring'),
-  $gapColor: themeShift.token('accessibility.focus.gap'),
-  $ringWidth: themeShift.token('accessibility.focus.ringWidth'),
-  $gapWidth: themeShift.token('accessibility.focus.gapWidth'),
+  $ringColor: themeShift.token('focus.ring.color'),
+  $gapColor: themeShift.token('background.canvas'),
+  $ringWidth: themeShift.token('focus.ring.width'),
+  $gapWidth: themeShift.token('focus.ring.offset'),
   $offset: 0
 ) {
   @if $offset == 0 {
@@ -45,10 +45,10 @@
 // Shared focus-visible ring for interactive controls that use the tokenized
 // box-shadow treatment instead of the browser outline.
 @mixin focusVisibleRing(
-  $ringColor: themeShift.token('accessibility.focus.ring'),
-  $gapColor: themeShift.token('accessibility.focus.gap'),
-  $ringWidth: themeShift.token('accessibility.focus.ringWidth'),
-  $gapWidth: themeShift.token('accessibility.focus.gapWidth'),
+  $ringColor: themeShift.token('focus.ring.color'),
+  $gapColor: themeShift.token('background.canvas'),
+  $ringWidth: themeShift.token('focus.ring.width'),
+  $gapWidth: themeShift.token('focus.ring.offset'),
   $offset: 0
 ) {
   &:focus:not(:focus-visible) {
@@ -73,10 +73,10 @@
 // Shared focus-visible ring for scroll containers and other framed regions
 // where the ring should sit inside the element instead of outside it.
 @mixin focusInner(
-  $ringColor: themeShift.token('accessibility.focus.ring'),
-  $gapColor: themeShift.token('accessibility.focus.gap'),
-  $ringWidth: themeShift.token('accessibility.focus.ringWidth'),
-  $gapWidth: themeShift.token('accessibility.focus.gapWidth')
+  $ringColor: themeShift.token('focus.ring.color'),
+  $gapColor: themeShift.token('background.canvas'),
+  $ringWidth: themeShift.token('focus.ring.width'),
+  $gapWidth: themeShift.token('focus.ring.offset')
 ) {
   &:focus:not(:focus-visible) {
     box-shadow: none;
@@ -93,10 +93,10 @@
 
 // Button-specific alias kept for component-level readability.
 @mixin buttonFocus(
-  $ringColor: themeShift.token('accessibility.focus.ring'),
-  $gapColor: themeShift.token('accessibility.focus.gap'),
-  $ringWidth: themeShift.token('accessibility.focus.ringWidth'),
-  $gapWidth: themeShift.token('accessibility.focus.gapWidth'),
+  $ringColor: themeShift.token('focus.ring.color'),
+  $gapColor: themeShift.token('background.canvas'),
+  $ringWidth: themeShift.token('focus.ring.width'),
+  $gapWidth: themeShift.token('focus.ring.offset'),
   $offset: 0
 ) {
   @include focusVisibleRing(

@@ -1,19 +1,41 @@
 {
-  "theme": {
+  "background": {
     "dark": {
-      "border": { "$value": "{color.white.05}" },
-      "overlay": { "$value": "{color.black.80}" },
-
-      "surface": {
-        "base": { "$value": "{color.blueGrey.900}" },
-        "raised": { "$value": "{color.white.05}" },
-        "sunken": { "$value": "{color.black.05}" }
-      },
-
-      "text": {
-        "base": { "$value": "{color.white}" },
-        "muted": { "$value": "{color.white.70}" }
-      }
+      "canvas": { "$value": "{color.blueGrey.900}" },
+      "surface": { "$value": "{color.blueGrey.900}" },
+      "surfaceRaised": { "$value": "{color.white.05}" },
+      "surfaceSunken": { "$value": "{color.black.05}" },
+      "overlay": { "$value": "{color.black.80}" }
     }
-  }
+  },
+
+  "text": {
+    "dark": {
+      "primary": { "$value": "{color.white}" },
+      "secondary": { "$value": "{color.white.70}" },
+      "muted": { "$value": "{color.white.70}" },
+      "inverse": { "$value": "{color.black}" },
+      "link": { "$value": "{color.lightBlue.300}" },
+      "destructive": { "$value": "{color.red.300}" },
+      "success": { "$value": "{color.green.300}" }
+    }
+  },
+
+  "border": {
+    "dark": {
+      "default": { "$value": "{color.white.05}" },
+      "subtle": { "$value": "{color.white.05}" },
+      "strong": { "$value": "{color.white.20}" },
+      "focusRing": { "$value": "{color.blue.500}" }
+    }
+  },
+
+  "icon": {
+    "dark": {
+      "primary": { "$value": "{text.dark.primary}" },
+      "secondary": { "$value": "{text.dark.muted}" },
+      "inverse": { "$value": "{text.dark.inverse}" }
+    }
+  },
+  "focus": { "ring": { "dark": { "color": { "$value": "{color.blue.500}" } } } }
 }

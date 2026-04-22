@@ -18,13 +18,13 @@
   padding-block: token('components.navbar.padding.block');
   padding-inline: var(--navbar-padding-inline);
 
-  @media (min-width: $layout_breakpoints_tablet) {
+  @media (min-width: $layout_breakpoint_tablet) {
     --navbar-padding-inline: #{token(
         'components.navbar.container.paddingInline.tablet'
       )};
   }
 
-  @media (min-width: $layout_breakpoints_desktop) {
+  @media (min-width: $layout_breakpoint_desktop) {
     --navbar-padding-inline: #{token(
         'components.navbar.container.paddingInline.desktop'
       )};

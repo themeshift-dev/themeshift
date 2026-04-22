@@ -1,17 +1,17 @@
 .container {
-  background: token('components.copyButton.bg');
+  background: token('components.copyButton.background');
   transition:
     0.2s color,
     0.2s background;
 
   // Duplicating selector purposely for higher specificity
   &.container {
-    color: token('components.copyButton.fg');
+    color: token('components.copyButton.text');
   }
 
   &:hover {
-    background: token('components.copyButton.bg.hover');
-    color: token('components.copyButton.fg.hover');
+    background: token('components.copyButton.background.hover');
+    color: token('components.copyButton.text.hover');
     text-decoration: none;
   }
 }

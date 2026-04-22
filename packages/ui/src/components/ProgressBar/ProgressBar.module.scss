@@ -1,16 +1,16 @@
 @use '@/sass/mixins/typography';
 
 .container {
-  --progress-fill: #{token('components.progressBar.tones.primary.fill')};
+  --progress-fill: #{token('components.progressBar.variant.primary.fill')};
   --progress-radius: #{token('components.progressBar.radius.full')};
   --progress-track-block-size: #{token(
-      'components.progressBar.sizes.medium.trackBlock'
+      'components.progressBar.size.medium.trackBlock'
     )};
   --progress-track-vertical-block-size: #{token(
-      'components.progressBar.sizes.medium.verticalTrackBlock'
+      'components.progressBar.size.medium.verticalTrackBlock'
     )};
   --progress-track-vertical-inline-size: #{token(
-      'components.progressBar.sizes.medium.verticalTrackInline'
+      'components.progressBar.size.medium.verticalTrackInline'
     )};
 
   display: grid;
@@ -20,11 +20,11 @@
 .label {
   @include typography.style('body.strong');
 
-  color: token('theme.text.base');
+  color: token('text.primary');
 }
 
 .track {
-  background: token('theme.surface.raised');
+  background: token('background.surfaceRaised');
   block-size: var(--progress-track-block-size);
   border-radius: var(--progress-radius);
   inline-size: 100%;
@@ -99,13 +99,13 @@
 .value {
   @include typography.style('caption.strong');
 
-  color: token('theme.text.base');
+  color: token('text.primary');
 }
 
 .description {
   @include typography.style('caption.default');
 
-  color: token('theme.text.muted');
+  color: token('text.muted');
   margin: 0;
 }
 
@@ -121,54 +121,54 @@
 
 .small {
   --progress-track-block-size: #{token(
-      'components.progressBar.sizes.small.trackBlock'
+      'components.progressBar.size.small.trackBlock'
     )};
   --progress-track-vertical-block-size: #{token(
-      'components.progressBar.sizes.small.verticalTrackBlock'
+      'components.progressBar.size.small.verticalTrackBlock'
     )};
   --progress-track-vertical-inline-size: #{token(
-      'components.progressBar.sizes.small.verticalTrackInline'
+      'components.progressBar.size.small.verticalTrackInline'
     )};
 }
 
 .medium {
   --progress-track-block-size: #{token(
-      'components.progressBar.sizes.medium.trackBlock'
+      'components.progressBar.size.medium.trackBlock'
     )};
   --progress-track-vertical-block-size: #{token(
-      'components.progressBar.sizes.medium.verticalTrackBlock'
+      'components.progressBar.size.medium.verticalTrackBlock'
     )};
   --progress-track-vertical-inline-size: #{token(
-      'components.progressBar.sizes.medium.verticalTrackInline'
+      'components.progressBar.size.medium.verticalTrackInline'
     )};
 }
 
 .large {
   --progress-track-block-size: #{token(
-      'components.progressBar.sizes.large.trackBlock'
+      'components.progressBar.size.large.trackBlock'
     )};
   --progress-track-vertical-block-size: #{token(
-      'components.progressBar.sizes.large.verticalTrackBlock'
+      'components.progressBar.size.large.verticalTrackBlock'
     )};
   --progress-track-vertical-inline-size: #{token(
-      'components.progressBar.sizes.large.verticalTrackInline'
+      'components.progressBar.size.large.verticalTrackInline'
     )};
 }
 
 .tonePrimary {
-  --progress-fill: #{token('components.progressBar.tones.primary.fill')};
+  --progress-fill: #{token('components.progressBar.variant.primary.fill')};
 }
 
 .toneSecondary {
-  --progress-fill: #{token('components.progressBar.tones.secondary.fill')};
+  --progress-fill: #{token('components.progressBar.variant.secondary.fill')};
 }
 
 .toneConstructive {
-  --progress-fill: #{token('components.progressBar.tones.constructive.fill')};
+  --progress-fill: #{token('components.progressBar.variant.constructive.fill')};
 }
 
 .toneDestructive {
-  --progress-fill: #{token('components.progressBar.tones.destructive.fill')};
+  --progress-fill: #{token('components.progressBar.variant.destructive.fill')};
 }
 
 .radiusNone {

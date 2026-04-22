@@ -2,8 +2,8 @@
 
 :root {
   color-scheme: dark light;
-  color: themeShift.token('theme.text.base');
-  background-color: themeShift.token('theme.surface.base');
+  color: themeShift.token('text.primary');
+  background-color: themeShift.token('background.surface');
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

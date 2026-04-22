@@ -5,7 +5,7 @@
         "gap": { "$value": "{space.2}" },
         "descriptionColor": { "$value": "{color.gray.600}" },
         "labelColor": { "$value": "{color.gray.900}" },
-        "trackBg": { "$value": "{color.gray.200}" },
+        "trackBackground": { "$value": "{color.gray.200}" },
         "valueColor": { "$value": "{color.gray.900}" }
       },
 
@@ -17,17 +17,19 @@
         "full": { "$value": "999px" }
       },
 
-      "sizes": {
+      "size": {
         "small": {
           "trackBlock": { "$value": "0.375rem" },
           "verticalTrackBlock": { "$value": "6rem" },
           "verticalTrackInline": { "$value": "0.375rem" }
         },
+
         "medium": {
           "trackBlock": { "$value": "0.5rem" },
           "verticalTrackBlock": { "$value": "7.5rem" },
           "verticalTrackInline": { "$value": "0.5rem" }
         },
+
         "large": {
           "trackBlock": { "$value": "0.625rem" },
           "verticalTrackBlock": { "$value": "9rem" },
@@ -35,45 +37,55 @@
         }
       },
 
-      "tones": {
+      "variant": {
         "light": {
           "primary": {
-            "fill": { "$value": "{components.button.intents.light.primary.bg}" }
+            "fill": {
+              "$value": "{components.button.variant.light.primary.background}"
+            }
           },
+
           "secondary": {
             "fill": {
-              "$value": "{components.button.intents.light.secondary.bg}"
+              "$value": "{components.button.variant.light.secondary.background}"
             }
           },
+
           "constructive": {
             "fill": {
-              "$value": "{components.button.intents.light.constructive.bg}"
+              "$value": "{components.button.variant.light.constructive.background}"
             }
           },
+
           "destructive": {
             "fill": {
-              "$value": "{components.button.intents.light.destructive.bg}"
+              "$value": "{components.button.variant.light.destructive.background}"
             }
           }
         },
 
         "dark": {
           "primary": {
-            "fill": { "$value": "{components.button.intents.dark.primary.bg}" }
+            "fill": {
+              "$value": "{components.button.variant.dark.primary.background}"
+            }
           },
+
           "secondary": {
             "fill": {
-              "$value": "{components.button.intents.dark.secondary.bg}"
+              "$value": "{components.button.variant.dark.secondary.background}"
             }
           },
+
           "constructive": {
             "fill": {
-              "$value": "{components.button.intents.dark.constructive.bg}"
+              "$value": "{components.button.variant.dark.constructive.background}"
             }
           },
+
           "destructive": {
             "fill": {
-              "$value": "{components.button.intents.dark.destructive.bg}"
+              "$value": "{components.button.variant.dark.destructive.background}"
             }
           }
         }

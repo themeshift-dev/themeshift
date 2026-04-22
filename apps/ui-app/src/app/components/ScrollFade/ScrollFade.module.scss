@@ -5,7 +5,7 @@
   position: relative;
 
   &[data-overflowing='true'][data-at-bottom='false']::after {
-    @include fade.bottom(token('theme.surface.sunken'));
+    @include fade.bottom(token('background.surfaceSunken'));
   }
 }
 

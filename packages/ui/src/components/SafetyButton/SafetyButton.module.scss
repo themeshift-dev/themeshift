@@ -29,41 +29,41 @@
 }
 
 .container.pressing {
-  background: token('components.safetyButton.hold.bg');
-  color: token('components.safetyButton.hold.fg');
+  background: token('components.safetyButton.hold.background');
+  color: token('components.safetyButton.hold.text');
 }
 
 .container.pressing:not(:disabled):hover {
-  background: token('components.safetyButton.hold.bg');
+  background: token('components.safetyButton.hold.background');
 }
 
 .intentPrimary {
   --safety-progress-fill: #{token(
-      'components.safetyButton.intents.primary.fill'
+      'components.safetyButton.variant.primary.fill'
     )};
 }
 
 .intentSecondary {
   --safety-progress-fill: #{token(
-      'components.safetyButton.intents.secondary.fill'
+      'components.safetyButton.variant.secondary.fill'
     )};
 }
 
 .intentTertiary {
   --safety-progress-fill: #{token(
-      'components.safetyButton.intents.tertiary.fill'
+      'components.safetyButton.variant.tertiary.fill'
     )};
 }
 
 .intentConstructive {
   --safety-progress-fill: #{token(
-      'components.safetyButton.intents.constructive.fill'
+      'components.safetyButton.variant.constructive.fill'
     )};
 }
 
 .intentDestructive {
   --safety-progress-fill: #{token(
-      'components.safetyButton.intents.destructive.fill'
+      'components.safetyButton.variant.destructive.fill'
     )};
 }
 

@@ -107,7 +107,7 @@ describe('token subpath resolution', () => {
       `@use '@themeshift/vite-plugin-themeshift/token' as themeShift;
 
 .test {
-  color: themeShift.token('theme.text.base', 'themeshift');
+  color: themeShift.token('text.primary', 'themeshift');
 }
 `
     );
@@ -169,8 +169,8 @@ describe('token subpath resolution', () => {
       `import { tokenValue } from '@themeshift/vite-plugin-themeshift/token';
 
 console.log(
-  tokenValue('theme.text.base', {
-    values: { 'theme.text.base': '#0f172a' },
+  tokenValue('text.primary', {
+    values: { 'text.primary': '#0f172a' },
   })
 );
 `

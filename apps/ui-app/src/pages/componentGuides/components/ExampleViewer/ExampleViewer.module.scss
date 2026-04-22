@@ -3,8 +3,8 @@
 $compactMinHeight: 4rem;
 
 .container {
-  background: token('theme.surface.sunken');
-  border: 1px solid token('theme.border');
+  background: token('background.surfaceSunken');
+  border: 1px solid token('border.default');
   border-radius: token('radius.small');
   overflow: hidden;
 }
@@ -12,7 +12,7 @@ $compactMinHeight: 4rem;
 .preview {
   -webkit-overflow-scrolling: touch;
   align-items: center;
-  background: token('theme.surface.raised');
+  background: token('background.surfaceRaised');
   display: grid;
   justify-items: safe center;
   min-height: 300px;
@@ -41,16 +41,16 @@ $compactMinHeight: 4rem;
 .exampleButton {
   @include button.reset;
 
-  color: token('theme.text.muted');
+  color: token('text.muted');
   transition: 0.2s color;
 
   &[aria-pressed='true'] {
-    color: token('theme.text.base');
+    color: token('text.primary');
     text-decoration: underline;
   }
 
   &:not([aria-pressed='true']):hover {
-    color: token('theme.text.base');
+    color: token('text.primary');
   }
 }
 
@@ -69,8 +69,8 @@ $compactMinHeight: 4rem;
 }
 
 .code {
-  background: token('theme.surface.sunken');
-  border-top: 1px solid token('theme.border');
+  background: token('background.surfaceSunken');
+  border-top: 1px solid token('border.default');
   max-height: $compactMinHeight;
   overflow: hidden;
   position: relative;
@@ -94,7 +94,7 @@ $compactMinHeight: 4rem;
 
 .codeOverlay {
   align-items: center;
-  background: token('theme.overlay');
+  background: token('background.overlay');
   display: flex;
   inset: 0;
   justify-content: center;

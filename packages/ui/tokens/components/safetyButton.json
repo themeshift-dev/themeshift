@@ -3,57 +3,65 @@
     "safetyButton": {
       "hold": {
         "light": {
-          "bg": { "$value": "{color.gray.200}" },
-          "fg": { "$value": "{color.gray.900}" }
+          "background": { "$value": "{color.gray.200}" },
+          "text": { "$value": "{color.gray.900}" }
         },
 
         "dark": {
-          "bg": { "$value": "{color.gray.800}" },
-          "fg": { "$value": "{color.gray.50}" }
+          "background": { "$value": "{color.gray.800}" },
+          "text": { "$value": "{color.gray.50}" }
         }
       },
 
-      "intents": {
+      "variant": {
         "light": {
           "primary": {
-            "fill": { "$value": "{components.button.intents.light.primary.bg}" }
+            "fill": {
+              "$value": "{components.button.variant.light.primary.background}"
+            }
           },
+
           "secondary": {
             "fill": {
-              "$value": "{components.button.intents.light.secondary.bg}"
+              "$value": "{components.button.variant.light.secondary.background}"
             }
           },
           "tertiary": { "fill": { "$value": "{color.gray.300}" } },
           "constructive": {
             "fill": {
-              "$value": "{components.button.intents.light.constructive.bg}"
+              "$value": "{components.button.variant.light.constructive.background}"
             }
           },
+
           "destructive": {
             "fill": {
-              "$value": "{components.button.intents.light.destructive.bg}"
+              "$value": "{components.button.variant.light.destructive.background}"
             }
           }
         },
 
         "dark": {
           "primary": {
-            "fill": { "$value": "{components.button.intents.dark.primary.bg}" }
+            "fill": {
+              "$value": "{components.button.variant.dark.primary.background}"
+            }
           },
+
           "secondary": {
             "fill": {
-              "$value": "{components.button.intents.dark.secondary.bg}"
+              "$value": "{components.button.variant.dark.secondary.background}"
             }
           },
           "tertiary": { "fill": { "$value": "{color.gray.700}" } },
           "constructive": {
             "fill": {
-              "$value": "{components.button.intents.dark.constructive.bg}"
+              "$value": "{components.button.variant.dark.constructive.background}"
             }
           },
+
           "destructive": {
             "fill": {
-              "$value": "{components.button.intents.dark.destructive.bg}"
+              "$value": "{components.button.variant.dark.destructive.background}"
             }
           }
         }

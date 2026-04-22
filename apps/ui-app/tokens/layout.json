@@ -1,10 +1,5 @@
 {
   "layout": {
-    "site": {
-      "maxWidth": {
-        "$type": "dimension",
-        "$value": "800px"
-      }
-    }
+    "site": { "maxWidth": { "$type": "dimension", "$value": "800px" } }
   }
 }

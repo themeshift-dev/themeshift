@@ -1,8 +1,8 @@
 .container {
-  background: token('theme.surface.sunken');
-  border: 1px solid token('theme.border');
+  background: token('background.surfaceSunken');
+  border: 1px solid token('border.default');
   border-radius: token('radius.small');
-  color: token('theme.text.muted');
+  color: token('text.muted');
   min-width: 0;
   overflow: hidden;
   padding: token('space.4');
@@ -11,7 +11,7 @@
   width: 100%;
 
   &:hover {
-    color: token('theme.text.base');
+    color: token('text.primary');
   }
 }
 

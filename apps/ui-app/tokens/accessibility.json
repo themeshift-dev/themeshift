@@ -1,14 +1,8 @@
 {
   "accessibility": {
     "focus": {
-      "gapWidth": {
-        "$type": "dimension",
-        "$value": "2px"
-      },
-      "ringWidth": {
-        "$type": "dimension",
-        "$value": "3px"
-      }
+      "offset": { "$type": "dimension", "$value": "2px" },
+      "width": { "$type": "dimension", "$value": "3px" }
     }
   }
 }

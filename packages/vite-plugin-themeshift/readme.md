@@ -71,7 +71,7 @@ ThemeShift injects a global `token()` helper by default, so this works in app st
 
 ```scss
 .button {
-  color: token('theme.text.base');
+  color: token('text.primary');
 }
 ```
 
@@ -81,7 +81,7 @@ If you prefer an explicit import, use the published Sass module:
 @use '@themeshift/vite-plugin-themeshift/token' as themeShift;
 
 .button {
-  color: themeShift.token('theme.text.base');
+  color: themeShift.token('text.primary');
 }
 ```
 
@@ -114,7 +114,7 @@ Use `token()` to read the current CSS variable value in the browser:
 ```ts
 import { token } from '@themeshift/vite-plugin-themeshift/token';
 
-const textColor = token('theme.text.base', { prefix: 'themeshift' });
+const textColor = token('text.primary', { prefix: 'themeshift' });
 ```
 
 Use `tokenValue()` to read a value from the generated token manifest:
@@ -178,8 +178,8 @@ Example:
               "disabled": { "$value": "alpha({color.blue.300}, 0.3)" }
             },
             "fg": {
-              "$value": "{color.blue.400.fg}",
-              "disabled": { "$value": "alpha({color.blue.400.fg}, 0.5)" }
+              "$value": "{color.blue.400.text}",
+              "disabled": { "$value": "alpha({color.blue.400.text}, 0.5)" }
             }
           }
         }
@@ -191,10 +191,10 @@ Example:
 
 This gives you token paths like:
 
-- `components.button.light.intents.primary.bg`
-- `components.button.light.intents.primary.bg.hover`
-- `components.button.light.intents.primary.fg`
-- `components.button.light.intents.primary.fg.disabled`
+- `components.button.light.variant.primary.background`
+- `components.button.light.variant.primary.background.hover`
+- `components.button.light.variant.primary.text`
+- `components.button.light.variant.primary.text.disabled`
 
 ## Theme modes
 

@@ -1,13 +1,53 @@
+@use 'sass:map';
 @use '@themeshift/vite-plugin-themeshift/token' as themeShift;
 
+@function _resolve-style-path($path) {
+  $map: (
+    'body.default': 'body.medium',
+    'body.strong': 'body.mediumStrong',
+    'body.italic': 'body.mediumItalic',
+    'caption.default': 'label.small',
+    'caption.strong': 'label.smallStrong',
+    'caption.italic': 'label.smallItalic',
+    'eyebrow.default': 'label.smallStrong',
+    'button.small': 'label.small',
+    'button.medium': 'label.medium',
+    'button.large': 'label.large',
+    'heading.h1': 'heading.large',
+    'heading.h1.display': 'heading.displayLarge',
+    'heading.h2': 'heading.medium',
+    'heading.h2.display': 'heading.displayLarge',
+    'heading.h3': 'heading.small',
+    'heading.h4': 'heading.xSmall',
+    'heading.h5': 'label.large',
+    'heading.h6': 'label.medium',
+  );
+
+  @if map.has-key($map, $path) {
+    @return map.get($map, $path);
+  }
+
+  @return $path;
+}
+
 @mixin style($path) {
-  font: themeShift.token('typography.styles.#{$path}.font');
-  letter-spacing: themeShift.token('typography.styles.#{$path}.letterSpacing');
-  font-style: themeShift.token('typography.styles.#{$path}.fontStyle');
+  $resolved: _resolve-style-path($path);
+
+  font: themeShift.token('typography.#{$resolved}.font');
+  letter-spacing: themeShift.token('typography.#{$resolved}.letterSpacing');
+  font-style: themeShift.token('typography.#{$resolved}.fontStyle');
 }
 
 @mixin scale($scale, $weight: regular) {
-  font: themeShift.token('typography.scales.#{$scale}.#{$weight}');
-  letter-spacing: themeShift.token('typography.metrics.#{$scale}.letterSpacing');
+  $resolved: 'body.small';
+
+  @if $scale >= 2 {
+    $resolved: 'body.large';
+  } @else if $scale >= 1 {
+    $resolved: 'body.medium';
+  }
+
+  font: themeShift.token('typography.#{$resolved}.font');
+  letter-spacing: themeShift.token('typography.#{$resolved}.letterSpacing');
   font-style: themeShift.token('font.style.normal');
 }

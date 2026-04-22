@@ -57,7 +57,7 @@ async function seedLocalTokenModules(targetDir: string) {
   await fs.writeFile(
     path.join(targetDir, 'token.scss'),
     tokenSource.replace(
-      '@use "@themeshift/vite-plugin-themeshift/token-defaults" as _themeShiftDefaults;',
+      /@use "[^"]*token-defaults(?:\.scss)?" as _themeShiftDefaults;/,
       '@use "token-defaults" as _themeShiftDefaults;'
     )
   );
@@ -121,7 +121,7 @@ function localizeInjectionForSource(
 ) {
   return {
     prelude: injection.prelude.replace(
-      '@use "@themeshift/vite-plugin-themeshift/token-defaults" as _themeShiftTokenDefaults',
+      /@use "[^"]*token-defaults(?:\.scss)?" as _themeShiftTokenDefaults/,
       '@use "token-defaults" as _themeShiftTokenDefaults'
     ),
     directives: injection.directives,
@@ -245,11 +245,11 @@ describe('themeShift', () => {
     expect(typeof additional).toBe('function');
     expect(
       additional(
-        `@use '@/sass/tokens.runtime' as *;\n.button { color: token('theme.surface.base'); }\n`,
+        `@use '@/sass/tokens.runtime' as *;\n.button { color: token('background.surface'); }\n`,
         'Button.module.scss'
       )
     ).toMatch(
-      /^@use "sass:string" as _themeShiftString;\n@use "@themeshift\/vite-plugin-themeshift\/token-defaults" as _themeShiftTokenDefaults with \(\n  \$theme-shift-default-css-var-prefix: null\n\);\n@use '@\/sass\/tokens\.runtime' as \*;\n/s
+      /^@use "sass:string" as _themeShiftString;\n@use ".*token-defaults(?:\.scss)?" as _themeShiftTokenDefaults with \(\n  \$theme-shift-default-css-var-prefix: null\n\);\n@use '@\/sass\/tokens\.runtime' as \*;\n/s
     );
   });
 
@@ -272,7 +272,7 @@ describe('themeShift', () => {
         'Button.module.scss'
       )
     ).toMatch(
-      /^@use "sass:string" as _themeShiftString;\n@use "@themeshift\/vite-plugin-themeshift\/token-defaults" as _themeShiftTokenDefaults with \(\n  \$theme-shift-default-css-var-prefix: "themeshift"\n\);\n@use "@themeshift\/vite-plugin-themeshift\/token" as themeShift;\n/s
+      /^@use "sass:string" as _themeShiftString;\n@use ".*token-defaults(?:\.scss)?" as _themeShiftTokenDefaults with \(\n  \$theme-shift-default-css-var-prefix: "themeshift"\n\);\n@use "@themeshift\/vite-plugin-themeshift\/token" as themeShift;\n/s
     );
   });
 
@@ -283,7 +283,7 @@ describe('themeShift', () => {
     );
 
     expect(moduleSource).toContain(
-      '@use "@themeshift/vite-plugin-themeshift/token-defaults" as _themeShiftDefaults;'
+      "@use './token-defaults' as _themeShiftDefaults;"
     );
     expect(moduleSource).toContain(
       '@function _sd_resolve_css_var_prefix($cssVarPrefix: null)'
@@ -325,11 +325,11 @@ describe('themeShift', () => {
 @use 'token' as themeShift;
 
 body {
-  color: themeShift.token('theme.text.base');
+  color: themeShift.token('text.primary');
 }
 `);
 
-    expect(css).toContain('var(--theme-text-base)');
+    expect(css).toContain('var(--text-primary)');
   });
 
   it('normalizes camelCase and underscores in token paths', async () => {
@@ -357,7 +357,7 @@ body {
         'Button.module.scss'
       )
     ).toMatch(
-      /^@use "sass:string" as _themeShiftString;\n@use "@themeshift\/vite-plugin-themeshift\/token-defaults" as _themeShiftTokenDefaults with \(\n  \$theme-shift-default-css-var-prefix: null\n\);\n@use '@\/sass\/tokens\.runtime' as \*;\n/s
+      /^@use "sass:string" as _themeShiftString;\n@use ".*token-defaults(?:\.scss)?" as _themeShiftTokenDefaults with \(\n  \$theme-shift-default-css-var-prefix: null\n\);\n@use '@\/sass\/tokens\.runtime' as \*;\n/s
     );
   });
 
@@ -374,7 +374,7 @@ body {
         'Button.module.scss'
       )
     ).toMatch(
-      /^@use "sass:string" as _themeShiftString;\n@use "@themeshift\/vite-plugin-themeshift\/token-defaults" as _themeShiftTokenDefaults with \(\n  \$theme-shift-default-css-var-prefix: null\n\);\n@use '@\/sass\/tokens\.runtime' as \*;\n@use '@\/sass\/mixins\/button';\n/s
+      /^@use "sass:string" as _themeShiftString;\n@use ".*token-defaults(?:\.scss)?" as _themeShiftTokenDefaults with \(\n  \$theme-shift-default-css-var-prefix: null\n\);\n@use '@\/sass\/tokens\.runtime' as \*;\n@use '@\/sass\/mixins\/button';\n/s
     );
   });
 
@@ -392,7 +392,7 @@ body {
         'Button.module.scss'
       )
     ).toMatch(
-      /^@use "sass:string" as _themeShiftString;\n@use "@themeshift\/vite-plugin-themeshift\/token-defaults" as _themeShiftTokenDefaults with \(\n  \$theme-shift-default-css-var-prefix: null\n\);\n@use '@\/sass\/tokens\.runtime' as \*;\n@use '@\/sass\/mixins\/button';\n/s
+      /^@use "sass:string" as _themeShiftString;\n@use ".*token-defaults(?:\.scss)?" as _themeShiftTokenDefaults with \(\n  \$theme-shift-default-css-var-prefix: null\n\);\n@use '@\/sass\/tokens\.runtime' as \*;\n@use '@\/sass\/mixins\/button';\n/s
     );
   });
 
@@ -403,12 +403,12 @@ body {
       ),
       rootSource: `
 .button {
-  color: token('theme.text.base');
+  color: token('text.primary');
 }
 `,
     });
 
-    expect(css).toContain('var(--themeshift-theme-text-base)');
+    expect(css).toContain('var(--themeshift-text-primary)');
   });
 
   it('supports shared mixins that import the token module directly', async () => {
@@ -448,13 +448,13 @@ body {
       rootSource: `@use 'typography';
 
 .button {
-  color: token('theme.text.base');
+  color: token('text.primary');
   @include typography.style('title');
 }
 `,
     });
 
-    expect(css).toContain('var(--themeshift-theme-text-base)');
+    expect(css).toContain('var(--themeshift-text-primary)');
     expect(css).toContain('var(--themeshift-typography-styles-title-font)');
   });
 
@@ -466,14 +466,14 @@ body {
       rootSource: `@use 'token' as themeShift;
 
 .button {
-  color: token('theme.text.base');
-  background: themeShift.token('theme.surface.base');
+  color: token('text.primary');
+  background: themeShift.token('background.surface');
 }
 `,
     });
 
-    expect(css).toContain('var(--themeshift-theme-text-base)');
-    expect(css).toContain('var(--themeshift-theme-surface-base)');
+    expect(css).toContain('var(--themeshift-text-primary)');
+    expect(css).toContain('var(--themeshift-background-surface)');
   });
 
   it('skips Sass injection when injectSassTokenFn is false', () => {

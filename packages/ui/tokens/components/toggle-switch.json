@@ -1,7 +1,7 @@
 {
   "components": {
     "toggleSwitch": {
-      "sizes": {
+      "size": {
         "small": {
           "borderRadius": { "$value": "{radius.large}" },
           "height": { "$value": "{space.6}" },
@@ -37,32 +37,22 @@
         "track": {
           "border": { "$value": "{color.black.20}" },
           "icon": { "$value": "{color.black.50}" },
-
-          "bg": {
+          "background": {
             "$value": "{color.gray.200}",
-
             "hover": { "$value": "{color.gray.300}" }
           }
         },
 
         "disabled": {
           "thumb": { "$value": "{color.black.20}" },
-          "trackBg": { "$value": "{color.gray.100}" },
+          "trackBackground": { "$value": "{color.gray.100}" },
           "trackBorder": { "$value": "{color.black.10}" }
         },
 
         "validation": {
-          "invalid": {
-            "border": { "$value": "{color.red.400}" }
-          },
-
-          "valid": {
-            "border": { "$value": "{color.green.400}" }
-          },
-
-          "warning": {
-            "border": { "$value": "{color.lightBlue.400}" }
-          }
+          "invalid": { "border": { "$value": "{color.red.400}" } },
+          "valid": { "border": { "$value": "{color.green.400}" } },
+          "warning": { "border": { "$value": "{color.lightBlue.400}" } }
         }
       },
 
@@ -70,78 +60,40 @@
         "track": {
           "border": { "$value": "{color.white.20}" },
           "icon": { "$value": "{color.white.70}" },
-
-          "bg": {
+          "background": {
             "$value": "{color.white.10}",
-
             "hover": { "$value": "{color.white.20}" }
           }
         },
 
         "disabled": {
           "thumb": { "$value": "{color.white.30}" },
-          "trackBg": { "$value": "{color.white.10}" },
+          "trackBackground": { "$value": "{color.white.10}" },
           "trackBorder": { "$value": "{color.white.10}" }
         },
 
         "validation": {
-          "invalid": {
-            "border": { "$value": "{color.red.400}" }
-          },
-
-          "valid": {
-            "border": { "$value": "{color.green.400}" }
-          },
-
-          "warning": {
-            "border": { "$value": "{color.lightBlue.400}" }
-          }
+          "invalid": { "border": { "$value": "{color.red.400}" } },
+          "valid": { "border": { "$value": "{color.green.400}" } },
+          "warning": { "border": { "$value": "{color.lightBlue.400}" } }
         }
       },
 
-      "intents": {
+      "variant": {
         "light": {
-          "primary": {
-            "thumb": { "$value": "{color.blue.400}" }
-          },
-
-          "secondary": {
-            "thumb": { "$value": "{color.gray.400}" }
-          },
-
-          "tertiary": {
-            "thumb": { "$value": "{color.blue.600}" }
-          },
-
-          "constructive": {
-            "thumb": { "$value": "{color.green.400}" }
-          },
-
-          "destructive": {
-            "thumb": { "$value": "{color.red.400}" }
-          }
+          "primary": { "thumb": { "$value": "{color.blue.400}" } },
+          "secondary": { "thumb": { "$value": "{color.gray.400}" } },
+          "tertiary": { "thumb": { "$value": "{color.blue.600}" } },
+          "constructive": { "thumb": { "$value": "{color.green.400}" } },
+          "destructive": { "thumb": { "$value": "{color.red.400}" } }
         },
 
         "dark": {
-          "primary": {
-            "thumb": { "$value": "{color.blue.400}" }
-          },
-
-          "secondary": {
-            "thumb": { "$value": "{color.gray.400}" }
-          },
-
-          "tertiary": {
-            "thumb": { "$value": "{color.lightBlue.400}" }
-          },
-
-          "constructive": {
-            "thumb": { "$value": "{color.green.400}" }
-          },
-
-          "destructive": {
-            "thumb": { "$value": "{color.red.400}" }
-          }
+          "primary": { "thumb": { "$value": "{color.blue.400}" } },
+          "secondary": { "thumb": { "$value": "{color.gray.400}" } },
+          "tertiary": { "thumb": { "$value": "{color.lightBlue.400}" } },
+          "constructive": { "thumb": { "$value": "{color.green.400}" } },
+          "destructive": { "thumb": { "$value": "{color.red.400}" } }
         }
       }
     }

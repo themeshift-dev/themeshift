@@ -10,7 +10,7 @@ describe('token runtime helpers', () => {
   it('reads computed CSS variable values from document.documentElement by default', () => {
     const documentElement = {} as Element;
     const getPropertyValue = vi.fn((name: string) =>
-      name === '--themeshift-theme-text-base' ? ' #0f172a ' : ''
+      name === '--themeshift-text-primary' ? ' #0f172a ' : ''
     );
 
     vi.stubGlobal('document', { documentElement });
@@ -22,14 +22,14 @@ describe('token runtime helpers', () => {
       vi.fn(() => ({ getPropertyValue }))
     );
 
-    expect(token('theme.text.base', { prefix: 'themeshift' })).toBe('#0f172a');
+    expect(token('text.primary', { prefix: 'themeshift' })).toBe('#0f172a');
   });
 
   it('supports an explicit element target', () => {
     class TestElement {}
     const element = new TestElement() as unknown as Element;
     const getPropertyValue = vi.fn((name: string) =>
-      name === '--theme-text-base' ? ' #111 ' : ''
+      name === '--text-primary' ? ' #111 ' : ''
     );
 
     vi.stubGlobal('document', { documentElement: {} });
@@ -44,7 +44,7 @@ describe('token runtime helpers', () => {
       })
     );
 
-    expect(token('theme.text.base', { target: element })).toBe('#111');
+    expect(token('text.primary', { target: element })).toBe('#111');
   });
 
   it('supports an explicit document target', () => {
@@ -54,7 +54,7 @@ describe('token runtime helpers', () => {
 
     const documentTarget = new TestDocument() as unknown as Document;
     const getPropertyValue = vi.fn((name: string) =>
-      name === '--theme-text-base' ? ' #222 ' : ''
+      name === '--text-primary' ? ' #222 ' : ''
     );
 
     vi.stubGlobal('document', { documentElement: {} });
@@ -69,7 +69,7 @@ describe('token runtime helpers', () => {
       })
     );
 
-    expect(token('theme.text.base', { target: documentTarget })).toBe('#222');
+    expect(token('text.primary', { target: documentTarget })).toBe('#222');
   });
 
   it('supports a shadow root target by reading from its host element', () => {
@@ -81,7 +81,7 @@ describe('token runtime helpers', () => {
     const host = new TestElement() as unknown as Element;
     const shadowRoot = new TestShadowRoot(host) as unknown as ShadowRoot;
     const getPropertyValue = vi.fn((name: string) =>
-      name === '--theme-text-base' ? ' #333 ' : ''
+      name === '--text-primary' ? ' #333 ' : ''
     );
 
     vi.stubGlobal('document', { documentElement: {} });
@@ -96,7 +96,7 @@ describe('token runtime helpers', () => {
       })
     );
 
-    expect(token('theme.text.base', { target: shadowRoot })).toBe('#333');
+    expect(token('text.primary', { target: shadowRoot })).toBe('#333');
   });
 
   it('returns undefined for missing computed CSS variable values', () => {
@@ -111,7 +111,7 @@ describe('token runtime helpers', () => {
       vi.fn(() => ({ getPropertyValue: vi.fn(() => '   ') }))
     );
 
-    expect(token('theme.text.base')).toBeUndefined();
+    expect(token('text.primary')).toBeUndefined();
   });
 
   it('returns undefined when no DOM target is available', () => {
@@ -119,7 +119,7 @@ describe('token runtime helpers', () => {
     vi.stubGlobal('Document', class {});
     vi.stubGlobal('ShadowRoot', class {});
 
-    expect(token('theme.text.base')).toBeUndefined();
+    expect(token('text.primary')).toBeUndefined();
   });
 
   it('returns authored token values from the provided manifest', () => {
