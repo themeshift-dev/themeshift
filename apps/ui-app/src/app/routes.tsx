@@ -132,6 +132,10 @@ const AppRoutes = () => (
           element={<HookGuides.UseHoldToConfirmGuide />}
         />
         <Route path="use-form" element={<HookGuides.UseFormGuide />} />
+        <Route
+          path="use-resize-observer"
+          element={<HookGuides.UseResizeObserverGuide />}
+        />
         <Route path=":hookId" element={<HookPlaceholder />} />
       </Route>
 
@@ -628,6 +632,32 @@ const AppRoutes = () => (
                 componentName="Spinner"
                 componentPath="/ui/component/spinner"
                 description="An interactive Spinner playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
+        <Route path="tabs">
+          <Route index element={<ComponentGuides.TabsGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Tabs"
+                componentPath="/ui/component/tabs"
+                description="Tabs customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Tabs"
+                componentPath="/ui/component/tabs"
+                description="An interactive Tabs playground will live here."
                 title="Playground"
               />
             }

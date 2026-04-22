@@ -377,4 +377,78 @@ export const hooks = [
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useHoldToConfirm',
     type: 'hook',
   },
+  {
+    apiReference: [
+      {
+        comments:
+          'Selects which box size should drive resize updates.\n\nDefaults to `content-box`.',
+        defaultValue: 'content-box',
+        displayName: 'useResizeObserver',
+        propName: 'box',
+        type: 'ResizeObserverBox',
+        values: [],
+      },
+      {
+        comments: 'Disables observation while keeping the same return shape.',
+        defaultValue: false,
+        displayName: 'useResizeObserver',
+        propName: 'disabled',
+        type: 'boolean',
+        values: [],
+      },
+    ],
+    returnReference: [
+      {
+        comments: 'Latest resize observer entry for the observed element.',
+        defaultValue: null,
+        displayName: 'useResizeObserver',
+        propName: 'entry',
+        type: 'ResizeObserverEntry',
+        values: [],
+      },
+      {
+        comments:
+          '`true` when the current environment supports `ResizeObserver`.',
+        defaultValue: null,
+        displayName: 'useResizeObserver',
+        propName: 'isSupported',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Latest observed content rectangle.',
+        defaultValue: null,
+        displayName: 'useResizeObserver',
+        propName: 'rect',
+        type: 'DOMRectReadOnly',
+        values: [],
+      },
+      {
+        comments: 'Ref callback used to attach the observed element.',
+        defaultValue: null,
+        displayName: 'useResizeObserver',
+        propName: 'ref',
+        type: 'RefCallback<Element>',
+        values: [],
+      },
+    ],
+    name: 'useResizeObserver',
+    exportName: 'useResizeObserver',
+    importPath: '@themeshift/ui/hooks/useResizeObserver',
+    importString:
+      "import { useResizeObserver } from '@themeshift/ui/hooks/useResizeObserver';",
+    meta: {
+      category: 'layout-utilities',
+      description:
+        'Observes element resize changes and returns reactive `ResizeObserver` entry and rect state.',
+      tags: ['resize-observer', 'layout', 'measurement'],
+      status: 'experimental',
+      type: 'hook',
+    },
+    slug: 'useresizeobserver',
+    routeSlug: 'use-resize-observer',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useResizeObserver',
+    type: 'hook',
+  },
 ] satisfies ApiReferenceHook[];

@@ -110,6 +110,10 @@
       "types": "./dist/components/Spinner/index.d.ts",
       "import": "./dist/components/Spinner/index.js"
     },
+    "./components/Tabs": {
+      "types": "./dist/components/Tabs/index.d.ts",
+      "import": "./dist/components/Tabs/index.js"
+    },
     "./components/Textarea": {
       "types": "./dist/components/Textarea/index.d.ts",
       "import": "./dist/components/Textarea/index.js"
@@ -140,6 +144,10 @@
     "./hooks/useHoldToConfirm": {
       "types": "./dist/hooks/useHoldToConfirm/index.d.ts",
       "import": "./dist/hooks/useHoldToConfirm/index.js"
+    },
+    "./hooks/useResizeObserver": {
+      "types": "./dist/hooks/useResizeObserver/index.d.ts",
+      "import": "./dist/hooks/useResizeObserver/index.js"
     },
     "./icons": {
       "types": "./dist/icons/index.d.ts",

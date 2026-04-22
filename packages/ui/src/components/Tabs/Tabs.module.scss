@@ -1,0 +1,232 @@
+@use '@/sass/mixins/accessibility';
+@use '@/sass/mixins/typography';
+
+.root {
+  display: grid;
+  gap: token('components.tabs.list.gap');
+}
+
+.root[data-orientation='vertical'] {
+  align-items: start;
+  grid-template-columns: auto 1fr;
+}
+
+.list {
+  align-items: stretch;
+  background: token('components.tabs.list.background');
+  border-color: token('components.tabs.list.borderColor');
+  border-radius: token('components.tabs.list.radius');
+  border-style: solid;
+  border-width: token('components.tabs.list.borderWidth');
+  display: inline-flex;
+  gap: token('components.tabs.list.gap');
+  padding: token('components.tabs.list.padding');
+  position: relative;
+}
+
+.list[data-orientation='vertical'] {
+  flex-direction: column;
+}
+
+.listFitted {
+  inline-size: 100%;
+
+  > .trigger {
+    flex: 1 1 0;
+    justify-content: center;
+    min-inline-size: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.list[data-orientation='vertical'].listFitted {
+  inline-size: auto;
+
+  > .trigger {
+    inline-size: 100%;
+  }
+}
+
+.trigger {
+  @include accessibility.buttonFocus;
+  @include typography.style('button.medium');
+
+  align-items: center;
+  appearance: none;
+  background: token('components.tabs.trigger.background');
+  border-color: token('components.tabs.trigger.borderColor');
+  border-radius: token('components.tabs.trigger.radius');
+  border-style: solid;
+  border-width: token('components.tabs.trigger.borderWidth');
+  box-shadow: token('components.tabs.trigger.shadow');
+  color: token('components.tabs.trigger.color');
+  cursor: pointer;
+  display: inline-flex;
+  min-block-size: token('components.tabs.trigger.height');
+  padding-block: token('components.tabs.trigger.paddingY');
+  padding-inline: token('components.tabs.trigger.paddingX');
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.trigger:hover:not([data-disabled]) {
+  background: token('components.tabs.trigger.hover.background');
+  color: token('components.tabs.trigger.hover.color');
+}
+
+.trigger[data-state='active'] {
+  background: token('components.tabs.trigger.active.background');
+  border-color: token('components.tabs.trigger.active.borderColor');
+  color: token('components.tabs.trigger.active.color');
+  font-weight: token('components.tabs.trigger.active.fontWeight');
+}
+
+.trigger[data-disabled] {
+  color: token('components.tabs.trigger.disabled.color');
+  cursor: not-allowed;
+  opacity: token('components.tabs.trigger.disabled.opacity');
+}
+
+.panels {
+  display: grid;
+}
+
+.panels[data-orientation='vertical'] {
+  align-content: start;
+}
+
+.panel {
+  background: token('components.tabs.panel.background');
+  border-color: token('components.tabs.panel.borderColor');
+  border-radius: token('components.tabs.panel.radius');
+  border-style: solid;
+  border-width: token('components.tabs.panel.borderWidth');
+  padding: token('components.tabs.panel.padding');
+}
+
+.indicator {
+  background: token('components.tabs.indicator.background');
+  border-radius: token('components.tabs.indicator.radius');
+  box-shadow: token('components.tabs.indicator.shadow');
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.indicatorHorizontal {
+  block-size: var(--themeshift-components-tabs-indicator-size-small);
+  inset-block-end: 0;
+  inline-size: var(--tabs-indicator-size, 0px);
+  left: 0;
+  transform: translateX(var(--tabs-indicator-offset, 0px));
+}
+
+.indicatorVertical {
+  block-size: var(--tabs-indicator-size, 0px);
+  inline-size: var(--themeshift-components-tabs-indicator-size-small);
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  transform: translateY(var(--tabs-indicator-offset, 0px));
+}
+
+.indicatorTransition {
+  transition-duration: token('components.tabs.indicator.transition.duration');
+  transition-property: transform, inline-size, block-size;
+  transition-timing-function: token(
+    'components.tabs.indicator.transition.easing'
+  );
+}
+
+.indicatorInsetSmall {
+  &.indicatorHorizontal {
+    inline-size: calc(
+      var(--tabs-indicator-size, 0px) -
+        (2 * var(--themeshift-components-tabs-indicator-inset-small))
+    );
+    transform: translateX(
+      calc(
+        var(--tabs-indicator-offset, 0px) +
+          var(--themeshift-components-tabs-indicator-inset-small)
+      )
+    );
+  }
+
+  &.indicatorVertical {
+    block-size: calc(
+      var(--tabs-indicator-size, 0px) -
+        (2 * var(--themeshift-components-tabs-indicator-inset-small))
+    );
+    transform: translateY(
+      calc(
+        var(--tabs-indicator-offset, 0px) +
+          var(--themeshift-components-tabs-indicator-inset-small)
+      )
+    );
+  }
+}
+
+.indicatorInsetMedium {
+  &.indicatorHorizontal {
+    inline-size: calc(
+      var(--tabs-indicator-size, 0px) -
+        (2 * var(--themeshift-components-tabs-indicator-inset-medium))
+    );
+    transform: translateX(
+      calc(
+        var(--tabs-indicator-offset, 0px) +
+          var(--themeshift-components-tabs-indicator-inset-medium)
+      )
+    );
+  }
+
+  &.indicatorVertical {
+    block-size: calc(
+      var(--tabs-indicator-size, 0px) -
+        (2 * var(--themeshift-components-tabs-indicator-inset-medium))
+    );
+    transform: translateY(
+      calc(
+        var(--tabs-indicator-offset, 0px) +
+          var(--themeshift-components-tabs-indicator-inset-medium)
+      )
+    );
+  }
+}
+
+.indicatorSizeSmall {
+  &.indicatorHorizontal {
+    block-size: var(--themeshift-components-tabs-indicator-size-small);
+  }
+
+  &.indicatorVertical {
+    inline-size: var(--themeshift-components-tabs-indicator-size-small);
+  }
+}
+
+.indicatorSizeMedium {
+  &.indicatorHorizontal {
+    block-size: var(--themeshift-components-tabs-indicator-size-medium);
+  }
+
+  &.indicatorVertical {
+    inline-size: var(--themeshift-components-tabs-indicator-size-medium);
+  }
+}
+
+.indicatorSizeLarge {
+  &.indicatorHorizontal {
+    block-size: var(--themeshift-components-tabs-indicator-size-large);
+  }
+
+  &.indicatorVertical {
+    inline-size: var(--themeshift-components-tabs-indicator-size-large);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicatorTransition {
+    transition-duration: 0.01ms;
+  }
+}

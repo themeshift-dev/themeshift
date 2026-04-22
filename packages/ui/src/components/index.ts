@@ -18,5 +18,6 @@ export * from './Select';
 export * from './Skeleton';
 export * from './SkipLink';
 export * from './Spinner';
+export * from './Tabs';
 export * from './Textarea';
 export * from './ToggleSwitch';

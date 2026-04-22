@@ -81,6 +81,7 @@ function createProgram() {
 }
 
 function createAnalyzer(program) {
+  const typeChecker = program.getTypeChecker();
   const sourceFiles = program
     .getSourceFiles()
     .filter((sourceFile) =>
@@ -101,7 +102,11 @@ function createAnalyzer(program) {
         componentSourceFiles
       );
       const declarations = getLocalTypeDeclarations(componentSourceFiles);
-      const defaults = getComponentDefaults(componentSourceFiles, targets);
+      const defaults = getComponentDefaults(
+        componentSourceFiles,
+        targets,
+        typeChecker
+      );
 
       return targets.flatMap((target) =>
         collectTargetProps({
@@ -292,7 +297,7 @@ function getLocalTypeDeclarations(sourceFiles) {
   return declarations;
 }
 
-function getComponentDefaults(sourceFiles, targets) {
+function getComponentDefaults(sourceFiles, targets, typeChecker) {
   const defaultsByImplementation = new Map();
 
   for (const target of targets) {
@@ -312,7 +317,7 @@ function getComponentDefaults(sourceFiles, targets) {
         if (arrowFunction) {
           defaultsByImplementation.set(
             node.name.text,
-            collectDefaultValues(arrowFunction)
+            collectDefaultValues(arrowFunction, typeChecker)
           );
         }
       }
@@ -340,7 +345,7 @@ function getArrowFunctionInitializer(initializer) {
   return null;
 }
 
-function collectDefaultValues(arrowFunction) {
+function collectDefaultValues(arrowFunction, typeChecker) {
   const defaults = new Map();
   const propsParameter = arrowFunction.parameters[0];
 
@@ -352,7 +357,10 @@ function collectDefaultValues(arrowFunction) {
     const propName = getBindingElementName(element);
 
     if (propName && element.initializer) {
-      defaults.set(propName, formatDefaultValue(element.initializer));
+      defaults.set(
+        propName,
+        formatDefaultValue(element.initializer, typeChecker, new Set())
+      );
     }
   }
 
@@ -369,47 +377,115 @@ function getBindingElementName(element) {
   return null;
 }
 
-function formatDefaultValue(expression) {
+function formatDefaultValue(expression, typeChecker, visitedSymbols) {
+  const unwrappedExpression = unwrapExpression(expression);
+
+  if (ts.isIdentifier(unwrappedExpression)) {
+    const resolvedValue = resolveIdentifierDefaultValue(
+      unwrappedExpression,
+      typeChecker,
+      visitedSymbols
+    );
+
+    if (resolvedValue !== null) {
+      return resolvedValue;
+    }
+  }
+
   if (
-    ts.isStringLiteral(expression) ||
-    ts.isNoSubstitutionTemplateLiteral(expression)
+    ts.isStringLiteral(unwrappedExpression) ||
+    ts.isNoSubstitutionTemplateLiteral(unwrappedExpression)
   ) {
-    return expression.text;
+    return unwrappedExpression.text;
   }
 
-  if (ts.isNumericLiteral(expression)) {
-    return Number(expression.text);
+  if (ts.isNumericLiteral(unwrappedExpression)) {
+    return Number(unwrappedExpression.text);
   }
 
-  if (expression.kind === ts.SyntaxKind.TrueKeyword) {
+  if (unwrappedExpression.kind === ts.SyntaxKind.TrueKeyword) {
     return true;
   }
 
-  if (expression.kind === ts.SyntaxKind.FalseKeyword) {
+  if (unwrappedExpression.kind === ts.SyntaxKind.FalseKeyword) {
     return false;
   }
 
   if (
-    ts.isArrayLiteralExpression(expression) ||
-    ts.isArrowFunction(expression) ||
-    ts.isCallExpression(expression) ||
-    ts.isFunctionExpression(expression) ||
-    ts.isNewExpression(expression) ||
-    ts.isObjectLiteralExpression(expression)
+    ts.isArrayLiteralExpression(unwrappedExpression) ||
+    ts.isArrowFunction(unwrappedExpression) ||
+    ts.isCallExpression(unwrappedExpression) ||
+    ts.isFunctionExpression(unwrappedExpression) ||
+    ts.isNewExpression(unwrappedExpression) ||
+    ts.isObjectLiteralExpression(unwrappedExpression)
   ) {
     return 'object';
   }
 
   if (
-    ts.isPrefixUnaryExpression(expression) &&
-    ts.isNumericLiteral(expression.operand)
+    ts.isPrefixUnaryExpression(unwrappedExpression) &&
+    ts.isNumericLiteral(unwrappedExpression.operand)
   ) {
-    return expression.operator === ts.SyntaxKind.MinusToken
-      ? -Number(expression.operand.text)
-      : Number(expression.operand.text);
+    return unwrappedExpression.operator === ts.SyntaxKind.MinusToken
+      ? -Number(unwrappedExpression.operand.text)
+      : Number(unwrappedExpression.operand.text);
   }
 
   return null;
+}
+
+function resolveIdentifierDefaultValue(
+  expression,
+  typeChecker,
+  visitedSymbols
+) {
+  let symbol = typeChecker.getSymbolAtLocation(expression);
+
+  if (!symbol) {
+    return null;
+  }
+
+  if (symbol.flags & ts.SymbolFlags.Alias) {
+    symbol = typeChecker.getAliasedSymbol(symbol);
+  }
+
+  if (!symbol || visitedSymbols.has(symbol)) {
+    return null;
+  }
+
+  visitedSymbols.add(symbol);
+
+  for (const declaration of symbol.declarations ?? []) {
+    if (
+      !ts.isVariableDeclaration(declaration) ||
+      !declaration.initializer ||
+      !isConstVariableDeclaration(declaration)
+    ) {
+      continue;
+    }
+
+    const value = formatDefaultValue(
+      declaration.initializer,
+      typeChecker,
+      visitedSymbols
+    );
+
+    if (value !== null) {
+      return value;
+    }
+  }
+
+  return null;
+}
+
+function isConstVariableDeclaration(declaration) {
+  const declarationList = declaration.parent;
+
+  if (!ts.isVariableDeclarationList(declarationList)) {
+    return false;
+  }
+
+  return (declarationList.flags & ts.NodeFlags.Const) !== 0;
 }
 
 function collectTargetProps({

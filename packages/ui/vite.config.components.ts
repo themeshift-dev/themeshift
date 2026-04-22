@@ -229,6 +229,9 @@ export default defineConfig({
         'components/Spinner/index': fileURLToPath(
           new URL('./src/entrypoints/components/Spinner.ts', import.meta.url)
         ),
+        'components/Tabs/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Tabs.ts', import.meta.url)
+        ),
         'components/Textarea/index': fileURLToPath(
           new URL('./src/entrypoints/components/Textarea.ts', import.meta.url)
         ),
@@ -282,6 +285,9 @@ export default defineConfig({
         ),
         'hooks/useHoldToConfirm/index': fileURLToPath(
           new URL('./src/hooks/useHoldToConfirm/index.ts', import.meta.url)
+        ),
+        'hooks/useResizeObserver/index': fileURLToPath(
+          new URL('./src/hooks/useResizeObserver/index.ts', import.meta.url)
         ),
       },
       formats: ['es'],
