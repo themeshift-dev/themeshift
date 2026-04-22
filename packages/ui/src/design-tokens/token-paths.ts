@@ -528,6 +528,7 @@ export const tokenPaths = [
   "easing.emphasized",
   "easing.standard",
   "focus.ring.color",
+  "focus.ring.gap",
   "focus.ring.offset",
   "focus.ring.width",
   "font.family.default",

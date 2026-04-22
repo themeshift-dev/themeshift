@@ -4,7 +4,7 @@
 // so keyboard and assistive-technology users get a clear visual indicator.
 @mixin focusRing(
   $ringColor: themeShift.token('focus.ring.color'),
-  $gapColor: themeShift.token('background.canvas'),
+  $gapColor: themeShift.token('focus.ring.gap'),
   $ringWidth: themeShift.token('focus.ring.width'),
   $gapWidth: themeShift.token('focus.ring.offset'),
   $offset: 0
@@ -46,7 +46,7 @@
 // box-shadow treatment instead of the browser outline.
 @mixin focusVisibleRing(
   $ringColor: themeShift.token('focus.ring.color'),
-  $gapColor: themeShift.token('background.canvas'),
+  $gapColor: themeShift.token('focus.ring.gap'),
   $ringWidth: themeShift.token('focus.ring.width'),
   $gapWidth: themeShift.token('focus.ring.offset'),
   $offset: 0
@@ -74,7 +74,7 @@
 // where the ring should sit inside the element instead of outside it.
 @mixin focusInner(
   $ringColor: themeShift.token('focus.ring.color'),
-  $gapColor: themeShift.token('background.canvas'),
+  $gapColor: themeShift.token('focus.ring.gap'),
   $ringWidth: themeShift.token('focus.ring.width'),
   $gapWidth: themeShift.token('focus.ring.offset')
 ) {
@@ -94,7 +94,7 @@
 // Button-specific alias kept for component-level readability.
 @mixin buttonFocus(
   $ringColor: themeShift.token('focus.ring.color'),
-  $gapColor: themeShift.token('background.canvas'),
+  $gapColor: themeShift.token('focus.ring.gap'),
   $ringWidth: themeShift.token('focus.ring.width'),
   $gapWidth: themeShift.token('focus.ring.offset'),
   $offset: 0

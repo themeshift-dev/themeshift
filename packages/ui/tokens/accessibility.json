@@ -1,6 +1,7 @@
 {
   "focus": {
     "ring": {
+      "gap": { "$value": "{color.white}" },
       "width": { "$type": "dimension", "$value": "3px" },
       "offset": { "$type": "dimension", "$value": "2px" }
     }
