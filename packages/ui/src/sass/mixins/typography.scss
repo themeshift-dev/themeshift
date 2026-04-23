@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '@themeshift/vite-plugin-themeshift/token' as themeShift;
+@use '@themeshift/vite-plugin/token' as themeShift;
 
 @function _resolve-style-path($path) {
   $map: (

@@ -69,7 +69,7 @@ jobs:
       - run: pnpm ci:validate
 
       # Build the plugin package so workspace consumers can resolve dist entrypoints during tests
-      - run: pnpm --filter @themeshift/vite-plugin-themeshift build
+      - run: pnpm --filter @themeshift/vite-plugin build
 
       # Generate UI package coverage output for Codecov
       - run: pnpm --filter @themeshift/ui test:coverage
@@ -83,12 +83,12 @@ jobs:
           flags: ui
 
       # Generate plugin package coverage output for Codecov
-      - run: pnpm --filter @themeshift/vite-plugin-themeshift test:coverage
+      - run: pnpm --filter @themeshift/vite-plugin test:coverage
 
       # Upload plugin package coverage to Codecov
-      - name: Upload vite-plugin-themeshift coverage reports to Codecov
+      - name: Upload vite-plugin coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./packages/vite-plugin-themeshift/coverage/lcov.info
-          flags: vite-plugin-themeshift
+          files: ./packages/vite-plugin/coverage/lcov.info
+          flags: vite-plugin

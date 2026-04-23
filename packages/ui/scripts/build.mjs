@@ -65,7 +65,7 @@ async function compileBaseCss() {
   const baseCssPath = path.join(rootDir, 'src/css/base.scss');
   const baseCssSource = await readFile(baseCssPath, 'utf8');
   const result = sass.compileString(
-    `@use "@themeshift/vite-plugin-themeshift/token-defaults" as _themeShiftTokenDefaults with ($theme-shift-default-css-var-prefix: "themeshift");\n${baseCssSource}`,
+    `@use "@themeshift/vite-plugin/token-defaults" as _themeShiftTokenDefaults with ($theme-shift-default-css-var-prefix: "themeshift");\n${baseCssSource}`,
     {
       url: pathToFileURL(baseCssPath),
       loadPaths: [

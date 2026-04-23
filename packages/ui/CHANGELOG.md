@@ -6,4 +6,4 @@
 
 - 0c02866: Initial monorepo commit, adds releases.md and preflight scripts, adds new template
 - Updated dependencies [0c02866]
-  - @themeshift/vite-plugin-themeshift@0.3.12
+  - @themeshift/vite-plugin@0.3.12

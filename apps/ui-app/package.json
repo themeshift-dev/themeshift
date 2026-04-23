@@ -12,6 +12,7 @@
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/sometype-mono": "^5.2.7",
     "@themeshift/docs-types": "workspace:*",
     "@themeshift/ui": "workspace:*",
@@ -27,7 +28,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
-    "@themeshift/vite-plugin-themeshift": "workspace:*",
+    "@themeshift/vite-plugin": "workspace:*",
     "@types/node": "^24.12.0",
     "@types/prismjs": "^1.26.6",
     "@types/react": "^19.2.14",

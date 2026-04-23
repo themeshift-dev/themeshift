@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'node:url';
 import react from '@vitejs/plugin-react';
-import { themeShift } from '@themeshift/vite-plugin-themeshift';
+import { themeShift } from '@themeshift/vite-plugin';
 import { defineConfig } from 'vite';
 
 // https://vite.dev/config/

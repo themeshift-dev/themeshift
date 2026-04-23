@@ -1,4 +1,4 @@
-@use '@themeshift/vite-plugin-themeshift/token' as themeShift;
+@use '@themeshift/vite-plugin/token' as themeShift;
 
 // Draws the shared ThemeShift focus ring. Use inside :focus-visible handlers
 // so keyboard and assistive-technology users get a clear visual indicator.

@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { themeShift } from '@themeshift/vite-plugin-themeshift';
+import { themeShift } from '@themeshift/vite-plugin';
 
 const cssGroups = [
   { label: 'Colors', match: (n: string) => n.startsWith('color-') },

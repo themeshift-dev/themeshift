@@ -7,8 +7,8 @@ ThemeShift is now managed as a single monorepo so the Vite plugin, UI library, a
 ### Plugin
 
 ![Build](https://github.com/themeshift-dev/themeshift/actions/workflows/ci.yml/badge.svg)
-![Coverage](https://codecov.io/gh/themeshift-dev/themeshift/graph/badge.svg?flag=vite-plugin-themeshift)
-![npm](https://img.shields.io/npm/v/@themeshift/vite-plugin-themeshift)
+![Coverage](https://codecov.io/gh/themeshift-dev/themeshift/graph/badge.svg?flag=vite-plugin)
+![npm](https://img.shields.io/npm/v/@themeshift/vite-plugin)
 
 ### UI
 
@@ -19,7 +19,9 @@ ThemeShift is now managed as a single monorepo so the Vite plugin, UI library, a
 
 ## Workspace layout
 
-- `packages/vite-plugin-themeshift`: publishes `@themeshift/vite-plugin-themeshift`
+- `packages/vite-plugin`: publishes `@themeshift/vite-plugin`
+- `packages/core`: publishes `@themeshift/core`
+- `packages/cli`: publishes `@themeshift/cli`
 - `packages/ui`: publishes `@themeshift/ui`
 - `apps/ui-app`: private docs/tooling app deployed through Netlify
 

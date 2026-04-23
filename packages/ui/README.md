@@ -36,7 +36,7 @@ npm install @themeshift/ui react react-dom
 If you want to override the default token values with your own ThemeShift tokens, also install the Vite plugin:
 
 ```bash
-npm install -D @themeshift/vite-plugin-themeshift
+npm install -D @themeshift/vite-plugin
 ```
 
 ## Quick start
@@ -119,12 +119,12 @@ Then add your own `@font-face` rules and override the typography tokens in your 
 
 ## Token overrides
 
-If you want to override the defaults, generate your own token CSS in your app with `@themeshift/vite-plugin-themeshift` and use `@themeshift/ui` as the starting point:
+If you want to override the defaults, generate your own token CSS in your app with `@themeshift/vite-plugin` and use `@themeshift/ui` as the starting point:
 
 ```ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { themeShift } from '@themeshift/vite-plugin-themeshift';
+import { themeShift } from '@themeshift/vite-plugin';
 
 export default defineConfig({
   plugins: [

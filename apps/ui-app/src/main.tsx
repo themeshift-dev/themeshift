@@ -1,5 +1,6 @@
+import '@fontsource-variable/inter/wght.css';
+import '@fontsource-variable/inter/wght-italic.css';
 import '@fontsource-variable/sometype-mono/index.css';
-import '@themeshift/ui/css/fonts.css';
 import { ThemeProvider } from '@themeshift/ui/contexts';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

@@ -1,3 +1,2 @@
-export * from './Landing';
 export * from './ComponentsPage';
-export * from './DocsHome';
+export * from './Landing';

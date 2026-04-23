@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import type { Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
-import { themeShift } from '@themeshift/vite-plugin-themeshift';
+import { themeShift } from '@themeshift/vite-plugin';
 import type { OutputAsset, OutputBundle, OutputChunk } from 'rollup';
 
 const cssGroups = [

@@ -1,0 +1,139 @@
+@use '@/sass/mixins/code';
+@use '@themeshift/ui/sass/typography';
+
+.page {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+
+  :where(h1, h2, h3, h4, p, li, td, th) code {
+    @include code.inline;
+
+    background: token('background.surfaceRaised');
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+.eyebrow {
+  @include typography.style('eyebrow.default');
+
+  color: token('text.muted');
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.lead {
+  color: token('text.muted');
+  margin: 0;
+  max-width: 72ch;
+}
+
+.section {
+  margin-top: 1.75rem;
+  padding-top: 0.25rem;
+
+  > h2 {
+    margin: 0;
+    padding-bottom: 0.625rem;
+    position: relative;
+
+    &::after {
+      background: token('border.default');
+      content: '';
+      display: block;
+      height: 1px;
+      margin-top: 0.625rem;
+      width: 100%;
+    }
+  }
+
+  > h3 {
+    margin: 1.25rem 0 0.5rem;
+  }
+
+  > p {
+    margin: 0.875rem 0;
+    max-width: 76ch;
+  }
+
+  > ul,
+  > ol {
+    margin: 0.75rem 0;
+    max-width: 76ch;
+    padding-left: 1.25rem;
+  }
+
+  > ul li,
+  > ol li {
+    margin: 0.45rem 0;
+  }
+}
+
+.callout {
+  background: token('background.surface');
+  border: 1px solid token('border.default');
+  border-inline-start: 4px solid token('border.default');
+  border-radius: token('radius.small');
+  margin-top: 1rem;
+  max-width: 76ch;
+  padding: 0.875rem 1rem;
+
+  p {
+    margin: 0;
+  }
+}
+
+.tableWrap {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.table {
+  border-collapse: collapse;
+  border: 1px solid token('border.default');
+  border-radius: token('radius.small');
+  min-width: 48rem;
+  width: 100%;
+
+  th,
+  td {
+    border: 1px solid token('border.default');
+    padding: 0.75rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: token('background.surfaceRaised');
+    font-weight: 600;
+  }
+
+  tbody tr:nth-child(2n) td,
+  tbody tr:nth-child(2n) th {
+    background: color-mix(
+      in srgb,
+      token('background.surfaceRaised') 45%,
+      transparent
+    );
+  }
+}
+
+.listCompact {
+  margin: 0.5rem 0 0;
+}
+
+.subsection {
+  background: token('background.surface');
+  border: 1px solid token('border.default');
+  border-radius: token('radius.small');
+  margin-top: 0.875rem;
+  padding: 0.875rem;
+
+  > h3 {
+    margin-top: 0;
+  }
+
+  > p:last-child {
+    margin-bottom: 0;
+  }
+}

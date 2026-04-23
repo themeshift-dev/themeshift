@@ -8,7 +8,8 @@ import {
   Link,
   TableOfContents,
 } from '@/app/components';
-import { ComponentsPage, DocsHome, Landing } from '@/pages';
+import { ComponentsPage, Landing } from '@/pages';
+import { docsPages, DocsLayout } from '@/pages/docs';
 import * as ComponentGuides from '@/pages/componentGuides';
 import * as HookGuides from '@/pages/hookGuides';
 import {
@@ -118,7 +119,17 @@ const HookPlaceholder = () => {
 const AppRoutes = () => (
   <Routes>
     <Route index element={<Landing />} />
-    <Route path="/docs" element={<DocsHome />} />
+    <Route path="/docs" element={<DocsLayout />}>
+      {docsPages.map((page) => {
+        const Component = page.Component;
+
+        return page.route ? (
+          <Route key={page.id} path={page.route} element={<Component />} />
+        ) : (
+          <Route key={page.id} index element={<Component />} />
+        );
+      })}
+    </Route>
 
     <Route path="/ui">
       <Route index element={<ComponentsPage />} />

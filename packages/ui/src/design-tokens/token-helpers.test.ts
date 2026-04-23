@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { token, tokenValue } from '@themeshift/vite-plugin-themeshift/token';
+import { token, tokenValue } from '@themeshift/vite-plugin/token';
 
 import { tokenValues } from './token-values';
 
