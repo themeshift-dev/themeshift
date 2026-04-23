@@ -34,6 +34,10 @@
       "types": "./dist/components/Badge/index.d.ts",
       "import": "./dist/components/Badge/index.js"
     },
+    "./components/Box": {
+      "types": "./dist/components/Box/index.d.ts",
+      "import": "./dist/components/Box/index.js"
+    },
     "./components/Button": {
       "types": "./dist/components/Button/index.d.ts",
       "import": "./dist/components/Button/index.js"
@@ -57,6 +61,14 @@
     "./components/Field": {
       "types": "./dist/components/Field/index.d.ts",
       "import": "./dist/components/Field/index.js"
+    },
+    "./components/Flex": {
+      "types": "./dist/components/Flex/index.d.ts",
+      "import": "./dist/components/Flex/index.js"
+    },
+    "./components/Grid": {
+      "types": "./dist/components/Grid/index.d.ts",
+      "import": "./dist/components/Grid/index.js"
     },
     "./components/Heading": {
       "types": "./dist/components/Heading/index.d.ts",

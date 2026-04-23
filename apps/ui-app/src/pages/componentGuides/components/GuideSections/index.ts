@@ -41,6 +41,23 @@ export const createPropsSection = ({
 }: CreatePropsSectionOptions): ComponentGuideSection =>
   createGuideSection({ content, id, intro, label, title });
 
+export type CreateTypesSectionOptions = Omit<
+  CreateGuideSectionOptions,
+  'id' | 'title'
+> & {
+  id?: string;
+  title?: ReactNode;
+};
+
+export const createTypesSection = ({
+  content,
+  id = 'types',
+  intro,
+  label,
+  title = 'Types',
+}: CreateTypesSectionOptions): ComponentGuideSection =>
+  createGuideSection({ content, id, intro, label, title });
+
 export type CreateExamplesSectionOptions = Omit<
   CreateGuideSectionOptions,
   'id' | 'title'

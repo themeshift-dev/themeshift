@@ -9,3 +9,4 @@ export * from './ScrollFade';
 export * from './SyntaxHighlighter';
 export * from './Stack';
 export * from './TableOfContents';
+export * from './TypesReference';

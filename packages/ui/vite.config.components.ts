@@ -163,6 +163,9 @@ export default defineConfig({
         'components/Badge/index': fileURLToPath(
           new URL('./src/entrypoints/components/Badge.ts', import.meta.url)
         ),
+        'components/Box/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Box.ts', import.meta.url)
+        ),
         'components/Button/index': fileURLToPath(
           new URL('./src/entrypoints/components/Button.ts', import.meta.url)
         ),
@@ -183,6 +186,12 @@ export default defineConfig({
         ),
         'components/Field/index': fileURLToPath(
           new URL('./src/entrypoints/components/Field.ts', import.meta.url)
+        ),
+        'components/Flex/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Flex.ts', import.meta.url)
+        ),
+        'components/Grid/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Grid.ts', import.meta.url)
         ),
         'components/Heading/index': fileURLToPath(
           new URL('./src/entrypoints/components/Heading.ts', import.meta.url)

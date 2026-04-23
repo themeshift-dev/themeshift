@@ -20,10 +20,43 @@ const sourceCodeUrlBase =
   'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components';
 
 const skippedNativeTypeReferences = new Set([
+  'Awaited',
+  'ComponentProps',
   'ComponentPropsWithoutRef',
+  'Exclude',
+  'Extract',
+  'NonNullable',
   'Omit',
+  'Parameters',
+  'Partial',
   'Pick',
   'Record',
+  'Readonly',
+  'Required',
+  'ReturnType',
+]);
+const keywordTypeNames = new Set([
+  'any',
+  'bigint',
+  'boolean',
+  'never',
+  'null',
+  'number',
+  'object',
+  'string',
+  'symbol',
+  'undefined',
+  'unknown',
+  'void',
+]);
+const standardTypeReferences = new Set([
+  'Array',
+  'Date',
+  'Error',
+  'Map',
+  'Promise',
+  'ReadonlyArray',
+  'Set',
 ]);
 
 function normalizePath(filePath) {
@@ -107,15 +140,29 @@ function createAnalyzer(program) {
         targets,
         typeChecker
       );
+      const typesReferenceMap = new Map();
+      const items = targets.flatMap((target) => {
+        const propsTypeName = resolveTargetPropsTypeName({
+          componentName,
+          declarations,
+          displayName: target.displayName,
+          propsTypeName: target.propsTypeName,
+        });
 
-      return targets.flatMap((target) =>
-        collectTargetProps({
+        return collectTargetProps({
           declarations,
           defaults: defaults.get(target.implementationName) ?? new Map(),
           displayName: target.displayName,
-          propsTypeName: target.propsTypeName,
-        })
-      );
+          propsTypeName,
+          typeChecker,
+          typesReferenceMap,
+        });
+      });
+
+      return {
+        items,
+        typesReference: [...typesReferenceMap.values()],
+      };
     },
   };
 }
@@ -149,6 +196,25 @@ function getCompoundApiReferenceTargets(componentName, sourceFiles) {
   }
 
   return null;
+}
+
+function resolveTargetPropsTypeName({
+  componentName,
+  declarations,
+  displayName,
+  propsTypeName,
+}) {
+  if (declarations.has(propsTypeName)) {
+    return propsTypeName;
+  }
+
+  const rootPropsTypeName = `${componentName}Props`;
+
+  if (displayName === componentName && declarations.has(rootPropsTypeName)) {
+    return rootPropsTypeName;
+  }
+
+  return propsTypeName;
 }
 
 function getCompoundTargetsFromSourceFile(componentName, sourceFile) {
@@ -493,6 +559,8 @@ function collectTargetProps({
   defaults,
   displayName,
   propsTypeName,
+  typeChecker,
+  typesReferenceMap,
 }) {
   const propMap = new Map();
 
@@ -502,6 +570,8 @@ function collectTargetProps({
     propMap,
     typeName: propsTypeName,
     typeParameterMap: new Map(),
+    typeChecker,
+    typesReferenceMap,
     visited: new Set(),
   });
 
@@ -521,6 +591,8 @@ function collectTypeName({
   propMap,
   typeName,
   typeParameterMap,
+  typeChecker,
+  typesReferenceMap,
   visited,
 }) {
   const declaration = declarations.get(typeName);
@@ -538,6 +610,8 @@ function collectTypeName({
       members: declaration.members,
       propMap,
       typeParameterMap,
+      typeChecker,
+      typesReferenceMap,
       visited,
     });
   }
@@ -553,6 +627,8 @@ function collectTypeName({
         undefined,
         typeParameterMap
       ),
+      typeChecker,
+      typesReferenceMap,
       visited,
     });
   }
@@ -566,6 +642,8 @@ function collectTypeNode({
   propMap,
   typeNode,
   typeParameterMap,
+  typeChecker,
+  typesReferenceMap,
   visited,
 }) {
   if (!typeNode) {
@@ -579,6 +657,8 @@ function collectTypeNode({
       propMap,
       typeNode: typeNode.type,
       typeParameterMap,
+      typeChecker,
+      typesReferenceMap,
       visited,
     });
     return;
@@ -591,6 +671,8 @@ function collectTypeNode({
       members: typeNode.members,
       propMap,
       typeParameterMap,
+      typeChecker,
+      typesReferenceMap,
       visited,
     });
     return;
@@ -604,6 +686,8 @@ function collectTypeNode({
         propMap,
         typeNode: childTypeNode,
         typeParameterMap,
+        typeChecker,
+        typesReferenceMap,
         visited,
       });
     }
@@ -617,6 +701,8 @@ function collectTypeNode({
       propMap,
       typeNode,
       typeParameterMap,
+      typeChecker,
+      typesReferenceMap,
       visited,
     });
   }
@@ -628,6 +714,8 @@ function collectTypeReference({
   propMap,
   typeNode,
   typeParameterMap,
+  typeChecker,
+  typesReferenceMap,
   visited,
 }) {
   const typeName = getEntityNameText(typeNode.typeName);
@@ -636,6 +724,21 @@ function collectTypeReference({
   if (!localTypeName) {
     return;
   }
+
+  const collectTypeArguments = () => {
+    for (const typeArgument of typeNode.typeArguments ?? []) {
+      collectTypeNode({
+        declarations,
+        displayName,
+        propMap,
+        typeNode: typeArgument,
+        typeParameterMap,
+        typeChecker,
+        typesReferenceMap,
+        visited,
+      });
+    }
+  };
 
   if (typeParameterMap.has(localTypeName)) {
     const mappedTypeNode = typeParameterMap.get(localTypeName);
@@ -650,18 +753,22 @@ function collectTypeReference({
       propMap,
       typeNode: mappedTypeNode,
       typeParameterMap,
+      typeChecker,
+      typesReferenceMap,
       visited,
     });
     return;
   }
 
   if (skippedNativeTypeReferences.has(localTypeName)) {
+    collectTypeArguments();
     return;
   }
 
   const declaration = declarations.get(localTypeName);
 
   if (!declaration || visited.has(localTypeName)) {
+    collectTypeArguments();
     return;
   }
 
@@ -677,6 +784,8 @@ function collectTypeReference({
     propMap,
     typeName: localTypeName,
     typeParameterMap: nextTypeParameterMap,
+    typeChecker,
+    typesReferenceMap,
     visited,
   });
 }
@@ -687,6 +796,8 @@ function collectMembers({
   members,
   propMap,
   typeParameterMap,
+  typeChecker,
+  typesReferenceMap,
   visited,
 }) {
   for (const member of members) {
@@ -709,6 +820,16 @@ function collectMembers({
       type: formatType(member.type, typeParameterMap),
       values: getLiteralValues(member.type, declarations, typeParameterMap),
     };
+
+    collectTypeReferenceItems({
+      declarations,
+      typeChecker,
+      typeNode: member.type,
+      typeParameterMap,
+      typeReferenceMap: typesReferenceMap,
+      visited: new Set(),
+    });
+
     const currentItem = propMap.get(key);
 
     propMap.set(key, mergeApiReferenceItems(currentItem, nextItem));
@@ -750,6 +871,347 @@ function createTypeParameterMap(typeParameters, typeArguments, parentMap) {
   });
 
   return typeParameterMap;
+}
+
+function collectTypeReferenceItems({
+  declarations,
+  typeChecker,
+  typeNode,
+  typeParameterMap,
+  typeReferenceMap,
+  visited,
+}) {
+  if (!typeNode) {
+    return;
+  }
+
+  if (ts.isParenthesizedTypeNode(typeNode)) {
+    collectTypeReferenceItems({
+      declarations,
+      typeChecker,
+      typeNode: typeNode.type,
+      typeParameterMap,
+      typeReferenceMap,
+      visited,
+    });
+    return;
+  }
+
+  if (ts.isTypeReferenceNode(typeNode)) {
+    collectTypeReferenceNodeItem({
+      declarations,
+      typeChecker,
+      typeNode,
+      typeParameterMap,
+      typeReferenceMap,
+      visited,
+    });
+    return;
+  }
+
+  if (ts.isUnionTypeNode(typeNode) || ts.isIntersectionTypeNode(typeNode)) {
+    for (const childTypeNode of typeNode.types) {
+      collectTypeReferenceItems({
+        declarations,
+        typeChecker,
+        typeNode: childTypeNode,
+        typeParameterMap,
+        typeReferenceMap,
+        visited,
+      });
+    }
+    return;
+  }
+
+  if (ts.isArrayTypeNode(typeNode)) {
+    collectTypeReferenceItems({
+      declarations,
+      typeChecker,
+      typeNode: typeNode.elementType,
+      typeParameterMap,
+      typeReferenceMap,
+      visited,
+    });
+    return;
+  }
+
+  if (ts.isIndexedAccessTypeNode(typeNode)) {
+    collectTypeReferenceItems({
+      declarations,
+      typeChecker,
+      typeNode: typeNode.objectType,
+      typeParameterMap,
+      typeReferenceMap,
+      visited,
+    });
+    collectTypeReferenceItems({
+      declarations,
+      typeChecker,
+      typeNode: typeNode.indexType,
+      typeParameterMap,
+      typeReferenceMap,
+      visited,
+    });
+    return;
+  }
+
+  if (ts.isTypeOperatorNode(typeNode)) {
+    collectTypeReferenceItems({
+      declarations,
+      typeChecker,
+      typeNode: typeNode.type,
+      typeParameterMap,
+      typeReferenceMap,
+      visited,
+    });
+  }
+}
+
+function collectTypeReferenceNodeItem({
+  declarations,
+  typeChecker,
+  typeNode,
+  typeParameterMap,
+  typeReferenceMap,
+  visited,
+}) {
+  const typeName = getEntityNameText(typeNode.typeName);
+  const localTypeName = typeName.split('.').at(-1);
+  const mappedTypeNode =
+    typeParameterMap.get(typeName) ??
+    (localTypeName ? typeParameterMap.get(localTypeName) : undefined);
+
+  if (
+    mappedTypeNode &&
+    getNodeText(mappedTypeNode) !== typeName &&
+    (!localTypeName || getNodeText(mappedTypeNode) !== localTypeName)
+  ) {
+    collectTypeReferenceItems({
+      declarations,
+      typeChecker,
+      typeNode: mappedTypeNode,
+      typeParameterMap,
+      typeReferenceMap,
+      visited,
+    });
+    return;
+  }
+
+  for (const typeArgument of typeNode.typeArguments ?? []) {
+    collectTypeReferenceItems({
+      declarations,
+      typeChecker,
+      typeNode: typeArgument,
+      typeParameterMap,
+      typeReferenceMap,
+      visited,
+    });
+  }
+
+  if (!localTypeName || isStandardTypeReference(typeChecker, typeNode)) {
+    return;
+  }
+
+  if (typeReferenceMap.has(localTypeName)) {
+    return;
+  }
+
+  const declaration =
+    resolveTypeReferenceDeclaration(typeChecker, typeNode) ??
+    declarations.get(localTypeName) ??
+    null;
+
+  if (visited.has(localTypeName)) {
+    return;
+  }
+
+  visited.add(localTypeName);
+
+  typeReferenceMap.set(localTypeName, {
+    comments: declaration ? getComment(declaration) : '',
+    defaultValue: null,
+    typeName: localTypeName,
+    values: declaration
+      ? declaration.typeParameters?.length
+        ? []
+        : getLooseLiteralValues(
+            getDeclarationTypeNode(declaration),
+            typeChecker,
+            createTypeParameterMap(
+              declaration.typeParameters,
+              typeNode.typeArguments,
+              typeParameterMap
+            ),
+            new Set()
+          )
+      : [],
+  });
+
+  visited.delete(localTypeName);
+}
+
+function isStandardTypeReference(typeChecker, typeNode) {
+  const typeName = getEntityNameText(typeNode.typeName);
+  const localTypeName = typeName.split('.').at(-1);
+
+  if (!localTypeName) {
+    return true;
+  }
+
+  if (
+    keywordTypeNames.has(localTypeName) ||
+    skippedNativeTypeReferences.has(localTypeName) ||
+    standardTypeReferences.has(localTypeName)
+  ) {
+    return true;
+  }
+
+  return isReactTypeReference(typeChecker, typeNode);
+}
+
+function isReactTypeReference(typeChecker, typeNode) {
+  const symbol = getResolvedSymbol(typeChecker, typeNode.typeName);
+
+  if (!symbol) {
+    return false;
+  }
+
+  return (symbol.declarations ?? []).some((declaration) =>
+    normalizePath(declaration.getSourceFile().fileName).includes(
+      `${path.sep}react${path.sep}`
+    )
+  );
+}
+
+function getResolvedSymbol(typeChecker, typeNameNode) {
+  let symbol = typeChecker.getSymbolAtLocation(typeNameNode);
+
+  if (!symbol) {
+    return null;
+  }
+
+  if (symbol.flags & ts.SymbolFlags.Alias) {
+    symbol = typeChecker.getAliasedSymbol(symbol);
+  }
+
+  return symbol ?? null;
+}
+
+function resolveTypeReferenceDeclaration(typeChecker, typeNode) {
+  const symbol = getResolvedSymbol(typeChecker, typeNode.typeName);
+
+  if (!symbol) {
+    return null;
+  }
+
+  for (const declaration of symbol.declarations ?? []) {
+    if (ts.isTypeAliasDeclaration(declaration)) {
+      return declaration;
+    }
+
+    if (ts.isInterfaceDeclaration(declaration)) {
+      return declaration;
+    }
+  }
+
+  return null;
+}
+
+function getDeclarationTypeNode(declaration) {
+  if (ts.isTypeAliasDeclaration(declaration)) {
+    return declaration.type;
+  }
+
+  return null;
+}
+
+function getLooseLiteralValues(
+  typeNode,
+  typeChecker,
+  typeParameterMap,
+  visitedTypes
+) {
+  if (!typeNode) {
+    return [];
+  }
+
+  if (ts.isParenthesizedTypeNode(typeNode)) {
+    return getLooseLiteralValues(
+      typeNode.type,
+      typeChecker,
+      typeParameterMap,
+      visitedTypes
+    );
+  }
+
+  if (ts.isLiteralTypeNode(typeNode)) {
+    const literalValue = getLiteralValue(typeNode.literal);
+
+    return literalValue === null ? [] : [literalValue];
+  }
+
+  if (ts.isUnionTypeNode(typeNode) || ts.isIntersectionTypeNode(typeNode)) {
+    return [
+      ...new Set(
+        typeNode.types.flatMap((childTypeNode) =>
+          getLooseLiteralValues(
+            childTypeNode,
+            typeChecker,
+            typeParameterMap,
+            visitedTypes
+          )
+        )
+      ),
+    ];
+  }
+
+  if (ts.isTypeReferenceNode(typeNode)) {
+    const typeName = getEntityNameText(typeNode.typeName);
+    const localTypeName = typeName.split('.').at(-1);
+    const mappedTypeNode =
+      typeParameterMap.get(typeName) ??
+      (localTypeName ? typeParameterMap.get(localTypeName) : undefined);
+
+    if (
+      mappedTypeNode &&
+      getNodeText(mappedTypeNode) !== typeName &&
+      (!localTypeName || getNodeText(mappedTypeNode) !== localTypeName)
+    ) {
+      return getLooseLiteralValues(
+        mappedTypeNode,
+        typeChecker,
+        typeParameterMap,
+        visitedTypes
+      );
+    }
+
+    if (!localTypeName || visitedTypes.has(localTypeName)) {
+      return [];
+    }
+
+    const declaration = resolveTypeReferenceDeclaration(typeChecker, typeNode);
+
+    if (!declaration || !ts.isTypeAliasDeclaration(declaration)) {
+      return [];
+    }
+
+    visitedTypes.add(localTypeName);
+    const values = getLooseLiteralValues(
+      declaration.type,
+      typeChecker,
+      createTypeParameterMap(
+        declaration.typeParameters,
+        typeNode.typeArguments,
+        typeParameterMap
+      ),
+      visitedTypes
+    );
+    visitedTypes.delete(localTypeName);
+
+    return values;
+  }
+
+  return [];
 }
 
 function mergeApiReferenceItems(currentItem, nextItem) {
@@ -882,10 +1344,25 @@ function formatType(typeNode, typeParameterMap) {
 
   if (ts.isTypeReferenceNode(typeNode)) {
     const typeName = getEntityNameText(typeNode.typeName);
-    const mappedTypeNode = typeParameterMap.get(typeName);
+    const localTypeName = typeName.split('.').at(-1);
+    const mappedTypeNode =
+      typeParameterMap.get(typeName) ??
+      (localTypeName ? typeParameterMap.get(localTypeName) : undefined);
 
-    if (mappedTypeNode && getNodeText(mappedTypeNode) !== typeName) {
+    if (
+      mappedTypeNode &&
+      getNodeText(mappedTypeNode) !== typeName &&
+      (!localTypeName || getNodeText(mappedTypeNode) !== localTypeName)
+    ) {
       return formatType(mappedTypeNode, typeParameterMap);
+    }
+
+    const typeArguments = typeNode.typeArguments
+      ?.map((typeArgument) => formatType(typeArgument, typeParameterMap))
+      .filter(Boolean);
+
+    if (typeArguments && typeArguments.length > 0) {
+      return `${typeName}<${typeArguments.join(', ')}>`;
     }
 
     return typeName;
@@ -1288,9 +1765,10 @@ function evaluateMetaValue(expression, filePath) {
 async function createComponentData(componentName, analyzer) {
   const importPath = `@themeshift/ui/components/${componentName}`;
   const meta = await readComponentMeta(componentName);
+  const { items, typesReference } = analyzer.collectApiReference(componentName);
 
   return {
-    apiReference: analyzer.collectApiReference(componentName),
+    apiReference: items,
     name: componentName,
     exportName: componentName,
     importPath,
@@ -1301,6 +1779,7 @@ async function createComponentData(componentName, analyzer) {
       .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
       .toLowerCase(),
     sourceCodeUrl: `${sourceCodeUrlBase}/${componentName}`,
+    typesReference,
     type: 'component',
   };
 }
