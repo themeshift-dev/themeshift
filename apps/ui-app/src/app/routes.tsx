@@ -177,6 +177,32 @@ const AppRoutes = () => (
           />
         </Route>
 
+        <Route path="box">
+          <Route index element={<ComponentGuides.BoxGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Box"
+                componentPath="/ui/component/box"
+                description="Box customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Box"
+                componentPath="/ui/component/box"
+                description="An interactive Box playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
         <Route path="button">
           <Route index element={<ComponentGuides.ButtonGuide />} />
           <Route
@@ -379,6 +405,58 @@ const AppRoutes = () => (
                 componentName="Field"
                 componentPath="/ui/component/field"
                 description="An interactive Field playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
+        <Route path="flex">
+          <Route index element={<ComponentGuides.FlexGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Flex"
+                componentPath="/ui/component/flex"
+                description="Flex customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Flex"
+                componentPath="/ui/component/flex"
+                description="An interactive Flex playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
+        <Route path="grid">
+          <Route index element={<ComponentGuides.GridGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Grid"
+                componentPath="/ui/component/grid"
+                description="Grid customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Grid"
+                componentPath="/ui/component/grid"
+                description="An interactive Grid playground will live here."
                 title="Playground"
               />
             }

@@ -180,6 +180,350 @@ export const components = [
     routeSlug: 'badge',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Badge',
+    typesReference: [
+      {
+        comments: 'Size options for the base badge.',
+        defaultValue: null,
+        typeName: 'BadgeSize',
+        values: ['small', 'medium'],
+      },
+      {
+        comments: 'Visual tone options for status-style badges.',
+        defaultValue: null,
+        typeName: 'BadgeTone',
+        values: ['neutral', 'info', 'success', 'warning', 'danger'],
+      },
+      {
+        comments: 'Variant options used with semantic tones.',
+        defaultValue: null,
+        typeName: 'BadgeVariant',
+        values: ['soft', 'solid', 'outline'],
+      },
+      {
+        comments: 'Curated color options for category-style badges.',
+        defaultValue: null,
+        typeName: 'BadgeColor',
+        values: [
+          'gray',
+          'blue',
+          'green',
+          'yellow',
+          'orange',
+          'red',
+          'pink',
+          'purple',
+        ],
+      },
+      {
+        comments: 'Logical placement options for Badge.Count overlays.',
+        defaultValue: null,
+        typeName: 'BadgeCountPlacement',
+        values: ['top-start', 'top-end', 'bottom-start', 'bottom-end'],
+      },
+    ],
+    type: 'component',
+  },
+  {
+    apiReference: [
+      {
+        comments:
+          'Render a different element while keeping the same layout prop API.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Box contents.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names for custom styling hooks.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Display mode for the rendered element.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'display',
+        type: 'ResponsiveValue<DisplayValue>',
+        values: [],
+      },
+      {
+        comments: 'Element height.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'height',
+        type: 'ResponsiveValue<SizeValue>',
+        values: [],
+      },
+      {
+        comments: 'Margin on all sides.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'margin',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Margin on block-end.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'marginBottom',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Margin on inline-start.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'marginLeft',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Margin on inline-end.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'marginRight',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Margin on block-start.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'marginTop',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Margin on the inline axis.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'marginX',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Margin on the block axis.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'marginY',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Maximum element height.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'maxHeight',
+        type: 'ResponsiveValue<SizeValue>',
+        values: [],
+      },
+      {
+        comments: 'Maximum element width.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'maxWidth',
+        type: 'ResponsiveValue<SizeValue>',
+        values: [],
+      },
+      {
+        comments: 'Minimum element height.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'minHeight',
+        type: 'ResponsiveValue<SizeValue>',
+        values: [],
+      },
+      {
+        comments: 'Minimum element width.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'minWidth',
+        type: 'ResponsiveValue<SizeValue>',
+        values: [],
+      },
+      {
+        comments: 'Overflow behavior on both axes.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'overflow',
+        type: 'ResponsiveValue<OverflowValue>',
+        values: [],
+      },
+      {
+        comments: 'Overflow behavior on the inline axis.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'overflowX',
+        type: 'ResponsiveValue<OverflowValue>',
+        values: [],
+      },
+      {
+        comments: 'Overflow behavior on the block axis.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'overflowY',
+        type: 'ResponsiveValue<OverflowValue>',
+        values: [],
+      },
+      {
+        comments: 'Padding on all sides.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'padding',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Padding on block-end.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'paddingBottom',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Padding on inline-start.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'paddingLeft',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Padding on inline-end.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'paddingRight',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Padding on block-start.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'paddingTop',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Padding on the inline axis.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'paddingX',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Padding on the block axis.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'paddingY',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Element width.',
+        defaultValue: null,
+        displayName: 'Box',
+        propName: 'width',
+        type: 'ResponsiveValue<SizeValue>',
+        values: [],
+      },
+    ],
+    name: 'Box',
+    exportName: 'Box',
+    importPath: '@themeshift/ui/components/Box',
+    importString: "import { Box } from '@themeshift/ui/components/Box';",
+    meta: {
+      aliases: ['Container'],
+      category: 'layout-utilities',
+      description:
+        'Low-level polymorphic layout primitive with responsive spacing, sizing, and overflow props.',
+      featured: true,
+      order: 10,
+      related: ['Flex', 'Grid', 'Responsive'],
+      status: 'experimental',
+      tags: ['layout', 'primitive', 'container', 'responsive'],
+      type: 'component',
+    },
+    slug: 'box',
+    routeSlug: 'box',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Box',
+    typesReference: [
+      {
+        comments: 'Supported CSS display keywords for Box.',
+        defaultValue: null,
+        typeName: 'DisplayValue',
+        values: [
+          'block',
+          'inline-block',
+          'inline',
+          'flex',
+          'inline-flex',
+          'grid',
+          'inline-grid',
+          'none',
+        ],
+      },
+      {
+        comments:
+          'Accepts either one value for all breakpoints or per-breakpoint overrides.',
+        defaultValue: null,
+        typeName: 'ResponsiveValue',
+        values: [],
+      },
+      {
+        comments: 'Size prop value.\n\nAccepts CSS strings and numeric values.',
+        defaultValue: null,
+        typeName: 'SizeValue',
+        values: [],
+      },
+      {
+        comments:
+          'Spacing prop value.\n\nUse token keys like `"4"` which maps to the `{space.4}` design token, or raw CSS values like `"1rem"` / `16` as an escape hatch.',
+        defaultValue: null,
+        typeName: 'SpacingValue',
+        values: [
+          '0',
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
+          '7',
+          '8',
+          '9',
+          '10',
+          '11',
+          '12',
+          '14',
+          '16',
+          '20',
+          '24',
+        ],
+      },
+      {
+        comments: 'Supported CSS overflow keywords.',
+        defaultValue: null,
+        typeName: 'OverflowValue',
+        values: ['visible', 'hidden', 'clip', 'scroll', 'auto'],
+      },
+    ],
     type: 'component',
   },
   {
@@ -322,6 +666,26 @@ export const components = [
     routeSlug: 'button',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Button',
+    typesReference: [
+      {
+        comments: 'Button style variants for different action types.',
+        defaultValue: null,
+        typeName: 'ButtonIntent',
+        values: [
+          'primary',
+          'secondary',
+          'tertiary',
+          'constructive',
+          'destructive',
+        ],
+      },
+      {
+        comments: 'Button size options.',
+        defaultValue: null,
+        typeName: 'ButtonSize',
+        values: ['small', 'medium', 'large', 'hero'],
+      },
+    ],
     type: 'component',
   },
   {
@@ -798,6 +1162,92 @@ export const components = [
     routeSlug: 'card',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Card',
+    typesReference: [
+      {
+        comments: 'Start/center/end alignment options for Card layout slots.',
+        defaultValue: null,
+        typeName: 'CardAlign',
+        values: ['start', 'center', 'end'],
+      },
+      {
+        comments: 'Justification options for Card layout slots.',
+        defaultValue: null,
+        typeName: 'CardJustify',
+        values: ['start', 'center', 'end', 'space-between'],
+      },
+      {
+        comments: 'Padding options used by Card and padded sections.',
+        defaultValue: null,
+        typeName: 'CardSectionPadding',
+        values: ['none', 'small', 'medium', 'large'],
+      },
+      {
+        comments: 'Corner radius options for Card root visuals.',
+        defaultValue: null,
+        typeName: 'CardRadius',
+        values: ['none', 'small', 'medium', 'large'],
+      },
+      {
+        comments: 'Shadow depth options for Card root visuals.',
+        defaultValue: null,
+        typeName: 'CardShadow',
+        values: ['none', 'small', 'medium', 'large'],
+      },
+      {
+        comments: 'Surface tone options for Card root visuals.',
+        defaultValue: null,
+        typeName: 'CardSurface',
+        values: ['default', 'subtle', 'elevated'],
+      },
+      {
+        comments: 'Direction options for Card.Actions layout.',
+        defaultValue: null,
+        typeName: 'CardActionsDirection',
+        values: ['row', 'column'],
+      },
+      {
+        comments: 'Gap scale options for Card.Actions layout.',
+        defaultValue: null,
+        typeName: 'CardActionsGap',
+        values: ['none', 'small', 'medium', 'large'],
+      },
+      {
+        comments: 'Edge offset options for Card.Badge positioning.',
+        defaultValue: null,
+        typeName: 'CardBadgeOffset',
+        values: ['none', 'small', 'medium'],
+      },
+      {
+        comments: 'Position options for Card.Badge.',
+        defaultValue: null,
+        typeName: 'CardBadgePosition',
+        values: ['top-start', 'top-end', 'bottom-start', 'bottom-end'],
+      },
+      {
+        comments: 'Orientation options for Card.Divider.',
+        defaultValue: null,
+        typeName: 'CardDividerOrientation',
+        values: ['horizontal', 'vertical'],
+      },
+      {
+        comments: 'Aspect ratio presets for Card.Media.',
+        defaultValue: null,
+        typeName: 'CardMediaAspectRatio',
+        values: ['auto', 'square', 'video', 'wide'],
+      },
+      {
+        comments: 'Object fit options for media content inside Card.Media.',
+        defaultValue: null,
+        typeName: 'CardMediaFit',
+        values: ['cover', 'contain'],
+      },
+      {
+        comments: 'Vertical placement options for Card.Media.',
+        defaultValue: null,
+        typeName: 'CardMediaPosition',
+        values: ['top', 'bottom'],
+      },
+    ],
     type: 'component',
   },
   {
@@ -856,6 +1306,20 @@ export const components = [
     routeSlug: 'checkbox',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Checkbox',
+    typesReference: [
+      {
+        comments: 'Checkbox size options.',
+        defaultValue: null,
+        typeName: 'CheckboxSize',
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments: 'Visual validation state options.',
+        defaultValue: null,
+        typeName: 'CheckboxValidationState',
+        values: ['none', 'invalid', 'valid', 'warning'],
+      },
+    ],
     type: 'component',
   },
   {
@@ -866,7 +1330,7 @@ export const components = [
         defaultValue: null,
         displayName: 'CopyButton',
         propName: 'aria-label',
-        type: 'CopyButtonDynamicValue',
+        type: 'CopyButtonDynamicValue<string>',
         values: [],
       },
       {
@@ -875,7 +1339,7 @@ export const components = [
         defaultValue: null,
         displayName: 'CopyButton',
         propName: 'children',
-        type: 'CopyButtonDynamicValue',
+        type: 'CopyButtonDynamicValue<ReactNode>',
         values: [],
       },
       {
@@ -902,7 +1366,7 @@ export const components = [
         defaultValue: null,
         displayName: 'CopyButton',
         propName: 'endIcon',
-        type: 'CopyButtonDynamicValue',
+        type: 'CopyButtonDynamicValue<ReactNode>',
         values: [],
       },
       {
@@ -920,7 +1384,7 @@ export const components = [
         defaultValue: null,
         displayName: 'CopyButton',
         propName: 'icon',
-        type: 'CopyButtonDynamicValue',
+        type: 'CopyButtonDynamicValue<ReactNode>',
         values: [],
       },
       {
@@ -945,7 +1409,7 @@ export const components = [
         defaultValue: null,
         displayName: 'CopyButton',
         propName: 'startIcon',
-        type: 'CopyButtonDynamicValue',
+        type: 'CopyButtonDynamicValue<ReactNode>',
         values: [],
       },
       {
@@ -954,7 +1418,7 @@ export const components = [
         defaultValue: null,
         displayName: 'CopyButton',
         propName: 'title',
-        type: 'CopyButtonDynamicValue',
+        type: 'CopyButtonDynamicValue<string>',
         values: [],
       },
       {
@@ -986,6 +1450,14 @@ export const components = [
     routeSlug: 'copy-button',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/CopyButton',
+    typesReference: [
+      {
+        comments: '',
+        defaultValue: null,
+        typeName: 'CopyButtonDynamicValue',
+        values: [],
+      },
+    ],
     type: 'component',
   },
   {
@@ -1008,10 +1480,134 @@ export const components = [
     routeSlug: 'error-message',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/ErrorMessage',
+    typesReference: [],
     type: 'component',
   },
   {
     apiReference: [
+      {
+        comments: 'Vertical alignment used when `layout="inline-control"`.',
+        defaultValue: 'start',
+        displayName: 'Field',
+        propName: 'align',
+        type: 'FieldAlign',
+        values: ['start', 'center'],
+      },
+      {
+        comments:
+          'Field contents, usually a control and optional field subcomponents.',
+        defaultValue: null,
+        displayName: 'Field',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Helper text shown below the control.',
+        defaultValue: null,
+        displayName: 'Field',
+        propName: 'description',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Disables the control and related field content.',
+        defaultValue: null,
+        displayName: 'Field',
+        propName: 'disabled',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Validation message shown when the field is invalid.',
+        defaultValue: null,
+        displayName: 'Field',
+        propName: 'error',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional form API used for integrated Field wiring.',
+        defaultValue: null,
+        displayName: 'Field',
+        propName: 'form',
+        type: 'FormApi<Record<string, unknown>>',
+        values: [],
+      },
+      {
+        comments:
+          'Whether label text should be visually hidden but still accessible.',
+        defaultValue: false,
+        displayName: 'Field',
+        propName: 'hideLabel',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Optional stable ID base. If omitted, an ID is generated.',
+        defaultValue: null,
+        displayName: 'Field',
+        propName: 'id',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Visible label content for the control.',
+        defaultValue: null,
+        displayName: 'Field',
+        propName: 'label',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Layout style for control and supporting content.',
+        defaultValue: 'stacked',
+        displayName: 'Field',
+        propName: 'layout',
+        type: 'FieldLayout',
+        values: ['stacked', 'inline-control'],
+      },
+      {
+        comments: 'Field name used for integrated form wiring.',
+        defaultValue: null,
+        displayName: 'Field',
+        propName: 'name',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Marks the field as optional for presentation.',
+        defaultValue: false,
+        displayName: 'Field',
+        propName: 'optional',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Makes the control read-only while keeping it focusable.',
+        defaultValue: null,
+        displayName: 'Field',
+        propName: 'readOnly',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Marks the control as required.',
+        defaultValue: null,
+        displayName: 'Field',
+        propName: 'required',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments:
+          'Sets the field validation state used for styling and accessibility.',
+        defaultValue: null,
+        displayName: 'Field',
+        propName: 'validationState',
+        type: 'ValidationState',
+        values: ['none', 'invalid', 'valid', 'warning'],
+      },
       {
         comments: 'Helper text content associated with the control.',
         defaultValue: null,
@@ -1105,6 +1701,582 @@ export const components = [
     routeSlug: 'field',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Field',
+    typesReference: [
+      {
+        comments:
+          'Shared validation states used by Field and field-aware controls.',
+        defaultValue: null,
+        typeName: 'ValidationState',
+        values: ['none', 'invalid', 'valid', 'warning'],
+      },
+      {
+        comments: 'Vertical alignment options for inline-control layout.',
+        defaultValue: null,
+        typeName: 'FieldAlign',
+        values: ['start', 'center'],
+      },
+      {
+        comments: '',
+        defaultValue: null,
+        typeName: 'FormApi',
+        values: [],
+      },
+      {
+        comments: 'Layout options for control/label composition.',
+        defaultValue: null,
+        typeName: 'FieldLayout',
+        values: ['stacked', 'inline-control'],
+      },
+    ],
+    type: 'component',
+  },
+  {
+    apiReference: [
+      {
+        comments: 'Cross-axis alignment for direct children.',
+        defaultValue: null,
+        displayName: 'Flex',
+        propName: 'align',
+        type: 'ResponsiveValue<AlignItemsValue>',
+        values: [],
+      },
+      {
+        comments: 'Alignment between wrapped rows or columns.',
+        defaultValue: null,
+        displayName: 'Flex',
+        propName: 'alignContent',
+        type: 'ResponsiveValue<FlexAlignContentValue>',
+        values: [],
+      },
+      {
+        comments: 'Horizontal gap between columns in wrapped layouts.',
+        defaultValue: null,
+        displayName: 'Flex',
+        propName: 'columnGap',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Main layout direction for flex children.',
+        defaultValue: null,
+        displayName: 'Flex',
+        propName: 'direction',
+        type: 'ResponsiveValue<FlexDirectionValue>',
+        values: [],
+      },
+      {
+        comments: 'Gap between direct children.',
+        defaultValue: null,
+        displayName: 'Flex',
+        propName: 'gap',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Render as inline-flex when true.',
+        defaultValue: null,
+        displayName: 'Flex',
+        propName: 'inline',
+        type: 'ResponsiveValue<boolean>',
+        values: [],
+      },
+      {
+        comments: 'Main-axis distribution of children.',
+        defaultValue: null,
+        displayName: 'Flex',
+        propName: 'justify',
+        type: 'ResponsiveValue<JustifyContentValue>',
+        values: [],
+      },
+      {
+        comments: 'Vertical gap between wrapped rows.',
+        defaultValue: null,
+        displayName: 'Flex',
+        propName: 'rowGap',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Allows children to wrap to additional rows or columns.',
+        defaultValue: null,
+        displayName: 'Flex',
+        propName: 'wrap',
+        type: 'ResponsiveValue<FlexWrapValue>',
+        values: [],
+      },
+    ],
+    name: 'Flex',
+    exportName: 'Flex',
+    importPath: '@themeshift/ui/components/Flex',
+    importString: "import { Flex } from '@themeshift/ui/components/Flex';",
+    meta: {
+      aliases: ['StackRow'],
+      category: 'layout-utilities',
+      description:
+        'A Box-based flex wrapper for fast row and column layouts with responsive props.',
+      featured: true,
+      order: 20,
+      related: ['Box', 'Grid', 'Responsive'],
+      status: 'experimental',
+      tags: ['layout', 'flex', 'stack', 'responsive'],
+      type: 'component',
+    },
+    slug: 'flex',
+    routeSlug: 'flex',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Flex',
+    typesReference: [
+      {
+        comments: 'Logical cross-axis alignment keywords for container items.',
+        defaultValue: null,
+        typeName: 'AlignItemsValue',
+        values: ['start', 'end', 'center', 'stretch', 'baseline'],
+      },
+      {
+        comments:
+          'Accepts either one value for all breakpoints or per-breakpoint overrides.',
+        defaultValue: null,
+        typeName: 'ResponsiveValue',
+        values: [],
+      },
+      {
+        comments: 'Cross-axis line distribution in wrapped flex layouts.',
+        defaultValue: null,
+        typeName: 'FlexAlignContentValue',
+        values: [
+          'start',
+          'end',
+          'center',
+          'between',
+          'around',
+          'evenly',
+          'stretch',
+        ],
+      },
+      {
+        comments:
+          'Spacing prop value.\n\nUse token keys like `"4"` which maps to the `{space.4}` design token, or raw CSS values like `"1rem"` / `16` as an escape hatch.',
+        defaultValue: null,
+        typeName: 'SpacingValue',
+        values: [
+          '0',
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
+          '7',
+          '8',
+          '9',
+          '10',
+          '11',
+          '12',
+          '14',
+          '16',
+          '20',
+          '24',
+        ],
+      },
+      {
+        comments: 'Direction options for flex item flow.',
+        defaultValue: null,
+        typeName: 'FlexDirectionValue',
+        values: ['row', 'row-reverse', 'column', 'column-reverse'],
+      },
+      {
+        comments:
+          'Logical inline/main-axis distribution shortcuts.\n\n`between`, `around`, and `evenly` map to their `space-*` CSS variants.',
+        defaultValue: null,
+        typeName: 'JustifyContentValue',
+        values: [
+          'start',
+          'end',
+          'center',
+          'between',
+          'around',
+          'evenly',
+          'stretch',
+        ],
+      },
+      {
+        comments: 'Wrapping behavior for flex items.',
+        defaultValue: null,
+        typeName: 'FlexWrapValue',
+        values: ['nowrap', 'wrap', 'wrap-reverse'],
+      },
+    ],
+    type: 'component',
+  },
+  {
+    apiReference: [
+      {
+        comments: 'Alignment of the full grid content block on the block axis.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'alignContent',
+        type: 'ResponsiveValue<GridContentAlignmentValue>',
+        values: [],
+      },
+      {
+        comments: 'Default block-axis alignment for grid children.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'alignItems',
+        type: 'ResponsiveValue<AlignItemsValue>',
+        values: [],
+      },
+      {
+        comments: 'Size for implicitly-created columns.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'autoColumns',
+        type: 'ResponsiveValue<SizeValue>',
+        values: [],
+      },
+      {
+        comments: 'Auto-placement flow for implicit item placement.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'autoFlow',
+        type: 'ResponsiveValue<GridAutoFlowValue>',
+        values: [],
+      },
+      {
+        comments: 'Size for implicitly-created rows.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'autoRows',
+        type: 'ResponsiveValue<SizeValue>',
+        values: [],
+      },
+      {
+        comments: 'Gap between grid columns.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'columnGap',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments:
+          'Grid column tracks.\n\nNumeric values create equal-width tracks.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'columns',
+        type: 'ResponsiveValue<GridTrackValue>',
+        values: [],
+      },
+      {
+        comments: 'Gap between rows and columns.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'gap',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments: 'Render as inline-grid when true.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'inline',
+        type: 'ResponsiveValue<boolean>',
+        values: [],
+      },
+      {
+        comments:
+          'Alignment of the full grid content block on the inline axis.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'justifyContent',
+        type: 'ResponsiveValue<JustifyContentValue>',
+        values: [],
+      },
+      {
+        comments: 'Default inline-axis alignment for grid children.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'justifyItems',
+        type: 'ResponsiveValue<GridItemsAlignmentValue>',
+        values: [],
+      },
+      {
+        comments: 'Gap between grid rows.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'rowGap',
+        type: 'ResponsiveValue<SpacingValue>',
+        values: [],
+      },
+      {
+        comments:
+          'Grid row tracks.\n\nNumeric values create equal-height tracks.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'rows',
+        type: 'ResponsiveValue<GridTrackValue>',
+        values: [],
+      },
+      {
+        comments: 'Named area layout string.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'templateAreas',
+        type: 'ResponsiveValue<string>',
+        values: [],
+      },
+      {
+        comments:
+          'Explicit grid-template-columns value.\n\nThis takes precedence over `columns`.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'templateColumns',
+        type: 'ResponsiveValue<string>',
+        values: [],
+      },
+      {
+        comments:
+          'Explicit grid-template-rows value.\n\nThis takes precedence over `rows`.',
+        defaultValue: null,
+        displayName: 'Grid',
+        propName: 'templateRows',
+        type: 'ResponsiveValue<string>',
+        values: [],
+      },
+      {
+        comments: 'Block-axis alignment override for this item.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'alignSelf',
+        type: 'ResponsiveValue<AlignSelfValue>',
+        values: [],
+      },
+      {
+        comments: 'Named area assignment for this item.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'area',
+        type: 'ResponsiveValue<string>',
+        values: [],
+      },
+      {
+        comments: 'Grid item content.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names for custom styling hooks.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Direct grid-column value.\n\nIf provided, this overrides `columnSpan`.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'column',
+        type: 'ResponsiveValue<string>',
+        values: [],
+      },
+      {
+        comments: 'Grid column end line.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'columnEnd',
+        type: 'ResponsiveValue<number | string>',
+        values: [],
+      },
+      {
+        comments: "Column span shortcut.\n\nUse `'full'` for `1 / -1`.",
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'columnSpan',
+        type: "ResponsiveValue<number | 'full'>",
+        values: [],
+      },
+      {
+        comments: 'Grid column start line.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'columnStart',
+        type: 'ResponsiveValue<number | string>',
+        values: [],
+      },
+      {
+        comments: 'Inline-axis alignment override for this item.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'justifySelf',
+        type: 'ResponsiveValue<JustifySelfValue>',
+        values: [],
+      },
+      {
+        comments:
+          'Direct grid-row value.\n\nIf `rowSpan` is also provided, span takes precedence.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'row',
+        type: 'ResponsiveValue<string>',
+        values: [],
+      },
+      {
+        comments: 'Grid row end line.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'rowEnd',
+        type: 'ResponsiveValue<number | string>',
+        values: [],
+      },
+      {
+        comments: 'Row span shortcut.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'rowSpan',
+        type: 'ResponsiveValue<number>',
+        values: [],
+      },
+      {
+        comments: 'Grid row start line.',
+        defaultValue: null,
+        displayName: 'Grid.Item',
+        propName: 'rowStart',
+        type: 'ResponsiveValue<number | string>',
+        values: [],
+      },
+    ],
+    name: 'Grid',
+    exportName: 'Grid',
+    importPath: '@themeshift/ui/components/Grid',
+    importString: "import { Grid } from '@themeshift/ui/components/Grid';",
+    meta: {
+      category: 'layout-utilities',
+      description:
+        'A Box-based grid wrapper with responsive tracks and a compound Grid.Item helper for placement.',
+      featured: true,
+      order: 25,
+      related: ['Box', 'Flex', 'Responsive'],
+      status: 'experimental',
+      tags: ['layout', 'grid', 'responsive', 'compound'],
+      type: 'component',
+    },
+    slug: 'grid',
+    routeSlug: 'grid',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Grid',
+    typesReference: [
+      {
+        comments:
+          'Content alignment options for `justify-content` and `align-content`.',
+        defaultValue: null,
+        typeName: 'GridContentAlignmentValue',
+        values: [
+          'start',
+          'end',
+          'center',
+          'between',
+          'around',
+          'evenly',
+          'stretch',
+        ],
+      },
+      {
+        comments:
+          'Accepts either one value for all breakpoints or per-breakpoint overrides.',
+        defaultValue: null,
+        typeName: 'ResponsiveValue',
+        values: [],
+      },
+      {
+        comments: 'Logical cross-axis alignment keywords for container items.',
+        defaultValue: null,
+        typeName: 'AlignItemsValue',
+        values: ['start', 'end', 'center', 'stretch', 'baseline'],
+      },
+      {
+        comments: 'Size prop value.\n\nAccepts CSS strings and numeric values.',
+        defaultValue: null,
+        typeName: 'SizeValue',
+        values: [],
+      },
+      {
+        comments: 'Auto-placement direction and density behavior.',
+        defaultValue: null,
+        typeName: 'GridAutoFlowValue',
+        values: ['row', 'column', 'dense', 'row dense', 'column dense'],
+      },
+      {
+        comments:
+          'Spacing prop value.\n\nUse token keys like `"4"` which maps to the `{space.4}` design token, or raw CSS values like `"1rem"` / `16` as an escape hatch.',
+        defaultValue: null,
+        typeName: 'SpacingValue',
+        values: [
+          '0',
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
+          '7',
+          '8',
+          '9',
+          '10',
+          '11',
+          '12',
+          '14',
+          '16',
+          '20',
+          '24',
+        ],
+      },
+      {
+        comments:
+          'Grid track value.\n\nNumbers map to equal `repeat(n, minmax(0, 1fr))` tracks where supported.',
+        defaultValue: null,
+        typeName: 'GridTrackValue',
+        values: [],
+      },
+      {
+        comments:
+          'Logical inline/main-axis distribution shortcuts.\n\n`between`, `around`, and `evenly` map to their `space-*` CSS variants.',
+        defaultValue: null,
+        typeName: 'JustifyContentValue',
+        values: [
+          'start',
+          'end',
+          'center',
+          'between',
+          'around',
+          'evenly',
+          'stretch',
+        ],
+      },
+      {
+        comments:
+          'Child alignment options for `justify-items` and `align-items`.',
+        defaultValue: null,
+        typeName: 'GridItemsAlignmentValue',
+        values: ['start', 'end', 'center', 'stretch'],
+      },
+      {
+        comments: 'Logical cross-axis alignment override for a single item.',
+        defaultValue: null,
+        typeName: 'AlignSelfValue',
+        values: ['start', 'end', 'center', 'stretch'],
+      },
+      {
+        comments: 'Logical inline-axis alignment override for a single item.',
+        defaultValue: null,
+        typeName: 'JustifySelfValue',
+        values: ['start', 'end', 'center', 'stretch'],
+      },
+    ],
     type: 'component',
   },
   {
@@ -1144,6 +2316,14 @@ export const components = [
     routeSlug: 'heading',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Heading',
+    typesReference: [
+      {
+        comments: 'Supported heading levels.',
+        defaultValue: null,
+        typeName: 'HeadingLevel',
+        values: [1, 2, 3, 4, 5, 6],
+      },
+    ],
     type: 'component',
   },
   {
@@ -1215,6 +2395,20 @@ export const components = [
     routeSlug: 'input',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Input',
+    typesReference: [
+      {
+        comments: 'Input size options.',
+        defaultValue: null,
+        typeName: 'InputSize',
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments: 'Visual validation state options.',
+        defaultValue: null,
+        typeName: 'InputValidationState',
+        values: ['none', 'invalid', 'valid', 'warning'],
+      },
+    ],
     type: 'component',
   },
   {
@@ -1236,6 +2430,7 @@ export const components = [
     routeSlug: 'label',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Label',
+    typesReference: [],
     type: 'component',
   },
   {
@@ -1284,10 +2479,44 @@ export const components = [
     routeSlug: 'link',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Link',
+    typesReference: [],
     type: 'component',
   },
   {
     apiReference: [
+      {
+        comments:
+          'HTML element or component to render instead of the default element.',
+        defaultValue: null,
+        displayName: 'Navbar',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Navbar content.',
+        defaultValue: null,
+        displayName: 'Navbar',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the root element.',
+        defaultValue: null,
+        displayName: 'Navbar',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'CSS positioning mode for the navbar wrapper.',
+        defaultValue: 'static',
+        displayName: 'Navbar',
+        propName: 'position',
+        type: 'NavbarPosition',
+        values: ['static', 'absolute', 'fixed', 'sticky'],
+      },
       {
         comments:
           'HTML element or component to render instead of the default element.',
@@ -1408,10 +2637,165 @@ export const components = [
     routeSlug: 'navbar',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Navbar',
+    typesReference: [
+      {
+        comments: 'Supported positioning modes for the root navbar element.',
+        defaultValue: null,
+        typeName: 'NavbarPosition',
+        values: ['static', 'absolute', 'fixed', 'sticky'],
+      },
+      {
+        comments: 'Horizontal alignment options for a navbar section.',
+        defaultValue: null,
+        typeName: 'NavbarSectionAlign',
+        values: ['start', 'center', 'end'],
+      },
+      {
+        comments: 'Layout direction options for a navbar section.',
+        defaultValue: null,
+        typeName: 'NavbarSectionDirection',
+        values: ['row', 'column'],
+      },
+    ],
     type: 'component',
   },
   {
     apiReference: [
+      {
+        comments: 'Enables or disables indicator animation.',
+        defaultValue: true,
+        displayName: 'ProgressBar',
+        propName: 'animated',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments:
+          'HTML element or component to render instead of the default element.',
+        defaultValue: null,
+        displayName: 'ProgressBar',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments:
+          'Custom composition content.\n\nWhen provided, shorthand root props like `label` and `description` do not auto-render subcomponents.',
+        defaultValue: null,
+        displayName: 'ProgressBar',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names applied to the root.',
+        defaultValue: null,
+        displayName: 'ProgressBar',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Optional helper text shown below the track in shorthand mode.',
+        defaultValue: null,
+        displayName: 'ProgressBar',
+        propName: 'description',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments:
+          'Enables indeterminate mode when progress value is unknown.\n\nTip: when true, numeric value output is hidden by default.',
+        defaultValue: null,
+        displayName: 'ProgressBar',
+        propName: 'indeterminate',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments:
+          'Visible label content shown above the track in shorthand mode.',
+        defaultValue: null,
+        displayName: 'ProgressBar',
+        propName: 'label',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Maximum bound used to normalize value.',
+        defaultValue: null,
+        displayName: 'ProgressBar',
+        propName: 'max',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Minimum bound used to normalize value.',
+        defaultValue: null,
+        displayName: 'ProgressBar',
+        propName: 'min',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Track orientation.',
+        defaultValue: 'horizontal',
+        displayName: 'ProgressBar',
+        propName: 'orientation',
+        type: 'ProgressBarOrientation',
+        values: ['horizontal', 'vertical'],
+      },
+      {
+        comments: 'Radius preset for track and indicator.',
+        defaultValue: 'full',
+        displayName: 'ProgressBar',
+        propName: 'radius',
+        type: 'ProgressBarRadius',
+        values: ['none', 'small', 'medium', 'large', 'full'],
+      },
+      {
+        comments:
+          'Renders `ProgressBar.Value` automatically in shorthand mode.',
+        defaultValue: false,
+        displayName: 'ProgressBar',
+        propName: 'showValue',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Size preset for the track.',
+        defaultValue: 'medium',
+        displayName: 'ProgressBar',
+        propName: 'size',
+        type: 'ProgressBarSize',
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments: 'Visual tone for the indicator fill.',
+        defaultValue: 'primary',
+        displayName: 'ProgressBar',
+        propName: 'tone',
+        type: 'ProgressBarTone',
+        values: ['primary', 'secondary', 'constructive', 'destructive'],
+      },
+      {
+        comments: 'Current determinate value.',
+        defaultValue: null,
+        displayName: 'ProgressBar',
+        propName: 'value',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments:
+          'Custom value output formatter used by shorthand value rendering.\n\nExample: `(value, max) => `${value} / ${max}``',
+        defaultValue: null,
+        displayName: 'ProgressBar',
+        propName: 'valueFormatter',
+        type: 'ProgressValueFormatter',
+        values: [],
+      },
       {
         comments:
           'HTML element or component to render instead of the default element.',
@@ -1657,6 +3041,43 @@ export const components = [
     routeSlug: 'progress-bar',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/ProgressBar',
+    typesReference: [
+      {
+        comments:
+          'Layout direction for the progress track.\n\nExample: `<ProgressBar orientation="vertical" value={48} />`',
+        defaultValue: null,
+        typeName: 'ProgressBarOrientation',
+        values: ['horizontal', 'vertical'],
+      },
+      {
+        comments:
+          'Radius presets for the track and indicator corners.\n\nExample: `<ProgressBar radius="full" value={48} />`',
+        defaultValue: null,
+        typeName: 'ProgressBarRadius',
+        values: ['none', 'small', 'medium', 'large', 'full'],
+      },
+      {
+        comments:
+          'Size options for the track thickness.\n\nExample: `<ProgressBar size="large" value={48} />`',
+        defaultValue: null,
+        typeName: 'ProgressBarSize',
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments:
+          'Visual tone options for the progress indicator fill.\n\nExample: `<ProgressBar tone="constructive" value={72} />`',
+        defaultValue: null,
+        typeName: 'ProgressBarTone',
+        values: ['primary', 'secondary', 'constructive', 'destructive'],
+      },
+      {
+        comments:
+          'Formatter used by `valueFormatter` and `ProgressBar.Value format`.\n\nThe callback receives `(value, max, min)` in that order.\n\nExample: `(value, max) => `${value} / ${max}``',
+        defaultValue: null,
+        typeName: 'ProgressValueFormatter',
+        values: [],
+      },
+    ],
     type: 'component',
   },
   {
@@ -1784,6 +3205,20 @@ export const components = [
     routeSlug: 'radio',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Radio',
+    typesReference: [
+      {
+        comments: 'Visual size options for radios.',
+        defaultValue: null,
+        typeName: 'RadioGroupSize',
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments: 'Visual validation state options.',
+        defaultValue: null,
+        typeName: 'RadioValidationState',
+        values: ['none', 'invalid', 'valid', 'warning'],
+      },
+    ],
     type: 'component',
   },
   {
@@ -1840,6 +3275,14 @@ export const components = [
     routeSlug: 'responsive',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Responsive',
+    typesReference: [
+      {
+        comments: 'Controls when content should be visible across breakpoints.',
+        defaultValue: null,
+        typeName: 'ResponsiveWhen',
+        values: [],
+      },
+    ],
     type: 'component',
   },
   {
@@ -1858,7 +3301,7 @@ export const components = [
         defaultValue: null,
         displayName: 'SafetyButton',
         propName: 'aria-label',
-        type: 'SafetyButtonDynamicValue',
+        type: 'SafetyButtonDynamicValue<string>',
         values: [],
       },
       {
@@ -1866,7 +3309,7 @@ export const components = [
         defaultValue: null,
         displayName: 'SafetyButton',
         propName: 'children',
-        type: 'SafetyButtonDynamicValue',
+        type: 'SafetyButtonDynamicValue<ReactNode>',
         values: [],
       },
       {
@@ -1882,7 +3325,7 @@ export const components = [
         defaultValue: null,
         displayName: 'SafetyButton',
         propName: 'endIcon',
-        type: 'SafetyButtonDynamicValue',
+        type: 'SafetyButtonDynamicValue<ReactNode>',
         values: [],
       },
       {
@@ -1890,7 +3333,7 @@ export const components = [
         defaultValue: null,
         displayName: 'SafetyButton',
         propName: 'icon',
-        type: 'SafetyButtonDynamicValue',
+        type: 'SafetyButtonDynamicValue<ReactNode>',
         values: [],
       },
       {
@@ -1898,7 +3341,7 @@ export const components = [
         defaultValue: null,
         displayName: 'SafetyButton',
         propName: 'onAttemptStart',
-        type: '(event: PointerEvent | KeyboardEvent) => void',
+        type: '(event: PointerEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>) => void',
         values: [],
       },
       {
@@ -1941,7 +3384,7 @@ export const components = [
         defaultValue: null,
         displayName: 'SafetyButton',
         propName: 'startIcon',
-        type: 'SafetyButtonDynamicValue',
+        type: 'SafetyButtonDynamicValue<ReactNode>',
         values: [],
       },
     ],
@@ -1964,6 +3407,14 @@ export const components = [
     routeSlug: 'safety-button',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/SafetyButton',
+    typesReference: [
+      {
+        comments: '',
+        defaultValue: null,
+        typeName: 'SafetyButtonDynamicValue',
+        values: [],
+      },
+    ],
     type: 'component',
   },
   {
@@ -2045,6 +3496,26 @@ export const components = [
     routeSlug: 'select',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Select',
+    typesReference: [
+      {
+        comments: 'Option shape used by the `options` prop.',
+        defaultValue: null,
+        typeName: 'SelectOption',
+        values: [],
+      },
+      {
+        comments: 'Select size options.',
+        defaultValue: null,
+        typeName: 'SelectSize',
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments: 'Visual validation state options.',
+        defaultValue: null,
+        typeName: 'SelectValidationState',
+        values: ['none', 'invalid', 'valid', 'warning'],
+      },
+    ],
     type: 'component',
   },
   {
@@ -2160,7 +3631,7 @@ export const components = [
         defaultValue: null,
         displayName: 'Skeleton.Text',
         propName: 'lineProps',
-        type: 'Omit',
+        type: "Omit<SkeletonRootProps, 'animation' | 'children' | 'circle' | 'height' | 'radius' | 'size' | 'width'>",
         values: [],
       },
       {
@@ -2235,6 +3706,21 @@ export const components = [
     routeSlug: 'skeleton',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Skeleton',
+    typesReference: [
+      {
+        comments: 'Animation options for Skeleton placeholders.',
+        defaultValue: null,
+        typeName: 'SkeletonAnimation',
+        values: ['pulse', 'shimmer', 'none'],
+      },
+      {
+        comments:
+          "Props for the base Skeleton block.\n\nSkeleton elements are purely decorative. The component always renders with `aria-hidden` so it won't be announced by assistive technology.\n\nTo communicate loading state, set `aria-busy` on the region that is loading and keep real content in the DOM when possible.",
+        defaultValue: null,
+        typeName: 'SkeletonRootProps',
+        values: [],
+      },
+    ],
     type: 'component',
   },
   {
@@ -2291,6 +3777,7 @@ export const components = [
     routeSlug: 'skip-link',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/SkipLink',
+    typesReference: [],
     type: 'component',
   },
   {
@@ -2331,6 +3818,7 @@ export const components = [
     routeSlug: 'spinner',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Spinner',
+    typesReference: [],
     type: 'component',
   },
   {
@@ -2608,6 +4096,35 @@ export const components = [
     routeSlug: 'tabs',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Tabs',
+    typesReference: [
+      {
+        comments:
+          'Layout direction for the tab list and keyboard navigation model.',
+        defaultValue: null,
+        typeName: 'TabsOrientation',
+        values: ['horizontal', 'vertical'],
+      },
+      {
+        comments:
+          'Controls how keyboard navigation activates tabs.\n\n- `automatic`: moving focus with arrow keys also activates the tab. - `manual`: arrow keys move focus only; Enter/Space activates.',
+        defaultValue: null,
+        typeName: 'TabsActivationMode',
+        values: ['automatic', 'manual'],
+      },
+      {
+        comments:
+          'Inset presets used by the indicator to shrink from trigger bounds.',
+        defaultValue: null,
+        typeName: 'TabsIndicatorInset',
+        values: ['none', 'small', 'medium'],
+      },
+      {
+        comments: 'Thickness presets used by the indicator line/bar.',
+        defaultValue: null,
+        typeName: 'TabsIndicatorSize',
+        values: ['small', 'medium', 'large'],
+      },
+    ],
     type: 'component',
   },
   {
@@ -2680,6 +4197,26 @@ export const components = [
     routeSlug: 'textarea',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Textarea',
+    typesReference: [
+      {
+        comments: 'Resize behavior options.',
+        defaultValue: null,
+        typeName: 'TextareaResize',
+        values: ['none', 'vertical', 'horizontal', 'both', 'auto'],
+      },
+      {
+        comments: 'Textarea size options.',
+        defaultValue: null,
+        typeName: 'TextareaSize',
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments: 'Visual validation state options.',
+        defaultValue: null,
+        typeName: 'TextareaValidationState',
+        values: ['none', 'invalid', 'valid', 'warning'],
+      },
+    ],
     type: 'component',
   },
   {
@@ -2799,6 +4336,32 @@ export const components = [
     routeSlug: 'toggle-switch',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/ToggleSwitch',
+    typesReference: [
+      {
+        comments: 'ToggleSwitch intent options.',
+        defaultValue: null,
+        typeName: 'ToggleSwitchIntent',
+        values: [
+          'primary',
+          'secondary',
+          'tertiary',
+          'constructive',
+          'destructive',
+        ],
+      },
+      {
+        comments: 'ToggleSwitch size options.',
+        defaultValue: null,
+        typeName: 'ToggleSwitchSize',
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments: 'Visual validation state options.',
+        defaultValue: null,
+        typeName: 'ToggleSwitchValidationState',
+        values: ['none', 'invalid', 'valid', 'warning'],
+      },
+    ],
     type: 'component',
   },
 ] satisfies ApiReferenceComponent[];

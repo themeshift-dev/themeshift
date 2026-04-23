@@ -9,4 +9,5 @@ export type {
   ApiReferenceMeta,
   ApiReferenceType,
   GroupedApiReference,
+  TypesReferenceItem,
 } from './types';

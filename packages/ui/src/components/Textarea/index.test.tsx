@@ -15,8 +15,14 @@ vi.mock('react-textarea-autosize', async () => {
     __esModule: true,
     default: react.forwardRef<
       HTMLTextAreaElement,
-      ComponentPropsWithoutRef<'textarea'>
-    >(({ children, ...props }, ref) => {
+      ComponentPropsWithoutRef<'textarea'> & {
+        maxRows?: number;
+        minRows?: number;
+      }
+    >(({ children, maxRows, minRows, ...props }, ref) => {
+      void maxRows;
+      void minRows;
+
       return (
         <textarea {...props} data-autosize="true" ref={ref}>
           {children}
