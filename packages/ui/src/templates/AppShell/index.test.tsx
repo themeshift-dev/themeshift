@@ -106,6 +106,28 @@ describe('AppShell', () => {
     expect(navigation).toHaveAttribute('inert');
   });
 
+  it('updates uncontrolled overlay state and onChange on escape dismissal', () => {
+    const onNavigationOpenChange = vi.fn();
+
+    render(
+      <AppShell
+        defaultNavigationOpen
+        navigation={<a href="/inbox">Inbox</a>}
+        navigationMode="overlay"
+        onNavigationOpenChange={onNavigationOpenChange}
+      >
+        Workspace
+      </AppShell>
+    );
+
+    fireEvent.keyDown(screen.getByRole('main'), { key: 'Escape' });
+
+    expect(onNavigationOpenChange).toHaveBeenCalledWith(false);
+    expect(screen.getByRole('navigation', { hidden: true })).toHaveAttribute(
+      'hidden'
+    );
+  });
+
   it('supports controlled overlay state and escape dismissal', async () => {
     const user = userEvent.setup();
 
@@ -147,6 +169,61 @@ describe('AppShell', () => {
       'hidden'
     );
     expect(trigger).toHaveFocus();
+  });
+
+  it('does not dismiss overlays for non-escape keys', () => {
+    const onNavigationOpenChange = vi.fn();
+    const onSidebarOpenChange = vi.fn();
+
+    render(
+      <AppShell
+        isNavigationOpen
+        isSidebarOpen
+        navigation={<p>Navigation</p>}
+        navigationMode="overlay"
+        onNavigationOpenChange={onNavigationOpenChange}
+        onSidebarOpenChange={onSidebarOpenChange}
+        sidebar={<p>Sidebar</p>}
+        sidebarMode="overlay"
+      >
+        Workspace
+      </AppShell>
+    );
+
+    fireEvent.keyDown(screen.getByRole('main'), { key: 'Enter' });
+
+    expect(onNavigationOpenChange).not.toHaveBeenCalled();
+    expect(onSidebarOpenChange).not.toHaveBeenCalled();
+  });
+
+  it('safely closes overlay when no focus trigger was captured', () => {
+    const ControlledShell = () => {
+      const [isNavigationOpen, setIsNavigationOpen] = useState(true);
+
+      return (
+        <>
+          <button onClick={() => setIsNavigationOpen(false)} type="button">
+            Close navigation
+          </button>
+          <AppShell
+            isNavigationOpen={isNavigationOpen}
+            navigation={<a href="/dashboard">Dashboard</a>}
+            navigationMode="overlay"
+            onNavigationOpenChange={setIsNavigationOpen}
+          >
+            Workspace
+          </AppShell>
+        </>
+      );
+    };
+
+    render(<ControlledShell />);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Close navigation' }));
+
+    expect(screen.getByRole('navigation', { hidden: true })).toHaveAttribute(
+      'hidden'
+    );
   });
 
   it('switches to overlay mode below configured breakpoint', () => {
@@ -236,5 +313,26 @@ describe('AppShell', () => {
 
     expect(onNavigationOpenChange).toHaveBeenCalledWith(false);
     expect(onSidebarOpenChange).toHaveBeenCalledWith(false);
+  });
+
+  it('applies divider classes for sidebar, aside, and footer regions', () => {
+    render(
+      <AppShell
+        aside={<p>Aside</p>}
+        divider
+        footer={<p>Footer</p>}
+        navigation={<p>Navigation</p>}
+        sidebar={<p>Sidebar</p>}
+        sidebarMode="overlay"
+      >
+        Workspace
+      </AppShell>
+    );
+
+    const sidebar = screen.getByText('Sidebar').closest('section');
+
+    expect(sidebar).toHaveClass(styles.overlayClosed, styles.sidebarDivider);
+    expect(screen.getByRole('complementary')).toHaveClass(styles.asideDivider);
+    expect(screen.getByRole('contentinfo')).toHaveClass(styles.footerDivider);
   });
 });
