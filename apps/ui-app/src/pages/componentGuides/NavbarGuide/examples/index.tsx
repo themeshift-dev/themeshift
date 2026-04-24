@@ -64,10 +64,19 @@ export const responsiveMenu = {
       <Button size="small">Get started</Button>
     </Navbar.Actions>
 
-    <Navbar.Toggle aria-label="Open navigation" showBelow="tablet" />
+    <Navbar.Toggle
+      aria-label={(isOpen) => (isOpen ? 'Close navigation' : 'Open navigation')}
+      showBelow="tablet"
+    >
+      {(isOpen) => (isOpen ? 'Close' : 'Menu')}
+    </Navbar.Toggle>
   </Navbar.Container>
 
-  <Navbar.Menu labelledBy="navbar-mobile-heading" showBelow="tablet">
+  <Navbar.Menu
+    labelledBy="navbar-mobile-heading"
+    onClickOutside="toggle"
+    showBelow="tablet"
+  >
     <h3 id="navbar-mobile-heading">Navigation</h3>
     <Navbar.List>
       <Navbar.Item>
@@ -103,10 +112,21 @@ export const responsiveMenu = {
           <Button size="small">Get started</Button>
         </Navbar.Actions>
 
-        <Navbar.Toggle aria-label="Open navigation" showBelow="tablet" />
+        <Navbar.Toggle
+          aria-label={(isOpen) =>
+            isOpen ? 'Close navigation' : 'Open navigation'
+          }
+          showBelow="tablet"
+        >
+          {(isOpen) => (isOpen ? 'Close' : 'Menu')}
+        </Navbar.Toggle>
       </Navbar.Container>
 
-      <Navbar.Menu labelledBy="navbar-mobile-heading" showBelow="tablet">
+      <Navbar.Menu
+        labelledBy="navbar-mobile-heading"
+        onClickOutside="toggle"
+        showBelow="tablet"
+      >
         <h3 id="navbar-mobile-heading">Navigation</h3>
         <Navbar.List>
           <Navbar.Item>
@@ -164,7 +184,11 @@ export const overlayPlacement = {
     <Navbar.Toggle aria-label="Open navigation">Open menu</Navbar.Toggle>
   </Navbar.Container>
 
-  <Navbar.Menu labelledBy="overlay-menu-title" placement="overlay">
+  <Navbar.Menu
+    labelledBy="overlay-menu-title"
+    onClickOutside="close"
+    placement="overlay"
+  >
     <h3 id="overlay-menu-title">Navigation</h3>
     <Navbar.List>
       <Navbar.Item>
@@ -188,8 +212,77 @@ export const overlayPlacement = {
         <Navbar.Toggle aria-label="Open navigation">Open menu</Navbar.Toggle>
       </Navbar.Container>
 
-      <Navbar.Menu labelledBy="overlay-menu-title" placement="overlay">
+      <Navbar.Menu
+        labelledBy="overlay-menu-title"
+        onClickOutside="close"
+        placement="overlay"
+      >
         <h3 id="overlay-menu-title">Navigation</h3>
+        <Navbar.List>
+          <Navbar.Item>
+            <Navbar.Link href="/docs">Docs</Navbar.Link>
+          </Navbar.Item>
+          <Navbar.Item>
+            <Navbar.Link href="/components">Components</Navbar.Link>
+          </Navbar.Item>
+        </Navbar.List>
+      </Navbar.Menu>
+    </Navbar>
+  ),
+};
+
+export const onClickOutsideCallback = {
+  code: `<Navbar aria-label="Primary navigation">
+  <Navbar.Container>
+    <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+    <Navbar.Toggle
+      aria-label={(isOpen) => (isOpen ? 'Close menu' : 'Open menu')}
+      showBelow="tablet"
+    >
+      {(isOpen) => (isOpen ? 'Close' : 'Menu')}
+    </Navbar.Toggle>
+  </Navbar.Container>
+
+  <Navbar.Menu
+    labelledBy="callback-menu-title"
+    onClickOutside={({ close }) => {
+      externalSideEffect();
+      close();
+    }}
+    showBelow="tablet"
+  >
+    <h3 id="callback-menu-title">Navigation</h3>
+    <Navbar.List>
+      <Navbar.Item>
+        <Navbar.Link href="/docs">Docs</Navbar.Link>
+      </Navbar.Item>
+      <Navbar.Item>
+        <Navbar.Link href="/components">Components</Navbar.Link>
+      </Navbar.Item>
+    </Navbar.List>
+  </Navbar.Menu>
+</Navbar>`,
+  label: 'onClickOutside callback',
+  sample: () => (
+    <Navbar aria-label="Primary navigation">
+      <Navbar.Container>
+        <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+        <Navbar.Toggle
+          aria-label={(isOpen) => (isOpen ? 'Close menu' : 'Open menu')}
+          showBelow="tablet"
+        >
+          {(isOpen) => (isOpen ? 'Close' : 'Menu')}
+        </Navbar.Toggle>
+      </Navbar.Container>
+
+      <Navbar.Menu
+        labelledBy="callback-menu-title"
+        onClickOutside={({ close }) => {
+          close();
+        }}
+        showBelow="tablet"
+      >
+        <h3 id="callback-menu-title">Navigation</h3>
         <Navbar.List>
           <Navbar.Item>
             <Navbar.Link href="/docs">Docs</Navbar.Link>
@@ -232,4 +325,8 @@ export const asChildExample = {
 };
 
 export const propHighlights = [quickStart, responsiveMenu, floatingSticky];
-export const behaviorExamples = [overlayPlacement, asChildExample];
+export const behaviorExamples = [
+  overlayPlacement,
+  onClickOutsideCallback,
+  asChildExample,
+];

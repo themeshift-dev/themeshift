@@ -295,6 +295,9 @@ export default defineConfig({
         'hooks/useHoldToConfirm/index': fileURLToPath(
           new URL('./src/hooks/useHoldToConfirm/index.ts', import.meta.url)
         ),
+        'hooks/useOnClickOutside/index': fileURLToPath(
+          new URL('./src/hooks/useOnClickOutside/index.ts', import.meta.url)
+        ),
         'hooks/useResizeObserver/index': fileURLToPath(
           new URL('./src/hooks/useResizeObserver/index.ts', import.meta.url)
         ),

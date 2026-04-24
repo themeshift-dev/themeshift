@@ -2,6 +2,7 @@ import { Button } from '@themeshift/ui/components/Button';
 import { Navbar } from '@themeshift/ui/components/Navbar';
 import { SkipLink } from '@themeshift/ui/components/SkipLink';
 import { useTheme } from '@themeshift/ui/contexts';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 import '@themeshift/ui/css/base.css';
 
@@ -23,7 +24,7 @@ function App() {
           <Navbar.Container>
             <Navbar.Brand asChild>
               <Link to="/" className={styles.logo}>
-                <Logo size={120} />
+                <Logo size={90} />
               </Link>
             </Navbar.Brand>
 
@@ -45,10 +46,18 @@ function App() {
             <Navbar.Toggle
               aria-label="Open navigation menu"
               showBelow="tablet"
-            />
+              as={Button}
+              size="large"
+            >
+              {(isOpen) => (isOpen ? <FaTimes /> : <FaBars />)}
+            </Navbar.Toggle>
           </Navbar.Container>
 
-          <Navbar.Menu placement="drawer" showBelow="tablet">
+          <Navbar.Menu
+            placement="drawer"
+            showBelow="tablet"
+            onClickOutside="close"
+          >
             <div className={styles.mobileMenu}>
               <div className={styles.mobileLinks}>
                 <Link to="/docs">Docs</Link>

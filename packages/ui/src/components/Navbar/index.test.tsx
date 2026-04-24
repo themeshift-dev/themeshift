@@ -138,6 +138,34 @@ describe('Navbar', () => {
     expect(toggle).toHaveAttribute('aria-expanded', 'true');
   });
 
+  it('supports function-valued aria-label and children on Navbar.Toggle', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Navbar aria-label="Primary">
+        <Navbar.Toggle
+          aria-label={(isOpen) =>
+            isOpen ? 'Close navigation' : 'Open navigation'
+          }
+        >
+          {(isOpen) => (isOpen ? 'Close' : 'Menu')}
+        </Navbar.Toggle>
+        <Navbar.Menu>
+          <Navbar.Link href="/docs">Docs</Navbar.Link>
+        </Navbar.Menu>
+      </Navbar>
+    );
+
+    const toggle = screen.getByRole('button', { name: 'Open navigation' });
+
+    expect(toggle).toHaveTextContent('Menu');
+    await user.click(toggle);
+
+    expect(
+      screen.getByRole('button', { name: 'Close navigation' })
+    ).toHaveTextContent('Close');
+  });
+
   it('renders Navbar.Toggle without controlling state when no menu exists', async () => {
     const user = userEvent.setup();
 
@@ -354,6 +382,102 @@ describe('Navbar', () => {
       'aria-hidden',
       'true'
     );
+  });
+
+  it('closes an open menu when onClickOutside is set to close', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Navbar aria-label="Primary">
+        <Navbar.Menu defaultOpen onClickOutside="close">
+          <Navbar.Link href="/docs">Docs</Navbar.Link>
+        </Navbar.Menu>
+      </Navbar>
+    );
+
+    await user.click(document.body);
+
+    expect(screen.getByRole('group', { hidden: true })).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
+  });
+
+  it('toggles an open menu when onClickOutside is set to toggle', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Navbar aria-label="Primary">
+        <Navbar.Menu defaultOpen onClickOutside="toggle">
+          <Navbar.Link href="/docs">Docs</Navbar.Link>
+        </Navbar.Menu>
+      </Navbar>
+    );
+
+    await user.click(document.body);
+
+    expect(screen.getByRole('group', { hidden: true })).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
+  });
+
+  it('keeps an open menu open when onClickOutside is set to open', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Navbar aria-label="Primary">
+        <Navbar.Menu defaultOpen onClickOutside="open">
+          <Navbar.Link href="/docs">Docs</Navbar.Link>
+        </Navbar.Menu>
+      </Navbar>
+    );
+
+    await user.click(document.body);
+
+    expect(screen.getByRole('group')).toHaveAttribute('aria-hidden', 'false');
+  });
+
+  it('passes event and helper actions to onClickOutside callback', async () => {
+    const user = userEvent.setup();
+    const onClickOutside = vi.fn();
+
+    render(
+      <Navbar aria-label="Primary">
+        <Navbar.Menu defaultOpen onClickOutside={onClickOutside}>
+          <Navbar.Link href="/docs">Docs</Navbar.Link>
+        </Navbar.Menu>
+      </Navbar>
+    );
+
+    await user.click(document.body);
+
+    expect(onClickOutside).toHaveBeenCalledTimes(1);
+
+    const args = onClickOutside.mock.calls[0]?.[0];
+    expect(args.event).toBeInstanceOf(Event);
+    expect(args.isOpen).toBe(true);
+    expect(args.close).toEqual(expect.any(Function));
+    expect(args.open).toEqual(expect.any(Function));
+    expect(args.toggle).toEqual(expect.any(Function));
+  });
+
+  it('does not treat toggle interactions as outside clicks', async () => {
+    const user = userEvent.setup();
+    const onClickOutside = vi.fn();
+
+    render(
+      <Navbar aria-label="Primary">
+        <Navbar.Toggle aria-label="Toggle navigation">Menu</Navbar.Toggle>
+        <Navbar.Menu defaultOpen onClickOutside={onClickOutside}>
+          <Navbar.Link href="/docs">Docs</Navbar.Link>
+        </Navbar.Menu>
+      </Navbar>
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Toggle navigation' }));
+
+    expect(onClickOutside).not.toHaveBeenCalled();
   });
 
   it('ignores non-link clicks for closeOnLinkClick behavior', async () => {

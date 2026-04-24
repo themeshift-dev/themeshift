@@ -53,6 +53,23 @@ export type NavbarListOrientation = 'horizontal' | 'vertical';
 /** Menu rendering behavior for compact navigation. */
 export type NavbarMenuPlacement = 'belowNavbar' | 'overlay' | 'drawer';
 
+/** Outside-interaction action shorthand for compact menu behavior. */
+export type NavbarOnClickOutsideAction = 'toggle' | 'close' | 'open';
+
+export type NavbarToggleDynamicValue<T> = T | ((isOpen: boolean) => T);
+
+export type NavbarOnClickOutsideCallbackArgs = {
+  close: () => void;
+  event: Event;
+  isOpen: boolean;
+  open: () => void;
+  toggle: () => void;
+};
+
+export type NavbarOnClickOutsideCallback = (
+  args: NavbarOnClickOutsideCallbackArgs
+) => void;
+
 /** Base root props for `Navbar`. */
 export type NavbarOwnProps = {
   /** Navbar content. */
@@ -164,10 +181,10 @@ export type NavbarToggleOwnProps = NavbarVisibilityProps & {
   asChild?: boolean;
 
   /** Optional toggle content. */
-  children?: ReactNode;
+  children?: NavbarToggleDynamicValue<ReactNode>;
 
   /** Accessible label for the menu toggle control. */
-  'aria-label': string;
+  'aria-label': NavbarToggleDynamicValue<string>;
 };
 
 /** Props for `Navbar.Menu`. */
@@ -183,6 +200,12 @@ export type NavbarMenuOwnProps = NavbarVisibilityProps & {
 
   /** Called when menu open state changes. */
   onOpenChange?: (open: boolean) => void;
+
+  /**
+   * Defines what happens when users interact outside of the menu while it is
+   * open.
+   */
+  onClickOutside?: NavbarOnClickOutsideAction | NavbarOnClickOutsideCallback;
 
   /** Render mode for the menu panel. */
   placement?: NavbarMenuPlacement;

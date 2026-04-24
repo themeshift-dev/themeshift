@@ -21,6 +21,7 @@ import {
   type ReactNode,
 } from 'react';
 
+import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { useScrollLock } from '@/hooks/useScrollLock';
 
 import styles from './Navbar.module.scss';
@@ -211,6 +212,17 @@ function callEventHandler<EventType>(
   event: EventType
 ) {
   handler?.(event);
+}
+
+function resolveDynamicValue<T>(
+  value: T | ((isOpen: boolean) => T) | undefined,
+  isOpen: boolean
+) {
+  if (typeof value === 'function') {
+    return (value as (isOpen: boolean) => T)(isOpen);
+  }
+
+  return value;
 }
 
 function getMenuAriaLabel(
@@ -605,6 +617,7 @@ const NavbarActions = <T extends ElementType = 'div'>({
  * Toggle control that opens/closes the nearest `Navbar.Menu`.
  */
 const NavbarToggle = <T extends ElementType = 'button'>({
+  'aria-label': ariaLabel,
   as,
   asChild = false,
   children,
@@ -620,6 +633,9 @@ const NavbarToggle = <T extends ElementType = 'button'>({
   const [toggleElement, setToggleElement] = useState<HTMLElement | null>(null);
 
   const controlledMenu = getNearestMenu(toggleElement);
+  const isOpen = controlledMenu?.open ?? false;
+  const resolvedAriaLabel = resolveDynamicValue(ariaLabel, isOpen);
+  const resolvedChildren = resolveDynamicValue(children, isOpen);
 
   useEffect(() => {
     controlledMenu?.setToggleElement(toggleElement);
@@ -682,6 +698,7 @@ const NavbarToggle = <T extends ElementType = 'button'>({
   return (
     <Component
       {...toggleProps}
+      aria-label={resolvedAriaLabel}
       aria-controls={controlledMenu?.id}
       aria-expanded={controlledMenu ? controlledMenu.open : undefined}
       className={classNames(
@@ -694,7 +711,7 @@ const NavbarToggle = <T extends ElementType = 'button'>({
       ref={setToggleElement}
       type={asChild ? undefined : (type ?? 'button')}
     >
-      {children ?? <span className={styles.toggleLabel}>Menu</span>}
+      {resolvedChildren ?? <span className={styles.toggleLabel}>Menu</span>}
     </Component>
   );
 };
@@ -711,6 +728,7 @@ const NavbarMenu = <T extends ElementType = 'div'>({
   hideBelow,
   id,
   labelledBy,
+  onClickOutside,
   onOpenChange,
   open,
   placement = 'belowNavbar',
@@ -727,6 +745,7 @@ const NavbarMenu = <T extends ElementType = 'div'>({
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const [toggleElement, setToggleElement] = useState<HTMLElement | null>(null);
   const [menuElement, setMenuElement] = useState<HTMLElement | null>(null);
+  const menuElementRef = useRef<HTMLElement | null>(null);
   const previousOpenRef = useRef<boolean>(defaultOpen);
 
   const isControlled = open !== undefined;
@@ -744,6 +763,59 @@ const NavbarMenu = <T extends ElementType = 'div'>({
       onOpenChange?.(nextOpen);
     },
     [isControlled, onOpenChange]
+  );
+  const closeMenu = useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
+  const openMenu = useCallback(() => {
+    setOpen(true);
+  }, [setOpen]);
+  const toggleMenu = useCallback(() => {
+    setOpen(!isOpen);
+  }, [isOpen, setOpen]);
+  const setMenuElementRef = useCallback((node: HTMLElement | null) => {
+    menuElementRef.current = node;
+    setMenuElement(node);
+  }, []);
+
+  useOnClickOutside(
+    menuElementRef,
+    (event) => {
+      if (!isOpen || !onClickOutside) {
+        return;
+      }
+
+      const targetNode = event.target instanceof Node ? event.target : null;
+
+      if (targetNode && toggleElement?.contains(targetNode)) {
+        return;
+      }
+
+      if (typeof onClickOutside === 'function') {
+        onClickOutside({
+          close: closeMenu,
+          event,
+          isOpen,
+          open: openMenu,
+          toggle: toggleMenu,
+        });
+
+        return;
+      }
+
+      if (onClickOutside === 'toggle') {
+        toggleMenu();
+        return;
+      }
+
+      if (onClickOutside === 'open') {
+        openMenu();
+        return;
+      }
+
+      closeMenu();
+    },
+    'mousedown'
   );
 
   useEffect(() => {
@@ -844,7 +916,7 @@ const NavbarMenu = <T extends ElementType = 'div'>({
       id={menuId}
       onClickCapture={handleClickCapture}
       onKeyDown={handleKeyDown}
-      ref={setMenuElement}
+      ref={setMenuElementRef}
       role={menuProps.role ?? 'group'}
       tabIndex={menuProps.tabIndex ?? -1}
     >
@@ -922,10 +994,14 @@ export type {
   NavbarListOrientation,
   NavbarMaxWidth,
   NavbarMenuPlacement,
+  NavbarOnClickOutsideAction,
+  NavbarOnClickOutsideCallback,
+  NavbarOnClickOutsideCallbackArgs,
   NavbarPadding,
   NavbarPlacement,
   NavbarPosition,
   NavbarShadow,
   NavbarSurface,
+  NavbarToggleDynamicValue,
   NavbarWidth,
 } from './types';

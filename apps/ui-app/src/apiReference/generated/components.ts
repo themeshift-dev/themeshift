@@ -2377,7 +2377,7 @@ export const components = [
       },
       {
         comments: 'Whether to render a border on the navbar root.',
-        defaultValue: true,
+        defaultValue: false,
         displayName: 'Navbar',
         propName: 'border',
         type: 'boolean',
@@ -2825,6 +2825,15 @@ export const components = [
         values: [],
       },
       {
+        comments:
+          'Defines what happens when users interact outside of the menu while it is open.',
+        defaultValue: null,
+        displayName: 'Navbar.Menu',
+        propName: 'onClickOutside',
+        type: 'NavbarOnClickOutsideAction | NavbarOnClickOutsideCallback',
+        values: [],
+      },
+      {
         comments: 'Called when menu open state changes.',
         defaultValue: null,
         displayName: 'Navbar.Menu',
@@ -2861,7 +2870,7 @@ export const components = [
         defaultValue: null,
         displayName: 'Navbar.Toggle',
         propName: 'aria-label',
-        type: 'string',
+        type: 'NavbarToggleDynamicValue<string>',
         values: [],
       },
       {
@@ -2886,7 +2895,7 @@ export const components = [
         defaultValue: null,
         displayName: 'Navbar.Toggle',
         propName: 'children',
-        type: 'ReactNode',
+        type: 'NavbarToggleDynamicValue<ReactNode>',
         values: [],
       },
       {
@@ -2969,7 +2978,7 @@ export const components = [
         values: ['default', 'subtle', 'elevated', 'transparent'],
       },
       {
-        comments: '** Width behavior for root and container.',
+        comments: 'Width behavior for root and container.',
         defaultValue: null,
         typeName: 'NavbarWidth',
         values: ['full', 'contained'],
@@ -2988,10 +2997,29 @@ export const components = [
         values: ['horizontal', 'vertical'],
       },
       {
+        comments:
+          'Outside-interaction action shorthand for compact menu behavior.',
+        defaultValue: null,
+        typeName: 'NavbarOnClickOutsideAction',
+        values: ['toggle', 'close', 'open'],
+      },
+      {
+        comments: '',
+        defaultValue: null,
+        typeName: 'NavbarOnClickOutsideCallback',
+        values: [],
+      },
+      {
         comments: 'Menu rendering behavior for compact navigation.',
         defaultValue: null,
         typeName: 'NavbarMenuPlacement',
         values: ['belowNavbar', 'overlay', 'drawer'],
+      },
+      {
+        comments: '',
+        defaultValue: null,
+        typeName: 'NavbarToggleDynamicValue',
+        values: [],
       },
     ],
     type: 'component',

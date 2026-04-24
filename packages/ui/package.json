@@ -157,6 +157,10 @@
       "types": "./dist/hooks/useHoldToConfirm/index.d.ts",
       "import": "./dist/hooks/useHoldToConfirm/index.js"
     },
+    "./hooks/useOnClickOutside": {
+      "types": "./dist/hooks/useOnClickOutside/index.d.ts",
+      "import": "./dist/hooks/useOnClickOutside/index.js"
+    },
     "./hooks/useResizeObserver": {
       "types": "./dist/hooks/useResizeObserver/index.d.ts",
       "import": "./dist/hooks/useResizeObserver/index.js"

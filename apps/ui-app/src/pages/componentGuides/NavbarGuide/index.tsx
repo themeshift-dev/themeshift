@@ -70,7 +70,8 @@ export const NavbarGuide = () => {
           <Heading level={4}>Responsive menu</Heading>
           <p>
             Pair <code>hideBelow</code> and <code>showBelow</code> with
-            <code>Navbar.Toggle</code> and <code>Navbar.Menu</code>.
+            <code>Navbar.Toggle</code> and <code>Navbar.Menu</code>, and use
+            dynamic toggle labels from <code>isOpen</code>.
           </p>
         </GuideExampleText>
 
@@ -120,6 +121,26 @@ export const NavbarGuide = () => {
       <GuideExampleCard>
         <GuideExampleText>
           <TableOfContents.Marker
+            id="examples-outside-callback"
+            label="Outside callback"
+            level={2}
+          />
+          <Heading level={4}>Outside callback actions</Heading>
+          <p>
+            Use <code>Navbar.Menu onClickOutside</code> with action shorthands
+            or a callback that receives <code>open</code>, <code>close</code>,
+            and <code>toggle</code> helpers.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.onClickOutsideCallback} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
+          <TableOfContents.Marker
             id="examples-as-child"
             label="asChild"
             level={2}
@@ -142,7 +163,7 @@ export const NavbarGuide = () => {
   const propsSection = createPropsSection({
     content: propsContent,
     intro:
-      'Reference root and subcomponent props for responsive visibility, menu state, and semantic overrides.',
+      'Reference root and subcomponent props for responsive visibility, menu state, outside interactions, and semantic overrides.',
   });
 
   const examplesSection = createExamplesSection({
@@ -172,6 +193,8 @@ export const NavbarGuide = () => {
             Ensure each menu has a visible label, and keep toggle labels clear.
             <code>Navbar.Toggle</code> updates <code>aria-expanded</code> and
             <code>aria-controls</code> automatically when a menu is present.
+            Prefer descriptive <code>aria-label</code> copy that reflects the
+            current open state.
           </p>
         ),
         example: examples.responsiveMenu,

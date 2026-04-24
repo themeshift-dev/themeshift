@@ -378,6 +378,28 @@ export const hooks = [
     type: 'hook',
   },
   {
+    apiReference: [],
+    returnReference: [],
+    name: 'useOnClickOutside',
+    exportName: 'useOnClickOutside',
+    importPath: '@themeshift/ui/hooks/useOnClickOutside',
+    importString:
+      "import { useOnClickOutside } from '@themeshift/ui/hooks/useOnClickOutside';",
+    meta: {
+      category: 'actions',
+      description:
+        'Calls a handler when pointer or focus events happen outside a target element.',
+      tags: ['outside-click', 'dismiss', 'interaction'],
+      status: 'stable',
+      type: 'hook',
+    },
+    slug: 'useonclickoutside',
+    routeSlug: 'use-on-click-outside',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useOnClickOutside',
+    type: 'hook',
+  },
+  {
     apiReference: [
       {
         comments:
