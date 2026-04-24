@@ -1911,6 +1911,99 @@ export const components = [
   {
     apiReference: [
       {
+        comments: 'Whether focus locking behavior is currently active.',
+        defaultValue: null,
+        displayName: 'FocusLock',
+        propName: 'active',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments:
+          'Whether focus should move inside the lock when it becomes active.',
+        defaultValue: true,
+        displayName: 'FocusLock',
+        propName: 'autoFocus',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Content rendered within the focus scope.',
+        defaultValue: null,
+        displayName: 'FocusLock',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'The lock container used as the primary focus scope root.',
+        defaultValue: null,
+        displayName: 'FocusLock',
+        propName: 'containerRef',
+        type: 'RefObject<HTMLElement | null>',
+        values: [],
+      },
+      {
+        comments:
+          'Disables locking behavior while preserving rendered content.',
+        defaultValue: false,
+        displayName: 'FocusLock',
+        propName: 'disabled',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments:
+          'Whether focus should return to the previously focused element when the lock deactivates.',
+        defaultValue: false,
+        displayName: 'FocusLock',
+        propName: 'returnFocus',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments:
+          'Additional elements or refs that should be treated as part of the same focus scope (for example, portal content).',
+        defaultValue: 'object',
+        displayName: 'FocusLock',
+        propName: 'shards',
+        type: 'FocusLockShard[]',
+        values: [],
+      },
+    ],
+    name: 'FocusLock',
+    exportName: 'FocusLock',
+    importPath: '@themeshift/ui/components/FocusLock',
+    importString:
+      "import { FocusLock } from '@themeshift/ui/components/FocusLock';",
+    meta: {
+      category: 'overlays',
+      description:
+        'Traps focus inside overlays and layered UI while active, with support for custom adapter overrides.',
+      tags: ['focus', 'a11y', 'overlay', 'modal', 'dialog'],
+      order: 20,
+      status: 'stable',
+      featured: false,
+      related: ['Navbar', 'SkipLink', 'Button'],
+      type: 'component',
+    },
+    slug: 'focuslock',
+    routeSlug: 'focus-lock',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/FocusLock',
+    typesReference: [
+      {
+        comments: '',
+        defaultValue: null,
+        typeName: 'FocusLockShard',
+        values: [],
+      },
+    ],
+    type: 'component',
+  },
+  {
+    apiReference: [
+      {
         comments: 'Alignment of the full grid content block on the block axis.',
         defaultValue: null,
         displayName: 'Grid',
@@ -2801,6 +2894,15 @@ export const components = [
         values: [],
       },
       {
+        comments:
+          'Optional focus lock adapter override used when menu placement requires trapping focus.',
+        defaultValue: null,
+        displayName: 'Navbar.Menu',
+        propName: 'focusLockComponent',
+        type: 'FocusLockAdapterComponent',
+        values: [],
+      },
+      {
         comments: 'Hide the component below this breakpoint.',
         defaultValue: null,
         displayName: 'Navbar.Menu',
@@ -2855,7 +2957,7 @@ export const components = [
         displayName: 'Navbar.Menu',
         propName: 'placement',
         type: 'NavbarMenuPlacement',
-        values: ['belowNavbar', 'overlay', 'drawer'],
+        values: ['belowNavbar', 'drawer'],
       },
       {
         comments: 'Show the component only below this breakpoint.',
@@ -3013,7 +3115,14 @@ export const components = [
         comments: 'Menu rendering behavior for compact navigation.',
         defaultValue: null,
         typeName: 'NavbarMenuPlacement',
-        values: ['belowNavbar', 'overlay', 'drawer'],
+        values: ['belowNavbar', 'drawer'],
+      },
+      {
+        comments:
+          'Reusable focus lock adapter component contract for ThemeShift components.',
+        defaultValue: null,
+        typeName: 'FocusLockAdapterComponent',
+        values: [],
       },
       {
         comments: '',

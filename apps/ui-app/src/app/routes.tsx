@@ -441,6 +441,32 @@ const AppRoutes = () => (
           />
         </Route>
 
+        <Route path="focus-lock">
+          <Route index element={<ComponentGuides.FocusLockGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="FocusLock"
+                componentPath="/ui/component/focus-lock"
+                description="FocusLock customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="FocusLock"
+                componentPath="/ui/component/focus-lock"
+                description="An interactive FocusLock playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
         <Route path="grid">
           <Route index element={<ComponentGuides.GridGuide />} />
           <Route

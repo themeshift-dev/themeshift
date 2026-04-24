@@ -66,6 +66,10 @@
       "types": "./dist/components/Flex/index.d.ts",
       "import": "./dist/components/Flex/index.js"
     },
+    "./components/FocusLock": {
+      "types": "./dist/components/FocusLock/index.d.ts",
+      "import": "./dist/components/FocusLock/index.js"
+    },
     "./components/Grid": {
       "types": "./dist/components/Grid/index.d.ts",
       "import": "./dist/components/Grid/index.js"
@@ -261,7 +265,6 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@themeshift/vite-plugin": "workspace:*",
     "classnames": "^2.5.1",
-    "react-focus-lock": "^2.13.7",
     "react-textarea-autosize": "^8.5.9"
   },
   "peerDependencies": {

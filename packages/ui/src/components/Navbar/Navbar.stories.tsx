@@ -64,7 +64,7 @@ export const Compound: Story = {
   ),
 };
 
-export const OverlayMenu: Story = {
+export const DrawerMenu: Story = {
   render: () => (
     <Navbar
       aria-label="Primary navigation"
@@ -76,8 +76,8 @@ export const OverlayMenu: Story = {
         <Navbar.Toggle aria-label="Open navigation">Open</Navbar.Toggle>
       </Navbar.Container>
 
-      <Navbar.Menu labelledBy="navbar-overlay-title" placement="overlay">
-        <h3 id="navbar-overlay-title">Navigation</h3>
+      <Navbar.Menu labelledBy="navbar-drawer-title" placement="drawer">
+        <h3 id="navbar-drawer-title">Navigation</h3>
         <Navbar.List>
           <Navbar.Item>
             <Navbar.Link href="/docs">Docs</Navbar.Link>

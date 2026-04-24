@@ -7,6 +7,7 @@ export * from './CopyButton';
 export * from './ErrorMessage';
 export * from './Field';
 export * from './Flex';
+export * from './FocusLock';
 export * from './Grid';
 export * from './Heading';
 export * from './Input';

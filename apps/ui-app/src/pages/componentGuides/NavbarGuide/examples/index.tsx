@@ -1,4 +1,8 @@
 import { Button } from '@themeshift/ui/components/Button';
+import {
+  FocusLock,
+  type FocusLockAdapterComponent,
+} from '@themeshift/ui/components/FocusLock';
 import { Navbar } from '@themeshift/ui/components/Navbar';
 
 export const quickStart = {
@@ -177,19 +181,19 @@ export const floatingSticky = {
   ),
 };
 
-export const overlayPlacement = {
-  code: `<Navbar aria-label="Overlay navigation" position="sticky" surface="elevated">
+export const drawerPlacement = {
+  code: `<Navbar aria-label="Drawer navigation" position="sticky" surface="elevated">
   <Navbar.Container>
     <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
     <Navbar.Toggle aria-label="Open navigation">Open menu</Navbar.Toggle>
   </Navbar.Container>
 
   <Navbar.Menu
-    labelledBy="overlay-menu-title"
+    labelledBy="drawer-menu-title"
     onClickOutside="close"
-    placement="overlay"
+    placement="drawer"
   >
-    <h3 id="overlay-menu-title">Navigation</h3>
+    <h3 id="drawer-menu-title">Navigation</h3>
     <Navbar.List>
       <Navbar.Item>
         <Navbar.Link href="/docs">Docs</Navbar.Link>
@@ -200,24 +204,20 @@ export const overlayPlacement = {
     </Navbar.List>
   </Navbar.Menu>
 </Navbar>`,
-  label: 'Overlay placement',
+  label: 'Drawer placement',
   sample: (
-    <Navbar
-      aria-label="Overlay navigation"
-      position="sticky"
-      surface="elevated"
-    >
+    <Navbar aria-label="Drawer navigation" position="sticky" surface="elevated">
       <Navbar.Container>
         <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
         <Navbar.Toggle aria-label="Open navigation">Open menu</Navbar.Toggle>
       </Navbar.Container>
 
       <Navbar.Menu
-        labelledBy="overlay-menu-title"
+        labelledBy="drawer-menu-title"
         onClickOutside="close"
-        placement="overlay"
+        placement="drawer"
       >
-        <h3 id="overlay-menu-title">Navigation</h3>
+        <h3 id="drawer-menu-title">Navigation</h3>
         <Navbar.List>
           <Navbar.Item>
             <Navbar.Link href="/docs">Docs</Navbar.Link>
@@ -324,9 +324,88 @@ export const asChildExample = {
   ),
 };
 
+const SoftFocusLockAdapter: FocusLockAdapterComponent = ({
+  active,
+  autoFocus,
+  children,
+  containerRef,
+  returnFocus,
+  shards,
+}) => (
+  <FocusLock
+    active={active}
+    autoFocus={autoFocus}
+    containerRef={containerRef}
+    returnFocus={returnFocus}
+    shards={shards}
+  >
+    <div
+      data-focus-lock-adapter="soft-outline"
+      style={{ outline: active ? '2px solid currentColor' : 'none' }}
+    >
+      {children}
+    </div>
+  </FocusLock>
+);
+
+export const customFocusLockAdapter = {
+  code: `const SoftFocusLockAdapter: FocusLockAdapterComponent = ({
+  active,
+  autoFocus,
+  children,
+  containerRef,
+  returnFocus,
+  shards,
+}) => (
+  <FocusLock
+    active={active}
+    autoFocus={autoFocus}
+    containerRef={containerRef}
+    returnFocus={returnFocus}
+    shards={shards}
+  >
+    <div data-focus-lock-adapter=\"soft-outline\">{children}</div>
+  </FocusLock>
+);
+
+<Navbar.Menu
+  focusLockComponent={SoftFocusLockAdapter}
+  placement=\"drawer\"
+>
+  ...
+</Navbar.Menu>`,
+  label: 'Custom focus lock adapter',
+  sample: (
+    <Navbar aria-label="Primary navigation">
+      <Navbar.Container>
+        <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+        <Navbar.Toggle aria-label="Open navigation">Open menu</Navbar.Toggle>
+      </Navbar.Container>
+
+      <Navbar.Menu
+        defaultOpen
+        focusLockComponent={SoftFocusLockAdapter}
+        labelledBy="adapter-menu-title"
+        placement="drawer"
+      >
+        <h3 id="adapter-menu-title">Navigation</h3>
+        <Navbar.List>
+          <Navbar.Item>
+            <Navbar.Link href="/docs">Docs</Navbar.Link>
+          </Navbar.Item>
+          <Navbar.Item>
+            <Navbar.Link href="/components">Components</Navbar.Link>
+          </Navbar.Item>
+        </Navbar.List>
+      </Navbar.Menu>
+    </Navbar>
+  ),
+};
+
 export const propHighlights = [quickStart, responsiveMenu, floatingSticky];
 export const behaviorExamples = [
-  overlayPlacement,
+  drawerPlacement,
   onClickOutsideCallback,
   asChildExample,
+  customFocusLockAdapter,
 ];

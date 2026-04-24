@@ -190,6 +190,9 @@ export default defineConfig({
         'components/Flex/index': fileURLToPath(
           new URL('./src/entrypoints/components/Flex.ts', import.meta.url)
         ),
+        'components/FocusLock/index': fileURLToPath(
+          new URL('./src/entrypoints/components/FocusLock.ts', import.meta.url)
+        ),
         'components/Grid/index': fileURLToPath(
           new URL('./src/entrypoints/components/Grid.ts', import.meta.url)
         ),

@@ -3,6 +3,8 @@ import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 import { describe, expect, it, vi } from 'vitest';
 
+import type { FocusLockAdapterProps } from '@/components/FocusLock';
+
 import { Navbar } from './index';
 import styles from './Navbar.module.scss';
 
@@ -521,18 +523,72 @@ describe('Navbar', () => {
     expect(menu).toHaveAttribute('aria-hidden', 'false');
   });
 
-  it('renders overlay placement with focus-lock-capable menu wiring', () => {
+  it('renders drawer placement with focus-lock-capable menu wiring', () => {
     render(
       <Navbar aria-label="Primary">
         <Navbar.Toggle aria-label="Toggle navigation">Open</Navbar.Toggle>
-        <Navbar.Menu placement="overlay">
+        <Navbar.Menu placement="drawer">
           <Navbar.Link href="/docs">Docs</Navbar.Link>
         </Navbar.Menu>
       </Navbar>
     );
 
     expect(screen.getByRole('group', { hidden: true })).toHaveClass(
-      styles.menuPlacementOverlay
+      styles.menuPlacementDrawer
+    );
+  });
+
+  it('traps focus in drawer menus by default', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Navbar aria-label="Primary">
+        <button type="button">Outside action</button>
+        <Navbar.Menu defaultOpen placement="drawer">
+          <button type="button">First menu action</button>
+          <button type="button">Second menu action</button>
+        </Navbar.Menu>
+      </Navbar>
+    );
+
+    const first = screen.getByRole('button', { name: 'First menu action' });
+    const second = screen.getByRole('button', { name: 'Second menu action' });
+    const outside = screen.getByRole('button', { name: 'Outside action' });
+
+    first.focus();
+    await user.tab();
+    expect(second).toHaveFocus();
+
+    await user.tab();
+    expect(first).toHaveFocus();
+    expect(outside).not.toHaveFocus();
+  });
+
+  it('uses focusLockComponent override for menu focus locking', () => {
+    const CustomFocusLock = ({ active, children }: FocusLockAdapterProps) => (
+      <div
+        data-active={active ? 'true' : 'false'}
+        data-testid="custom-focus-lock"
+      >
+        {children}
+      </div>
+    );
+
+    render(
+      <Navbar aria-label="Primary">
+        <Navbar.Menu
+          defaultOpen
+          focusLockComponent={CustomFocusLock}
+          placement="drawer"
+        >
+          <Navbar.Link href="/docs">Docs</Navbar.Link>
+        </Navbar.Menu>
+      </Navbar>
+    );
+
+    expect(screen.getByTestId('custom-focus-lock')).toHaveAttribute(
+      'data-active',
+      'true'
     );
   });
 
