@@ -2801,6 +2801,15 @@ export const components = [
         values: [],
       },
       {
+        comments:
+          'Optional focus lock adapter override used when menu placement requires trapping focus.',
+        defaultValue: null,
+        displayName: 'Navbar.Menu',
+        propName: 'focusLockComponent',
+        type: 'FocusLockAdapterComponent',
+        values: [],
+      },
+      {
         comments: 'Hide the component below this breakpoint.',
         defaultValue: null,
         displayName: 'Navbar.Menu',
@@ -2855,7 +2864,7 @@ export const components = [
         displayName: 'Navbar.Menu',
         propName: 'placement',
         type: 'NavbarMenuPlacement',
-        values: ['belowNavbar', 'overlay', 'drawer'],
+        values: ['belowNavbar', 'drawer'],
       },
       {
         comments: 'Show the component only below this breakpoint.',
@@ -3013,7 +3022,14 @@ export const components = [
         comments: 'Menu rendering behavior for compact navigation.',
         defaultValue: null,
         typeName: 'NavbarMenuPlacement',
-        values: ['belowNavbar', 'overlay', 'drawer'],
+        values: ['belowNavbar', 'drawer'],
+      },
+      {
+        comments:
+          'Reusable focus lock adapter component contract for ThemeShift components.',
+        defaultValue: null,
+        typeName: 'FocusLockAdapterComponent',
+        values: [],
       },
       {
         comments: '',

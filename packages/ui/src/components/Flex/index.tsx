@@ -1,5 +1,6 @@
 import type { CSSProperties, ElementType } from 'react';
 
+import '@/components/Box/Box.module.scss';
 import { Box, type BoxProps } from '@/components/Box';
 import {
   applyResponsiveStyleVar,

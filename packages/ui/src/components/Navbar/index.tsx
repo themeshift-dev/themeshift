@@ -1,11 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
-import FocusLock from 'react-focus-lock';
 import { Slot } from '@radix-ui/react-slot';
 import classNames from 'classnames';
 import {
   Children,
   createContext,
   isValidElement,
+  lazy,
+  Suspense,
   useCallback,
   useContext,
   useEffect,
@@ -21,6 +22,10 @@ import {
   type ReactNode,
 } from 'react';
 
+import {
+  type FocusLockAdapterComponent,
+  type FocusLockAdapterProps,
+} from '@/components/FocusLock';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { useScrollLock } from '@/hooks/useScrollLock';
 
@@ -127,9 +132,24 @@ const shadowClassMap = {
 
 const menuPlacementClassMap = {
   belowNavbar: styles.menuPlacementBelowNavbar,
-  overlay: styles.menuPlacementOverlay,
   drawer: styles.menuPlacementDrawer,
 } satisfies Record<NavbarMenuPlacement, string>;
+
+const LazyFocusLock = lazy(async () => {
+  const module = await import('@/components/FocusLock');
+
+  return {
+    default: module.FocusLock,
+  };
+});
+
+const LazyFocusLockAdapter: FocusLockAdapterComponent = (
+  props: FocusLockAdapterProps
+) => (
+  <Suspense fallback={props.children}>
+    <LazyFocusLock {...props} />
+  </Suspense>
+);
 
 const listOrientationClassMap = {
   horizontal: styles.listHorizontal,
@@ -725,6 +745,7 @@ const NavbarMenu = <T extends ElementType = 'div'>({
   className,
   closeOnLinkClick = true,
   defaultOpen = false,
+  focusLockComponent,
   hideBelow,
   id,
   labelledBy,
@@ -741,6 +762,7 @@ const NavbarMenu = <T extends ElementType = 'div'>({
   const generatedId = useId();
   const menuId = id ?? `navbar-menu-${generatedId.replaceAll(':', '')}`;
   const ariaLabel = (menuProps as { 'aria-label'?: string })['aria-label'];
+  const FocusLockAdapter = focusLockComponent ?? LazyFocusLockAdapter;
 
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const [toggleElement, setToggleElement] = useState<HTMLElement | null>(null);
@@ -750,7 +772,7 @@ const NavbarMenu = <T extends ElementType = 'div'>({
 
   const isControlled = open !== undefined;
   const isOpen = isControlled ? open : uncontrolledOpen;
-  const requiresFocusLock = placement === 'overlay' || placement === 'drawer';
+  const requiresFocusLock = placement === 'drawer';
 
   useScrollLock(isOpen && requiresFocusLock);
 
@@ -931,9 +953,15 @@ const NavbarMenu = <T extends ElementType = 'div'>({
   }
 
   return (
-    <FocusLock disabled={!isOpen} returnFocus={false}>
+    <FocusLockAdapter
+      active={isOpen}
+      autoFocus={false}
+      containerRef={menuElementRef}
+      returnFocus={false}
+      shards={toggleElement ? [toggleElement] : undefined}
+    >
       {menuRegion}
-    </FocusLock>
+    </FocusLockAdapter>
   );
 };
 

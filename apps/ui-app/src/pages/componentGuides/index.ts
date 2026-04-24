@@ -7,6 +7,7 @@ export * from './CopyButtonGuide';
 export * from './ErrorMessageGuide';
 export * from './FieldGuide';
 export * from './FlexGuide';
+export * from './FocusLockGuide';
 export * from './GridGuide';
 export * from './HeadingGuide';
 export * from './InputGuide';

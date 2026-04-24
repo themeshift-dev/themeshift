@@ -102,19 +102,19 @@ export const NavbarGuide = () => {
       <GuideExampleCard>
         <GuideExampleText>
           <TableOfContents.Marker
-            id="examples-overlay"
-            label="Overlay placement"
+            id="examples-drawer"
+            label="Drawer placement"
             level={2}
           />
-          <Heading level={4}>Overlay placement</Heading>
+          <Heading level={4}>Drawer placement</Heading>
           <p>
-            Use <code>placement="overlay"</code> for layered menus that trap
+            Use <code>placement="drawer"</code> for layered menus that trap
             focus and lock background scroll.
           </p>
         </GuideExampleText>
 
         <GuideExampleViewer>
-          <ExampleViewer example={examples.overlayPlacement} />
+          <ExampleViewer example={examples.drawerPlacement} />
         </GuideExampleViewer>
       </GuideExampleCard>
 
@@ -135,6 +135,26 @@ export const NavbarGuide = () => {
 
         <GuideExampleViewer>
           <ExampleViewer example={examples.onClickOutsideCallback} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
+          <TableOfContents.Marker
+            id="examples-focus-lock-adapter"
+            label="Focus lock adapter"
+            level={2}
+          />
+          <Heading level={4}>Focus lock adapter override</Heading>
+          <p>
+            For drawer menus, use
+            <code>Navbar.Menu focusLockComponent</code> to provide your own
+            focus lock adapter when needed.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.customFocusLockAdapter} />
         </GuideExampleViewer>
       </GuideExampleCard>
 
@@ -163,13 +183,13 @@ export const NavbarGuide = () => {
   const propsSection = createPropsSection({
     content: propsContent,
     intro:
-      'Reference root and subcomponent props for responsive visibility, menu state, outside interactions, and semantic overrides.',
+      'Reference root and subcomponent props for responsive visibility, menu state, outside interactions, focus lock adapters, and semantic overrides.',
   });
 
   const examplesSection = createExamplesSection({
     content: examplesContent,
     intro:
-      'Use these patterns for straightforward desktop nav, responsive menus, and layered overlays.',
+      'Use these patterns for straightforward desktop nav, responsive menus, and drawer behavior.',
   });
 
   const accessibilitySection = createAccessibilityGuidelinesSection({
@@ -204,11 +224,11 @@ export const NavbarGuide = () => {
       {
         content: (
           <p>
-            Keep focus order aligned with visual order. Overlay and drawer menus
-            trap focus while open and close on <kbd>Escape</kbd>.
+            Keep focus order aligned with visual order. Drawer menus trap focus
+            while open and close on <kbd>Escape</kbd>.
           </p>
         ),
-        example: examples.overlayPlacement,
+        example: examples.drawerPlacement,
         tocLabel: 'Keyboard behavior',
         title: 'Verify keyboard flow',
       },

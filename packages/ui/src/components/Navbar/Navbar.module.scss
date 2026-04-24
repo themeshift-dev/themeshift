@@ -259,17 +259,6 @@
   padding: token('components.navbar.menu.padding');
 }
 
-.menuPlacementOverlay {
-  background-color: token('components.navbar.menu.background');
-  border: 1px solid token('components.navbar.border.default');
-  border-radius: token('components.navbar.menu.radius');
-  box-shadow: token('components.navbar.shadow.medium');
-  inset-block-start: 100%;
-  inset-inline: token('components.navbar.menu.overlay.insetInline');
-  position: absolute;
-  z-index: token('layer.overlay');
-}
-
 .menuPlacementDrawer {
   background-color: token('components.navbar.menu.background');
   block-size: 100dvh;

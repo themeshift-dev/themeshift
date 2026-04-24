@@ -5,6 +5,8 @@ import type {
   ReactNode,
 } from 'react';
 
+import type { FocusLockAdapterComponent } from '@/components/FocusLock';
+
 /** Supported responsive breakpoints for navbar visibility helpers. */
 export type NavbarBreakpoint = 'mobile' | 'tablet' | 'desktop';
 
@@ -51,7 +53,7 @@ export type NavbarPadding = 'none' | 'small' | 'medium' | 'large';
 export type NavbarListOrientation = 'horizontal' | 'vertical';
 
 /** Menu rendering behavior for compact navigation. */
-export type NavbarMenuPlacement = 'belowNavbar' | 'overlay' | 'drawer';
+export type NavbarMenuPlacement = 'belowNavbar' | 'drawer';
 
 /** Outside-interaction action shorthand for compact menu behavior. */
 export type NavbarOnClickOutsideAction = 'toggle' | 'close' | 'open';
@@ -209,6 +211,12 @@ export type NavbarMenuOwnProps = NavbarVisibilityProps & {
 
   /** Render mode for the menu panel. */
   placement?: NavbarMenuPlacement;
+
+  /**
+   * Optional focus lock adapter override used when menu placement requires
+   * trapping focus.
+   */
+  focusLockComponent?: FocusLockAdapterComponent;
 
   /** Closes the menu when links inside are activated. */
   closeOnLinkClick?: boolean;
