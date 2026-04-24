@@ -142,6 +142,10 @@ const AppRoutes = () => (
           path="use-hold-to-confirm"
           element={<HookGuides.UseHoldToConfirmGuide />}
         />
+        <Route
+          path="use-on-click-outside"
+          element={<HookGuides.UseOnClickOutsideGuide />}
+        />
         <Route path="use-form" element={<HookGuides.UseFormGuide />} />
         <Route
           path="use-resize-observer"

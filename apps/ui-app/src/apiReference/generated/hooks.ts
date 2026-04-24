@@ -378,6 +378,28 @@ export const hooks = [
     type: 'hook',
   },
   {
+    apiReference: [],
+    returnReference: [],
+    name: 'useOnClickOutside',
+    exportName: 'useOnClickOutside',
+    importPath: '@themeshift/ui/hooks/useOnClickOutside',
+    importString:
+      "import { useOnClickOutside } from '@themeshift/ui/hooks/useOnClickOutside';",
+    meta: {
+      category: 'actions',
+      description:
+        'Calls a handler when pointer or focus events happen outside a target element.',
+      tags: ['outside-click', 'dismiss', 'interaction'],
+      status: 'stable',
+      type: 'hook',
+    },
+    slug: 'useonclickoutside',
+    routeSlug: 'use-on-click-outside',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useOnClickOutside',
+    type: 'hook',
+  },
+  {
     apiReference: [
       {
         comments:
@@ -449,6 +471,27 @@ export const hooks = [
     routeSlug: 'use-resize-observer',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useResizeObserver',
+    type: 'hook',
+  },
+  {
+    apiReference: [],
+    returnReference: [],
+    name: 'useScrollLock',
+    exportName: 'useScrollLock',
+    importPath: '@themeshift/ui/hooks/useScrollLock',
+    importString:
+      "import { useScrollLock } from '@themeshift/ui/hooks/useScrollLock';",
+    meta: {
+      category: 'layout-utilities',
+      description:
+        'Locks document scrolling while overlays or drawers are open.',
+      tags: ['scroll', 'overlay', 'drawer', 'accessibility'],
+      type: 'hook',
+    },
+    slug: 'usescrolllock',
+    routeSlug: 'use-scroll-lock',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useScrollLock',
     type: 'hook',
   },
 ] satisfies ApiReferenceHook[];

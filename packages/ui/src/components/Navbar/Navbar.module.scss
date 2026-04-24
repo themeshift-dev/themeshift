@@ -1,0 +1,341 @@
+@use '@/sass/tokens.static' as *;
+
+.root {
+  --navbar-max-width: 100%;
+  --navbar-height: #{token('components.navbar.height.medium')};
+  --navbar-inline-padding: #{token('components.navbar.padding.medium')};
+
+  align-items: center;
+  color: token('text.primary');
+  display: flex;
+  flex-wrap: wrap;
+  inset-inline: 0;
+  transition:
+    background-color token('duration.medium') token('easing.standard'),
+    box-shadow token('duration.medium') token('easing.standard'),
+    border-color token('duration.medium') token('easing.standard');
+  width: 100%;
+  z-index: token('components.navbar.zIndex');
+}
+
+.withBorder {
+  border-block-end: 1px solid token('components.navbar.border.default');
+}
+
+.positionStatic {
+  position: static;
+}
+
+.positionSticky {
+  position: sticky;
+}
+
+.positionFixed {
+  position: fixed;
+}
+
+.placementTop {
+  inset-block-start: 0;
+}
+
+.placementBottom {
+  inset-block-end: 0;
+}
+
+.widthFull {
+  width: 100%;
+}
+
+.widthContained {
+  margin-inline: auto;
+}
+
+.maxWidthSmall {
+  --navbar-max-width: #{token('components.navbar.maxWidth.small')};
+}
+
+.maxWidthMedium {
+  --navbar-max-width: #{token('components.navbar.maxWidth.medium')};
+}
+
+.maxWidthLarge {
+  --navbar-max-width: #{token('components.navbar.maxWidth.large')};
+}
+
+.maxWidthXLarge {
+  --navbar-max-width: #{token('components.navbar.maxWidth.xLarge')};
+}
+
+.maxWidthFull {
+  --navbar-max-width: #{token('components.navbar.maxWidth.full')};
+}
+
+.heightSmall {
+  --navbar-height: #{token('components.navbar.height.small')};
+}
+
+.heightMedium {
+  --navbar-height: #{token('components.navbar.height.medium')};
+}
+
+.heightLarge {
+  --navbar-height: #{token('components.navbar.height.large')};
+}
+
+.paddingNone {
+  --navbar-inline-padding: #{token('components.navbar.padding.none')};
+}
+
+.paddingSmall {
+  --navbar-inline-padding: #{token('components.navbar.padding.small')};
+}
+
+.paddingMedium {
+  --navbar-inline-padding: #{token('components.navbar.padding.medium')};
+}
+
+.paddingLarge {
+  --navbar-inline-padding: #{token('components.navbar.padding.large')};
+}
+
+.surfaceDefault {
+  background-color: token('components.navbar.surface.default');
+}
+
+.surfaceSubtle {
+  background-color: token('components.navbar.surface.subtle');
+}
+
+.surfaceElevated {
+  background-color: token('components.navbar.surface.elevated');
+}
+
+.surfaceTransparent {
+  background-color: token('components.navbar.surface.transparent');
+}
+
+.shadowNone {
+  box-shadow: none;
+}
+
+.shadowSmall {
+  box-shadow: token('components.navbar.shadow.small');
+}
+
+.shadowMedium {
+  box-shadow: token('components.navbar.shadow.medium');
+}
+
+.shadowLarge {
+  box-shadow: token('components.navbar.shadow.large');
+}
+
+.floating {
+  border-radius: token('components.navbar.radius');
+  margin-block: token('components.navbar.floating.marginBlock');
+  margin-inline: token('components.navbar.floating.marginInline');
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  gap: token('components.navbar.container.gap');
+  justify-content: space-between;
+  margin-inline: auto;
+  max-width: var(--navbar-max-width);
+  min-height: var(--navbar-height);
+  padding-inline: var(--navbar-inline-padding);
+  width: 100%;
+}
+
+.brand,
+.content,
+.actions {
+  align-items: center;
+  display: flex;
+  min-height: var(--navbar-height);
+}
+
+.brand {
+  color: token('components.navbar.brand.text');
+  font: token('typography.label.medium.font');
+  text-decoration: none;
+}
+
+.content {
+  flex: 1 1 auto;
+  gap: token('space.4');
+  min-width: 0;
+}
+
+.actions {
+  flex: 0 0 auto;
+  gap: token('space.3');
+}
+
+.list {
+  align-items: center;
+  display: flex;
+  gap: token('components.navbar.list.gap');
+  list-style: none;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+.listHorizontal {
+  flex-direction: row;
+}
+
+.listVertical {
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.item {
+  list-style: none;
+}
+
+.link {
+  color: token('components.navbar.link.default.text');
+  display: inline-flex;
+  padding: token('components.navbar.link.padding');
+  text-decoration: none;
+  transition: color token('duration.fast') token('easing.standard');
+
+  &:hover {
+    color: token('components.navbar.link.hover.text');
+  }
+
+  &:focus-visible {
+    border-radius: token('radius.small');
+    outline: token('focus.ring.width') solid token('border.focusRing');
+    outline-offset: token('focus.ring.offset');
+  }
+}
+
+.linkActive {
+  color: token('components.navbar.link.active.text');
+}
+
+.linkDisabled {
+  color: token('components.navbar.link.disabled.text');
+  cursor: not-allowed;
+  opacity: token('opacity.disabled');
+}
+
+.toggle {
+  align-items: center;
+  background: token('components.navbar.toggle.background');
+  border: 1px solid token('components.navbar.toggle.border');
+  border-radius: token('components.navbar.toggle.radius');
+  color: token('components.navbar.toggle.text');
+  cursor: pointer;
+  display: inline-flex;
+  gap: token('space.2');
+  min-height: token('components.navbar.toggle.minHeight');
+  padding: token('components.navbar.toggle.padding');
+
+  &:focus-visible {
+    outline: token('focus.ring.width') solid token('border.focusRing');
+    outline-offset: token('focus.ring.offset');
+  }
+}
+
+.toggleLabel {
+  font: token('typography.label.small.font');
+}
+
+.menu {
+  transition:
+    opacity token('duration.medium') token('easing.standard'),
+    transform token('duration.medium') token('easing.standard');
+  width: 100%;
+}
+
+.menuPlacementBelowNavbar {
+  background-color: token('components.navbar.menu.background');
+  border-block-start: 1px solid token('components.navbar.border.default');
+  padding: token('components.navbar.menu.padding');
+}
+
+.menuPlacementOverlay {
+  background-color: token('components.navbar.menu.background');
+  border: 1px solid token('components.navbar.border.default');
+  border-radius: token('components.navbar.menu.radius');
+  box-shadow: token('components.navbar.shadow.medium');
+  inset-block-start: 100%;
+  inset-inline: token('components.navbar.menu.overlay.insetInline');
+  position: absolute;
+  z-index: token('layer.overlay');
+}
+
+.menuPlacementDrawer {
+  background-color: token('components.navbar.menu.background');
+  block-size: 100dvh;
+  box-shadow: token('components.navbar.shadow.large');
+  inline-size: min(22rem, 100vw);
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  padding: token('components.navbar.menu.drawer.padding');
+  position: fixed;
+  z-index: token('layer.overlay');
+}
+
+.menuOpen {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+}
+
+.menuClosed {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, -0.5rem, 0);
+  visibility: hidden;
+}
+
+.menuPlacementBelowNavbar.menuClosed {
+  display: none;
+}
+
+.menuPlacementDrawer.menuClosed {
+  transform: translate3d(100%, 0, 0);
+}
+
+.hideBelowTablet {
+  @media (max-width: calc(#{$layout_breakpoint_tablet} - 1px)) {
+    display: none !important;
+  }
+}
+
+.hideBelowDesktop {
+  @media (max-width: calc(#{$layout_breakpoint_desktop} - 1px)) {
+    display: none !important;
+  }
+}
+
+.showBelowMobile {
+  display: none !important;
+}
+
+.showBelowTablet {
+  @media (min-width: #{$layout_breakpoint_tablet}) {
+    display: none !important;
+  }
+}
+
+.showBelowDesktop {
+  @media (min-width: #{$layout_breakpoint_desktop}) {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .link,
+  .menu {
+    transition: none;
+  }
+}

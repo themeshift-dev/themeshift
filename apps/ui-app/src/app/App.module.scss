@@ -14,7 +14,7 @@
   display: inline-flex;
   flex-shrink: 0;
   min-width: max-content;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.5rem 0.25rem;
   transition: opacity 0.3s;
 
   &:hover {
@@ -37,6 +37,27 @@
       margin-right: 1rem;
     }
   }
+}
+
+.mobileMenu {
+  display: grid;
+  gap: 1rem;
+}
+
+.mobileLinks {
+  display: grid;
+  gap: 0.5rem;
+
+  a {
+    @include typography.style('body.default');
+
+    display: inline-flex;
+    padding: 0.5rem 0;
+  }
+}
+
+.mobileThemeToggle {
+  justify-content: center;
 }
 
 [data-theme='light'] .header a {

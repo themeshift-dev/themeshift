@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Button } from '@/components/Button';
-import { Navbar, NavbarContainer, NavbarSection } from '@/components/Navbar';
+import { Navbar } from '@/components/Navbar';
 
 const meta = {
   title: 'Components/Navbar',
@@ -10,6 +10,7 @@ const meta = {
   args: {
     'aria-label': 'Primary navigation',
     position: 'static',
+    surface: 'default',
   },
 } satisfies Meta<typeof Navbar>;
 
@@ -20,40 +21,72 @@ export const Compound: Story = {
   render: (args) => (
     <Navbar {...args}>
       <Navbar.Container>
-        <Navbar.Section align="start">
-          <a href="/">ThemeShift</a>
-        </Navbar.Section>
+        <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
 
-        <Navbar.Section align="center">
-          <a href="/docs">Docs</a>
-          <a href="/tokens">Tokens</a>
-          <a href="/themes">Themes</a>
-        </Navbar.Section>
+        <Navbar.Content hideBelow="tablet">
+          <Navbar.List>
+            <Navbar.Item>
+              <Navbar.Link href="/docs">Docs</Navbar.Link>
+            </Navbar.Item>
+            <Navbar.Item>
+              <Navbar.Link href="/components">Components</Navbar.Link>
+            </Navbar.Item>
+            <Navbar.Item>
+              <Navbar.Link href="/tokens">Tokens</Navbar.Link>
+            </Navbar.Item>
+          </Navbar.List>
+        </Navbar.Content>
 
-        <Navbar.Section align="end">
-          <Button size="small">Sign in</Button>
-        </Navbar.Section>
+        <Navbar.Actions hideBelow="tablet">
+          <Button intent="secondary" size="small">
+            Sign in
+          </Button>
+          <Button size="small">Get started</Button>
+        </Navbar.Actions>
+
+        <Navbar.Toggle aria-label="Open navigation" showBelow="tablet" />
       </Navbar.Container>
+
+      <Navbar.Menu showBelow="tablet">
+        <Navbar.List>
+          <Navbar.Item>
+            <Navbar.Link href="/docs">Docs</Navbar.Link>
+          </Navbar.Item>
+          <Navbar.Item>
+            <Navbar.Link href="/components">Components</Navbar.Link>
+          </Navbar.Item>
+          <Navbar.Item>
+            <Navbar.Link href="/tokens">Tokens</Navbar.Link>
+          </Navbar.Item>
+        </Navbar.List>
+      </Navbar.Menu>
     </Navbar>
   ),
 };
 
-export const StandalonePrimitives: Story = {
+export const OverlayMenu: Story = {
   render: () => (
-    <NavbarContainer>
-      <NavbarSection align="start">
-        <a href="/design">Design</a>
-      </NavbarSection>
+    <Navbar
+      aria-label="Primary navigation"
+      position="sticky"
+      surface="elevated"
+    >
+      <Navbar.Container>
+        <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+        <Navbar.Toggle aria-label="Open navigation">Open</Navbar.Toggle>
+      </Navbar.Container>
 
-      <NavbarSection align="center">
-        <a href="/systems">Systems</a>
-      </NavbarSection>
-
-      <NavbarSection align="end">
-        <Button size="small" intent="secondary">
-          Contact
-        </Button>
-      </NavbarSection>
-    </NavbarContainer>
+      <Navbar.Menu labelledBy="navbar-overlay-title" placement="overlay">
+        <h3 id="navbar-overlay-title">Navigation</h3>
+        <Navbar.List>
+          <Navbar.Item>
+            <Navbar.Link href="/docs">Docs</Navbar.Link>
+          </Navbar.Item>
+          <Navbar.Item>
+            <Navbar.Link href="/components">Components</Navbar.Link>
+          </Navbar.Item>
+        </Navbar.List>
+      </Navbar.Menu>
+    </Navbar>
   ),
 };

@@ -157,9 +157,17 @@
       "types": "./dist/hooks/useHoldToConfirm/index.d.ts",
       "import": "./dist/hooks/useHoldToConfirm/index.js"
     },
+    "./hooks/useOnClickOutside": {
+      "types": "./dist/hooks/useOnClickOutside/index.d.ts",
+      "import": "./dist/hooks/useOnClickOutside/index.js"
+    },
     "./hooks/useResizeObserver": {
       "types": "./dist/hooks/useResizeObserver/index.d.ts",
       "import": "./dist/hooks/useResizeObserver/index.js"
+    },
+    "./hooks/useScrollLock": {
+      "types": "./dist/hooks/useScrollLock/index.d.ts",
+      "import": "./dist/hooks/useScrollLock/index.js"
     },
     "./icons": {
       "types": "./dist/icons/index.d.ts",
@@ -253,6 +261,7 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@themeshift/vite-plugin": "workspace:*",
     "classnames": "^2.5.1",
+    "react-focus-lock": "^2.13.7",
     "react-textarea-autosize": "^8.5.9"
   },
   "peerDependencies": {

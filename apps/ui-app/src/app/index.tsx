@@ -2,6 +2,7 @@ import { Button } from '@themeshift/ui/components/Button';
 import { Navbar } from '@themeshift/ui/components/Navbar';
 import { SkipLink } from '@themeshift/ui/components/SkipLink';
 import { useTheme } from '@themeshift/ui/contexts';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 import '@themeshift/ui/css/base.css';
 
@@ -19,27 +20,60 @@ function App() {
       <SkipLink href="#main-content">Skip to main content</SkipLink>
 
       <header className={styles.header}>
-        <Navbar>
+        <Navbar aria-label="Primary navigation" surface="transparent">
           <Navbar.Container>
-            <Navbar.Section align="start">
+            <Navbar.Brand asChild>
               <Link to="/" className={styles.logo}>
-                <Logo size={120} />
+                <Logo size={90} />
               </Link>
+            </Navbar.Brand>
 
+            <Navbar.Content hideBelow="tablet">
               <div className={styles.links}>
                 <Link to="/docs">Docs</Link>
                 <Link to="/ui">UI</Link>
                 <Link to="/tokens">Design Tokens</Link>
                 <Link to="/cli">CLI</Link>
               </div>
-            </Navbar.Section>
+            </Navbar.Content>
 
-            <Navbar.Section align="end">
+            <Navbar.Actions hideBelow="tablet">
               <Button onClick={toggleTheme}>
                 {theme === 'dark' ? 'Dark mode' : 'Light mode'}
               </Button>
-            </Navbar.Section>
+            </Navbar.Actions>
+
+            <Navbar.Toggle
+              aria-label="Open navigation menu"
+              showBelow="tablet"
+              as={Button}
+              size="large"
+            >
+              {(isOpen) => (isOpen ? <FaTimes /> : <FaBars />)}
+            </Navbar.Toggle>
           </Navbar.Container>
+
+          <Navbar.Menu
+            placement="drawer"
+            showBelow="tablet"
+            onClickOutside="close"
+          >
+            <div className={styles.mobileMenu}>
+              <div className={styles.mobileLinks}>
+                <Link to="/docs">Docs</Link>
+                <Link to="/ui">UI</Link>
+                <Link to="/tokens">Design Tokens</Link>
+                <Link to="/cli">CLI</Link>
+              </div>
+
+              <Button
+                className={styles.mobileThemeToggle}
+                onClick={toggleTheme}
+              >
+                {theme === 'dark' ? 'Dark mode' : 'Light mode'}
+              </Button>
+            </div>
+          </Navbar.Menu>
         </Navbar>
       </header>
 
