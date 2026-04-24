@@ -36,6 +36,7 @@ function injectComponentCss(): Plugin {
     name: 'inject-component-css',
     generateBundle(_options: unknown, bundle: OutputBundle) {
       const cssAssetsToRemove = new Set<string>();
+      const componentCssAssets = new Set<string>();
 
       const collectImportedCss = (
         chunk: OutputChunk,
@@ -60,6 +61,24 @@ function injectComponentCss(): Plugin {
 
         return [...importedCss, ...transitiveCss];
       };
+
+      for (const chunk of Object.values(bundle)) {
+        if (chunk.type !== 'chunk' || !chunk.isEntry) {
+          continue;
+        }
+
+        const isComponentEntry =
+          chunk.fileName.startsWith('components/') &&
+          chunk.fileName.endsWith('/index.js');
+
+        if (!isComponentEntry) {
+          continue;
+        }
+
+        for (const cssFileName of collectImportedCss(chunk)) {
+          componentCssAssets.add(cssFileName);
+        }
+      }
 
       for (const chunk of Object.values(bundle)) {
         if (chunk.type !== 'chunk' || !chunk.isEntry) {
@@ -130,7 +149,10 @@ function injectComponentCss(): Plugin {
               ? asset.source
               : asset.source.toString()
           );
-          cssAssetsToRemove.add(cssFileName);
+
+          if (!componentCssAssets.has(cssFileName)) {
+            cssAssetsToRemove.add(cssFileName);
+          }
         }
 
         if (cssParts.length === 0) {

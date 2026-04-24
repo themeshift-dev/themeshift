@@ -13,9 +13,9 @@ export const basicUsage = {
     <button type="button">Save</button>
     <button type="button">Cancel</button>
   </FocusLock>
-</div>`,
+  </div>`,
   label: 'Basic usage',
-  sample: () => {
+  sample: function useBasicUsageSample() {
     const [open, setOpen] = useState(true);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -64,7 +64,7 @@ export const autoFocusAndReturnFocus = {
   ...
 </FocusLock>`,
   label: 'Autofocus + return focus',
-  sample: () => {
+  sample: function useAutoFocusAndReturnFocusSample() {
     const [open, setOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -116,7 +116,7 @@ export const shardsWithPortal = {
   document.body
 )}`,
   label: 'Shards + portal',
-  sample: () => {
+  sample: function useShardsWithPortalSample() {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const shardRef = useRef<HTMLDivElement | null>(null);
 
@@ -163,7 +163,7 @@ export const shardsWithPortal = {
   },
 };
 
-const SoftFocusLockAdapter: FocusLockAdapterComponent = ({
+const softFocusLockAdapter: FocusLockAdapterComponent = ({
   active,
   autoFocus,
   children,
@@ -226,7 +226,7 @@ export const customAdapter = {
 
       <Navbar.Menu
         defaultOpen
-        focusLockComponent={SoftFocusLockAdapter}
+        focusLockComponent={softFocusLockAdapter}
         placement="drawer"
       >
         <Navbar.List>

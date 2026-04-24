@@ -17,23 +17,6 @@ $font_weight_bold: 700;
 $font_weight_medium: 500;
 $font_weight_regular: 400;
 $font_weight_semi_bold: 600;
-$grid_columns_desktop: 12;
-$grid_columns_mobile: 4;
-$grid_columns_tablet: 8;
-$grid_container_content_max_width: 80rem;
-$grid_container_max_width_lg: 80rem;
-$grid_container_max_width_md: 64rem;
-$grid_container_max_width_sm: 40rem;
-$grid_container_max_width_xl: 90rem;
-$grid_container_padding_inline_desktop: 2rem;
-$grid_container_padding_inline_mobile: 1rem;
-$grid_container_padding_inline_tablet: 1.5rem;
-$grid_gutter_desktop: 1.5rem;
-$grid_gutter_mobile: 1rem;
-$grid_gutter_tablet: 1.25rem;
-$grid_row_gap_desktop: 1.5rem;
-$grid_row_gap_mobile: 1rem;
-$grid_row_gap_tablet: 1.25rem;
 $layout_breakpoint_desktop: 1024px;
 $layout_breakpoint_mobile: 0px;
 $layout_breakpoint_tablet: 768px;
@@ -55,39 +38,6 @@ $radius_medium: 1rem;
 $radius_small: .5rem;
 $radius_x_large: 4rem;
 $radius_x_small: .25rem;
-$space_0: 0;
-/* 4px */
-$space_1: 0.25rem;
-/* 48px */
-$space_10: 3rem;
-/* 56px */
-$space_11: 3.5rem;
-/* 64px */
-$space_12: 4rem;
-/* 80px */
-$space_14: 5rem;
-/* 96px */
-$space_16: 6rem;
-/* 8px */
-$space_2: 0.5rem;
-/* 128px */
-$space_20: 8rem;
-/* 160px */
-$space_24: 10rem;
-/* 12px */
-$space_3: 0.75rem;
-/* 16px */
-$space_4: 1rem;
-/* 20px */
-$space_5: 1.25rem;
-/* 24px */
-$space_6: 1.5rem;
-/* 28px */
-$space_7: 1.75rem;
-/* 32px */
-$space_8: 2rem;
-/* 40px */
-$space_9: 2.5rem;
 $typography_body_large_font: 400 1.125rem/1.5rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
 $typography_body_large_font_size: 1.125rem;
 $typography_body_large_font_style: normal;

@@ -1,0 +1,216 @@
+name: PR bundle size report
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  report:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Detect component changes
+        id: changed
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const pull_number = context.payload.pull_request?.number;
+
+            if (!pull_number) {
+              core.setOutput('components_changed', 'false');
+              core.setOutput('changed_components', '');
+              return;
+            }
+
+            const files = await github.paginate(
+              github.rest.pulls.listFiles,
+              {
+                owner,
+                repo,
+                pull_number,
+                per_page: 100,
+              }
+            );
+
+            const componentNamePattern =
+              /^packages\/ui\/src\/components\/([^/]+)\//;
+            const changedComponents = new Set();
+
+            for (const file of files) {
+              const match = file.filename.match(componentNamePattern);
+              if (match?.[1]) {
+                changedComponents.add(match[1]);
+              }
+            }
+
+            const componentList = [...changedComponents].sort((a, b) =>
+              a.localeCompare(b)
+            );
+
+            core.setOutput(
+              'components_changed',
+              componentList.length > 0 ? 'true' : 'false'
+            );
+            core.setOutput('changed_components', componentList.join(','));
+            core.info(`Changed components: ${componentList.join(', ') || 'none'}`);
+
+      - name: Remove sticky comment when components are unchanged
+        if: steps.changed.outputs.components_changed != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issue_number = context.payload.pull_request?.number;
+            const marker = '<!-- bundle-size-report -->';
+
+            if (!issue_number) {
+              return;
+            }
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              {
+                owner,
+                repo,
+                issue_number,
+                per_page: 100,
+              }
+            );
+
+            const stickyComments = comments.filter((comment) =>
+              (comment.body ?? '').includes(marker)
+            );
+
+            for (const comment of stickyComments) {
+              await github.rest.issues.deleteComment({
+                owner,
+                repo,
+                comment_id: comment.id,
+              });
+            }
+
+            core.info(
+              stickyComments.length === 0
+                ? 'No sticky bundle size comment found.'
+                : `Removed ${stickyComments.length} sticky bundle size comment(s).`
+            );
+
+      - name: Set up pnpm
+        if: steps.changed.outputs.components_changed == 'true'
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18.0
+
+      - name: Set up Node.js
+        if: steps.changed.outputs.components_changed == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.11.1
+
+      - name: Checkout base commit
+        if: steps.changed.outputs.components_changed == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+
+      - name: Build and audit base commit
+        if: steps.changed.outputs.components_changed == 'true'
+        run: |
+          pnpm -C base install --frozen-lockfile --ignore-scripts=false
+          pnpm -C base --filter @themeshift/core build
+          pnpm -C base --filter @themeshift/vite-plugin build
+          pnpm -C base/packages/ui run build:components
+
+      - name: Checkout head commit
+        if: steps.changed.outputs.components_changed == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: head
+
+      - name: Build and audit head commit
+        if: steps.changed.outputs.components_changed == 'true'
+        run: |
+          pnpm -C head install --frozen-lockfile --ignore-scripts=false
+          pnpm -C head --filter @themeshift/core build
+          pnpm -C head --filter @themeshift/vite-plugin build
+          pnpm -C head/packages/ui run build:components
+
+      - name: Generate audit JSON for base and head
+        if: steps.changed.outputs.components_changed == 'true'
+        run: |
+          node head/packages/ui/scripts/build-audit.mjs --json --root=base/packages/ui > /tmp/base-audit.json
+          node head/packages/ui/scripts/build-audit.mjs --json --root=head/packages/ui > /tmp/head-audit.json
+
+      - name: Generate report markdown
+        if: steps.changed.outputs.components_changed == 'true'
+        run: |
+          node head/scripts/pr-bundle-size-report.mjs \
+            --base=/tmp/base-audit.json \
+            --head=/tmp/head-audit.json \
+            --out=/tmp/bundle-size-comment.md \
+            --changed="${{ steps.changed.outputs.changed_components }}" \
+            --base-sha="${{ github.event.pull_request.base.sha }}" \
+            --head-sha="${{ github.event.pull_request.head.sha }}"
+
+      - name: Upsert sticky bundle size comment
+        if: steps.changed.outputs.components_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('node:fs');
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issue_number = context.payload.pull_request?.number;
+            const marker = '<!-- bundle-size-report -->';
+
+            if (!issue_number) {
+              return;
+            }
+
+            const body = fs.readFileSync('/tmp/bundle-size-comment.md', 'utf8');
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              {
+                owner,
+                repo,
+                issue_number,
+                per_page: 100,
+              }
+            );
+
+            const stickyComment = comments.find((comment) =>
+              (comment.body ?? '').includes(marker)
+            );
+
+            if (!stickyComment) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body,
+              });
+              core.info('Created sticky bundle size report comment.');
+              return;
+            }
+
+            await github.rest.issues.updateComment({
+              owner,
+              repo,
+              comment_id: stickyComment.id,
+              body,
+            });
+            core.info('Updated sticky bundle size report comment.');

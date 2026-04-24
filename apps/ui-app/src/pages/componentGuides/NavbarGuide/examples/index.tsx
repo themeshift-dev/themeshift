@@ -324,7 +324,7 @@ export const asChildExample = {
   ),
 };
 
-const SoftFocusLockAdapter: FocusLockAdapterComponent = ({
+const softFocusLockAdapter: FocusLockAdapterComponent = ({
   active,
   autoFocus,
   children,
@@ -349,7 +349,7 @@ const SoftFocusLockAdapter: FocusLockAdapterComponent = ({
 );
 
 export const customFocusLockAdapter = {
-  code: `const SoftFocusLockAdapter: FocusLockAdapterComponent = ({
+  code: `const softFocusLockAdapter: FocusLockAdapterComponent = ({
   active,
   autoFocus,
   children,
@@ -364,13 +364,13 @@ export const customFocusLockAdapter = {
     returnFocus={returnFocus}
     shards={shards}
   >
-    <div data-focus-lock-adapter=\"soft-outline\">{children}</div>
+    <div data-focus-lock-adapter="soft-outline">{children}</div>
   </FocusLock>
 );
 
 <Navbar.Menu
-  focusLockComponent={SoftFocusLockAdapter}
-  placement=\"drawer\"
+  focusLockComponent={softFocusLockAdapter}
+  placement="drawer"
 >
   ...
 </Navbar.Menu>`,
@@ -384,7 +384,7 @@ export const customFocusLockAdapter = {
 
       <Navbar.Menu
         defaultOpen
-        focusLockComponent={SoftFocusLockAdapter}
+        focusLockComponent={softFocusLockAdapter}
         labelledBy="adapter-menu-title"
         placement="drawer"
       >

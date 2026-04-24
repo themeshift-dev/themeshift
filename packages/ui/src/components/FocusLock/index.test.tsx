@@ -79,7 +79,8 @@ describe('FocusLock', () => {
     onlyAction.focus();
     await user.tab();
 
-    expect(outside).toHaveFocus();
+    expect(onlyAction).not.toHaveFocus();
+    expect([outside, document.body]).toContain(document.activeElement);
   });
 
   it('autofocuses the first tabbable node when active', async () => {

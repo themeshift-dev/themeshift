@@ -4,13 +4,17 @@ import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(__dirname, '..');
+const rootArg = process.argv.find((entry) => entry.startsWith('--root='));
+const rootDir = rootArg
+  ? path.resolve(process.cwd(), rootArg.slice('--root='.length))
+  : path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const componentsDir = path.join(distDir, 'components');
 const cssDir = path.join(distDir, 'css');
 const hooksDir = path.join(distDir, 'hooks');
 const iconsDir = path.join(distDir, 'icons');
 const templatesDir = path.join(distDir, 'templates');
+const jsonMode = process.argv.includes('--json');
 
 function fail(message) {
   console.error(message);
@@ -268,25 +272,27 @@ function auditDirectoryGroup({ entityName, groupDir, groupLabel }) {
   rows.sort((left, right) => right.rawTotal - left.rawTotal);
   const unionSizes = sumSizes([...allFiles]);
 
-  console.log(
-    `Build size audit for ${entries.length} ${entityName.toLowerCase()}s in ${groupLabel}`
-  );
-  console.log(
-    `(Recursive JS + CSS dependency footprint per ${entityName.toLowerCase()})`
-  );
-  console.log('');
-  printTable(rows, entityName);
-  console.log('');
-  console.log(`Deduped union across all ${entityName.toLowerCase()}s:`);
-  console.log(
-    `Raw ${formatBytes(unionSizes.rawTotal)} (JS ${formatBytes(
-      unionSizes.jsRaw
-    )} + CSS ${formatBytes(unionSizes.cssRaw)}) | ` +
-      `Gzip ${formatBytes(unionSizes.gzipTotal)} | ` +
-      `Brotli ${formatBytes(unionSizes.brotliTotal)}`
-  );
+  if (!jsonMode) {
+    console.log(
+      `Build size audit for ${entries.length} ${entityName.toLowerCase()}s in ${groupLabel}`
+    );
+    console.log(
+      `(Recursive JS + CSS dependency footprint per ${entityName.toLowerCase()})`
+    );
+    console.log('');
+    printTable(rows, entityName);
+    console.log('');
+    console.log(`Deduped union across all ${entityName.toLowerCase()}s:`);
+    console.log(
+      `Raw ${formatBytes(unionSizes.rawTotal)} (JS ${formatBytes(
+        unionSizes.jsRaw
+      )} + CSS ${formatBytes(unionSizes.cssRaw)}) | ` +
+        `Gzip ${formatBytes(unionSizes.gzipTotal)} | ` +
+        `Brotli ${formatBytes(unionSizes.brotliTotal)}`
+    );
+  }
 
-  return unionSizes;
+  return { rows, unionSizes };
 }
 
 function auditFileEntrypointGroup({
@@ -323,25 +329,27 @@ function auditFileEntrypointGroup({
   rows.sort((left, right) => right.rawTotal - left.rawTotal);
   const unionSizes = sumSizes([...allFiles]);
 
-  console.log(
-    `Build size audit for ${files.length} ${entityName.toLowerCase()} file${files.length === 1 ? '' : 's'} in ${groupLabel}`
-  );
-  console.log(
-    `(Recursive JS + CSS dependency footprint per ${entityName.toLowerCase()})`
-  );
-  console.log('');
-  printTable(rows, entityName);
-  console.log('');
-  console.log(`Deduped union across all ${entityName.toLowerCase()} files:`);
-  console.log(
-    `Raw ${formatBytes(unionSizes.rawTotal)} (JS ${formatBytes(
-      unionSizes.jsRaw
-    )} + CSS ${formatBytes(unionSizes.cssRaw)}) | ` +
-      `Gzip ${formatBytes(unionSizes.gzipTotal)} | ` +
-      `Brotli ${formatBytes(unionSizes.brotliTotal)}`
-  );
+  if (!jsonMode) {
+    console.log(
+      `Build size audit for ${files.length} ${entityName.toLowerCase()} file${files.length === 1 ? '' : 's'} in ${groupLabel}`
+    );
+    console.log(
+      `(Recursive JS + CSS dependency footprint per ${entityName.toLowerCase()})`
+    );
+    console.log('');
+    printTable(rows, entityName);
+    console.log('');
+    console.log(`Deduped union across all ${entityName.toLowerCase()} files:`);
+    console.log(
+      `Raw ${formatBytes(unionSizes.rawTotal)} (JS ${formatBytes(
+        unionSizes.jsRaw
+      )} + CSS ${formatBytes(unionSizes.cssRaw)}) | ` +
+        `Gzip ${formatBytes(unionSizes.gzipTotal)} | ` +
+        `Brotli ${formatBytes(unionSizes.brotliTotal)}`
+    );
+  }
 
-  return unionSizes;
+  return { rows, unionSizes };
 }
 
 function auditCssGroup({ groupDir, groupLabel }) {
@@ -367,70 +375,107 @@ function auditCssGroup({ groupDir, groupLabel }) {
     files.map((fileName) => path.join(groupDir, fileName))
   );
 
-  console.log(
-    `Build size audit for ${files.length} css files in ${groupLabel}`
-  );
-  console.log('(Direct CSS file sizes in dist/css)');
-  console.log('');
-  printTable(rows, 'CSS');
-  console.log('');
-  console.log('Deduped union across all css files:');
-  console.log(
-    `Raw ${formatBytes(unionSizes.rawTotal)} (JS ${formatBytes(
-      unionSizes.jsRaw
-    )} + CSS ${formatBytes(unionSizes.cssRaw)}) | ` +
-      `Gzip ${formatBytes(unionSizes.gzipTotal)} | ` +
-      `Brotli ${formatBytes(unionSizes.brotliTotal)}`
-  );
+  if (!jsonMode) {
+    console.log(
+      `Build size audit for ${files.length} css files in ${groupLabel}`
+    );
+    console.log('(Direct CSS file sizes in dist/css)');
+    console.log('');
+    printTable(rows, 'CSS');
+    console.log('');
+    console.log('Deduped union across all css files:');
+    console.log(
+      `Raw ${formatBytes(unionSizes.rawTotal)} (JS ${formatBytes(
+        unionSizes.jsRaw
+      )} + CSS ${formatBytes(unionSizes.cssRaw)}) | ` +
+        `Gzip ${formatBytes(unionSizes.gzipTotal)} | ` +
+        `Brotli ${formatBytes(unionSizes.brotliTotal)}`
+    );
+  }
 
-  return unionSizes;
+  return { rows, unionSizes };
 }
 
 const summaryRows = [];
+const groups = {};
 
-const componentTotals = auditDirectoryGroup({
+const componentReport = auditDirectoryGroup({
   entityName: 'Component',
   groupDir: componentsDir,
   groupLabel: 'dist/components',
 });
-summaryRows.push({ group: 'Components', ...componentTotals });
+groups.components = componentReport;
+summaryRows.push({ group: 'Components', ...componentReport.unionSizes });
 
-console.log('');
+if (!jsonMode) {
+  console.log('');
+}
 
-const hookTotals = auditDirectoryGroup({
+const hookReport = auditDirectoryGroup({
   entityName: 'Hook',
   groupDir: hooksDir,
   groupLabel: 'dist/hooks',
 });
-summaryRows.push({ group: 'Hooks', ...hookTotals });
+groups.hooks = hookReport;
+summaryRows.push({ group: 'Hooks', ...hookReport.unionSizes });
 
-console.log('');
+if (!jsonMode) {
+  console.log('');
+}
 
-const cssTotals = auditCssGroup({
+const cssReport = auditCssGroup({
   groupDir: cssDir,
   groupLabel: 'dist/css',
 });
-summaryRows.push({ group: 'CSS', ...cssTotals });
+groups.css = cssReport;
+summaryRows.push({ group: 'CSS', ...cssReport.unionSizes });
 
-console.log('');
+if (!jsonMode) {
+  console.log('');
+}
 
-const iconTotals = auditFileEntrypointGroup({
+const iconReport = auditFileEntrypointGroup({
   entityName: 'Icon',
   groupDir: iconsDir,
   groupLabel: 'dist/icons',
   include: (fileName) => fileName.endsWith('.js'),
 });
-summaryRows.push({ group: 'Icons', ...iconTotals });
+groups.icons = iconReport;
+summaryRows.push({ group: 'Icons', ...iconReport.unionSizes });
 
-console.log('');
+if (!jsonMode) {
+  console.log('');
+}
 
-const templateTotals = auditDirectoryGroup({
+const templateReport = auditDirectoryGroup({
   entityName: 'Template',
   groupDir: templatesDir,
   groupLabel: 'dist/templates',
 });
-summaryRows.push({ group: 'Templates', ...templateTotals });
+groups.templates = templateReport;
+summaryRows.push({ group: 'Templates', ...templateReport.unionSizes });
 
-console.log('');
-console.log('Summary totals by group:');
-printSummaryTable(summaryRows);
+if (jsonMode) {
+  process.stdout.write(
+    `${JSON.stringify(
+      {
+        generatedAt: new Date().toISOString(),
+        distDir,
+        groups: {
+          components: groups.components,
+          hooks: groups.hooks,
+          css: groups.css,
+          icons: groups.icons,
+          templates: groups.templates,
+        },
+        summaryRows,
+      },
+      null,
+      2
+    )}\n`
+  );
+} else {
+  console.log('');
+  console.log('Summary totals by group:');
+  printSummaryTable(summaryRows);
+}
