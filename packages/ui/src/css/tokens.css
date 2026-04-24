@@ -753,6 +753,10 @@
   --themeshift-components-toggle-switch-variant-tertiary-thumb: #29B6F6;
 
   /* Other */
+  --themeshift-app-shell-aside-inline-width: 18rem;
+  --themeshift-app-shell-navigation-inline-width: 16rem;
+  --themeshift-app-shell-overlay-max-width: 22rem;
+  --themeshift-app-shell-sidebar-inline-width: 20rem;
   --themeshift-background-canvas: #263238;
   --themeshift-background-overlay: rgba(0, 0, 0, .8);
   --themeshift-background-surface: #263238;

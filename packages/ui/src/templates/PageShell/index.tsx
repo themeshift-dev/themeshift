@@ -67,13 +67,19 @@ type PageShellOwnProps = {
   showSkipLink?: boolean;
 
   /**
-   * Whether the header should use sticky positioning.
-   *
-   * Guidance:
-   * Sticky behavior is useful for persistent site/app chrome, but should be
-   * applied carefully to avoid overlap and focus-order issues.
+   * Positioning mode for the header region.
    */
-  stickyHeader?: boolean;
+  headerPosition?: 'static' | 'sticky';
+
+  /**
+   * Whether header content should be wrapped in the standard shell container.
+   */
+  headerContained?: boolean;
+
+  /**
+   * Whether the header should render a bottom divider.
+   */
+  headerDivider?: boolean;
 
   /**
    * Whether the shell should render visual dividers between major regions.
@@ -145,6 +151,9 @@ export const PageShell = ({
   divider = false,
   footer,
   header,
+  headerContained = true,
+  headerDivider,
+  headerPosition = 'static',
   mainAs,
   mainId,
   mainLabel,
@@ -152,7 +161,6 @@ export const PageShell = ({
   navigation,
   showSkipLink = true,
   skipLinkLabel,
-  stickyHeader = false,
 }: PageShellProps) => {
   const Component = (as ?? 'div') as ElementType;
   const MainComponent = (mainAs ?? 'main') as ElementType;
@@ -171,11 +179,15 @@ export const PageShell = ({
         <header
           className={classNames(
             styles.header,
-            stickyHeader && styles.stickyHeader,
-            divider && styles.headerDivider
+            headerPosition === 'sticky' && styles.headerSticky,
+            (headerDivider ?? divider) && styles.headerDivider
           )}
         >
-          <div className={styles.regionInner}>{header}</div>
+          {headerContained ? (
+            <div className={styles.regionInner}>{header}</div>
+          ) : (
+            header
+          )}
         </header>
       ) : null}
 

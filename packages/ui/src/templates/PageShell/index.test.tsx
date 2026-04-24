@@ -79,9 +79,9 @@ describe('PageShell', () => {
       <PageShell
         aside={<p>Aside</p>}
         divider
+        headerPosition="sticky"
         header={<p>Header content</p>}
         navigation={<p>Navigation content</p>}
-        stickyHeader
       >
         Page content
       </PageShell>
@@ -89,7 +89,7 @@ describe('PageShell', () => {
 
     expect(screen.getByRole('banner')).toHaveClass(
       styles.header,
-      styles.stickyHeader,
+      styles.headerSticky,
       styles.headerDivider
     );
     expect(screen.getByRole('navigation')).toHaveClass(
@@ -105,6 +105,28 @@ describe('PageShell', () => {
     expect(screen.getByText('Page content').closest('[class]')).toHaveClass(
       styles.regionInner
     );
+  });
+
+  it('supports uncontained header content and explicit header divider', () => {
+    render(
+      <PageShell
+        header={
+          <div data-testid="header-slot">
+            <p>Navbar host</p>
+          </div>
+        }
+        headerContained={false}
+        headerDivider
+      >
+        Page content
+      </PageShell>
+    );
+
+    const banner = screen.getByRole('banner');
+
+    expect(banner).toHaveClass(styles.header, styles.headerDivider);
+    expect(banner.querySelector(`.${styles.regionInner}`)).toBeNull();
+    expect(screen.getByTestId('header-slot')).toBeInTheDocument();
   });
 
   it('applies token-driven outer container layout styles', () => {

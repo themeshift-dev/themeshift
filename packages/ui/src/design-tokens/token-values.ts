@@ -1,5 +1,9 @@
 /* auto-generated */
 export const tokenValues = {
+  "appShell.aside.inlineWidth": "18rem",
+  "appShell.navigation.inlineWidth": "16rem",
+  "appShell.overlay.maxWidth": "22rem",
+  "appShell.sidebar.inlineWidth": "20rem",
   "background.canvas": "#fff",
   "background.overlay": "rgba(255, 255, 255, .8)",
   "background.surface": "#dfe6e9",

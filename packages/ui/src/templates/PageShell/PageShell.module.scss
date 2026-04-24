@@ -77,10 +77,10 @@
   }
 }
 
-.stickyHeader {
+.headerSticky {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: token('layer.sticky');
   background-color: token('background.surface');
 }
 

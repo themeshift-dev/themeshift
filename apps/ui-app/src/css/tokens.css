@@ -514,6 +514,10 @@
   --themeshift-components-toggle-switch-size-small-width: 3rem;
 
   /* Other */
+  --themeshift-app-shell-aside-inline-width: 18rem;
+  --themeshift-app-shell-navigation-inline-width: 16rem;
+  --themeshift-app-shell-overlay-max-width: 22rem;
+  --themeshift-app-shell-sidebar-inline-width: 20rem;
   --themeshift-duration-fast: 120ms;
   --themeshift-duration-medium: 200ms;
   --themeshift-duration-slow: 320ms;

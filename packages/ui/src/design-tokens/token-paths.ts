@@ -1,5 +1,9 @@
 /* auto-generated */
 export const tokenPaths = [
+  "appShell.aside.inlineWidth",
+  "appShell.navigation.inlineWidth",
+  "appShell.overlay.maxWidth",
+  "appShell.sidebar.inlineWidth",
   "background.canvas",
   "background.overlay",
   "background.surface",

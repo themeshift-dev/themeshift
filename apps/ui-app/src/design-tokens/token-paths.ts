@@ -2,6 +2,10 @@
 export const tokenPaths = [
   "accessibility.focus.offset",
   "accessibility.focus.width",
+  "appShell.aside.inlineWidth",
+  "appShell.navigation.inlineWidth",
+  "appShell.overlay.maxWidth",
+  "appShell.sidebar.inlineWidth",
   "background.canvas",
   "background.overlay",
   "background.surface",
