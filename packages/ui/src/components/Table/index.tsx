@@ -178,27 +178,7 @@ function inferColumnCountFromRowChildren(
       continue;
     }
 
-    const childChildren = (child.props as { children?: ReactNode }).children;
     const typeName = getTypeName(child);
-    const slotType = child.type as TableSlotMarker;
-    const isMarkedTableSlot =
-      typeof child.type !== 'string' && Boolean(slotType[TABLE_SLOT_SYMBOL]);
-    const isKnownNonCellSlot =
-      typeName === 'Table.Body' ||
-      typeName === 'Table.Caption' ||
-      typeName === 'Table.Container' ||
-      typeName === 'Table.Empty' ||
-      typeName === 'Table.Foot' ||
-      typeName === 'Table.Head' ||
-      typeName === 'Table.Row' ||
-      child.type === TableBody ||
-      child.type === TableCaption ||
-      child.type === TableContainer ||
-      child.type === TableEmpty ||
-      child.type === TableFoot ||
-      child.type === TableHead ||
-      child.type === TableRow;
-    const isCellSlot = isMarkedTableSlot && !isKnownNonCellSlot;
     const isCell =
       typeName === 'td' ||
       typeName === 'th' ||
@@ -207,30 +187,9 @@ function inferColumnCountFromRowChildren(
       typeName === 'Table.Cell' ||
       child.type === TableData ||
       child.type === TableHeader ||
-      child.type === TableCell ||
-      isCellSlot;
+      child.type === TableCell;
 
     if (!isCell) {
-      const nestedCount = inferColumnCountFromRowChildren(childChildren);
-
-      if (nestedCount !== undefined) {
-        count += nestedCount;
-        continue;
-      }
-
-      // If an unknown leaf component sits directly in a row, treat it as a cell.
-      const hasElementChildren = toArray(childChildren).some((nestedChild) =>
-        isValidElement(nestedChild)
-      );
-
-      if (!hasElementChildren) {
-        const colSpanValue = Number(
-          (child.props as { colSpan?: number }).colSpan
-        );
-        count +=
-          Number.isFinite(colSpanValue) && colSpanValue > 0 ? colSpanValue : 1;
-      }
-
       continue;
     }
 
@@ -252,20 +211,23 @@ function inferColumnCountFromBodyChildren(
       continue;
     }
 
-    const childChildren = (child.props as { children?: ReactNode }).children;
-    const directCount = inferColumnCountFromRowChildren(childChildren);
-
-    if (directCount !== undefined) {
-      return directCount;
-    }
-
     const typeName = getTypeName(child);
     const isRow =
       typeName === 'tr' || typeName === 'Table.Row' || child.type === TableRow;
 
     if (isRow) {
+      const count = inferColumnCountFromRowChildren(
+        (child.props as { children?: ReactNode }).children
+      );
+
+      if (count !== undefined) {
+        return count;
+      }
+
       continue;
     }
+
+    const childChildren = (child.props as { children?: ReactNode }).children;
 
     if (childChildren !== undefined) {
       const count = inferColumnCountFromBodyChildren(childChildren);

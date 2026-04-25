@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import { createRef } from 'react';
@@ -312,6 +312,204 @@ describe('Table', () => {
 
     expect(wrapper).toBeInTheDocument();
     expect(wrapper).toHaveClass(styles.responsiveScrollTablet);
+  });
+
+  it('supports additional responsive breakpoint wrappers', () => {
+    const { container: mobileContainer } = render(
+      <Table
+        columns={[{ key: 'invoice', header: 'Invoice' }]}
+        data={[{ invoice: 'INV-001' }]}
+        responsive="scroll"
+        responsiveBreakpoint="mobile"
+      />
+    );
+    const { container: desktopContainer } = render(
+      <Table
+        columns={[{ key: 'invoice', header: 'Invoice' }]}
+        data={[{ invoice: 'INV-001' }]}
+        responsive="scroll"
+        responsiveBreakpoint="desktop"
+      />
+    );
+
+    expect(
+      mobileContainer.querySelector(`.${styles.responsiveScroll}`)
+    ).toHaveClass(styles.responsiveScrollMobile);
+    expect(
+      desktopContainer.querySelector(`.${styles.responsiveScroll}`)
+    ).toHaveClass(styles.responsiveScrollDesktop);
+  });
+
+  it('renders Table.Empty element directly in data mode', () => {
+    render(
+      <Table
+        columns={[
+          { key: 'invoice', header: 'Invoice' },
+          { key: 'status', header: 'Status' },
+        ]}
+        data={[]}
+        emptyState={<Table.Empty title="No rows yet" />}
+      />
+    );
+
+    const emptyCell = screen.getByText('No rows yet').closest('td');
+
+    expect(emptyCell).toHaveAttribute('colspan', '2');
+  });
+
+  it('applies function dataProps, sizing, sticky, and responsive hide classes', () => {
+    render(
+      <Table
+        columns={[
+          {
+            key: 'invoice',
+            accessor: 'id',
+            header: 'Invoice',
+            sticky: true,
+            width: 180,
+          },
+          {
+            key: 'status',
+            accessor: 'status',
+            dataProps: (row) => ({
+              align: row.status === 'Paid' ? 'end' : 'start',
+              className: 'status-cell',
+            }),
+            header: 'Status',
+            hideBelow: 'desktop',
+            maxWidth: 220,
+            minWidth: 120,
+          },
+        ]}
+        data={invoices}
+      />
+    );
+
+    const headers = screen.getAllByRole('columnheader');
+    const firstRowCells = screen.getAllByRole('cell').slice(0, 2);
+
+    expect(headers[0]).toHaveClass(styles.stickyCell);
+    expect(headers[0]).toHaveStyle({ width: '180px' });
+    expect(headers[1]).toHaveClass(styles.hideBelowDesktop);
+    expect(headers[1]).toHaveStyle({ maxWidth: '220px', minWidth: '120px' });
+    expect(firstRowCells[1]).toHaveClass('status-cell', styles.alignEnd);
+  });
+
+  it('supports caption placement and visually hidden captions', () => {
+    render(
+      <Table>
+        <Table.Caption placement="bottom" visuallyHidden>
+          Hidden caption
+        </Table.Caption>
+      </Table>
+    );
+
+    const caption = screen.getByText('Hidden caption');
+
+    expect(caption).toHaveClass(styles.captionBottom, styles.visuallyHidden);
+  });
+
+  it('renders sticky head and supports Table.Cell as th', () => {
+    render(
+      <Table>
+        <Table.Head sticky>
+          <Table.Row>
+            <Table.Cell as="th" scope="col">
+              Invoice
+            </Table.Cell>
+          </Table.Row>
+        </Table.Head>
+      </Table>
+    );
+
+    const head = screen.getByRole('rowgroup');
+    const headerCell = screen.getByRole('columnheader', { name: 'Invoice' });
+
+    expect(head).toHaveClass(styles.headSticky);
+    expect(headerCell).toHaveClass(styles.header);
+  });
+
+  it('uses custom Empty children when provided', () => {
+    render(
+      <Table>
+        <Table.Body>
+          <Table.Row>
+            <Table.Data>INV-001</Table.Data>
+          </Table.Row>
+          <Table.Empty>
+            <p>Custom empty content</p>
+          </Table.Empty>
+        </Table.Body>
+      </Table>
+    );
+
+    expect(screen.getByText('Custom empty content')).toBeInTheDocument();
+    expect(screen.queryByText('No data available')).not.toBeInTheDocument();
+  });
+
+  it('does not expose region semantics when scroll is disabled or focusable is false', () => {
+    const { rerender } = render(
+      <Table.Container focusable scroll="none">
+        <Table />
+      </Table.Container>
+    );
+
+    expect(screen.queryByRole('region')).not.toBeInTheDocument();
+
+    rerender(
+      <Table.Container focusable={false} scroll="horizontal">
+        <Table />
+      </Table.Container>
+    );
+
+    const region = screen.getByRole('region');
+
+    expect(region).not.toHaveAttribute('tabindex');
+  });
+
+  it('blocks disabled row keydown handlers', () => {
+    const onKeyDown = vi.fn();
+
+    render(
+      <Table>
+        <Table.Body>
+          <Table.Row onKeyDown={onKeyDown}>
+            <Table.Data>Enabled</Table.Data>
+          </Table.Row>
+          <Table.Row disabled onKeyDown={onKeyDown}>
+            <Table.Data>Disabled</Table.Data>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    );
+
+    fireEvent.keyDown(screen.getByText('Enabled').closest('tr')!, {
+      key: 'Enter',
+    });
+    fireEvent.keyDown(screen.getByText('Disabled').closest('tr')!, {
+      key: 'Enter',
+    });
+
+    expect(onKeyDown).toHaveBeenCalledTimes(1);
+  });
+
+  it('warns for invalid children/data combinations', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    render(
+      <Table columns={[{ key: 'invoice', header: 'Invoice' }]} data={invoices}>
+        <Table.Body>
+          <Table.Row>
+            <Table.Data>INV-001</Table.Data>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    );
+    render(<Table data={invoices} />);
+
+    expect(warnSpy).toHaveBeenCalled();
+
+    warnSpy.mockRestore();
   });
 
   it('has no accessibility violations for representative semantic usage', async () => {
