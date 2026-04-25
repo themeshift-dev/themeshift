@@ -16,7 +16,7 @@
   border-spacing: 0;
   color: token('text.primary');
   inline-size: auto;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .fullWidth {
@@ -180,6 +180,38 @@
   vertical-align: middle;
 }
 
+.head .row:first-child > .cell:first-child {
+  border-start-start-radius: var(
+    --themeshift-components-table-border-radius,
+    0.25rem
+  );
+}
+
+.head .row:first-child > .cell:last-child {
+  border-start-end-radius: var(
+    --themeshift-components-table-border-radius,
+    0.25rem
+  );
+}
+
+.body .row:last-child > .cell:first-child,
+.emptyRow > .cell:first-child,
+.foot .row:last-child > .cell:first-child {
+  border-end-start-radius: var(
+    --themeshift-components-table-border-radius,
+    0.25rem
+  );
+}
+
+.body .row:last-child > .cell:last-child,
+.emptyRow > .cell:last-child,
+.foot .row:last-child > .cell:last-child {
+  border-end-end-radius: var(
+    --themeshift-components-table-border-radius,
+    0.25rem
+  );
+}
+
 .header {
   @include typography.style('body.strong');
 
@@ -235,8 +267,15 @@
     ),
     var(--themeshift-components-table-body-background);
   inset-inline-start: 0;
+  left: 0;
   position: sticky;
+  right: auto;
   z-index: 2;
+}
+
+[dir='rtl'] .stickyCell {
+  left: auto;
+  right: 0;
 }
 
 .head .stickyCell {

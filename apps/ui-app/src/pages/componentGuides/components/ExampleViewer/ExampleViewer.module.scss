@@ -16,7 +16,7 @@ $compactMinHeight: 4rem;
   display: grid;
   justify-items: safe center;
   min-height: 300px;
-  overflow-x: auto;
+  overflow-x: hidden;
   position: relative;
   white-space: pre;
 }
@@ -61,7 +61,7 @@ $compactMinHeight: 4rem;
   min-width: 100%;
   padding: 1rem;
   white-space: normal;
-  width: fit-content;
+  width: 100%;
 
   &.multipleExamples {
     margin-top: 2.5rem;
