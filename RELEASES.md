@@ -66,7 +66,7 @@ Make sure these things are ready:
 - npm trusted publishing is enabled for `@themeshift/ui`
 - npm trusted publishing is enabled for `@themeshift/vite-plugin`
 - both npm packages trust the GitHub Actions workflow named `release.yml`
-- the repo secret `RELEASE_PLEASE_TOKEN` is set to a PAT that can create release PRs and releases
+- the repo secret `AUTOMATION_TOKEN` is set to a PAT that can create release PRs and releases
 - CI is passing on the release PR and on `develop`
 
 Useful checks:
@@ -123,7 +123,7 @@ Check:
 - the squash commit title uses Conventional Commit syntax
 - the change affected a configured release package
 - GitHub Actions is enabled
-- `RELEASE_PLEASE_TOKEN` is valid
+- `AUTOMATION_TOKEN` is valid
 
 ### The release PR opens, but npm publish does not happen
 
