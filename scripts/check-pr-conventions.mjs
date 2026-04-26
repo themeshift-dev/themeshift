@@ -12,6 +12,11 @@ if (baseBranch !== 'develop') {
   process.exit(0);
 }
 
+if (headBranch === 'main') {
+  console.log('Skipping PR branch name check for main -> develop sync PR.');
+  process.exit(0);
+}
+
 if (!branchPattern.test(headBranch)) {
   throw new Error(
     `Invalid branch name "${headBranch}". Use feat/short-description, fix/short-description, chore/short-description, feat/KEY-123-short-description, fix/KEY-123-short-description, or chore/KEY-123-short-description.`
