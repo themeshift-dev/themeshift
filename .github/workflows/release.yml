@@ -20,6 +20,8 @@ jobs:
       - name: Create release PR or GitHub releases
         id: release
         uses: googleapis/release-please-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.AUTOMATION_TOKEN }}
         with:
           token: ${{ secrets.AUTOMATION_TOKEN }}
           config-file: release-please-config.json
