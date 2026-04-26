@@ -77,7 +77,8 @@ jobs:
       # Run the main validation pipeline used for pull requests and main
       - run: pnpm ci:validate
 
-      # Build the plugin package so workspace consumers can resolve dist entrypoints during tests
+      # Build core + plugin packages so workspace consumers can resolve dist entrypoints during tests
+      - run: pnpm --filter @themeshift/core build
       - run: pnpm --filter @themeshift/vite-plugin build
 
       # Generate UI package coverage output for Codecov
