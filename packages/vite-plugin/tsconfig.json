@@ -4,6 +4,11 @@
     "lib": ["ESNext", "DOM"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@themeshift/core": ["../core/src/index.ts"],
+      "@themeshift/core/token": ["../core/src/token.ts"]
+    },
     "declaration": true,
     "strict": true,
     "skipLibCheck": true,
