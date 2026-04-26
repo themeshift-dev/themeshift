@@ -1,7 +1,7 @@
 # @themeshift/vite-plugin
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![Build](https://github.com/themeshift-dev/themeshift/actions/workflows/ci.yml/badge.svg?branch=develop)
+![CI](https://github.com/themeshift-dev/themeshift/actions/workflows/ci.yml/badge.svg?branch=develop)
 ![Coverage](https://codecov.io/gh/themeshift-dev/themeshift/graph/badge.svg?flag=vite-plugin&branch=develop)
 ![npm](https://img.shields.io/npm/v/@themeshift/vite-plugin)
 
