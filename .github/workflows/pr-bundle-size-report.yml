@@ -132,6 +132,7 @@ jobs:
           pnpm -C base install --frozen-lockfile --ignore-scripts=false
           pnpm -C base --filter @themeshift/core build
           pnpm -C base --filter @themeshift/vite-plugin build
+          pnpm -C base --filter @themeshift/vite-plugin-themeshift build
           pnpm -C base/packages/ui run build:components
 
       - name: Checkout head commit
@@ -147,6 +148,7 @@ jobs:
           pnpm -C head install --frozen-lockfile --ignore-scripts=false
           pnpm -C head --filter @themeshift/core build
           pnpm -C head --filter @themeshift/vite-plugin build
+          pnpm -C head --filter @themeshift/vite-plugin-themeshift build
           pnpm -C head/packages/ui run build:components
 
       - name: Generate audit JSON for base and head
