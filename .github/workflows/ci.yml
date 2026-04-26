@@ -65,6 +65,15 @@ jobs:
       # Confirm generated README badges match the current package surface
       - run: pnpm docs:check-badges
 
+      - name: Configure Turborepo SCM range
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "TURBO_SCM_BASE=origin/${{ github.base_ref }}" >> "$GITHUB_ENV"
+          else
+            echo "TURBO_SCM_BASE=origin/develop" >> "$GITHUB_ENV"
+          fi
+          echo "TURBO_SCM_HEAD=HEAD" >> "$GITHUB_ENV"
+
       # Run the main validation pipeline used for pull requests and main
       - run: pnpm ci:validate
 
