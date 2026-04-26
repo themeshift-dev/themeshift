@@ -1,0 +1,70 @@
+{
+  "name": "@themeshift/next",
+  "version": "0.1.0",
+  "description": "Next.js wrapper for ThemeShift core token tooling.",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:themeshift-dev/themeshift.git",
+    "directory": "packages/next"
+  },
+  "homepage": "https://github.com/themeshift-dev/themeshift/tree/main/packages/next",
+  "bugs": {
+    "url": "https://github.com/themeshift-dev/themeshift/issues"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./token": {
+      "sass": "./dist/token.scss",
+      "types": "./dist/token.d.ts",
+      "import": "./dist/token.js"
+    },
+    "./_token": {
+      "sass": "./dist/token.scss"
+    },
+    "./token-defaults": {
+      "sass": "./dist/token-defaults.scss"
+    },
+    "./_token-defaults": {
+      "sass": "./dist/token-defaults.scss"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "token.scss",
+    "token-defaults.scss"
+  ],
+  "scripts": {
+    "build": "tsup && cp src/token.scss dist/token.scss && cp src/token-defaults.scss dist/token-defaults.scss",
+    "dev": "tsup --watch --onSuccess \"cp src/token.scss dist/token.scss && cp src/token-defaults.scss dist/token-defaults.scss\"",
+    "prepublishOnly": "pnpm run build",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "next": ">=15.0.0"
+  },
+  "dependencies": {
+    "@themeshift/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "prettier": "^3.8.1",
+    "sass": "^1.98.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^4.0.18"
+  }
+}

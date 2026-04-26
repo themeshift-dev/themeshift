@@ -15,8 +15,7 @@ describe('ThemeShift token helpers', () => {
     expect(
       tokenValue('typography.heading.large.font', { values: tokenValues })
     ).toEqual({
-      fontFamily:
-        "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+      fontFamily: "'Helvetica Neue', system-ui, sans-serif",
       fontSize: '1.5rem',
       lineHeight: '2.25rem',
       fontWeight: '700',
@@ -24,8 +23,7 @@ describe('ThemeShift token helpers', () => {
     expect(
       tokenValue('typography.body.medium.font', { values: tokenValues })
     ).toEqual({
-      fontFamily:
-        "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+      fontFamily: "'Helvetica Neue', system-ui, sans-serif",
       fontSize: '1rem',
       lineHeight: '1.375rem',
       fontWeight: '400',
@@ -95,7 +93,7 @@ describe('ThemeShift token helpers', () => {
   it('supports consuming typography shorthand and matching letter spacing tokens together', () => {
     document.documentElement.style.setProperty(
       '--themeshift-typography-body-medium-font',
-      "400 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif"
+      "400 1rem/1.375rem 'Helvetica Neue', system-ui, sans-serif"
     );
     document.documentElement.style.setProperty(
       '--themeshift-typography-body-medium-letter-spacing',
@@ -120,7 +118,7 @@ describe('ThemeShift token helpers', () => {
   it('supports semantic typography style tokens including font style', () => {
     document.documentElement.style.setProperty(
       '--themeshift-typography-body-medium-font',
-      "400 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif"
+      "400 1rem/1.375rem 'Helvetica Neue', system-ui, sans-serif"
     );
     document.documentElement.style.setProperty(
       '--themeshift-typography-body-medium-letter-spacing',

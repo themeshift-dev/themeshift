@@ -260,7 +260,7 @@ export const tokenValues = {
   "components.badge.variant.warning.solid.background": "#D89A00",
   "components.badge.variant.warning.solid.border": "#D89A00",
   "components.badge.variant.warning.solid.text": "#000",
-  "components.button.font": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+  "components.button.font": "'Helvetica Neue', system-ui, sans-serif",
   "components.button.intent.constructive.background": "#66BB6A",
   "components.button.intent.constructive.hover": "#81C784",
   "components.button.intent.constructive.text": "#000",
@@ -398,7 +398,7 @@ export const tokenValues = {
   "components.input.validation.valid.border": "#66BB6A",
   "components.input.validation.warning.border": "#29B6F6",
   "components.link.background": "transparent",
-  "components.link.font": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+  "components.link.font": "'Helvetica Neue', system-ui, sans-serif",
   "components.link.text": "#3949AB",
   "components.navbar.border.default": "rgba(255, 255, 255, .05)",
   "components.navbar.brand.text": "#fff",
@@ -522,7 +522,7 @@ export const tokenValues = {
   "components.skeleton.shimmer.base": "rgba(0, 0, 0, .02)",
   "components.skiplink.background": "#5C6BC0",
   "components.skiplink.borderRadius": ".5rem",
-  "components.skiplink.font": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+  "components.skiplink.font": "'Helvetica Neue', system-ui, sans-serif",
   "components.skiplink.text": "#fff",
   "components.skiplink.x": "1rem",
   "components.skiplink.y": "1rem",
@@ -677,10 +677,10 @@ export const tokenValues = {
   "focus.ring.gap": "#fff",
   "focus.ring.offset": "2px",
   "focus.ring.width": "3px",
-  "font.family.default": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+  "font.family.default": "'Helvetica Neue', system-ui, sans-serif",
   "font.family.display": "Georgia, serif",
   "font.family.mono": "'Sometype Mono Variable', monospace",
-  "font.family.sans": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+  "font.family.sans": "'Helvetica Neue', system-ui, sans-serif",
   "font.family.serif": "Georgia, serif",
   "font.style.italic": "italic",
   "font.style.normal": "normal",
@@ -787,7 +787,7 @@ export const tokenValues = {
   "text.secondary": "rgba(0, 0, 0, .7)",
   "text.success": "#388E3C",
   "typography.body.large.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "1.125rem",
     "lineHeight": "1.5rem",
     "fontWeight": "400"
@@ -798,7 +798,7 @@ export const tokenValues = {
   "typography.body.large.letterSpacing": "0.01em",
   "typography.body.large.lineHeight": "1.5rem",
   "typography.body.medium.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "400"
@@ -809,7 +809,7 @@ export const tokenValues = {
   "typography.body.medium.letterSpacing": "0.01em",
   "typography.body.medium.lineHeight": "1.375rem",
   "typography.body.mediumItalic.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "400"
@@ -820,7 +820,7 @@ export const tokenValues = {
   "typography.body.mediumItalic.letterSpacing": "0.01em",
   "typography.body.mediumItalic.lineHeight": "1.375rem",
   "typography.body.mediumStrong.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "600"
@@ -831,7 +831,7 @@ export const tokenValues = {
   "typography.body.mediumStrong.letterSpacing": "0.01em",
   "typography.body.mediumStrong.lineHeight": "1.375rem",
   "typography.body.small.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "0.875rem",
     "lineHeight": "1.25rem",
     "fontWeight": "400"
@@ -875,7 +875,7 @@ export const tokenValues = {
   "typography.heading.displayLarge.letterSpacing": "0",
   "typography.heading.displayLarge.lineHeight": "2.25rem",
   "typography.heading.large.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "1.5rem",
     "lineHeight": "2.25rem",
     "fontWeight": "700"
@@ -886,7 +886,7 @@ export const tokenValues = {
   "typography.heading.large.letterSpacing": "0",
   "typography.heading.large.lineHeight": "2.25rem",
   "typography.heading.medium.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "1.375rem",
     "lineHeight": "1.75rem",
     "fontWeight": "700"
@@ -897,7 +897,7 @@ export const tokenValues = {
   "typography.heading.medium.letterSpacing": "0",
   "typography.heading.medium.lineHeight": "1.75rem",
   "typography.heading.small.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "1.25rem",
     "lineHeight": "1.5rem",
     "fontWeight": "700"
@@ -908,7 +908,7 @@ export const tokenValues = {
   "typography.heading.small.letterSpacing": "0",
   "typography.heading.small.lineHeight": "1.5rem",
   "typography.heading.xSmall.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "700"
@@ -919,7 +919,7 @@ export const tokenValues = {
   "typography.heading.xSmall.letterSpacing": "0.01em",
   "typography.heading.xSmall.lineHeight": "1.375rem",
   "typography.label.large.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "1.125rem",
     "lineHeight": "1.5rem",
     "fontWeight": "500"
@@ -930,7 +930,7 @@ export const tokenValues = {
   "typography.label.large.letterSpacing": "0.01em",
   "typography.label.large.lineHeight": "1.5rem",
   "typography.label.medium.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "1rem",
     "lineHeight": "1.375rem",
     "fontWeight": "500"
@@ -941,7 +941,7 @@ export const tokenValues = {
   "typography.label.medium.letterSpacing": "0.01em",
   "typography.label.medium.lineHeight": "1.375rem",
   "typography.label.small.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "0.875rem",
     "lineHeight": "1.125rem",
     "fontWeight": "500"
@@ -952,7 +952,7 @@ export const tokenValues = {
   "typography.label.small.letterSpacing": "0.02em",
   "typography.label.small.lineHeight": "1.125rem",
   "typography.label.smallItalic.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "0.875rem",
     "lineHeight": "1.125rem",
     "fontWeight": "400"
@@ -963,7 +963,7 @@ export const tokenValues = {
   "typography.label.smallItalic.letterSpacing": "0.02em",
   "typography.label.smallItalic.lineHeight": "1.125rem",
   "typography.label.smallStrong.font": {
-    "fontFamily": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+    "fontFamily": "'Helvetica Neue', system-ui, sans-serif",
     "fontSize": "0.875rem",
     "lineHeight": "1.125rem",
     "fontWeight": "600"

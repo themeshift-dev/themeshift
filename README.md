@@ -20,10 +20,12 @@ ThemeShift is now managed as a single monorepo so the Vite plugin, UI library, a
 ## Workspace layout
 
 - `packages/vite-plugin`: publishes `@themeshift/vite-plugin`
+- `packages/next`: publishes `@themeshift/next`
 - `packages/core`: publishes `@themeshift/core`
 - `packages/cli`: publishes `@themeshift/cli`
 - `packages/ui`: publishes `@themeshift/ui`
 - `apps/ui-app`: private docs/tooling app deployed through Netlify
+- `apps/ui-demo`: private Next.js demo app for `@themeshift/ui` scenarios
 
 ## Local development
 

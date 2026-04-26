@@ -4,25 +4,25 @@
       "$type": "fontFamily",
 
       "sans": {
-        "$value": "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+        "$value": "'Helvetica Neue', system-ui, sans-serif",
         "$description": "Primary UI font"
       },
 
       "serif": { "$value": "Georgia, serif", "$description": "Editorial font" },
 
-      "display": {
-        "$value": "Georgia, serif",
-        "$description": "Display font for hero and editorial headings"
-      },
-
       "mono": {
-        "$value": "'Sometype Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace",
+        "$value": "ui-monospace, SFMono-Regular, Menlo, monospace",
         "$description": "Monospace code font"
       },
 
       "default": {
         "$value": "{font.family.sans}",
         "$description": "Default font-family for UI text"
+      },
+
+      "display": {
+        "$value": "Georgia, serif",
+        "$description": "Display font for hero and editorial headings"
       }
     },
 

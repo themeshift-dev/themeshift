@@ -8,13 +8,8 @@ import * as sass from 'sass';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
-const interDir = path.join(
-  rootDir,
-  'node_modules',
-  '@fontsource-variable',
-  'inter'
-);
 const isSilent = process.argv.includes('--silent');
+const cssTypeDeclaration = 'declare const css: string;\nexport default css;\n';
 
 async function run(command, args) {
   await new Promise((resolve, reject) => {
@@ -75,20 +70,20 @@ async function compileBaseCss() {
       style: 'expanded',
     }
   );
-  const [interNormalCss, interItalicCss] = await Promise.all([
-    readFile(path.join(interDir, 'wght.css'), 'utf8'),
-    readFile(path.join(interDir, 'wght-italic.css'), 'utf8'),
-  ]);
-  const fontsCss = [interNormalCss, interItalicCss]
-    .join('\n')
-    .replaceAll("format('woff2-variations')", "format('woff2')");
 
   await mkdir(path.join(distDir, 'css'), { recursive: true });
-  await cp(path.join(interDir, 'files'), path.join(distDir, 'css', 'files'), {
-    recursive: true,
-  });
-  await writeFile(path.join(distDir, 'css/fonts.css'), `${fontsCss}\n`);
   await writeFile(path.join(distDir, 'css/base.css'), `${result.css}\n`);
+}
+
+async function writeCssTypeDeclarations() {
+  const cssDir = path.join(distDir, 'css');
+  const cssFiles = ['base.css', 'tokens.css'];
+
+  await Promise.all(
+    cssFiles.map((filename) =>
+      writeFile(path.join(cssDir, `${filename}.d.ts`), cssTypeDeclaration)
+    )
+  );
 }
 
 async function copyThemeAssets() {
@@ -146,3 +141,4 @@ await run('pnpm', ['exec', 'tsc', '-p', 'tsconfig.build.json']);
 await removeNonPublishedArtifacts();
 await compileBaseCss();
 await copyThemeAssets();
+await writeCssTypeDeclarations();

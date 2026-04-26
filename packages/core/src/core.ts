@@ -26,7 +26,7 @@ function normalizeOptions(
     extends: options.extends ?? [],
     cssVarPrefix: options.cssVarPrefix,
     groups: options.groups,
-    defaultTheme: options.defaultTheme,
+    defaultTheme: options.defaultTheme ?? 'dark',
     outputPrintTheme: options.outputPrintTheme ?? false,
     outputComments: options.outputComments ?? true,
     watch: options.watch ?? true,

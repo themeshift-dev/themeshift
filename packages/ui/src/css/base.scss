@@ -4,6 +4,7 @@
   color-scheme: dark light;
   color: themeShift.token('text.primary');
   background-color: themeShift.token('background.surface');
+  font: themeShift.token('typography.body.medium.font');
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

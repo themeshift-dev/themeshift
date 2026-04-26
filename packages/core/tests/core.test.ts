@@ -15,16 +15,23 @@ const sdMocks = vi.hoisted(() => {
   const extend = vi.fn(() => ({ buildPlatform }));
   const registerTransform = vi.fn();
   const registerFormat = vi.fn();
+  const styleDictionary = {
+    extend,
+    registerFormat,
+    registerTransform,
+  };
 
-  return { buildPlatform, extend, registerFormat, registerTransform };
+  return {
+    buildPlatform,
+    extend,
+    registerFormat,
+    registerTransform,
+    styleDictionary,
+  };
 });
 
 vi.mock('style-dictionary', () => ({
-  default: {
-    extend: sdMocks.extend,
-    registerFormat: sdMocks.registerFormat,
-    registerTransform: sdMocks.registerTransform,
-  },
+  default: sdMocks.styleDictionary,
 }));
 
 describe('core build orchestration', () => {
@@ -33,6 +40,8 @@ describe('core build orchestration', () => {
     sdMocks.extend.mockReset();
     sdMocks.registerFormat.mockReset();
     sdMocks.registerTransform.mockReset();
+    delete (sdMocks.styleDictionary as { __hd_registered?: boolean })
+      .__hd_registered;
     sdMocks.buildPlatform.mockImplementation(async () => {});
     sdMocks.extend.mockImplementation(() => ({
       buildPlatform: sdMocks.buildPlatform,
@@ -48,6 +57,38 @@ describe('core build orchestration', () => {
 
     const calls = sdMocks.buildPlatform.mock.calls.map((call) => call[0]);
     expect(calls).toEqual(['css', 'scss', 'meta']);
+  });
+
+  it('defaults defaultTheme to dark when not provided', async () => {
+    await buildTokens();
+
+    const cssVariablesFormat = sdMocks.registerFormat.mock.calls
+      .map((call) => call[0])
+      .find(
+        (entry: { name?: string }) =>
+          entry?.name === 'css/variables-modes-grouped'
+      );
+
+    const output = cssVariablesFormat?.format?.({
+      dictionary: {
+        allTokens: [
+          {
+            attributes: { theme: 'light' },
+            name: 'theme-surface-base',
+            value: '#ffffff',
+          },
+          {
+            attributes: { theme: 'dark' },
+            name: 'theme-surface-base',
+            value: '#111111',
+          },
+        ],
+      },
+    });
+
+    expect(output).toContain(
+      ':root {\n  /* Theme */\n  --theme-surface-base: #111111;'
+    );
   });
 
   it('ignores empty and invalid local tokens in serve mode', async () => {

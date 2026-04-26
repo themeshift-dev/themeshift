@@ -1,5 +1,3 @@
-import '@fontsource-variable/inter/wght.css';
-import '@fontsource-variable/inter/wght-italic.css';
 import '@fontsource-variable/sometype-mono/index.css';
 import { ThemeProvider } from '@themeshift/ui/contexts';
 import { StrictMode } from 'react';

@@ -11,6 +11,10 @@
       "package-name": "@themeshift/core",
       "release-type": "node"
     },
+    "packages/next": {
+      "package-name": "@themeshift/next",
+      "release-type": "node"
+    },
     "packages/ui": { "package-name": "@themeshift/ui", "release-type": "node" },
     "packages/vite-plugin": {
       "package-name": "@themeshift/vite-plugin",
