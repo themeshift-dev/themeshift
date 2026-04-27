@@ -45,4 +45,19 @@ describe('Portal', () => {
     expect(wrapper).toContainElement(screen.getByTestId('inline-content'));
     expect(container).toContainElement(screen.getByTestId('inline-content'));
   });
+
+  it('renders inline when no portal target is available', () => {
+    const { container } = render(
+      <div data-testid="fallback-wrapper">
+        <Portal container={0 as unknown as HTMLElement}>
+          <span data-testid="fallback-content">Fallback content</span>
+        </Portal>
+      </div>
+    );
+
+    const wrapper = screen.getByTestId('fallback-wrapper');
+
+    expect(wrapper).toContainElement(screen.getByTestId('fallback-content'));
+    expect(container).toContainElement(screen.getByTestId('fallback-content'));
+  });
 });

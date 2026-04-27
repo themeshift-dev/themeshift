@@ -249,6 +249,214 @@ describe('useAnchoredPosition', () => {
     });
   });
 
+  it('supports top placement arrow style', async () => {
+    const arrowRef = { current: null as HTMLElement | null };
+
+    const ArrowHarness = ({ placement = 'top' as Placement }) => {
+      const { anchorRef, arrowStyle, floatingRef } = useAnchoredPosition({
+        arrowRef,
+        open: true,
+        placement,
+      });
+
+      return (
+        <>
+          <div data-testid="anchor" ref={anchorRef} />
+          <div data-testid="floating" ref={floatingRef}>
+            <div
+              data-testid="arrow"
+              ref={(node) => (arrowRef.current = node)}
+              style={arrowStyle}
+            />
+          </div>
+        </>
+      );
+    };
+
+    render(<ArrowHarness />);
+
+    const anchor = screen.getByTestId('anchor');
+    const floating = screen.getByTestId('floating');
+    const arrow = screen.getByTestId('arrow');
+
+    setRect(anchor, {
+      bottom: 300,
+      height: 40,
+      left: 200,
+      right: 280,
+      top: 260,
+      width: 80,
+    });
+    setRect(floating, {
+      bottom: 0,
+      height: 60,
+      left: 0,
+      right: 0,
+      top: 0,
+      width: 120,
+    });
+    setRect(arrow, {
+      bottom: 0,
+      height: 10,
+      left: 0,
+      right: 0,
+      top: 0,
+      width: 10,
+    });
+    triggerPositionUpdate();
+
+    await waitFor(() => {
+      expect(arrow.style.bottom).toBe('-5px');
+      expect(arrow.style.top).toBe('auto');
+    });
+  });
+
+  it('supports left placement arrow style', async () => {
+    const arrowRef = { current: null as HTMLElement | null };
+
+    const ArrowHarness = ({ placement = 'left' as Placement }) => {
+      const { anchorRef, arrowStyle, floatingRef } = useAnchoredPosition({
+        arrowRef,
+        open: true,
+        placement,
+      });
+
+      return (
+        <>
+          <div data-testid="anchor" ref={anchorRef} />
+          <div data-testid="floating" ref={floatingRef}>
+            <div
+              data-testid="arrow"
+              ref={(node) => (arrowRef.current = node)}
+              style={arrowStyle}
+            />
+          </div>
+        </>
+      );
+    };
+
+    render(<ArrowHarness />);
+
+    const anchor = screen.getByTestId('anchor');
+    const floating = screen.getByTestId('floating');
+    const arrow = screen.getByTestId('arrow');
+
+    setRect(anchor, {
+      bottom: 260,
+      height: 40,
+      left: 400,
+      right: 480,
+      top: 220,
+      width: 80,
+    });
+    setRect(floating, {
+      bottom: 0,
+      height: 80,
+      left: 0,
+      right: 0,
+      top: 0,
+      width: 120,
+    });
+    setRect(arrow, {
+      bottom: 0,
+      height: 10,
+      left: 0,
+      right: 0,
+      top: 0,
+      width: 10,
+    });
+    triggerPositionUpdate();
+
+    await waitFor(() => {
+      expect(arrow.style.right).toBe('-5px');
+      expect(arrow.style.left).toBe('auto');
+    });
+  });
+
+  it('handles start and end aligned placements', async () => {
+    const Harness = ({ placement }: { placement: Placement }) => {
+      const { anchorRef, floatingRef, style } = useAnchoredPosition({
+        open: true,
+        placement,
+      });
+
+      return (
+        <>
+          <div data-testid="anchor" ref={anchorRef} />
+          <div data-testid="floating" ref={floatingRef} style={style} />
+        </>
+      );
+    };
+
+    const { rerender } = render(<Harness placement="top-start" />);
+    const anchor = screen.getByTestId('anchor');
+    const floating = screen.getByTestId('floating');
+
+    setRect(anchor, {
+      bottom: 200,
+      height: 20,
+      left: 200,
+      right: 300,
+      top: 180,
+      width: 100,
+    });
+    setRect(floating, {
+      bottom: 0,
+      height: 40,
+      left: 0,
+      right: 0,
+      top: 0,
+      width: 60,
+    });
+    triggerPositionUpdate();
+
+    await waitFor(() => {
+      expect(floating.style.left).toBe('200px');
+    });
+
+    rerender(<Harness placement="left-end" />);
+    triggerPositionUpdate();
+
+    await waitFor(() => {
+      expect(floating.style.top).toBe('160px');
+    });
+  });
+
+  it('flips from left to right when left placement collides', async () => {
+    render(
+      <TestHarness
+        options={{
+          placement: 'left',
+        }}
+      />
+    );
+
+    const anchor = screen.getByTestId('anchor');
+    const floating = screen.getByTestId('floating');
+
+    setRect(anchor, {
+      bottom: 140,
+      height: 40,
+      left: 6,
+      right: 46,
+      top: 100,
+      width: 40,
+    });
+    setRect(floating, {
+      bottom: 0,
+      height: 30,
+      left: 0,
+      right: 0,
+      top: 0,
+      width: 80,
+    });
+    triggerPositionUpdate();
+
+    await waitFor(() => {
+      expect(floating.getAttribute('data-placement')).toBe('right');
+    });
+  });
+
   it('uses absolute coordinates when strategy is absolute', async () => {
     const scrollXSpy = vi.spyOn(window, 'scrollX', 'get').mockReturnValue(50);
     const scrollYSpy = vi.spyOn(window, 'scrollY', 'get').mockReturnValue(80);

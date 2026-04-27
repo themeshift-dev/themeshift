@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 import { useState } from 'react';
@@ -362,6 +362,170 @@ describe('Tooltip', () => {
     const tooltip = await screen.findByRole('tooltip');
 
     expect(container).toContainElement(tooltip);
+  });
+
+  it('supports compound usage when content is undefined', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Tooltip.Root delay={0}>
+        <Tooltip.Trigger>Compound trigger</Tooltip.Trigger>
+        <Tooltip.Content>Compound tooltip</Tooltip.Content>
+      </Tooltip.Root>
+    );
+
+    await user.hover(screen.getByRole('button', { name: 'Compound trigger' }));
+
+    await waitFor(() => {
+      expect(screen.getByRole('tooltip')).toHaveTextContent('Compound tooltip');
+    });
+  });
+
+  it('throws for convenience usage when trigger child is not an element', () => {
+    expect(() =>
+      render(<Tooltip content="Broken">Not an element child</Tooltip>)
+    ).toThrow(
+      'Tooltip convenience usage expects a single React element child trigger.'
+    );
+  });
+
+  it('throws when using Trigger asChild without a child element', () => {
+    expect(() =>
+      render(
+        <Tooltip.Root delay={0}>
+          <Tooltip.Trigger asChild />
+          <Tooltip.Content>Missing child</Tooltip.Content>
+        </Tooltip.Root>
+      )
+    ).toThrow('Tooltip.Trigger with asChild expects a single child element.');
+  });
+
+  it('throws when compound parts render outside Tooltip root', () => {
+    expect(() =>
+      render(<Tooltip.Trigger>Orphan trigger</Tooltip.Trigger>)
+    ).toThrow('Tooltip.Trigger must be used within Tooltip.');
+  });
+
+  it('does not open on touch pointer events', async () => {
+    render(
+      <Tooltip content="Touch tooltip" delay={0}>
+        <button type="button">Touch trigger</button>
+      </Tooltip>
+    );
+
+    const trigger = screen.getByRole('button', { name: 'Touch trigger' });
+
+    fireEvent.pointerEnter(trigger, { pointerType: 'touch' });
+    await wait(20);
+
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+  });
+
+  it('keeps tooltip open when leaving trigger into tooltip content', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Tooltip content="Persistent tooltip" delay={0}>
+        <button type="button">Persistent trigger</button>
+      </Tooltip>
+    );
+
+    const trigger = screen.getByRole('button', { name: 'Persistent trigger' });
+
+    await user.hover(trigger);
+    const content = await screen.findByRole('tooltip');
+
+    fireEvent.pointerLeave(trigger, {
+      pointerType: 'mouse',
+      relatedTarget: content,
+    });
+    await wait(30);
+
+    expect(screen.getByRole('tooltip')).toBeInTheDocument();
+  });
+
+  it('does not change tooltip state when trigger focus/blur are prevented', async () => {
+    render(
+      <Tooltip.Root delay={0}>
+        <Tooltip.Trigger
+          onBlur={(event) => event.preventDefault()}
+          onFocus={(event) => event.preventDefault()}
+        >
+          Prevented trigger
+        </Tooltip.Trigger>
+        <Tooltip.Content>Prevented tooltip</Tooltip.Content>
+      </Tooltip.Root>
+    );
+
+    const trigger = screen.getByRole('button', { name: 'Prevented trigger' });
+
+    fireEvent.focus(trigger);
+    await wait(20);
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+
+    fireEvent.blur(trigger);
+    await wait(20);
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+  });
+
+  it('keeps tooltip open when leaving content back to trigger', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Tooltip content="Loop tooltip" delay={0}>
+        <button type="button">Loop trigger</button>
+      </Tooltip>
+    );
+
+    const trigger = screen.getByRole('button', { name: 'Loop trigger' });
+
+    await user.hover(trigger);
+    const content = await screen.findByRole('tooltip');
+
+    fireEvent.pointerLeave(content, {
+      pointerType: 'mouse',
+      relatedTarget: trigger,
+    });
+    await wait(30);
+
+    expect(screen.getByRole('tooltip')).toBeInTheDocument();
+  });
+
+  it('closes immediately when closeDelay is zero', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Tooltip content="No close delay" closeDelay={0} delay={0}>
+        <button type="button">Immediate close trigger</button>
+      </Tooltip>
+    );
+
+    const trigger = screen.getByRole('button', {
+      name: 'Immediate close trigger',
+    });
+
+    await user.hover(trigger);
+    expect(await screen.findByRole('tooltip')).toBeInTheDocument();
+
+    await user.unhover(trigger);
+
+    await waitFor(() => {
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+  });
+
+  it('renders no arrow when closed in compound mode', () => {
+    render(
+      <Tooltip.Root>
+        <Tooltip.Trigger>Closed arrow trigger</Tooltip.Trigger>
+        <Tooltip.Content>
+          Content
+          <Tooltip.Arrow data-testid="tooltip-arrow" />
+        </Tooltip.Content>
+      </Tooltip.Root>
+    );
+
+    expect(screen.queryByTestId('tooltip-arrow')).not.toBeInTheDocument();
   });
 
   it('does not open when disabled', async () => {
