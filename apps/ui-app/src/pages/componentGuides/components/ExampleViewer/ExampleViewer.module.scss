@@ -74,6 +74,7 @@ $compactMinHeight: 4rem;
   max-height: $compactMinHeight;
   overflow: hidden;
   position: relative;
+  z-index: 1;
 
   &[data-expanded='true'] {
     max-height: none;

@@ -26,3 +26,4 @@ export * from './TableGuide';
 export * from './TabsGuide';
 export * from './TextareaGuide';
 export * from './ToggleSwitchGuide';
+export * from './TooltipGuide';

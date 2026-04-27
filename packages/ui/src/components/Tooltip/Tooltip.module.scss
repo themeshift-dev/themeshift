@@ -1,0 +1,60 @@
+@use '@/sass/tokens.static' as *;
+
+.content {
+  background: token('components.tooltip.background');
+  border: token('components.tooltip.border.width') solid
+    token('components.tooltip.border.color');
+  border-radius: token('components.tooltip.radius');
+  box-shadow: token('components.tooltip.shadow');
+  color: token('components.tooltip.text');
+  max-inline-size: token('components.tooltip.maxWidth');
+  padding-block: token('components.tooltip.paddingY');
+  padding-inline: token('components.tooltip.paddingX');
+  pointer-events: auto;
+  z-index: token('components.tooltip.zIndex');
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.arrow {
+  block-size: token('components.tooltip.arrow.size');
+  display: block;
+  inline-size: token('components.tooltip.arrow.size');
+  pointer-events: none;
+  position: absolute;
+}
+
+.arrow::before,
+.arrow::after {
+  clip-path: var(--tooltip-arrow-shape);
+  content: '';
+  position: absolute;
+}
+
+.arrow::before {
+  background: token('components.tooltip.border.color');
+  inset: 0;
+}
+
+.arrow::after {
+  background: token('components.tooltip.background');
+  inset: token('components.tooltip.border.width');
+}
+
+.arrow[data-placement^='top'] {
+  --tooltip-arrow-shape: polygon(50% 100%, 0 50%, 100% 50%);
+}
+
+.arrow[data-placement^='bottom'] {
+  --tooltip-arrow-shape: polygon(50% 0, 0 50%, 100% 50%);
+}
+
+.arrow[data-placement^='left'] {
+  --tooltip-arrow-shape: polygon(100% 50%, 50% 0, 50% 100%);
+}
+
+.arrow[data-placement^='right'] {
+  --tooltip-arrow-shape: polygon(0 50%, 50% 0, 50% 100%);
+}
