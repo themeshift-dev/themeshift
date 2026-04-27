@@ -263,6 +263,9 @@ export default defineConfig({
         'components/Navbar/index': fileURLToPath(
           new URL('./src/entrypoints/components/Navbar.ts', import.meta.url)
         ),
+        'components/Portal/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Portal.ts', import.meta.url)
+        ),
         'components/ProgressBar/index': fileURLToPath(
           new URL(
             './src/entrypoints/components/ProgressBar.ts',
@@ -308,6 +311,9 @@ export default defineConfig({
             import.meta.url
           )
         ),
+        'components/Tooltip/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Tooltip.ts', import.meta.url)
+        ),
         'templates/index': fileURLToPath(
           new URL('./src/entrypoints/templates/index.ts', import.meta.url)
         ),
@@ -343,6 +349,9 @@ export default defineConfig({
         ),
         'hooks/index': fileURLToPath(
           new URL('./src/entrypoints/hooks.ts', import.meta.url)
+        ),
+        'hooks/useAnchoredPosition/index': fileURLToPath(
+          new URL('./src/hooks/useAnchoredPosition/index.ts', import.meta.url)
         ),
         'hooks/useCopyToClipboard/index': fileURLToPath(
           new URL('./src/hooks/useCopyToClipboard/index.ts', import.meta.url)

@@ -94,6 +94,10 @@
       "types": "./dist/components/Navbar/index.d.ts",
       "import": "./dist/components/Navbar/index.js"
     },
+    "./components/Portal": {
+      "types": "./dist/components/Portal/index.d.ts",
+      "import": "./dist/components/Portal/index.js"
+    },
     "./components/ProgressBar": {
       "types": "./dist/components/ProgressBar/index.d.ts",
       "import": "./dist/components/ProgressBar/index.js"
@@ -142,6 +146,10 @@
       "types": "./dist/components/ToggleSwitch/index.d.ts",
       "import": "./dist/components/ToggleSwitch/index.js"
     },
+    "./components/Tooltip": {
+      "types": "./dist/components/Tooltip/index.d.ts",
+      "import": "./dist/components/Tooltip/index.js"
+    },
     "./contexts": {
       "types": "./dist/contexts/index.d.ts",
       "import": "./dist/contexts/index.js"
@@ -157,6 +165,10 @@
     "./hooks": {
       "types": "./dist/hooks/index.d.ts",
       "import": "./dist/hooks/index.js"
+    },
+    "./hooks/useAnchoredPosition": {
+      "types": "./dist/hooks/useAnchoredPosition/index.d.ts",
+      "import": "./dist/hooks/useAnchoredPosition/index.js"
     },
     "./hooks/useCopyToClipboard": {
       "types": "./dist/hooks/useCopyToClipboard/index.d.ts",

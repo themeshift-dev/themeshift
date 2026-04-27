@@ -135,6 +135,10 @@ const AppRoutes = () => (
       <Route index element={<ComponentsPage />} />
       <Route path="hook">
         <Route
+          path="use-anchored-position"
+          element={<HookGuides.UseAnchoredPositionGuide />}
+        />
+        <Route
           path="use-copy-to-clipboard"
           element={<HookGuides.UseCopyToClipboardGuide />}
         />
@@ -864,6 +868,32 @@ const AppRoutes = () => (
           path="toggleswitch"
           element={<Navigate replace to="/ui/component/toggle-switch" />}
         />
+
+        <Route path="tooltip">
+          <Route index element={<ComponentGuides.TooltipGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Tooltip"
+                componentPath="/ui/component/tooltip"
+                description="Tooltip customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Tooltip"
+                componentPath="/ui/component/tooltip"
+                description="An interactive Tooltip playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
       </Route>
     </Route>
 
