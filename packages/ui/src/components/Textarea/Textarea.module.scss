@@ -4,13 +4,13 @@
 .container {
   @include typography.style('button.medium');
 
-  background: token('components.textarea.bg');
+  background: token('components.textarea.background');
   border: 1px solid token('components.textarea.border');
-  border-radius: token('components.textarea.sizes.medium.borderRadius');
-  color: token('theme.text.base');
-  min-height: token('components.textarea.sizes.medium.minHeight');
+  border-radius: token('components.textarea.size.medium.borderRadius');
+  color: token('text.primary');
+  min-height: token('components.textarea.size.medium.minHeight');
   outline: none;
-  padding: token('components.textarea.sizes.medium.padding');
+  padding: token('components.textarea.size.medium.padding');
   transition:
     background-color 0.2s ease,
     border-color 0.2s ease,
@@ -31,9 +31,9 @@
 }
 
 .disabled {
-  background: token('components.textarea.disabled.bg');
+  background: token('components.textarea.disabled.background');
   border-color: token('components.textarea.disabled.border');
-  color: token('components.textarea.disabled.fg');
+  color: token('components.textarea.disabled.text');
 
   &::placeholder {
     color: token('components.textarea.disabled.placeholder');
@@ -64,25 +64,25 @@
 .small {
   @include typography.style('button.small');
 
-  border-radius: token('components.textarea.sizes.small.borderRadius');
-  min-height: token('components.textarea.sizes.small.minHeight');
-  padding: token('components.textarea.sizes.small.padding');
+  border-radius: token('components.textarea.size.small.borderRadius');
+  min-height: token('components.textarea.size.small.minHeight');
+  padding: token('components.textarea.size.small.padding');
 }
 
 .medium {
   @include typography.style('button.medium');
 
-  border-radius: token('components.textarea.sizes.medium.borderRadius');
-  min-height: token('components.textarea.sizes.medium.minHeight');
-  padding: token('components.textarea.sizes.medium.padding');
+  border-radius: token('components.textarea.size.medium.borderRadius');
+  min-height: token('components.textarea.size.medium.minHeight');
+  padding: token('components.textarea.size.medium.padding');
 }
 
 .large {
   @include typography.style('button.large');
 
-  border-radius: token('components.textarea.sizes.large.borderRadius');
-  min-height: token('components.textarea.sizes.large.minHeight');
-  padding: token('components.textarea.sizes.large.padding');
+  border-radius: token('components.textarea.size.large.borderRadius');
+  min-height: token('components.textarea.size.large.minHeight');
+  padding: token('components.textarea.size.large.padding');
 }
 
 .none {

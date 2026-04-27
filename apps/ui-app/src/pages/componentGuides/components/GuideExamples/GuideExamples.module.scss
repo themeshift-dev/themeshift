@@ -20,7 +20,7 @@
   max-width: 24rem;
 
   p {
-    color: token('theme.text.muted');
+    color: token('text.muted');
     margin: 0;
   }
 
@@ -31,7 +31,7 @@
   p code {
     @include code.inline;
 
-    background: token('theme.surface.raised');
+    background: token('background.surfaceRaised');
     padding: 0.2rem 0.5rem;
   }
 }

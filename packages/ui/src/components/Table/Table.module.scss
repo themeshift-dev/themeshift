@@ -1,0 +1,407 @@
+@use '@/sass/mixins/typography';
+@use '@/sass/tokens.static' as *;
+
+.root {
+  --table-cell-padding-block: var(
+    --themeshift-components-table-size-medium-padding-block
+  );
+  --table-cell-padding-inline: var(
+    --themeshift-components-table-size-medium-padding-inline
+  );
+  --table-density-padding-adjust: 0px;
+
+  background: token('components.table.surface.default.background');
+  border-radius: var(--themeshift-components-table-border-radius, 0.25rem);
+  border-collapse: separate;
+  border-spacing: 0;
+  color: token('text.primary');
+  inline-size: auto;
+  overflow: visible;
+}
+
+.fullWidth {
+  inline-size: 100%;
+}
+
+.withBorder {
+  border: token('components.table.border.width') solid
+    token('components.table.border.color');
+  border-radius: token('components.table.border.radius');
+}
+
+.surfaceDefault {
+  background: token('components.table.surface.default.background');
+}
+
+.surfaceSubtle {
+  background: token('components.table.surface.subtle.background');
+}
+
+.sizeSmall {
+  --table-cell-padding-block: var(
+    --themeshift-components-table-size-small-padding-block
+  );
+  --table-cell-padding-inline: var(
+    --themeshift-components-table-size-small-padding-inline
+  );
+
+  @include typography.style('caption.default');
+}
+
+.sizeMedium {
+  --table-cell-padding-block: var(
+    --themeshift-components-table-size-medium-padding-block
+  );
+  --table-cell-padding-inline: var(
+    --themeshift-components-table-size-medium-padding-inline
+  );
+
+  @include typography.style('body.default');
+}
+
+.sizeLarge {
+  --table-cell-padding-block: var(
+    --themeshift-components-table-size-large-padding-block
+  );
+  --table-cell-padding-inline: var(
+    --themeshift-components-table-size-large-padding-inline
+  );
+
+  @include typography.style('body.default');
+}
+
+.densityCompact {
+  --table-density-padding-adjust: var(
+    --themeshift-components-table-density-compact-padding-adjust
+  );
+}
+
+.densityComfortable {
+  --table-density-padding-adjust: var(
+    --themeshift-components-table-density-comfortable-padding-adjust
+  );
+}
+
+.densitySpacious {
+  --table-density-padding-adjust: var(
+    --themeshift-components-table-density-spacious-padding-adjust
+  );
+}
+
+.caption {
+  @include typography.style('caption.default');
+
+  caption-side: top;
+  color: token('components.table.caption.color');
+  padding: token('components.table.caption.padding');
+  text-align: start;
+}
+
+.captionBottom {
+  caption-side: bottom;
+}
+
+.visuallyHidden {
+  block-size: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  inline-size: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.head {
+  background: token('components.table.header.background');
+}
+
+.headSticky {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.body {
+  background: token('components.table.body.background');
+}
+
+.foot {
+  background: token('components.table.foot.background');
+}
+
+.row {
+  background: transparent;
+}
+
+.rowHover:hover {
+  background: token('components.table.row.hover.background');
+}
+
+.rowHover:hover .stickyCell {
+  --table-sticky-cell-background: var(
+    --themeshift-components-table-row-hover-background
+  );
+}
+
+.rowInteractive {
+  cursor: pointer;
+}
+
+.rowSelected {
+  background: token('components.table.row.selected.background');
+}
+
+.rowSelected .stickyCell {
+  --table-sticky-cell-background: var(
+    --themeshift-components-table-row-selected-background
+  );
+}
+
+.rowDisabled {
+  background: token('components.table.row.disabled.background');
+  color: token('components.table.row.disabled.color');
+  cursor: not-allowed;
+}
+
+.rowDisabled .stickyCell {
+  --table-sticky-cell-background: var(
+    --themeshift-components-table-row-disabled-background
+  );
+}
+
+.cell {
+  border-block-end: 1px solid token('components.table.border.color');
+  overflow-wrap: anywhere;
+  padding-block: calc(
+    var(--table-cell-padding-block, 0.75rem) +
+      var(--table-density-padding-adjust, 0px)
+  );
+  padding-inline: var(--table-cell-padding-inline, 1rem);
+  vertical-align: middle;
+}
+
+.head .row:first-child > .cell:first-child {
+  border-start-start-radius: var(
+    --themeshift-components-table-border-radius,
+    0.25rem
+  );
+}
+
+.head .row:first-child > .cell:last-child {
+  border-start-end-radius: var(
+    --themeshift-components-table-border-radius,
+    0.25rem
+  );
+}
+
+.body .row:last-child > .cell:first-child,
+.emptyRow > .cell:first-child,
+.foot .row:last-child > .cell:first-child {
+  border-end-start-radius: var(
+    --themeshift-components-table-border-radius,
+    0.25rem
+  );
+}
+
+.body .row:last-child > .cell:last-child,
+.emptyRow > .cell:last-child,
+.foot .row:last-child > .cell:last-child {
+  border-end-end-radius: var(
+    --themeshift-components-table-border-radius,
+    0.25rem
+  );
+}
+
+.header {
+  @include typography.style('body.strong');
+
+  background: token('components.table.header.background');
+  color: token('components.table.header.color');
+  text-align: start;
+}
+
+.alignStart {
+  text-align: start;
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+.alignEnd {
+  text-align: end;
+}
+
+.verticalTop {
+  vertical-align: top;
+}
+
+.verticalMiddle {
+  vertical-align: middle;
+}
+
+.verticalBottom {
+  vertical-align: bottom;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.truncate {
+  max-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stickyCell {
+  --table-sticky-cell-background: var(
+    --themeshift-components-table-body-background
+  );
+
+  background:
+    linear-gradient(
+      var(--table-sticky-cell-background),
+      var(--table-sticky-cell-background)
+    ),
+    var(--themeshift-components-table-body-background);
+  inset-inline-start: 0;
+  left: 0;
+  position: sticky;
+  right: auto;
+  z-index: 2;
+}
+
+[dir='rtl'] .stickyCell {
+  left: auto;
+  right: 0;
+}
+
+.head .stickyCell {
+  --table-sticky-cell-background: var(
+    --themeshift-components-table-header-background
+  );
+  z-index: 3;
+}
+
+.foot .stickyCell {
+  --table-sticky-cell-background: var(
+    --themeshift-components-table-foot-background
+  );
+}
+
+.hideBelowTablet {
+  @media (max-width: calc(#{$layout_breakpoint_tablet} - 1px)) {
+    display: none;
+  }
+}
+
+.hideBelowDesktop {
+  @media (max-width: calc(#{$layout_breakpoint_desktop} - 1px)) {
+    display: none;
+  }
+}
+
+.striped .body .row:nth-child(even) {
+  background: token('components.table.row.striped.background');
+}
+
+.striped .body .row:nth-child(even) .stickyCell {
+  --table-sticky-cell-background: var(
+    --themeshift-components-table-row-striped-background
+  );
+}
+
+.hoverRows .body .row:hover {
+  background: token('components.table.row.hover.background');
+}
+
+.hoverRows .body .row:hover .stickyCell {
+  --table-sticky-cell-background: var(
+    --themeshift-components-table-row-hover-background
+  );
+}
+
+.emptyRow {
+  background: token('components.table.empty.background');
+}
+
+.emptyCell {
+  border-block-end: none;
+}
+
+.emptyContent {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: token('components.table.empty.gap');
+  justify-content: center;
+  min-block-size: token('components.table.empty.minHeight');
+  text-align: center;
+}
+
+.emptyTitle {
+  @include typography.style('body.strong');
+
+  color: token('components.table.empty.title');
+  margin: 0;
+}
+
+.emptyDescription {
+  @include typography.style('caption.default');
+
+  color: token('components.table.empty.description');
+  margin: 0;
+}
+
+.emptyAction {
+  margin-block-start: token('components.table.empty.actionOffset');
+}
+
+.container {
+  block-size: auto;
+  inline-size: 100%;
+}
+
+.containerScrollHorizontal {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.containerScrollVertical {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.containerScrollBoth {
+  overflow: auto;
+}
+
+.responsiveScroll {
+  inline-size: 100%;
+}
+
+.responsiveScrollDesktop {
+  overflow-x: auto;
+}
+
+.responsiveScrollTablet {
+  overflow-x: auto;
+
+  @media (min-width: #{$layout_breakpoint_desktop}) {
+    overflow-x: visible;
+  }
+}
+
+.responsiveScrollMobile {
+  overflow-x: auto;
+
+  @media (min-width: #{$layout_breakpoint_tablet}) {
+    overflow-x: visible;
+  }
+}
+
+.responsiveScroll :global(table) {
+  min-inline-size: max-content;
+}

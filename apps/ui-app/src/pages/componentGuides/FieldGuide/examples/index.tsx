@@ -58,14 +58,12 @@ export const composableContent = {
 };
 
 export const optionalAndRequired = {
-  code: `<>
-  <Field label="Project name" required>
-    <Input placeholder="ThemeShift UI" />
-  </Field>
-  <Field label="Company" optional>
-    <Input placeholder="Optional" />
-  </Field>
-</>`,
+  code: `<Field label="Project name" required>
+  <Input placeholder="ThemeShift UI" />
+</Field>
+<Field label="Company" optional>
+  <Input placeholder="Optional" />
+</Field>`,
   label: 'Required and optional',
   sample: (
     <ResponsiveStackInline
@@ -106,14 +104,12 @@ export const withTextarea = {
 };
 
 export const sharedState = {
-  code: `<>
-  <Field disabled label="Disabled by Field">
-    <Input placeholder="Disabled" />
-  </Field>
-  <Field label="Read only by Field" readOnly>
-    <Input defaultValue="Read only value" />
-  </Field>
-</>`,
+  code: `<Field disabled label="Disabled by Field">
+  <Input placeholder="Disabled" />
+</Field>
+<Field label="Read only by Field" readOnly>
+  <Input defaultValue="Read only value" />
+</Field>`,
   label: 'Shared state',
   sample: (
     <Stack>
@@ -179,6 +175,44 @@ export const inlineControlComposable = {
   ),
 };
 
+const directionCode = `<Field
+  description="Used for release updates and account notices."
+  label="Enable notifications"
+  layout="inline-control"
+>
+  <Checkbox name="notifications" />
+</Field>`;
+
+export const directionLTR = {
+  code: directionCode,
+  label: 'LTR',
+  sample: (
+    <Field
+      description="Used for release updates and account notices."
+      label="Enable notifications"
+      layout="inline-control"
+    >
+      <Checkbox name="notifications" />
+    </Field>
+  ),
+};
+
+export const directionRTL = {
+  code: directionCode,
+  label: 'RTL',
+  sample: (
+    <div dir="rtl">
+      <Field
+        description="Used for release updates and account notices."
+        label="Enable notifications"
+        layout="inline-control"
+      >
+        <Checkbox name="notifications" />
+      </Field>
+    </div>
+  ),
+};
+
 export const propHighlights = [
   basicUsage,
   shorthandContent,
@@ -187,3 +221,5 @@ export const propHighlights = [
   withTextarea,
   sharedState,
 ];
+
+export const directionExamples = [directionLTR, directionRTL];

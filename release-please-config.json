@@ -3,12 +3,21 @@
   "bootstrap-sha": "a69ab4f82d9c5d3c9b4945b1412cdbd8c1d1d10c",
   "include-component-in-tag": true,
   "packages": {
-    "packages/ui": {
-      "package-name": "@themeshift/ui",
+    "packages/cli": {
+      "package-name": "@themeshift/cli",
       "release-type": "node"
     },
-    "packages/vite-plugin-themeshift": {
-      "package-name": "@themeshift/vite-plugin-themeshift",
+    "packages/core": {
+      "package-name": "@themeshift/core",
+      "release-type": "node"
+    },
+    "packages/next": {
+      "package-name": "@themeshift/next",
+      "release-type": "node"
+    },
+    "packages/ui": { "package-name": "@themeshift/ui", "release-type": "node" },
+    "packages/vite-plugin": {
+      "package-name": "@themeshift/vite-plugin",
       "release-type": "node"
     }
   }

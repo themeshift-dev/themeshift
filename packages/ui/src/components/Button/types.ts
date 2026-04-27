@@ -1,26 +1,42 @@
-import type { ReactElement, ReactNode } from 'react';
+import type {
+  ComponentPropsWithoutRef,
+  ElementType,
+  ReactElement,
+  ReactNode,
+} from 'react';
 
 /**
  * Button size options.
  */
-export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonSize = 'small' | 'medium' | 'large' | 'hero';
 
 /**
- * Button style variants for different action types.
+ * Button intent options for communicating the action's purpose or outcome.
  */
 export type ButtonIntent =
   | 'primary'
   | 'secondary'
-  | 'tertiary'
   | 'constructive'
   | 'destructive';
+
+/**
+ * Button variant options for controlling visual treatment.
+ */
+export type ButtonVariant = 'solid' | 'outline' | 'link';
+
+/** Shared polymorphic prop helper used by Button. */
+type PolymorphicProps<T extends ElementType, Props = object> = Props & {
+  /** HTML element or component to render instead of the default element. */
+  as?: T;
+} & Omit<ComponentPropsWithoutRef<T>, keyof Props | 'as' | 'children'>;
 
 type ButtonBaseProps = {
   /**
    * Applies Button styles to a single child element instead of rendering a
-   * native button.
+   * native element.
    *
-   * Use this when pairing Button with routing links or other custom elements.
+   * Use this when pairing Button with routing links or other custom elements
+   * where you want to preserve the child element identity.
    */
   asChild?: boolean;
 
@@ -47,17 +63,17 @@ type ButtonBaseProps = {
   size?: ButtonSize;
 
   /**
+   * Visual treatment for the selected intent.
+   */
+  variant?: ButtonVariant;
+
+  /**
    * Shows disabled styling without blocking interaction.
    *
    * Use this when the button should explain why an action is unavailable.
    */
   visuallyDisabled?: boolean;
 };
-
-type NativeButtonProps = Omit<
-  React.ComponentPropsWithoutRef<'button'>,
-  keyof ButtonBaseProps | 'children'
->;
 
 type ButtonOnlyPropNames =
   | 'disabled'
@@ -72,7 +88,7 @@ type ButtonOnlyPropNames =
   | 'value';
 
 type AsChildButtonProps = Omit<
-  React.ComponentPropsWithoutRef<'button'>,
+  ComponentPropsWithoutRef<'button'>,
   keyof ButtonBaseProps | 'children' | ButtonOnlyPropNames
 >;
 
@@ -137,25 +153,23 @@ type ButtonWithIconProps = IconButtonAccessibleName & {
   endIcon?: ReactNode;
 };
 
-type ButtonAsButtonProps = {
-  asChild?: false;
-  children?: ReactNode;
-};
+type ButtonAsElementProps<T extends ElementType> = PolymorphicProps<
+  T,
+  ButtonBaseProps & {
+    asChild?: false;
+  }
+>;
 
-type ButtonAsChildProps = {
-  asChild: true;
-  children: ReactElement;
-};
+type ButtonAsChildProps = ButtonBaseProps &
+  AsChildButtonProps & {
+    as?: never;
+    asChild: true;
+    children: ReactElement;
+  };
 
 /**
  * Props for the ThemeShift button component.
  */
-export type ButtonProps =
-  | (ButtonBaseProps &
-      NativeButtonProps &
-      (ButtonWithLabelProps | ButtonWithIconProps) &
-      ButtonAsButtonProps)
-  | (ButtonBaseProps &
-      AsChildButtonProps &
-      (ButtonWithLabelProps | ButtonWithIconProps) &
-      ButtonAsChildProps);
+export type ButtonProps<T extends ElementType = 'button'> =
+  | (ButtonAsElementProps<T> & (ButtonWithLabelProps | ButtonWithIconProps))
+  | (ButtonAsChildProps & (ButtonWithLabelProps | ButtonWithIconProps));

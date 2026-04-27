@@ -1,8 +1,1 @@
-{
-  "components": {
-    "exampleViewer": {
-      "dark": {},
-      "light": {}
-    }
-  }
-}
+{ "components": { "exampleViewer": { "dark": {}, "light": {} } } }

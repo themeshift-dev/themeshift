@@ -4,10 +4,13 @@ This repo releases public packages with release-please and GitHub Actions.
 
 ## What gets released
 
-This repo has two public npm packages:
+This repo has five public npm packages:
 
+- `@themeshift/cli`
+- `@themeshift/core`
+- `@themeshift/next`
 - `@themeshift/ui`
-- `@themeshift/vite-plugin-themeshift`
+- `@themeshift/vite-plugin`
 
 The private docs app, `@themeshift/ui-app`, is not versioned by release automation and does not publish to npm. App deployments track the commit deployed from `main`.
 
@@ -59,10 +62,13 @@ Release-please treats:
 
 Make sure these things are ready:
 
+- npm trusted publishing is enabled for `@themeshift/cli`
+- npm trusted publishing is enabled for `@themeshift/core`
+- npm trusted publishing is enabled for `@themeshift/next`
 - npm trusted publishing is enabled for `@themeshift/ui`
-- npm trusted publishing is enabled for `@themeshift/vite-plugin-themeshift`
+- npm trusted publishing is enabled for `@themeshift/vite-plugin`
 - both npm packages trust the GitHub Actions workflow named `release.yml`
-- the repo secret `RELEASE_PLEASE_TOKEN` is set to a PAT that can create release PRs and releases
+- the repo secret `AUTOMATION_TOKEN` is set to a PAT that can create release PRs and releases
 - CI is passing on the release PR and on `develop`
 
 Useful checks:
@@ -119,7 +125,7 @@ Check:
 - the squash commit title uses Conventional Commit syntax
 - the change affected a configured release package
 - GitHub Actions is enabled
-- `RELEASE_PLEASE_TOKEN` is valid
+- `AUTOMATION_TOKEN` is valid
 
 ### The release PR opens, but npm publish does not happen
 

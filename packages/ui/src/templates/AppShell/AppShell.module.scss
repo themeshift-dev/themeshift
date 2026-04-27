@@ -1,1 +1,205 @@
-.container {}
+@use '../../sass/_tokens.static.scss' as *;
+
+.container {
+  --app-shell-aside-width: #{token('layout.appShell.aside.inlineWidth')};
+  --app-shell-navigation-width: #{token(
+      'layout.appShell.navigation.inlineWidth'
+    )};
+  --app-shell-overlay-width: #{token('layout.appShell.overlay.maxWidth')};
+  --app-shell-sidebar-width: #{token('layout.appShell.sidebar.inlineWidth')};
+
+  color: token('text.primary');
+  font-family: token('font.family.default');
+  margin: token('layout.site.margin');
+  min-height: 100vh;
+  padding: token('layout.site.padding');
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  gap: token('space.4');
+  min-height: inherit;
+}
+
+.withDivider {
+  gap: token('space.0');
+}
+
+.header,
+.navigation,
+.sidebar,
+.main,
+.aside,
+.footer {
+  min-width: 0;
+}
+
+.header {
+  z-index: token('layer.sticky');
+}
+
+.layout {
+  display: grid;
+  gap: token('grid.gutter.mobile');
+  grid-template-areas: 'main';
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.withNavigation {
+  grid-template-areas: 'navigation main';
+  grid-template-columns: var(--app-shell-navigation-width) minmax(0, 1fr);
+}
+
+.withSidebar {
+  grid-template-areas: 'main sidebar';
+  grid-template-columns: minmax(0, 1fr) var(--app-shell-sidebar-width);
+}
+
+.withAside {
+  grid-template-areas: 'main aside';
+  grid-template-columns: minmax(0, 1fr) var(--app-shell-aside-width);
+}
+
+.withNavigation.withSidebar {
+  grid-template-areas: 'navigation main sidebar';
+  grid-template-columns:
+    var(--app-shell-navigation-width)
+    minmax(0, 1fr)
+    var(--app-shell-sidebar-width);
+}
+
+.withNavigation.withAside {
+  grid-template-areas: 'navigation main aside';
+  grid-template-columns:
+    var(--app-shell-navigation-width)
+    minmax(0, 1fr)
+    var(--app-shell-aside-width);
+}
+
+.withSidebar.withAside {
+  grid-template-areas: 'main sidebar aside';
+  grid-template-columns:
+    minmax(0, 1fr)
+    var(--app-shell-sidebar-width)
+    var(--app-shell-aside-width);
+}
+
+.withNavigation.withSidebar.withAside {
+  grid-template-areas: 'navigation main sidebar aside';
+  grid-template-columns:
+    var(--app-shell-navigation-width)
+    minmax(0, 1fr)
+    var(--app-shell-sidebar-width)
+    var(--app-shell-aside-width);
+}
+
+.navigation {
+  grid-area: navigation;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.main {
+  grid-area: main;
+}
+
+.aside {
+  grid-area: aside;
+}
+
+.regionPositionStatic {
+  position: static;
+}
+
+.regionPositionSticky {
+  position: sticky;
+  top: 0;
+  z-index: token('layer.sticky');
+}
+
+.regionPositionFixed {
+  position: fixed;
+  top: 0;
+  z-index: token('layer.sticky');
+}
+
+.regionModeInline {
+  position: relative;
+}
+
+.regionModeFixed {
+  align-self: start;
+  position: sticky;
+  top: 0;
+}
+
+.regionModeOverlay {
+  background-color: token('background.surface');
+  border: 1px solid token('background.surfaceRaised');
+  box-shadow: token('shadow.medium');
+  height: 100dvh;
+  max-width: var(--app-shell-overlay-width);
+  overflow: auto;
+  padding: token('space.4');
+  position: fixed;
+  top: 0;
+  z-index: token('layer.overlay');
+}
+
+.navigation.regionModeOverlay {
+  inset-inline-start: 0;
+}
+
+.sidebar.regionModeOverlay {
+  inset-inline-end: 0;
+}
+
+.overlayOpen {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+}
+
+.overlayClosed {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  visibility: hidden;
+}
+
+.headerDivider,
+.navigationDivider,
+.sidebarDivider,
+.footerDivider {
+  border-block-end: 1px solid token('background.surfaceRaised');
+}
+
+.asideDivider {
+  border-inline-start: 1px solid token('background.surfaceRaised');
+}
+
+.footerDivider {
+  border-block-end: 0;
+  border-block-start: 1px solid token('background.surfaceRaised');
+}
+
+.regionInner {
+  min-width: 0;
+  width: 100%;
+}
+
+@media (min-width: $layout_breakpoint_tablet) {
+  .layout {
+    gap: token('grid.gutter.tablet');
+  }
+}
+
+@media (min-width: $layout_breakpoint_desktop) {
+  .layout {
+    gap: token('grid.gutter.desktop');
+  }
+}

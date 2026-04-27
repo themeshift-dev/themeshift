@@ -142,6 +142,7 @@ export const LabelGuide = () => {
           </p>
         ),
         example: examples.basicUsage,
+        tocLabel: 'Label connections',
         title: 'Connect labels to controls',
       },
       {
@@ -153,6 +154,7 @@ export const LabelGuide = () => {
           </p>
         ),
         example: examples.wrappingControl,
+        tocLabel: 'Inline wrapping',
         title: 'Use wrapping for inline controls',
       },
     ],

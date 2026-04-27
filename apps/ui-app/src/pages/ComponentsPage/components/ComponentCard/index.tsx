@@ -1,3 +1,4 @@
+import { Card } from '@themeshift/ui/components/Card';
 import classNames from 'classnames';
 
 import type { ApiReferenceComponent } from '@/apiReference';
@@ -17,12 +18,18 @@ export const ComponentCard = ({
   href,
 }: ComponentCardProps) => {
   return (
-    <Link className={classNames(styles.container, className)} to={href}>
-      <div className={styles.title}>{componentData.name}</div>
-
-      <div className={styles.description}>
-        {componentData.meta?.description}
-      </div>
-    </Link>
+    <Card
+      as={Link}
+      className={classNames(styles.container, className)}
+      padding="small"
+      radius="small"
+      shadow="none"
+      to={href}
+    >
+      <Card.Header>
+        <Card.Title>{componentData.name}</Card.Title>
+        <Card.Description>{componentData.meta?.description}</Card.Description>
+      </Card.Header>
+    </Card>
   );
 };

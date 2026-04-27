@@ -25,20 +25,20 @@ export const basicUsage = {
 };
 
 export const sizes = {
-  code: `<>
-  <Field layout="inline-control">
-    <ToggleSwitch size="small" />
-    <Field.Label>Small</Field.Label>
-  </Field>
-  <Field layout="inline-control">
-    <ToggleSwitch />
-    <Field.Label>Medium</Field.Label>
-  </Field>
-  <Field layout="inline-control">
-    <ToggleSwitch size="large" />
-    <Field.Label>Large</Field.Label>
-  </Field>
-</>`,
+  code: `<Field layout="inline-control">
+  <ToggleSwitch size="small" />
+  <Field.Label>Small</Field.Label>
+</Field>
+
+<Field layout="inline-control">
+  <ToggleSwitch />
+  <Field.Label>Medium</Field.Label>
+</Field>
+
+<Field layout="inline-control">
+  <ToggleSwitch size="large" />
+  <Field.Label>Large</Field.Label>
+</Field>`,
   label: 'Sizes',
   sample: (
     <Stack>
@@ -59,28 +59,25 @@ export const sizes = {
 };
 
 export const intents = {
-  code: `<>
-  <Field layout="inline-control">
-    <ToggleSwitch defaultChecked intent="primary" />
-    <Field.Label>Primary</Field.Label>
-  </Field>
-  <Field layout="inline-control">
-    <ToggleSwitch defaultChecked intent="secondary" />
-    <Field.Label>Secondary</Field.Label>
-  </Field>
-  <Field layout="inline-control">
-    <ToggleSwitch defaultChecked intent="tertiary" />
-    <Field.Label>Tertiary</Field.Label>
-  </Field>
-  <Field layout="inline-control">
-    <ToggleSwitch defaultChecked intent="constructive" />
-    <Field.Label>Constructive</Field.Label>
-  </Field>
-  <Field layout="inline-control">
-    <ToggleSwitch defaultChecked intent="destructive" />
-    <Field.Label>Destructive</Field.Label>
-  </Field>
-</>`,
+  code: `<Field layout="inline-control">
+  <ToggleSwitch defaultChecked intent="primary" />
+  <Field.Label>Primary</Field.Label>
+</Field>
+
+<Field layout="inline-control">
+  <ToggleSwitch defaultChecked intent="secondary" />
+  <Field.Label>Secondary</Field.Label>
+</Field>
+
+<Field layout="inline-control">
+  <ToggleSwitch defaultChecked intent="constructive" />
+  <Field.Label>Constructive</Field.Label>
+</Field>
+
+<Field layout="inline-control">
+  <ToggleSwitch defaultChecked intent="destructive" />
+  <Field.Label>Destructive</Field.Label>
+</Field>`,
   label: 'Intents',
   sample: (
     <Stack>
@@ -91,10 +88,6 @@ export const intents = {
       <Field layout="inline-control">
         <ToggleSwitch defaultChecked intent="secondary" />
         <Field.Label>Secondary</Field.Label>
-      </Field>
-      <Field layout="inline-control">
-        <ToggleSwitch defaultChecked intent="tertiary" />
-        <Field.Label>Tertiary</Field.Label>
       </Field>
       <Field layout="inline-control">
         <ToggleSwitch defaultChecked intent="constructive" />
@@ -162,24 +155,23 @@ export const checkedChange = {
 };
 
 export const icons = {
-  code: `<>
-  <Field layout="inline-control">
-    <ToggleSwitch
-      defaultChecked
-      trackIconOff={<IconMoon aria-hidden />}
-      trackIconOn={<IconSun aria-hidden />}
-    />
-    <Field.Label>Track icons</Field.Label>
-  </Field>
-  <Field layout="inline-control">
-    <ToggleSwitch
-      defaultChecked
-      thumbIconOff={<IconMoon aria-hidden />}
-      thumbIconOn={<IconSun aria-hidden />}
-    />
-    <Field.Label>Thumb icons</Field.Label>
-  </Field>
-</>`,
+  code: `<Field layout="inline-control">
+  <ToggleSwitch
+    defaultChecked
+    trackIconOff={<IconMoon aria-hidden />}
+    trackIconOn={<IconSun aria-hidden />}
+  />
+  <Field.Label>Track icons</Field.Label>
+</Field>
+
+<Field layout="inline-control">
+  <ToggleSwitch
+    defaultChecked
+    thumbIconOff={<IconMoon aria-hidden />}
+    thumbIconOn={<IconSun aria-hidden />}
+  />
+  <Field.Label>Thumb icons</Field.Label>
+</Field>`,
   label: 'Icons',
   sample: (
     <div
@@ -210,21 +202,101 @@ export const icons = {
   ),
 };
 
+const directionCode = `<Field layout="inline-control">
+  <ToggleSwitch
+    defaultChecked
+    trackIconOff={<IconMoon aria-hidden />}
+    trackIconOn={<IconSun aria-hidden />}
+  />
+  <Field.Label>Theme mode</Field.Label>
+</Field>
+
+<Field layout="inline-control">
+  <ToggleSwitch
+    defaultChecked
+    thumbIconOff={<IconMoon aria-hidden />}
+    thumbIconOn={<IconSun aria-hidden />}
+  />
+  <Field.Label>Thumb icons</Field.Label>
+</Field>`;
+
+export const directionLTR = {
+  code: directionCode,
+  label: 'LTR',
+  sample: (
+    <ResponsiveStackInline
+      from="desktop"
+      inlineProps={{ align: 'center', justify: 'center', wrap: true }}
+      stackProps={{ align: 'stretch' }}
+    >
+      <Field layout="inline-control">
+        <ToggleSwitch
+          defaultChecked
+          trackIconOff={<IconMoon aria-hidden />}
+          trackIconOn={<IconSun aria-hidden />}
+        />
+        <Field.Label>Theme mode</Field.Label>
+      </Field>
+
+      <Field layout="inline-control">
+        <ToggleSwitch
+          defaultChecked
+          thumbIconOff={<IconMoon aria-hidden />}
+          thumbIconOn={<IconSun aria-hidden />}
+        />
+        <Field.Label>Thumb icons</Field.Label>
+      </Field>
+    </ResponsiveStackInline>
+  ),
+};
+
+export const directionRTL = {
+  code: directionCode,
+  label: 'RTL',
+  sample: (
+    <div dir="rtl">
+      <ResponsiveStackInline
+        from="desktop"
+        inlineProps={{ align: 'center', justify: 'center', wrap: true }}
+        stackProps={{ align: 'stretch' }}
+      >
+        <Field layout="inline-control">
+          <ToggleSwitch
+            defaultChecked
+            trackIconOff={<IconMoon aria-hidden />}
+            trackIconOn={<IconSun aria-hidden />}
+          />
+          <Field.Label>Theme mode</Field.Label>
+        </Field>
+
+        <Field layout="inline-control">
+          <ToggleSwitch
+            defaultChecked
+            thumbIconOff={<IconMoon aria-hidden />}
+            thumbIconOn={<IconSun aria-hidden />}
+          />
+          <Field.Label>Thumb icons</Field.Label>
+        </Field>
+      </ResponsiveStackInline>
+    </div>
+  ),
+};
+
 export const validationStates = {
-  code: `<>
-  <Field layout="inline-control" validationState="invalid">
-    <ToggleSwitch />
-    <Field.Label>Invalid</Field.Label>
-  </Field>
-  <Field layout="inline-control" validationState="valid">
-    <ToggleSwitch />
-    <Field.Label>Valid</Field.Label>
-  </Field>
-  <Field layout="inline-control" validationState="warning">
-    <ToggleSwitch />
-    <Field.Label>Warning</Field.Label>
-  </Field>
-</>`,
+  code: `<Field layout="inline-control" validationState="invalid">
+  <ToggleSwitch />
+  <Field.Label>Invalid</Field.Label>
+</Field>
+
+<Field layout="inline-control" validationState="valid">
+  <ToggleSwitch />
+  <Field.Label>Valid</Field.Label>
+</Field>
+
+<Field layout="inline-control" validationState="warning">
+  <ToggleSwitch />
+  <Field.Label>Warning</Field.Label>
+</Field>`,
   label: 'Validation states',
   sample: (
     <Stack>
@@ -245,20 +317,20 @@ export const validationStates = {
 };
 
 export const states = {
-  code: `<>
-  <Field layout="inline-control">
-    <ToggleSwitch defaultChecked />
-    <Field.Label>Checked</Field.Label>
-  </Field>
-  <Field layout="inline-control">
-    <ToggleSwitch defaultChecked disabled />
-    <Field.Label>Disabled</Field.Label>
-  </Field>
-  <Field layout="inline-control">
-    <ToggleSwitch defaultChecked readOnly />
-    <Field.Label>Read only</Field.Label>
-  </Field>
-</>`,
+  code: `<Field layout="inline-control">
+  <ToggleSwitch defaultChecked />
+  <Field.Label>Checked</Field.Label>
+</Field>
+
+<Field layout="inline-control">
+  <ToggleSwitch defaultChecked disabled />
+  <Field.Label>Disabled</Field.Label>
+</Field>
+
+<Field layout="inline-control">
+  <ToggleSwitch defaultChecked readOnly />
+  <Field.Label>Read only</Field.Label>
+</Field>`,
   label: 'States',
   sample: (
     <ResponsiveStackInline
@@ -289,3 +361,5 @@ export const propHighlights = [
   icons,
   states,
 ];
+
+export const directionExamples = [directionLTR, directionRTL];

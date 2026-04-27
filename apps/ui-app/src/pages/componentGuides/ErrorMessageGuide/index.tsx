@@ -139,6 +139,7 @@ export const ErrorMessageGuide = () => {
           </p>
         ),
         example: examples.withField,
+        tocLabel: 'Error association',
         title: 'Associate errors with controls',
       },
       {
@@ -150,6 +151,7 @@ export const ErrorMessageGuide = () => {
           </p>
         ),
         example: examples.assertiveAndPolite,
+        tocLabel: 'Live-region behavior',
         title: 'Choose live-region behavior intentionally',
       },
       {
@@ -160,6 +162,7 @@ export const ErrorMessageGuide = () => {
           </p>
         ),
         example: examples.longForm,
+        tocLabel: 'Actionable messages',
         title: 'Write actionable, consistent messages',
       },
     ],

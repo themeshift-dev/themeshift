@@ -174,6 +174,25 @@ export const SelectGuide = () => {
 
       <GuideExampleCard>
         <GuideExampleText>
+          <TableOfContents.Marker
+            id="examples-direction"
+            label="Direction (LTR/RTL)"
+            level={2}
+          />
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
+          <p>
+            Placeholder text, value text, and chevron placement should follow
+            logical start/end behavior automatically.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer examples={examples.directionExamples} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-field" label="Field" level={2} />
           <Heading level={4}>With Field</Heading>
           <p>

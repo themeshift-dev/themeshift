@@ -13,6 +13,7 @@ const meta = {
     children: 'Click me',
     intent: 'primary',
     size: 'medium',
+    variant: 'solid',
     visuallyDisabled: false,
     disabled: false,
     onClick: fn(),
@@ -20,17 +21,15 @@ const meta = {
   argTypes: {
     intent: {
       control: 'select',
-      options: [
-        'primary',
-        'secondary',
-        'tertiary',
-        'constructive',
-        'destructive',
-      ],
+      options: ['primary', 'secondary', 'constructive', 'destructive'],
     },
     size: {
       control: 'inline-radio',
-      options: ['small', 'medium', 'large'],
+      options: ['small', 'medium', 'large', 'hero'],
+    },
+    variant: {
+      control: 'inline-radio',
+      options: ['solid', 'outline', 'link'],
     },
     visuallyDisabled: {
       control: 'boolean',
@@ -64,15 +63,42 @@ export const Intents: Story = {
       <Button {...args} intent="secondary">
         Secondary
       </Button>
-      <Button {...args} intent="tertiary">
-        Tertiary
-      </Button>
       <Button {...args} intent="constructive">
         Constructive
       </Button>
       <Button {...args} intent="destructive">
         Destructive
       </Button>
+    </div>
+  ),
+};
+
+export const Variants: Story = {
+  render: (args) => (
+    <div
+      style={{
+        display: 'grid',
+        gap: '1rem',
+      }}
+    >
+      {(['primary', 'secondary', 'constructive', 'destructive'] as const).map(
+        (intent) => (
+          <div
+            key={intent}
+            style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}
+          >
+            <Button {...args} intent={intent} variant="solid">
+              Solid
+            </Button>
+            <Button {...args} intent={intent} variant="outline">
+              Outline
+            </Button>
+            <Button {...args} intent={intent} variant="link">
+              Link
+            </Button>
+          </div>
+        )
+      )}
     </div>
   ),
 };
@@ -95,6 +121,9 @@ export const Sizes: Story = {
       </Button>
       <Button {...args} size="large">
         Large
+      </Button>
+      <Button {...args} size="hero">
+        Hero
       </Button>
     </div>
   ),

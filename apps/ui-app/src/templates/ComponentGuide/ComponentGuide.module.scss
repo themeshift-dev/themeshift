@@ -17,7 +17,7 @@
 .eyebrow {
   @include typography.style('eyebrow.default');
 
-  color: token('theme.text.muted');
+  color: token('text.muted');
   margin: 0 0 0.25rem;
   text-transform: uppercase;
 }
@@ -32,7 +32,7 @@
   }
 
   h4 {
-    // color: token('theme.text.muted');
+    // color: token('text.muted');
     font-weight: 600;
     margin: 0 0 0.75rem;
   }
@@ -43,12 +43,12 @@
 }
 
 .sectionIntro {
-  color: token('theme.text.muted');
+  color: token('text.muted');
   margin: 0.5rem 0 0;
 }
 
 .aside {
-  color: token('theme.text.muted');
+  color: token('text.muted');
   height: 100%;
   width: 100%;
 }
@@ -57,5 +57,9 @@
   @media (min-width: 64rem) {
     position: sticky;
     top: calc(var(--themeshift-components-navbar-min-height) + 1rem);
+    max-block-size: calc(
+      100dvh - var(--themeshift-components-navbar-min-height) - 2rem
+    );
+    overflow-y: auto;
   }
 }

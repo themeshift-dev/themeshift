@@ -12,8 +12,13 @@
   display: inline-flex;
   gap: token('space.2');
   justify-content: center;
-  transition: 0.15s transform;
+  transition:
+    0.15s background-color,
+    0.15s color,
+    0.15s box-shadow,
+    0.15s transform;
   white-space: nowrap;
+  user-select: none;
 
   /**
    * Remove `text-decoration` by default to support the common use-case
@@ -60,36 +65,80 @@
 .small {
   @include typography.style('button.small');
 
-  min-height: token('components.button.sizes.small.height');
-  padding: token('components.button.sizes.small.padding');
-  border-radius: token('components.button.sizes.small.borderRadius');
+  min-height: token('components.button.size.small.height');
+  padding: token('components.button.size.small.padding');
+  border-radius: token('components.button.size.small.borderRadius');
 
   &.iconOnly {
-    padding: token('components.button.sizes.small.padding.iconOnly');
+    padding: token('components.button.size.small.padding.iconOnly');
   }
 }
 
 .medium {
   @include typography.style('button.medium');
 
-  min-height: token('components.button.sizes.medium.height');
-  padding: token('components.button.sizes.medium.padding');
-  border-radius: token('components.button.sizes.medium.borderRadius');
+  min-height: token('components.button.size.medium.height');
+  padding: token('components.button.size.medium.padding');
+  border-radius: token('components.button.size.medium.borderRadius');
 
   &.iconOnly {
-    padding: token('components.button.sizes.medium.padding.iconOnly');
+    padding: token('components.button.size.medium.padding.iconOnly');
   }
 }
 
 .large {
   @include typography.style('button.large');
 
-  min-height: token('components.button.sizes.large.height');
-  padding: token('components.button.sizes.large.padding');
-  border-radius: token('components.button.sizes.large.borderRadius');
+  min-height: token('components.button.size.large.height');
+  padding: token('components.button.size.large.padding');
+  border-radius: token('components.button.size.large.borderRadius');
 
   &.iconOnly {
-    padding: token('components.button.sizes.large.padding.iconOnly');
+    padding: token('components.button.size.large.padding.iconOnly');
+  }
+}
+
+.hero {
+  @include typography.style('button.medium');
+
+  border-radius: clamp(
+    token('components.button.size.hero.borderRadius.min'),
+    token('components.button.size.hero.borderRadius.fluid'),
+    token('components.button.size.hero.borderRadius.max')
+  );
+  font-size: clamp(
+    token('components.button.size.hero.fontSize.min'),
+    token('components.button.size.hero.fontSize.fluid'),
+    token('components.button.size.hero.fontSize.max')
+  );
+  letter-spacing: clamp(
+    token('components.button.size.hero.letterSpacing.min'),
+    token('components.button.size.hero.letterSpacing.fluid'),
+    token('components.button.size.hero.letterSpacing.max')
+  );
+  line-height: clamp(
+    token('components.button.size.hero.lineHeight.min'),
+    token('components.button.size.hero.lineHeight.fluid'),
+    token('components.button.size.hero.lineHeight.max')
+  );
+  min-height: clamp(
+    token('components.button.size.hero.height.min'),
+    token('components.button.size.hero.height.fluid'),
+    token('components.button.size.hero.height.max')
+  );
+  padding-block: 0;
+  padding-inline: clamp(
+    token('components.button.size.hero.padding.inline.min'),
+    token('components.button.size.hero.padding.inline.fluid'),
+    token('components.button.size.hero.padding.inline.max')
+  );
+
+  &.iconOnly {
+    padding-inline: clamp(
+      token('components.button.size.hero.padding.iconOnly.inline.min'),
+      token('components.button.size.hero.padding.iconOnly.inline.fluid'),
+      token('components.button.size.hero.padding.iconOnly.inline.max')
+    );
   }
 }
 
@@ -97,47 +146,112 @@
  * Button `intent`
  */
 .primary {
-  background: token('components.button.intents.primary.bg');
-  color: token('components.button.intents.primary.fg');
-
-  &:not(:disabled, .visuallyDisabled):hover {
-    background: token('components.button.intents.primary.hover');
-  }
+  --button-intent-background: #{token(
+      'components.button.intent.primary.background'
+    )};
+  --button-intent-hover: #{token('components.button.intent.primary.hover')};
+  --button-intent-text: #{token('components.button.intent.primary.text')};
+  --button-link-hover-text: #{token(
+      'components.button.variant.link.primary.hoverText'
+    )};
+  --button-link-text: #{token('components.button.variant.link.primary.text')};
+  --button-outline-border: #{token(
+      'components.button.variant.outline.primary.borderColor'
+    )};
+  --button-outline-text: #{token(
+      'components.button.variant.outline.primary.text'
+    )};
 }
 
 .secondary {
-  background: token('components.button.intents.secondary.bg');
-  color: token('components.button.intents.secondary.fg');
-
-  &:not(:disabled, .visuallyDisabled):hover {
-    background: token('components.button.intents.secondary.hover');
-  }
-}
-
-.tertiary {
-  background: token('components.link.bg');
-  color: token('components.link.fg');
-
-  &:not(:disabled, .visuallyDisabled):hover,
-  &:not(:disabled, .visuallyDisabled):focus-visible {
-    @include link.hover;
-  }
+  --button-intent-background: #{token(
+      'components.button.intent.secondary.background'
+    )};
+  --button-intent-hover: #{token('components.button.intent.secondary.hover')};
+  --button-intent-text: #{token('components.button.intent.secondary.text')};
+  --button-link-hover-text: #{token(
+      'components.button.variant.link.secondary.hoverText'
+    )};
+  --button-link-text: #{token('components.button.variant.link.secondary.text')};
+  --button-outline-border: #{token(
+      'components.button.variant.outline.secondary.borderColor'
+    )};
+  --button-outline-text: #{token(
+      'components.button.variant.outline.secondary.text'
+    )};
 }
 
 .constructive {
-  background: token('components.button.intents.constructive.bg');
-  color: token('components.button.intents.constructive.fg');
-
-  &:not(:disabled, .visuallyDisabled):hover {
-    background: token('components.button.intents.constructive.hover');
-  }
+  --button-intent-background: #{token(
+      'components.button.intent.constructive.background'
+    )};
+  --button-intent-hover: #{token('components.button.intent.constructive.hover')};
+  --button-intent-text: #{token('components.button.intent.constructive.text')};
+  --button-link-hover-text: #{token(
+      'components.button.variant.link.constructive.hoverText'
+    )};
+  --button-link-text: #{token(
+      'components.button.variant.link.constructive.text'
+    )};
+  --button-outline-border: #{token(
+      'components.button.variant.outline.constructive.borderColor'
+    )};
+  --button-outline-text: #{token(
+      'components.button.variant.outline.constructive.text'
+    )};
 }
 
 .destructive {
-  background: token('components.button.intents.destructive.bg');
-  color: token('components.button.intents.destructive.fg');
+  --button-intent-background: #{token(
+      'components.button.intent.destructive.background'
+    )};
+  --button-intent-hover: #{token('components.button.intent.destructive.hover')};
+  --button-intent-text: #{token('components.button.intent.destructive.text')};
+  --button-link-hover-text: #{token(
+      'components.button.variant.link.destructive.hoverText'
+    )};
+  --button-link-text: #{token(
+      'components.button.variant.link.destructive.text'
+    )};
+  --button-outline-border: #{token(
+      'components.button.variant.outline.destructive.borderColor'
+    )};
+  --button-outline-text: #{token(
+      'components.button.variant.outline.destructive.text'
+    )};
+}
+
+/**
+ * Button `variant`
+ */
+.variantSolid {
+  background: var(--button-intent-background);
+  color: var(--button-intent-text);
 
   &:not(:disabled, .visuallyDisabled):hover {
-    background: token('components.button.intents.destructive.hover');
+    background: var(--button-intent-hover);
+  }
+}
+
+.variantOutline {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--button-outline-border);
+  color: var(--button-outline-text);
+
+  &:not(:disabled, .visuallyDisabled):hover {
+    background: var(--button-intent-hover);
+    color: var(--button-intent-text);
+  }
+}
+
+.variantLink {
+  background: token('components.link.background');
+  color: var(--button-link-text);
+
+  &:not(:disabled, .visuallyDisabled):hover,
+  &:not(:disabled, .visuallyDisabled):focus-visible {
+    color: var(--button-link-hover-text);
+
+    @include link.hover;
   }
 }

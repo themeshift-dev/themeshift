@@ -2,29 +2,26 @@
   "components": {
     "copyButton": {
       "dark": {
-        "bg": {
+        "background": {
           "$value": "{color.black.20}",
-
           "hover": { "$value": "{color.black.10}" }
         },
 
-        "fg": {
-          "$value": "{theme.dark.text.muted}",
-
-          "hover": { "$value": "{theme.dark.text.base}" }
+        "text": {
+          "$value": "{text.dark.muted}",
+          "hover": { "$value": "{text.dark.primary}" }
         }
       },
 
       "light": {
-        "bg": {
+        "background": {
           "$value": "{color.white.20}",
-
           "hover": { "$value": "{color.white.10}" }
         },
-        "fg": {
-          "$value": "{theme.light.text.muted}",
 
-          "hover": { "$value": "{theme.light.text.base}" }
+        "text": {
+          "$value": "{text.light.muted}",
+          "hover": { "$value": "{text.light.primary}" }
         }
       }
     }

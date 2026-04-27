@@ -142,6 +142,7 @@ export const ResponsiveGuide = () => {
             removed from the accessibility tree.
           </p>
         ),
+        tocLabel: 'Duplicate targets',
         title: 'Avoid duplicated interactive targets',
       },
       {
@@ -152,6 +153,7 @@ export const ResponsiveGuide = () => {
             per breakpoint.
           </p>
         ),
+        tocLabel: 'Unique IDs',
         title: 'Keep IDs unique across variants',
       },
       {
@@ -161,6 +163,7 @@ export const ResponsiveGuide = () => {
             Validate focus order and announcements at each breakpoint.
           </p>
         ),
+        tocLabel: 'Breakpoint testing',
         title: 'Test at each breakpoint',
       },
     ],

@@ -1,11 +1,8 @@
 {
   "components": {
     "radio": {
-      "layout": {
-        "gap": { "$value": "{space.2}" }
-      },
-
-      "sizes": {
+      "layout": { "gap": { "$value": "{space.2}" } },
+      "size": {
         "small": {
           "borderRadius": { "$value": "{radius.large}" },
           "borderWidth": { "$value": "1px" },
@@ -29,54 +26,36 @@
       },
 
       "light": {
-        "bg": { "$value": "{color.white}" },
+        "background": { "$value": "{color.white}" },
         "border": { "$value": "{color.black.30}" },
         "dot": { "$value": "{color.blue.400}" },
-
         "disabled": {
-          "bg": { "$value": "{color.gray.100}" },
+          "background": { "$value": "{color.gray.100}" },
           "border": { "$value": "{color.black.10}" },
           "dot": { "$value": "{color.black.40}" }
         },
 
         "validation": {
-          "invalid": {
-            "border": { "$value": "{color.red.400}" }
-          },
-
-          "valid": {
-            "border": { "$value": "{color.green.400}" }
-          },
-
-          "warning": {
-            "border": { "$value": "{color.lightBlue.400}" }
-          }
+          "invalid": { "border": { "$value": "{color.red.400}" } },
+          "valid": { "border": { "$value": "{color.green.400}" } },
+          "warning": { "border": { "$value": "{color.lightBlue.400}" } }
         }
       },
 
       "dark": {
-        "bg": { "$value": "{color.white.10}" },
+        "background": { "$value": "{color.white.10}" },
         "border": { "$value": "{color.white.30}" },
         "dot": { "$value": "{color.blue.400}" },
-
         "disabled": {
-          "bg": { "$value": "{color.white.10}" },
+          "background": { "$value": "{color.white.10}" },
           "border": { "$value": "{color.white.10}" },
           "dot": { "$value": "{color.white.40}" }
         },
 
         "validation": {
-          "invalid": {
-            "border": { "$value": "{color.red.400}" }
-          },
-
-          "valid": {
-            "border": { "$value": "{color.green.400}" }
-          },
-
-          "warning": {
-            "border": { "$value": "{color.lightBlue.400}" }
-          }
+          "invalid": { "border": { "$value": "{color.red.400}" } },
+          "valid": { "border": { "$value": "{color.green.400}" } },
+          "warning": { "border": { "$value": "{color.lightBlue.400}" } }
         }
       }
     }

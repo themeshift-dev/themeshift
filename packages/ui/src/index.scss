@@ -1,12 +1,9 @@
 @use '@/sass/mixins/typography';
 
-@import '@fontsource-variable/inter/wght.css';
-@import '@fontsource-variable/inter/wght-italic.css';
-
 :root {
   @include typography.style('body.default');
 }
 
 html {
-  line-height: token('typography.metrics.1.lineHeight');
+  line-height: token('typography.body.medium.lineHeight');
 }

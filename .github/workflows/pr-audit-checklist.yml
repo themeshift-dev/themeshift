@@ -1,0 +1,286 @@
+name: PR audit checklist
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types: [opened, edited, synchronize, reopened]
+  pull_request_target:
+    branches:
+      - develop
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  checks: write
+  contents: read
+  issues: write
+  pull-requests: write
+  statuses: write
+
+jobs:
+  checklist:
+    if: >-
+      (github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name == 'pull_request_target' &&
+      github.event.pull_request.head.repo.full_name != github.repository)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log workflow context
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.info(`event_name: ${context.eventName}`);
+            core.info(`repo: ${context.repo.owner}/${context.repo.repo}`);
+            core.info(`pr_number: ${context.payload.pull_request?.number ?? 'n/a'}`);
+            core.info(`base_ref: ${context.payload.pull_request?.base?.ref ?? 'n/a'}`);
+            core.info(`head_ref: ${context.payload.pull_request?.head?.ref ?? 'n/a'}`);
+            core.info(
+              `head_repo: ${context.payload.pull_request?.head?.repo?.full_name ?? 'n/a'}`
+            );
+            core.info(
+              `is_same_repo_pr: ${
+                context.payload.pull_request?.head?.repo?.full_name ===
+                `${context.repo.owner}/${context.repo.repo}`
+              }`
+            );
+
+      - name: Detect component changes
+        id: changed
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const pull_number = context.payload.pull_request?.number;
+
+            if (!pull_number) {
+              core.setOutput('components_changed', 'false');
+              core.info('No pull request number found in context.');
+              return;
+            }
+
+            const files = await github.paginate(
+              github.rest.pulls.listFiles,
+              {
+                owner,
+                repo,
+                pull_number,
+                per_page: 100,
+              }
+            );
+
+            const componentsChanged = files.some((file) =>
+              file.filename.startsWith('packages/ui/src/components/')
+            );
+
+            core.setOutput(
+              'components_changed',
+              componentsChanged ? 'true' : 'false'
+            );
+            core.info(`Components changed: ${componentsChanged}`);
+
+      - name: Ensure sticky audit checklist comment
+        if: steps.changed.outputs.components_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issue_number = context.payload.pull_request?.number;
+            const marker = '<!-- audit-checklist -->';
+
+            if (!issue_number) {
+              core.setFailed('No pull request number found in context.');
+              return;
+            }
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              {
+                owner,
+                repo,
+                issue_number,
+                per_page: 100,
+              }
+            );
+
+            const stickyComment = comments.find((comment) =>
+              (comment.body ?? '').includes(marker)
+            );
+
+            const checklistBody = [
+              marker,
+              '# Component Library Audit Checklist',
+              '',
+              '_This PR includes changes to component files. Please complete the audit checklist before merging._',
+              '',
+              'Audit Checklist',
+              '',
+              'For deeper audits, use: [`COMPONENT_LIBRARY_AUDIT_CHECKLIST.md`](https://github.com/themeshift-dev/themeshift/blob/develop/COMPONENT_LIBRARY_AUDIT_CHECKLIST.md)',
+              '',
+              'If an item is not applicable, check the box and append `N/A: <reason>`.',
+              '',
+              '## 1. Accessibility Smoke Test',
+              '',
+              '- [ ] Keyboard-only flow works (focus order, visible focus, no trap).',
+              '- [ ] Screen reader naming/context is correct for main interactions.',
+              '- [ ] Visual accessibility basics pass (contrast and not color-only meaning).',
+              '- [ ] RTL/LTR behavior is correct for any directional layout/placement.',
+              '',
+              '## 2. Documentation Quality',
+              '',
+              '- [ ] Public API docs were updated for behavioral/a11y changes.',
+              '- [ ] Guide examples were updated for changed behavior.',
+              '- [ ] At least one example shows accessible usage for this change.',
+              '- [ ] Direction usage is documented when start/end behavior exists.',
+              '',
+              '## 3. Test Coverage',
+              '',
+              '- [ ] Unit tests cover core behavior and critical edge/state transitions.',
+              '- [ ] `jest-axe` coverage exists for representative rendered states.',
+              '- [ ] Manual smoke test completed for changed UX paths.',
+              '- [ ] Typecheck + format pass for touched files.',
+              '',
+              '## 4. Risk and Follow-ups',
+              '',
+              '- [ ] Breaking changes are documented (or `N/A: none`).',
+              '- [ ] Any known gaps are tracked with a follow-up item.',
+              '- [ ] PR description includes clear rollback/mitigation notes when needed.',
+              '- [ ] Reviewer focus areas are called out explicitly.',
+            ].join('\n');
+
+            if (!stickyComment) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body: checklistBody,
+              });
+              core.info('Created sticky audit checklist comment.');
+              return;
+            }
+
+            core.info('Sticky audit checklist comment already exists.');
+
+      - name: Check PR task list
+        if: steps.changed.outputs.components_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issue_number = context.payload.pull_request?.number;
+            const marker = '<!-- audit-checklist -->';
+
+            if (!issue_number) {
+              core.setFailed('No pull request number found in context.');
+              return;
+            }
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              {
+                owner,
+                repo,
+                issue_number,
+                per_page: 100,
+              }
+            );
+
+            const stickyComment = comments.find((comment) =>
+              (comment.body ?? '').includes(marker)
+            );
+
+            if (!stickyComment) {
+              core.setFailed(
+                'Missing sticky audit checklist comment. Expected a PR comment containing "<!-- audit-checklist -->".'
+              );
+              return;
+            }
+
+            const body = stickyComment.body ?? '';
+            const sectionHeader = '# Component Library Audit Checklist';
+            const sectionStart = body.indexOf(sectionHeader);
+
+            if (sectionStart === -1) {
+              core.setFailed(
+                'Missing "Component Library Audit Checklist" section in sticky audit checklist comment.'
+              );
+              return;
+            }
+
+            const checklistSection = body.slice(sectionStart);
+            const taskLines = [
+              ...checklistSection.matchAll(/^\s*-\s*\[( |x|X)\]\s+(.+)$/gm),
+            ];
+
+            if (taskLines.length === 0) {
+              core.setFailed(
+                'No checklist task items found under "Component Library Audit Checklist".'
+              );
+              return;
+            }
+
+            const unchecked = taskLines
+              .filter(([, state]) => state === ' ')
+              .map(([, , label]) => label.trim());
+
+            if (unchecked.length > 0) {
+              core.setFailed(
+                `Audit checklist has ${unchecked.length} unchecked item(s):\n- ${unchecked.join('\n- ')}`
+              );
+              return;
+            }
+
+            core.info(
+              `Audit checklist validation passed with ${taskLines.length} checked item(s).`
+            );
+
+      - name: Remove sticky checklist when components are unchanged
+        if: steps.changed.outputs.components_changed != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issue_number = context.payload.pull_request?.number;
+            const marker = '<!-- audit-checklist -->';
+
+            if (!issue_number) {
+              core.info('No pull request number found in context.');
+              return;
+            }
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              {
+                owner,
+                repo,
+                issue_number,
+                per_page: 100,
+              }
+            );
+
+            const stickyComments = comments.filter((comment) =>
+              (comment.body ?? '').includes(marker)
+            );
+
+            if (stickyComments.length === 0) {
+              core.info(
+                'No component changes and no sticky checklist comment to remove.'
+              );
+              return;
+            }
+
+            for (const comment of stickyComments) {
+              await github.rest.issues.deleteComment({
+                owner,
+                repo,
+                comment_id: comment.id,
+              });
+            }
+
+            core.info(
+              `No component changes; removed ${stickyComments.length} sticky checklist comment(s).`
+            );

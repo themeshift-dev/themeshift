@@ -1,0 +1,6 @@
+{
+  "name": "@themeshift/ui-demo",
+  "cssVarPrefix": "themeshift",
+  "tokensGlob": "tokens/**/*.json",
+  "version": "1.0.0"
+}

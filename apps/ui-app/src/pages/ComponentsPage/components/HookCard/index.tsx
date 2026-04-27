@@ -1,3 +1,4 @@
+import { Card } from '@themeshift/ui/components/Card';
 import classNames from 'classnames';
 
 import type { ApiReferenceHook } from '@/apiReference';
@@ -13,13 +14,23 @@ type HookCardProps = {
 
 export const HookCard = ({ className, hook, href }: HookCardProps) => {
   return (
-    <Link className={classNames(styles.container, className)} to={href}>
-      <div className={styles.titleRow}>
-        <div className={styles.title}>{hook.name}</div>
-        <span className={styles.badge}>Hook</span>
-      </div>
-
-      <div className={styles.description}>{hook.meta?.description}</div>
-    </Link>
+    <Card
+      as={Link}
+      className={classNames(styles.container, className)}
+      padding="small"
+      radius="small"
+      shadow="none"
+      to={href}
+    >
+      <Card.Header>
+        <div className={styles.titleRow}>
+          <Card.Title className={styles.title}>{hook.name}</Card.Title>
+          <Card.Badge tone="info" variant="outline" size="small">
+            Hook
+          </Card.Badge>
+        </div>
+        <Card.Description>{hook.meta?.description}</Card.Description>
+      </Card.Header>
+    </Card>
   );
 };

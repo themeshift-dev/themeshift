@@ -156,6 +156,25 @@ export const ToggleSwitchGuide = () => {
 
       <GuideExampleCard>
         <GuideExampleText>
+          <TableOfContents.Marker
+            id="examples-direction"
+            label="Direction (LTR/RTL)"
+            level={2}
+          />
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
+          <p>
+            Start and end icon positions should mirror automatically across
+            writing directions.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer examples={examples.directionExamples} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-sizes" label="Sizes" level={2} />
           <Heading level={4}>Sizes</Heading>
           <p>
@@ -243,6 +262,7 @@ export const ToggleSwitchGuide = () => {
           </p>
         ),
         example: examples.withDescriptionAndError,
+        tocLabel: 'Guidance & errors',
         title: 'Associate guidance and errors',
       },
       {
@@ -254,6 +274,7 @@ export const ToggleSwitchGuide = () => {
           </p>
         ),
         example: examples.checkedChange,
+        tocLabel: 'State labels',
         title: 'Keep state labels accurate',
       },
     ],

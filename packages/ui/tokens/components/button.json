@@ -1,16 +1,15 @@
 {
   "components": {
     "button": {
-      "padding": { "$value": "0 {space.4}" },
       "font": { "$value": "{font.family.sans}" },
+      "padding": { "$value": "0 {space.4}" },
 
-      "sizes": {
+      "size": {
         "small": {
           "borderRadius": { "$value": "{radius.small}" },
-          "height": { "$value": "{space.8}" },
-
+          "height": { "$value": "{size.control.small.height}" },
           "padding": {
-            "$value": "0 {space.4}",
+            "$value": "0 {size.control.small.paddingInline}",
 
             "iconOnly": { "$value": "0 {space.2}" }
           }
@@ -18,10 +17,9 @@
 
         "medium": {
           "borderRadius": { "$value": "{radius.small}" },
-          "height": { "$value": "{space.9}" },
-
+          "height": { "$value": "{size.control.medium.height}" },
           "padding": {
-            "$value": "0 {space.6}",
+            "$value": "0 {size.control.medium.paddingInline}",
 
             "iconOnly": { "$value": "0 {space.3}" }
           }
@@ -29,66 +27,165 @@
 
         "large": {
           "borderRadius": { "$value": "{radius.small}" },
-          "height": { "$value": "{space.10}" },
-
+          "height": { "$value": "{size.control.large.height}" },
           "padding": {
-            "$value": "0 {space.8}",
+            "$value": "0 {size.control.large.paddingInline}",
 
             "iconOnly": { "$value": "0 {space.4}" }
+          }
+        },
+
+        "hero": {
+          "borderRadius": {
+            "min": { "$value": "{radius.small}" },
+            "fluid": { "$value": "0.7vw" },
+            "max": { "$value": "{radius.medium}" }
+          },
+
+          "fontSize": {
+            "min": { "$value": "{typography.label.medium.fontSize}" },
+            "fluid": { "$value": "0.4vw + 0.92rem" },
+            "max": { "$value": "{typography.heading.small.fontSize}" }
+          },
+
+          "height": {
+            "min": { "$value": "{space.9}" },
+            "fluid": { "$value": "1.3vw + 2.2rem" },
+            "max": { "$value": "{space.12}" }
+          },
+
+          "letterSpacing": {
+            "min": { "$value": "{typography.label.medium.letterSpacing}" },
+            "fluid": { "$value": "0.002vw + 0.0095em" },
+            "max": { "$value": "{typography.heading.small.letterSpacing}" }
+          },
+
+          "lineHeight": {
+            "min": { "$value": "{typography.label.medium.lineHeight}" },
+            "fluid": { "$value": "0.25vw + 1.25rem" },
+            "max": { "$value": "{typography.heading.small.lineHeight}" }
+          },
+
+          "padding": {
+            "inline": {
+              "min": { "$value": "{space.6}" },
+              "fluid": { "$value": "1.8vw + 0.85rem" },
+              "max": { "$value": "{space.10}" }
+            },
+
+            "iconOnly": {
+              "inline": {
+                "min": { "$value": "{space.3}" },
+                "fluid": { "$value": "0.9vw + 0.5rem" },
+                "max": { "$value": "{space.5}" }
+              }
+            }
           }
         }
       },
 
-      "intents": {
+      "intent": {
         "light": {
           "primary": {
-            "bg": { "$value": "{color.blue.400}" },
-            "fg": { "$value": "{color.blue.400.fg}" },
-            "hover": { "$value": "{color.blue.300}" }
+            "background": { "$value": "{intent.light.primary.background}" },
+            "text": { "$value": "{intent.light.primary.text}" },
+            "hover": { "$value": "{intent.light.primary.hover}" }
           },
 
           "secondary": {
-            "bg": { "$value": "{color.gray.400}" },
-            "fg": { "$value": "{color.gray.400.fg}" },
-            "hover": { "$value": "{color.gray.300}" }
+            "background": { "$value": "{intent.light.secondary.background}" },
+            "text": { "$value": "{intent.light.secondary.text}" },
+            "hover": { "$value": "{intent.light.secondary.hover}" }
           },
 
           "constructive": {
-            "bg": { "$value": "{color.green.400}" },
-            "fg": { "$value": "{color.green.400.fg}" },
-            "hover": { "$value": "{color.green.300}" }
+            "background": {
+              "$value": "{intent.light.constructive.background}"
+            },
+            "text": { "$value": "{intent.light.constructive.text}" },
+            "hover": { "$value": "{intent.light.constructive.hover}" }
           },
 
           "destructive": {
-            "bg": { "$value": "{color.red.400}" },
-            "fg": { "$value": "{color.red.400.fg}" },
-            "hover": { "$value": "{color.red.300}" }
+            "background": { "$value": "{intent.light.destructive.background}" },
+            "text": { "$value": "{intent.light.destructive.text}" },
+            "hover": { "$value": "{intent.light.destructive.hover}" }
           }
         },
 
         "dark": {
           "primary": {
-            "bg": { "$value": "{color.blue.400}" },
-            "fg": { "$value": "{color.blue.400.fg}" },
-            "hover": { "$value": "lighten({color.blue.400}, .1)" }
+            "background": { "$value": "{intent.dark.primary.background}" },
+            "text": { "$value": "{intent.dark.primary.text}" },
+            "hover": { "$value": "{intent.dark.primary.hover}" }
           },
 
           "secondary": {
-            "bg": { "$value": "{color.gray.400}" },
-            "fg": { "$value": "{color.gray.400.fg}" },
-            "hover": { "$value": "{color.gray.300}" }
+            "background": { "$value": "{intent.dark.secondary.background}" },
+            "text": { "$value": "{intent.dark.secondary.text}" },
+            "hover": { "$value": "{intent.dark.secondary.hover}" }
           },
 
           "constructive": {
-            "bg": { "$value": "{color.green.400}" },
-            "fg": { "$value": "{color.green.400.fg}" },
-            "hover": { "$value": "{color.green.300}" }
+            "background": { "$value": "{intent.dark.constructive.background}" },
+            "text": { "$value": "{intent.dark.constructive.text}" },
+            "hover": { "$value": "{intent.dark.constructive.hover}" }
           },
 
           "destructive": {
-            "bg": { "$value": "{color.red.400}" },
-            "fg": { "$value": "{color.red.400.fg}" },
-            "hover": { "$value": "{color.red.300}" }
+            "background": { "$value": "{intent.dark.destructive.background}" },
+            "text": { "$value": "{intent.dark.destructive.text}" },
+            "hover": { "$value": "{intent.dark.destructive.hover}" }
+          }
+        }
+      },
+
+      "variant": {
+        "outline": {
+          "primary": {
+            "borderColor": { "$value": "{intent.light.primary.background}" },
+            "text": { "$value": "{intent.light.primary.background}" }
+          },
+
+          "secondary": {
+            "borderColor": { "$value": "{intent.light.secondary.background}" },
+            "text": { "$value": "{intent.light.secondary.background}" }
+          },
+
+          "constructive": {
+            "borderColor": {
+              "$value": "{intent.light.constructive.background}"
+            },
+            "text": { "$value": "{intent.light.constructive.background}" }
+          },
+
+          "destructive": {
+            "borderColor": {
+              "$value": "{intent.light.destructive.background}"
+            },
+            "text": { "$value": "{intent.light.destructive.background}" }
+          }
+        },
+
+        "link": {
+          "primary": {
+            "text": { "$value": "{intent.light.primary.background}" },
+            "hoverText": { "$value": "{intent.light.primary.hover}" }
+          },
+
+          "secondary": {
+            "text": { "$value": "{intent.light.secondary.background}" },
+            "hoverText": { "$value": "{intent.light.secondary.hover}" }
+          },
+
+          "constructive": {
+            "text": { "$value": "{intent.light.constructive.background}" },
+            "hoverText": { "$value": "{intent.light.constructive.hover}" }
+          },
+
+          "destructive": {
+            "text": { "$value": "{intent.light.destructive.background}" },
+            "hoverText": { "$value": "{intent.light.destructive.hover}" }
           }
         }
       }

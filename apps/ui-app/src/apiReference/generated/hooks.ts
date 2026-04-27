@@ -4,6 +4,152 @@ export const hooks = [
   {
     apiReference: [
       {
+        comments: 'Optional arrow node ref used to calculate arrow offsets.',
+        defaultValue: null,
+        displayName: 'useAnchoredPosition',
+        propName: 'arrowRef',
+        type: 'RefObject<HTMLElement | >',
+        values: [],
+      },
+      {
+        comments: 'Minimum viewport padding when preventing collisions.',
+        defaultValue: null,
+        displayName: 'useAnchoredPosition',
+        propName: 'boundaryPadding',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments:
+          'Allows placement to switch to the opposite side on collision.',
+        defaultValue: true,
+        displayName: 'useAnchoredPosition',
+        propName: 'flip',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Matches the floating width to the anchor width.',
+        defaultValue: false,
+        displayName: 'useAnchoredPosition',
+        propName: 'matchTriggerWidth',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Distance between anchor and floating element.',
+        defaultValue: null,
+        displayName: 'useAnchoredPosition',
+        propName: 'offset',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments:
+          'Enables measurements and updates while the floating element is visible.',
+        defaultValue: null,
+        displayName: 'useAnchoredPosition',
+        propName: 'open',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Preferred floating placement relative to the anchor.',
+        defaultValue: null,
+        displayName: 'useAnchoredPosition',
+        propName: 'placement',
+        type: 'Placement',
+        values: [],
+      },
+      {
+        comments: 'Clamps floating coordinates inside viewport bounds.',
+        defaultValue: true,
+        displayName: 'useAnchoredPosition',
+        propName: 'shift',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'CSS positioning strategy used by the floating element.',
+        defaultValue: 'fixed',
+        displayName: 'useAnchoredPosition',
+        propName: 'strategy',
+        type: '"fixed" | "absolute"',
+        values: ['fixed', 'absolute'],
+      },
+    ],
+    returnReference: [
+      {
+        comments: 'Final placement after collision handling.',
+        defaultValue: null,
+        displayName: 'useAnchoredPosition',
+        propName: 'actualPlacement',
+        type: 'Placement',
+        values: [],
+      },
+      {
+        comments: 'Ref object for the anchor/trigger element.',
+        defaultValue: null,
+        displayName: 'useAnchoredPosition',
+        propName: 'anchorRef',
+        type: 'RefObject<HTMLElement | >',
+        values: [],
+      },
+      {
+        comments: 'Inline style object to apply to the arrow element.',
+        defaultValue: null,
+        displayName: 'useAnchoredPosition',
+        propName: 'arrowStyle',
+        type: 'CSSProperties',
+        values: [],
+      },
+      {
+        comments: 'Ref object for the floating/content element.',
+        defaultValue: null,
+        displayName: 'useAnchoredPosition',
+        propName: 'floatingRef',
+        type: 'RefObject<HTMLElement | >',
+        values: [],
+      },
+      {
+        comments: 'Inline style object to apply to the floating element.',
+        defaultValue: null,
+        displayName: 'useAnchoredPosition',
+        propName: 'style',
+        type: 'CSSProperties',
+        values: [],
+      },
+      {
+        comments: 'Recomputes floating and arrow coordinates immediately.',
+        defaultValue: null,
+        displayName: 'useAnchoredPosition',
+        propName: 'updatePosition',
+        type: '() => void',
+        values: [],
+      },
+    ],
+    name: 'useAnchoredPosition',
+    exportName: 'useAnchoredPosition',
+    importPath: '@themeshift/ui/hooks/useAnchoredPosition',
+    importString:
+      "import { useAnchoredPosition } from '@themeshift/ui/hooks/useAnchoredPosition';",
+    meta: {
+      category: 'overlays',
+      description:
+        'Positions floating UI relative to an anchor with placement, flip, shift, and arrow alignment support.',
+      tags: ['overlay', 'positioning', 'floating', 'collision'],
+      status: 'experimental',
+      type: 'hook',
+    },
+    slug: 'useanchoredposition',
+    routeSlug: 'use-anchored-position',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useAnchoredPosition',
+    type: 'hook',
+  },
+  {
+    apiReference: [
+      {
         comments:
           'Specifies the amount of time, in milliseconds, before the\n`wasCopied` flag returns to false after a successful copy.',
         defaultValue: 2000,
@@ -69,7 +215,7 @@ export const hooks = [
         defaultValue: null,
         displayName: 'useForm',
         propName: 'validate',
-        type: 'Partial<Record<FieldName<TValues>, FieldValidator<any, TValues>>>',
+        type: 'Partial<Record<FieldName<TValues>, FieldValidator<unknown, TValues>>>',
         values: [],
       },
       {
@@ -234,6 +380,264 @@ export const hooks = [
     routeSlug: 'use-form',
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useForm',
+    type: 'hook',
+  },
+  {
+    apiReference: [
+      {
+        comments:
+          'Duration in milliseconds the user must hold before confirming.',
+        defaultValue: 2500,
+        displayName: 'useHoldToConfirm',
+        propName: 'confirmationDelay',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments:
+          'Time in milliseconds before the `wasConfirmed` state resets to `false`.',
+        defaultValue: 1000,
+        displayName: 'useHoldToConfirm',
+        propName: 'confirmResetDelay',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments:
+          'Called when an in-progress hold is cancelled before confirmation.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'onCancel',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments: 'Called once the hold duration completes successfully.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'onConfirm',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments:
+          'Called during active holds with progress (`0..100`) and milliseconds\nremaining. Called with `undefined` values when the hook returns to idle.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'onProgress',
+        type: '(progress?: number, timeRemaining?: number) => void',
+        values: [],
+      },
+    ],
+    returnReference: [
+      {
+        comments: 'Cancels the current hold attempt.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'cancel',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments: 'Forces immediate confirmation when a hold is active.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'confirm',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments: '`true` while a hold attempt is currently active.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'isPressing',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Current progress from `0` to `100` during an active hold.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'progress',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Resets all interaction state back to idle.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'reset',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments: 'Starts a hold attempt.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'start',
+        type: '() => void',
+        values: [],
+      },
+      {
+        comments: 'Milliseconds remaining before confirmation while pressing.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'timeRemaining',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments:
+          '`true` after a progressed hold was cancelled before confirmation.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'wasCancelled',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: '`true` immediately after confirmation succeeds.',
+        defaultValue: null,
+        displayName: 'useHoldToConfirm',
+        propName: 'wasConfirmed',
+        type: 'boolean',
+        values: [],
+      },
+    ],
+    name: 'useHoldToConfirm',
+    exportName: 'useHoldToConfirm',
+    importPath: '@themeshift/ui/hooks/useHoldToConfirm',
+    importString:
+      "import { useHoldToConfirm } from '@themeshift/ui/hooks/useHoldToConfirm';",
+    meta: {
+      category: 'actions',
+      description:
+        'Tracks press-and-hold confirmation lifecycle with progress, cancel, and confirm callbacks.',
+      tags: ['confirm', 'hold', 'progress', 'safety'],
+      status: 'experimental',
+      type: 'hook',
+    },
+    slug: 'useholdtoconfirm',
+    routeSlug: 'use-hold-to-confirm',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useHoldToConfirm',
+    type: 'hook',
+  },
+  {
+    apiReference: [],
+    returnReference: [],
+    name: 'useOnClickOutside',
+    exportName: 'useOnClickOutside',
+    importPath: '@themeshift/ui/hooks/useOnClickOutside',
+    importString:
+      "import { useOnClickOutside } from '@themeshift/ui/hooks/useOnClickOutside';",
+    meta: {
+      category: 'actions',
+      description:
+        'Calls a handler when pointer or focus events happen outside a target element.',
+      tags: ['outside-click', 'dismiss', 'interaction'],
+      status: 'stable',
+      type: 'hook',
+    },
+    slug: 'useonclickoutside',
+    routeSlug: 'use-on-click-outside',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useOnClickOutside',
+    type: 'hook',
+  },
+  {
+    apiReference: [
+      {
+        comments:
+          'Selects which box size should drive resize updates.\n\nDefaults to `content-box`.',
+        defaultValue: 'content-box',
+        displayName: 'useResizeObserver',
+        propName: 'box',
+        type: 'ResizeObserverBox',
+        values: [],
+      },
+      {
+        comments: 'Disables observation while keeping the same return shape.',
+        defaultValue: false,
+        displayName: 'useResizeObserver',
+        propName: 'disabled',
+        type: 'boolean',
+        values: [],
+      },
+    ],
+    returnReference: [
+      {
+        comments: 'Latest resize observer entry for the observed element.',
+        defaultValue: null,
+        displayName: 'useResizeObserver',
+        propName: 'entry',
+        type: 'ResizeObserverEntry',
+        values: [],
+      },
+      {
+        comments:
+          '`true` when the current environment supports `ResizeObserver`.',
+        defaultValue: null,
+        displayName: 'useResizeObserver',
+        propName: 'isSupported',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Latest observed content rectangle.',
+        defaultValue: null,
+        displayName: 'useResizeObserver',
+        propName: 'rect',
+        type: 'DOMRectReadOnly',
+        values: [],
+      },
+      {
+        comments: 'Ref callback used to attach the observed element.',
+        defaultValue: null,
+        displayName: 'useResizeObserver',
+        propName: 'ref',
+        type: 'RefCallback<Element>',
+        values: [],
+      },
+    ],
+    name: 'useResizeObserver',
+    exportName: 'useResizeObserver',
+    importPath: '@themeshift/ui/hooks/useResizeObserver',
+    importString:
+      "import { useResizeObserver } from '@themeshift/ui/hooks/useResizeObserver';",
+    meta: {
+      category: 'layout-utilities',
+      description:
+        'Observes element resize changes and returns reactive `ResizeObserver` entry and rect state.',
+      tags: ['resize-observer', 'layout', 'measurement'],
+      status: 'experimental',
+      type: 'hook',
+    },
+    slug: 'useresizeobserver',
+    routeSlug: 'use-resize-observer',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useResizeObserver',
+    type: 'hook',
+  },
+  {
+    apiReference: [],
+    returnReference: [],
+    name: 'useScrollLock',
+    exportName: 'useScrollLock',
+    importPath: '@themeshift/ui/hooks/useScrollLock',
+    importString:
+      "import { useScrollLock } from '@themeshift/ui/hooks/useScrollLock';",
+    meta: {
+      category: 'layout-utilities',
+      description:
+        'Locks document scrolling while overlays or drawers are open.',
+      tags: ['scroll', 'overlay', 'drawer', 'accessibility'],
+      type: 'hook',
+    },
+    slug: 'usescrolllock',
+    routeSlug: 'use-scroll-lock',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/hooks/useScrollLock',
     type: 'hook',
   },
 ] satisfies ApiReferenceHook[];

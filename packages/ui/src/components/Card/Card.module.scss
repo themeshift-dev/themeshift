@@ -1,0 +1,316 @@
+@use '@/sass/mixins/accessibility';
+@use '@/sass/mixins/typography';
+
+.root {
+  --card-overlay-layer: #{token('components.card.overlay.layer')};
+  --card-overlay-interactive-layer: #{token(
+      'components.card.overlay.interactiveLayer'
+    )};
+
+  border: 1px solid transparent;
+  color: token('text.primary');
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  overflow: hidden;
+  position: relative;
+
+  :where([data-card-interactive]) {
+    position: relative;
+    z-index: var(--card-overlay-interactive-layer);
+  }
+}
+
+.withBorder {
+  border-color: token('components.card.border');
+}
+
+.withoutBorder {
+  border-color: transparent;
+}
+
+.paddingNone {
+  padding: 0;
+}
+
+.paddingSmall {
+  padding: token('components.card.padding.small');
+}
+
+.paddingMedium {
+  padding: token('components.card.padding.medium');
+}
+
+.paddingLarge {
+  padding: token('components.card.padding.large');
+}
+
+.radiusNone {
+  border-radius: token('components.card.radius.none');
+}
+
+.radiusSmall {
+  border-radius: token('components.card.radius.small');
+}
+
+.radiusMedium {
+  border-radius: token('components.card.radius.medium');
+}
+
+.radiusLarge {
+  border-radius: token('components.card.radius.large');
+}
+
+.shadowNone {
+  box-shadow: none;
+}
+
+.shadowSmall {
+  box-shadow: token('components.card.shadow.small');
+}
+
+.shadowMedium {
+  box-shadow: token('components.card.shadow.medium');
+}
+
+.shadowLarge {
+  box-shadow: token('components.card.shadow.large');
+}
+
+.surfaceDefault {
+  background-color: token('components.card.surface.default');
+}
+
+.surfaceSubtle {
+  background-color: token('components.card.surface.subtle');
+}
+
+.surfaceElevated {
+  background-color: token('components.card.surface.elevated');
+}
+
+.alignStart {
+  align-items: flex-start;
+  text-align: start;
+}
+
+.alignCenter {
+  align-items: center;
+  text-align: center;
+}
+
+.alignEnd {
+  align-items: flex-end;
+  text-align: end;
+}
+
+.justifyStart {
+  justify-content: flex-start;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.justifyEnd {
+  justify-content: flex-end;
+}
+
+.justifySpaceBetween {
+  justify-content: space-between;
+}
+
+.section {
+  min-inline-size: 0;
+  width: 100%;
+}
+
+.header,
+.footer {
+  display: flex;
+}
+
+.header {
+  flex-direction: column;
+  gap: token('components.card.layout.headerGap');
+}
+
+.body {
+  display: block;
+}
+
+.title {
+  @include typography.style('body.strong');
+
+  color: token('text.primary');
+  margin: 0;
+}
+
+.description {
+  @include typography.style('caption.default');
+
+  color: token('text.muted');
+  margin: 0;
+}
+
+.media {
+  block-size: auto;
+  inline-size: 100%;
+  overflow: hidden;
+}
+
+.aspectAuto {
+  aspect-ratio: auto;
+}
+
+.aspectSquare {
+  aspect-ratio: 1 / 1;
+}
+
+.aspectVideo {
+  aspect-ratio: 16 / 9;
+}
+
+.aspectWide {
+  aspect-ratio: 21 / 9;
+}
+
+.fitCover {
+  > :where(img, video, iframe, svg) {
+    block-size: 100%;
+    inline-size: 100%;
+    object-fit: cover;
+  }
+}
+
+.fitContain {
+  > :where(img, video, iframe, svg) {
+    block-size: 100%;
+    inline-size: 100%;
+    object-fit: contain;
+  }
+}
+
+.mediaTop {
+  order: -1;
+}
+
+.mediaBottom {
+  order: 99;
+}
+
+.actions {
+  --card-actions-gap: #{token('components.card.layout.actionsGapMedium')};
+
+  display: flex;
+  gap: var(--card-actions-gap);
+  min-inline-size: 0;
+}
+
+.actionsRow {
+  flex-direction: row;
+}
+
+.actionsColumn {
+  flex-direction: column;
+}
+
+.actionsGapNone {
+  --card-actions-gap: 0;
+}
+
+.actionsGapSmall {
+  --card-actions-gap: #{token('components.card.layout.actionsGapSmall')};
+}
+
+.actionsGapMedium {
+  --card-actions-gap: #{token('components.card.layout.actionsGapMedium')};
+}
+
+.actionsGapLarge {
+  --card-actions-gap: #{token('components.card.layout.actionsGapLarge')};
+}
+
+.actionsWrap {
+  flex-wrap: wrap;
+}
+
+.actions.justifySpaceBetween {
+  width: 100%;
+}
+
+.linkOverlay {
+  @include accessibility.focusInner;
+
+  border-radius: inherit;
+  inset: 0;
+  position: absolute;
+  z-index: var(--card-overlay-layer);
+}
+
+.divider {
+  background-color: token('components.card.divider');
+  flex: 0 0 auto;
+}
+
+.dividerHorizontal {
+  block-size: token('components.card.dividerThickness');
+  inline-size: 100%;
+}
+
+.dividerVertical {
+  align-self: stretch;
+  block-size: auto;
+  inline-size: token('components.card.dividerThickness');
+  min-block-size: 1em;
+}
+
+.dividerInset.dividerHorizontal {
+  margin-inline: token('components.card.dividerInsetInline');
+}
+
+.dividerInset.dividerVertical {
+  margin-block: token('components.card.dividerInsetBlock');
+}
+
+.badgeContainer {
+  pointer-events: none;
+  position: absolute;
+  z-index: var(--card-overlay-interactive-layer);
+
+  > :where(*) {
+    pointer-events: auto;
+  }
+}
+
+.badgeTopStart {
+  inset-block-start: 0;
+  inset-inline-start: 0;
+}
+
+.badgeTopEnd {
+  inset-block-start: 0;
+  inset-inline-end: 0;
+}
+
+.badgeBottomStart {
+  inset-block-end: 0;
+  inset-inline-start: 0;
+}
+
+.badgeBottomEnd {
+  inset-block-end: 0;
+  inset-inline-end: 0;
+}
+
+.badgeOffsetNone {
+  margin: 0;
+}
+
+.badgeOffsetSmall {
+  margin: token('components.card.badgeOffset.small');
+}
+
+.badgeOffsetMedium {
+  margin: token('components.card.badgeOffset.medium');
+}

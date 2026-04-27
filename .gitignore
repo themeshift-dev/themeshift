@@ -10,7 +10,15 @@ dist
 **/dist
 dist-app
 **/dist-app
+.next
+**/.next
+out
+**/out
+.vercel
+**/.vercel
 storybook-static
 **/storybook-static
 .netlify
+.env*.local
 *.tsbuildinfo
+/token-audit.csv

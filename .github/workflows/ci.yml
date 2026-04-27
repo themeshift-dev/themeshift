@@ -16,7 +16,7 @@ on:
 
 jobs:
   conventions:
-    if: ${{ github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request' && (github.event.action != 'edited' || github.event.changes.title != null) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -40,6 +40,7 @@ jobs:
           PR_TITLE: ${{ github.event.pull_request.title }}
 
   validate:
+    if: ${{ github.event_name != 'pull_request' || github.event.action != 'edited' }}
     runs-on: ubuntu-latest
     steps:
       # Clone repository into the runner workspace
@@ -64,11 +65,54 @@ jobs:
       # Confirm generated README badges match the current package surface
       - run: pnpm docs:check-badges
 
+      - name: Configure Turborepo SCM range
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "TURBO_SCM_BASE=origin/${{ github.base_ref }}" >> "$GITHUB_ENV"
+          else
+            echo "TURBO_SCM_BASE=origin/develop" >> "$GITHUB_ENV"
+          fi
+          echo "TURBO_SCM_HEAD=HEAD" >> "$GITHUB_ENV"
+
       # Run the main validation pipeline used for pull requests and main
       - run: pnpm ci:validate
 
-      # Build the plugin package so workspace consumers can resolve dist entrypoints during tests
-      - run: pnpm --filter @themeshift/vite-plugin-themeshift build
+      # Build core + plugin packages so workspace consumers can resolve dist entrypoints during tests
+      - run: pnpm --filter @themeshift/core build
+      - run: pnpm --filter @themeshift/vite-plugin build
+
+      # Generate core package coverage output for Codecov
+      - run: pnpm --filter @themeshift/core exec vitest run --coverage --coverage.reporter=text --coverage.reporter=html --coverage.reporter=lcov
+
+      # Upload core package coverage to Codecov
+      - name: Upload core coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./packages/core/coverage/lcov.info
+          flags: core
+
+      # Generate CLI package coverage output for Codecov
+      - run: pnpm --filter @themeshift/cli exec vitest run --coverage --coverage.reporter=text --coverage.reporter=html --coverage.reporter=lcov
+
+      # Upload CLI package coverage to Codecov
+      - name: Upload cli coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./packages/cli/coverage/lcov.info
+          flags: cli
+
+      # Generate Next package coverage output for Codecov
+      - run: pnpm --filter @themeshift/next test:coverage
+
+      # Upload Next package coverage to Codecov
+      - name: Upload next coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./packages/next/coverage/lcov.info
+          flags: next
 
       # Generate UI package coverage output for Codecov
       - run: pnpm --filter @themeshift/ui test:coverage
@@ -82,12 +126,12 @@ jobs:
           flags: ui
 
       # Generate plugin package coverage output for Codecov
-      - run: pnpm --filter @themeshift/vite-plugin-themeshift test:coverage
+      - run: pnpm --filter @themeshift/vite-plugin test:coverage
 
       # Upload plugin package coverage to Codecov
-      - name: Upload vite-plugin-themeshift coverage reports to Codecov
+      - name: Upload vite-plugin coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./packages/vite-plugin-themeshift/coverage/lcov.info
-          flags: vite-plugin-themeshift
+          files: ./packages/vite-plugin/coverage/lcov.info
+          flags: vite-plugin

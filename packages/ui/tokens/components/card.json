@@ -1,0 +1,63 @@
+{
+  "components": {
+    "card": {
+      "layout": {
+        "headerGap": { "$value": "{space.2}" },
+        "actionsGapSmall": { "$value": "{space.2}" },
+        "actionsGapMedium": { "$value": "{space.3}" },
+        "actionsGapLarge": { "$value": "{space.4}" },
+        "dividerInsetInline": { "$value": "{space.4}" },
+        "dividerInsetBlock": { "$value": "{space.3}" }
+      },
+
+      "overlay": {
+        "layer": { "$value": "1" },
+        "interactiveLayer": { "$value": "2" }
+      },
+      "dividerThickness": { "$value": "1px" },
+      "badgeOffset": {
+        "small": { "$value": "{space.2}" },
+        "medium": { "$value": "{space.3}" }
+      },
+
+      "padding": {
+        "small": { "$value": "{space.3}" },
+        "medium": { "$value": "{space.4}" },
+        "large": { "$value": "{space.6}" }
+      },
+
+      "radius": {
+        "none": { "$value": "0" },
+        "small": { "$value": "{radius.small}" },
+        "medium": { "$value": "{radius.medium}" },
+        "large": { "$value": "{radius.large}" }
+      },
+
+      "shadow": {
+        "small": { "$value": "0 2px 8px rgba(0, 0, 0, 0.08)" },
+        "medium": { "$value": "0 8px 24px rgba(0, 0, 0, 0.12)" },
+        "large": { "$value": "0 16px 36px rgba(0, 0, 0, 0.16)" }
+      },
+
+      "light": {
+        "border": { "$value": "{border.light.default}" },
+        "divider": { "$value": "{border.light.default}" },
+        "surface": {
+          "default": { "$value": "{background.light.surface}" },
+          "subtle": { "$value": "{background.light.surfaceSunken}" },
+          "elevated": { "$value": "{background.light.surfaceRaised}" }
+        }
+      },
+
+      "dark": {
+        "border": { "$value": "{border.dark.default}" },
+        "divider": { "$value": "{border.dark.default}" },
+        "surface": {
+          "default": { "$value": "{background.dark.surface}" },
+          "subtle": { "$value": "{background.dark.surfaceSunken}" },
+          "elevated": { "$value": "{background.dark.surfaceRaised}" }
+        }
+      }
+    }
+  }
+}

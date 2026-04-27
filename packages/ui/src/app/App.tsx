@@ -77,9 +77,8 @@ function App() {
               the user, like cancel
             </li>
             <li>
-              <strong>tertiary</strong>: This is for the any actions that might
-              only be tertially related to the other buttons and renders as a
-              link
+              <strong>link variant</strong>: Use <code>variant="link"</code> for
+              actions that should read like inline links
             </li>
             <li>
               <strong>constructive</strong>: This intent renders with a green
@@ -108,10 +107,7 @@ function App() {
           >
             Count: {count}
           </Button>
-          <Button
-            onClick={() => setCount((count) => count + 1)}
-            intent="tertiary"
-          >
+          <Button onClick={() => setCount((count) => count + 1)}>
             Count: {count}
           </Button>
           <Button
@@ -151,11 +147,7 @@ function App() {
             Count: {count}
           </Button>
 
-          <Button
-            onClick={() => setCount((count) => count + 1)}
-            intent="tertiary"
-            disabled
-          >
+          <Button onClick={() => setCount((count) => count + 1)} disabled>
             Count: {count}
           </Button>
 
@@ -201,7 +193,6 @@ function App() {
 
           <Button
             onClick={() => setCount((count) => count + 1)}
-            intent="tertiary"
             visuallyDisabled
           >
             Count: {count}

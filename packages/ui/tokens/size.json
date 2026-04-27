@@ -1,0 +1,26 @@
+{
+  "size": {
+    "control": {
+      "small": {
+        "height": { "$type": "dimension", "$value": "{space.8}" },
+        "paddingInline": { "$type": "dimension", "$value": "{space.3}" },
+        "icon": { "$type": "dimension", "$value": "{space.4}" },
+        "font": { "$value": "{typography.label.small.fontSize}" }
+      },
+
+      "medium": {
+        "height": { "$type": "dimension", "$value": "{space.9}" },
+        "paddingInline": { "$type": "dimension", "$value": "{space.4}" },
+        "icon": { "$type": "dimension", "$value": "{space.5}" },
+        "font": { "$value": "{typography.label.medium.fontSize}" }
+      },
+
+      "large": {
+        "height": { "$type": "dimension", "$value": "{space.10}" },
+        "paddingInline": { "$type": "dimension", "$value": "{space.5}" },
+        "icon": { "$type": "dimension", "$value": "{space.6}" },
+        "font": { "$value": "{typography.label.large.fontSize}" }
+      }
+    }
+  }
+}

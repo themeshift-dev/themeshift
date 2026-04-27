@@ -6,7 +6,6 @@ on:
       - opened
       - edited
       - reopened
-  projects_v2_item:
   workflow_dispatch:
     inputs:
       issue_number:
@@ -155,73 +154,6 @@ jobs:
               };
             }
 
-            async function getIssueFromProjectItem(itemNodeId) {
-              const query = `
-                query GetProjectItem($itemId: ID!) {
-                  node(id: $itemId) {
-                    ... on ProjectV2Item {
-                      fieldValues(first: 20) {
-                        nodes {
-                          ... on ProjectV2ItemFieldSingleSelectValue {
-                            name
-                            field {
-                              ... on ProjectV2SingleSelectField {
-                                name
-                              }
-                            }
-                          }
-                        }
-                      }
-                      project {
-                        number
-                        owner {
-                          ${projectOwnerFragment}
-                        }
-                      }
-                      content {
-                        ... on Issue {
-                          number
-                          repository {
-                            name
-                            owner {
-                              login
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              `;
-
-              const response = await github.graphql(query, {
-                itemId: itemNodeId,
-              });
-
-              const item = response.node;
-
-              if (
-                !item ||
-                item.project?.number !== projectNumber ||
-                item.project?.owner?.login !== projectOwner
-              ) {
-                return null;
-              }
-
-              const issue = item.content;
-
-              if (!issue) {
-                return null;
-              }
-
-              return {
-                fieldSelections: getFieldSelections(item.fieldValues?.nodes),
-                issueNumber: issue.number,
-                owner: issue.repository.owner.login,
-                repo: issue.repository.name,
-              };
-            }
-
             async function resolveIssueContext() {
               if (context.eventName === 'issues') {
                 return getProjectItemForIssue({
@@ -229,19 +161,6 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                 });
-              }
-
-              if (context.eventName === 'projects_v2_item') {
-                const itemNodeId =
-                  context.payload.projects_v2_item?.node_id ??
-                  context.payload.projects_v2_item?.id;
-
-                if (!itemNodeId) {
-                  core.info('No project item node id in payload. Skipping.');
-                  return null;
-                }
-
-                return getIssueFromProjectItem(itemNodeId);
               }
 
               if (context.eventName === 'workflow_dispatch') {

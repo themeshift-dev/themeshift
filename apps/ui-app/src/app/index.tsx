@@ -1,6 +1,9 @@
 import { Button } from '@themeshift/ui/components/Button';
 import { Navbar } from '@themeshift/ui/components/Navbar';
+import { SkipLink } from '@themeshift/ui/components/SkipLink';
 import { useTheme } from '@themeshift/ui/contexts';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { IconSun, IconMoon } from '@themeshift/ui/icons';
 
 import '@themeshift/ui/css/base.css';
 
@@ -15,27 +18,71 @@ function App() {
 
   return (
     <>
-      <header className={styles.header}>
-        <Navbar>
-          <Navbar.Container>
-            <Navbar.Section align="start">
-              <Link to="/" className={styles.logo}>
-                <Logo size={120} />
-              </Link>
+      <SkipLink href="#main-content">Skip to main content</SkipLink>
 
+      <header className={styles.header}>
+        <Navbar aria-label="Primary navigation" surface="transparent">
+          <Navbar.Container>
+            <Navbar.Brand asChild>
+              <Link to="/" className={styles.logo}>
+                <Logo size={90} />
+              </Link>
+            </Navbar.Brand>
+
+            <Navbar.Content hideBelow="tablet">
               <div className={styles.links}>
+                <Link to="/docs">Docs</Link>
                 <Link to="/ui">UI</Link>
                 <Link to="/tokens">Design Tokens</Link>
-                <Link to="/plugin">Plugin</Link>
+                <Link to="/cli">CLI</Link>
               </div>
-            </Navbar.Section>
+            </Navbar.Content>
 
-            <Navbar.Section align="end">
-              <Button onClick={toggleTheme}>
+            <Navbar.Actions hideBelow="tablet">
+              <Button
+                onClick={toggleTheme}
+                size="large"
+                aria-label={
+                  theme === 'dark' ? 'Use light theme' : 'Use dark theme'
+                }
+              >
+                {theme === 'dark' ? <IconSun /> : <IconMoon />}
+              </Button>
+            </Navbar.Actions>
+
+            <Navbar.Toggle
+              aria-label="Open navigation menu"
+              showBelow="tablet"
+              as={Button}
+              size="large"
+              variant="outline"
+            >
+              {(isOpen) => (isOpen ? <FaTimes /> : <FaBars />)}
+            </Navbar.Toggle>
+          </Navbar.Container>
+
+          <Navbar.Menu
+            placement="drawer"
+            showBelow="tablet"
+            onClickOutside="close"
+          >
+            <div className={styles.mobileMenu}>
+              <div className={styles.mobileLinks}>
+                <Link to="/docs">Docs</Link>
+                <Link to="/ui">UI</Link>
+                <Link to="/tokens">Design Tokens</Link>
+                <Link to="/cli">CLI</Link>
+              </div>
+
+              <Button
+                className={styles.mobileThemeToggle}
+                onClick={toggleTheme}
+                variant="outline"
+              >
                 {theme === 'dark' ? 'Dark mode' : 'Light mode'}
               </Button>
-            </Navbar.Section>
-          </Navbar.Container>
+            </div>
+          </Navbar.Menu>
         </Navbar>
       </header>
 

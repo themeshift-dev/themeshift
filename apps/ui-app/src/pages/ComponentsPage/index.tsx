@@ -11,7 +11,7 @@ export const ComponentsPage = () => {
   const { grouped } = useApiReference();
 
   return (
-    <PageShell>
+    <PageShell showSkipLink={false}>
       <Heading>UI</Heading>
 
       <div className={styles.cardGrid}>

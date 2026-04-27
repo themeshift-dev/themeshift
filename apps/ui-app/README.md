@@ -1,18 +1,18 @@
 # ThemeShift UI App
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![Build](https://github.com/themeshift-dev/themeshift/actions/workflows/ci.yml/badge.svg)
-![Coverage](https://codecov.io/gh/themeshift-dev/themeshift/graph/badge.svg)
+![Build](https://github.com/themeshift-dev/themeshift/actions/workflows/ci.yml/badge.svg?branch=develop)
+![Coverage](https://codecov.io/gh/themeshift-dev/themeshift/graph/badge.svg?branch=develop)
 ![npm](https://img.shields.io/badge/npm-private-lightgrey.svg)
 
 `@themeshift/ui-app` is the private documentation and tooling app for the ThemeShift monorepo.
 
-It is the main place to test `@themeshift/ui` and `@themeshift/vite-plugin-themeshift` together before publishing.
+It is the main place to test `@themeshift/ui` and `@themeshift/vite-plugin` together before publishing.
 
 ## What it is for
 
 - document `@themeshift/ui`
-- demonstrate token customization powered by `@themeshift/vite-plugin-themeshift`
+- demonstrate token customization powered by `@themeshift/vite-plugin`
 - demonstrate the optional `@themeshift/ui/css/fonts.css` import and font customization path
 - provide an integration target for local workspace changes before publishing packages
 
@@ -51,14 +51,14 @@ import '@themeshift/ui/css/tokens.css';
 
 ## Token overrides
 
-This app extends `@themeshift/ui` through `@themeshift/vite-plugin-themeshift`, so token files in [`tokens/`](./tokens) can override the shared UI defaults without editing component styles.
+This app extends `@themeshift/ui` through `@themeshift/vite-plugin`, so token files in [`tokens/`](./tokens) can override the shared UI defaults without editing component styles.
 
 Example:
 
 ```ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { themeShift } from '@themeshift/vite-plugin-themeshift';
+import { themeShift } from '@themeshift/vite-plugin';
 
 export default defineConfig({
   plugins: [

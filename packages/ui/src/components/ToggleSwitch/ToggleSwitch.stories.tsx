@@ -106,10 +106,6 @@ export const Intents: Story = {
         <Field.Label>Secondary</Field.Label>
       </Field>
       <Field layout="inline-control">
-        <ToggleSwitch {...args} defaultChecked intent="tertiary" />
-        <Field.Label>Tertiary</Field.Label>
-      </Field>
-      <Field layout="inline-control">
         <ToggleSwitch {...args} defaultChecked intent="constructive" />
         <Field.Label>Constructive</Field.Label>
       </Field>

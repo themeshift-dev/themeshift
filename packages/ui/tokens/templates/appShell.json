@@ -1,0 +1,11 @@
+{
+  "appShell": {
+    "navigation": {
+      "inlineWidth": { "$type": "dimension", "$value": "16rem" }
+    },
+
+    "sidebar": { "inlineWidth": { "$type": "dimension", "$value": "20rem" } },
+    "aside": { "inlineWidth": { "$type": "dimension", "$value": "18rem" } },
+    "overlay": { "maxWidth": { "$type": "dimension", "$value": "22rem" } }
+  }
+}

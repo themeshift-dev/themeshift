@@ -8,25 +8,43 @@ import * as sass from 'sass';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
-const interDir = path.join(
-  rootDir,
-  'node_modules',
-  '@fontsource-variable',
-  'inter'
-);
+const isSilent = process.argv.includes('--silent');
+const cssTypeDeclaration = 'declare const css: string;\nexport default css;\n';
 
 async function run(command, args) {
   await new Promise((resolve, reject) => {
+    let stdout = '';
+    let stderr = '';
     const child = spawn(command, args, {
       cwd: rootDir,
-      stdio: 'inherit',
+      stdio: isSilent ? 'pipe' : 'inherit',
       shell: process.platform === 'win32',
     });
+
+    if (isSilent) {
+      child.stdout?.setEncoding('utf8');
+      child.stderr?.setEncoding('utf8');
+      child.stdout?.on('data', (chunk) => {
+        stdout += chunk;
+      });
+      child.stderr?.on('data', (chunk) => {
+        stderr += chunk;
+      });
+    }
 
     child.on('exit', (code) => {
       if (code === 0) {
         resolve();
         return;
+      }
+
+      if (isSilent) {
+        if (stdout) {
+          process.stdout.write(stdout);
+        }
+        if (stderr) {
+          process.stderr.write(stderr);
+        }
       }
 
       reject(
@@ -42,7 +60,7 @@ async function compileBaseCss() {
   const baseCssPath = path.join(rootDir, 'src/css/base.scss');
   const baseCssSource = await readFile(baseCssPath, 'utf8');
   const result = sass.compileString(
-    `@use "@themeshift/vite-plugin-themeshift/token-defaults" as _themeShiftTokenDefaults with ($theme-shift-default-css-var-prefix: "themeshift");\n${baseCssSource}`,
+    `@use "@themeshift/vite-plugin/token-defaults" as _themeShiftTokenDefaults with ($theme-shift-default-css-var-prefix: "themeshift");\n${baseCssSource}`,
     {
       url: pathToFileURL(baseCssPath),
       loadPaths: [
@@ -52,20 +70,20 @@ async function compileBaseCss() {
       style: 'expanded',
     }
   );
-  const [interNormalCss, interItalicCss] = await Promise.all([
-    readFile(path.join(interDir, 'wght.css'), 'utf8'),
-    readFile(path.join(interDir, 'wght-italic.css'), 'utf8'),
-  ]);
-  const fontsCss = [interNormalCss, interItalicCss]
-    .join('\n')
-    .replaceAll("format('woff2-variations')", "format('woff2')");
 
   await mkdir(path.join(distDir, 'css'), { recursive: true });
-  await cp(path.join(interDir, 'files'), path.join(distDir, 'css', 'files'), {
-    recursive: true,
-  });
-  await writeFile(path.join(distDir, 'css/fonts.css'), `${fontsCss}\n`);
   await writeFile(path.join(distDir, 'css/base.css'), `${result.css}\n`);
+}
+
+async function writeCssTypeDeclarations() {
+  const cssDir = path.join(distDir, 'css');
+  const cssFiles = ['base.css', 'tokens.css'];
+
+  await Promise.all(
+    cssFiles.map((filename) =>
+      writeFile(path.join(cssDir, `${filename}.d.ts`), cssTypeDeclaration)
+    )
+  );
 }
 
 async function copyThemeAssets() {
@@ -106,14 +124,21 @@ async function removeNonPublishedArtifacts() {
 
 await rm(distDir, { recursive: true, force: true });
 
-await run('pnpm', [
+const viteArgs = [
   'exec',
   'vite',
   'build',
   '--config',
   'vite.config.components.ts',
-]);
+];
+
+if (isSilent) {
+  viteArgs.push('--logLevel', 'silent');
+}
+
+await run('pnpm', viteArgs);
 await run('pnpm', ['exec', 'tsc', '-p', 'tsconfig.build.json']);
 await removeNonPublishedArtifacts();
 await compileBaseCss();
 await copyThemeAssets();
+await writeCssTypeDeclarations();

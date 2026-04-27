@@ -18,6 +18,14 @@ export type ApiReferenceItem = {
   values: Array<string | number | boolean>;
 };
 
+export type TypesReferenceItem = {
+  comments: string;
+  defaultValue: ApiReferenceDefaultValue;
+  displayName?: string;
+  typeName: string;
+  values: Array<string | number | boolean>;
+};
+
 export type ApiReferenceMeta = ComponentMeta & {
   type: ApiReferenceType;
 };
@@ -32,6 +40,7 @@ export type ApiReferenceComponent = {
   routeSlug: string;
   slug: string;
   sourceCodeUrl: string;
+  typesReference: TypesReferenceItem[];
   type: 'component';
 };
 

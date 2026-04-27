@@ -52,7 +52,9 @@ export const ButtonGuide = () => {
         <GuideCallout>
           <code>Button</code> extends the native <code>button</code> element and
           adds extra props for appearance, icon support, loading states, and
-          composition.
+          composition. Use <code>as</code> for straightforward polymorphic
+          rendering, and use <code>asChild</code> when you need Button to style
+          and preserve an existing child element.
         </GuideCallout>
       }
       items={component?.apiReference ?? []}
@@ -66,12 +68,35 @@ export const ButtonGuide = () => {
           <TableOfContents.Marker id="examples-sizes" label="Sizes" level={2} />
           <Heading level={4}>Sizes</Heading>
           <p>
-            Use the <code>size</code> prop to change the size of the button.
+            Use the <code>size</code> prop to change spacing and type scale.
+            Choose <code>hero</code> for high-emphasis page intro actions. It
+            uses token-driven <code>clamp(...)</code> sizing, with minimums set
+            to the medium button defaults.
           </p>
         </GuideExampleText>
 
         <GuideExampleViewer>
           <ExampleViewer example={examples.sizes} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
+          <TableOfContents.Marker
+            id="examples-hero-size"
+            label="Hero size"
+            level={2}
+          />
+          <Heading level={4}>Hero size</Heading>
+          <p>
+            Pair <code>size="hero"</code> with your top CTA row to keep larger
+            desktop sizing while preserving a medium-sized floor on smaller
+            screens.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.heroSize} />
         </GuideExampleViewer>
       </GuideExampleCard>
 
@@ -84,12 +109,34 @@ export const ButtonGuide = () => {
           />
           <Heading level={4}>Intents</Heading>
           <p>
-            Use the <code>intent</code> prop to render a variant appearance.
+            Use the <code>intent</code> prop to communicate the action's purpose
+            or outcome. <code>primary</code> is the default.
           </p>
         </GuideExampleText>
 
         <GuideExampleViewer>
           <ExampleViewer example={examples.intents} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
+          <TableOfContents.Marker
+            id="examples-variants"
+            label="Variants"
+            level={2}
+          />
+          <Heading level={4}>Variants</Heading>
+          <p>
+            Use the <code>variant</code> prop to control how the accent colour
+            is applied. <code>solid</code> fills the background (default),{' '}
+            <code>outline</code> applies it to the border, and <code>link</code>{' '}
+            applies it to the text with an underline on hover.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer example={examples.variants} />
         </GuideExampleViewer>
       </GuideExampleCard>
 
@@ -119,6 +166,25 @@ export const ButtonGuide = () => {
 
       <GuideExampleCard>
         <GuideExampleText>
+          <TableOfContents.Marker
+            id="examples-direction"
+            label="Direction (LTR/RTL)"
+            level={2}
+          />
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
+          <p>
+            Start and end icon slots should mirror automatically between LTR and
+            RTL writing modes.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer examples={examples.directionExamples} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
           <TableOfContents.Marker id="examples-busy" label="Busy" level={2} />
           <Heading level={4}>Busy</Heading>
           <p>
@@ -136,19 +202,20 @@ export const ButtonGuide = () => {
       <GuideExampleCard>
         <GuideExampleText>
           <TableOfContents.Marker
-            id="examples-as-child"
-            label="As Child"
+            id="examples-as-and-as-child"
+            label="as vs asChild"
             level={2}
           />
-          <Heading level={4}>As Child</Heading>
+          <Heading level={4}>as vs asChild</Heading>
           <p>
-            Use the <code>asChild</code> prop to render a child element as a
-            button. This works well when you need a link, badge or other
-            primitive to inherit button styling and behavior.
+            Use <code>as</code> when you want Button to render a custom element
+            directly (for example, <code>NavLink</code>). Use{' '}
+            <code>asChild</code> when you already have a child element and want
+            to preserve that element identity while applying Button styles.
           </p>
         </GuideExampleText>
         <GuideExampleViewer>
-          <ExampleViewer example={examples.asChild} />
+          <ExampleViewer examples={[examples.asProp, examples.asChild]} />
         </GuideExampleViewer>
       </GuideExampleCard>
 

@@ -1,0 +1,28 @@
+{
+  "components": {
+    "tooltip": {
+      "paddingX": { "$value": "{space.3}" },
+      "paddingY": { "$value": "{space.2}" },
+      "radius": { "$value": "{radius.small}" },
+      "maxWidth": { "$value": "20rem" },
+      "shadow": { "$value": "{shadow.medium}" },
+      "zIndex": { "$type": "number", "$value": "{layer.overlay}" },
+
+      "arrow": { "size": { "$value": "10px" } },
+
+      "border": { "width": { "$value": "1px" } },
+
+      "light": {
+        "background": { "$value": "{color.gray.100}" },
+        "text": { "$value": "{text.light.primary}" },
+        "border": { "color": { "$value": "{color.gray.300}" } }
+      },
+
+      "dark": {
+        "background": { "$value": "{color.gray.900}" },
+        "text": { "$value": "{text.dark.primary}" },
+        "border": { "color": { "$value": "{color.gray.700}" } }
+      }
+    }
+  }
+}

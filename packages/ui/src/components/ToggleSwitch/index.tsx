@@ -24,7 +24,6 @@ const intentClassMap = {
   destructive: styles.destructive,
   primary: styles.primary,
   secondary: styles.secondary,
-  tertiary: styles.tertiary,
 } satisfies Record<ToggleSwitchIntent, string>;
 
 const sizeClassMap = {

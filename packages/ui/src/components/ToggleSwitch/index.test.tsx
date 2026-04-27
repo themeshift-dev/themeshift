@@ -93,7 +93,6 @@ describe('ToggleSwitch', () => {
   it.each([
     ['primary', styles.primary],
     ['secondary', styles.secondary],
-    ['tertiary', styles.tertiary],
     ['constructive', styles.constructive],
     ['destructive', styles.destructive],
   ] as const)('applies the %s intent class', (intent, className) => {

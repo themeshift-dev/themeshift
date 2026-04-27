@@ -1,16 +1,14 @@
 {
   "components": {
     "link": {
-      "font": { "$value": "{font.family.sans}" },
-
-      "light": {
-        "fg": { "$value": "{color.blue.600}" },
-        "bg": { "$value": "transparent" }
-      },
-
       "dark": {
-        "fg": { "$value": "{color.lightBlue.400}" },
-        "bg": { "$value": "transparent" }
+        "background": { "$value": "transparent" },
+        "text": { "$value": "{color.lightBlue.400}" }
+      },
+      "font": { "$value": "{font.family.sans}" },
+      "light": {
+        "background": { "$value": "transparent" },
+        "text": { "$value": "{color.blue.600}" }
       }
     }
   }

@@ -46,7 +46,7 @@ async function main() {
       onCancel: () => {
         exitWithError('No name provided.');
       },
-    },
+    }
   );
 
   const value = response.value?.trim();
@@ -96,7 +96,10 @@ async function makeComponent(name) {
   const entrypointPath = path.join(entrypointDir, `${name}.ts`);
 
   await ensureDoesNotExist(componentDir, `Component already exists: ${name}`);
-  await ensureDoesNotExist(entrypointPath, `Component entrypoint already exists: ${name}`);
+  await ensureDoesNotExist(
+    entrypointPath,
+    `Component entrypoint already exists: ${name}`
+  );
 
   await fs.mkdir(componentDir, { recursive: true });
   await fs.mkdir(entrypointDir, { recursive: true });
@@ -108,7 +111,10 @@ async function makeComponent(name) {
 
   await fs.writeFile(componentIndexPath, componentSource);
   await fs.writeFile(componentStylesPath, '');
-  await fs.writeFile(entrypointPath, `export * from '../../components/${name}';\n`);
+  await fs.writeFile(
+    entrypointPath,
+    `export * from '../../components/${name}';\n`
+  );
 
   await rewriteComponentsBarrel();
   await rewritePackageExports();
@@ -150,10 +156,16 @@ async function makeIcon(name) {
 async function makeTokens(tokenPath) {
   const filePath = path.join(rootDir, 'tokens', `${tokenPath}.json`);
 
-  await ensureDoesNotExist(filePath, `Token file already exists: ${tokenPath}.json`);
+  await ensureDoesNotExist(
+    filePath,
+    `Token file already exists: ${tokenPath}.json`
+  );
 
   await fs.mkdir(path.dirname(filePath), { recursive: true });
-  await fs.writeFile(filePath, `${JSON.stringify(makeTokenObject(tokenPath), null, 2)}\n`);
+  await fs.writeFile(
+    filePath,
+    `${JSON.stringify(makeTokenObject(tokenPath), null, 2)}\n`
+  );
 
   return [filePath];
 }
@@ -166,7 +178,10 @@ async function rewriteComponentsBarrel() {
     .map((entry) => `export * from './${entry.name}';`)
     .sort();
 
-  await fs.writeFile(path.join(componentsRoot, 'index.ts'), `${exports.join('\n')}\n`);
+  await fs.writeFile(
+    path.join(componentsRoot, 'index.ts'),
+    `${exports.join('\n')}\n`
+  );
 }
 
 async function rewriteIconsBarrel() {
@@ -175,13 +190,15 @@ async function rewriteIconsBarrel() {
   const exports = entries
     .filter(
       (entry) =>
-        entry.isFile() &&
-        /^Icon[A-Z][A-Za-z0-9]*\.tsx$/.test(entry.name),
+        entry.isFile() && /^Icon[A-Z][A-Za-z0-9]*\.tsx$/.test(entry.name)
     )
     .map((entry) => `export * from './${entry.name.replace(/\.tsx$/, '')}';`)
     .sort();
 
-  await fs.writeFile(path.join(iconsRoot, 'index.ts'), `${exports.join('\n')}\n`);
+  await fs.writeFile(
+    path.join(iconsRoot, 'index.ts'),
+    `${exports.join('\n')}\n`
+  );
 }
 
 async function ensureIconsPackageExport() {
@@ -195,10 +212,15 @@ async function ensureIconsPackageExport() {
   };
 
   packageJson.exports = Object.fromEntries(
-    Object.entries(existingExports).sort(([left], [right]) => left.localeCompare(right)),
+    Object.entries(existingExports).sort(([left], [right]) =>
+      left.localeCompare(right)
+    )
   );
 
-  await fs.writeFile(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
+  await fs.writeFile(
+    packageJsonPath,
+    `${JSON.stringify(packageJson, null, 2)}\n`
+  );
 }
 
 async function ensureIconsEntry() {
@@ -211,7 +233,7 @@ async function ensureIconsEntry() {
 
   const nextSource = source.replace(
     /('components\/Responsive\/index': fileURLToPath\([\s\S]*?\),\n)/,
-    `$1        'icons/index': fileURLToPath(\n          new URL('./src/entrypoints/icons.ts', import.meta.url)\n        ),\n`,
+    `$1        'icons/index': fileURLToPath(\n          new URL('./src/entrypoints/icons.ts', import.meta.url)\n        ),\n`
   );
 
   await fs.writeFile(configPath, nextSource);
@@ -226,14 +248,14 @@ async function ensureIconsTypeDeclarations() {
   if (!nextSource.includes('"src/icons/**/*.ts"')) {
     nextSource = nextSource.replace(
       '"src/components/**/*.ts",\n',
-      '"src/components/**/*.ts",\n    "src/icons/**/*.ts",\n',
+      '"src/components/**/*.ts",\n    "src/icons/**/*.ts",\n'
     );
   }
 
   if (!nextSource.includes('"src/icons/**/*.tsx"')) {
     nextSource = nextSource.replace(
       '"src/icons/**/*.ts",\n',
-      '"src/icons/**/*.ts",\n    "src/icons/**/*.tsx",\n',
+      '"src/icons/**/*.ts",\n    "src/icons/**/*.tsx",\n'
     );
   }
 
@@ -264,22 +286,28 @@ async function rewritePackageExports() {
   }
 
   packageJson.exports = Object.fromEntries(
-    Object.entries(nextExports).sort(([left], [right]) => left.localeCompare(right)),
+    Object.entries(nextExports).sort(([left], [right]) =>
+      left.localeCompare(right)
+    )
   );
 
-  await fs.writeFile(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
+  await fs.writeFile(
+    packageJsonPath,
+    `${JSON.stringify(packageJson, null, 2)}\n`
+  );
 }
 
 async function rewriteComponentEntries() {
   const configPath = path.join(rootDir, 'vite.config.components.ts');
   const source = await fs.readFile(configPath, 'utf8');
   const componentNames = await listComponentNames();
+  const hookEntryNames = await listHookEntryNames();
 
   const entryBlock = componentNames
     .map(
       (name) => `        'components/${name}/index': fileURLToPath(
           new URL('./src/entrypoints/components/${name}.ts', import.meta.url),
-        ),`,
+        ),`
     )
     .join('\n');
 
@@ -309,11 +337,21 @@ async function rewriteComponentEntries() {
         ),
         'contexts/index': fileURLToPath(
           new URL('./src/entrypoints/contexts.ts', import.meta.url)
-        ),`;
+        ),
+        'hooks/index': fileURLToPath(
+          new URL('./src/entrypoints/hooks.ts', import.meta.url)
+        ),
+${hookEntryNames
+  .map(
+    (hookName) => `        'hooks/${hookName}/index': fileURLToPath(
+          new URL('./src/hooks/${hookName}/index.ts', import.meta.url)
+        ),`
+  )
+  .join('\n')}`;
 
   const nextSource = source.replace(
     /entry:\s*\{[\s\S]*?\n\s*\},\n\s*formats:/,
-    `entry: {\n${entryBlock}\n${staticEntries}\n      },\n      formats:`,
+    `entry: {\n${entryBlock}\n${staticEntries}\n      },\n      formats:`
   );
 
   await fs.writeFile(configPath, nextSource);
@@ -327,6 +365,31 @@ async function listComponentNames() {
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
     .sort();
+}
+
+async function listHookEntryNames() {
+  const hooksRoot = path.join(rootDir, 'src/hooks');
+  const entries = await fs.readdir(hooksRoot, { withFileTypes: true });
+  const hookNames = [];
+
+  for (const entry of entries) {
+    if (!entry.isDirectory()) {
+      continue;
+    }
+
+    const hookIndexPath = path.join(hooksRoot, entry.name, 'index.ts');
+
+    try {
+      await fs.access(hookIndexPath);
+      hookNames.push(entry.name);
+    } catch (error) {
+      if (error?.code !== 'ENOENT') {
+        throw error;
+      }
+    }
+  }
+
+  return hookNames.sort();
 }
 
 function makeTokenObject(tokenPath) {

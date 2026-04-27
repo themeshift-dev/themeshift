@@ -54,4 +54,33 @@ export const multipleTargets = {
   ),
 };
 
+const directionCode = `<>
+  <SkipLink href="#main-content">Skip to main content</SkipLink>
+  <main id="main-content">Page content</main>
+</>`;
+
+export const directionLTR = {
+  code: directionCode,
+  label: 'LTR',
+  sample: (
+    <div>
+      <SkipLink href="#main-content">Skip to main content</SkipLink>
+      <main id="main-content">Page content</main>
+    </div>
+  ),
+};
+
+export const directionRTL = {
+  code: directionCode,
+  label: 'RTL',
+  sample: (
+    <div dir="rtl">
+      <SkipLink href="#main-content">Skip to main content</SkipLink>
+      <main id="main-content">Page content</main>
+    </div>
+  ),
+};
+
 export const propHighlights = [basicUsage, labelProp, withCustomAttributes];
+
+export const directionExamples = [directionLTR, directionRTL];

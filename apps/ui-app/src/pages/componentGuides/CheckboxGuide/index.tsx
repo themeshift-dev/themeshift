@@ -102,6 +102,25 @@ export const CheckboxGuide = () => {
       <GuideExampleCard>
         <GuideExampleText>
           <TableOfContents.Marker
+            id="examples-direction"
+            label="Direction (LTR/RTL)"
+            level={2}
+          />
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
+          <p>
+            Inline checkbox layouts should mirror start and end alignment
+            between LTR and RTL writing modes.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer examples={examples.directionExamples} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
+          <TableOfContents.Marker
             id="examples-indeterminate"
             label="Indeterminate"
             level={2}
@@ -208,6 +227,7 @@ export const CheckboxGuide = () => {
           </p>
         ),
         example: examples.withDescriptionAndError,
+        tocLabel: 'Help & errors',
         title: 'Associate help text and errors',
       },
       {

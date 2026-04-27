@@ -2,10 +2,11 @@ import type { ComponentMeta } from '@themeshift/docs-types';
 
 export const meta = {
   category: 'navigation-structure',
-  description: 'Provides top-level navigation and global actions.',
-  tags: ['navigation', 'layout', 'header', 'menu'],
+  description:
+    'Composes brand, navigation links, actions, and responsive menu behavior.',
+  tags: ['navigation', 'layout', 'header', 'menu', 'responsive'],
   order: 10,
   status: 'stable',
   featured: true,
-  related: ['Link', 'Sidebar', 'SkipLink', 'Responsive'],
+  related: ['Link', 'Button', 'Responsive', 'SkipLink'],
 } satisfies ComponentMeta;

@@ -1,0 +1,55 @@
+{
+  "components": {
+    "safetyButton": {
+      "hold": {
+        "light": {
+          "background": { "$value": "{color.gray.200}" },
+          "text": { "$value": "{color.gray.900}" }
+        },
+
+        "dark": {
+          "background": { "$value": "{color.gray.800}" },
+          "text": { "$value": "{color.gray.50}" }
+        }
+      },
+
+      "variant": {
+        "light": {
+          "primary": {
+            "fill": { "$value": "{intent.light.primary.background}" }
+          },
+
+          "secondary": {
+            "fill": { "$value": "{intent.light.secondary.background}" }
+          },
+
+          "constructive": {
+            "fill": { "$value": "{intent.light.constructive.background}" }
+          },
+
+          "destructive": {
+            "fill": { "$value": "{intent.light.destructive.background}" }
+          }
+        },
+
+        "dark": {
+          "primary": {
+            "fill": { "$value": "{intent.dark.primary.background}" }
+          },
+
+          "secondary": {
+            "fill": { "$value": "{intent.dark.secondary.background}" }
+          },
+
+          "constructive": {
+            "fill": { "$value": "{intent.dark.constructive.background}" }
+          },
+
+          "destructive": {
+            "fill": { "$value": "{intent.dark.destructive.background}" }
+          }
+        }
+      }
+    }
+  }
+}

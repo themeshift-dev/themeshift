@@ -160,6 +160,25 @@ export const FieldGuide = () => {
       <GuideExampleCard>
         <GuideExampleText>
           <TableOfContents.Marker
+            id="examples-direction"
+            label="Direction (LTR/RTL)"
+            level={2}
+          />
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
+          <p>
+            Field layout uses logical direction behavior, so inline-control
+            alignment mirrors correctly in LTR and RTL contexts.
+          </p>
+        </GuideExampleText>
+
+        <GuideExampleViewer>
+          <ExampleViewer examples={examples.directionExamples} />
+        </GuideExampleViewer>
+      </GuideExampleCard>
+
+      <GuideExampleCard>
+        <GuideExampleText>
+          <TableOfContents.Marker
             id="examples-with-textarea"
             label="With Textarea"
             level={2}
@@ -241,6 +260,7 @@ export const FieldGuide = () => {
           </p>
         ),
         example: examples.shorthandContent,
+        tocLabel: 'Field wiring',
         title: 'Let Field wire labels and help text',
       },
       {
@@ -252,6 +272,7 @@ export const FieldGuide = () => {
           </p>
         ),
         example: examples.hideLabel,
+        tocLabel: 'Hidden labels',
         title: 'Hide labels visually (not semantically)',
       },
     ],

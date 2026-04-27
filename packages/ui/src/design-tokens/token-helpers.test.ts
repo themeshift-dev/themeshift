@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { token, tokenValue } from '@themeshift/vite-plugin-themeshift/token';
+import { token, tokenValue } from '@themeshift/vite-plugin/token';
 
 import { tokenValues } from './token-values';
 
@@ -10,46 +10,26 @@ describe('ThemeShift token helpers', () => {
       '1.5rem'
     );
     expect(
-      tokenValue('layout.breakpoints.tablet', { values: tokenValues })
+      tokenValue('layout.breakpoint.tablet', { values: tokenValues })
     ).toBe('768px');
     expect(
-      tokenValue('typography.scales.7.bold', { values: tokenValues })
+      tokenValue('typography.heading.large.font', { values: tokenValues })
     ).toEqual({
-      fontFamily:
-        "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
-      fontSize: '3rem',
-      lineHeight: '3.375rem',
+      fontFamily: "'Helvetica Neue', system-ui, sans-serif",
+      fontSize: '1.5rem',
+      lineHeight: '2.25rem',
       fontWeight: '700',
     });
     expect(
-      tokenValue('typography.scales.1.regular', { values: tokenValues })
+      tokenValue('typography.body.medium.font', { values: tokenValues })
     ).toEqual({
-      fontFamily:
-        "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
+      fontFamily: "'Helvetica Neue', system-ui, sans-serif",
       fontSize: '1rem',
       lineHeight: '1.375rem',
       fontWeight: '400',
     });
     expect(
-      tokenValue('typography.scales.-1.semiBold', { values: tokenValues })
-    ).toEqual({
-      fontFamily:
-        "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
-      fontSize: '0.75rem',
-      lineHeight: '1rem',
-      fontWeight: '600',
-    });
-    expect(
-      tokenValue('typography.styles.body.default.font', { values: tokenValues })
-    ).toEqual({
-      fontFamily:
-        "'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif",
-      fontSize: '1rem',
-      lineHeight: '1.375rem',
-      fontWeight: '400',
-    });
-    expect(
-      tokenValue('typography.styles.heading.h1.display.font', {
+      tokenValue('typography.heading.displayLarge.font', {
         values: tokenValues,
       })
     ).toEqual({
@@ -59,38 +39,36 @@ describe('ThemeShift token helpers', () => {
       fontWeight: '700',
     });
     expect(
-      tokenValue('typography.styles.body.italic.fontStyle', {
+      tokenValue('typography.body.mediumItalic.fontStyle', {
         values: tokenValues,
       })
     ).toBe('italic');
   });
 
   it('returns undefined for missing authored token values', () => {
-    expect(
-      tokenValue('theme.text.base', { values: tokenValues })
-    ).toBeUndefined();
-    expect(tokenValue('layout.breakpoints.tablet')).toBeUndefined();
+    expect(tokenValue('text.base', { values: tokenValues })).toBeUndefined();
+    expect(tokenValue('layout.breakpoint.tablet')).toBeUndefined();
   });
 
   it('reads computed CSS variable values from the document root by default', () => {
     document.documentElement.style.setProperty(
-      '--themeshift-theme-text-base',
+      '--themeshift-text-primary',
       '#123456'
     );
 
-    expect(token('theme.text.base', { prefix: 'themeshift' })).toBe('#123456');
+    expect(token('text.primary', { prefix: 'themeshift' })).toBe('#123456');
   });
 
   it('reads computed CSS variable values from an explicit element target', () => {
     const element = document.createElement('div');
     element.style.setProperty(
-      '--themeshift-layout-breakpoints-desktop',
+      '--themeshift-layout-breakpoint-desktop',
       '1024px'
     );
     document.body.appendChild(element);
 
     expect(
-      token('layout.breakpoints.desktop', {
+      token('layout.breakpoint.desktop', {
         prefix: 'themeshift',
         target: element,
       })
@@ -99,16 +77,13 @@ describe('ThemeShift token helpers', () => {
 
   it('resolves a shadow root target through its host element', () => {
     const host = document.createElement('div');
-    host.style.setProperty(
-      '--themeshift-accessibility-focus-ring-width',
-      '3px'
-    );
+    host.style.setProperty('--themeshift-focus-ring-width', '3px');
     document.body.appendChild(host);
 
     const shadowRoot = host.attachShadow({ mode: 'open' });
 
     expect(
-      token('accessibility.focus.ringWidth', {
+      token('focus.ring.width', {
         prefix: 'themeshift',
         target: shadowRoot,
       })
@@ -117,21 +92,24 @@ describe('ThemeShift token helpers', () => {
 
   it('supports consuming typography shorthand and matching letter spacing tokens together', () => {
     document.documentElement.style.setProperty(
-      '--themeshift-typography-scales-1-regular',
-      "400 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif"
+      '--themeshift-typography-body-medium-font',
+      "400 1rem/1.375rem 'Helvetica Neue', system-ui, sans-serif"
     );
     document.documentElement.style.setProperty(
-      '--themeshift-typography-metrics-1-letter-spacing',
+      '--themeshift-typography-body-medium-letter-spacing',
       '0.01em'
     );
 
     const element = document.createElement('p');
-    element.style.font = token('typography.scales.1.regular', {
+    element.style.font = token('typography.body.medium.font', {
       prefix: 'themeshift',
     });
-    element.style.letterSpacing = token('typography.metrics.1.letterSpacing', {
-      prefix: 'themeshift',
-    });
+    element.style.letterSpacing = token(
+      'typography.body.medium.letterSpacing',
+      {
+        prefix: 'themeshift',
+      }
+    );
 
     expect(element.style.font).toContain('1rem');
     expect(element.style.letterSpacing).toBe('0.01em');
@@ -139,34 +117,31 @@ describe('ThemeShift token helpers', () => {
 
   it('supports semantic typography style tokens including font style', () => {
     document.documentElement.style.setProperty(
-      '--themeshift-typography-styles-body-default-font',
-      "400 1rem/1.375rem 'Inter Variable', 'Helvetica Neue', Arial, system-ui, sans-serif"
+      '--themeshift-typography-body-medium-font',
+      "400 1rem/1.375rem 'Helvetica Neue', system-ui, sans-serif"
     );
     document.documentElement.style.setProperty(
-      '--themeshift-typography-styles-body-default-letter-spacing',
+      '--themeshift-typography-body-medium-letter-spacing',
       '0.01em'
     );
     document.documentElement.style.setProperty(
-      '--themeshift-typography-styles-body-default-font-style',
+      '--themeshift-typography-body-medium-font-style',
       'normal'
     );
 
     const element = document.createElement('p');
-    element.style.font = token('typography.styles.body.default.font', {
+    element.style.font = token('typography.body.medium.font', {
       prefix: 'themeshift',
     });
     element.style.letterSpacing = token(
-      'typography.styles.body.default.letterSpacing',
+      'typography.body.medium.letterSpacing',
       {
         prefix: 'themeshift',
       }
     );
-    element.style.fontStyle = token(
-      'typography.styles.body.default.fontStyle',
-      {
-        prefix: 'themeshift',
-      }
-    );
+    element.style.fontStyle = token('typography.body.medium.fontStyle', {
+      prefix: 'themeshift',
+    });
 
     expect(element.style.font).toContain('1rem');
     expect(element.style.letterSpacing).toBe('0.01em');

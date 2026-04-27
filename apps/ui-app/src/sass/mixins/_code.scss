@@ -1,4 +1,4 @@
-@use '@themeshift/vite-plugin-themeshift/token' as themeShift;
+@use '@themeshift/vite-plugin/token' as themeShift;
 
 @mixin inline {
   border-radius: 0.25rem;

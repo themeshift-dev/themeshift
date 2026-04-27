@@ -1,6 +1,6 @@
 {
   "name": "@themeshift/ui",
-  "version": "0.4.0",
+  "version": "0.2.0",
   "description": "ThemeShift UI makes creating your own theme-aware components easy as pie 🥧",
   "license": "MIT",
   "repository": {
@@ -30,13 +30,29 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./components/Badge": {
+      "types": "./dist/components/Badge/index.d.ts",
+      "import": "./dist/components/Badge/index.js"
+    },
+    "./components/Box": {
+      "types": "./dist/components/Box/index.d.ts",
+      "import": "./dist/components/Box/index.js"
+    },
     "./components/Button": {
       "types": "./dist/components/Button/index.d.ts",
       "import": "./dist/components/Button/index.js"
     },
+    "./components/Card": {
+      "types": "./dist/components/Card/index.d.ts",
+      "import": "./dist/components/Card/index.js"
+    },
     "./components/Checkbox": {
       "types": "./dist/components/Checkbox/index.d.ts",
       "import": "./dist/components/Checkbox/index.js"
+    },
+    "./components/CopyButton": {
+      "types": "./dist/components/CopyButton/index.d.ts",
+      "import": "./dist/components/CopyButton/index.js"
     },
     "./components/ErrorMessage": {
       "types": "./dist/components/ErrorMessage/index.d.ts",
@@ -45,6 +61,18 @@
     "./components/Field": {
       "types": "./dist/components/Field/index.d.ts",
       "import": "./dist/components/Field/index.js"
+    },
+    "./components/Flex": {
+      "types": "./dist/components/Flex/index.d.ts",
+      "import": "./dist/components/Flex/index.js"
+    },
+    "./components/FocusLock": {
+      "types": "./dist/components/FocusLock/index.d.ts",
+      "import": "./dist/components/FocusLock/index.js"
+    },
+    "./components/Grid": {
+      "types": "./dist/components/Grid/index.d.ts",
+      "import": "./dist/components/Grid/index.js"
     },
     "./components/Heading": {
       "types": "./dist/components/Heading/index.d.ts",
@@ -66,6 +94,14 @@
       "types": "./dist/components/Navbar/index.d.ts",
       "import": "./dist/components/Navbar/index.js"
     },
+    "./components/Portal": {
+      "types": "./dist/components/Portal/index.d.ts",
+      "import": "./dist/components/Portal/index.js"
+    },
+    "./components/ProgressBar": {
+      "types": "./dist/components/ProgressBar/index.d.ts",
+      "import": "./dist/components/ProgressBar/index.js"
+    },
     "./components/Radio": {
       "types": "./dist/components/Radio/index.d.ts",
       "import": "./dist/components/Radio/index.js"
@@ -73,6 +109,10 @@
     "./components/Responsive": {
       "types": "./dist/components/Responsive/index.d.ts",
       "import": "./dist/components/Responsive/index.js"
+    },
+    "./components/SafetyButton": {
+      "types": "./dist/components/SafetyButton/index.d.ts",
+      "import": "./dist/components/SafetyButton/index.js"
     },
     "./components/Select": {
       "types": "./dist/components/Select/index.d.ts",
@@ -90,6 +130,14 @@
       "types": "./dist/components/Spinner/index.d.ts",
       "import": "./dist/components/Spinner/index.js"
     },
+    "./components/Table": {
+      "types": "./dist/components/Table/index.d.ts",
+      "import": "./dist/components/Table/index.js"
+    },
+    "./components/Tabs": {
+      "types": "./dist/components/Tabs/index.d.ts",
+      "import": "./dist/components/Tabs/index.js"
+    },
     "./components/Textarea": {
       "types": "./dist/components/Textarea/index.d.ts",
       "import": "./dist/components/Textarea/index.js"
@@ -98,13 +146,29 @@
       "types": "./dist/components/ToggleSwitch/index.d.ts",
       "import": "./dist/components/ToggleSwitch/index.js"
     },
+    "./components/Tooltip": {
+      "types": "./dist/components/Tooltip/index.d.ts",
+      "import": "./dist/components/Tooltip/index.js"
+    },
     "./contexts": {
       "types": "./dist/contexts/index.d.ts",
       "import": "./dist/contexts/index.js"
     },
+    "./css/base.css": {
+      "types": "./dist/css/base.css.d.ts",
+      "default": "./dist/css/base.css"
+    },
+    "./css/tokens.css": {
+      "types": "./dist/css/tokens.css.d.ts",
+      "default": "./dist/css/tokens.css"
+    },
     "./hooks": {
       "types": "./dist/hooks/index.d.ts",
       "import": "./dist/hooks/index.js"
+    },
+    "./hooks/useAnchoredPosition": {
+      "types": "./dist/hooks/useAnchoredPosition/index.d.ts",
+      "import": "./dist/hooks/useAnchoredPosition/index.js"
     },
     "./hooks/useCopyToClipboard": {
       "types": "./dist/hooks/useCopyToClipboard/index.d.ts",
@@ -114,9 +178,22 @@
       "types": "./dist/hooks/useForm/index.d.ts",
       "import": "./dist/hooks/useForm/index.js"
     },
-    "./css/base.css": "./dist/css/base.css",
-    "./css/fonts.css": "./dist/css/fonts.css",
-    "./css/tokens.css": "./dist/css/tokens.css",
+    "./hooks/useHoldToConfirm": {
+      "types": "./dist/hooks/useHoldToConfirm/index.d.ts",
+      "import": "./dist/hooks/useHoldToConfirm/index.js"
+    },
+    "./hooks/useOnClickOutside": {
+      "types": "./dist/hooks/useOnClickOutside/index.d.ts",
+      "import": "./dist/hooks/useOnClickOutside/index.js"
+    },
+    "./hooks/useResizeObserver": {
+      "types": "./dist/hooks/useResizeObserver/index.d.ts",
+      "import": "./dist/hooks/useResizeObserver/index.js"
+    },
+    "./hooks/useScrollLock": {
+      "types": "./dist/hooks/useScrollLock/index.d.ts",
+      "import": "./dist/hooks/useScrollLock/index.js"
+    },
     "./icons": {
       "types": "./dist/icons/index.d.ts",
       "import": "./dist/icons/index.js"
@@ -186,27 +263,27 @@
     "./tokens/*": "./dist/tokens/*"
   },
   "scripts": {
-    "dev": "vite",
     "build": "pnpm run build:components",
     "build:app": "vite build",
+    "build:audit": "pnpm run build:components -- --silent && node scripts/build-audit.mjs",
     "build:components": "node scripts/build.mjs",
+    "build-storybook": "storybook build",
+    "dev": "vite",
+    "lint": "eslint .",
     "make:component": "node scripts/maker/index.mjs component",
     "make:icon": "node scripts/maker/index.mjs icon",
     "make:tokens": "node scripts/maker/index.mjs tokens",
-    "test": "vitest run --config vitest.unit.config.ts",
-    "test:watch": "vitest --config vitest.unit.config.ts",
-    "test:coverage": "vitest run --coverage --config vitest.unit.config.ts",
-    "test:storybook": "vitest run --config vitest.config.ts --project storybook",
-    "lint": "eslint .",
-    "typecheck": "tsc -p tsconfig.build.json --pretty false --noEmit",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "test": "vitest run --config vitest.unit.config.ts",
+    "test:coverage": "vitest run --coverage --config vitest.unit.config.ts",
+    "test:storybook": "vitest run --config vitest.config.ts --project storybook",
+    "test:watch": "vitest --config vitest.unit.config.ts",
+    "typecheck": "tsc -p tsconfig.build.json --pretty false --noEmit"
   },
   "dependencies": {
-    "@fontsource-variable/inter": "^5.2.8",
     "@radix-ui/react-slot": "^1.2.4",
-    "@themeshift/vite-plugin-themeshift": "workspace:*",
+    "@themeshift/vite-plugin": "workspace:*",
     "classnames": "^2.5.1",
     "react-textarea-autosize": "^8.5.9"
   },

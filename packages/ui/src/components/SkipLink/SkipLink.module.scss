@@ -11,17 +11,17 @@
 
   position: absolute;
   top: token('components.skiplink.y');
-  left: token('components.skiplink.x');
+  inset-inline-start: token('components.skiplink.x');
   z-index: 1000;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: token('components.button.sizes.medium');
+  min-height: token('components.button.size.medium');
   padding: 0 token('space.4');
   border-radius: token('components.skiplink.borderRadius');
   font-family: token('components.skiplink.font');
-  color: token('components.skiplink.fg');
-  background-color: token('components.skiplink.bg');
+  color: token('components.skiplink.text');
+  background-color: token('components.skiplink.background');
   text-decoration: none;
   transform: translateY(calc(-100% - token('space.2')));
   transition:

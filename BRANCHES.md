@@ -33,7 +33,7 @@ pnpm install
 
 ## Create a branch
 
-Create feature and fix branches from `develop`:
+Create feature, fix, and chore branches from `develop`:
 
 ```bash
 git checkout develop
@@ -53,17 +53,24 @@ Use `fix/` for bug fixes:
 git checkout -b fix/TS-124-skiplink-css
 ```
 
+Use `chore/` for maintenance, tooling, or repository housekeeping:
+
+```bash
+git checkout -b chore/TS-125-update-ci-badges
+```
+
 Branch names must match:
 
 ```text
-^(feat|fix)/[A-Z]+-[0-9]+-[a-z0-9][a-z0-9-]*$
+^(feat|fix|chore)/(?:[A-Z]+-[0-9]+-)?[a-z0-9][a-z0-9-]*$
 ```
 
-The ticket number goes immediately after `feat/` or `fix/`:
+If you include a ticket number, it goes immediately after `feat/`, `fix/`, or `chore/`:
 
 ```text
 feat/TS-123-short-description
 fix/ABC-42-short-description
+chore/OPS-7-short-description
 ```
 
 Do not use `fix!` or `feat!` in branch names. Breaking changes are marked in the PR title or squash commit title instead:

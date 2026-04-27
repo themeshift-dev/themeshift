@@ -1,0 +1,12 @@
+{
+  "opacity": {
+    "disabled": { "$value": "0.5" },
+    "subtle": { "$value": "0.75" }
+  },
+
+  "shadow": {
+    "small": { "$value": "0 2px 8px rgba(0, 0, 0, 0.08)" },
+    "medium": { "$value": "0 8px 24px rgba(0, 0, 0, 0.12)" },
+    "large": { "$value": "0 16px 36px rgba(0, 0, 0, 0.16)" }
+  }
+}

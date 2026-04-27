@@ -11,7 +11,6 @@ export type ToggleSwitchSize = 'small' | 'medium' | 'large';
 export type ToggleSwitchIntent =
   | 'primary'
   | 'secondary'
-  | 'tertiary'
   | 'constructive'
   | 'destructive';
 

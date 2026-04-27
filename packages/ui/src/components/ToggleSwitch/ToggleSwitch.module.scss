@@ -27,7 +27,7 @@
   }
 
   &:not([aria-readonly='true']):hover + .control .track {
-    background: token('components.toggleSwitch.track.bg.hover');
+    background: token('components.toggleSwitch.track.background.hover');
   }
 }
 
@@ -37,14 +37,14 @@
 
 .track {
   align-items: center;
-  background: token('components.toggleSwitch.track.bg');
-  block-size: token('components.toggleSwitch.sizes.medium.height');
-  border-radius: token('components.toggleSwitch.sizes.medium.borderRadius');
+  background: token('components.toggleSwitch.track.background');
+  block-size: token('components.toggleSwitch.size.medium.height');
+  border-radius: token('components.toggleSwitch.size.medium.borderRadius');
   box-shadow: none;
   display: inline-flex;
-  inline-size: token('components.toggleSwitch.sizes.medium.width');
+  inline-size: token('components.toggleSwitch.size.medium.width');
   justify-content: center;
-  padding: token('components.toggleSwitch.sizes.medium.padding');
+  padding: token('components.toggleSwitch.size.medium.padding');
   position: relative;
   transition:
     background-color 0.2s ease,
@@ -53,12 +53,12 @@
 
 .thumb {
   align-items: center;
-  background: token('components.toggleSwitch.intents.primary.thumb');
-  block-size: token('components.toggleSwitch.sizes.medium.thumbSize');
-  border-radius: token('components.toggleSwitch.sizes.medium.borderRadius');
+  background: token('components.toggleSwitch.variant.primary.thumb');
+  block-size: token('components.toggleSwitch.size.medium.thumbSize');
+  border-radius: token('components.toggleSwitch.size.medium.borderRadius');
   display: inline-flex;
-  inline-size: token('components.toggleSwitch.sizes.medium.thumbSize');
-  inset-inline-start: token('components.toggleSwitch.sizes.medium.padding');
+  inline-size: token('components.toggleSwitch.size.medium.thumbSize');
+  inset-inline-start: token('components.toggleSwitch.size.medium.padding');
   justify-content: center;
   position: absolute;
   top: 50%;
@@ -70,10 +70,10 @@
 
 .trackIcon {
   align-items: center;
-  block-size: token('components.toggleSwitch.sizes.medium.iconSize');
-  color: token('theme.text.base');
+  block-size: token('components.toggleSwitch.size.medium.iconSize');
+  color: token('text.primary');
   display: inline-flex;
-  inline-size: token('components.toggleSwitch.sizes.medium.iconSize');
+  inline-size: token('components.toggleSwitch.size.medium.iconSize');
   justify-content: center;
   position: absolute;
   top: 50%;
@@ -88,8 +88,8 @@
 .trackIconOn {
   inset-inline-start: calc(
     (
-        token('components.toggleSwitch.sizes.medium.height') - token(
-            'components.toggleSwitch.sizes.medium.iconSize'
+        token('components.toggleSwitch.size.medium.height') - token(
+            'components.toggleSwitch.size.medium.iconSize'
           )
       ) /
       2
@@ -99,8 +99,8 @@
 .trackIconOff {
   inset-inline-end: calc(
     (
-        token('components.toggleSwitch.sizes.medium.height') - token(
-            'components.toggleSwitch.sizes.medium.iconSize'
+        token('components.toggleSwitch.size.medium.height') - token(
+            'components.toggleSwitch.size.medium.iconSize'
           )
       ) /
       2
@@ -109,10 +109,10 @@
 
 .thumbIcon {
   align-items: center;
-  block-size: token('components.toggleSwitch.sizes.medium.iconSize');
-  color: token('theme.text.base');
+  block-size: token('components.toggleSwitch.size.medium.iconSize');
+  color: token('text.primary');
   display: inline-flex;
-  inline-size: token('components.toggleSwitch.sizes.medium.iconSize');
+  inline-size: token('components.toggleSwitch.size.medium.iconSize');
   justify-content: center;
 
   > svg {
@@ -124,10 +124,17 @@
 .checked {
   .thumb {
     transform: translate(
-      token('components.toggleSwitch.sizes.medium.thumbTranslate'),
+      token('components.toggleSwitch.size.medium.thumbTranslate'),
       -50%
     );
   }
+}
+
+:global([dir='rtl']) .checked .thumb {
+  transform: translate(
+    calc(-1 * token('components.toggleSwitch.size.medium.thumbTranslate')),
+    -50%
+  );
 }
 
 .disabled {
@@ -138,7 +145,7 @@
 
   .input:hover + .control .track,
   .track {
-    background: token('components.toggleSwitch.disabled.trackBg');
+    background: token('components.toggleSwitch.disabled.trackBackground');
   }
 
   .thumb {
@@ -181,34 +188,34 @@
 
 .small {
   .track {
-    block-size: token('components.toggleSwitch.sizes.small.height');
-    border-radius: token('components.toggleSwitch.sizes.small.borderRadius');
-    inline-size: token('components.toggleSwitch.sizes.small.width');
-    padding: token('components.toggleSwitch.sizes.small.padding');
+    block-size: token('components.toggleSwitch.size.small.height');
+    border-radius: token('components.toggleSwitch.size.small.borderRadius');
+    inline-size: token('components.toggleSwitch.size.small.width');
+    padding: token('components.toggleSwitch.size.small.padding');
   }
 
   .thumb {
-    block-size: token('components.toggleSwitch.sizes.small.thumbSize');
-    border-radius: token('components.toggleSwitch.sizes.small.borderRadius');
-    inline-size: token('components.toggleSwitch.sizes.small.thumbSize');
-    inset-inline-start: token('components.toggleSwitch.sizes.small.padding');
+    block-size: token('components.toggleSwitch.size.small.thumbSize');
+    border-radius: token('components.toggleSwitch.size.small.borderRadius');
+    inline-size: token('components.toggleSwitch.size.small.thumbSize');
+    inset-inline-start: token('components.toggleSwitch.size.small.padding');
   }
 
   .trackIcon {
-    block-size: token('components.toggleSwitch.sizes.small.iconSize');
-    inline-size: token('components.toggleSwitch.sizes.small.iconSize');
+    block-size: token('components.toggleSwitch.size.small.iconSize');
+    inline-size: token('components.toggleSwitch.size.small.iconSize');
   }
 
   .thumbIcon {
-    block-size: token('components.toggleSwitch.sizes.small.iconSize');
-    inline-size: token('components.toggleSwitch.sizes.small.iconSize');
+    block-size: token('components.toggleSwitch.size.small.iconSize');
+    inline-size: token('components.toggleSwitch.size.small.iconSize');
   }
 
   .trackIconOn {
     inset-inline-start: calc(
       (
-          token('components.toggleSwitch.sizes.small.height') - token(
-              'components.toggleSwitch.sizes.small.iconSize'
+          token('components.toggleSwitch.size.small.height') - token(
+              'components.toggleSwitch.size.small.iconSize'
             )
         ) /
         2
@@ -218,8 +225,8 @@
   .trackIconOff {
     inset-inline-end: calc(
       (
-          token('components.toggleSwitch.sizes.small.height') - token(
-              'components.toggleSwitch.sizes.small.iconSize'
+          token('components.toggleSwitch.size.small.height') - token(
+              'components.toggleSwitch.size.small.iconSize'
             )
         ) /
         2
@@ -229,43 +236,50 @@
   &.checked {
     .thumb {
       transform: translate(
-        token('components.toggleSwitch.sizes.small.thumbTranslate'),
+        token('components.toggleSwitch.size.small.thumbTranslate'),
         -50%
       );
     }
   }
+}
+
+:global([dir='rtl']) .small.checked .thumb {
+  transform: translate(
+    calc(-1 * token('components.toggleSwitch.size.small.thumbTranslate')),
+    -50%
+  );
 }
 
 .medium {
   .track {
-    block-size: token('components.toggleSwitch.sizes.medium.height');
-    border-radius: token('components.toggleSwitch.sizes.medium.borderRadius');
-    inline-size: token('components.toggleSwitch.sizes.medium.width');
-    padding: token('components.toggleSwitch.sizes.medium.padding');
+    block-size: token('components.toggleSwitch.size.medium.height');
+    border-radius: token('components.toggleSwitch.size.medium.borderRadius');
+    inline-size: token('components.toggleSwitch.size.medium.width');
+    padding: token('components.toggleSwitch.size.medium.padding');
   }
 
   .thumb {
-    block-size: token('components.toggleSwitch.sizes.medium.thumbSize');
-    border-radius: token('components.toggleSwitch.sizes.medium.borderRadius');
-    inline-size: token('components.toggleSwitch.sizes.medium.thumbSize');
-    inset-inline-start: token('components.toggleSwitch.sizes.medium.padding');
+    block-size: token('components.toggleSwitch.size.medium.thumbSize');
+    border-radius: token('components.toggleSwitch.size.medium.borderRadius');
+    inline-size: token('components.toggleSwitch.size.medium.thumbSize');
+    inset-inline-start: token('components.toggleSwitch.size.medium.padding');
   }
 
   .trackIcon {
-    block-size: token('components.toggleSwitch.sizes.medium.iconSize');
-    inline-size: token('components.toggleSwitch.sizes.medium.iconSize');
+    block-size: token('components.toggleSwitch.size.medium.iconSize');
+    inline-size: token('components.toggleSwitch.size.medium.iconSize');
   }
 
   .thumbIcon {
-    block-size: token('components.toggleSwitch.sizes.medium.iconSize');
-    inline-size: token('components.toggleSwitch.sizes.medium.iconSize');
+    block-size: token('components.toggleSwitch.size.medium.iconSize');
+    inline-size: token('components.toggleSwitch.size.medium.iconSize');
   }
 
   .trackIconOn {
     inset-inline-start: calc(
       (
-          token('components.toggleSwitch.sizes.medium.height') - token(
-              'components.toggleSwitch.sizes.medium.iconSize'
+          token('components.toggleSwitch.size.medium.height') - token(
+              'components.toggleSwitch.size.medium.iconSize'
             )
         ) /
         2
@@ -275,8 +289,8 @@
   .trackIconOff {
     inset-inline-end: calc(
       (
-          token('components.toggleSwitch.sizes.medium.height') - token(
-              'components.toggleSwitch.sizes.medium.iconSize'
+          token('components.toggleSwitch.size.medium.height') - token(
+              'components.toggleSwitch.size.medium.iconSize'
             )
         ) /
         2
@@ -286,43 +300,50 @@
   &.checked {
     .thumb {
       transform: translate(
-        token('components.toggleSwitch.sizes.medium.thumbTranslate'),
+        token('components.toggleSwitch.size.medium.thumbTranslate'),
         -50%
       );
     }
   }
+}
+
+:global([dir='rtl']) .medium.checked .thumb {
+  transform: translate(
+    calc(-1 * token('components.toggleSwitch.size.medium.thumbTranslate')),
+    -50%
+  );
 }
 
 .large {
   .track {
-    block-size: token('components.toggleSwitch.sizes.large.height');
-    border-radius: token('components.toggleSwitch.sizes.large.borderRadius');
-    inline-size: token('components.toggleSwitch.sizes.large.width');
-    padding: token('components.toggleSwitch.sizes.large.padding');
+    block-size: token('components.toggleSwitch.size.large.height');
+    border-radius: token('components.toggleSwitch.size.large.borderRadius');
+    inline-size: token('components.toggleSwitch.size.large.width');
+    padding: token('components.toggleSwitch.size.large.padding');
   }
 
   .thumb {
-    block-size: token('components.toggleSwitch.sizes.large.thumbSize');
-    border-radius: token('components.toggleSwitch.sizes.large.borderRadius');
-    inline-size: token('components.toggleSwitch.sizes.large.thumbSize');
-    inset-inline-start: token('components.toggleSwitch.sizes.large.padding');
+    block-size: token('components.toggleSwitch.size.large.thumbSize');
+    border-radius: token('components.toggleSwitch.size.large.borderRadius');
+    inline-size: token('components.toggleSwitch.size.large.thumbSize');
+    inset-inline-start: token('components.toggleSwitch.size.large.padding');
   }
 
   .trackIcon {
-    block-size: token('components.toggleSwitch.sizes.large.iconSize');
-    inline-size: token('components.toggleSwitch.sizes.large.iconSize');
+    block-size: token('components.toggleSwitch.size.large.iconSize');
+    inline-size: token('components.toggleSwitch.size.large.iconSize');
   }
 
   .thumbIcon {
-    block-size: token('components.toggleSwitch.sizes.large.iconSize');
-    inline-size: token('components.toggleSwitch.sizes.large.iconSize');
+    block-size: token('components.toggleSwitch.size.large.iconSize');
+    inline-size: token('components.toggleSwitch.size.large.iconSize');
   }
 
   .trackIconOn {
     inset-inline-start: calc(
       (
-          token('components.toggleSwitch.sizes.large.height') - token(
-              'components.toggleSwitch.sizes.large.iconSize'
+          token('components.toggleSwitch.size.large.height') - token(
+              'components.toggleSwitch.size.large.iconSize'
             )
         ) /
         2
@@ -332,8 +353,8 @@
   .trackIconOff {
     inset-inline-end: calc(
       (
-          token('components.toggleSwitch.sizes.large.height') - token(
-              'components.toggleSwitch.sizes.large.iconSize'
+          token('components.toggleSwitch.size.large.height') - token(
+              'components.toggleSwitch.size.large.iconSize'
             )
         ) /
         2
@@ -343,39 +364,40 @@
   &.checked {
     .thumb {
       transform: translate(
-        token('components.toggleSwitch.sizes.large.thumbTranslate'),
+        token('components.toggleSwitch.size.large.thumbTranslate'),
         -50%
       );
     }
   }
 }
 
+:global([dir='rtl']) .large.checked .thumb {
+  transform: translate(
+    calc(-1 * token('components.toggleSwitch.size.large.thumbTranslate')),
+    -50%
+  );
+}
+
 .primary {
   .thumb {
-    background: token('components.toggleSwitch.intents.primary.thumb');
+    background: token('components.toggleSwitch.variant.primary.thumb');
   }
 }
 
 .secondary {
   .thumb {
-    background: token('components.toggleSwitch.intents.secondary.thumb');
-  }
-}
-
-.tertiary {
-  .thumb {
-    background: token('components.toggleSwitch.intents.tertiary.thumb');
+    background: token('components.toggleSwitch.variant.secondary.thumb');
   }
 }
 
 .constructive {
   .thumb {
-    background: token('components.toggleSwitch.intents.constructive.thumb');
+    background: token('components.toggleSwitch.variant.constructive.thumb');
   }
 }
 
 .destructive {
   .thumb {
-    background: token('components.toggleSwitch.intents.destructive.thumb');
+    background: token('components.toggleSwitch.variant.destructive.thumb');
   }
 }

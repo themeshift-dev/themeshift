@@ -5,12 +5,12 @@
   @include typography.style('button.medium');
 
   align-items: center;
-  background: token('components.select.bg');
+  background: token('components.select.background');
   border: 1px solid token('components.select.border');
-  border-radius: token('components.select.sizes.medium.borderRadius');
-  color: token('theme.text.base');
+  border-radius: token('components.select.size.medium.borderRadius');
+  color: token('text.primary');
   display: inline-flex;
-  min-height: token('components.select.sizes.medium.height');
+  min-height: token('components.select.size.medium.height');
   position: relative;
   transition:
     background-color 0.2s ease,
@@ -35,7 +35,7 @@
   cursor: pointer;
   min-width: 0;
   outline: none;
-  padding-inline: token('components.select.sizes.medium.paddingInline');
+  padding-inline: token('components.select.size.medium.paddingInline');
   padding-inline-end: token('components.select.layout.paddingInlineEnd');
   width: 100%;
 }
@@ -55,9 +55,9 @@
 }
 
 .disabled {
-  background: token('components.select.disabled.bg');
+  background: token('components.select.disabled.background');
   border-color: token('components.select.disabled.border');
-  color: token('components.select.disabled.fg');
+  color: token('components.select.disabled.text');
 
   .select {
     cursor: not-allowed;
@@ -71,11 +71,11 @@
 .small {
   @include typography.style('button.small');
 
-  border-radius: token('components.select.sizes.small.borderRadius');
-  min-height: token('components.select.sizes.small.height');
+  border-radius: token('components.select.size.small.borderRadius');
+  min-height: token('components.select.size.small.height');
 
   .select {
-    padding-inline: token('components.select.sizes.small.paddingInline');
+    padding-inline: token('components.select.size.small.paddingInline');
     padding-inline-end: token('components.select.layout.paddingInlineEnd');
   }
 }
@@ -83,11 +83,11 @@
 .medium {
   @include typography.style('button.medium');
 
-  border-radius: token('components.select.sizes.medium.borderRadius');
-  min-height: token('components.select.sizes.medium.height');
+  border-radius: token('components.select.size.medium.borderRadius');
+  min-height: token('components.select.size.medium.height');
 
   .select {
-    padding-inline: token('components.select.sizes.medium.paddingInline');
+    padding-inline: token('components.select.size.medium.paddingInline');
     padding-inline-end: token('components.select.layout.paddingInlineEnd');
   }
 }
@@ -95,11 +95,11 @@
 .large {
   @include typography.style('button.large');
 
-  border-radius: token('components.select.sizes.large.borderRadius');
-  min-height: token('components.select.sizes.large.height');
+  border-radius: token('components.select.size.large.borderRadius');
+  min-height: token('components.select.size.large.height');
 
   .select {
-    padding-inline: token('components.select.sizes.large.paddingInline');
+    padding-inline: token('components.select.size.large.paddingInline');
     padding-inline-end: token('components.select.layout.paddingInlineEnd');
   }
 }

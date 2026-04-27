@@ -21,7 +21,7 @@ export type ExampleViewerExample<Props extends ExampleArgs = ExampleArgs> = {
   code?: string;
   component?: string;
   label: string;
-  sample: React.ReactNode | ((args: Props) => React.ReactNode);
+  sample: React.ReactNode | React.ComponentType<Props>;
 };
 
 export type ExampleViewerProps<Props extends ExampleArgs = ExampleArgs> = {
@@ -35,7 +35,9 @@ function renderExample<Props extends ExampleArgs>(
   example: ExampleViewerExample<Props>
 ) {
   if (typeof example.sample === 'function') {
-    return example.sample(example.args ?? ({} as Props));
+    const ExampleSample = example.sample;
+
+    return <ExampleSample {...(example.args ?? ({} as Props))} />;
   }
 
   return example.sample;
@@ -212,7 +214,7 @@ export const ExampleViewer = <Props extends ExampleArgs = ExampleArgs>({
           <CopyButton className={styles.copyButton} text={code} />
         ) : (
           <div className={styles.codeOverlay} onClick={expandCode}>
-            <Button intent="tertiary" onClick={expandCode} type="button">
+            <Button onClick={expandCode} type="button" variant="link">
               Show code
             </Button>
           </div>

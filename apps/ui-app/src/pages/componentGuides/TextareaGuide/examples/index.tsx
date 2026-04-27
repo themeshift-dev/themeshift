@@ -12,11 +12,9 @@ export const basicUsage = {
 };
 
 export const sizes = {
-  code: `<>
-  <Textarea aria-label="Small" placeholder="Small" size="small" />
-  <Textarea aria-label="Medium" placeholder="Medium" />
-  <Textarea aria-label="Large" placeholder="Large" size="large" />
-</>`,
+  code: `<Textarea aria-label="Small" placeholder="Small" size="small" />
+<Textarea aria-label="Medium" placeholder="Medium" />
+<Textarea aria-label="Large" placeholder="Large" size="large" />`,
   label: 'Sizes',
   sample: (
     <ResponsiveStackInline
@@ -32,12 +30,10 @@ export const sizes = {
 };
 
 export const validationStates = {
-  code: `<>
-  <Textarea aria-label="Default state" placeholder="Default" />
-  <Textarea aria-label="Invalid state" placeholder="Invalid" validationState="invalid" />
-  <Textarea aria-label="Valid state" placeholder="Valid" validationState="valid" />
-  <Textarea aria-label="Warning state" placeholder="Warning" validationState="warning" />
-</>`,
+  code: `<Textarea aria-label="Default state" placeholder="Default" />
+<Textarea aria-label="Invalid state" placeholder="Invalid" validationState="invalid" />
+<Textarea aria-label="Valid state" placeholder="Valid" validationState="valid" />
+<Textarea aria-label="Warning state" placeholder="Warning" validationState="warning" />`,
   label: 'Validation states',
   sample: (
     <ResponsiveStackInline
@@ -66,12 +62,10 @@ export const validationStates = {
 };
 
 export const resizeModes = {
-  code: `<>
-  <Textarea aria-label="None" placeholder="Resize none" resize="none" />
-  <Textarea aria-label="Vertical" placeholder="Resize vertical" resize="vertical" />
-  <Textarea aria-label="Horizontal" placeholder="Resize horizontal" resize="horizontal" />
-  <Textarea aria-label="Both" placeholder="Resize both" resize="both" />
-</>`,
+  code: `<Textarea aria-label="None" placeholder="Resize none" resize="none" />
+<Textarea aria-label="Vertical" placeholder="Resize vertical" resize="vertical" />
+<Textarea aria-label="Horizontal" placeholder="Resize horizontal" resize="horizontal" />
+<Textarea aria-label="Both" placeholder="Resize both" resize="both" />`,
   label: 'Resize modes',
   sample: (
     <ResponsiveStackInline
@@ -148,15 +142,13 @@ export const withField = {
 };
 
 export const widths = {
-  code: `<>
-  <Textarea aria-label="Full width textarea" placeholder="Full width (default)" />
-  <Textarea
-    aria-label="Inline textarea"
-    fullWidth={false}
-    placeholder="Inline"
-    size="small"
-  />
-</>`,
+  code: `<Textarea aria-label="Full width textarea" placeholder="Full width (default)" />
+<Textarea
+  aria-label="Inline textarea"
+  fullWidth={false}
+  placeholder="Inline"
+  size="small"
+/>`,
   label: 'Widths',
   sample: (
     <ResponsiveStackInline
@@ -179,15 +171,13 @@ export const widths = {
 };
 
 export const disabled = {
-  code: `<>
-  <Textarea aria-label="Disabled textarea" disabled placeholder="Disabled" />
-  <Textarea
-    aria-label="Disabled invalid"
-    disabled
-    validationState="invalid"
-    placeholder="Disabled + invalid"
-  />
-</>`,
+  code: `<Textarea aria-label="Disabled textarea" disabled placeholder="Disabled" />
+<Textarea
+  aria-label="Disabled invalid"
+  disabled
+  validationState="invalid"
+  placeholder="Disabled + invalid"
+/>`,
   label: 'Disabled',
   sample: (
     <ResponsiveStackInline

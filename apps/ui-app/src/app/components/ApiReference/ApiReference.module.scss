@@ -45,8 +45,8 @@
   }
 
   th {
-    border-bottom: 1px solid token('theme.border');
-    color: token('theme.text.muted');
+    border-bottom: 1px solid token('border.default');
+    color: token('text.muted');
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0;
@@ -54,10 +54,10 @@
   }
 
   tbody tr {
-    border-bottom: 1px solid token('theme.border');
+    border-bottom: 1px solid token('border.default');
 
     &:hover {
-      background: token('theme.surface.raised');
+      background: token('background.surfaceRaised');
     }
   }
 
@@ -96,11 +96,11 @@
 }
 
 .metaCell {
-  color: token('theme.text.muted');
+  color: token('text.muted');
 }
 
 .notes {
-  color: token('theme.text.base');
+  color: token('text.primary');
 
   p {
     margin: 0;
@@ -113,7 +113,7 @@
   code {
     @include code.inline;
 
-    background: token('theme.surface.raised');
+    background: token('background.surfaceRaised');
   }
 }
 
@@ -128,7 +128,7 @@
 }
 
 .emptyValue {
-  color: token('theme.text.muted');
+  color: token('text.muted');
 }
 
 .cardList {
@@ -137,8 +137,8 @@
 }
 
 .card {
-  background: token('theme.surface.sunken');
-  border: 1px solid token('theme.border');
+  background: token('background.surfaceSunken');
+  border: 1px solid token('border.default');
   border-radius: token('radius.small');
   display: grid;
   gap: 1rem;
@@ -159,7 +159,7 @@
 }
 
 .cardType {
-  color: token('theme.text.muted');
+  color: token('text.muted');
 }
 
 .cardMeta {
@@ -173,7 +173,7 @@
   gap: 0.5rem;
 
   dt {
-    color: token('theme.text.muted');
+    color: token('text.muted');
     font-size: 0.875rem;
     font-weight: 600;
     line-height: 1.4;

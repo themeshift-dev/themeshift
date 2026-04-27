@@ -18,12 +18,8 @@ const checks = [
       },
       {
         name: 'Plugin coverage',
-        packageName: '@themeshift/vite-plugin-themeshift',
-        args: [
-          '--filter',
-          '@themeshift/vite-plugin-themeshift',
-          'test:coverage',
-        ],
+        packageName: '@themeshift/vite-plugin',
+        args: ['--filter', '@themeshift/vite-plugin', 'test:coverage'],
       },
     ],
   },

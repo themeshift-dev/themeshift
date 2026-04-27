@@ -60,6 +60,7 @@ type ComponentGuideProps = {
   howToUse?: ComponentGuideSection;
   intro?: ReactNode;
   propsSection?: ComponentGuideSection;
+  typesSection?: ComponentGuideSection;
   title: ReactNode;
   toc?: ReactNode;
   tocLabel?: string;
@@ -76,6 +77,7 @@ export const ComponentGuide = ({
   howToUse,
   intro,
   propsSection,
+  typesSection,
   title,
   toc,
   tocLabel = 'On this page',
@@ -83,6 +85,7 @@ export const ComponentGuide = ({
   const content = (
     <PageShell
       className={classNames(styles.container, className)}
+      showSkipLink={false}
       aside={
         toc ? (
           <div className={styles.aside}>
@@ -102,6 +105,7 @@ export const ComponentGuide = ({
           {intro && <section className={styles.section}>{intro}</section>}
           {howToUse && <GuideSection {...howToUse} />}
           {propsSection && <GuideSection {...propsSection} />}
+          {typesSection && <GuideSection {...typesSection} />}
           {examples && <GuideSection {...examples} />}
           {accessibility && <GuideSection {...accessibility} />}
           {children}

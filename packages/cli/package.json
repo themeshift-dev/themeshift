@@ -1,0 +1,53 @@
+{
+  "name": "@themeshift/cli",
+  "version": "0.1.1",
+  "description": "CLI wrapper for ThemeShift core token tooling.",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:themeshift-dev/themeshift.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/themeshift-dev/themeshift/tree/main/packages/cli",
+  "bugs": {
+    "url": "https://github.com/themeshift-dev/themeshift/issues"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "themeshift": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepublishOnly": "pnpm run build",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@themeshift/core": "workspace:*",
+    "esbuild": "^0.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^4.0.18"
+  }
+}

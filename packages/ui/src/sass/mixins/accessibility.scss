@@ -1,16 +1,32 @@
-@use '@themeshift/vite-plugin-themeshift/token' as themeShift;
+@use '@themeshift/vite-plugin/token' as themeShift;
 
 // Draws the shared ThemeShift focus ring. Use inside :focus-visible handlers
 // so keyboard and assistive-technology users get a clear visual indicator.
 @mixin focusRing(
-  $ringColor: themeShift.token('accessibility.focus.ring'),
-  $gapColor: themeShift.token('accessibility.focus.gap'),
-  $ringWidth: themeShift.token('accessibility.focus.ringWidth'),
-  $gapWidth: themeShift.token('accessibility.focus.gapWidth')
+  $ringColor: themeShift.token('focus.ring.color'),
+  $gapColor: themeShift.token('focus.ring.gap'),
+  $ringWidth: themeShift.token('focus.ring.width'),
+  $gapWidth: themeShift.token('focus.ring.offset'),
+  $offset: 0
 ) {
-  box-shadow:
-    0 0 0 #{$gapWidth} #{$gapColor},
-    0 0 0 calc(#{$gapWidth} + #{$ringWidth}) #{$ringColor};
+  @if $offset == 0 {
+    box-shadow:
+      0 0 0 #{$gapWidth} #{$gapColor},
+      0 0 0 calc(#{$gapWidth} + #{$ringWidth}) #{$ringColor};
+  } @else {
+    &::after {
+      border-radius: inherit;
+      box-shadow:
+        0 0 0 #{$gapWidth} #{$gapColor},
+        0 0 0 calc(#{$gapWidth} + #{$ringWidth}) #{$ringColor};
+      content: '';
+      inset: calc(#{$offset} * -1);
+      pointer-events: none;
+      position: absolute;
+    }
+
+    position: relative;
+  }
 }
 
 // Applies the defensive focus-visible selector pattern:
@@ -29,26 +45,38 @@
 // Shared focus-visible ring for interactive controls that use the tokenized
 // box-shadow treatment instead of the browser outline.
 @mixin focusVisibleRing(
-  $ringColor: themeShift.token('accessibility.focus.ring'),
-  $gapColor: themeShift.token('accessibility.focus.gap'),
-  $ringWidth: themeShift.token('accessibility.focus.ringWidth'),
-  $gapWidth: themeShift.token('accessibility.focus.gapWidth')
+  $ringColor: themeShift.token('focus.ring.color'),
+  $gapColor: themeShift.token('focus.ring.gap'),
+  $ringWidth: themeShift.token('focus.ring.width'),
+  $gapWidth: themeShift.token('focus.ring.offset'),
+  $offset: 0
 ) {
   &:focus:not(:focus-visible) {
+    &::after {
+      content: none;
+    }
+
     box-shadow: none;
   }
 
   @include focusVisible {
     outline: none;
-    @include focusRing($ringColor, $gapColor, $ringWidth, $gapWidth);
+
+    @if $offset != 0 {
+      box-shadow: none;
+    }
+
+    @include focusRing($ringColor, $gapColor, $ringWidth, $gapWidth, $offset);
   }
 }
 
 // Shared focus-visible ring for scroll containers and other framed regions
 // where the ring should sit inside the element instead of outside it.
 @mixin focusInner(
-  $ringColor: themeShift.token('accessibility.focus.ring'),
-  $ringWidth: themeShift.token('accessibility.focus.ringWidth')
+  $ringColor: themeShift.token('focus.ring.color'),
+  $gapColor: themeShift.token('focus.ring.gap'),
+  $ringWidth: themeShift.token('focus.ring.width'),
+  $gapWidth: themeShift.token('focus.ring.offset')
 ) {
   &:focus:not(:focus-visible) {
     box-shadow: none;
@@ -56,17 +84,26 @@
   }
 
   &:focus-visible {
-    box-shadow: inset 0 0 0 #{$ringWidth} #{$ringColor};
+    box-shadow:
+      inset 0 0 0 #{$gapWidth} #{$gapColor},
+      inset 0 0 0 calc(#{$gapWidth} + #{$ringWidth}) #{$ringColor};
     outline: none;
   }
 }
 
 // Button-specific alias kept for component-level readability.
 @mixin buttonFocus(
-  $ringColor: themeShift.token('accessibility.focus.ring'),
-  $gapColor: themeShift.token('accessibility.focus.gap'),
-  $ringWidth: themeShift.token('accessibility.focus.ringWidth'),
-  $gapWidth: themeShift.token('accessibility.focus.gapWidth')
+  $ringColor: themeShift.token('focus.ring.color'),
+  $gapColor: themeShift.token('focus.ring.gap'),
+  $ringWidth: themeShift.token('focus.ring.width'),
+  $gapWidth: themeShift.token('focus.ring.offset'),
+  $offset: 0
 ) {
-  @include focusVisibleRing($ringColor, $gapColor, $ringWidth, $gapWidth);
+  @include focusVisibleRing(
+    $ringColor,
+    $gapColor,
+    $ringWidth,
+    $gapWidth,
+    $offset
+  );
 }

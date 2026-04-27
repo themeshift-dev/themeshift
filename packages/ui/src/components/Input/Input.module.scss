@@ -5,14 +5,14 @@
   @include typography.style('button.medium');
 
   align-items: center;
-  background: token('components.input.bg');
+  background: token('components.input.background');
   border: 1px solid token('components.input.border');
-  border-radius: token('components.input.sizes.medium.borderRadius');
-  color: token('theme.text.base');
+  border-radius: token('components.input.size.medium.borderRadius');
+  color: token('text.primary');
   display: inline-flex;
   gap: token('components.input.layout.adornmentGap');
-  min-height: token('components.input.sizes.medium.height');
-  padding-inline: token('components.input.sizes.medium.paddingInline');
+  min-height: token('components.input.size.medium.height');
+  padding-inline: token('components.input.size.medium.paddingInline');
   transition:
     background-color 0.2s ease,
     border-color 0.2s ease,
@@ -57,9 +57,9 @@
 }
 
 .disabled {
-  background: token('components.input.disabled.bg');
+  background: token('components.input.disabled.background');
   border-color: token('components.input.disabled.border');
-  color: token('components.input.disabled.fg');
+  color: token('components.input.disabled.text');
 
   .adornment,
   .input::placeholder {
@@ -70,25 +70,25 @@
 .small {
   @include typography.style('button.small');
 
-  border-radius: token('components.input.sizes.small.borderRadius');
-  min-height: token('components.input.sizes.small.height');
-  padding-inline: token('components.input.sizes.small.paddingInline');
+  border-radius: token('components.input.size.small.borderRadius');
+  min-height: token('components.input.size.small.height');
+  padding-inline: token('components.input.size.small.paddingInline');
 }
 
 .medium {
   @include typography.style('button.medium');
 
-  border-radius: token('components.input.sizes.medium.borderRadius');
-  min-height: token('components.input.sizes.medium.height');
-  padding-inline: token('components.input.sizes.medium.paddingInline');
+  border-radius: token('components.input.size.medium.borderRadius');
+  min-height: token('components.input.size.medium.height');
+  padding-inline: token('components.input.size.medium.paddingInline');
 }
 
 .large {
   @include typography.style('button.large');
 
-  border-radius: token('components.input.sizes.large.borderRadius');
-  min-height: token('components.input.sizes.large.height');
-  padding-inline: token('components.input.sizes.large.paddingInline');
+  border-radius: token('components.input.size.large.borderRadius');
+  min-height: token('components.input.size.large.height');
+  padding-inline: token('components.input.size.large.paddingInline');
 }
 
 .withStartAdornment {

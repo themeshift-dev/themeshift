@@ -1,5 +1,7 @@
+@use '@/sass/mixins/accessibility';
+
 .container {
-  color: token('theme.text.muted');
+  color: token('text.muted');
 
   width: 100%;
 }
@@ -30,20 +32,22 @@
 }
 
 .link {
+  @include accessibility.focusVisibleRing($offset: 4px);
+
+  color: token('text.muted');
   text-decoration: none;
-  color: token('theme.text.muted');
 
   &:hover {
-    color: token('theme.text.base');
+    color: token('text.primary');
   }
 }
 
 .muted {
-  color: token('theme.text.muted');
+  color: token('text.muted');
 }
 
 .current {
-  color: token('theme.text.base');
+  color: token('text.primary');
 }
 
 .icon {
@@ -53,7 +57,7 @@
 }
 
 .separator {
-  color: token('theme.text.base');
+  color: token('text.primary');
   margin: 0 token('space.2');
   opacity: 0.5;
 }

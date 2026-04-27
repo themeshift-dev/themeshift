@@ -100,11 +100,21 @@ export const listRows = {
   ),
 };
 
-export const rtlShimmer = {
-  code: `<div dir="rtl">
-  <Skeleton height="1.25rem" width="12rem" animation="shimmer" />
-</div>`,
-  label: 'RTL shimmer',
+const directionCode = `<Skeleton height="1.25rem" width="12rem" animation="shimmer" />`;
+
+export const directionLTR = {
+  code: directionCode,
+  label: 'LTR',
+  sample: (
+    <div className={styles.sampleContainer} dir="ltr">
+      <Skeleton height="1.25rem" width="12rem" animation="shimmer" />
+    </div>
+  ),
+};
+
+export const directionRTL = {
+  code: directionCode,
+  label: 'RTL',
   sample: (
     <div className={styles.sampleContainer} dir="rtl">
       <Skeleton height="1.25rem" width="12rem" animation="shimmer" />
@@ -119,3 +129,5 @@ export const propHighlights = [
   cardPulse,
   cardShimmer,
 ];
+
+export const directionExamples = [directionLTR, directionRTL];

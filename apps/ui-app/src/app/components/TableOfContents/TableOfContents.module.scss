@@ -9,7 +9,7 @@
 }
 
 .title {
-  color: token('theme.text.muted');
+  color: token('text.muted');
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.4;
@@ -38,7 +38,7 @@
   @include accessibility.focusVisibleRing;
 
   border-radius: token('radius.small');
-  color: token('theme.text.muted');
+  color: token('text.muted');
   display: inline-block;
   overflow-wrap: anywhere;
   padding: 0.125rem 0.25rem;
@@ -48,17 +48,17 @@
     0.2s color;
 
   &:hover {
-    color: token('theme.text.base');
+    color: token('text.primary');
   }
 }
 
 .linkActive {
-  background: token('theme.surface.raised');
-  color: token('theme.text.base');
+  background: token('background.surfaceRaised');
+  color: token('text.primary');
 }
 
 .linkParentActive {
-  color: token('theme.text.base');
+  color: token('text.primary');
 }
 
 .nestedLink {

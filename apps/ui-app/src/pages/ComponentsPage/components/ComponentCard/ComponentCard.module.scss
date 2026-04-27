@@ -1,11 +1,4 @@
 .container {
-  border: 1px solid token('theme.border');
-  padding: 0.75rem;
-  border-radius: token('radius.small');
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 0.5rem;
-  align-items: start;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease,
@@ -13,17 +6,8 @@
 
   &:hover {
     text-decoration: none;
-    // background: token('theme.surface.raised');
+    // background: token('background.surfaceRaised');
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     transform: translateY(-1px);
   }
-}
-
-.title {
-  font-weight: bold;
-  color: token('theme.text.base');
-}
-
-.description {
-  color: token('theme.text.muted');
 }

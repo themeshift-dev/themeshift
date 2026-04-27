@@ -5,3 +5,4 @@ dist
 dist-app
 storybook-static
 pnpm-lock.yaml
+/token-audit.csv

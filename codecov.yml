@@ -1,0 +1,15 @@
+coverage:
+  status:
+    project:
+      core:
+        flags:
+          - core
+        target: 95%
+        threshold: 0%
+      default:
+        target: auto
+        threshold: 1%
+    patch:
+      default:
+        target: auto
+        threshold: 1%

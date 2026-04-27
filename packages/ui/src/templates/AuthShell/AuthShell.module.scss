@@ -1,21 +1,27 @@
 @use '../../sass/_tokens.static.scss' as *;
 
 .container {
-  --auth-shell-container-padding-inline: #{token('grid.container.paddingInline.mobile')};
+  --auth-shell-container-padding-inline: #{token(
+      'grid.container.paddingInline.mobile'
+    )};
   --auth-shell-max-width: #{token('grid.container.contentMaxWidth')};
 
   display: flex;
   flex-direction: column;
-  color: token('theme.text.base');
-  background-color: token('theme.surface.base');
+  color: token('text.primary');
+  background-color: token('background.surface');
   font-family: token('font.family.default');
 
-  @media (min-width: $layout_breakpoints_tablet) {
-    --auth-shell-container-padding-inline: #{token('grid.container.paddingInline.tablet')};
+  @media (min-width: $layout_breakpoint_tablet) {
+    --auth-shell-container-padding-inline: #{token(
+        'grid.container.paddingInline.tablet'
+      )};
   }
 
-  @media (min-width: $layout_breakpoints_desktop) {
-    --auth-shell-container-padding-inline: #{token('grid.container.paddingInline.desktop')};
+  @media (min-width: $layout_breakpoint_desktop) {
+    --auth-shell-container-padding-inline: #{token(
+        'grid.container.paddingInline.desktop'
+      )};
   }
 }
 
@@ -42,7 +48,7 @@
   display: grid;
   gap: token('grid.rowGap.mobile');
 
-  @media (min-width: $layout_breakpoints_desktop) {
+  @media (min-width: $layout_breakpoint_desktop) {
     grid-template-columns: minmax(0, 1fr) minmax(18rem, 1fr);
     align-items: stretch;
     gap: token('grid.gutter.desktop');
@@ -50,20 +56,20 @@
 }
 
 .splitDivider {
-  @media (min-width: $layout_breakpoints_desktop) {
+  @media (min-width: $layout_breakpoint_desktop) {
     position: relative;
   }
 }
 
 .splitDivider::after {
-  @media (min-width: $layout_breakpoints_desktop) {
+  @media (min-width: $layout_breakpoint_desktop) {
     content: '';
     position: absolute;
     top: 0;
     bottom: 0;
     left: calc(50% + (token('grid.gutter.desktop') / 2));
     width: 1px;
-    background-color: token('theme.surface.raised');
+    background-color: token('background.surfaceRaised');
     transform: translateX(-50%);
   }
 }
@@ -103,9 +109,9 @@
 
 .card {
   padding: token('space.6');
-  border: 1px solid token('theme.surface.raised');
+  border: 1px solid token('background.surfaceRaised');
   border-radius: token('radius.medium');
-  background-color: token('theme.surface.raised');
+  background-color: token('background.surfaceRaised');
 }
 
 .logo,
@@ -118,14 +124,14 @@
 }
 
 .supportingContent {
-  color: token('theme.text.muted');
+  color: token('text.muted');
 }
 
 .visual {
   display: flex;
   min-height: 16rem;
 
-  @media (min-width: $layout_breakpoints_desktop) {
+  @media (min-width: $layout_breakpoint_desktop) {
     min-height: 100%;
   }
 }
@@ -134,7 +140,7 @@
   width: 100%;
   padding: token('space.6');
   border-radius: token('radius.large');
-  background-color: token('theme.surface.raised');
+  background-color: token('background.surfaceRaised');
 }
 
 .footer {

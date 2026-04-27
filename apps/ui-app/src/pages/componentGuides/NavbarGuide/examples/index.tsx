@@ -1,137 +1,409 @@
 import { Button } from '@themeshift/ui/components/Button';
-import {
-  Navbar,
-  NavbarContainer,
-  NavbarSection,
-} from '@themeshift/ui/components/Navbar';
+import type { FocusLockAdapterComponent } from '@themeshift/ui/components/FocusLock';
+import { Navbar } from '@themeshift/ui/components/Navbar';
 
-export const basicUsage = {
+import { LazyFocusLock as FocusLock } from '@/app/components/LazyFocusLock';
+
+export const quickStart = {
   code: `<Navbar aria-label="Primary navigation">
   <Navbar.Container>
-    <Navbar.Section align="start">
-      <a href="/">ThemeShift</a>
-    </Navbar.Section>
+    <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
 
-    <Navbar.Section align="center">
-      <a href="/ui">UI</a>
-      <a href="/tokens">Tokens</a>
-    </Navbar.Section>
+    <Navbar.List>
+      <Navbar.Item>
+        <Navbar.Link href="/docs">Docs</Navbar.Link>
+      </Navbar.Item>
+      <Navbar.Item>
+        <Navbar.Link href="/pricing">Pricing</Navbar.Link>
+      </Navbar.Item>
+    </Navbar.List>
 
-    <Navbar.Section align="end">
-      <Button size="small">Sign in</Button>
-    </Navbar.Section>
+    <Navbar.Actions>
+      <Button size="small">Get started</Button>
+    </Navbar.Actions>
   </Navbar.Container>
 </Navbar>`,
-  label: 'Compound API',
+  label: 'Quick start',
   sample: (
     <Navbar aria-label="Primary navigation">
       <Navbar.Container>
-        <Navbar.Section align="start">
-          <a href="/">ThemeShift</a>
-        </Navbar.Section>
+        <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
 
-        <Navbar.Section align="center">
-          <a href="/ui">UI</a>
-          <a href="/tokens">Tokens</a>
-        </Navbar.Section>
+        <Navbar.List>
+          <Navbar.Item>
+            <Navbar.Link href="/docs">Docs</Navbar.Link>
+          </Navbar.Item>
+          <Navbar.Item>
+            <Navbar.Link href="/pricing">Pricing</Navbar.Link>
+          </Navbar.Item>
+        </Navbar.List>
 
-        <Navbar.Section align="end">
-          <Button size="small">Sign in</Button>
-        </Navbar.Section>
+        <Navbar.Actions>
+          <Button size="small">Get started</Button>
+        </Navbar.Actions>
       </Navbar.Container>
     </Navbar>
   ),
 };
 
-export const containerControls = {
+export const responsiveMenu = {
   code: `<Navbar aria-label="Primary navigation">
-  <Navbar.Container gap="1.5rem" maxWidth="60rem">
-    <Navbar.Section align="start">
-      <a href="/">ThemeShift</a>
-    </Navbar.Section>
-    <Navbar.Section align="end" gap="0.75rem">
-      <Button intent="secondary" size="small">Contact</Button>
+  <Navbar.Container>
+    <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+
+    <Navbar.Content hideBelow="tablet">
+      <Navbar.List>
+        <Navbar.Item>
+          <Navbar.Link href="/docs">Docs</Navbar.Link>
+        </Navbar.Item>
+        <Navbar.Item>
+          <Navbar.Link href="/components">Components</Navbar.Link>
+        </Navbar.Item>
+      </Navbar.List>
+    </Navbar.Content>
+
+    <Navbar.Actions hideBelow="tablet">
+      <Button intent="secondary" size="small">Sign in</Button>
       <Button size="small">Get started</Button>
-    </Navbar.Section>
+    </Navbar.Actions>
+
+    <Navbar.Toggle
+      aria-label={(isOpen) => (isOpen ? 'Close navigation' : 'Open navigation')}
+      showBelow="tablet"
+    >
+      {(isOpen) => (isOpen ? 'Close' : 'Menu')}
+    </Navbar.Toggle>
   </Navbar.Container>
+
+  <Navbar.Menu
+    labelledBy="navbar-mobile-heading"
+    onClickOutside="toggle"
+    showBelow="tablet"
+  >
+    <h3 id="navbar-mobile-heading">Navigation</h3>
+    <Navbar.List>
+      <Navbar.Item>
+        <Navbar.Link href="/docs">Docs</Navbar.Link>
+      </Navbar.Item>
+      <Navbar.Item>
+        <Navbar.Link href="/components">Components</Navbar.Link>
+      </Navbar.Item>
+    </Navbar.List>
+  </Navbar.Menu>
 </Navbar>`,
-  label: 'Container and gap',
+  label: 'Responsive menu',
   sample: (
     <Navbar aria-label="Primary navigation">
-      <Navbar.Container gap="1.5rem" maxWidth="60rem">
-        <Navbar.Section align="start">
-          <a href="/">ThemeShift</a>
-        </Navbar.Section>
+      <Navbar.Container>
+        <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
 
-        <Navbar.Section align="end" gap="0.75rem">
+        <Navbar.Content hideBelow="tablet">
+          <Navbar.List>
+            <Navbar.Item>
+              <Navbar.Link href="/docs">Docs</Navbar.Link>
+            </Navbar.Item>
+            <Navbar.Item>
+              <Navbar.Link href="/components">Components</Navbar.Link>
+            </Navbar.Item>
+          </Navbar.List>
+        </Navbar.Content>
+
+        <Navbar.Actions hideBelow="tablet">
+          <Button intent="secondary" size="small">
+            Sign in
+          </Button>
+          <Button size="small">Get started</Button>
+        </Navbar.Actions>
+
+        <Navbar.Toggle
+          aria-label={(isOpen) =>
+            isOpen ? 'Close navigation' : 'Open navigation'
+          }
+          showBelow="tablet"
+        >
+          {(isOpen) => (isOpen ? 'Close' : 'Menu')}
+        </Navbar.Toggle>
+      </Navbar.Container>
+
+      <Navbar.Menu
+        labelledBy="navbar-mobile-heading"
+        onClickOutside="toggle"
+        showBelow="tablet"
+      >
+        <h3 id="navbar-mobile-heading">Navigation</h3>
+        <Navbar.List>
+          <Navbar.Item>
+            <Navbar.Link href="/docs">Docs</Navbar.Link>
+          </Navbar.Item>
+          <Navbar.Item>
+            <Navbar.Link href="/components">Components</Navbar.Link>
+          </Navbar.Item>
+        </Navbar.List>
+      </Navbar.Menu>
+    </Navbar>
+  ),
+};
+
+export const floatingSticky = {
+  code: `<Navbar
+  aria-label="Product navigation"
+  floating
+  position="sticky"
+  surface="elevated"
+>
+  <Navbar.Container maxWidth="xLarge" width="contained">
+    <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+    <Navbar.Actions>
+      <Button intent="secondary" size="small">Contact</Button>
+      <Button size="small">Get started</Button>
+    </Navbar.Actions>
+  </Navbar.Container>
+</Navbar>`,
+  label: 'Floating + sticky',
+  sample: (
+    <Navbar
+      aria-label="Product navigation"
+      floating
+      position="sticky"
+      surface="elevated"
+    >
+      <Navbar.Container maxWidth="xLarge" width="contained">
+        <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+        <Navbar.Actions>
           <Button intent="secondary" size="small">
             Contact
           </Button>
           <Button size="small">Get started</Button>
-        </Navbar.Section>
+        </Navbar.Actions>
       </Navbar.Container>
     </Navbar>
   ),
 };
 
-export const standalonePrimitives = {
-  code: `<NavbarContainer>
-  <NavbarSection align="start">
-    <a href="/design">Design</a>
-  </NavbarSection>
-  <NavbarSection align="center">
-    <a href="/systems">Systems</a>
-  </NavbarSection>
-  <NavbarSection align="end">
-    <Button intent="secondary" size="small">Contact</Button>
-  </NavbarSection>
-</NavbarContainer>`,
-  label: 'Standalone primitives',
+export const drawerPlacement = {
+  code: `<Navbar aria-label="Drawer navigation" position="sticky" surface="elevated">
+  <Navbar.Container>
+    <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+    <Navbar.Toggle aria-label="Open navigation">Open menu</Navbar.Toggle>
+  </Navbar.Container>
+
+  <Navbar.Menu
+    labelledBy="drawer-menu-title"
+    onClickOutside="close"
+    placement="drawer"
+  >
+    <h3 id="drawer-menu-title">Navigation</h3>
+    <Navbar.List>
+      <Navbar.Item>
+        <Navbar.Link href="/docs">Docs</Navbar.Link>
+      </Navbar.Item>
+      <Navbar.Item>
+        <Navbar.Link href="/components">Components</Navbar.Link>
+      </Navbar.Item>
+    </Navbar.List>
+  </Navbar.Menu>
+</Navbar>`,
+  label: 'Drawer placement',
   sample: (
-    <NavbarContainer>
-      <NavbarSection align="start">
-        <a href="/design">Design</a>
-      </NavbarSection>
-      <NavbarSection align="center">
-        <a href="/systems">Systems</a>
-      </NavbarSection>
-      <NavbarSection align="end">
-        <Button intent="secondary" size="small">
-          Contact
-        </Button>
-      </NavbarSection>
-    </NavbarContainer>
+    <Navbar aria-label="Drawer navigation" position="sticky" surface="elevated">
+      <Navbar.Container>
+        <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+        <Navbar.Toggle aria-label="Open navigation">Open menu</Navbar.Toggle>
+      </Navbar.Container>
+
+      <Navbar.Menu
+        labelledBy="drawer-menu-title"
+        onClickOutside="close"
+        placement="drawer"
+      >
+        <h3 id="drawer-menu-title">Navigation</h3>
+        <Navbar.List>
+          <Navbar.Item>
+            <Navbar.Link href="/docs">Docs</Navbar.Link>
+          </Navbar.Item>
+          <Navbar.Item>
+            <Navbar.Link href="/components">Components</Navbar.Link>
+          </Navbar.Item>
+        </Navbar.List>
+      </Navbar.Menu>
+    </Navbar>
   ),
 };
 
-export const wrappedSection = {
-  code: `<Navbar aria-label="Secondary navigation">
+export const onClickOutsideCallback = {
+  code: `<Navbar aria-label="Primary navigation">
   <Navbar.Container>
-    <Navbar.Section align="start" gap="0.5rem" wrap>
-      <a href="/docs/getting-started">Getting started</a>
-      <a href="/docs/components">Components</a>
-      <a href="/docs/tokens">Tokens</a>
-      <a href="/docs/themes">Themes</a>
-    </Navbar.Section>
+    <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+    <Navbar.Toggle
+      aria-label={(isOpen) => (isOpen ? 'Close menu' : 'Open menu')}
+      showBelow="tablet"
+    >
+      {(isOpen) => (isOpen ? 'Close' : 'Menu')}
+    </Navbar.Toggle>
+  </Navbar.Container>
+
+  <Navbar.Menu
+    labelledBy="callback-menu-title"
+    onClickOutside={({ close }) => {
+      externalSideEffect();
+      close();
+    }}
+    showBelow="tablet"
+  >
+    <h3 id="callback-menu-title">Navigation</h3>
+    <Navbar.List>
+      <Navbar.Item>
+        <Navbar.Link href="/docs">Docs</Navbar.Link>
+      </Navbar.Item>
+      <Navbar.Item>
+        <Navbar.Link href="/components">Components</Navbar.Link>
+      </Navbar.Item>
+    </Navbar.List>
+  </Navbar.Menu>
+</Navbar>`,
+  label: 'onClickOutside callback',
+  sample: () => (
+    <Navbar aria-label="Primary navigation">
+      <Navbar.Container>
+        <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+        <Navbar.Toggle
+          aria-label={(isOpen) => (isOpen ? 'Close menu' : 'Open menu')}
+          showBelow="tablet"
+        >
+          {(isOpen) => (isOpen ? 'Close' : 'Menu')}
+        </Navbar.Toggle>
+      </Navbar.Container>
+
+      <Navbar.Menu
+        labelledBy="callback-menu-title"
+        onClickOutside={({ close }) => {
+          close();
+        }}
+        showBelow="tablet"
+      >
+        <h3 id="callback-menu-title">Navigation</h3>
+        <Navbar.List>
+          <Navbar.Item>
+            <Navbar.Link href="/docs">Docs</Navbar.Link>
+          </Navbar.Item>
+          <Navbar.Item>
+            <Navbar.Link href="/components">Components</Navbar.Link>
+          </Navbar.Item>
+        </Navbar.List>
+      </Navbar.Menu>
+    </Navbar>
+  ),
+};
+
+export const asChildExample = {
+  code: `<Navbar aria-label="Primary navigation">
+  <Navbar.Container>
+    <Navbar.Brand asChild href="/">
+      <a>ThemeShift</a>
+    </Navbar.Brand>
+
+    <Navbar.Toggle aria-label="Open navigation" asChild>
+      <button type="button">Toggle</button>
+    </Navbar.Toggle>
   </Navbar.Container>
 </Navbar>`,
-  label: 'Wrapping links',
+  label: 'asChild',
   sample: (
-    <Navbar aria-label="Secondary navigation">
+    <Navbar aria-label="Primary navigation">
       <Navbar.Container>
-        <Navbar.Section align="start" gap="0.5rem" wrap>
-          <a href="/docs/getting-started">Getting started</a>
-          <a href="/docs/components">Components</a>
-          <a href="/docs/tokens">Tokens</a>
-          <a href="/docs/themes">Themes</a>
-        </Navbar.Section>
+        <Navbar.Brand asChild href="/">
+          <a>ThemeShift</a>
+        </Navbar.Brand>
+
+        <Navbar.Toggle aria-label="Open navigation" asChild>
+          <button type="button">Toggle</button>
+        </Navbar.Toggle>
       </Navbar.Container>
     </Navbar>
   ),
 };
 
-export const propHighlights = [
-  basicUsage,
-  containerControls,
-  standalonePrimitives,
+const softFocusLockAdapter: FocusLockAdapterComponent = ({
+  active,
+  autoFocus,
+  children,
+  containerRef,
+  returnFocus,
+  shards,
+}) => (
+  <FocusLock
+    active={active}
+    autoFocus={autoFocus}
+    containerRef={containerRef}
+    returnFocus={returnFocus}
+    shards={shards}
+  >
+    <div
+      data-focus-lock-adapter="soft-outline"
+      style={{ outline: active ? '2px solid currentColor' : 'none' }}
+    >
+      {children}
+    </div>
+  </FocusLock>
+);
+
+export const customFocusLockAdapter = {
+  code: `const softFocusLockAdapter: FocusLockAdapterComponent = ({
+  active,
+  autoFocus,
+  children,
+  containerRef,
+  returnFocus,
+  shards,
+}) => (
+  <FocusLock
+    active={active}
+    autoFocus={autoFocus}
+    containerRef={containerRef}
+    returnFocus={returnFocus}
+    shards={shards}
+  >
+    <div data-focus-lock-adapter="soft-outline">{children}</div>
+  </FocusLock>
+);
+
+<Navbar.Menu
+  focusLockComponent={softFocusLockAdapter}
+  placement="drawer"
+>
+  ...
+</Navbar.Menu>`,
+  label: 'Custom focus lock adapter',
+  sample: (
+    <Navbar aria-label="Primary navigation">
+      <Navbar.Container>
+        <Navbar.Brand href="/">ThemeShift</Navbar.Brand>
+        <Navbar.Toggle aria-label="Open navigation">Open menu</Navbar.Toggle>
+      </Navbar.Container>
+
+      <Navbar.Menu
+        focusLockComponent={softFocusLockAdapter}
+        labelledBy="adapter-menu-title"
+        placement="drawer"
+      >
+        <h3 id="adapter-menu-title">Navigation</h3>
+        <Navbar.List>
+          <Navbar.Item>
+            <Navbar.Link href="/docs">Docs</Navbar.Link>
+          </Navbar.Item>
+          <Navbar.Item>
+            <Navbar.Link href="/components">Components</Navbar.Link>
+          </Navbar.Item>
+        </Navbar.List>
+      </Navbar.Menu>
+    </Navbar>
+  ),
+};
+
+export const propHighlights = [quickStart, responsiveMenu, floatingSticky];
+export const behaviorExamples = [
+  drawerPlacement,
+  onClickOutsideCallback,
+  asChildExample,
+  customFocusLockAdapter,
 ];

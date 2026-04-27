@@ -113,16 +113,20 @@ export const SkeletonGuide = () => {
 
       <GuideExampleCard>
         <GuideExampleText>
-          <TableOfContents.Marker id="examples-rtl" label="RTL" level={2} />
-          <Heading level={4}>RTL shimmer</Heading>
+          <TableOfContents.Marker
+            id="examples-direction"
+            label="Direction (LTR/RTL)"
+            level={2}
+          />
+          <Heading level={4}>Direction (LTR/RTL)</Heading>
           <p>
-            Shimmer direction adapts to the document direction. Set{' '}
-            <code>dir</code> on a parent region when rendering RTL layouts.
+            Shimmer direction adapts to writing direction. Set <code>dir</code>{' '}
+            on parent regions to support both LTR and RTL interfaces.
           </p>
         </GuideExampleText>
 
         <GuideExampleViewer>
-          <ExampleViewer example={examples.rtlShimmer} />
+          <ExampleViewer examples={examples.directionExamples} />
         </GuideExampleViewer>
       </GuideExampleCard>
     </GuideExamplesGrid>

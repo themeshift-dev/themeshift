@@ -1,0 +1,753 @@
+@use '@/sass/tokens.static' as *;
+
+.root,
+.item {
+  --ts-align-content-tablet: var(--ts-align-content-base);
+  --ts-align-items-tablet: var(--ts-align-items-base);
+  --ts-align-self-tablet: var(--ts-align-self-base);
+  --ts-column-gap-tablet: var(--ts-column-gap-base);
+  --ts-display-tablet: var(--ts-display-base);
+  --ts-flex-direction-tablet: var(--ts-flex-direction-base);
+  --ts-flex-wrap-tablet: var(--ts-flex-wrap-base);
+  --ts-gap-tablet: var(--ts-gap-base);
+  --ts-grid-area-tablet: var(--ts-grid-area-base);
+  --ts-grid-auto-columns-tablet: var(--ts-grid-auto-columns-base);
+  --ts-grid-auto-flow-tablet: var(--ts-grid-auto-flow-base);
+  --ts-grid-auto-rows-tablet: var(--ts-grid-auto-rows-base);
+  --ts-grid-column-tablet: var(--ts-grid-column-base);
+  --ts-grid-column-end-tablet: var(--ts-grid-column-end-base);
+  --ts-grid-column-start-tablet: var(--ts-grid-column-start-base);
+  --ts-grid-row-tablet: var(--ts-grid-row-base);
+  --ts-grid-row-end-tablet: var(--ts-grid-row-end-base);
+  --ts-grid-row-start-tablet: var(--ts-grid-row-start-base);
+  --ts-grid-template-areas-tablet: var(--ts-grid-template-areas-base);
+  --ts-grid-template-columns-tablet: var(--ts-grid-template-columns-base);
+  --ts-grid-template-rows-tablet: var(--ts-grid-template-rows-base);
+  --ts-height-tablet: var(--ts-height-base);
+  --ts-justify-content-tablet: var(--ts-justify-content-base);
+  --ts-justify-items-tablet: var(--ts-justify-items-base);
+  --ts-justify-self-tablet: var(--ts-justify-self-base);
+  --ts-margin-tablet: var(--ts-margin-base);
+  --ts-margin-block-tablet: var(--ts-margin-block-base);
+  --ts-margin-bottom-tablet: var(--ts-margin-bottom-base);
+  --ts-margin-inline-tablet: var(--ts-margin-inline-base);
+  --ts-margin-left-tablet: var(--ts-margin-left-base);
+  --ts-margin-right-tablet: var(--ts-margin-right-base);
+  --ts-margin-top-tablet: var(--ts-margin-top-base);
+  --ts-max-height-tablet: var(--ts-max-height-base);
+  --ts-max-width-tablet: var(--ts-max-width-base);
+  --ts-min-height-tablet: var(--ts-min-height-base);
+  --ts-min-width-tablet: var(--ts-min-width-base);
+  --ts-overflow-tablet: var(--ts-overflow-base);
+  --ts-overflow-x-tablet: var(--ts-overflow-x-base);
+  --ts-overflow-y-tablet: var(--ts-overflow-y-base);
+  --ts-padding-tablet: var(--ts-padding-base);
+  --ts-padding-block-tablet: var(--ts-padding-block-base);
+  --ts-padding-bottom-tablet: var(--ts-padding-bottom-base);
+  --ts-padding-inline-tablet: var(--ts-padding-inline-base);
+  --ts-padding-left-tablet: var(--ts-padding-left-base);
+  --ts-padding-right-tablet: var(--ts-padding-right-base);
+  --ts-padding-top-tablet: var(--ts-padding-top-base);
+  --ts-row-gap-tablet: var(--ts-row-gap-base);
+  --ts-width-tablet: var(--ts-width-base);
+
+  --ts-align-content-desktop: var(--ts-align-content-tablet);
+  --ts-align-items-desktop: var(--ts-align-items-tablet);
+  --ts-align-self-desktop: var(--ts-align-self-tablet);
+  --ts-column-gap-desktop: var(--ts-column-gap-tablet);
+  --ts-display-desktop: var(--ts-display-tablet);
+  --ts-flex-direction-desktop: var(--ts-flex-direction-tablet);
+  --ts-flex-wrap-desktop: var(--ts-flex-wrap-tablet);
+  --ts-gap-desktop: var(--ts-gap-tablet);
+  --ts-grid-area-desktop: var(--ts-grid-area-tablet);
+  --ts-grid-auto-columns-desktop: var(--ts-grid-auto-columns-tablet);
+  --ts-grid-auto-flow-desktop: var(--ts-grid-auto-flow-tablet);
+  --ts-grid-auto-rows-desktop: var(--ts-grid-auto-rows-tablet);
+  --ts-grid-column-desktop: var(--ts-grid-column-tablet);
+  --ts-grid-column-end-desktop: var(--ts-grid-column-end-tablet);
+  --ts-grid-column-start-desktop: var(--ts-grid-column-start-tablet);
+  --ts-grid-row-desktop: var(--ts-grid-row-tablet);
+  --ts-grid-row-end-desktop: var(--ts-grid-row-end-tablet);
+  --ts-grid-row-start-desktop: var(--ts-grid-row-start-tablet);
+  --ts-grid-template-areas-desktop: var(--ts-grid-template-areas-tablet);
+  --ts-grid-template-columns-desktop: var(--ts-grid-template-columns-tablet);
+  --ts-grid-template-rows-desktop: var(--ts-grid-template-rows-tablet);
+  --ts-height-desktop: var(--ts-height-tablet);
+  --ts-justify-content-desktop: var(--ts-justify-content-tablet);
+  --ts-justify-items-desktop: var(--ts-justify-items-tablet);
+  --ts-justify-self-desktop: var(--ts-justify-self-tablet);
+  --ts-margin-desktop: var(--ts-margin-tablet);
+  --ts-margin-block-desktop: var(--ts-margin-block-tablet);
+  --ts-margin-bottom-desktop: var(--ts-margin-bottom-tablet);
+  --ts-margin-inline-desktop: var(--ts-margin-inline-tablet);
+  --ts-margin-left-desktop: var(--ts-margin-left-tablet);
+  --ts-margin-right-desktop: var(--ts-margin-right-tablet);
+  --ts-margin-top-desktop: var(--ts-margin-top-tablet);
+  --ts-max-height-desktop: var(--ts-max-height-tablet);
+  --ts-max-width-desktop: var(--ts-max-width-tablet);
+  --ts-min-height-desktop: var(--ts-min-height-tablet);
+  --ts-min-width-desktop: var(--ts-min-width-tablet);
+  --ts-overflow-desktop: var(--ts-overflow-tablet);
+  --ts-overflow-x-desktop: var(--ts-overflow-x-tablet);
+  --ts-overflow-y-desktop: var(--ts-overflow-y-tablet);
+  --ts-padding-desktop: var(--ts-padding-tablet);
+  --ts-padding-block-desktop: var(--ts-padding-block-tablet);
+  --ts-padding-bottom-desktop: var(--ts-padding-bottom-tablet);
+  --ts-padding-inline-desktop: var(--ts-padding-inline-tablet);
+  --ts-padding-left-desktop: var(--ts-padding-left-tablet);
+  --ts-padding-right-desktop: var(--ts-padding-right-tablet);
+  --ts-padding-top-desktop: var(--ts-padding-top-tablet);
+  --ts-row-gap-desktop: var(--ts-row-gap-tablet);
+  --ts-width-desktop: var(--ts-width-tablet);
+  align-content: var(--ts-align-content-base);
+  align-items: var(--ts-align-items-base);
+  align-self: var(--ts-align-self-base);
+  column-gap: var(--ts-column-gap-base, var(--ts-gap-base));
+  display: var(--ts-display-base);
+  flex-direction: var(--ts-flex-direction-base);
+  flex-wrap: var(--ts-flex-wrap-base);
+  gap: var(--ts-gap-base);
+  grid-area: var(--ts-grid-area-base);
+  grid-auto-columns: var(--ts-grid-auto-columns-base);
+  grid-auto-flow: var(--ts-grid-auto-flow-base);
+  grid-auto-rows: var(--ts-grid-auto-rows-base);
+  grid-column: var(--ts-grid-column-base);
+  grid-column-end: var(--ts-grid-column-end-base);
+  grid-column-start: var(--ts-grid-column-start-base);
+  grid-row: var(--ts-grid-row-base);
+  grid-row-end: var(--ts-grid-row-end-base);
+  grid-row-start: var(--ts-grid-row-start-base);
+  grid-template-areas: var(--ts-grid-template-areas-base);
+  grid-template-columns: var(--ts-grid-template-columns-base);
+  grid-template-rows: var(--ts-grid-template-rows-base);
+  height: var(--ts-height-base);
+  justify-content: var(--ts-justify-content-base);
+  justify-items: var(--ts-justify-items-base);
+  justify-self: var(--ts-justify-self-base);
+  margin: var(--ts-margin-base);
+  margin-block: var(--ts-margin-block-base, var(--ts-margin-base));
+  margin-bottom: var(
+    --ts-margin-bottom-base,
+    var(--ts-margin-block-base, var(--ts-margin-base))
+  );
+  margin-inline: var(--ts-margin-inline-base, var(--ts-margin-base));
+  margin-left: var(
+    --ts-margin-left-base,
+    var(--ts-margin-inline-base, var(--ts-margin-base))
+  );
+  margin-right: var(
+    --ts-margin-right-base,
+    var(--ts-margin-inline-base, var(--ts-margin-base))
+  );
+  margin-top: var(
+    --ts-margin-top-base,
+    var(--ts-margin-block-base, var(--ts-margin-base))
+  );
+  max-height: var(--ts-max-height-base);
+  max-width: var(--ts-max-width-base);
+  min-height: var(--ts-min-height-base);
+  min-width: var(--ts-min-width-base);
+  overflow: var(--ts-overflow-base);
+  overflow-x: var(--ts-overflow-x-base);
+  overflow-y: var(--ts-overflow-y-base);
+  padding: var(--ts-padding-base);
+  padding-block: var(--ts-padding-block-base, var(--ts-padding-base));
+  padding-bottom: var(
+    --ts-padding-bottom-base,
+    var(--ts-padding-block-base, var(--ts-padding-base))
+  );
+  padding-inline: var(--ts-padding-inline-base, var(--ts-padding-base));
+  padding-left: var(
+    --ts-padding-left-base,
+    var(--ts-padding-inline-base, var(--ts-padding-base))
+  );
+  padding-right: var(
+    --ts-padding-right-base,
+    var(--ts-padding-inline-base, var(--ts-padding-base))
+  );
+  padding-top: var(
+    --ts-padding-top-base,
+    var(--ts-padding-block-base, var(--ts-padding-base))
+  );
+  row-gap: var(--ts-row-gap-base, var(--ts-gap-base));
+  width: var(--ts-width-base);
+}
+
+@media (min-width: #{$layout_breakpoint_tablet}) {
+  .root,
+  .item {
+    align-content: var(--ts-align-content-tablet, var(--ts-align-content-base));
+    align-items: var(--ts-align-items-tablet, var(--ts-align-items-base));
+    align-self: var(--ts-align-self-tablet, var(--ts-align-self-base));
+    column-gap: var(
+      --ts-column-gap-tablet,
+      var(--ts-gap-tablet, var(--ts-column-gap-base, var(--ts-gap-base)))
+    );
+    display: var(--ts-display-tablet, var(--ts-display-base));
+    flex-direction: var(
+      --ts-flex-direction-tablet,
+      var(--ts-flex-direction-base)
+    );
+    flex-wrap: var(--ts-flex-wrap-tablet, var(--ts-flex-wrap-base));
+    gap: var(--ts-gap-tablet, var(--ts-gap-base));
+    grid-area: var(--ts-grid-area-tablet, var(--ts-grid-area-base));
+    grid-auto-columns: var(
+      --ts-grid-auto-columns-tablet,
+      var(--ts-grid-auto-columns-base)
+    );
+    grid-auto-flow: var(
+      --ts-grid-auto-flow-tablet,
+      var(--ts-grid-auto-flow-base)
+    );
+    grid-auto-rows: var(
+      --ts-grid-auto-rows-tablet,
+      var(--ts-grid-auto-rows-base)
+    );
+    grid-column: var(--ts-grid-column-tablet, var(--ts-grid-column-base));
+    grid-column-end: var(
+      --ts-grid-column-end-tablet,
+      var(--ts-grid-column-end-base)
+    );
+    grid-column-start: var(
+      --ts-grid-column-start-tablet,
+      var(--ts-grid-column-start-base)
+    );
+    grid-row: var(--ts-grid-row-tablet, var(--ts-grid-row-base));
+    grid-row-end: var(--ts-grid-row-end-tablet, var(--ts-grid-row-end-base));
+    grid-row-start: var(
+      --ts-grid-row-start-tablet,
+      var(--ts-grid-row-start-base)
+    );
+    grid-template-areas: var(
+      --ts-grid-template-areas-tablet,
+      var(--ts-grid-template-areas-base)
+    );
+    grid-template-columns: var(
+      --ts-grid-template-columns-tablet,
+      var(--ts-grid-template-columns-base)
+    );
+    grid-template-rows: var(
+      --ts-grid-template-rows-tablet,
+      var(--ts-grid-template-rows-base)
+    );
+    height: var(--ts-height-tablet, var(--ts-height-base));
+    justify-content: var(
+      --ts-justify-content-tablet,
+      var(--ts-justify-content-base)
+    );
+    justify-items: var(--ts-justify-items-tablet, var(--ts-justify-items-base));
+    justify-self: var(--ts-justify-self-tablet, var(--ts-justify-self-base));
+    margin: var(--ts-margin-tablet, var(--ts-margin-base));
+    margin-block: var(
+      --ts-margin-block-tablet,
+      var(
+        --ts-margin-tablet,
+        var(--ts-margin-block-base, var(--ts-margin-base))
+      )
+    );
+    margin-bottom: var(
+      --ts-margin-bottom-tablet,
+      var(
+        --ts-margin-block-tablet,
+        var(
+          --ts-margin-tablet,
+          var(
+            --ts-margin-bottom-base,
+            var(--ts-margin-block-base, var(--ts-margin-base))
+          )
+        )
+      )
+    );
+    margin-inline: var(
+      --ts-margin-inline-tablet,
+      var(
+        --ts-margin-tablet,
+        var(--ts-margin-inline-base, var(--ts-margin-base))
+      )
+    );
+    margin-left: var(
+      --ts-margin-left-tablet,
+      var(
+        --ts-margin-inline-tablet,
+        var(
+          --ts-margin-tablet,
+          var(
+            --ts-margin-left-base,
+            var(--ts-margin-inline-base, var(--ts-margin-base))
+          )
+        )
+      )
+    );
+    margin-right: var(
+      --ts-margin-right-tablet,
+      var(
+        --ts-margin-inline-tablet,
+        var(
+          --ts-margin-tablet,
+          var(
+            --ts-margin-right-base,
+            var(--ts-margin-inline-base, var(--ts-margin-base))
+          )
+        )
+      )
+    );
+    margin-top: var(
+      --ts-margin-top-tablet,
+      var(
+        --ts-margin-block-tablet,
+        var(
+          --ts-margin-tablet,
+          var(
+            --ts-margin-top-base,
+            var(--ts-margin-block-base, var(--ts-margin-base))
+          )
+        )
+      )
+    );
+    max-height: var(--ts-max-height-tablet, var(--ts-max-height-base));
+    max-width: var(--ts-max-width-tablet, var(--ts-max-width-base));
+    min-height: var(--ts-min-height-tablet, var(--ts-min-height-base));
+    min-width: var(--ts-min-width-tablet, var(--ts-min-width-base));
+    overflow: var(--ts-overflow-tablet, var(--ts-overflow-base));
+    overflow-x: var(--ts-overflow-x-tablet, var(--ts-overflow-x-base));
+    overflow-y: var(--ts-overflow-y-tablet, var(--ts-overflow-y-base));
+    padding: var(--ts-padding-tablet, var(--ts-padding-base));
+    padding-block: var(
+      --ts-padding-block-tablet,
+      var(
+        --ts-padding-tablet,
+        var(--ts-padding-block-base, var(--ts-padding-base))
+      )
+    );
+    padding-bottom: var(
+      --ts-padding-bottom-tablet,
+      var(
+        --ts-padding-block-tablet,
+        var(
+          --ts-padding-tablet,
+          var(
+            --ts-padding-bottom-base,
+            var(--ts-padding-block-base, var(--ts-padding-base))
+          )
+        )
+      )
+    );
+    padding-inline: var(
+      --ts-padding-inline-tablet,
+      var(
+        --ts-padding-tablet,
+        var(--ts-padding-inline-base, var(--ts-padding-base))
+      )
+    );
+    padding-left: var(
+      --ts-padding-left-tablet,
+      var(
+        --ts-padding-inline-tablet,
+        var(
+          --ts-padding-tablet,
+          var(
+            --ts-padding-left-base,
+            var(--ts-padding-inline-base, var(--ts-padding-base))
+          )
+        )
+      )
+    );
+    padding-right: var(
+      --ts-padding-right-tablet,
+      var(
+        --ts-padding-inline-tablet,
+        var(
+          --ts-padding-tablet,
+          var(
+            --ts-padding-right-base,
+            var(--ts-padding-inline-base, var(--ts-padding-base))
+          )
+        )
+      )
+    );
+    padding-top: var(
+      --ts-padding-top-tablet,
+      var(
+        --ts-padding-block-tablet,
+        var(
+          --ts-padding-tablet,
+          var(
+            --ts-padding-top-base,
+            var(--ts-padding-block-base, var(--ts-padding-base))
+          )
+        )
+      )
+    );
+    row-gap: var(
+      --ts-row-gap-tablet,
+      var(--ts-gap-tablet, var(--ts-row-gap-base, var(--ts-gap-base)))
+    );
+    width: var(--ts-width-tablet, var(--ts-width-base));
+  }
+}
+
+@media (min-width: #{$layout_breakpoint_desktop}) {
+  .root,
+  .item {
+    align-content: var(
+      --ts-align-content-desktop,
+      var(--ts-align-content-tablet, var(--ts-align-content-base))
+    );
+    align-items: var(
+      --ts-align-items-desktop,
+      var(--ts-align-items-tablet, var(--ts-align-items-base))
+    );
+    align-self: var(
+      --ts-align-self-desktop,
+      var(--ts-align-self-tablet, var(--ts-align-self-base))
+    );
+    column-gap: var(
+      --ts-column-gap-desktop,
+      var(
+        --ts-gap-desktop,
+        var(
+          --ts-column-gap-tablet,
+          var(--ts-gap-tablet, var(--ts-column-gap-base, var(--ts-gap-base)))
+        )
+      )
+    );
+    display: var(
+      --ts-display-desktop,
+      var(--ts-display-tablet, var(--ts-display-base))
+    );
+    flex-direction: var(
+      --ts-flex-direction-desktop,
+      var(--ts-flex-direction-tablet, var(--ts-flex-direction-base))
+    );
+    flex-wrap: var(
+      --ts-flex-wrap-desktop,
+      var(--ts-flex-wrap-tablet, var(--ts-flex-wrap-base))
+    );
+    gap: var(--ts-gap-desktop, var(--ts-gap-tablet, var(--ts-gap-base)));
+    grid-area: var(
+      --ts-grid-area-desktop,
+      var(--ts-grid-area-tablet, var(--ts-grid-area-base))
+    );
+    grid-auto-columns: var(
+      --ts-grid-auto-columns-desktop,
+      var(--ts-grid-auto-columns-tablet, var(--ts-grid-auto-columns-base))
+    );
+    grid-auto-flow: var(
+      --ts-grid-auto-flow-desktop,
+      var(--ts-grid-auto-flow-tablet, var(--ts-grid-auto-flow-base))
+    );
+    grid-auto-rows: var(
+      --ts-grid-auto-rows-desktop,
+      var(--ts-grid-auto-rows-tablet, var(--ts-grid-auto-rows-base))
+    );
+    grid-column: var(
+      --ts-grid-column-desktop,
+      var(--ts-grid-column-tablet, var(--ts-grid-column-base))
+    );
+    grid-column-end: var(
+      --ts-grid-column-end-desktop,
+      var(--ts-grid-column-end-tablet, var(--ts-grid-column-end-base))
+    );
+    grid-column-start: var(
+      --ts-grid-column-start-desktop,
+      var(--ts-grid-column-start-tablet, var(--ts-grid-column-start-base))
+    );
+    grid-row: var(
+      --ts-grid-row-desktop,
+      var(--ts-grid-row-tablet, var(--ts-grid-row-base))
+    );
+    grid-row-end: var(
+      --ts-grid-row-end-desktop,
+      var(--ts-grid-row-end-tablet, var(--ts-grid-row-end-base))
+    );
+    grid-row-start: var(
+      --ts-grid-row-start-desktop,
+      var(--ts-grid-row-start-tablet, var(--ts-grid-row-start-base))
+    );
+    grid-template-areas: var(
+      --ts-grid-template-areas-desktop,
+      var(--ts-grid-template-areas-tablet, var(--ts-grid-template-areas-base))
+    );
+    grid-template-columns: var(
+      --ts-grid-template-columns-desktop,
+      var(
+        --ts-grid-template-columns-tablet,
+        var(--ts-grid-template-columns-base)
+      )
+    );
+    grid-template-rows: var(
+      --ts-grid-template-rows-desktop,
+      var(--ts-grid-template-rows-tablet, var(--ts-grid-template-rows-base))
+    );
+    height: var(
+      --ts-height-desktop,
+      var(--ts-height-tablet, var(--ts-height-base))
+    );
+    justify-content: var(
+      --ts-justify-content-desktop,
+      var(--ts-justify-content-tablet, var(--ts-justify-content-base))
+    );
+    justify-items: var(
+      --ts-justify-items-desktop,
+      var(--ts-justify-items-tablet, var(--ts-justify-items-base))
+    );
+    justify-self: var(
+      --ts-justify-self-desktop,
+      var(--ts-justify-self-tablet, var(--ts-justify-self-base))
+    );
+    margin: var(
+      --ts-margin-desktop,
+      var(--ts-margin-tablet, var(--ts-margin-base))
+    );
+    margin-block: var(
+      --ts-margin-block-desktop,
+      var(
+        --ts-margin-desktop,
+        var(
+          --ts-margin-block-tablet,
+          var(
+            --ts-margin-tablet,
+            var(--ts-margin-block-base, var(--ts-margin-base))
+          )
+        )
+      )
+    );
+    margin-bottom: var(
+      --ts-margin-bottom-desktop,
+      var(
+        --ts-margin-block-desktop,
+        var(
+          --ts-margin-bottom-tablet,
+          var(
+            --ts-margin-block-tablet,
+            var(
+              --ts-margin-tablet,
+              var(
+                --ts-margin-bottom-base,
+                var(--ts-margin-block-base, var(--ts-margin-base))
+              )
+            )
+          )
+        )
+      )
+    );
+    margin-inline: var(
+      --ts-margin-inline-desktop,
+      var(
+        --ts-margin-desktop,
+        var(
+          --ts-margin-inline-tablet,
+          var(
+            --ts-margin-tablet,
+            var(--ts-margin-inline-base, var(--ts-margin-base))
+          )
+        )
+      )
+    );
+    margin-left: var(
+      --ts-margin-left-desktop,
+      var(
+        --ts-margin-inline-desktop,
+        var(
+          --ts-margin-left-tablet,
+          var(
+            --ts-margin-inline-tablet,
+            var(
+              --ts-margin-tablet,
+              var(
+                --ts-margin-left-base,
+                var(--ts-margin-inline-base, var(--ts-margin-base))
+              )
+            )
+          )
+        )
+      )
+    );
+    margin-right: var(
+      --ts-margin-right-desktop,
+      var(
+        --ts-margin-inline-desktop,
+        var(
+          --ts-margin-right-tablet,
+          var(
+            --ts-margin-inline-tablet,
+            var(
+              --ts-margin-tablet,
+              var(
+                --ts-margin-right-base,
+                var(--ts-margin-inline-base, var(--ts-margin-base))
+              )
+            )
+          )
+        )
+      )
+    );
+    margin-top: var(
+      --ts-margin-top-desktop,
+      var(
+        --ts-margin-block-desktop,
+        var(
+          --ts-margin-top-tablet,
+          var(
+            --ts-margin-block-tablet,
+            var(
+              --ts-margin-tablet,
+              var(
+                --ts-margin-top-base,
+                var(--ts-margin-block-base, var(--ts-margin-base))
+              )
+            )
+          )
+        )
+      )
+    );
+    max-height: var(
+      --ts-max-height-desktop,
+      var(--ts-max-height-tablet, var(--ts-max-height-base))
+    );
+    max-width: var(
+      --ts-max-width-desktop,
+      var(--ts-max-width-tablet, var(--ts-max-width-base))
+    );
+    min-height: var(
+      --ts-min-height-desktop,
+      var(--ts-min-height-tablet, var(--ts-min-height-base))
+    );
+    min-width: var(
+      --ts-min-width-desktop,
+      var(--ts-min-width-tablet, var(--ts-min-width-base))
+    );
+    overflow: var(
+      --ts-overflow-desktop,
+      var(--ts-overflow-tablet, var(--ts-overflow-base))
+    );
+    overflow-x: var(
+      --ts-overflow-x-desktop,
+      var(--ts-overflow-x-tablet, var(--ts-overflow-x-base))
+    );
+    overflow-y: var(
+      --ts-overflow-y-desktop,
+      var(--ts-overflow-y-tablet, var(--ts-overflow-y-base))
+    );
+    padding: var(
+      --ts-padding-desktop,
+      var(--ts-padding-tablet, var(--ts-padding-base))
+    );
+    padding-block: var(
+      --ts-padding-block-desktop,
+      var(
+        --ts-padding-desktop,
+        var(
+          --ts-padding-block-tablet,
+          var(
+            --ts-padding-tablet,
+            var(--ts-padding-block-base, var(--ts-padding-base))
+          )
+        )
+      )
+    );
+    padding-bottom: var(
+      --ts-padding-bottom-desktop,
+      var(
+        --ts-padding-block-desktop,
+        var(
+          --ts-padding-bottom-tablet,
+          var(
+            --ts-padding-block-tablet,
+            var(
+              --ts-padding-tablet,
+              var(
+                --ts-padding-bottom-base,
+                var(--ts-padding-block-base, var(--ts-padding-base))
+              )
+            )
+          )
+        )
+      )
+    );
+    padding-inline: var(
+      --ts-padding-inline-desktop,
+      var(
+        --ts-padding-desktop,
+        var(
+          --ts-padding-inline-tablet,
+          var(
+            --ts-padding-tablet,
+            var(--ts-padding-inline-base, var(--ts-padding-base))
+          )
+        )
+      )
+    );
+    padding-left: var(
+      --ts-padding-left-desktop,
+      var(
+        --ts-padding-inline-desktop,
+        var(
+          --ts-padding-left-tablet,
+          var(
+            --ts-padding-inline-tablet,
+            var(
+              --ts-padding-tablet,
+              var(
+                --ts-padding-left-base,
+                var(--ts-padding-inline-base, var(--ts-padding-base))
+              )
+            )
+          )
+        )
+      )
+    );
+    padding-right: var(
+      --ts-padding-right-desktop,
+      var(
+        --ts-padding-inline-desktop,
+        var(
+          --ts-padding-right-tablet,
+          var(
+            --ts-padding-inline-tablet,
+            var(
+              --ts-padding-tablet,
+              var(
+                --ts-padding-right-base,
+                var(--ts-padding-inline-base, var(--ts-padding-base))
+              )
+            )
+          )
+        )
+      )
+    );
+    padding-top: var(
+      --ts-padding-top-desktop,
+      var(
+        --ts-padding-block-desktop,
+        var(
+          --ts-padding-top-tablet,
+          var(
+            --ts-padding-block-tablet,
+            var(
+              --ts-padding-tablet,
+              var(
+                --ts-padding-top-base,
+                var(--ts-padding-block-base, var(--ts-padding-base))
+              )
+            )
+          )
+        )
+      )
+    );
+    row-gap: var(
+      --ts-row-gap-desktop,
+      var(
+        --ts-gap-desktop,
+        var(
+          --ts-row-gap-tablet,
+          var(--ts-gap-tablet, var(--ts-row-gap-base, var(--ts-gap-base)))
+        )
+      )
+    );
+    width: var(
+      --ts-width-desktop,
+      var(--ts-width-tablet, var(--ts-width-base))
+    );
+  }
+}

@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { themeShift } from '@themeshift/vite-plugin-themeshift';
+import { themeShift } from '@themeshift/vite-plugin';
 
 const cssGroups = [
   { label: 'Colors', match: (n: string) => n.startsWith('color-') },
@@ -27,6 +27,7 @@ const cssGroups = [
   },
   { label: 'Other', match: () => true },
 ];
+const isVitest = Boolean(process.env.VITEST);
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -40,6 +41,7 @@ export default defineConfig({
     react(),
     themeShift({
       cssVarPrefix: 'themeshift',
+      watch: !isVitest,
       platforms: ['css', 'meta', 'scss'],
       groups: cssGroups,
       filters: {

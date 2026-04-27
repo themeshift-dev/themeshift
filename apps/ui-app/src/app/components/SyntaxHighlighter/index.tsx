@@ -33,7 +33,7 @@ const token = (name: string) =>
 
 const syntaxHighlighterTheme = {
   plain: {
-    color: token('fg'),
+    color: token('text'),
     fontFamily: token('font'),
   },
   styles: [

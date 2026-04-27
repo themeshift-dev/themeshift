@@ -7,14 +7,12 @@ export const basicUsage = {
 };
 
 export const levels = {
-  code: `<>
-  <Heading level={1}>Heading level 1</Heading>
-  <Heading level={2}>Heading level 2</Heading>
-  <Heading level={3}>Heading level 3</Heading>
-  <Heading level={4}>Heading level 4</Heading>
-  <Heading level={5}>Heading level 5</Heading>
-  <Heading level={6}>Heading level 6</Heading>
-</>`,
+  code: `<Heading level={1}>Heading level 1</Heading>
+<Heading level={2}>Heading level 2</Heading>
+<Heading level={3}>Heading level 3</Heading>
+<Heading level={4}>Heading level 4</Heading>
+<Heading level={5}>Heading level 5</Heading>
+<Heading level={6}>Heading level 6</Heading>`,
   label: 'Levels',
   sample: (
     <div style={{ display: 'grid', gap: '0.75rem' }}>
@@ -29,12 +27,10 @@ export const levels = {
 };
 
 export const muted = {
-  code: `<>
-  <Heading level={3}>Primary heading</Heading>
-  <Heading level={3} muted>
-    Supporting heading
-  </Heading>
-</>`,
+  code: `<Heading level={3}>Primary heading</Heading>
+<Heading level={3} muted>
+  Supporting heading
+</Heading>`,
   label: 'Muted style',
   sample: (
     <div style={{ display: 'grid', gap: '0.75rem' }}>

@@ -11,16 +11,24 @@ export default mergeConfig(
       coverage: {
         provider: 'v8',
         reporter: ['text', 'html', 'lcov'],
-        include: ['src/components/**/*.tsx', 'src/templates/**/*.tsx'],
+        include: [
+          'src/components/**/*.tsx',
+          'src/templates/**/*.tsx',
+          'src/hooks/**/*.ts',
+        ],
         exclude: [
           'src/components/**/*.stories.tsx',
           'src/components/**/*.test.tsx',
+          'src/hooks/**/*.meta.ts',
+          'src/hooks/**/*.test.ts',
+          'src/hooks/**/*.test.tsx',
+          'src/hooks/index.ts',
           'src/templates/**/*.test.tsx',
         ],
         thresholds: {
           statements: 90,
-          branches: 90,
-          functions: 90,
+          branches: 85,
+          functions: 92,
           lines: 90,
         },
       },

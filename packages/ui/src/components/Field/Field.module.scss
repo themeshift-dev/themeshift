@@ -31,7 +31,7 @@
 .legend {
   @include typography.style('body.strong');
 
-  color: token('theme.text.base');
+  color: token('text.primary');
   padding: 0;
 }
 

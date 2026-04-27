@@ -142,6 +142,7 @@ export const LinkGuide = () => {
             the destination or action.
           </p>
         ),
+        tocLabel: 'Link text',
         title: 'Write meaningful link text',
       },
       {
@@ -153,6 +154,7 @@ export const LinkGuide = () => {
           </p>
         ),
         example: examples.external,
+        tocLabel: 'External links',
         title: 'Handle external links intentionally',
       },
       {
@@ -163,6 +165,7 @@ export const LinkGuide = () => {
           </p>
         ),
         example: examples.asChild,
+        tocLabel: 'Link semantics',
         title: 'Preserve link semantics with asChild',
       },
     ],

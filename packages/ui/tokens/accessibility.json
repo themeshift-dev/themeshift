@@ -1,29 +1,9 @@
 {
-  "accessibility": {
-    "focus": {
-      "gapWidth": {
-        "$type": "dimension",
-        "$value": "2px"
-      },
-
-      "ringWidth": {
-        "$type": "dimension",
-        "$value": "3px"
-      }
-    },
-
-    "light": {
-      "focus": {
-        "gap": { "$value": "{color.white}" },
-        "ring": { "$value": "{color.lightBlue.500}" }
-      }
-    },
-
-    "dark": {
-      "focus": {
-        "gap": { "$value": "{color.white}" },
-        "ring": { "$value": "{color.blue.500}" }
-      }
+  "focus": {
+    "ring": {
+      "gap": { "$value": "{color.white}" },
+      "width": { "$type": "dimension", "$value": "3px" },
+      "offset": { "$type": "dimension", "$value": "2px" }
     }
   }
 }

@@ -44,6 +44,25 @@ describe('Button', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('supports polymorphic rendering via the as prop', () => {
+    render(
+      <Button as="a" href="/dashboard">
+        Dashboard
+      </Button>
+    );
+
+    const link = screen.getByRole('link', { name: 'Dashboard' });
+
+    expect(link).toHaveAttribute('href', '/dashboard');
+    expect(link).toHaveClass(styles.container);
+  });
+
+  it('throws when asChild is set without a valid React element child', () => {
+    expect(() => render(<Button asChild>Login</Button>)).toThrowError(
+      'ThemeShift Button with asChild expects a single React element child.'
+    );
+  });
+
   it('applies default size and intent styles', () => {
     render(<Button>Default</Button>);
 
@@ -58,6 +77,7 @@ describe('Button', () => {
     ['small', styles.small],
     ['medium', styles.medium],
     ['large', styles.large],
+    ['hero', styles.hero],
   ] as const)('applies the %s size class', (size, className) => {
     render(<Button size={size}>Sized</Button>);
 
@@ -69,13 +89,24 @@ describe('Button', () => {
   it.each([
     ['primary', styles.primary],
     ['secondary', styles.secondary],
-    ['tertiary', styles.tertiary],
     ['constructive', styles.constructive],
     ['destructive', styles.destructive],
   ] as const)('applies the %s intent class', (intent, className) => {
     render(<Button intent={intent}>Intent</Button>);
 
     expect(screen.getByRole('button', { name: 'Intent' })).toHaveClass(
+      className
+    );
+  });
+
+  it.each([
+    ['solid', styles.variantSolid],
+    ['outline', styles.variantOutline],
+    ['link', styles.variantLink],
+  ] as const)('applies the %s variant class', (variant, className) => {
+    render(<Button variant={variant}>Variant</Button>);
+
+    expect(screen.getByRole('button', { name: 'Variant' })).toHaveClass(
       className
     );
   });
@@ -181,6 +212,24 @@ describe('Button', () => {
     expect(button.querySelector('svg')).toHaveAttribute('width', '20');
   });
 
+  it('uses the hero spinner size for icon-only busy buttons', () => {
+    render(
+      <Button
+        aria-label="Loading docs"
+        icon={
+          <svg aria-hidden="true" data-testid="docs-icon" viewBox="0 0 16 16" />
+        }
+        isBusy
+        size="hero"
+      />
+    );
+
+    const button = screen.getByRole('button', { name: 'Loading docs' });
+
+    expect(screen.queryByTestId('docs-icon')).not.toBeInTheDocument();
+    expect(button.querySelector('svg')).toHaveAttribute('width', '24');
+  });
+
   it('ignores children when the icon prop is provided', () => {
     render(
       <Button
@@ -274,6 +323,20 @@ describe('Button', () => {
     expect(await axe(container)).toHaveNoViolations();
 
     rerender(<Button intent="secondary">Secondary button</Button>);
+    expect(await axe(container)).toHaveNoViolations();
+
+    rerender(
+      <Button intent="secondary" variant="outline">
+        Secondary outline button
+      </Button>
+    );
+    expect(await axe(container)).toHaveNoViolations();
+
+    rerender(
+      <Button intent="constructive" variant="link">
+        Constructive link button
+      </Button>
+    );
     expect(await axe(container)).toHaveNoViolations();
 
     rerender(

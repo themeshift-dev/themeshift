@@ -17,13 +17,13 @@
 
 .input {
   appearance: none;
-  background: token('components.checkbox.bg');
-  block-size: token('components.checkbox.sizes.medium.boxSize');
+  background: token('components.checkbox.background');
+  block-size: token('components.checkbox.size.medium.boxSize');
   border: 1px solid token('components.checkbox.border');
-  border-radius: token('components.checkbox.sizes.medium.borderRadius');
+  border-radius: token('components.checkbox.size.medium.borderRadius');
   cursor: pointer;
   display: inline-flex;
-  inline-size: token('components.checkbox.sizes.medium.boxSize');
+  inline-size: token('components.checkbox.size.medium.boxSize');
   margin: 0;
 
   &:focus-visible {
@@ -74,37 +74,37 @@
 
 .disabled {
   .input {
-    background: token('components.checkbox.disabled.bg');
+    background: token('components.checkbox.disabled.background');
     border-color: token('components.checkbox.disabled.border');
     cursor: not-allowed;
   }
 
   .icon {
-    color: token('components.checkbox.disabled.fg');
+    color: token('components.checkbox.disabled.text');
   }
 }
 
 .small {
   .input {
-    block-size: token('components.checkbox.sizes.small.boxSize');
-    border-radius: token('components.checkbox.sizes.small.borderRadius');
-    inline-size: token('components.checkbox.sizes.small.boxSize');
+    block-size: token('components.checkbox.size.small.boxSize');
+    border-radius: token('components.checkbox.size.small.borderRadius');
+    inline-size: token('components.checkbox.size.small.boxSize');
   }
 }
 
 .medium {
   .input {
-    block-size: token('components.checkbox.sizes.medium.boxSize');
-    border-radius: token('components.checkbox.sizes.medium.borderRadius');
-    inline-size: token('components.checkbox.sizes.medium.boxSize');
+    block-size: token('components.checkbox.size.medium.boxSize');
+    border-radius: token('components.checkbox.size.medium.borderRadius');
+    inline-size: token('components.checkbox.size.medium.boxSize');
   }
 }
 
 .large {
   .input {
-    block-size: token('components.checkbox.sizes.large.boxSize');
-    border-radius: token('components.checkbox.sizes.large.borderRadius');
-    inline-size: token('components.checkbox.sizes.large.boxSize');
+    block-size: token('components.checkbox.size.large.boxSize');
+    border-radius: token('components.checkbox.size.large.borderRadius');
+    inline-size: token('components.checkbox.size.large.boxSize');
   }
 }
 
