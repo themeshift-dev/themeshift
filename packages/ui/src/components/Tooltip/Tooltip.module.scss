@@ -1,17 +1,41 @@
 @use '@/sass/tokens.static' as *;
 
 .content {
+  --tooltip-enter-x: 0;
+  --tooltip-enter-y: 0;
+
+  animation: tooltip-enter 160ms cubic-bezier(0.2, 0, 0, 1) both;
   background: token('components.tooltip.background');
+  background-clip: padding-box;
   border: token('components.tooltip.border.width') solid
     token('components.tooltip.border.color');
   border-radius: token('components.tooltip.radius');
   box-shadow: token('components.tooltip.shadow');
   color: token('components.tooltip.text');
   max-inline-size: token('components.tooltip.maxWidth');
+  opacity: 0;
   padding-block: token('components.tooltip.paddingY');
   padding-inline: token('components.tooltip.paddingX');
   pointer-events: auto;
+  transform: translate3d(var(--tooltip-enter-x), var(--tooltip-enter-y), 0);
+  will-change: opacity, transform;
   z-index: token('components.tooltip.zIndex');
+}
+
+.content[data-placement^='top'] {
+  --tooltip-enter-y: 0.25rem;
+}
+
+.content[data-placement^='bottom'] {
+  --tooltip-enter-y: -0.25rem;
+}
+
+.content[data-placement^='left'] {
+  --tooltip-enter-x: 0.25rem;
+}
+
+.content[data-placement^='right'] {
+  --tooltip-enter-x: -0.25rem;
 }
 
 .disabled {
@@ -19,42 +43,70 @@
 }
 
 .arrow {
+  --tooltip-enter-x: 0;
+  --tooltip-enter-y: 0;
+
+  animation: tooltip-enter 160ms cubic-bezier(0.2, 0, 0, 1) both;
   block-size: token('components.tooltip.arrow.size');
   display: block;
+  filter: drop-shadow(0 0 0 token('components.tooltip.border.color'));
   inline-size: token('components.tooltip.arrow.size');
+  opacity: 0;
   pointer-events: none;
   position: absolute;
+  transform: translate3d(var(--tooltip-enter-x), var(--tooltip-enter-y), 0);
+  will-change: opacity, transform;
 }
 
-.arrow::before,
 .arrow::after {
   clip-path: var(--tooltip-arrow-shape);
   content: '';
   position: absolute;
 }
 
-.arrow::before {
-  background: token('components.tooltip.border.color');
-  inset: 0;
-}
-
 .arrow::after {
   background: token('components.tooltip.background');
-  inset: token('components.tooltip.border.width');
+  inset: 0;
 }
 
 .arrow[data-placement^='top'] {
   --tooltip-arrow-shape: polygon(50% 100%, 0 50%, 100% 50%);
+  --tooltip-enter-y: 0.25rem;
 }
 
 .arrow[data-placement^='bottom'] {
   --tooltip-arrow-shape: polygon(50% 0, 0 50%, 100% 50%);
+  --tooltip-enter-y: -0.25rem;
 }
 
 .arrow[data-placement^='left'] {
   --tooltip-arrow-shape: polygon(100% 50%, 50% 0, 50% 100%);
+  --tooltip-enter-x: 0.25rem;
 }
 
 .arrow[data-placement^='right'] {
   --tooltip-arrow-shape: polygon(0 50%, 50% 0, 50% 100%);
+  --tooltip-enter-x: -0.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content,
+  .arrow {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+}
+
+@keyframes tooltip-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--tooltip-enter-x), var(--tooltip-enter-y), 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }

@@ -780,14 +780,15 @@
   --themeshift-components-toggle-switch-variant-primary-thumb: #5C6BC0;
   --themeshift-components-toggle-switch-variant-secondary-thumb: #BDBDBD;
   --themeshift-components-tooltip-arrow-size: 10px;
-  --themeshift-components-tooltip-background: #212121;
-  --themeshift-components-tooltip-border-color: #616161;
+  --themeshift-components-tooltip-background: rgba(0, 0, 0, .4);
+  --themeshift-components-tooltip-border-color: rgba(0, 0, 0, .4);
   --themeshift-components-tooltip-border-width: 1px;
   --themeshift-components-tooltip-max-width: 20rem;
   --themeshift-components-tooltip-padding-x: 0.75rem;
   --themeshift-components-tooltip-padding-y: 0.5rem;
   --themeshift-components-tooltip-radius: .5rem;
   --themeshift-components-tooltip-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --themeshift-components-tooltip-surface: rgba(0, 0, 0, .4);
   --themeshift-components-tooltip-text: #fff;
   --themeshift-components-tooltip-z-index: 30;
 
@@ -1179,7 +1180,7 @@
   --themeshift-components-toggle-switch-variant-primary-thumb: #5C6BC0;
   --themeshift-components-toggle-switch-variant-secondary-thumb: #BDBDBD;
   --themeshift-components-tooltip-background: #F5F5F5;
-  --themeshift-components-tooltip-border-color: #E0E0E0;
+  --themeshift-components-tooltip-border-color: #F5F5F5;
   --themeshift-components-tooltip-text: #000;
 
   /* Other */
@@ -1455,8 +1456,9 @@
   --themeshift-components-toggle-switch-variant-destructive-thumb: #EF5350;
   --themeshift-components-toggle-switch-variant-primary-thumb: #5C6BC0;
   --themeshift-components-toggle-switch-variant-secondary-thumb: #BDBDBD;
-  --themeshift-components-tooltip-background: #212121;
-  --themeshift-components-tooltip-border-color: #616161;
+  --themeshift-components-tooltip-background: rgba(0, 0, 0, .4);
+  --themeshift-components-tooltip-border-color: rgba(0, 0, 0, .4);
+  --themeshift-components-tooltip-surface: rgba(0, 0, 0, .4);
   --themeshift-components-tooltip-text: #fff;
 
   /* Other */

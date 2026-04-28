@@ -146,8 +146,8 @@ export const TooltipGuide = () => {
           />
           <Heading level={4}>Local rendering</Heading>
           <p>
-            Use <code>portal={false}</code> for tests and isolated containers
-            where in-place rendering is preferred.
+            Use <code>portal={'{false}'}</code> for tests and isolated
+            containers where in-place rendering is preferred.
           </p>
         </GuideExampleText>
 
