@@ -677,6 +677,7 @@ export const tokenPaths = [
   "components.tooltip.paddingY",
   "components.tooltip.radius",
   "components.tooltip.shadow",
+  "components.tooltip.surface",
   "components.tooltip.text",
   "components.tooltip.zIndex",
   "duration.fast",

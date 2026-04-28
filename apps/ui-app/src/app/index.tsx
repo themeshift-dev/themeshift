@@ -3,7 +3,7 @@ import { Navbar } from '@themeshift/ui/components/Navbar';
 import { SkipLink } from '@themeshift/ui/components/SkipLink';
 import { useTheme } from '@themeshift/ui/contexts';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { IconSun, IconMoon } from '@themeshift/ui/icons';
+import { FiMoon, FiSun } from 'react-icons/fi';
 
 import '@themeshift/ui/css/base.css';
 
@@ -12,6 +12,7 @@ import { Link, Logo } from '@/app/components';
 import Routes from '@/app/routes';
 
 import styles from './App.module.scss';
+import { Tooltip } from '@themeshift/ui/components/Tooltip';
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -39,15 +40,23 @@ function App() {
             </Navbar.Content>
 
             <Navbar.Actions hideBelow="tablet">
-              <Button
-                onClick={toggleTheme}
-                size="large"
-                aria-label={
+              <Tooltip
+                placement="start"
+                content={
                   theme === 'dark' ? 'Use light theme' : 'Use dark theme'
                 }
               >
-                {theme === 'dark' ? <IconSun /> : <IconMoon />}
-              </Button>
+                <Button
+                  onClick={toggleTheme}
+                  size="large"
+                  intent="secondary"
+                  aria-label={
+                    theme === 'dark' ? 'Use light theme' : 'Use dark theme'
+                  }
+                >
+                  {theme === 'dark' ? <FiSun /> : <FiMoon />}
+                </Button>
+              </Tooltip>
             </Navbar.Actions>
 
             <Navbar.Toggle
@@ -77,7 +86,8 @@ function App() {
               <Button
                 className={styles.mobileThemeToggle}
                 onClick={toggleTheme}
-                variant="outline"
+                variant="link"
+                startIcon={theme === 'dark' ? <FiSun /> : <FiMoon />}
               >
                 {theme === 'dark' ? 'Dark mode' : 'Light mode'}
               </Button>

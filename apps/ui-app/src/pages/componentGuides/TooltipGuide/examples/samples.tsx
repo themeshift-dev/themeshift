@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { Button } from '@themeshift/ui/components/Button';
 import { Tooltip } from '@themeshift/ui/components/Tooltip';
-import { useState } from 'react';
+import { FiBold, FiUnderline, FiItalic } from 'react-icons/fi';
 
 export const ControlledTooltipSample = () => {
   const [open, setOpen] = useState(false);
@@ -31,13 +32,13 @@ export const ProviderToolbarSample = () => {
     <Tooltip.Provider closeDelay={100} delay={700} skipDelayDuration={300}>
       <div style={{ display: 'flex', gap: '0.5rem' }}>
         <Tooltip content="Bold">
-          <Button type="button">B</Button>
+          <Button type="button" aria-label="Bold" icon={<FiBold />} />
         </Tooltip>
         <Tooltip content="Italic">
-          <Button type="button">I</Button>
+          <Button type="button" aria-label="Italic" icon={<FiItalic />} />
         </Tooltip>
         <Tooltip content="Underline">
-          <Button type="button">U</Button>
+          <Button type="button" aria-label="Underline" icon={<FiUnderline />} />
         </Tooltip>
       </div>
     </Tooltip.Provider>
