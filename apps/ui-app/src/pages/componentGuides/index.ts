@@ -21,6 +21,7 @@ export * from './SafetyButtonGuide';
 export * from './SelectGuide';
 export * from './SkeletonGuide';
 export * from './SkipLinkGuide';
+export * from './SidebarGuide';
 export * from './SpinnerGuide';
 export * from './TableGuide';
 export * from './TabsGuide';

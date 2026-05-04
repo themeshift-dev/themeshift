@@ -735,6 +735,32 @@ const AppRoutes = () => (
           />
         </Route>
 
+        <Route path="sidebar">
+          <Route index element={<ComponentGuides.SidebarGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Sidebar"
+                componentPath="/ui/component/sidebar"
+                description="Sidebar customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Sidebar"
+                componentPath="/ui/component/sidebar"
+                description="An interactive Sidebar playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
         <Route path="spinner">
           <Route index element={<ComponentGuides.SpinnerGuide />} />
           <Route

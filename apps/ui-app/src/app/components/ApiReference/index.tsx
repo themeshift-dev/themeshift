@@ -16,6 +16,7 @@ type ApiReferenceProps = {
 };
 
 type ApiReferenceGroup = {
+  displayDescription: string;
   displayName: string;
   items: ApiReferenceItem[];
 };
@@ -61,23 +62,25 @@ const formatValues = (values: ApiReferenceItem['values']) => {
 };
 
 const groupItems = (items: ApiReferenceItem[]): ApiReferenceGroup[] => {
-  const groups = new Map<string, ApiReferenceItem[]>();
+  const groups = new Map<string, ApiReferenceGroup>();
 
   for (const item of items) {
     const group = groups.get(item.displayName);
 
     if (group) {
-      group.push(item);
+      group.items.push(item);
+      group.displayDescription ||= item.displayDescription ?? '';
       continue;
     }
 
-    groups.set(item.displayName, [item]);
+    groups.set(item.displayName, {
+      displayDescription: item.displayDescription ?? '',
+      displayName: item.displayName,
+      items: [item],
+    });
   }
 
-  return Array.from(groups.entries()).map(([displayName, group]) => ({
-    displayName,
-    items: group,
-  }));
+  return Array.from(groups.values());
 };
 
 const ApiReferenceTable = ({
@@ -109,6 +112,12 @@ const ApiReferenceTable = ({
             <Heading className={styles.groupHeading} level={4}>
               {group.displayName}
             </Heading>
+          )}
+          {hasGroups && group.displayDescription && (
+            <Markdown
+              className={styles.groupDescription}
+              markdown={group.displayDescription}
+            />
           )}
 
           <div className={styles.tableWrapper}>
@@ -190,6 +199,12 @@ const ApiReferenceCards = ({
             <Heading className={styles.groupHeading} level={4}>
               {group.displayName}
             </Heading>
+          )}
+          {hasGroups && group.displayDescription && (
+            <Markdown
+              className={styles.groupDescription}
+              markdown={group.displayDescription}
+            />
           )}
 
           <div className={styles.cardList}>

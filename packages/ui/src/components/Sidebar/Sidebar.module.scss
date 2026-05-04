@@ -1,0 +1,346 @@
+@use '@/sass/tokens.static' as *;
+
+.root {
+  --sidebar-width: 16rem;
+  --sidebar-collapsed-width: 4rem;
+
+  background-color: token('background.surface');
+  border-inline-end: 1px solid token('border.default');
+  color: token('text.primary');
+  display: flex;
+  flex: 0 0 var(--sidebar-width);
+  flex-direction: column;
+  inline-size: var(--sidebar-width);
+  min-block-size: 100dvh;
+  position: relative;
+  transition:
+    inline-size token('duration.medium') token('easing.standard'),
+    transform token('duration.medium') token('easing.standard');
+}
+
+.modeStatic {
+  position: relative;
+}
+
+.modeCollapsible {
+  position: relative;
+}
+
+.modeOffcanvas {
+  inset-block: 0;
+  position: fixed;
+  z-index: token('zIndex.overlay');
+}
+
+.sideStart {
+  inset-inline-start: 0;
+}
+
+.sideEnd {
+  border-inline-end: 0;
+  border-inline-start: 1px solid token('border.default');
+  inset-inline-end: 0;
+}
+
+.variantDefault {
+}
+
+.variantInset {
+  border-radius: token('radius.large');
+  margin: token('space.3');
+}
+
+.variantFloating {
+  border-radius: token('radius.large');
+  box-shadow: token('shadow.medium');
+  margin: token('space.3');
+}
+
+.variantRail {
+  border-inline-end-color: token('border.subtle');
+}
+
+.collapsed {
+  inline-size: var(--sidebar-collapsed-width);
+}
+
+.modeOffcanvas:not(.offcanvasOpen) {
+  pointer-events: none;
+  transform: translateX(-100%);
+}
+
+.sideEnd.modeOffcanvas:not(.offcanvasOpen) {
+  transform: translateX(100%);
+}
+
+.offcanvasOpen {
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.header,
+.footer {
+  background-color: inherit;
+  display: flex;
+  gap: token('space.2');
+  padding: token('space.3');
+}
+
+.sticky {
+  position: sticky;
+  z-index: token('zIndex.base');
+}
+
+.header.sticky {
+  inset-block-start: 0;
+}
+
+.footer.sticky {
+  inset-block-end: 0;
+}
+
+.content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: token('space.2');
+  min-block-size: 0;
+  padding: token('space.3');
+}
+
+.contentScrollable {
+  overflow: auto;
+}
+
+.group {
+  display: grid;
+  gap: token('space.2');
+}
+
+.groupToggle,
+.subMenuToggle,
+.groupAction,
+.menuAction,
+.trigger,
+.rail {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: token('radius.medium');
+  color: token('text.secondary');
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  padding: token('space.2');
+
+  &:focus-visible {
+    outline: token('focus.ring.width') solid token('border.focusRing');
+    outline-offset: token('focus.ring.offset');
+  }
+}
+
+.groupLabel {
+  color: token('text.secondary');
+  font: token('typography.label.small.font');
+  margin: 0;
+}
+
+.visuallyHidden {
+  clip: rect(0, 0, 0, 0);
+  block-size: 1px;
+  inline-size: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.menu,
+.subMenu {
+  display: grid;
+  gap: token('space.1');
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menuItem,
+.subMenuItem {
+  align-items: center;
+  display: flex;
+  gap: token('space.1');
+  list-style: none;
+}
+
+.menuItemDisabled,
+.subMenuItemDisabled {
+  opacity: 0.6;
+}
+
+.menuButton {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: token('radius.medium');
+  color: token('text.primary');
+  cursor: pointer;
+  display: inline-flex;
+  gap: token('space.2');
+  inline-size: 100%;
+  justify-content: space-between;
+  text-align: start;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: token('focus.ring.width') solid token('border.focusRing');
+    outline-offset: token('focus.ring.offset');
+  }
+}
+
+.menuButtonSmall {
+  min-block-size: 2rem;
+  padding: token('space.1') token('space.2');
+}
+
+.menuButtonMedium {
+  min-block-size: 2.5rem;
+  padding: token('space.2');
+}
+
+.menuButtonLarge {
+  min-block-size: 3rem;
+  padding: token('space.2') token('space.3');
+}
+
+.menuButtonVariantDefault {
+  background-color: token('background.surface');
+}
+
+.menuButtonVariantSubtle {
+  background-color: token('background.subtle');
+}
+
+.menuButtonVariantGhost {
+  background-color: transparent;
+}
+
+.menuButtonActive {
+  background-color: token('background.subtle');
+  border-color: token('border.subtle');
+}
+
+.menuButtonDisabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.menuButtonContent {
+  align-items: center;
+  display: inline-flex;
+  gap: token('space.2');
+  min-inline-size: 0;
+}
+
+.collapsed .menuButtonContent {
+  justify-content: center;
+}
+
+.collapsed .menuButtonContent :global(span) {
+  display: none;
+}
+
+.menuButtonBadge {
+  display: inline-flex;
+}
+
+.menuBadge {
+  border-radius: token('radius.full');
+  font: token('typography.label.small.font');
+  padding: 0 token('space.2');
+}
+
+.menuBadgeNeutral {
+  background-color: token('background.subtle');
+}
+
+.menuBadgeInfo {
+  background-color: token('intent.info.surface');
+}
+
+.menuBadgeSuccess {
+  background-color: token('intent.success.surface');
+}
+
+.menuBadgeWarning {
+  background-color: token('intent.warning.surface');
+}
+
+.menuBadgeDanger {
+  background-color: token('intent.danger.surface');
+}
+
+.menuAction {
+  margin-inline-start: auto;
+}
+
+.menuActionOnHover {
+  opacity: 0.7;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+  }
+}
+
+.subMenuWrap {
+  display: grid;
+  gap: token('space.1');
+}
+
+.subMenu {
+  padding-inline-start: token('space.4');
+}
+
+.subMenuItemActive {
+  font-weight: token('typography.weight.medium');
+}
+
+.separator {
+  border: 0;
+  border-block-start: 1px solid token('border.subtle');
+  margin: token('space.2') 0;
+}
+
+.rail {
+  block-size: 100%;
+  border-inline-start: 1px solid token('border.subtle');
+  inline-size: 0.75rem;
+  inset-block: 0;
+  inset-inline-end: 0;
+  padding: 0;
+  position: absolute;
+}
+
+.inset {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.insetPadded {
+  padding: token('space.3');
+}
+
+@media (forced-colors: active) {
+  .menuButton,
+  .groupToggle,
+  .menuAction,
+  .trigger,
+  .rail,
+  .subMenuToggle {
+    border: 1px solid ButtonText;
+  }
+}

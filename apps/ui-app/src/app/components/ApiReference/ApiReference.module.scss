@@ -28,6 +28,15 @@
   margin-bottom: 1rem;
 }
 
+.groupDescription {
+  color: token('text.muted');
+  margin: 0 0 1.25rem;
+
+  p {
+    margin: 0;
+  }
+}
+
 .tableWrapper {
   overflow-x: auto;
 }
