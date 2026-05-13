@@ -33,6 +33,7 @@ export default defineConfig({
         'src/**/*.test.{ts,tsx}',
         'src/design-tokens/**',
         'src/css/tokens.css',
+        'src/pages/componentGuides/SidebarGuide/examples/index.tsx',
         'src/sass/_tokens.static.scss',
       ],
       include: ['src/**/*.{ts,tsx}'],
