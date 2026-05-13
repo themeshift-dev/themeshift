@@ -39,26 +39,27 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    themeShift({
-      cssVarPrefix: 'themeshift',
-      watch: !isVitest,
-      platforms: ['css', 'meta', 'scss'],
-      groups: cssGroups,
-      filters: {
-        scss: {
-          includePrefixes: [
-            'radius-',
-            'spacing-',
-            'font-',
-            'typography-',
-            'layout-',
-          ],
-          excludePrefixes: ['theme-', 'components-'],
+    !isVitest &&
+      themeShift({
+        cssVarPrefix: 'themeshift',
+        watch: !isVitest,
+        platforms: ['css', 'meta', 'scss'],
+        groups: cssGroups,
+        filters: {
+          scss: {
+            includePrefixes: [
+              'radius-',
+              'spacing-',
+              'font-',
+              'typography-',
+              'layout-',
+            ],
+            excludePrefixes: ['theme-', 'components-'],
+          },
         },
-      },
-      defaultTheme: 'dark',
-    }),
-  ],
+        defaultTheme: 'dark',
+      }),
+  ].filter(Boolean),
   build: {
     outDir: 'dist-app',
     emptyOutDir: true,

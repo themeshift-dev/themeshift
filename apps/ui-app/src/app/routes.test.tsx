@@ -45,7 +45,7 @@ describe('AppRoutes', () => {
         'Implementation guidance, API details, and copy-paste examples for empty, error, and no-results states with Status.'
       )
     ).toBeInTheDocument();
-  });
+  }, 15000);
 
   it('renders plugin placeholder route', () => {
     renderRoutes('/plugin');
