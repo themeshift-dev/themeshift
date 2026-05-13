@@ -9,9 +9,9 @@ type InvoiceRow = {
 };
 
 const invoices: InvoiceRow[] = [
-  { amount: 250, id: 'INV-001', owner: 'Avery', status: 'Paid' },
+  { amount: 250, id: 'INV-001', owner: 'Neil', status: 'Paid' },
   { amount: 512.5, id: 'INV-002', owner: 'Jordan', status: 'Pending' },
-  { amount: 128.99, id: 'INV-003', owner: 'Taylor', status: 'Overdue' },
+  { amount: 128.99, id: 'INV-003', owner: 'Buzz', status: 'Overdue' },
 ];
 
 type PayoutRow = {
@@ -25,7 +25,7 @@ type PayoutRow = {
 const payouts: PayoutRow[] = [
   {
     amount: 1840.2,
-    owner: 'Avery',
+    owner: 'Neil',
     status: 'Ready',
     submittedAt: '2026-04-10',
     team: 'Design systems',
@@ -39,7 +39,7 @@ const payouts: PayoutRow[] = [
   },
   {
     amount: 250.75,
-    owner: 'Taylor',
+    owner: 'Buzz',
     status: 'Blocked',
     submittedAt: '2026-04-14',
     team: 'Finance ops',
@@ -811,7 +811,7 @@ const directionCode = `<Table>
   <Table.Body>
     <Table.Row>
       <Table.Data sticky width={180}>INV-001</Table.Data>
-      <Table.Data width={260}>Avery</Table.Data>
+      <Table.Data width={260}>Neil</Table.Data>
       <Table.Data align="end" width={180}>$250.00</Table.Data>
     </Table.Row>
   </Table.Body>

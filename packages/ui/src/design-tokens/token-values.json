@@ -10,6 +10,7 @@
   "background.surfaceSunken": "rgba(0, 0, 0, .1)",
   "border.default": "rgba(0, 0, 0, .1)",
   "border.focusRing": "#03A9F4",
+  "border.focusRingMuted": "#81D4FA",
   "border.strong": "rgba(0, 0, 0, .2)",
   "border.subtle": "rgba(0, 0, 0, .05)",
   "color.black": "#000",

@@ -162,11 +162,20 @@ export type SidebarFooterProps<T extends ElementType = 'footer'> =
   PolymorphicProps<
     T,
     {
+      /** Content shown when the sidebar is collapsed. */
+      collapsedContent?: ReactNode;
+
+      /** Tooltip content for collapsed footer affordances. */
+      collapsedTooltip?: ReactNode;
+
       /** Footer content, such as account actions or settings. */
       children: ReactNode;
 
       /** Optional class name for footer styling hooks. */
       className?: string;
+
+      /** Hides footer content when the sidebar is collapsed. */
+      hideWhenCollapsed?: boolean;
 
       /** Pins the footer to the bottom of the sidebar when scrolling. */
       sticky?: boolean;
@@ -228,6 +237,9 @@ export type SidebarGroupActionProps<T extends ElementType = 'button'> =
       /** Optional class name for action styling hooks. */
       className?: string;
 
+      /** Opacity applied to icon content rendered by this action. */
+      iconOpacity?: number;
+
       /** Required accessible label for the action control. */
       label: string;
     }
@@ -262,8 +274,26 @@ export type SidebarMenuItemProps<T extends ElementType = 'li'> =
       /** Optional class name for item styling hooks. */
       className?: string;
 
+      /** Icon used by the collapse toggle. Defaults to a chevron-right icon. */
+      collapseIcon?: ReactNode | ((open: boolean) => ReactNode);
+
+      /** Accessible name for the collapse toggle button. */
+      collapseToggleLabel?: string;
+
+      /** Enables inline expand/collapse behavior for nested menu content. */
+      collapsible?: boolean;
+
+      /** Initial open state for uncontrolled usage when collapsible. */
+      defaultOpen?: boolean;
+
       /** Disables interactive descendants through context-aware styles. */
       disabled?: boolean;
+
+      /** Called when collapsible open state changes. */
+      onOpenChange?: (open: boolean) => void;
+
+      /** Controlled open state when collapsible. */
+      open?: boolean;
     }
   >;
 
@@ -292,6 +322,9 @@ export type SidebarMenuButtonProps<T extends ElementType = 'button'> =
 
       /** Accessible label for icon-only or collapsed button states. */
       iconOnlyLabel?: string;
+
+      /** Opacity applied to icon content rendered inside the button. */
+      iconOpacity?: number;
 
       /** Size preset for button spacing and height. */
       size?: 'small' | 'medium' | 'large';
@@ -333,6 +366,9 @@ export type SidebarMenuActionProps<T extends ElementType = 'button'> =
 
       /** Optional class name for action styling hooks. */
       className?: string;
+
+      /** Opacity applied to icon content rendered by this action. */
+      iconOpacity?: number;
 
       /** Required accessible label for the action control. */
       label: string;
@@ -429,8 +465,17 @@ export type SidebarTriggerProps<T extends ElementType = 'button'> =
       /** Optional class name for trigger styling hooks. */
       className?: string;
 
+      /** Controls trigger visibility. */
+      isVisible?: boolean | ((collapsed: boolean) => boolean);
+
+      /** Opacity applied to icon content rendered by the trigger. */
+      iconOpacity?: number;
+
       /** Accessible label for assistive technologies. */
       label?: string;
+
+      /** Trigger positioning strategy. */
+      placement?: 'inside' | 'manual' | 'outside';
     }
   >;
 

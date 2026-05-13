@@ -1,0 +1,311 @@
+@use '@themeshift/ui/sass/components/button' as button;
+
+$compactMinHeight: 4rem;
+
+.root {
+  --viewer-height: 420px;
+  --viewer-min-height: var(--viewer-height);
+  --viewer-padding: 0;
+  --viewer-radius: #{token('radius.small')};
+  --viewer-width: 100%;
+
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  display: grid;
+  overflow: visible;
+}
+
+.title {
+  font-size: token('fontSize.3');
+  margin: 0;
+  padding: token('space.4') token('space.4') 0;
+}
+
+.toolbar {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  display: flex;
+  gap: token('space.3');
+  justify-content: space-between;
+  padding: token('space.3') 0;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: token('space.3');
+}
+
+.tab {
+  @include button.reset;
+
+  color: token('text.muted');
+  padding: 0;
+  text-decoration: none;
+  transition: 0.2s color;
+}
+
+.tab[aria-selected='true'] {
+  color: token('text.primary');
+  text-decoration: underline;
+}
+
+.tab:not([aria-selected='true']):hover,
+.tab:not([aria-selected='true']):focus-visible {
+  color: token('text.primary');
+  text-decoration: none;
+}
+
+.controls {
+  align-items: center;
+  display: flex;
+  gap: token('space.2');
+  margin-left: auto;
+}
+
+.selectLabel {
+  display: inline-flex;
+}
+
+.select {
+  background: token('background.surfaceRaised');
+  border: 1px solid token('border.default');
+  border-radius: token('radius.small');
+  color: token('text.primary');
+  padding: 0.25rem 0.5rem;
+}
+
+.viewport {
+  background: token('background.surfaceRaised');
+  border: 1px solid token('border.default');
+  border-bottom: 0;
+  border-top-left-radius: var(--viewer-radius);
+  border-top-right-radius: var(--viewer-radius);
+  overflow: auto;
+  padding: 0 token('space.4') token('space.4');
+}
+
+.frame {
+  background: token('background.surfaceSunken');
+  border: 1px solid token('border.default');
+  border-radius: 0;
+  min-height: var(--viewer-min-height);
+  outline: none;
+  overflow: hidden;
+  position: relative;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px token('border.focus');
+  }
+}
+
+.frame[data-interacting='true'][data-keyboard-focus-visible='true']:focus-within,
+.frame[data-interacting='true']:focus-within {
+  outline: 4px solid token('border.focusRingMuted');
+  outline-offset: -4px;
+}
+
+.enterHint {
+  background: token('background.overlay');
+  border-radius: inherit;
+  color: token('text.primary');
+  display: none;
+  inset: -1px;
+  padding: token('space.4');
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.frame:focus-visible .enterHint {
+  display: block;
+}
+
+.escapeHint {
+  background: token('background.overlay');
+  border-radius: token('radius.small');
+  bottom: token('space.3');
+  color: token('text.primary');
+  font-size: token('fontSize.2');
+  opacity: 1;
+  padding: token('space.2') token('space.3');
+  pointer-events: none;
+  position: absolute;
+  right: token('space.3');
+  transition: 0.2s opacity;
+  z-index: 3;
+}
+
+.frame:hover .escapeHint {
+  opacity: 0;
+}
+
+.frameSurface {
+  min-height: var(--viewer-height);
+  overflow: auto;
+  padding: var(--viewer-padding);
+  width: var(--viewer-width);
+}
+
+.iframe {
+  border: 0;
+  display: block;
+  min-height: var(--viewer-height);
+  width: 100%;
+}
+
+.regionGrid {
+  display: grid;
+  gap: token('space.3');
+  grid-template-areas:
+    'top top top'
+    'start center end'
+    'bottom bottom bottom';
+  grid-template-columns: minmax(10rem, 1fr) minmax(12rem, 2fr) minmax(
+      10rem,
+      1fr
+    );
+}
+
+.regionCell {
+  min-height: 5rem;
+
+  &[data-region='top'] {
+    grid-area: top;
+  }
+
+  &[data-region='start'] {
+    grid-area: start;
+  }
+
+  &[data-region='center'] {
+    grid-area: center;
+  }
+
+  &[data-region='end'] {
+    grid-area: end;
+  }
+
+  &[data-region='bottom'] {
+    grid-area: bottom;
+  }
+}
+
+.placeholder {
+  background: token('background.surfaceSunken');
+  border: 1px dashed token('border.default');
+  border-radius: token('radius.small');
+  color: token('text.muted');
+  min-height: 100%;
+  padding: token('space.4');
+  text-transform: capitalize;
+}
+
+.code {
+  background: token('background.surfaceSunken');
+  border: 1px solid token('border.default');
+  border-bottom-left-radius: var(--viewer-radius);
+  border-bottom-right-radius: var(--viewer-radius);
+  border-top: 1px solid token('border.default');
+  max-height: $compactMinHeight;
+  overflow: hidden;
+  position: relative;
+
+  &[data-expanded='true'] {
+    max-height: none;
+  }
+}
+
+.syntaxHighlighter {
+  min-height: $compactMinHeight;
+}
+
+.codeContent {
+  pointer-events: auto;
+}
+
+.codeCollapsedContent {
+  padding: token('space.4');
+}
+
+.codeOverlay {
+  align-items: center;
+  background: token('background.overlay');
+  cursor: pointer;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}
+
+.copyButton {
+  position: absolute;
+  right: token('space.4');
+  top: token('space.4');
+}
+
+.visuallyHidden {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+[data-layout-viewer-mode='page'],
+[data-layout-viewer-mode='shell'] {
+  .viewport {
+    border-top: 0;
+    padding: 0;
+  }
+
+  .frame {
+    border-left: 0;
+    border-radius: 0;
+    border-right: 0;
+  }
+
+  .frameSurface {
+    --viewer-padding: 0;
+  }
+}
+
+[data-layout-viewer-mode='contained'],
+[data-layout-viewer-mode='slot'] {
+  .frameSurface {
+    --viewer-padding: #{token('space.4')};
+    --viewer-width: min(100%, 80rem);
+    margin-inline: auto;
+  }
+}
+
+[data-layout-viewer-viewport='mobile'] {
+  .frameSurface {
+    --viewer-width: min(100%, 24rem);
+  }
+}
+
+[data-layout-viewer-viewport='tablet'] {
+  .frameSurface {
+    --viewer-width: min(100%, 48rem);
+  }
+}
+
+[data-layout-viewer-viewport='desktop'] {
+  .frameSurface {
+    --viewer-width: min(100%, 72rem);
+  }
+}
+
+[data-layout-viewer-viewport='wide'] {
+  .frameSurface {
+    --viewer-width: min(100%, 96rem);
+  }
+}

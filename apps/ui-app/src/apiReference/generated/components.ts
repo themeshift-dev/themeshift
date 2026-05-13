@@ -4791,6 +4791,36 @@ export const components = [
         values: [],
       },
       {
+        comments: 'Content shown when the sidebar is collapsed.',
+        defaultValue: null,
+        displayDescription:
+          'Places content in a footer region at the bottom of the sidebar.',
+        displayName: 'Sidebar.Footer',
+        propName: 'collapsedContent',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Tooltip content for collapsed footer affordances.',
+        defaultValue: null,
+        displayDescription:
+          'Places content in a footer region at the bottom of the sidebar.',
+        displayName: 'Sidebar.Footer',
+        propName: 'collapsedTooltip',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Hides footer content when the sidebar is collapsed.',
+        defaultValue: false,
+        displayDescription:
+          'Places content in a footer region at the bottom of the sidebar.',
+        displayName: 'Sidebar.Footer',
+        propName: 'hideWhenCollapsed',
+        type: 'boolean',
+        values: [],
+      },
+      {
         comments:
           'Pins the footer to the bottom of the sidebar when scrolling.',
         defaultValue: true,
@@ -4909,6 +4939,16 @@ export const components = [
         displayName: 'Sidebar.GroupAction',
         propName: 'className',
         type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Opacity applied to icon content rendered by this action.',
+        defaultValue: 0.7,
+        displayDescription:
+          'Renders an auxiliary action control associated with a sidebar group heading.',
+        displayName: 'Sidebar.GroupAction',
+        propName: 'iconOpacity',
+        type: 'number',
         values: [],
       },
       {
@@ -5119,6 +5159,16 @@ export const components = [
         values: [],
       },
       {
+        comments: 'Opacity applied to icon content rendered by this action.',
+        defaultValue: 0.7,
+        displayDescription:
+          'Renders a secondary action for a menu item, optionally revealed on hover.',
+        displayName: 'Sidebar.MenuAction',
+        propName: 'iconOpacity',
+        type: 'number',
+        values: [],
+      },
+      {
         comments: 'Required accessible label for the action control.',
         defaultValue: null,
         displayDescription:
@@ -5257,6 +5307,16 @@ export const components = [
         displayName: 'Sidebar.MenuButton',
         propName: 'iconOnlyLabel',
         type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Opacity applied to icon content rendered inside the button.',
+        defaultValue: 0.7,
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'iconOpacity',
+        type: 'number',
         values: [],
       },
       {
@@ -5710,6 +5770,26 @@ export const components = [
         values: [],
       },
       {
+        comments: 'Opacity applied to icon content rendered by the trigger.',
+        defaultValue: 0.7,
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'iconOpacity',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Controls trigger visibility.',
+        defaultValue: true,
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'isVisible',
+        type: 'boolean | ((collapsed: boolean) => boolean)',
+        values: [],
+      },
+      {
         comments: 'Accessible label for assistive technologies.',
         defaultValue: null,
         displayDescription:
@@ -5718,6 +5798,16 @@ export const components = [
         propName: 'label',
         type: 'string',
         values: [],
+      },
+      {
+        comments: 'Trigger positioning strategy.',
+        defaultValue: 'outside',
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'placement',
+        type: "'inside' | 'manual' | 'outside'",
+        values: ['inside', 'manual', 'outside'],
       },
     ],
     name: 'Sidebar',
