@@ -12,6 +12,7 @@
   "background.surfaceSunken",
   "border.default",
   "border.focusRing",
+  "border.focusRingMuted",
   "border.strong",
   "border.subtle",
   "color.black",

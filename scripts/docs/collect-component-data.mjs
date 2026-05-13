@@ -149,6 +149,7 @@ function createAnalyzer(program) {
         targets,
         typeChecker
       );
+      const descriptions = getComponentDescriptions(componentSourceFiles);
       const typesReferenceMap = new Map();
       const items = targets.flatMap((target) => {
         const propsTypeName = resolveTargetPropsTypeName({
@@ -161,6 +162,7 @@ function createAnalyzer(program) {
         return collectTargetProps({
           declarations,
           defaults: defaults.get(target.implementationName) ?? new Map(),
+          displayDescription: descriptions.get(target.implementationName) ?? '',
           displayName: target.displayName,
           propsTypeName,
           typeChecker,
@@ -404,6 +406,38 @@ function getComponentDefaults(sourceFiles, targets, typeChecker) {
   return defaultsByImplementation;
 }
 
+function getComponentDescriptions(sourceFiles) {
+  const descriptions = new Map();
+
+  for (const sourceFile of sourceFiles) {
+    ts.forEachChild(sourceFile, function visit(node) {
+      if (ts.isVariableStatement(node)) {
+        const description = getDescriptionComment(node);
+
+        if (description) {
+          for (const declaration of node.declarationList.declarations) {
+            if (ts.isIdentifier(declaration.name)) {
+              descriptions.set(declaration.name.text, description);
+            }
+          }
+        }
+      }
+
+      if (ts.isFunctionDeclaration(node) && node.name) {
+        const description = getDescriptionComment(node);
+
+        if (description) {
+          descriptions.set(node.name.text, description);
+        }
+      }
+
+      ts.forEachChild(node, visit);
+    });
+  }
+
+  return descriptions;
+}
+
 function getArrowFunctionInitializer(initializer) {
   if (ts.isArrowFunction(initializer)) {
     return initializer;
@@ -566,6 +600,7 @@ function isConstVariableDeclaration(declaration) {
 function collectTargetProps({
   declarations,
   defaults,
+  displayDescription,
   displayName,
   propsTypeName,
   typeChecker,
@@ -575,6 +610,7 @@ function collectTargetProps({
 
   collectTypeName({
     declarations,
+    displayDescription,
     displayName,
     propMap,
     typeName: propsTypeName,
@@ -596,6 +632,7 @@ function collectTargetProps({
 
 function collectTypeName({
   declarations,
+  displayDescription,
   displayName,
   propMap,
   typeName,
@@ -615,6 +652,7 @@ function collectTypeName({
   if (ts.isInterfaceDeclaration(declaration)) {
     collectMembers({
       declarations,
+      displayDescription,
       displayName,
       members: declaration.members,
       propMap,
@@ -628,6 +666,7 @@ function collectTypeName({
   if (ts.isTypeAliasDeclaration(declaration)) {
     collectTypeNode({
       declarations,
+      displayDescription,
       displayName,
       propMap,
       typeNode: declaration.type,
@@ -647,6 +686,7 @@ function collectTypeName({
 
 function collectTypeNode({
   declarations,
+  displayDescription,
   displayName,
   propMap,
   typeNode,
@@ -662,6 +702,7 @@ function collectTypeNode({
   if (ts.isParenthesizedTypeNode(typeNode)) {
     collectTypeNode({
       declarations,
+      displayDescription,
       displayName,
       propMap,
       typeNode: typeNode.type,
@@ -676,6 +717,7 @@ function collectTypeNode({
   if (ts.isTypeLiteralNode(typeNode)) {
     collectMembers({
       declarations,
+      displayDescription,
       displayName,
       members: typeNode.members,
       propMap,
@@ -691,6 +733,7 @@ function collectTypeNode({
     for (const childTypeNode of typeNode.types) {
       collectTypeNode({
         declarations,
+        displayDescription,
         displayName,
         propMap,
         typeNode: childTypeNode,
@@ -706,6 +749,7 @@ function collectTypeNode({
   if (ts.isTypeReferenceNode(typeNode)) {
     collectTypeReference({
       declarations,
+      displayDescription,
       displayName,
       propMap,
       typeNode,
@@ -719,6 +763,7 @@ function collectTypeNode({
 
 function collectTypeReference({
   declarations,
+  displayDescription,
   displayName,
   propMap,
   typeNode,
@@ -738,6 +783,7 @@ function collectTypeReference({
     for (const typeArgument of typeNode.typeArguments ?? []) {
       collectTypeNode({
         declarations,
+        displayDescription,
         displayName,
         propMap,
         typeNode: typeArgument,
@@ -758,6 +804,7 @@ function collectTypeReference({
 
     collectTypeNode({
       declarations,
+      displayDescription,
       displayName,
       propMap,
       typeNode: mappedTypeNode,
@@ -789,6 +836,7 @@ function collectTypeReference({
 
   collectTypeName({
     declarations,
+    displayDescription,
     displayName,
     propMap,
     typeName: localTypeName,
@@ -801,6 +849,7 @@ function collectTypeReference({
 
 function collectMembers({
   declarations,
+  displayDescription,
   displayName,
   members,
   propMap,
@@ -824,6 +873,7 @@ function collectMembers({
     const nextItem = {
       comments: getComment(member),
       defaultValue: null,
+      displayDescription,
       displayName,
       propName,
       type: formatType(member.type, typeParameterMap),
@@ -1297,13 +1347,29 @@ function mergeTypes(currentType, nextType) {
 }
 
 function getComment(member) {
-  const jsDocs = member.jsDoc ?? [];
-  const comments = jsDocs
-    .map((jsDoc) => jsDoc.comment)
-    .filter(Boolean)
-    .map(formatJSDocComment);
+  const comments = getCommentParts(member);
 
   return comments.join('\n\n').trim();
+}
+
+function getDescriptionComment(node) {
+  const comment = getCommentParts(node).join('\n\n').trim();
+
+  if (!comment) {
+    return '';
+  }
+
+  return comment.split('\n\n')[0]?.trim() ?? '';
+}
+
+function getCommentParts(node) {
+  const jsDocs = node.jsDoc ?? [];
+
+  return jsDocs
+    .map((jsDoc) => jsDoc.comment)
+    .filter(Boolean)
+    .map(formatJSDocComment)
+    .filter(Boolean);
 }
 
 function formatJSDocComment(comment) {

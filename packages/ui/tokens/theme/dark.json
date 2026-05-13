@@ -24,6 +24,7 @@
   "border": {
     "dark": {
       "default": { "$value": "{color.white.05}" },
+      "focusRingMuted": { "$value": "{color.blue.400}" },
       "subtle": { "$value": "{color.white.05}" },
       "strong": { "$value": "{color.white.20}" },
       "focusRing": { "$value": "{color.blue.500}" }

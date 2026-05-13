@@ -41,7 +41,7 @@ function App() {
 
             <Navbar.Actions hideBelow="tablet">
               <Tooltip
-                placement="start"
+                placement="left"
                 content={
                   theme === 'dark' ? 'Use light theme' : 'Use dark theme'
                 }

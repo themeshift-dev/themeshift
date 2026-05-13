@@ -118,6 +118,10 @@
       "types": "./dist/components/Select/index.d.ts",
       "import": "./dist/components/Select/index.js"
     },
+    "./components/Sidebar": {
+      "types": "./dist/components/Sidebar/index.d.ts",
+      "import": "./dist/components/Sidebar/index.js"
+    },
     "./components/Skeleton": {
       "types": "./dist/components/Skeleton/index.d.ts",
       "import": "./dist/components/Skeleton/index.js"
@@ -285,6 +289,7 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@themeshift/vite-plugin": "workspace:*",
     "classnames": "^2.5.1",
+    "react-icons": "^5.6.0",
     "react-textarea-autosize": "^8.5.9"
   },
   "peerDependencies": {

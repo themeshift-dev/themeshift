@@ -120,6 +120,20 @@ type FloatingLayout = {
 const DEFAULT_BOUNDARY_PADDING = 8;
 const DEFAULT_OFFSET = 8;
 const DEFAULT_PLACEMENT: Placement = 'top';
+const VALID_SIDES = new Set<PlacementSide>(['top', 'right', 'bottom', 'left']);
+const VALID_ALIGNS = new Set<PlacementAlign>(['center', 'start', 'end']);
+
+function normalizePlacement(placement: string): Placement {
+  const [rawSide, rawAlign] = placement.split('-');
+  const side = rawSide as PlacementSide;
+  const align = (rawAlign ?? 'center') as PlacementAlign;
+
+  if (!VALID_SIDES.has(side) || !VALID_ALIGNS.has(align)) {
+    return DEFAULT_PLACEMENT;
+  }
+
+  return formatPlacement(side, align);
+}
 
 function parsePlacement(placement: Placement): {
   align: PlacementAlign;
@@ -363,7 +377,7 @@ export function useAnchoredPosition({
       width: matchTriggerWidth ? anchorRect.width : floatingRect.width,
     };
 
-    let nextPlacement = placement;
+    let nextPlacement = normalizePlacement(placement);
     let coordinates = resolveCoordinates({
       anchorRect,
       floatingLayout,

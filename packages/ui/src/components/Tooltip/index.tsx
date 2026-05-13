@@ -631,7 +631,11 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   ) => {
     const context = useTooltipRootContext('Tooltip.Content');
     const resolvedPortal = portal ?? context.portal;
-    const resolvedPortalContainer = portalContainer ?? context.portalContainer;
+    const resolvedPortalContainer =
+      portalContainer ??
+      context.portalContainer ??
+      context.anchorRef.current?.ownerDocument?.body ??
+      null;
 
     const setContentRef = useMemo(
       () =>

@@ -20,6 +20,7 @@ export * from './Radio';
 export * from './Responsive';
 export * from './SafetyButton';
 export * from './Select';
+export * from './Sidebar';
 export * from './Skeleton';
 export * from './SkipLink';
 export * from './Spinner';

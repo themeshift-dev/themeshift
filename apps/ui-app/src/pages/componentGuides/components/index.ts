@@ -1,6 +1,7 @@
 export * from './AccessibilityGuidelines';
 export * from './AccessibilityGuidelines/sections';
 export * from './ExampleViewer';
+export * from './LayoutViewer';
 export * from './GuideBreadcrumb';
 export * from './GuideCallout';
 export * from './GuideExamples';

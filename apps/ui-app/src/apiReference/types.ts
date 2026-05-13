@@ -12,6 +12,7 @@ export type ApiReferenceDefaultValue =
 export type ApiReferenceItem = {
   comments: string;
   defaultValue: ApiReferenceDefaultValue;
+  displayDescription?: string;
   displayName: string;
   propName: string;
   type: string;

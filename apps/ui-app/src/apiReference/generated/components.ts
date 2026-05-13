@@ -7,6 +7,7 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription: 'Root badge primitive for metadata labels.',
         displayName: 'Badge',
         propName: 'as',
         type: 'ElementType',
@@ -16,6 +17,7 @@ export const components = [
         comments:
           'Applies badge styles to a single child element instead of rendering a native element.',
         defaultValue: null,
+        displayDescription: 'Root badge primitive for metadata labels.',
         displayName: 'Badge',
         propName: 'asChild',
         type: 'boolean',
@@ -24,6 +26,7 @@ export const components = [
       {
         comments: 'Badge content, typically short text metadata.',
         defaultValue: null,
+        displayDescription: 'Root badge primitive for metadata labels.',
         displayName: 'Badge',
         propName: 'children',
         type: 'ReactNode | ReactElement',
@@ -32,6 +35,7 @@ export const components = [
       {
         comments: 'Additional class names to append to the rendered element.',
         defaultValue: null,
+        displayDescription: 'Root badge primitive for metadata labels.',
         displayName: 'Badge',
         propName: 'className',
         type: 'string',
@@ -40,6 +44,7 @@ export const components = [
       {
         comments: 'Use `tone` + `variant` mode instead.',
         defaultValue: null,
+        displayDescription: 'Root badge primitive for metadata labels.',
         displayName: 'Badge',
         propName: 'color',
         type: 'BadgeColor',
@@ -57,6 +62,7 @@ export const components = [
       {
         comments: 'Optional icon shown beside the badge label.',
         defaultValue: null,
+        displayDescription: 'Root badge primitive for metadata labels.',
         displayName: 'Badge',
         propName: 'icon',
         type: 'ReactNode',
@@ -65,6 +71,7 @@ export const components = [
       {
         comments: 'Position of the icon relative to label text.',
         defaultValue: 'start',
+        displayDescription: 'Root badge primitive for metadata labels.',
         displayName: 'Badge',
         propName: 'iconPosition',
         type: "'start' | 'end'",
@@ -73,6 +80,7 @@ export const components = [
       {
         comments: 'Visual size for spacing and typography.',
         defaultValue: 'medium',
+        displayDescription: 'Root badge primitive for metadata labels.',
         displayName: 'Badge',
         propName: 'size',
         type: 'BadgeSize',
@@ -81,6 +89,7 @@ export const components = [
       {
         comments: 'Preset semantic tone for status-style badges.',
         defaultValue: 'neutral',
+        displayDescription: 'Root badge primitive for metadata labels.',
         displayName: 'Badge',
         propName: 'tone',
         type: 'BadgeTone',
@@ -89,6 +98,7 @@ export const components = [
       {
         comments: 'Visual treatment used with semantic tones.',
         defaultValue: 'soft',
+        displayDescription: 'Root badge primitive for metadata labels.',
         displayName: 'Badge',
         propName: 'variant',
         type: 'BadgeVariant',
@@ -98,6 +108,8 @@ export const components = [
         comments:
           'Optional anchor content. When provided, the indicator is positioned over this content.',
         defaultValue: null,
+        displayDescription:
+          'Numeric or dot indicator for counts and notifications.',
         displayName: 'Badge.Count',
         propName: 'children',
         type: 'ReactNode',
@@ -106,6 +118,8 @@ export const components = [
       {
         comments: 'Additional class names to append to the rendered element.',
         defaultValue: null,
+        displayDescription:
+          'Numeric or dot indicator for counts and notifications.',
         displayName: 'Badge.Count',
         propName: 'className',
         type: 'string',
@@ -114,6 +128,8 @@ export const components = [
       {
         comments: 'Numeric count to display.',
         defaultValue: null,
+        displayDescription:
+          'Numeric or dot indicator for counts and notifications.',
         displayName: 'Badge.Count',
         propName: 'count',
         type: 'number',
@@ -122,6 +138,8 @@ export const components = [
       {
         comments: 'Displays a small dot instead of numeric text.',
         defaultValue: false,
+        displayDescription:
+          'Numeric or dot indicator for counts and notifications.',
         displayName: 'Badge.Count',
         propName: 'dot',
         type: 'boolean',
@@ -131,6 +149,8 @@ export const components = [
         comments:
           'Upper bound used to display compact overflow labels (for example, `99+`).',
         defaultValue: null,
+        displayDescription:
+          'Numeric or dot indicator for counts and notifications.',
         displayName: 'Badge.Count',
         propName: 'max',
         type: 'number',
@@ -139,6 +159,8 @@ export const components = [
       {
         comments: 'Logical placement for anchored indicators.',
         defaultValue: 'top-end',
+        displayDescription:
+          'Numeric or dot indicator for counts and notifications.',
         displayName: 'Badge.Count',
         propName: 'placement',
         type: 'BadgeCountPlacement',
@@ -147,6 +169,8 @@ export const components = [
       {
         comments: 'Shows `0` when count is zero.',
         defaultValue: false,
+        displayDescription:
+          'Numeric or dot indicator for counts and notifications.',
         displayName: 'Badge.Count',
         propName: 'showZero',
         type: 'boolean',
@@ -156,6 +180,8 @@ export const components = [
         comments:
           'Displays a centered text dot (`•`) in a standard count pill.',
         defaultValue: false,
+        displayDescription:
+          'Numeric or dot indicator for counts and notifications.',
         displayName: 'Badge.Count',
         propName: 'textDot',
         type: 'boolean',
@@ -229,6 +255,7 @@ export const components = [
         comments:
           'Render a different element while keeping the same layout prop API.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'as',
         type: 'ElementType',
@@ -237,6 +264,7 @@ export const components = [
       {
         comments: 'Box contents.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'children',
         type: 'ReactNode',
@@ -245,6 +273,7 @@ export const components = [
       {
         comments: 'Additional class names for custom styling hooks.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'className',
         type: 'string',
@@ -253,6 +282,7 @@ export const components = [
       {
         comments: 'Display mode for the rendered element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'display',
         type: 'ResponsiveValue<DisplayValue>',
@@ -261,6 +291,7 @@ export const components = [
       {
         comments: 'Element height.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'height',
         type: 'ResponsiveValue<SizeValue>',
@@ -269,6 +300,7 @@ export const components = [
       {
         comments: 'Margin on all sides.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'margin',
         type: 'ResponsiveValue<SpacingValue>',
@@ -277,6 +309,7 @@ export const components = [
       {
         comments: 'Margin on block-end.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'marginBottom',
         type: 'ResponsiveValue<SpacingValue>',
@@ -285,6 +318,7 @@ export const components = [
       {
         comments: 'Margin on inline-start.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'marginLeft',
         type: 'ResponsiveValue<SpacingValue>',
@@ -293,6 +327,7 @@ export const components = [
       {
         comments: 'Margin on inline-end.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'marginRight',
         type: 'ResponsiveValue<SpacingValue>',
@@ -301,6 +336,7 @@ export const components = [
       {
         comments: 'Margin on block-start.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'marginTop',
         type: 'ResponsiveValue<SpacingValue>',
@@ -309,6 +345,7 @@ export const components = [
       {
         comments: 'Margin on the inline axis.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'marginX',
         type: 'ResponsiveValue<SpacingValue>',
@@ -317,6 +354,7 @@ export const components = [
       {
         comments: 'Margin on the block axis.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'marginY',
         type: 'ResponsiveValue<SpacingValue>',
@@ -325,6 +363,7 @@ export const components = [
       {
         comments: 'Maximum element height.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'maxHeight',
         type: 'ResponsiveValue<SizeValue>',
@@ -333,6 +372,7 @@ export const components = [
       {
         comments: 'Maximum element width.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'maxWidth',
         type: 'ResponsiveValue<SizeValue>',
@@ -341,6 +381,7 @@ export const components = [
       {
         comments: 'Minimum element height.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'minHeight',
         type: 'ResponsiveValue<SizeValue>',
@@ -349,6 +390,7 @@ export const components = [
       {
         comments: 'Minimum element width.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'minWidth',
         type: 'ResponsiveValue<SizeValue>',
@@ -357,6 +399,7 @@ export const components = [
       {
         comments: 'Overflow behavior on both axes.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'overflow',
         type: 'ResponsiveValue<OverflowValue>',
@@ -365,6 +408,7 @@ export const components = [
       {
         comments: 'Overflow behavior on the inline axis.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'overflowX',
         type: 'ResponsiveValue<OverflowValue>',
@@ -373,6 +417,7 @@ export const components = [
       {
         comments: 'Overflow behavior on the block axis.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'overflowY',
         type: 'ResponsiveValue<OverflowValue>',
@@ -381,6 +426,7 @@ export const components = [
       {
         comments: 'Padding on all sides.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'padding',
         type: 'ResponsiveValue<SpacingValue>',
@@ -389,6 +435,7 @@ export const components = [
       {
         comments: 'Padding on block-end.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'paddingBottom',
         type: 'ResponsiveValue<SpacingValue>',
@@ -397,6 +444,7 @@ export const components = [
       {
         comments: 'Padding on inline-start.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'paddingLeft',
         type: 'ResponsiveValue<SpacingValue>',
@@ -405,6 +453,7 @@ export const components = [
       {
         comments: 'Padding on inline-end.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'paddingRight',
         type: 'ResponsiveValue<SpacingValue>',
@@ -413,6 +462,7 @@ export const components = [
       {
         comments: 'Padding on block-start.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'paddingTop',
         type: 'ResponsiveValue<SpacingValue>',
@@ -421,6 +471,7 @@ export const components = [
       {
         comments: 'Padding on the inline axis.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'paddingX',
         type: 'ResponsiveValue<SpacingValue>',
@@ -429,6 +480,7 @@ export const components = [
       {
         comments: 'Padding on the block axis.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'paddingY',
         type: 'ResponsiveValue<SpacingValue>',
@@ -437,6 +489,7 @@ export const components = [
       {
         comments: 'Element width.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Box',
         propName: 'width',
         type: 'ResponsiveValue<SizeValue>',
@@ -532,6 +585,8 @@ export const components = [
         comments:
           'Accessible label for an icon-only button.\n\nRequired when using `icon` without visible text.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'aria-label',
         type: 'string',
@@ -541,6 +596,8 @@ export const components = [
         comments:
           'ID of the element that labels an icon-only button.\n\nRequired when using `icon` without visible text.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'aria-labelledby',
         type: 'string',
@@ -550,6 +607,8 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'as',
         type: 'ElementType',
@@ -559,6 +618,8 @@ export const components = [
         comments:
           'Applies Button styles to a single child element instead of rendering a native element.\n\nUse this when pairing Button with routing links or other custom elements where you want to preserve the child element identity.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'asChild',
         type: 'boolean',
@@ -567,6 +628,8 @@ export const components = [
       {
         comments: 'Visible button label or content.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'children',
         type: 'ReactNode | ReactElement',
@@ -575,6 +638,8 @@ export const components = [
       {
         comments: 'Additional class names for custom styling.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'className',
         type: 'string',
@@ -583,6 +648,8 @@ export const components = [
       {
         comments: 'Icon shown after the button label.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'endIcon',
         type: 'ReactNode',
@@ -592,6 +659,8 @@ export const components = [
         comments:
           'Icon-only button content.\n\nFor buttons with text and an icon, use `startIcon` or `endIcon` instead.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'icon',
         type: 'ReactNode',
@@ -601,6 +670,8 @@ export const components = [
         comments:
           "Visual style that communicates the action's priority or outcome.",
         defaultValue: 'primary',
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'intent',
         type: 'ButtonIntent',
@@ -610,6 +681,8 @@ export const components = [
         comments:
           'Shows a spinner while an action is in progress.\n\nAlso adds `aria-busy` for assistive technology.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'isBusy',
         type: 'boolean',
@@ -618,6 +691,8 @@ export const components = [
       {
         comments: 'Size option for button spacing and text.',
         defaultValue: 'medium',
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'size',
         type: 'ButtonSize',
@@ -626,6 +701,8 @@ export const components = [
       {
         comments: 'Icon shown before the button label.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'startIcon',
         type: 'ReactNode',
@@ -634,6 +711,8 @@ export const components = [
       {
         comments: 'Visual treatment for the selected intent.',
         defaultValue: 'solid',
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'variant',
         type: 'ButtonVariant',
@@ -643,6 +722,8 @@ export const components = [
         comments:
           'Shows disabled styling without blocking interaction.\n\nUse this when the button should explain why an action is unavailable.',
         defaultValue: false,
+        displayDescription:
+          'A theme-aware button with intent, variant, and size options.',
         displayName: 'Button',
         propName: 'visuallyDisabled',
         type: 'boolean',
@@ -696,6 +777,8 @@ export const components = [
       {
         comments: 'Horizontal cross-axis alignment for root content.',
         defaultValue: 'start',
+        displayDescription:
+          'Root wrapper for the ThemeShift Card compound component.',
         displayName: 'Card',
         propName: 'align',
         type: 'CardAlign',
@@ -705,6 +788,8 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription:
+          'Root wrapper for the ThemeShift Card compound component.',
         displayName: 'Card',
         propName: 'as',
         type: 'ElementType',
@@ -713,6 +798,8 @@ export const components = [
       {
         comments: 'Shows a border around the card shell when true.',
         defaultValue: true,
+        displayDescription:
+          'Root wrapper for the ThemeShift Card compound component.',
         displayName: 'Card',
         propName: 'border',
         type: 'boolean',
@@ -721,6 +808,8 @@ export const components = [
       {
         comments: 'Card content.',
         defaultValue: null,
+        displayDescription:
+          'Root wrapper for the ThemeShift Card compound component.',
         displayName: 'Card',
         propName: 'children',
         type: 'ReactNode',
@@ -729,6 +818,8 @@ export const components = [
       {
         comments: 'Additional class names to append to the card root.',
         defaultValue: null,
+        displayDescription:
+          'Root wrapper for the ThemeShift Card compound component.',
         displayName: 'Card',
         propName: 'className',
         type: 'string',
@@ -737,6 +828,8 @@ export const components = [
       {
         comments: 'Main-axis content distribution for root content.',
         defaultValue: 'start',
+        displayDescription:
+          'Root wrapper for the ThemeShift Card compound component.',
         displayName: 'Card',
         propName: 'justify',
         type: 'CardJustify',
@@ -746,6 +839,8 @@ export const components = [
         comments:
           'Default section padding inherited by Header, Body, and Footer.',
         defaultValue: 'medium',
+        displayDescription:
+          'Root wrapper for the ThemeShift Card compound component.',
         displayName: 'Card',
         propName: 'padding',
         type: 'CardSectionPadding',
@@ -754,6 +849,8 @@ export const components = [
       {
         comments: 'Corner radius scale for the card shell.',
         defaultValue: 'medium',
+        displayDescription:
+          'Root wrapper for the ThemeShift Card compound component.',
         displayName: 'Card',
         propName: 'radius',
         type: 'CardRadius',
@@ -762,6 +859,8 @@ export const components = [
       {
         comments: 'Shadow depth for the card shell.',
         defaultValue: 'none',
+        displayDescription:
+          'Root wrapper for the ThemeShift Card compound component.',
         displayName: 'Card',
         propName: 'shadow',
         type: 'CardShadow',
@@ -770,6 +869,8 @@ export const components = [
       {
         comments: 'Surface tone for the card shell.',
         defaultValue: 'default',
+        displayDescription:
+          'Root wrapper for the ThemeShift Card compound component.',
         displayName: 'Card',
         propName: 'surface',
         type: 'CardSurface',
@@ -778,6 +879,8 @@ export const components = [
       {
         comments: 'Horizontal cross-axis alignment for actions content.',
         defaultValue: null,
+        displayDescription:
+          'Flex layout helper for action groups inside Card sections.',
         displayName: 'Card.Actions',
         propName: 'align',
         type: 'CardAlign',
@@ -787,6 +890,8 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription:
+          'Flex layout helper for action groups inside Card sections.',
         displayName: 'Card.Actions',
         propName: 'as',
         type: 'ElementType',
@@ -795,6 +900,8 @@ export const components = [
       {
         comments: 'Actions content, typically buttons or links.',
         defaultValue: null,
+        displayDescription:
+          'Flex layout helper for action groups inside Card sections.',
         displayName: 'Card.Actions',
         propName: 'children',
         type: 'ReactNode',
@@ -803,6 +910,8 @@ export const components = [
       {
         comments: 'Additional class names to append to the actions slot.',
         defaultValue: null,
+        displayDescription:
+          'Flex layout helper for action groups inside Card sections.',
         displayName: 'Card.Actions',
         propName: 'className',
         type: 'string',
@@ -811,6 +920,8 @@ export const components = [
       {
         comments: 'Direction used to lay out actions.',
         defaultValue: null,
+        displayDescription:
+          'Flex layout helper for action groups inside Card sections.',
         displayName: 'Card.Actions',
         propName: 'direction',
         type: 'CardActionsDirection',
@@ -819,6 +930,8 @@ export const components = [
       {
         comments: 'Gap between actions.',
         defaultValue: null,
+        displayDescription:
+          'Flex layout helper for action groups inside Card sections.',
         displayName: 'Card.Actions',
         propName: 'gap',
         type: 'CardActionsGap',
@@ -827,6 +940,8 @@ export const components = [
       {
         comments: 'Main-axis content distribution for actions content.',
         defaultValue: null,
+        displayDescription:
+          'Flex layout helper for action groups inside Card sections.',
         displayName: 'Card.Actions',
         propName: 'justify',
         type: 'CardJustify',
@@ -835,6 +950,8 @@ export const components = [
       {
         comments: 'Allows actions to wrap onto multiple lines.',
         defaultValue: null,
+        displayDescription:
+          'Flex layout helper for action groups inside Card sections.',
         displayName: 'Card.Actions',
         propName: 'wrap',
         type: 'boolean',
@@ -843,6 +960,8 @@ export const components = [
       {
         comments: 'Edge offset between card bounds and badge.',
         defaultValue: null,
+        displayDescription:
+          'Positioned badge wrapper for card-local status and metadata indicators.',
         displayName: 'Card.Badge',
         propName: 'offset',
         type: 'CardBadgeOffset',
@@ -851,6 +970,8 @@ export const components = [
       {
         comments: 'Positioned corner for the badge wrapper.',
         defaultValue: null,
+        displayDescription:
+          'Positioned badge wrapper for card-local status and metadata indicators.',
         displayName: 'Card.Badge',
         propName: 'position',
         type: 'CardBadgePosition',
@@ -860,6 +981,7 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription: 'Body slot used for main Card content.',
         displayName: 'Card.Body',
         propName: 'as',
         type: 'ElementType',
@@ -868,6 +990,7 @@ export const components = [
       {
         comments: 'Body content.',
         defaultValue: null,
+        displayDescription: 'Body slot used for main Card content.',
         displayName: 'Card.Body',
         propName: 'children',
         type: 'ReactNode',
@@ -876,6 +999,7 @@ export const components = [
       {
         comments: 'Additional class names to append to the body slot.',
         defaultValue: null,
+        displayDescription: 'Body slot used for main Card content.',
         displayName: 'Card.Body',
         propName: 'className',
         type: 'string',
@@ -884,6 +1008,7 @@ export const components = [
       {
         comments: 'Body padding; inherits from Card by default.',
         defaultValue: null,
+        displayDescription: 'Body slot used for main Card content.',
         displayName: 'Card.Body',
         propName: 'padding',
         type: 'CardSectionPadding',
@@ -893,6 +1018,8 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription:
+          'Orientation-aware divider for separating card sections and inline groups.',
         displayName: 'Card.Divider',
         propName: 'as',
         type: 'ElementType',
@@ -901,6 +1028,8 @@ export const components = [
       {
         comments: 'Additional class names to append to the divider element.',
         defaultValue: null,
+        displayDescription:
+          'Orientation-aware divider for separating card sections and inline groups.',
         displayName: 'Card.Divider',
         propName: 'className',
         type: 'string',
@@ -909,6 +1038,8 @@ export const components = [
       {
         comments: 'Applies logical inset spacing based on divider orientation.',
         defaultValue: null,
+        displayDescription:
+          'Orientation-aware divider for separating card sections and inline groups.',
         displayName: 'Card.Divider',
         propName: 'inset',
         type: 'boolean',
@@ -917,6 +1048,8 @@ export const components = [
       {
         comments: 'Divider orientation.',
         defaultValue: null,
+        displayDescription:
+          'Orientation-aware divider for separating card sections and inline groups.',
         displayName: 'Card.Divider',
         propName: 'orientation',
         type: 'CardDividerOrientation',
@@ -926,6 +1059,7 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription: 'Description slot used for supporting Card copy.',
         displayName: 'Card.Description',
         propName: 'as',
         type: 'ElementType',
@@ -934,6 +1068,7 @@ export const components = [
       {
         comments: 'Description content.',
         defaultValue: null,
+        displayDescription: 'Description slot used for supporting Card copy.',
         displayName: 'Card.Description',
         propName: 'children',
         type: 'ReactNode',
@@ -942,6 +1077,7 @@ export const components = [
       {
         comments: 'Additional class names to append to the description slot.',
         defaultValue: null,
+        displayDescription: 'Description slot used for supporting Card copy.',
         displayName: 'Card.Description',
         propName: 'className',
         type: 'string',
@@ -950,6 +1086,8 @@ export const components = [
       {
         comments: 'Horizontal cross-axis alignment for footer content.',
         defaultValue: null,
+        displayDescription:
+          'Footer slot used for secondary Card content and actions.',
         displayName: 'Card.Footer',
         propName: 'align',
         type: 'CardAlign',
@@ -959,6 +1097,8 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription:
+          'Footer slot used for secondary Card content and actions.',
         displayName: 'Card.Footer',
         propName: 'as',
         type: 'ElementType',
@@ -967,6 +1107,8 @@ export const components = [
       {
         comments: 'Footer content.',
         defaultValue: null,
+        displayDescription:
+          'Footer slot used for secondary Card content and actions.',
         displayName: 'Card.Footer',
         propName: 'children',
         type: 'ReactNode',
@@ -975,6 +1117,8 @@ export const components = [
       {
         comments: 'Additional class names to append to the footer slot.',
         defaultValue: null,
+        displayDescription:
+          'Footer slot used for secondary Card content and actions.',
         displayName: 'Card.Footer',
         propName: 'className',
         type: 'string',
@@ -983,6 +1127,8 @@ export const components = [
       {
         comments: 'Main-axis content distribution for footer content.',
         defaultValue: null,
+        displayDescription:
+          'Footer slot used for secondary Card content and actions.',
         displayName: 'Card.Footer',
         propName: 'justify',
         type: 'CardJustify',
@@ -991,6 +1137,8 @@ export const components = [
       {
         comments: 'Footer padding; inherits from Card by default.',
         defaultValue: null,
+        displayDescription:
+          'Footer slot used for secondary Card content and actions.',
         displayName: 'Card.Footer',
         propName: 'padding',
         type: 'CardSectionPadding',
@@ -999,6 +1147,8 @@ export const components = [
       {
         comments: 'Horizontal cross-axis alignment for header content.',
         defaultValue: null,
+        displayDescription:
+          'Header slot that stacks and aligns title/description content.',
         displayName: 'Card.Header',
         propName: 'align',
         type: 'CardAlign',
@@ -1008,6 +1158,8 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription:
+          'Header slot that stacks and aligns title/description content.',
         displayName: 'Card.Header',
         propName: 'as',
         type: 'ElementType',
@@ -1016,6 +1168,8 @@ export const components = [
       {
         comments: 'Header content.',
         defaultValue: null,
+        displayDescription:
+          'Header slot that stacks and aligns title/description content.',
         displayName: 'Card.Header',
         propName: 'children',
         type: 'ReactNode',
@@ -1024,6 +1178,8 @@ export const components = [
       {
         comments: 'Additional class names to append to the header slot.',
         defaultValue: null,
+        displayDescription:
+          'Header slot that stacks and aligns title/description content.',
         displayName: 'Card.Header',
         propName: 'className',
         type: 'string',
@@ -1032,6 +1188,8 @@ export const components = [
       {
         comments: 'Main-axis content distribution for header content.',
         defaultValue: null,
+        displayDescription:
+          'Header slot that stacks and aligns title/description content.',
         displayName: 'Card.Header',
         propName: 'justify',
         type: 'CardJustify',
@@ -1040,6 +1198,8 @@ export const components = [
       {
         comments: 'Header padding; inherits from Card by default.',
         defaultValue: null,
+        displayDescription:
+          'Header slot that stacks and aligns title/description content.',
         displayName: 'Card.Header',
         propName: 'padding',
         type: 'CardSectionPadding',
@@ -1049,6 +1209,8 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription:
+          'Full-surface link overlay for clickable card patterns.',
         displayName: 'Card.LinkOverlay',
         propName: 'as',
         type: 'ElementType',
@@ -1057,6 +1219,8 @@ export const components = [
       {
         comments: 'Optional overlay contents, typically visually hidden text.',
         defaultValue: null,
+        displayDescription:
+          'Full-surface link overlay for clickable card patterns.',
         displayName: 'Card.LinkOverlay',
         propName: 'children',
         type: 'ReactNode',
@@ -1065,6 +1229,8 @@ export const components = [
       {
         comments: 'Optional class names to append to the overlay element.',
         defaultValue: null,
+        displayDescription:
+          'Full-surface link overlay for clickable card patterns.',
         displayName: 'Card.LinkOverlay',
         propName: 'className',
         type: 'string',
@@ -1074,6 +1240,8 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription:
+          'Media slot for layout-only media regions inside Card.',
         displayName: 'Card.Media',
         propName: 'as',
         type: 'ElementType',
@@ -1082,6 +1250,8 @@ export const components = [
       {
         comments: 'Media ratio preset for the media region wrapper.',
         defaultValue: null,
+        displayDescription:
+          'Media slot for layout-only media regions inside Card.',
         displayName: 'Card.Media',
         propName: 'aspectRatio',
         type: 'CardMediaAspectRatio',
@@ -1090,6 +1260,8 @@ export const components = [
       {
         comments: 'Media content, such as image, video, or custom markup.',
         defaultValue: null,
+        displayDescription:
+          'Media slot for layout-only media regions inside Card.',
         displayName: 'Card.Media',
         propName: 'children',
         type: 'ReactNode',
@@ -1098,6 +1270,8 @@ export const components = [
       {
         comments: 'Additional class names to append to the media slot.',
         defaultValue: null,
+        displayDescription:
+          'Media slot for layout-only media regions inside Card.',
         displayName: 'Card.Media',
         propName: 'className',
         type: 'string',
@@ -1106,6 +1280,8 @@ export const components = [
       {
         comments: 'Object-fit behavior applied to direct media descendants.',
         defaultValue: null,
+        displayDescription:
+          'Media slot for layout-only media regions inside Card.',
         displayName: 'Card.Media',
         propName: 'fit',
         type: 'CardMediaFit',
@@ -1115,6 +1291,8 @@ export const components = [
         comments:
           'Vertical position of the media section within the card stack.',
         defaultValue: null,
+        displayDescription:
+          'Media slot for layout-only media regions inside Card.',
         displayName: 'Card.Media',
         propName: 'position',
         type: 'CardMediaPosition',
@@ -1124,6 +1302,7 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription: 'Title slot used for Card heading content.',
         displayName: 'Card.Title',
         propName: 'as',
         type: 'ElementType',
@@ -1132,6 +1311,7 @@ export const components = [
       {
         comments: 'Title content.',
         defaultValue: null,
+        displayDescription: 'Title slot used for Card heading content.',
         displayName: 'Card.Title',
         propName: 'children',
         type: 'ReactNode',
@@ -1140,6 +1320,7 @@ export const components = [
       {
         comments: 'Additional class names to append to the title slot.',
         defaultValue: null,
+        displayDescription: 'Title slot used for Card heading content.',
         displayName: 'Card.Title',
         propName: 'className',
         type: 'string',
@@ -1259,6 +1440,8 @@ export const components = [
         comments:
           'Makes the checkbox wrapper span the full width of its container.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware native checkbox with optional indeterminate and Field wiring.',
         displayName: 'Checkbox',
         propName: 'fullWidth',
         type: 'boolean',
@@ -1268,6 +1451,8 @@ export const components = [
         comments:
           'Sets the checkbox to the mixed state.\n\nThis updates the DOM `indeterminate` property through JavaScript.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware native checkbox with optional indeterminate and Field wiring.',
         displayName: 'Checkbox',
         propName: 'indeterminate',
         type: 'boolean',
@@ -1276,6 +1461,8 @@ export const components = [
       {
         comments: 'Visual size for the control.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware native checkbox with optional indeterminate and Field wiring.',
         displayName: 'Checkbox',
         propName: 'size',
         type: 'CheckboxSize',
@@ -1284,6 +1471,8 @@ export const components = [
       {
         comments: 'Visual validation state for border and state colors.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware native checkbox with optional indeterminate and Field wiring.',
         displayName: 'Checkbox',
         propName: 'validationState',
         type: 'CheckboxValidationState',
@@ -1331,6 +1520,7 @@ export const components = [
         comments:
           'Accessible name for icon-only copy buttons.\n\nYou can pass a string or derive the label from the current copied state.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'aria-label',
         type: 'CopyButtonDynamicValue<string>',
@@ -1340,6 +1530,7 @@ export const components = [
         comments:
           'Label content shown inside the button.\n\nYou can pass static content or derive it from the current copied state.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'children',
         type: 'CopyButtonDynamicValue<ReactNode>',
@@ -1349,6 +1540,7 @@ export const components = [
         comments:
           'Time in milliseconds before the copied state clears.\n\nThis maps to `useCopyToClipboard({ clearDelay })`.',
         defaultValue: 2000,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'clearDelay',
         type: 'number',
@@ -1358,6 +1550,7 @@ export const components = [
         comments:
           'Message shown after a successful copy when no custom children resolver is provided.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'confirmationMessage',
         type: 'ReactNode',
@@ -1367,6 +1560,7 @@ export const components = [
         comments:
           'Icon content shown after the button label.\n\nYou can pass static content or derive it from the current copied state.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'endIcon',
         type: 'CopyButtonDynamicValue<ReactNode>',
@@ -1376,6 +1570,7 @@ export const components = [
         comments:
           'Message shown after a failed copy attempt when no custom children resolver is provided.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'errorMessage',
         type: 'ReactNode',
@@ -1385,6 +1580,7 @@ export const components = [
         comments:
           'Icon-only content for the button.\n\nYou can pass static content or derive it from the current copied state.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'icon',
         type: 'CopyButtonDynamicValue<ReactNode>',
@@ -1393,6 +1589,7 @@ export const components = [
       {
         comments: 'Called when a copy attempt fails.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'onCopyError',
         type: '(error: unknown, value: string) => void',
@@ -1401,6 +1598,7 @@ export const components = [
       {
         comments: 'Called when a copy attempt succeeds.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'onCopySuccess',
         type: '(value: string) => void',
@@ -1410,6 +1608,7 @@ export const components = [
         comments:
           'Icon content shown before the button label.\n\nYou can pass static content or derive it from the current copied state.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'startIcon',
         type: 'CopyButtonDynamicValue<ReactNode>',
@@ -1419,6 +1618,7 @@ export const components = [
         comments:
           'Title attribute value shown on hover in supporting browsers.\n\nYou can pass a string or derive it from the current copied state.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'title',
         type: 'CopyButtonDynamicValue<string>',
@@ -1427,6 +1627,7 @@ export const components = [
       {
         comments: 'Text value written to the clipboard.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'value',
         type: 'string',
@@ -1435,6 +1636,7 @@ export const components = [
       {
         comments: 'Visual treatment forwarded to the underlying Button.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'CopyButton',
         propName: 'variant',
         type: 'ButtonVariant',
@@ -1505,6 +1707,7 @@ export const components = [
       {
         comments: 'Vertical alignment used when `layout="inline-control"`.',
         defaultValue: 'start',
+        displayDescription: '',
         displayName: 'Field',
         propName: 'align',
         type: 'FieldAlign',
@@ -1514,6 +1717,7 @@ export const components = [
         comments:
           'Field contents, usually a control and optional field subcomponents.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'children',
         type: 'ReactNode',
@@ -1522,6 +1726,7 @@ export const components = [
       {
         comments: 'Helper text shown below the control.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'description',
         type: 'ReactNode',
@@ -1530,6 +1735,7 @@ export const components = [
       {
         comments: 'Disables the control and related field content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'disabled',
         type: 'boolean',
@@ -1538,6 +1744,7 @@ export const components = [
       {
         comments: 'Validation message shown when the field is invalid.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'error',
         type: 'ReactNode',
@@ -1546,6 +1753,7 @@ export const components = [
       {
         comments: 'Optional form API used for integrated Field wiring.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'form',
         type: 'FormApi<Record<string, unknown>>',
@@ -1555,6 +1763,7 @@ export const components = [
         comments:
           'Whether label text should be visually hidden but still accessible.',
         defaultValue: false,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'hideLabel',
         type: 'boolean',
@@ -1563,6 +1772,7 @@ export const components = [
       {
         comments: 'Optional stable ID base. If omitted, an ID is generated.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'id',
         type: 'string',
@@ -1571,6 +1781,7 @@ export const components = [
       {
         comments: 'Visible label content for the control.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'label',
         type: 'ReactNode',
@@ -1579,6 +1790,7 @@ export const components = [
       {
         comments: 'Layout style for control and supporting content.',
         defaultValue: 'stacked',
+        displayDescription: '',
         displayName: 'Field',
         propName: 'layout',
         type: 'FieldLayout',
@@ -1587,6 +1799,7 @@ export const components = [
       {
         comments: 'Field name used for integrated form wiring.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'name',
         type: 'string',
@@ -1595,6 +1808,7 @@ export const components = [
       {
         comments: 'Marks the field as optional for presentation.',
         defaultValue: false,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'optional',
         type: 'boolean',
@@ -1603,6 +1817,7 @@ export const components = [
       {
         comments: 'Makes the control read-only while keeping it focusable.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'readOnly',
         type: 'boolean',
@@ -1611,6 +1826,7 @@ export const components = [
       {
         comments: 'Marks the control as required.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'required',
         type: 'boolean',
@@ -1620,6 +1836,7 @@ export const components = [
         comments:
           'Sets the field validation state used for styling and accessibility.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field',
         propName: 'validationState',
         type: 'ValidationState',
@@ -1628,6 +1845,7 @@ export const components = [
       {
         comments: 'Helper text content associated with the control.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field.Description',
         propName: 'children',
         type: 'ReactNode',
@@ -1636,6 +1854,7 @@ export const components = [
       {
         comments: 'Error text content associated with the control.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field.Error',
         propName: 'children',
         type: 'ReactNode',
@@ -1645,6 +1864,7 @@ export const components = [
         comments:
           'Keeps the error element mounted even when the field is not invalid. Useful for preventing layout shift and enabling show/hide transitions.',
         defaultValue: false,
+        displayDescription: '',
         displayName: 'Field.Error',
         propName: 'forceMount',
         type: 'boolean',
@@ -1654,6 +1874,7 @@ export const components = [
         comments:
           'Element to render for the label.\n\nUse `as="legend"` when labeling a grouped control rendered in a `<fieldset>`, such as `Radio.Group`.',
         defaultValue: 'label',
+        displayDescription: '',
         displayName: 'Field.Label',
         propName: 'as',
         type: "'label' | 'legend'",
@@ -1662,6 +1883,7 @@ export const components = [
       {
         comments: 'Label text or custom label content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field.Label',
         propName: 'children',
         type: 'ReactNode',
@@ -1670,6 +1892,7 @@ export const components = [
       {
         comments: 'Overrides optional indicator rendering.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field.Label',
         propName: 'showOptionalIndicator',
         type: 'boolean',
@@ -1678,6 +1901,7 @@ export const components = [
       {
         comments: 'Overrides required indicator rendering.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field.Label',
         propName: 'showRequiredIndicator',
         type: 'boolean',
@@ -1686,6 +1910,7 @@ export const components = [
       {
         comments: 'Visually hides label text while keeping it accessible.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Field.Label',
         propName: 'visuallyHidden',
         type: 'boolean',
@@ -1752,6 +1977,7 @@ export const components = [
       {
         comments: 'Cross-axis alignment for direct children.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Flex',
         propName: 'align',
         type: 'ResponsiveValue<AlignItemsValue>',
@@ -1760,6 +1986,7 @@ export const components = [
       {
         comments: 'Alignment between wrapped rows or columns.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Flex',
         propName: 'alignContent',
         type: 'ResponsiveValue<FlexAlignContentValue>',
@@ -1768,6 +1995,7 @@ export const components = [
       {
         comments: 'Horizontal gap between columns in wrapped layouts.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Flex',
         propName: 'columnGap',
         type: 'ResponsiveValue<SpacingValue>',
@@ -1776,6 +2004,7 @@ export const components = [
       {
         comments: 'Main layout direction for flex children.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Flex',
         propName: 'direction',
         type: 'ResponsiveValue<FlexDirectionValue>',
@@ -1784,6 +2013,7 @@ export const components = [
       {
         comments: 'Gap between direct children.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Flex',
         propName: 'gap',
         type: 'ResponsiveValue<SpacingValue>',
@@ -1792,6 +2022,7 @@ export const components = [
       {
         comments: 'Render as inline-flex when true.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Flex',
         propName: 'inline',
         type: 'ResponsiveValue<boolean>',
@@ -1800,6 +2031,7 @@ export const components = [
       {
         comments: 'Main-axis distribution of children.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Flex',
         propName: 'justify',
         type: 'ResponsiveValue<JustifyContentValue>',
@@ -1808,6 +2040,7 @@ export const components = [
       {
         comments: 'Vertical gap between wrapped rows.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Flex',
         propName: 'rowGap',
         type: 'ResponsiveValue<SpacingValue>',
@@ -1816,6 +2049,7 @@ export const components = [
       {
         comments: 'Allows children to wrap to additional rows or columns.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Flex',
         propName: 'wrap',
         type: 'ResponsiveValue<FlexWrapValue>',
@@ -1930,6 +2164,8 @@ export const components = [
       {
         comments: 'Whether focus locking behavior is currently active.',
         defaultValue: null,
+        displayDescription:
+          'Traps keyboard focus inside a set of focus scope roots while active.',
         displayName: 'FocusLock',
         propName: 'active',
         type: 'boolean',
@@ -1939,6 +2175,8 @@ export const components = [
         comments:
           'Whether focus should move inside the lock when it becomes active.',
         defaultValue: true,
+        displayDescription:
+          'Traps keyboard focus inside a set of focus scope roots while active.',
         displayName: 'FocusLock',
         propName: 'autoFocus',
         type: 'boolean',
@@ -1947,6 +2185,8 @@ export const components = [
       {
         comments: 'Content rendered within the focus scope.',
         defaultValue: null,
+        displayDescription:
+          'Traps keyboard focus inside a set of focus scope roots while active.',
         displayName: 'FocusLock',
         propName: 'children',
         type: 'ReactNode',
@@ -1955,6 +2195,8 @@ export const components = [
       {
         comments: 'The lock container used as the primary focus scope root.',
         defaultValue: null,
+        displayDescription:
+          'Traps keyboard focus inside a set of focus scope roots while active.',
         displayName: 'FocusLock',
         propName: 'containerRef',
         type: 'RefObject<HTMLElement | null>',
@@ -1964,6 +2206,8 @@ export const components = [
         comments:
           'Disables locking behavior while preserving rendered content.',
         defaultValue: false,
+        displayDescription:
+          'Traps keyboard focus inside a set of focus scope roots while active.',
         displayName: 'FocusLock',
         propName: 'disabled',
         type: 'boolean',
@@ -1973,6 +2217,8 @@ export const components = [
         comments:
           'Whether focus should return to the previously focused element when the lock deactivates.',
         defaultValue: false,
+        displayDescription:
+          'Traps keyboard focus inside a set of focus scope roots while active.',
         displayName: 'FocusLock',
         propName: 'returnFocus',
         type: 'boolean',
@@ -1982,6 +2228,8 @@ export const components = [
         comments:
           'Additional elements or refs that should be treated as part of the same focus scope (for example, portal content).',
         defaultValue: 'object',
+        displayDescription:
+          'Traps keyboard focus inside a set of focus scope roots while active.',
         displayName: 'FocusLock',
         propName: 'shards',
         type: 'FocusLockShard[]',
@@ -2023,6 +2271,7 @@ export const components = [
       {
         comments: 'Alignment of the full grid content block on the block axis.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'alignContent',
         type: 'ResponsiveValue<GridContentAlignmentValue>',
@@ -2031,6 +2280,7 @@ export const components = [
       {
         comments: 'Default block-axis alignment for grid children.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'alignItems',
         type: 'ResponsiveValue<AlignItemsValue>',
@@ -2039,6 +2289,7 @@ export const components = [
       {
         comments: 'Size for implicitly-created columns.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'autoColumns',
         type: 'ResponsiveValue<SizeValue>',
@@ -2047,6 +2298,7 @@ export const components = [
       {
         comments: 'Auto-placement flow for implicit item placement.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'autoFlow',
         type: 'ResponsiveValue<GridAutoFlowValue>',
@@ -2055,6 +2307,7 @@ export const components = [
       {
         comments: 'Size for implicitly-created rows.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'autoRows',
         type: 'ResponsiveValue<SizeValue>',
@@ -2063,6 +2316,7 @@ export const components = [
       {
         comments: 'Gap between grid columns.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'columnGap',
         type: 'ResponsiveValue<SpacingValue>',
@@ -2072,6 +2326,7 @@ export const components = [
         comments:
           'Grid column tracks.\n\nNumeric values create equal-width tracks.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'columns',
         type: 'ResponsiveValue<GridTrackValue>',
@@ -2080,6 +2335,7 @@ export const components = [
       {
         comments: 'Gap between rows and columns.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'gap',
         type: 'ResponsiveValue<SpacingValue>',
@@ -2088,6 +2344,7 @@ export const components = [
       {
         comments: 'Render as inline-grid when true.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'inline',
         type: 'ResponsiveValue<boolean>',
@@ -2097,6 +2354,7 @@ export const components = [
         comments:
           'Alignment of the full grid content block on the inline axis.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'justifyContent',
         type: 'ResponsiveValue<JustifyContentValue>',
@@ -2105,6 +2363,7 @@ export const components = [
       {
         comments: 'Default inline-axis alignment for grid children.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'justifyItems',
         type: 'ResponsiveValue<GridItemsAlignmentValue>',
@@ -2113,6 +2372,7 @@ export const components = [
       {
         comments: 'Gap between grid rows.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'rowGap',
         type: 'ResponsiveValue<SpacingValue>',
@@ -2122,6 +2382,7 @@ export const components = [
         comments:
           'Grid row tracks.\n\nNumeric values create equal-height tracks.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'rows',
         type: 'ResponsiveValue<GridTrackValue>',
@@ -2130,6 +2391,7 @@ export const components = [
       {
         comments: 'Named area layout string.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'templateAreas',
         type: 'ResponsiveValue<string>',
@@ -2139,6 +2401,7 @@ export const components = [
         comments:
           'Explicit grid-template-columns value.\n\nThis takes precedence over `columns`.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'templateColumns',
         type: 'ResponsiveValue<string>',
@@ -2148,6 +2411,7 @@ export const components = [
         comments:
           'Explicit grid-template-rows value.\n\nThis takes precedence over `rows`.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Grid',
         propName: 'templateRows',
         type: 'ResponsiveValue<string>',
@@ -2276,6 +2540,8 @@ export const components = [
       {
         comments: 'Semantic heading level to render.',
         defaultValue: 1,
+        displayDescription:
+          'A semantic heading with ThemeShift typography styles.',
         displayName: 'Heading',
         propName: 'level',
         type: 'HeadingLevel',
@@ -2284,6 +2550,8 @@ export const components = [
       {
         comments: 'Applies the muted heading color treatment.',
         defaultValue: false,
+        displayDescription:
+          'A semantic heading with ThemeShift typography styles.',
         displayName: 'Heading',
         propName: 'muted',
         type: 'boolean',
@@ -2323,6 +2591,8 @@ export const components = [
       {
         comments: 'Decorative or functional content after the input.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware text input with size, adornment, and validation variants.',
         displayName: 'Input',
         propName: 'endAdornment',
         type: 'ReactNode',
@@ -2331,6 +2601,8 @@ export const components = [
       {
         comments: 'Makes the input span the full width of its container.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware text input with size, adornment, and validation variants.',
         displayName: 'Input',
         propName: 'fullWidth',
         type: 'boolean',
@@ -2339,6 +2611,8 @@ export const components = [
       {
         comments: 'Additional class name for the input element.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware text input with size, adornment, and validation variants.',
         displayName: 'Input',
         propName: 'inputClassName',
         type: 'string',
@@ -2347,6 +2621,8 @@ export const components = [
       {
         comments: 'Visual size for the control.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware text input with size, adornment, and validation variants.',
         displayName: 'Input',
         propName: 'size',
         type: 'InputSize',
@@ -2355,6 +2631,8 @@ export const components = [
       {
         comments: 'Decorative or functional content before the input.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware text input with size, adornment, and validation variants.',
         displayName: 'Input',
         propName: 'startAdornment',
         type: 'ReactNode',
@@ -2363,6 +2641,8 @@ export const components = [
       {
         comments: 'Visual validation state for border and state colors.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware text input with size, adornment, and validation variants.',
         displayName: 'Input',
         propName: 'validationState',
         type: 'InputValidationState',
@@ -2431,6 +2711,8 @@ export const components = [
         comments:
           'Applies link styling to a child element instead of rendering an anchor.\n\nExample: `<Link asChild><NavLink to="/docs">Docs</NavLink></Link>`',
         defaultValue: null,
+        displayDescription:
+          'A styled text link that can render an anchor or decorate a child element.',
         displayName: 'Link',
         propName: 'asChild',
         type: 'boolean',
@@ -2439,6 +2721,8 @@ export const components = [
       {
         comments: 'Link label or content.',
         defaultValue: null,
+        displayDescription:
+          'A styled text link that can render an anchor or decorate a child element.',
         displayName: 'Link',
         propName: 'children',
         type: 'React.ReactNode',
@@ -2447,6 +2731,8 @@ export const components = [
       {
         comments: 'Additional class names to append to the rendered element.',
         defaultValue: null,
+        displayDescription:
+          'A styled text link that can render an anchor or decorate a child element.',
         displayName: 'Link',
         propName: 'className',
         type: 'string',
@@ -2480,6 +2766,8 @@ export const components = [
         comments:
           'Render a different element while keeping the same Navbar API.',
         defaultValue: null,
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'as',
         type: 'ElementType',
@@ -2488,6 +2776,8 @@ export const components = [
       {
         comments: 'Whether to render a border on the navbar root.',
         defaultValue: false,
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'border',
         type: 'boolean',
@@ -2496,6 +2786,8 @@ export const components = [
       {
         comments: 'Navbar content.',
         defaultValue: null,
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'children',
         type: 'ReactNode',
@@ -2504,6 +2796,8 @@ export const components = [
       {
         comments: 'Applies a detached/floating chrome style.',
         defaultValue: false,
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'floating',
         type: 'boolean',
@@ -2512,6 +2806,8 @@ export const components = [
       {
         comments: 'Height preset for navbar rows.',
         defaultValue: 'medium',
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'height',
         type: 'NavbarHeight',
@@ -2520,6 +2816,8 @@ export const components = [
       {
         comments: 'Maximum content width when width is `contained`.',
         defaultValue: 'large',
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'maxWidth',
         type: 'NavbarMaxWidth',
@@ -2528,6 +2826,8 @@ export const components = [
       {
         comments: 'Inline padding preset for navbar rows.',
         defaultValue: 'medium',
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'padding',
         type: 'NavbarPadding',
@@ -2536,6 +2836,8 @@ export const components = [
       {
         comments: 'Sticky/fixed placement edge.',
         defaultValue: 'top',
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'placement',
         type: 'NavbarPlacement',
@@ -2544,6 +2846,8 @@ export const components = [
       {
         comments: 'Positioning mode for the navbar root.',
         defaultValue: 'static',
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'position',
         type: 'NavbarPosition',
@@ -2552,6 +2856,8 @@ export const components = [
       {
         comments: 'Root shadow depth.',
         defaultValue: 'none',
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'shadow',
         type: 'NavbarShadow',
@@ -2560,6 +2866,8 @@ export const components = [
       {
         comments: 'Optional inline styles for custom overrides.',
         defaultValue: null,
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'style',
         type: 'CSSProperties',
@@ -2568,6 +2876,8 @@ export const components = [
       {
         comments: 'Surface token variant for the navbar root.',
         defaultValue: 'default',
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'surface',
         type: 'NavbarSurface',
@@ -2576,6 +2886,8 @@ export const components = [
       {
         comments: 'Root width behavior.',
         defaultValue: 'full',
+        displayDescription:
+          'Root wrapper for the ThemeShift compound navbar API.',
         displayName: 'Navbar',
         propName: 'width',
         type: 'NavbarWidth',
@@ -2585,6 +2897,8 @@ export const components = [
         comments:
           'Render a different element while keeping the same Navbar API.',
         defaultValue: null,
+        displayDescription:
+          'End-aligned action area for controls such as authentication buttons.',
         displayName: 'Navbar.Actions',
         propName: 'as',
         type: 'ElementType',
@@ -2593,6 +2907,8 @@ export const components = [
       {
         comments: 'Action controls such as buttons or menus.',
         defaultValue: null,
+        displayDescription:
+          'End-aligned action area for controls such as authentication buttons.',
         displayName: 'Navbar.Actions',
         propName: 'children',
         type: 'ReactNode',
@@ -2601,6 +2917,8 @@ export const components = [
       {
         comments: 'Hide the component below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'End-aligned action area for controls such as authentication buttons.',
         displayName: 'Navbar.Actions',
         propName: 'hideBelow',
         type: 'NavbarBreakpoint',
@@ -2609,6 +2927,8 @@ export const components = [
       {
         comments: 'Show the component only below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'End-aligned action area for controls such as authentication buttons.',
         displayName: 'Navbar.Actions',
         propName: 'showBelow',
         type: 'NavbarBreakpoint',
@@ -2618,6 +2938,7 @@ export const components = [
         comments:
           'Render a different element while keeping the same Navbar API.',
         defaultValue: null,
+        displayDescription: 'Branded slot for logos and product identity.',
         displayName: 'Navbar.Brand',
         propName: 'as',
         type: 'ElementType',
@@ -2626,6 +2947,7 @@ export const components = [
       {
         comments: 'Render brand styles onto a single child element.',
         defaultValue: null,
+        displayDescription: 'Branded slot for logos and product identity.',
         displayName: 'Navbar.Brand',
         propName: 'asChild',
         type: 'boolean',
@@ -2634,6 +2956,7 @@ export const components = [
       {
         comments: 'Brand label or custom content.',
         defaultValue: null,
+        displayDescription: 'Branded slot for logos and product identity.',
         displayName: 'Navbar.Brand',
         propName: 'children',
         type: 'ReactNode',
@@ -2642,6 +2965,7 @@ export const components = [
       {
         comments: 'Hide the component below this breakpoint.',
         defaultValue: null,
+        displayDescription: 'Branded slot for logos and product identity.',
         displayName: 'Navbar.Brand',
         propName: 'hideBelow',
         type: 'NavbarBreakpoint',
@@ -2651,6 +2975,7 @@ export const components = [
         comments:
           'Optional destination URL. Defaults to non-interactive when omitted.',
         defaultValue: null,
+        displayDescription: 'Branded slot for logos and product identity.',
         displayName: 'Navbar.Brand',
         propName: 'href',
         type: 'string',
@@ -2659,6 +2984,7 @@ export const components = [
       {
         comments: 'Show the component only below this breakpoint.',
         defaultValue: null,
+        displayDescription: 'Branded slot for logos and product identity.',
         displayName: 'Navbar.Brand',
         propName: 'showBelow',
         type: 'NavbarBreakpoint',
@@ -2668,6 +2994,8 @@ export const components = [
         comments:
           'Render a different element while keeping the same Navbar API.',
         defaultValue: null,
+        displayDescription:
+          'Flex row used to align brand, navigation content, and actions.',
         displayName: 'Navbar.Container',
         propName: 'as',
         type: 'ElementType',
@@ -2676,6 +3004,8 @@ export const components = [
       {
         comments: 'Container content.',
         defaultValue: null,
+        displayDescription:
+          'Flex row used to align brand, navigation content, and actions.',
         displayName: 'Navbar.Container',
         propName: 'children',
         type: 'ReactNode',
@@ -2684,6 +3014,8 @@ export const components = [
       {
         comments: 'Hide the component below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Flex row used to align brand, navigation content, and actions.',
         displayName: 'Navbar.Container',
         propName: 'hideBelow',
         type: 'NavbarBreakpoint',
@@ -2692,6 +3024,8 @@ export const components = [
       {
         comments: 'Maximum content width when width is `contained`.',
         defaultValue: 'large',
+        displayDescription:
+          'Flex row used to align brand, navigation content, and actions.',
         displayName: 'Navbar.Container',
         propName: 'maxWidth',
         type: 'NavbarMaxWidth',
@@ -2700,6 +3034,8 @@ export const components = [
       {
         comments: 'Show the component only below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Flex row used to align brand, navigation content, and actions.',
         displayName: 'Navbar.Container',
         propName: 'showBelow',
         type: 'NavbarBreakpoint',
@@ -2708,6 +3044,8 @@ export const components = [
       {
         comments: 'Width behavior for the inner layout row.',
         defaultValue: 'full',
+        displayDescription:
+          'Flex row used to align brand, navigation content, and actions.',
         displayName: 'Navbar.Container',
         propName: 'width',
         type: 'NavbarWidth',
@@ -2717,6 +3055,8 @@ export const components = [
         comments:
           'Render a different element while keeping the same Navbar API.',
         defaultValue: null,
+        displayDescription:
+          'Inline navigation content area, typically shown on larger breakpoints.',
         displayName: 'Navbar.Content',
         propName: 'as',
         type: 'ElementType',
@@ -2725,6 +3065,8 @@ export const components = [
       {
         comments: 'Inline desktop/tablet navigation content.',
         defaultValue: null,
+        displayDescription:
+          'Inline navigation content area, typically shown on larger breakpoints.',
         displayName: 'Navbar.Content',
         propName: 'children',
         type: 'ReactNode',
@@ -2733,6 +3075,8 @@ export const components = [
       {
         comments: 'Hide the component below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Inline navigation content area, typically shown on larger breakpoints.',
         displayName: 'Navbar.Content',
         propName: 'hideBelow',
         type: 'NavbarBreakpoint',
@@ -2741,6 +3085,8 @@ export const components = [
       {
         comments: 'Show the component only below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Inline navigation content area, typically shown on larger breakpoints.',
         displayName: 'Navbar.Content',
         propName: 'showBelow',
         type: 'NavbarBreakpoint',
@@ -2750,6 +3096,8 @@ export const components = [
         comments:
           'Render a different element while keeping the same Navbar API.',
         defaultValue: null,
+        displayDescription:
+          'Semantic list item wrapper for navbar navigation entries.',
         displayName: 'Navbar.Item',
         propName: 'as',
         type: 'ElementType',
@@ -2758,6 +3106,8 @@ export const components = [
       {
         comments: 'Item content.',
         defaultValue: null,
+        displayDescription:
+          'Semantic list item wrapper for navbar navigation entries.',
         displayName: 'Navbar.Item',
         propName: 'children',
         type: 'ReactNode',
@@ -2766,6 +3116,8 @@ export const components = [
       {
         comments: 'Hide the component below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Semantic list item wrapper for navbar navigation entries.',
         displayName: 'Navbar.Item',
         propName: 'hideBelow',
         type: 'NavbarBreakpoint',
@@ -2774,6 +3126,8 @@ export const components = [
       {
         comments: 'Show the component only below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Semantic list item wrapper for navbar navigation entries.',
         displayName: 'Navbar.Item',
         propName: 'showBelow',
         type: 'NavbarBreakpoint',
@@ -2782,6 +3136,8 @@ export const components = [
       {
         comments: 'Marks the current page and applies `aria-current="page"`.',
         defaultValue: false,
+        displayDescription:
+          'Styled navbar link with active and disabled states.',
         displayName: 'Navbar.Link',
         propName: 'active',
         type: 'boolean',
@@ -2791,6 +3147,8 @@ export const components = [
         comments:
           'Render a different element while keeping the same Navbar API.',
         defaultValue: null,
+        displayDescription:
+          'Styled navbar link with active and disabled states.',
         displayName: 'Navbar.Link',
         propName: 'as',
         type: 'ElementType',
@@ -2799,6 +3157,8 @@ export const components = [
       {
         comments: 'Link content.',
         defaultValue: null,
+        displayDescription:
+          'Styled navbar link with active and disabled states.',
         displayName: 'Navbar.Link',
         propName: 'children',
         type: 'ReactNode',
@@ -2807,6 +3167,8 @@ export const components = [
       {
         comments: 'Visual and behavioral disabled state.',
         defaultValue: false,
+        displayDescription:
+          'Styled navbar link with active and disabled states.',
         displayName: 'Navbar.Link',
         propName: 'disabled',
         type: 'boolean',
@@ -2815,6 +3177,8 @@ export const components = [
       {
         comments: 'Hide the component below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Styled navbar link with active and disabled states.',
         displayName: 'Navbar.Link',
         propName: 'hideBelow',
         type: 'NavbarBreakpoint',
@@ -2823,6 +3187,8 @@ export const components = [
       {
         comments: 'Optional destination URL.',
         defaultValue: null,
+        displayDescription:
+          'Styled navbar link with active and disabled states.',
         displayName: 'Navbar.Link',
         propName: 'href',
         type: 'string',
@@ -2831,6 +3197,8 @@ export const components = [
       {
         comments: 'Show the component only below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Styled navbar link with active and disabled states.',
         displayName: 'Navbar.Link',
         propName: 'showBelow',
         type: 'NavbarBreakpoint',
@@ -2840,6 +3208,8 @@ export const components = [
         comments:
           'Render a different element while keeping the same Navbar API.',
         defaultValue: null,
+        displayDescription:
+          'Semantic list container for grouped navigation links.',
         displayName: 'Navbar.List',
         propName: 'as',
         type: 'ElementType',
@@ -2848,6 +3218,8 @@ export const components = [
       {
         comments: 'List items or links.',
         defaultValue: null,
+        displayDescription:
+          'Semantic list container for grouped navigation links.',
         displayName: 'Navbar.List',
         propName: 'children',
         type: 'ReactNode',
@@ -2856,6 +3228,8 @@ export const components = [
       {
         comments: 'Hide the component below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Semantic list container for grouped navigation links.',
         displayName: 'Navbar.List',
         propName: 'hideBelow',
         type: 'NavbarBreakpoint',
@@ -2864,6 +3238,8 @@ export const components = [
       {
         comments: 'Direction used to lay out list items.',
         defaultValue: null,
+        displayDescription:
+          'Semantic list container for grouped navigation links.',
         displayName: 'Navbar.List',
         propName: 'orientation',
         type: 'NavbarListOrientation',
@@ -2872,6 +3248,8 @@ export const components = [
       {
         comments: 'Show the component only below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Semantic list container for grouped navigation links.',
         displayName: 'Navbar.List',
         propName: 'showBelow',
         type: 'NavbarBreakpoint',
@@ -2881,6 +3259,8 @@ export const components = [
         comments:
           'Render a different element while keeping the same Navbar API.',
         defaultValue: null,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'as',
         type: 'ElementType',
@@ -2889,6 +3269,8 @@ export const components = [
       {
         comments: 'Menu content authored explicitly for compact navigation.',
         defaultValue: null,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'children',
         type: 'ReactNode',
@@ -2897,6 +3279,8 @@ export const components = [
       {
         comments: 'Closes the menu when links inside are activated.',
         defaultValue: true,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'closeOnLinkClick',
         type: 'boolean',
@@ -2905,6 +3289,8 @@ export const components = [
       {
         comments: 'Initial open state for uncontrolled usage.',
         defaultValue: false,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'defaultOpen',
         type: 'boolean',
@@ -2914,6 +3300,8 @@ export const components = [
         comments:
           'Optional focus lock adapter override used when menu placement requires trapping focus.',
         defaultValue: null,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'focusLockComponent',
         type: 'FocusLockAdapterComponent',
@@ -2922,6 +3310,8 @@ export const components = [
       {
         comments: 'Hide the component below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'hideBelow',
         type: 'NavbarBreakpoint',
@@ -2930,6 +3320,8 @@ export const components = [
       {
         comments: 'ID used by toggle `aria-controls`. Generated when omitted.',
         defaultValue: null,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'id',
         type: 'string',
@@ -2938,6 +3330,8 @@ export const components = [
       {
         comments: 'ID of the element that labels the menu region.',
         defaultValue: null,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'labelledBy',
         type: 'string',
@@ -2947,6 +3341,8 @@ export const components = [
         comments:
           'Defines what happens when users interact outside of the menu while it is open.',
         defaultValue: null,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'onClickOutside',
         type: 'NavbarOnClickOutsideAction | NavbarOnClickOutsideCallback',
@@ -2955,6 +3351,8 @@ export const components = [
       {
         comments: 'Called when menu open state changes.',
         defaultValue: null,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'onOpenChange',
         type: '(open: boolean) => void',
@@ -2963,6 +3361,8 @@ export const components = [
       {
         comments: 'Controlled open state.',
         defaultValue: null,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'open',
         type: 'boolean',
@@ -2971,6 +3371,8 @@ export const components = [
       {
         comments: 'Render mode for the menu panel.',
         defaultValue: 'belowNavbar',
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'placement',
         type: 'NavbarMenuPlacement',
@@ -2979,6 +3381,8 @@ export const components = [
       {
         comments: 'Show the component only below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Responsive menu panel for compact navigation experiences.',
         displayName: 'Navbar.Menu',
         propName: 'showBelow',
         type: 'NavbarBreakpoint',
@@ -2987,6 +3391,8 @@ export const components = [
       {
         comments: 'Accessible label for the menu toggle control.',
         defaultValue: null,
+        displayDescription:
+          'Toggle control that opens/closes the nearest `Navbar.Menu`.',
         displayName: 'Navbar.Toggle',
         propName: 'aria-label',
         type: 'NavbarToggleDynamicValue<string>',
@@ -2996,6 +3402,8 @@ export const components = [
         comments:
           'Render a different element while keeping the same Navbar API.',
         defaultValue: null,
+        displayDescription:
+          'Toggle control that opens/closes the nearest `Navbar.Menu`.',
         displayName: 'Navbar.Toggle',
         propName: 'as',
         type: 'ElementType',
@@ -3004,6 +3412,8 @@ export const components = [
       {
         comments: 'Render toggle behavior onto a single child element.',
         defaultValue: null,
+        displayDescription:
+          'Toggle control that opens/closes the nearest `Navbar.Menu`.',
         displayName: 'Navbar.Toggle',
         propName: 'asChild',
         type: 'boolean',
@@ -3012,6 +3422,8 @@ export const components = [
       {
         comments: 'Optional toggle content.',
         defaultValue: null,
+        displayDescription:
+          'Toggle control that opens/closes the nearest `Navbar.Menu`.',
         displayName: 'Navbar.Toggle',
         propName: 'children',
         type: 'NavbarToggleDynamicValue<ReactNode>',
@@ -3020,6 +3432,8 @@ export const components = [
       {
         comments: 'Hide the component below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Toggle control that opens/closes the nearest `Navbar.Menu`.',
         displayName: 'Navbar.Toggle',
         propName: 'hideBelow',
         type: 'NavbarBreakpoint',
@@ -3028,6 +3442,8 @@ export const components = [
       {
         comments: 'Show the component only below this breakpoint.',
         defaultValue: null,
+        displayDescription:
+          'Toggle control that opens/closes the nearest `Navbar.Menu`.',
         displayName: 'Navbar.Toggle',
         propName: 'showBelow',
         type: 'NavbarBreakpoint',
@@ -3156,6 +3572,8 @@ export const components = [
         comments:
           'Content rendered either in-place or into the portal container.',
         defaultValue: null,
+        displayDescription:
+          'Renders children into a detached DOM container for overlay-style UI.',
         displayName: 'Portal',
         propName: 'children',
         type: 'ReactNode',
@@ -3165,6 +3583,8 @@ export const components = [
         comments:
           'Custom portal mount target. Defaults to `document.body` when available.',
         defaultValue: null,
+        displayDescription:
+          'Renders children into a detached DOM container for overlay-style UI.',
         displayName: 'Portal',
         propName: 'container',
         type: 'HTMLElement | null',
@@ -3173,6 +3593,8 @@ export const components = [
       {
         comments: 'Renders children inline without using `createPortal`.',
         defaultValue: false,
+        displayDescription:
+          'Renders children into a detached DOM container for overlay-style UI.',
         displayName: 'Portal',
         propName: 'disabled',
         type: 'boolean',
@@ -3205,6 +3627,7 @@ export const components = [
       {
         comments: 'Enables or disables indicator animation.',
         defaultValue: true,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'animated',
         type: 'boolean',
@@ -3214,6 +3637,7 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'as',
         type: 'ElementType',
@@ -3223,6 +3647,7 @@ export const components = [
         comments:
           'Custom composition content.\n\nWhen provided, shorthand root props like `label` and `description` do not auto-render subcomponents.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'children',
         type: 'ReactNode',
@@ -3231,6 +3656,7 @@ export const components = [
       {
         comments: 'Additional class names applied to the root.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'className',
         type: 'string',
@@ -3240,6 +3666,7 @@ export const components = [
         comments:
           'Optional helper text shown below the track in shorthand mode.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'description',
         type: 'ReactNode',
@@ -3249,6 +3676,7 @@ export const components = [
         comments:
           'Enables indeterminate mode when progress value is unknown.\n\nTip: when true, numeric value output is hidden by default.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'indeterminate',
         type: 'boolean',
@@ -3258,6 +3686,7 @@ export const components = [
         comments:
           'Visible label content shown above the track in shorthand mode.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'label',
         type: 'ReactNode',
@@ -3266,6 +3695,7 @@ export const components = [
       {
         comments: 'Maximum bound used to normalize value.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'max',
         type: 'number',
@@ -3274,6 +3704,7 @@ export const components = [
       {
         comments: 'Minimum bound used to normalize value.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'min',
         type: 'number',
@@ -3282,6 +3713,7 @@ export const components = [
       {
         comments: 'Track orientation.',
         defaultValue: 'horizontal',
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'orientation',
         type: 'ProgressBarOrientation',
@@ -3290,6 +3722,7 @@ export const components = [
       {
         comments: 'Radius preset for track and indicator.',
         defaultValue: 'full',
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'radius',
         type: 'ProgressBarRadius',
@@ -3299,6 +3732,7 @@ export const components = [
         comments:
           'Renders `ProgressBar.Value` automatically in shorthand mode.',
         defaultValue: false,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'showValue',
         type: 'boolean',
@@ -3307,6 +3741,7 @@ export const components = [
       {
         comments: 'Size preset for the track.',
         defaultValue: 'medium',
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'size',
         type: 'ProgressBarSize',
@@ -3315,6 +3750,7 @@ export const components = [
       {
         comments: 'Visual tone for the indicator fill.',
         defaultValue: 'primary',
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'tone',
         type: 'ProgressBarTone',
@@ -3323,6 +3759,7 @@ export const components = [
       {
         comments: 'Current determinate value.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'value',
         type: 'number',
@@ -3332,6 +3769,7 @@ export const components = [
         comments:
           'Custom value output formatter used by shorthand value rendering.\n\nExample: `(value, max) => `${value} / ${max}``',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar',
         propName: 'valueFormatter',
         type: 'ProgressValueFormatter',
@@ -3341,6 +3779,7 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Description',
         propName: 'as',
         type: 'ElementType',
@@ -3349,6 +3788,7 @@ export const components = [
       {
         comments: 'Description content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Description',
         propName: 'children',
         type: 'ReactNode',
@@ -3357,6 +3797,7 @@ export const components = [
       {
         comments: 'Additional class names applied to the description.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Description',
         propName: 'className',
         type: 'string',
@@ -3365,6 +3806,7 @@ export const components = [
       {
         comments: 'Overrides root `animated` for this indicator instance.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Indicator',
         propName: 'animated',
         type: 'boolean',
@@ -3374,6 +3816,7 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Indicator',
         propName: 'as',
         type: 'ElementType',
@@ -3382,6 +3825,7 @@ export const components = [
       {
         comments: 'Additional class names applied to the indicator.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Indicator',
         propName: 'className',
         type: 'string',
@@ -3391,6 +3835,7 @@ export const components = [
         comments:
           'Enables indeterminate mode when progress value is unknown.\n\nTip: when true, numeric value output is hidden by default.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Indicator',
         propName: 'indeterminate',
         type: 'boolean',
@@ -3399,6 +3844,7 @@ export const components = [
       {
         comments: 'Maximum bound used to normalize value.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Indicator',
         propName: 'max',
         type: 'number',
@@ -3407,6 +3853,7 @@ export const components = [
       {
         comments: 'Minimum bound used to normalize value.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Indicator',
         propName: 'min',
         type: 'number',
@@ -3415,6 +3862,7 @@ export const components = [
       {
         comments: 'Adds striped visual treatment to the fill.',
         defaultValue: false,
+        displayDescription: '',
         displayName: 'ProgressBar.Indicator',
         propName: 'striped',
         type: 'boolean',
@@ -3423,6 +3871,7 @@ export const components = [
       {
         comments: 'Current determinate value.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Indicator',
         propName: 'value',
         type: 'number',
@@ -3432,6 +3881,7 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Label',
         propName: 'as',
         type: 'ElementType',
@@ -3440,6 +3890,7 @@ export const components = [
       {
         comments: 'Label content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Label',
         propName: 'children',
         type: 'ReactNode',
@@ -3448,6 +3899,7 @@ export const components = [
       {
         comments: 'Additional class names applied to the label.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Label',
         propName: 'className',
         type: 'string',
@@ -3457,6 +3909,7 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Track',
         propName: 'as',
         type: 'ElementType',
@@ -3466,6 +3919,7 @@ export const components = [
         comments:
           'Track content.\n\nDefaults to `ProgressBar.Indicator` when omitted.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Track',
         propName: 'children',
         type: 'ReactNode',
@@ -3474,6 +3928,7 @@ export const components = [
       {
         comments: 'Additional class names applied to the track.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Track',
         propName: 'className',
         type: 'string',
@@ -3482,6 +3937,7 @@ export const components = [
       {
         comments: 'Adds a subtle inset effect by applying inner padding.',
         defaultValue: false,
+        displayDescription: '',
         displayName: 'ProgressBar.Track',
         propName: 'inset',
         type: 'boolean',
@@ -3491,6 +3947,7 @@ export const components = [
         comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Value',
         propName: 'as',
         type: 'ElementType',
@@ -3500,6 +3957,7 @@ export const components = [
         comments:
           'Custom value content.\n\nWhen provided, formatter and percent output are skipped.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Value',
         propName: 'children',
         type: 'ReactNode',
@@ -3508,6 +3966,7 @@ export const components = [
       {
         comments: 'Additional class names applied to the value text.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Value',
         propName: 'className',
         type: 'string',
@@ -3516,6 +3975,7 @@ export const components = [
       {
         comments: 'Custom formatter for value text.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Value',
         propName: 'format',
         type: 'ProgressValueFormatter',
@@ -3525,6 +3985,7 @@ export const components = [
         comments:
           'Enables indeterminate mode when progress value is unknown.\n\nTip: when true, numeric value output is hidden by default.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Value',
         propName: 'indeterminate',
         type: 'boolean',
@@ -3533,6 +3994,7 @@ export const components = [
       {
         comments: 'Maximum bound used to normalize value.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Value',
         propName: 'max',
         type: 'number',
@@ -3541,6 +4003,7 @@ export const components = [
       {
         comments: 'Minimum bound used to normalize value.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Value',
         propName: 'min',
         type: 'number',
@@ -3549,6 +4012,7 @@ export const components = [
       {
         comments: 'Appends `%` when using default percent output.',
         defaultValue: true,
+        displayDescription: '',
         displayName: 'ProgressBar.Value',
         propName: 'showPercentSign',
         type: 'boolean',
@@ -3557,6 +4021,7 @@ export const components = [
       {
         comments: 'Current determinate value.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'ProgressBar.Value',
         propName: 'value',
         type: 'number',
@@ -3627,6 +4092,8 @@ export const components = [
         comments:
           'Radio label content.\n\nThis can include multiple lines and custom layout.',
         defaultValue: null,
+        displayDescription:
+          'A single theme-aware radio input that can be used standalone or inside `Radio.Group`.',
         displayName: 'Radio',
         propName: 'children',
         type: 'ReactNode',
@@ -3636,6 +4103,8 @@ export const components = [
         comments:
           'Disables the radio option.\n\nThis overrides the group state when used inside `Radio.Group`.',
         defaultValue: null,
+        displayDescription:
+          'A single theme-aware radio input that can be used standalone or inside `Radio.Group`.',
         displayName: 'Radio',
         propName: 'disabled',
         type: 'boolean',
@@ -3644,6 +4113,8 @@ export const components = [
       {
         comments: 'Submitted value for the radio option.',
         defaultValue: null,
+        displayDescription:
+          'A single theme-aware radio input that can be used standalone or inside `Radio.Group`.',
         displayName: 'Radio',
         propName: 'value',
         type: 'string',
@@ -3653,6 +4124,8 @@ export const components = [
         comments:
           'Radio options and any supporting content, such as `<Field.Label as="legend">`.',
         defaultValue: null,
+        displayDescription:
+          'A native radio group built on top of `<fieldset>`.',
         displayName: 'Radio.Group',
         propName: 'children',
         type: 'ReactNode',
@@ -3661,6 +4134,8 @@ export const components = [
       {
         comments: 'Sets an initial selected value for uncontrolled usage.',
         defaultValue: null,
+        displayDescription:
+          'A native radio group built on top of `<fieldset>`.',
         displayName: 'Radio.Group',
         propName: 'defaultValue',
         type: 'string',
@@ -3670,6 +4145,8 @@ export const components = [
         comments:
           'Disables the entire group.\n\nThis also disables all descendant radio inputs.',
         defaultValue: null,
+        displayDescription:
+          'A native radio group built on top of `<fieldset>`.',
         displayName: 'Radio.Group',
         propName: 'disabled',
         type: 'boolean',
@@ -3679,6 +4156,8 @@ export const components = [
         comments:
           'Name shared by all radios in the group.\n\nIf omitted, a stable name is generated so the group still behaves like a single selection set. Provide a name to include the value in form submits.',
         defaultValue: null,
+        displayDescription:
+          'A native radio group built on top of `<fieldset>`.',
         displayName: 'Radio.Group',
         propName: 'name',
         type: 'string',
@@ -3687,6 +4166,8 @@ export const components = [
       {
         comments: 'Called with the next selected value after user interaction.',
         defaultValue: null,
+        displayDescription:
+          'A native radio group built on top of `<fieldset>`.',
         displayName: 'Radio.Group',
         propName: 'onValueChange',
         type: '(value: string) => void',
@@ -3696,6 +4177,8 @@ export const components = [
         comments:
           'Marks the group as required.\n\nThis is forwarded to each radio input so native validation works.',
         defaultValue: null,
+        displayDescription:
+          'A native radio group built on top of `<fieldset>`.',
         displayName: 'Radio.Group',
         propName: 'required',
         type: 'boolean',
@@ -3705,6 +4188,8 @@ export const components = [
         comments:
           'Visual size for the radio control.\n\nThis value is inherited by all `Radio` children.',
         defaultValue: 'medium',
+        displayDescription:
+          'A native radio group built on top of `<fieldset>`.',
         displayName: 'Radio.Group',
         propName: 'size',
         type: 'RadioGroupSize',
@@ -3714,6 +4199,8 @@ export const components = [
         comments:
           'Sets the group validation state used for styling and accessibility.',
         defaultValue: null,
+        displayDescription:
+          'A native radio group built on top of `<fieldset>`.',
         displayName: 'Radio.Group',
         propName: 'validationState',
         type: 'RadioValidationState',
@@ -3722,6 +4209,8 @@ export const components = [
       {
         comments: 'Controls the selected value in controlled usage.',
         defaultValue: null,
+        displayDescription:
+          'A native radio group built on top of `<fieldset>`.',
         displayName: 'Radio.Group',
         propName: 'value',
         type: 'string',
@@ -3767,6 +4256,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
+        displayDescription:
+          'Shows or hides content based on the provided breakpoint rules.',
         displayName: 'Responsive',
         propName: 'as',
         type: 'ElementType',
@@ -3775,6 +4266,8 @@ export const components = [
       {
         comments: 'Content that should be conditionally shown.',
         defaultValue: null,
+        displayDescription:
+          'Shows or hides content based on the provided breakpoint rules.',
         displayName: 'Responsive',
         propName: 'children',
         type: 'ReactNode',
@@ -3783,6 +4276,8 @@ export const components = [
       {
         comments: 'Additional class names to append to the rendered element.',
         defaultValue: null,
+        displayDescription:
+          'Shows or hides content based on the provided breakpoint rules.',
         displayName: 'Responsive',
         propName: 'className',
         type: 'string',
@@ -3791,6 +4286,8 @@ export const components = [
       {
         comments: 'Breakpoint rule used to control visibility.',
         defaultValue: null,
+        displayDescription:
+          'Shows or hides content based on the provided breakpoint rules.',
         displayName: 'Responsive',
         propName: 'when',
         type: 'ResponsiveWhen',
@@ -3832,6 +4329,7 @@ export const components = [
         comments:
           'Toggles progress countdown announcements for assistive tech.',
         defaultValue: false,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'announceProgress',
         type: 'boolean',
@@ -3840,6 +4338,7 @@ export const components = [
       {
         comments: 'Accessible name for icon-only safety buttons.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'aria-label',
         type: 'SafetyButtonDynamicValue<string>',
@@ -3848,6 +4347,7 @@ export const components = [
       {
         comments: 'Label content shown inside the button.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'children',
         type: 'SafetyButtonDynamicValue<ReactNode>',
@@ -3856,6 +4356,7 @@ export const components = [
       {
         comments: 'Duration in milliseconds required before confirming.',
         defaultValue: 2500,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'confirmationDelay',
         type: 'number',
@@ -3864,6 +4365,7 @@ export const components = [
       {
         comments: 'Icon content shown after the button label.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'endIcon',
         type: 'SafetyButtonDynamicValue<ReactNode>',
@@ -3872,6 +4374,7 @@ export const components = [
       {
         comments: 'Icon-only content for the button.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'icon',
         type: 'SafetyButtonDynamicValue<ReactNode>',
@@ -3880,6 +4383,7 @@ export const components = [
       {
         comments: 'Called when a hold attempt starts.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'onAttemptStart',
         type: '(event: PointerEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>) => void',
@@ -3889,6 +4393,7 @@ export const components = [
         comments:
           'Called when an active hold is interrupted before confirmation.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'onCancel',
         type: '() => void',
@@ -3897,6 +4402,7 @@ export const components = [
       {
         comments: 'Called when the hold duration completes.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'onConfirm',
         type: '() => void',
@@ -3906,6 +4412,7 @@ export const components = [
         comments:
           'Called with progress updates while pressing, then `undefined` when idle.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'onProgress',
         type: '(progress?: number, timeRemaining?: number) => void',
@@ -3915,6 +4422,7 @@ export const components = [
         comments:
           'Announcement interval for screen readers when `announceProgress` is true.',
         defaultValue: 1000,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'progressAnnounceIntervalMs',
         type: 'number',
@@ -3923,6 +4431,7 @@ export const components = [
       {
         comments: 'Icon content shown before the button label.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'startIcon',
         type: 'SafetyButtonDynamicValue<ReactNode>',
@@ -3931,6 +4440,7 @@ export const components = [
       {
         comments: 'Visual treatment forwarded to the underlying Button.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'SafetyButton',
         propName: 'variant',
         type: 'ButtonVariant',
@@ -3977,6 +4487,8 @@ export const components = [
       {
         comments: 'Custom class name for the chevron icon container.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware select control with native behavior and Field integration.',
         displayName: 'Select',
         propName: 'chevronClassName',
         type: 'string',
@@ -3985,6 +4497,8 @@ export const components = [
       {
         comments: 'Custom chevron icon. Defaults to `IconSelectChevron`.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware select control with native behavior and Field integration.',
         displayName: 'Select',
         propName: 'chevronIcon',
         type: 'ReactNode',
@@ -3993,6 +4507,8 @@ export const components = [
       {
         comments: 'Makes the select span the full width of its container.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware select control with native behavior and Field integration.',
         displayName: 'Select',
         propName: 'fullWidth',
         type: 'boolean',
@@ -4002,6 +4518,8 @@ export const components = [
         comments:
           'Options to render when you do not want to pass children manually.\n\nWhen provided, `options` takes precedence over `children`.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware select control with native behavior and Field integration.',
         displayName: 'Select',
         propName: 'options',
         type: 'SelectOption[]',
@@ -4011,6 +4529,8 @@ export const components = [
         comments:
           'Placeholder label rendered as a disabled empty option.\n\nUse `defaultValue=""` or `value=""` to show it as the current value.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware select control with native behavior and Field integration.',
         displayName: 'Select',
         propName: 'placeholder',
         type: 'string',
@@ -4019,6 +4539,8 @@ export const components = [
       {
         comments: 'Visual size for the control.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware select control with native behavior and Field integration.',
         displayName: 'Select',
         propName: 'size',
         type: 'SelectSize',
@@ -4027,6 +4549,8 @@ export const components = [
       {
         comments: 'Visual validation state for border and state colors.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware select control with native behavior and Field integration.',
         displayName: 'Select',
         propName: 'validationState',
         type: 'SelectValidationState',
@@ -4076,9 +4600,1271 @@ export const components = [
   {
     apiReference: [
       {
+        comments: 'Accessible name when no `labelledBy` reference is provided.',
+        defaultValue: null,
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'ariaLabel',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Sidebar content and primitives.',
+        defaultValue: null,
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for custom styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Width used when sidebar is collapsed.',
+        defaultValue: '4rem',
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'collapsedWidth',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Optional shorthand for collapsible behavior (`false` maps to static).',
+        defaultValue: null,
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'collapsible',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'ID reference to an external labelling element.',
+        defaultValue: null,
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'labelledBy',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Sidebar behavior mode.',
+        defaultValue: null,
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'mode',
+        type: 'SidebarMode',
+        values: ['static', 'collapsible', 'offcanvas'],
+      },
+      {
+        comments: 'Logical placement side for this sidebar instance.',
+        defaultValue: null,
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'side',
+        type: 'SidebarSide',
+        values: ['start', 'end'],
+      },
+      {
+        comments: 'Optional inline style overrides.',
+        defaultValue: null,
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'style',
+        type: 'CSSProperties',
+        values: [],
+      },
+      {
+        comments: 'Visual variant for the sidebar container.',
+        defaultValue: 'default',
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'variant',
+        type: 'SidebarVariant',
+        values: ['default', 'inset', 'floating', 'rail'],
+      },
+      {
+        comments: 'Expanded sidebar width.',
+        defaultValue: '16rem',
+        displayDescription:
+          'Renders the main sidebar container and applies mode, side, variant, and accessibility behavior.',
+        displayName: 'Sidebar',
+        propName: 'width',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Hosts the primary scrollable content area for navigation groups and menu items.',
+        displayName: 'Sidebar.Content',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Main sidebar content, usually groups and menus.',
+        defaultValue: null,
+        displayDescription:
+          'Hosts the primary scrollable content area for navigation groups and menu items.',
+        displayName: 'Sidebar.Content',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for content styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Hosts the primary scrollable content area for navigation groups and menu items.',
+        displayName: 'Sidebar.Content',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Enables scrolling on the main content region.',
+        defaultValue: true,
+        displayDescription:
+          'Hosts the primary scrollable content area for navigation groups and menu items.',
+        displayName: 'Sidebar.Content',
+        propName: 'scrollable',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Places content in a footer region at the bottom of the sidebar.',
+        displayName: 'Sidebar.Footer',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Footer content, such as account actions or settings.',
+        defaultValue: null,
+        displayDescription:
+          'Places content in a footer region at the bottom of the sidebar.',
+        displayName: 'Sidebar.Footer',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for footer styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Places content in a footer region at the bottom of the sidebar.',
+        displayName: 'Sidebar.Footer',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Content shown when the sidebar is collapsed.',
+        defaultValue: null,
+        displayDescription:
+          'Places content in a footer region at the bottom of the sidebar.',
+        displayName: 'Sidebar.Footer',
+        propName: 'collapsedContent',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Tooltip content for collapsed footer affordances.',
+        defaultValue: null,
+        displayDescription:
+          'Places content in a footer region at the bottom of the sidebar.',
+        displayName: 'Sidebar.Footer',
+        propName: 'collapsedTooltip',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Hides footer content when the sidebar is collapsed.',
+        defaultValue: false,
+        displayDescription:
+          'Places content in a footer region at the bottom of the sidebar.',
+        displayName: 'Sidebar.Footer',
+        propName: 'hideWhenCollapsed',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments:
+          'Pins the footer to the bottom of the sidebar when scrolling.',
+        defaultValue: true,
+        displayDescription:
+          'Places content in a footer region at the bottom of the sidebar.',
+        displayName: 'Sidebar.Footer',
+        propName: 'sticky',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Groups related sidebar content and can optionally toggle visibility of its children.',
+        displayName: 'Sidebar.Group',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Group content, typically labels and menu lists.',
+        defaultValue: null,
+        displayDescription:
+          'Groups related sidebar content and can optionally toggle visibility of its children.',
+        displayName: 'Sidebar.Group',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for group styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Groups related sidebar content and can optionally toggle visibility of its children.',
+        displayName: 'Sidebar.Group',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Enables group-level expand/collapse behavior.',
+        defaultValue: false,
+        displayDescription:
+          'Groups related sidebar content and can optionally toggle visibility of its children.',
+        displayName: 'Sidebar.Group',
+        propName: 'collapsible',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Initial open state for uncontrolled usage.',
+        defaultValue: true,
+        displayDescription:
+          'Groups related sidebar content and can optionally toggle visibility of its children.',
+        displayName: 'Sidebar.Group',
+        propName: 'defaultOpen',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Called when group open state changes.',
+        defaultValue: null,
+        displayDescription:
+          'Groups related sidebar content and can optionally toggle visibility of its children.',
+        displayName: 'Sidebar.Group',
+        propName: 'onOpenChange',
+        type: '(open: boolean) => void',
+        values: [],
+      },
+      {
+        comments: 'Controlled open state.',
+        defaultValue: null,
+        displayDescription:
+          'Groups related sidebar content and can optionally toggle visibility of its children.',
+        displayName: 'Sidebar.Group',
+        propName: 'open',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an auxiliary action control associated with a sidebar group heading.',
+        displayName: 'Sidebar.GroupAction',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Renders action behavior onto a single child element.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an auxiliary action control associated with a sidebar group heading.',
+        displayName: 'Sidebar.GroupAction',
+        propName: 'asChild',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Action icon or custom content.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an auxiliary action control associated with a sidebar group heading.',
+        displayName: 'Sidebar.GroupAction',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for action styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an auxiliary action control associated with a sidebar group heading.',
+        displayName: 'Sidebar.GroupAction',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Opacity applied to icon content rendered by this action.',
+        defaultValue: 0.7,
+        displayDescription:
+          'Renders an auxiliary action control associated with a sidebar group heading.',
+        displayName: 'Sidebar.GroupAction',
+        propName: 'iconOpacity',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Required accessible label for the action control.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an auxiliary action control associated with a sidebar group heading.',
+        displayName: 'Sidebar.GroupAction',
+        propName: 'label',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Labels a sidebar group and can hide visually when the sidebar is collapsed.',
+        displayName: 'Sidebar.GroupLabel',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Group heading content.',
+        defaultValue: null,
+        displayDescription:
+          'Labels a sidebar group and can hide visually when the sidebar is collapsed.',
+        displayName: 'Sidebar.GroupLabel',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for label styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Labels a sidebar group and can hide visually when the sidebar is collapsed.',
+        displayName: 'Sidebar.GroupLabel',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Visually hides the label while collapsed, keeping semantics intact.',
+        defaultValue: true,
+        displayDescription:
+          'Labels a sidebar group and can hide visually when the sidebar is collapsed.',
+        displayName: 'Sidebar.GroupLabel',
+        propName: 'visuallyHiddenWhenCollapsed',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Places content in a header region at the top of the sidebar.',
+        displayName: 'Sidebar.Header',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Header content, such as branding or trigger controls.',
+        defaultValue: null,
+        displayDescription:
+          'Places content in a header region at the top of the sidebar.',
+        displayName: 'Sidebar.Header',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for header styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Places content in a header region at the top of the sidebar.',
+        displayName: 'Sidebar.Header',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Pins the header to the top of the sidebar when scrolling.',
+        defaultValue: true,
+        displayDescription:
+          'Places content in a header region at the top of the sidebar.',
+        displayName: 'Sidebar.Header',
+        propName: 'sticky',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Wraps main page content that sits adjacent to the sidebar and optionally applies inset padding.',
+        displayName: 'Sidebar.Inset',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Main app/content region rendered beside the sidebar.',
+        defaultValue: null,
+        displayDescription:
+          'Wraps main page content that sits adjacent to the sidebar and optionally applies inset padding.',
+        displayName: 'Sidebar.Inset',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for inset styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Wraps main page content that sits adjacent to the sidebar and optionally applies inset padding.',
+        displayName: 'Sidebar.Inset',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Applies default content padding to the inset area.',
+        defaultValue: true,
+        displayDescription:
+          'Wraps main page content that sits adjacent to the sidebar and optionally applies inset padding.',
+        displayName: 'Sidebar.Inset',
+        propName: 'padded',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription: 'Wraps a list of sidebar menu items.',
+        displayName: 'Sidebar.Menu',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Menu item structure.',
+        defaultValue: null,
+        displayDescription: 'Wraps a list of sidebar menu items.',
+        displayName: 'Sidebar.Menu',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for menu styling hooks.',
+        defaultValue: null,
+        displayDescription: 'Wraps a list of sidebar menu items.',
+        displayName: 'Sidebar.Menu',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Menu orientation. Currently supports vertical lists.',
+        defaultValue: null,
+        displayDescription: 'Wraps a list of sidebar menu items.',
+        displayName: 'Sidebar.Menu',
+        propName: 'orientation',
+        type: "'vertical'",
+        values: ['vertical'],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a secondary action for a menu item, optionally revealed on hover.',
+        displayName: 'Sidebar.MenuAction',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Renders action behavior onto a single child element.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a secondary action for a menu item, optionally revealed on hover.',
+        displayName: 'Sidebar.MenuAction',
+        propName: 'asChild',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Action icon or custom content.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a secondary action for a menu item, optionally revealed on hover.',
+        displayName: 'Sidebar.MenuAction',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for action styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a secondary action for a menu item, optionally revealed on hover.',
+        displayName: 'Sidebar.MenuAction',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Opacity applied to icon content rendered by this action.',
+        defaultValue: 0.7,
+        displayDescription:
+          'Renders a secondary action for a menu item, optionally revealed on hover.',
+        displayName: 'Sidebar.MenuAction',
+        propName: 'iconOpacity',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Required accessible label for the action control.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a secondary action for a menu item, optionally revealed on hover.',
+        displayName: 'Sidebar.MenuAction',
+        propName: 'label',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Shows the action primarily on hover/focus affordances.',
+        defaultValue: true,
+        displayDescription:
+          'Renders a secondary action for a menu item, optionally revealed on hover.',
+        displayName: 'Sidebar.MenuAction',
+        propName: 'showOnHover',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Displays compact status or count metadata alongside a menu item.',
+        displayName: 'Sidebar.MenuBadge',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Badge content, such as counts or short status text.',
+        defaultValue: null,
+        displayDescription:
+          'Displays compact status or count metadata alongside a menu item.',
+        displayName: 'Sidebar.MenuBadge',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for badge styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Displays compact status or count metadata alongside a menu item.',
+        displayName: 'Sidebar.MenuBadge',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Semantic tone preset for badge styling.',
+        defaultValue: 'neutral',
+        displayDescription:
+          'Displays compact status or count metadata alongside a menu item.',
+        displayName: 'Sidebar.MenuBadge',
+        propName: 'tone',
+        type: "'neutral' | 'info' | 'success' | 'warning' | 'danger'",
+        values: ['neutral', 'info', 'success', 'warning', 'danger'],
+      },
+      {
+        comments: 'Marks this menu button as active.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'active',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Renders menu-button behavior onto a single child element.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'asChild',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments:
+          'Optional trailing badge content rendered within the button row.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'badge',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Button label and optional icon content.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for button styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Disables interaction and applies disabled styles.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'disabled',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Accessible label for icon-only or collapsed button states.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'iconOnlyLabel',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Opacity applied to icon content rendered inside the button.',
+        defaultValue: 0.7,
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'iconOpacity',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Size preset for button spacing and height.',
+        defaultValue: 'medium',
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'size',
+        type: "'small' | 'medium' | 'large'",
+        values: ['small', 'medium', 'large'],
+      },
+      {
+        comments:
+          'Optional tooltip content shown in collapsed/icon-only views.',
+        defaultValue: null,
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'tooltip',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Visual button variant.',
+        defaultValue: 'default',
+        displayDescription:
+          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
+        displayName: 'Sidebar.MenuButton',
+        propName: 'variant',
+        type: "'default' | 'subtle' | 'ghost'",
+        values: ['default', 'subtle', 'ghost'],
+      },
+      {
+        comments: 'Marks this item as active for inherited styling.',
+        defaultValue: false,
+        displayDescription:
+          'Provides item-level active and disabled state for menu content.',
+        displayName: 'Sidebar.MenuItem',
+        propName: 'active',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Provides item-level active and disabled state for menu content.',
+        displayName: 'Sidebar.MenuItem',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Item structure and child controls.',
+        defaultValue: null,
+        displayDescription:
+          'Provides item-level active and disabled state for menu content.',
+        displayName: 'Sidebar.MenuItem',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for item styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Provides item-level active and disabled state for menu content.',
+        displayName: 'Sidebar.MenuItem',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Disables interactive descendants through context-aware styles.',
+        defaultValue: false,
+        displayDescription:
+          'Provides item-level active and disabled state for menu content.',
+        displayName: 'Sidebar.MenuItem',
+        propName: 'disabled',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Sidebar subtree controlled by this provider.',
+        defaultValue: null,
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Closes offcanvas state when `locationKey` changes.',
+        defaultValue: false,
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'closeOnRouteChange',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Controlled desktop collapsed state.',
+        defaultValue: null,
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'collapsed',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Default collapse behavior strategy.',
+        defaultValue: 'icon',
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'collapseMode',
+        type: "'icon' | 'rail' | 'offcanvas' | 'none'",
+        values: ['icon', 'rail', 'offcanvas', 'none'],
+      },
+      {
+        comments: 'Enables desktop collapsible behavior by default.',
+        defaultValue: true,
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'collapsible',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Initial desktop collapsed state for uncontrolled usage.',
+        defaultValue: false,
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'defaultCollapsed',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Initial offcanvas open state for uncontrolled usage.',
+        defaultValue: false,
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'defaultOpen',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Router-driven change key used with `closeOnRouteChange`.',
+        defaultValue: null,
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'locationKey',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Called when desktop collapsed state changes.',
+        defaultValue: null,
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'onCollapsedChange',
+        type: '(collapsed: boolean) => void',
+        values: [],
+      },
+      {
+        comments: 'Called when offcanvas open state changes.',
+        defaultValue: null,
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'onOpenChange',
+        type: '(open: boolean) => void',
+        values: [],
+      },
+      {
+        comments: 'Controlled offcanvas open state.',
+        defaultValue: null,
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'open',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Persists collapsed state to local storage.',
+        defaultValue: false,
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'persistCollapsed',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Default logical side for descendant sidebars.',
+        defaultValue: 'start',
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'side',
+        type: 'SidebarSide',
+        values: ['start', 'end'],
+      },
+      {
+        comments: 'Storage key used when `persistCollapsed` is enabled.',
+        defaultValue: 'themeshift.sidebar.collapsed',
+        displayDescription:
+          'Manages shared sidebar state such as collapsed/open behavior for descendant primitives.',
+        displayName: 'Sidebar.Provider',
+        propName: 'storageKey',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Provides a rail control that toggles sidebar expansion and collapse.',
+        displayName: 'Sidebar.Rail',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Optional custom rail content.',
+        defaultValue: null,
+        displayDescription:
+          'Provides a rail control that toggles sidebar expansion and collapse.',
+        displayName: 'Sidebar.Rail',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for rail styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Provides a rail control that toggles sidebar expansion and collapse.',
+        displayName: 'Sidebar.Rail',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Accessible label for rail toggle behavior.',
+        defaultValue: 'Expand sidebar',
+        displayDescription:
+          'Provides a rail control that toggles sidebar expansion and collapse.',
+        displayName: 'Sidebar.Rail',
+        propName: 'label',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription: 'Visually separates groups of sidebar content.',
+        displayName: 'Sidebar.Separator',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for separator styling hooks.',
+        defaultValue: null,
+        displayDescription: 'Visually separates groups of sidebar content.',
+        displayName: 'Sidebar.Separator',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Marks separator as decorative and hides it from assistive tech.',
+        defaultValue: true,
+        displayDescription: 'Visually separates groups of sidebar content.',
+        displayName: 'Sidebar.Separator',
+        propName: 'decorative',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a nested menu list with built-in expand and collapse behavior.',
+        displayName: 'Sidebar.SubMenu',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Nested menu item structure.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a nested menu list with built-in expand and collapse behavior.',
+        displayName: 'Sidebar.SubMenu',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for submenu styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a nested menu list with built-in expand and collapse behavior.',
+        displayName: 'Sidebar.SubMenu',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Initial open state for uncontrolled usage.',
+        defaultValue: true,
+        displayDescription:
+          'Renders a nested menu list with built-in expand and collapse behavior.',
+        displayName: 'Sidebar.SubMenu',
+        propName: 'defaultOpen',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Called when submenu open state changes.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a nested menu list with built-in expand and collapse behavior.',
+        displayName: 'Sidebar.SubMenu',
+        propName: 'onOpenChange',
+        type: '(open: boolean) => void',
+        values: [],
+      },
+      {
+        comments: 'Controlled open state.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a nested menu list with built-in expand and collapse behavior.',
+        displayName: 'Sidebar.SubMenu',
+        propName: 'open',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Marks this submenu item as active.',
+        defaultValue: false,
+        displayDescription:
+          'Renders a nested menu item within a sidebar submenu.',
+        displayName: 'Sidebar.SubMenuItem',
+        propName: 'active',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a nested menu item within a sidebar submenu.',
+        displayName: 'Sidebar.SubMenuItem',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Submenu item content.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a nested menu item within a sidebar submenu.',
+        displayName: 'Sidebar.SubMenuItem',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for submenu item styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Renders a nested menu item within a sidebar submenu.',
+        displayName: 'Sidebar.SubMenuItem',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Disables this submenu item.',
+        defaultValue: false,
+        displayDescription:
+          'Renders a nested menu item within a sidebar submenu.',
+        displayName: 'Sidebar.SubMenuItem',
+        propName: 'disabled',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Trigger action behavior.',
+        defaultValue: 'toggle',
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'action',
+        type: 'SidebarTriggerAction',
+        values: ['toggle', 'expand', 'collapse', 'open', 'close'],
+      },
+      {
+        comments: 'Render this primitive as a different element.',
+        defaultValue: null,
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Renders trigger behavior onto a single child element.',
+        defaultValue: null,
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'asChild',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Optional trigger content.',
+        defaultValue: null,
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Optional class name for trigger styling hooks.',
+        defaultValue: null,
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Opacity applied to icon content rendered by the trigger.',
+        defaultValue: 0.7,
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'iconOpacity',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Controls trigger visibility.',
+        defaultValue: true,
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'isVisible',
+        type: 'boolean | ((collapsed: boolean) => boolean)',
+        values: [],
+      },
+      {
+        comments: 'Accessible label for assistive technologies.',
+        defaultValue: null,
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'label',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Trigger positioning strategy.',
+        defaultValue: 'outside',
+        displayDescription:
+          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
+        displayName: 'Sidebar.Trigger',
+        propName: 'placement',
+        type: "'inside' | 'manual' | 'outside'",
+        values: ['inside', 'manual', 'outside'],
+      },
+    ],
+    name: 'Sidebar',
+    exportName: 'Sidebar',
+    importPath: '@themeshift/ui/components/Sidebar',
+    importString:
+      "import { Sidebar } from '@themeshift/ui/components/Sidebar';",
+    meta: {
+      category: 'navigation-structure',
+      description:
+        'Composes accessible app-side navigation with desktop collapse and offcanvas mobile behavior.',
+      featured: true,
+      order: 11,
+      related: ['Navbar', 'Tooltip', 'FocusLock', 'Link'],
+      status: 'stable',
+      tags: ['navigation', 'sidebar', 'layout', 'a11y', 'rtl'],
+      type: 'component',
+    },
+    slug: 'sidebar',
+    routeSlug: 'sidebar',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Sidebar',
+    typesReference: [
+      {
+        comments: 'Behavior mode for the sidebar root.',
+        defaultValue: null,
+        typeName: 'SidebarMode',
+        values: ['static', 'collapsible', 'offcanvas'],
+      },
+      {
+        comments: 'Logical placement edge that supports LTR and RTL layouts.',
+        defaultValue: null,
+        typeName: 'SidebarSide',
+        values: ['start', 'end'],
+      },
+      {
+        comments: 'Visual style variant for the sidebar container.',
+        defaultValue: null,
+        typeName: 'SidebarVariant',
+        values: ['default', 'inset', 'floating', 'rail'],
+      },
+      {
+        comments: 'Action presets used by `Sidebar.Trigger`.',
+        defaultValue: null,
+        typeName: 'SidebarTriggerAction',
+        values: ['toggle', 'expand', 'collapse', 'open', 'close'],
+      },
+    ],
+    type: 'component',
+  },
+  {
+    apiReference: [
+      {
         comments:
           'Controls the animation used.\n\nUse `"none"` for static placeholders. Animations are also disabled when the user enables reduced motion.',
         defaultValue: 'pulse',
+        displayDescription: '',
         displayName: 'Skeleton',
         propName: 'animation',
         type: 'SkeletonAnimation',
@@ -4088,6 +5874,7 @@ export const components = [
         comments:
           'When set, the element renders as a circle.\n\nThis overrides `radius`.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Skeleton',
         propName: 'circle',
         type: 'boolean',
@@ -4096,6 +5883,7 @@ export const components = [
       {
         comments: 'Additional class names for custom styling.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Skeleton',
         propName: 'className',
         type: 'string',
@@ -4105,6 +5893,7 @@ export const components = [
         comments:
           'Controls rendered height of the element.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"1.25rem"`).',
         defaultValue: '1rem',
+        displayDescription: '',
         displayName: 'Skeleton',
         propName: 'height',
         type: 'number | string',
@@ -4114,6 +5903,7 @@ export const components = [
         comments:
           'Applies border radius to the element.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"9999px"`).',
         defaultValue: '.5rem',
+        displayDescription: '',
         displayName: 'Skeleton',
         propName: 'radius',
         type: 'number | string',
@@ -4123,6 +5913,7 @@ export const components = [
         comments:
           'Controls rendered size of the element.\n\nWhen set, this overrides both `height` and `width`.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"2rem"`).',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Skeleton',
         propName: 'size',
         type: 'number | string',
@@ -4132,6 +5923,7 @@ export const components = [
         comments:
           'Controls rendered width of the element.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"50%"`).',
         defaultValue: '100%',
+        displayDescription: '',
         displayName: 'Skeleton',
         propName: 'width',
         type: 'number | string',
@@ -4141,6 +5933,7 @@ export const components = [
         comments:
           'Controls the animation used.\n\nUse `"none"` for static placeholders. Animations are also disabled when the user enables reduced motion.',
         defaultValue: 'pulse',
+        displayDescription: '',
         displayName: 'Skeleton.Text',
         propName: 'animation',
         type: 'SkeletonAnimation',
@@ -4149,6 +5942,7 @@ export const components = [
       {
         comments: 'Additional class names for custom styling.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Skeleton.Text',
         propName: 'className',
         type: 'string',
@@ -4158,6 +5952,7 @@ export const components = [
         comments:
           'Space between lines.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"0.75rem"`).',
         defaultValue: '.5rem',
+        displayDescription: '',
         displayName: 'Skeleton.Text',
         propName: 'gap',
         type: 'number | string',
@@ -4167,6 +5962,7 @@ export const components = [
         comments:
           'Width of the last line.\n\nThis is typically used to mimic the ragged edge of a paragraph.',
         defaultValue: '40%',
+        displayDescription: '',
         displayName: 'Skeleton.Text',
         propName: 'lastLineWidth',
         type: 'number | string',
@@ -4176,6 +5972,7 @@ export const components = [
         comments:
           'Height of each line.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"1em"`).',
         defaultValue: '1rem',
+        displayDescription: '',
         displayName: 'Skeleton.Text',
         propName: 'lineHeight',
         type: 'number | string',
@@ -4184,6 +5981,7 @@ export const components = [
       {
         comments: 'Additional props applied to each rendered skeleton line.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Skeleton.Text',
         propName: 'lineProps',
         type: "Omit<SkeletonRootProps, 'animation' | 'children' | 'circle' | 'height' | 'radius' | 'size' | 'width'>",
@@ -4193,6 +5991,7 @@ export const components = [
         comments:
           'Border radius applied to each line.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Skeleton.Text',
         propName: 'lineRadius',
         type: 'number | string',
@@ -4201,6 +6000,7 @@ export const components = [
       {
         comments: 'Number of lines to render.',
         defaultValue: 3,
+        displayDescription: '',
         displayName: 'Skeleton.Text',
         propName: 'lines',
         type: 'number',
@@ -4209,6 +6009,7 @@ export const components = [
       {
         comments: 'Controls the animation used.',
         defaultValue: 'pulse',
+        displayDescription: '',
         displayName: 'Skeleton.Avatar',
         propName: 'animation',
         type: 'SkeletonAnimation',
@@ -4217,6 +6018,7 @@ export const components = [
       {
         comments: 'When set, the element renders as a circle.',
         defaultValue: true,
+        displayDescription: '',
         displayName: 'Skeleton.Avatar',
         propName: 'circle',
         type: 'boolean',
@@ -4225,6 +6027,7 @@ export const components = [
       {
         comments: 'Additional class names for custom styling.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Skeleton.Avatar',
         propName: 'className',
         type: 'string',
@@ -4234,6 +6037,7 @@ export const components = [
         comments:
           'Controls rendered size of the element.\n\nWhen set, this overrides both `height` and `width`.\n\nNumbers are interpreted as pixels. Strings can be any valid CSS length value (for example `"3rem"`).',
         defaultValue: 48,
+        displayDescription: '',
         displayName: 'Skeleton.Avatar',
         propName: 'size',
         type: 'number | string',
@@ -4283,6 +6087,8 @@ export const components = [
       {
         comments: 'Optional text content for the skip link.',
         defaultValue: null,
+        displayDescription:
+          'A focus-revealed link that lets keyboard users bypass repeated chrome.',
         displayName: 'SkipLink',
         propName: 'children',
         type: 'ReactNode',
@@ -4291,6 +6097,8 @@ export const components = [
       {
         comments: 'Additional class names to append to the rendered link.',
         defaultValue: null,
+        displayDescription:
+          'A focus-revealed link that lets keyboard users bypass repeated chrome.',
         displayName: 'SkipLink',
         propName: 'className',
         type: 'string',
@@ -4299,6 +6107,8 @@ export const components = [
       {
         comments: 'Destination id reference, typically the main landmark.',
         defaultValue: null,
+        displayDescription:
+          'A focus-revealed link that lets keyboard users bypass repeated chrome.',
         displayName: 'SkipLink',
         propName: 'href',
         type: 'string',
@@ -4307,6 +6117,8 @@ export const components = [
       {
         comments: 'Optional text label used when `children` is not provided.',
         defaultValue: null,
+        displayDescription:
+          'A focus-revealed link that lets keyboard users bypass repeated chrome.',
         displayName: 'SkipLink',
         propName: 'label',
         type: 'string',
@@ -4340,6 +6152,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Spinner',
         propName: 'className',
         type: 'string',
@@ -4348,6 +6161,7 @@ export const components = [
       {
         comments: '',
         defaultValue: 24,
+        displayDescription: '',
         displayName: 'Spinner',
         propName: 'size',
         type: 'number',
@@ -4381,6 +6195,7 @@ export const components = [
       {
         comments: 'Shows a border around the table shell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'border',
         type: 'boolean',
@@ -4390,6 +6205,7 @@ export const components = [
         comments:
           'Optional caption rendered when no `Table.Caption` child is provided.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'caption',
         type: 'ReactNode',
@@ -4399,6 +6215,7 @@ export const components = [
         comments:
           'Declarative table content built from primitives or native children.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'children',
         type: 'ReactNode',
@@ -4407,6 +6224,7 @@ export const components = [
       {
         comments: 'Additional class names appended to the table element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'className',
         type: 'string',
@@ -4415,6 +6233,7 @@ export const components = [
       {
         comments: 'Data-mode columns are unavailable in children mode.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'columns',
         type: 'TableColumn<TData>[]',
@@ -4423,6 +6242,7 @@ export const components = [
       {
         comments: 'Data-mode rows are unavailable in children mode.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'data',
         type: 'TData[]',
@@ -4431,6 +6251,7 @@ export const components = [
       {
         comments: 'Density preset applied to row spacing.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'density',
         type: 'TableDensity',
@@ -4440,6 +6261,7 @@ export const components = [
         comments:
           'Optional empty-state content used in data mode when no rows exist.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'emptyState',
         type: 'ReactNode',
@@ -4448,6 +6270,7 @@ export const components = [
       {
         comments: 'Makes the table span the full available inline size.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'fullWidth',
         type: 'boolean',
@@ -4456,6 +6279,7 @@ export const components = [
       {
         comments: 'Computes row keys in data mode.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'getRowKey',
         type: '(row: TData, index: number) => React.Key',
@@ -4464,6 +6288,7 @@ export const components = [
       {
         comments: 'Computes additional row props in data mode.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'getRowProps',
         type: '(row: TData, index: number) => TableRowProps',
@@ -4472,6 +6297,7 @@ export const components = [
       {
         comments: 'Enables hover background styles for rows.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'hover',
         type: 'boolean',
@@ -4480,6 +6306,7 @@ export const components = [
       {
         comments: 'Responsive table behavior mode.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'responsive',
         type: 'TableResponsiveMode',
@@ -4488,6 +6315,7 @@ export const components = [
       {
         comments: 'Breakpoint used by table-level responsive mode.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'responsiveBreakpoint',
         type: 'TableResponsiveBreakpoint',
@@ -4496,6 +6324,7 @@ export const components = [
       {
         comments: 'Size preset applied to typography and spacing scale.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'size',
         type: 'TableSize',
@@ -4504,6 +6333,7 @@ export const components = [
       {
         comments: 'Enables striped row backgrounds.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'striped',
         type: 'boolean',
@@ -4512,6 +6342,7 @@ export const components = [
       {
         comments: 'Inline styles passed to the table element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'style',
         type: 'CSSProperties',
@@ -4520,6 +6351,7 @@ export const components = [
       {
         comments: 'Surface style for table background treatments.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table',
         propName: 'surface',
         type: 'TableSurface',
@@ -4528,6 +6360,7 @@ export const components = [
       {
         comments: 'Body row content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Body',
         propName: 'children',
         type: 'ReactNode',
@@ -4536,6 +6369,7 @@ export const components = [
       {
         comments: 'Additional class names for the body section.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Body',
         propName: 'className',
         type: 'string',
@@ -4544,6 +6378,7 @@ export const components = [
       {
         comments: 'Inline styles for the body section.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Body',
         propName: 'style',
         type: 'CSSProperties',
@@ -4552,6 +6387,7 @@ export const components = [
       {
         comments: 'Caption content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Caption',
         propName: 'children',
         type: 'ReactNode',
@@ -4560,6 +6396,7 @@ export const components = [
       {
         comments: 'Additional class names for the caption element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Caption',
         propName: 'className',
         type: 'string',
@@ -4568,6 +6405,7 @@ export const components = [
       {
         comments: 'Placement control for caption visual position.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Caption',
         propName: 'placement',
         type: "'top' | 'bottom'",
@@ -4576,6 +6414,7 @@ export const components = [
       {
         comments: 'Inline styles for the caption element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Caption',
         propName: 'style',
         type: 'CSSProperties',
@@ -4585,6 +6424,7 @@ export const components = [
         comments:
           'Renders the caption visually hidden while preserving semantics.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Caption',
         propName: 'visuallyHidden',
         type: 'boolean',
@@ -4593,6 +6433,7 @@ export const components = [
       {
         comments: 'Horizontal alignment for cell content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'align',
         type: 'TableAlign',
@@ -4601,6 +6442,7 @@ export const components = [
       {
         comments: 'Data or header cell element to render.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'as',
         type: "'th' | 'td'",
@@ -4609,6 +6451,7 @@ export const components = [
       {
         comments: 'Cell contents.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'children',
         type: 'ReactNode',
@@ -4617,6 +6460,7 @@ export const components = [
       {
         comments: 'Additional class names to append to the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'className',
         type: 'string',
@@ -4625,6 +6469,7 @@ export const components = [
       {
         comments: 'Column span value forwarded to native table cell elements.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'colSpan',
         type: 'number',
@@ -4633,6 +6478,7 @@ export const components = [
       {
         comments: 'Maximum inline size constraint for the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'maxWidth',
         type: 'string | number',
@@ -4641,6 +6487,7 @@ export const components = [
       {
         comments: 'Minimum inline size constraint for the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'minWidth',
         type: 'string | number',
@@ -4649,6 +6496,7 @@ export const components = [
       {
         comments: 'Prevents wrapping and keeps content on one line.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'nowrap',
         type: 'boolean',
@@ -4657,6 +6505,7 @@ export const components = [
       {
         comments: 'Row span value forwarded to native table cell elements.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'rowSpan',
         type: 'number',
@@ -4665,6 +6514,7 @@ export const components = [
       {
         comments: 'Pins the cell to inline-start with sticky positioning.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'sticky',
         type: 'boolean',
@@ -4673,6 +6523,7 @@ export const components = [
       {
         comments: 'Inline style object forwarded to the cell element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'style',
         type: 'CSSProperties',
@@ -4682,6 +6533,7 @@ export const components = [
         comments:
           'Truncates overflowed content to a single line with ellipsis.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'truncate',
         type: 'boolean',
@@ -4690,6 +6542,7 @@ export const components = [
       {
         comments: 'Vertical alignment for cell content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'verticalAlign',
         type: 'TableVerticalAlign',
@@ -4698,6 +6551,7 @@ export const components = [
       {
         comments: 'Width constraint for the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Cell',
         propName: 'width',
         type: 'string | number',
@@ -4706,6 +6560,7 @@ export const components = [
       {
         comments: 'Wrapped table element or table-related content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Container',
         propName: 'children',
         type: 'ReactNode',
@@ -4714,6 +6569,7 @@ export const components = [
       {
         comments: 'Makes the scroll region keyboard focusable.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Container',
         propName: 'focusable',
         type: 'boolean',
@@ -4722,6 +6578,7 @@ export const components = [
       {
         comments: 'Accessible label required for focusable scroll regions.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Container',
         propName: 'label',
         type: 'string',
@@ -4730,6 +6587,7 @@ export const components = [
       {
         comments: 'Max block size constraint for vertical scrolling contexts.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Container',
         propName: 'maxHeight',
         type: 'string | number',
@@ -4738,6 +6596,7 @@ export const components = [
       {
         comments: 'Scroll direction behavior for the container.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Container',
         propName: 'scroll',
         type: "'none' | 'horizontal' | 'vertical' | 'both'",
@@ -4746,6 +6605,7 @@ export const components = [
       {
         comments: 'Horizontal alignment for cell content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'align',
         type: 'TableAlign',
@@ -4754,6 +6614,7 @@ export const components = [
       {
         comments: 'Data cell contents.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'children',
         type: 'ReactNode',
@@ -4762,6 +6623,7 @@ export const components = [
       {
         comments: 'Additional class names to append to the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'className',
         type: 'string',
@@ -4770,6 +6632,7 @@ export const components = [
       {
         comments: 'Column span value forwarded to native table cell elements.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'colSpan',
         type: 'number',
@@ -4778,6 +6641,7 @@ export const components = [
       {
         comments: 'Maximum inline size constraint for the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'maxWidth',
         type: 'string | number',
@@ -4786,6 +6650,7 @@ export const components = [
       {
         comments: 'Minimum inline size constraint for the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'minWidth',
         type: 'string | number',
@@ -4794,6 +6659,7 @@ export const components = [
       {
         comments: 'Prevents wrapping and keeps content on one line.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'nowrap',
         type: 'boolean',
@@ -4802,6 +6668,7 @@ export const components = [
       {
         comments: 'Row span value forwarded to native table cell elements.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'rowSpan',
         type: 'number',
@@ -4810,6 +6677,7 @@ export const components = [
       {
         comments: 'Pins the cell to inline-start with sticky positioning.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'sticky',
         type: 'boolean',
@@ -4818,6 +6686,7 @@ export const components = [
       {
         comments: 'Inline style object forwarded to the cell element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'style',
         type: 'CSSProperties',
@@ -4827,6 +6696,7 @@ export const components = [
         comments:
           'Truncates overflowed content to a single line with ellipsis.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'truncate',
         type: 'boolean',
@@ -4835,6 +6705,7 @@ export const components = [
       {
         comments: 'Vertical alignment for cell content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'verticalAlign',
         type: 'TableVerticalAlign',
@@ -4843,6 +6714,7 @@ export const components = [
       {
         comments: 'Width constraint for the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Data',
         propName: 'width',
         type: 'string | number',
@@ -4852,6 +6724,7 @@ export const components = [
         comments:
           'Optional empty-state action content rendered below description.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Empty',
         propName: 'action',
         type: 'ReactNode',
@@ -4860,6 +6733,7 @@ export const components = [
       {
         comments: 'Optional custom empty-state content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Empty',
         propName: 'children',
         type: 'ReactNode',
@@ -4868,6 +6742,7 @@ export const components = [
       {
         comments: 'Additional class names for the empty-state row.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Empty',
         propName: 'className',
         type: 'string',
@@ -4877,6 +6752,7 @@ export const components = [
         comments:
           'Overrides inferred table column span for the empty-state cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Empty',
         propName: 'colSpan',
         type: 'number',
@@ -4885,6 +6761,7 @@ export const components = [
       {
         comments: 'Optional descriptive content rendered below the title.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Empty',
         propName: 'description',
         type: 'ReactNode',
@@ -4893,6 +6770,7 @@ export const components = [
       {
         comments: 'Inline styles for the empty-state row.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Empty',
         propName: 'style',
         type: 'CSSProperties',
@@ -4901,6 +6779,7 @@ export const components = [
       {
         comments: 'Optional title content for the built-in empty-state layout.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Empty',
         propName: 'title',
         type: 'ReactNode',
@@ -4909,6 +6788,7 @@ export const components = [
       {
         comments: 'Footer row content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Foot',
         propName: 'children',
         type: 'ReactNode',
@@ -4917,6 +6797,7 @@ export const components = [
       {
         comments: 'Additional class names for the foot section.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Foot',
         propName: 'className',
         type: 'string',
@@ -4925,6 +6806,7 @@ export const components = [
       {
         comments: 'Inline styles for the foot section.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Foot',
         propName: 'style',
         type: 'CSSProperties',
@@ -4933,6 +6815,7 @@ export const components = [
       {
         comments: 'Header row content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Head',
         propName: 'children',
         type: 'ReactNode',
@@ -4941,6 +6824,7 @@ export const components = [
       {
         comments: 'Additional class names for the head section.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Head',
         propName: 'className',
         type: 'string',
@@ -4949,6 +6833,7 @@ export const components = [
       {
         comments: 'Enables sticky header positioning.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Head',
         propName: 'sticky',
         type: 'boolean',
@@ -4957,6 +6842,7 @@ export const components = [
       {
         comments: 'Inline styles for the head section.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Head',
         propName: 'style',
         type: 'CSSProperties',
@@ -4965,6 +6851,7 @@ export const components = [
       {
         comments: 'Horizontal alignment for cell content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'align',
         type: 'TableAlign',
@@ -4973,6 +6860,7 @@ export const components = [
       {
         comments: 'Header cell contents.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'children',
         type: 'ReactNode',
@@ -4981,6 +6869,7 @@ export const components = [
       {
         comments: 'Additional class names to append to the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'className',
         type: 'string',
@@ -4989,6 +6878,7 @@ export const components = [
       {
         comments: 'Column span value forwarded to native table cell elements.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'colSpan',
         type: 'number',
@@ -4997,6 +6887,7 @@ export const components = [
       {
         comments: 'Maximum inline size constraint for the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'maxWidth',
         type: 'string | number',
@@ -5005,6 +6896,7 @@ export const components = [
       {
         comments: 'Minimum inline size constraint for the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'minWidth',
         type: 'string | number',
@@ -5013,6 +6905,7 @@ export const components = [
       {
         comments: 'Prevents wrapping and keeps content on one line.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'nowrap',
         type: 'boolean',
@@ -5021,6 +6914,7 @@ export const components = [
       {
         comments: 'Row span value forwarded to native table cell elements.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'rowSpan',
         type: 'number',
@@ -5029,6 +6923,7 @@ export const components = [
       {
         comments: 'Header scope for table semantics.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'scope',
         type: "'col' | 'row' | 'colgroup' | 'rowgroup'",
@@ -5037,6 +6932,7 @@ export const components = [
       {
         comments: 'Sort state mapped to native `aria-sort`.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'sortDirection',
         type: 'TableSortDirection',
@@ -5045,6 +6941,7 @@ export const components = [
       {
         comments: 'Pins the cell to inline-start with sticky positioning.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'sticky',
         type: 'boolean',
@@ -5053,6 +6950,7 @@ export const components = [
       {
         comments: 'Inline style object forwarded to the cell element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'style',
         type: 'CSSProperties',
@@ -5062,6 +6960,7 @@ export const components = [
         comments:
           'Truncates overflowed content to a single line with ellipsis.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'truncate',
         type: 'boolean',
@@ -5070,6 +6969,7 @@ export const components = [
       {
         comments: 'Vertical alignment for cell content.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'verticalAlign',
         type: 'TableVerticalAlign',
@@ -5078,6 +6978,7 @@ export const components = [
       {
         comments: 'Width constraint for the cell.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Header',
         propName: 'width',
         type: 'string | number',
@@ -5086,6 +6987,7 @@ export const components = [
       {
         comments: 'Row contents, typically header or data cells.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Row',
         propName: 'children',
         type: 'ReactNode',
@@ -5094,6 +6996,7 @@ export const components = [
       {
         comments: 'Additional class names to append to the row element.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Row',
         propName: 'className',
         type: 'string',
@@ -5102,6 +7005,7 @@ export const components = [
       {
         comments: 'Disables row interaction styling and event handling.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Row',
         propName: 'disabled',
         type: 'boolean',
@@ -5110,6 +7014,7 @@ export const components = [
       {
         comments: 'Visual hover style toggle for the row.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Row',
         propName: 'hover',
         type: 'boolean',
@@ -5118,6 +7023,7 @@ export const components = [
       {
         comments: 'Visual affordance for click-like row behavior.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Row',
         propName: 'interactive',
         type: 'boolean',
@@ -5126,6 +7032,7 @@ export const components = [
       {
         comments: 'Click handler for row interactions.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Row',
         propName: 'onClick',
         type: 'React.MouseEventHandler<HTMLTableRowElement>',
@@ -5134,6 +7041,7 @@ export const components = [
       {
         comments: 'Keyboard handler forwarded to native row events.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Row',
         propName: 'onKeyDown',
         type: 'React.KeyboardEventHandler<HTMLTableRowElement>',
@@ -5143,6 +7051,7 @@ export const components = [
         comments:
           'Visual selected state with matching `aria-selected` semantics.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Row',
         propName: 'selected',
         type: 'boolean',
@@ -5151,6 +7060,7 @@ export const components = [
       {
         comments: 'Inline styles for the row.',
         defaultValue: null,
+        displayDescription: '',
         displayName: 'Table.Row',
         propName: 'style',
         type: 'CSSProperties',
@@ -5246,6 +7156,8 @@ export const components = [
       {
         comments: 'Keyboard activation model for arrow navigation.',
         defaultValue: 'automatic',
+        displayDescription:
+          'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
         propName: 'activationMode',
         type: 'TabsActivationMode',
@@ -5254,6 +7166,8 @@ export const components = [
       {
         comments: 'HTML element or component to render instead of the default.',
         defaultValue: null,
+        displayDescription:
+          'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
         propName: 'as',
         type: 'ElementType',
@@ -5263,6 +7177,8 @@ export const components = [
         comments:
           'Tab list, triggers, panels, and optional indicator composition.',
         defaultValue: null,
+        displayDescription:
+          'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
         propName: 'children',
         type: 'ReactNode',
@@ -5271,6 +7187,8 @@ export const components = [
       {
         comments: 'Initial selected tab value for uncontrolled usage.',
         defaultValue: null,
+        displayDescription:
+          'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
         propName: 'defaultValue',
         type: 'string',
@@ -5279,6 +7197,8 @@ export const components = [
       {
         comments: 'Makes triggers share equal inline size in the list.',
         defaultValue: false,
+        displayDescription:
+          'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
         propName: 'fitted',
         type: 'boolean',
@@ -5287,6 +7207,8 @@ export const components = [
       {
         comments: 'Delays inactive panel mounting until first activation.',
         defaultValue: false,
+        displayDescription:
+          'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
         propName: 'lazyMount',
         type: 'boolean',
@@ -5296,6 +7218,8 @@ export const components = [
         comments:
           'Allows focus navigation to wrap from end-to-start and start-to-end.',
         defaultValue: true,
+        displayDescription:
+          'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
         propName: 'loop',
         type: 'boolean',
@@ -5304,6 +7228,8 @@ export const components = [
       {
         comments: 'Called when selection changes.',
         defaultValue: null,
+        displayDescription:
+          'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
         propName: 'onValueChange',
         type: '(value: string) => void',
@@ -5312,6 +7238,8 @@ export const components = [
       {
         comments: 'Orientation used for layout and keyboard behavior.',
         defaultValue: 'horizontal',
+        displayDescription:
+          'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
         propName: 'orientation',
         type: 'TabsOrientation',
@@ -5320,6 +7248,8 @@ export const components = [
       {
         comments: 'Unmounts inactive panels when they become hidden.',
         defaultValue: false,
+        displayDescription:
+          'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
         propName: 'unmountOnExit',
         type: 'boolean',
@@ -5328,6 +7258,8 @@ export const components = [
       {
         comments: 'Controlled selected tab value.',
         defaultValue: null,
+        displayDescription:
+          'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
         propName: 'value',
         type: 'string',
@@ -5336,6 +7268,8 @@ export const components = [
       {
         comments: 'HTML element or component to render instead of the default.',
         defaultValue: null,
+        displayDescription:
+          'Decorative active-tab indicator that follows selected trigger bounds.',
         displayName: 'Tabs.Indicator',
         propName: 'as',
         type: 'ElementType',
@@ -5345,6 +7279,8 @@ export const components = [
         comments:
           'Forces indicator to render even when no active trigger is available.',
         defaultValue: false,
+        displayDescription:
+          'Decorative active-tab indicator that follows selected trigger bounds.',
         displayName: 'Tabs.Indicator',
         propName: 'forceMount',
         type: 'boolean',
@@ -5353,6 +7289,8 @@ export const components = [
       {
         comments: 'Shrinks indicator bounds relative to the active trigger.',
         defaultValue: 'none',
+        displayDescription:
+          'Decorative active-tab indicator that follows selected trigger bounds.',
         displayName: 'Tabs.Indicator',
         propName: 'inset',
         type: 'TabsIndicatorInset',
@@ -5361,6 +7299,8 @@ export const components = [
       {
         comments: 'Sets indicator line thickness.',
         defaultValue: 'small',
+        displayDescription:
+          'Decorative active-tab indicator that follows selected trigger bounds.',
         displayName: 'Tabs.Indicator',
         propName: 'size',
         type: 'TabsIndicatorSize',
@@ -5370,6 +7310,8 @@ export const components = [
         comments:
           'Enables transition motion between selected trigger positions.',
         defaultValue: true,
+        displayDescription:
+          'Decorative active-tab indicator that follows selected trigger bounds.',
         displayName: 'Tabs.Indicator',
         propName: 'transition',
         type: 'boolean',
@@ -5379,6 +7321,8 @@ export const components = [
         comments:
           'Accessible name for the tablist when no visible heading labels it.',
         defaultValue: null,
+        displayDescription:
+          'Container for triggers and indicator with `role="tablist"`.',
         displayName: 'Tabs.List',
         propName: 'aria-label',
         type: 'string',
@@ -5387,6 +7331,8 @@ export const components = [
       {
         comments: 'HTML element or component to render instead of the default.',
         defaultValue: null,
+        displayDescription:
+          'Container for triggers and indicator with `role="tablist"`.',
         displayName: 'Tabs.List',
         propName: 'as',
         type: 'ElementType',
@@ -5395,6 +7341,8 @@ export const components = [
       {
         comments: 'Trigger items and optional `Tabs.Indicator`.',
         defaultValue: null,
+        displayDescription:
+          'Container for triggers and indicator with `role="tablist"`.',
         displayName: 'Tabs.List',
         propName: 'children',
         type: 'ReactNode',
@@ -5403,6 +7351,8 @@ export const components = [
       {
         comments: 'HTML element or component to render instead of the default.',
         defaultValue: null,
+        displayDescription:
+          'Panel region associated to a trigger via matching `value`.',
         displayName: 'Tabs.Panel',
         propName: 'as',
         type: 'ElementType',
@@ -5411,6 +7361,8 @@ export const components = [
       {
         comments: 'Panel content for the matching trigger value.',
         defaultValue: null,
+        displayDescription:
+          'Panel region associated to a trigger via matching `value`.',
         displayName: 'Tabs.Panel',
         propName: 'children',
         type: 'ReactNode',
@@ -5420,6 +7372,8 @@ export const components = [
         comments:
           'Forces panel to stay mounted regardless of lazy/unmount settings.',
         defaultValue: false,
+        displayDescription:
+          'Panel region associated to a trigger via matching `value`.',
         displayName: 'Tabs.Panel',
         propName: 'forceMount',
         type: 'boolean',
@@ -5428,6 +7382,8 @@ export const components = [
       {
         comments: 'Value matching a `Tabs.Trigger`.',
         defaultValue: null,
+        displayDescription:
+          'Panel region associated to a trigger via matching `value`.',
         displayName: 'Tabs.Panel',
         propName: 'value',
         type: 'string',
@@ -5436,6 +7392,8 @@ export const components = [
       {
         comments: 'HTML element or component to render instead of the default.',
         defaultValue: null,
+        displayDescription:
+          'Optional wrapper for panels with local lazy/unmount overrides.',
         displayName: 'Tabs.Panels',
         propName: 'as',
         type: 'ElementType',
@@ -5444,6 +7402,8 @@ export const components = [
       {
         comments: 'Panel children.',
         defaultValue: null,
+        displayDescription:
+          'Optional wrapper for panels with local lazy/unmount overrides.',
         displayName: 'Tabs.Panels',
         propName: 'children',
         type: 'ReactNode',
@@ -5452,6 +7412,8 @@ export const components = [
       {
         comments: 'Optional local lazy-mount override for nested panels.',
         defaultValue: null,
+        displayDescription:
+          'Optional wrapper for panels with local lazy/unmount overrides.',
         displayName: 'Tabs.Panels',
         propName: 'lazyMount',
         type: 'boolean',
@@ -5460,6 +7422,8 @@ export const components = [
       {
         comments: 'Optional local unmount-on-exit override for nested panels.',
         defaultValue: null,
+        displayDescription:
+          'Optional wrapper for panels with local lazy/unmount overrides.',
         displayName: 'Tabs.Panels',
         propName: 'unmountOnExit',
         type: 'boolean',
@@ -5468,6 +7432,8 @@ export const components = [
       {
         comments: 'HTML element or component to render instead of the default.',
         defaultValue: null,
+        displayDescription:
+          'Selectable trigger linked to a panel by shared `value`.',
         displayName: 'Tabs.Trigger',
         propName: 'as',
         type: 'ElementType',
@@ -5476,6 +7442,8 @@ export const components = [
       {
         comments: 'Trigger label content.',
         defaultValue: null,
+        displayDescription:
+          'Selectable trigger linked to a panel by shared `value`.',
         displayName: 'Tabs.Trigger',
         propName: 'children',
         type: 'ReactNode',
@@ -5484,6 +7452,8 @@ export const components = [
       {
         comments: 'Disables pointer and keyboard activation for this trigger.',
         defaultValue: false,
+        displayDescription:
+          'Selectable trigger linked to a panel by shared `value`.',
         displayName: 'Tabs.Trigger',
         propName: 'disabled',
         type: 'boolean',
@@ -5492,6 +7462,8 @@ export const components = [
       {
         comments: 'Unique value associated with this tab and matching panel.',
         defaultValue: null,
+        displayDescription:
+          'Selectable trigger linked to a panel by shared `value`.',
         displayName: 'Tabs.Trigger',
         propName: 'value',
         type: 'string',
@@ -5552,6 +7524,8 @@ export const components = [
       {
         comments: 'Makes the textarea span the full width of its container.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware textarea with native and autosize resize modes.',
         displayName: 'Textarea',
         propName: 'fullWidth',
         type: 'boolean',
@@ -5560,6 +7534,8 @@ export const components = [
       {
         comments: 'Maximum rows when `resize="auto"`.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware textarea with native and autosize resize modes.',
         displayName: 'Textarea',
         propName: 'maxRows',
         type: 'number',
@@ -5568,6 +7544,8 @@ export const components = [
       {
         comments: 'Minimum rows when `resize="auto"`.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware textarea with native and autosize resize modes.',
         displayName: 'Textarea',
         propName: 'minRows',
         type: 'number',
@@ -5576,6 +7554,8 @@ export const components = [
       {
         comments: 'Resize behavior for the control.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware textarea with native and autosize resize modes.',
         displayName: 'Textarea',
         propName: 'resize',
         type: 'TextareaResize',
@@ -5584,6 +7564,8 @@ export const components = [
       {
         comments: 'Visual size for the control.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware textarea with native and autosize resize modes.',
         displayName: 'Textarea',
         propName: 'size',
         type: 'TextareaSize',
@@ -5592,6 +7574,8 @@ export const components = [
       {
         comments: 'Visual validation state for border and state colors.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware textarea with native and autosize resize modes.',
         displayName: 'Textarea',
         propName: 'validationState',
         type: 'TextareaValidationState',
@@ -5644,6 +7628,8 @@ export const components = [
       {
         comments: 'Additional class name for the outer wrapper.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware switch built on top of a native checkbox input.',
         displayName: 'ToggleSwitch',
         propName: 'className',
         type: 'string',
@@ -5652,6 +7638,8 @@ export const components = [
       {
         comments: 'Visual style used for the thumb color.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware switch built on top of a native checkbox input.',
         displayName: 'ToggleSwitch',
         propName: 'intent',
         type: 'ToggleSwitchIntent',
@@ -5660,6 +7648,8 @@ export const components = [
       {
         comments: 'Called with the next checked state after user interaction.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware switch built on top of a native checkbox input.',
         displayName: 'ToggleSwitch',
         propName: 'onCheckedChange',
         type: '(checked: boolean) => void',
@@ -5668,6 +7658,8 @@ export const components = [
       {
         comments: 'Size option for the track and thumb.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware switch built on top of a native checkbox input.',
         displayName: 'ToggleSwitch',
         propName: 'size',
         type: 'ToggleSwitchSize',
@@ -5676,6 +7668,8 @@ export const components = [
       {
         comments: 'Additional class name for the thumb element.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware switch built on top of a native checkbox input.',
         displayName: 'ToggleSwitch',
         propName: 'thumbClassName',
         type: 'string',
@@ -5684,6 +7678,8 @@ export const components = [
       {
         comments: 'Icon shown inside the thumb when the switch is off.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware switch built on top of a native checkbox input.',
         displayName: 'ToggleSwitch',
         propName: 'thumbIconOff',
         type: 'ReactNode',
@@ -5692,6 +7688,8 @@ export const components = [
       {
         comments: 'Icon shown inside the thumb when the switch is on.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware switch built on top of a native checkbox input.',
         displayName: 'ToggleSwitch',
         propName: 'thumbIconOn',
         type: 'ReactNode',
@@ -5700,6 +7698,8 @@ export const components = [
       {
         comments: 'Additional class name for the track element.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware switch built on top of a native checkbox input.',
         displayName: 'ToggleSwitch',
         propName: 'trackClassName',
         type: 'string',
@@ -5708,6 +7708,8 @@ export const components = [
       {
         comments: 'Icon shown inside the track when the switch is off.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware switch built on top of a native checkbox input.',
         displayName: 'ToggleSwitch',
         propName: 'trackIconOff',
         type: 'ReactNode',
@@ -5716,6 +7718,8 @@ export const components = [
       {
         comments: 'Icon shown inside the track when the switch is on.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware switch built on top of a native checkbox input.',
         displayName: 'ToggleSwitch',
         propName: 'trackIconOn',
         type: 'ReactNode',
@@ -5724,6 +7728,8 @@ export const components = [
       {
         comments: 'Visual validation state for border feedback.',
         defaultValue: null,
+        displayDescription:
+          'A theme-aware switch built on top of a native checkbox input.',
         displayName: 'ToggleSwitch',
         propName: 'validationState',
         type: 'ToggleSwitchValidationState',
@@ -5777,6 +7783,7 @@ export const components = [
       {
         comments: 'Minimum viewport collision padding.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'boundaryPadding',
         type: 'number',
@@ -5786,6 +7793,7 @@ export const components = [
         comments:
           'Tooltip trigger/content composition or convenience child trigger element.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'children',
         type: 'ReactNode',
@@ -5794,6 +7802,7 @@ export const components = [
       {
         comments: 'Optional class name applied to convenience tooltip content.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'className',
         type: 'string',
@@ -5802,6 +7811,7 @@ export const components = [
       {
         comments: 'Delay before closing tooltip on pointer leave.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'closeDelay',
         type: 'number',
@@ -5811,6 +7821,7 @@ export const components = [
         comments:
           'Convenience content for `<Tooltip content="...">` usage.\n\nWhen provided, Tooltip automatically renders Trigger and Content internally.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'content',
         type: 'ReactNode',
@@ -5819,6 +7830,7 @@ export const components = [
       {
         comments: 'Initial open state for uncontrolled usage.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'defaultOpen',
         type: 'boolean',
@@ -5827,6 +7839,7 @@ export const components = [
       {
         comments: 'Delay before opening tooltip.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'delay',
         type: 'number',
@@ -5835,6 +7848,7 @@ export const components = [
       {
         comments: 'Disables tooltip behavior and forces closed state.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'disabled',
         type: 'boolean',
@@ -5843,6 +7857,7 @@ export const components = [
       {
         comments: 'Optional id used by tooltip content.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'id',
         type: 'string',
@@ -5851,6 +7866,7 @@ export const components = [
       {
         comments: 'Gap between trigger and tooltip content.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'offset',
         type: 'number',
@@ -5859,6 +7875,7 @@ export const components = [
       {
         comments: 'Called when open state changes.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'onOpenChange',
         type: '(open: boolean) => void',
@@ -5867,6 +7884,7 @@ export const components = [
       {
         comments: 'Controlled open state.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'open',
         type: 'boolean',
@@ -5875,6 +7893,7 @@ export const components = [
       {
         comments: 'Preferred tooltip placement relative to trigger.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'placement',
         type: 'TooltipPlacement',
@@ -5883,6 +7902,7 @@ export const components = [
       {
         comments: 'Renders content inside a portal by default.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'portal',
         type: 'boolean',
@@ -5891,6 +7911,7 @@ export const components = [
       {
         comments: 'Optional portal mount container.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'portalContainer',
         type: 'HTMLElement | null',
@@ -5899,6 +7920,7 @@ export const components = [
       {
         comments: 'Shows arrow in convenience mode when `content` is used.',
         defaultValue: true,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'showArrow',
         type: 'boolean',
@@ -5907,6 +7929,7 @@ export const components = [
       {
         comments: 'Skip-delay window override for this tooltip tree.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip',
         propName: 'skipDelayDuration',
         type: 'number',
@@ -5915,6 +7938,8 @@ export const components = [
       {
         comments: 'Tooltip body content.',
         defaultValue: null,
+        displayDescription:
+          'Tooltip body container with portal and positioning support.',
         displayName: 'Tooltip.Content',
         propName: 'children',
         type: 'ReactNode',
@@ -5923,6 +7948,8 @@ export const components = [
       {
         comments: 'Optional class name override for content node.',
         defaultValue: null,
+        displayDescription:
+          'Tooltip body container with portal and positioning support.',
         displayName: 'Tooltip.Content',
         propName: 'className',
         type: 'string',
@@ -5931,6 +7958,8 @@ export const components = [
       {
         comments: 'Optional id override for content node.',
         defaultValue: null,
+        displayDescription:
+          'Tooltip body container with portal and positioning support.',
         displayName: 'Tooltip.Content',
         propName: 'id',
         type: 'string',
@@ -5939,6 +7968,8 @@ export const components = [
       {
         comments: 'Optional placement override for this content instance.',
         defaultValue: null,
+        displayDescription:
+          'Tooltip body container with portal and positioning support.',
         displayName: 'Tooltip.Content',
         propName: 'placement',
         type: 'TooltipPlacement',
@@ -5947,6 +7978,8 @@ export const components = [
       {
         comments: 'Renders content without using a portal when true.',
         defaultValue: null,
+        displayDescription:
+          'Tooltip body container with portal and positioning support.',
         displayName: 'Tooltip.Content',
         propName: 'portal',
         type: 'boolean',
@@ -5955,6 +7988,8 @@ export const components = [
       {
         comments: 'Optional portal mount container override.',
         defaultValue: null,
+        displayDescription:
+          'Tooltip body container with portal and positioning support.',
         displayName: 'Tooltip.Content',
         propName: 'portalContainer',
         type: 'HTMLElement | null',
@@ -5963,6 +7998,8 @@ export const components = [
       {
         comments: 'Tooltip trees that should share timing behavior.',
         defaultValue: null,
+        displayDescription:
+          'Shares tooltip timing behavior for nearby tooltip interactions.',
         displayName: 'Tooltip.Provider',
         propName: 'children',
         type: 'ReactNode',
@@ -5971,6 +8008,8 @@ export const components = [
       {
         comments: 'Delay before closing tooltips on pointer leave.',
         defaultValue: 100,
+        displayDescription:
+          'Shares tooltip timing behavior for nearby tooltip interactions.',
         displayName: 'Tooltip.Provider',
         propName: 'closeDelay',
         type: 'number',
@@ -5979,6 +8018,8 @@ export const components = [
       {
         comments: 'Delay before opening tooltips.',
         defaultValue: 500,
+        displayDescription:
+          'Shares tooltip timing behavior for nearby tooltip interactions.',
         displayName: 'Tooltip.Provider',
         propName: 'delay',
         type: 'number',
@@ -5988,6 +8029,8 @@ export const components = [
         comments:
           'Duration where neighboring tooltips can open immediately after one opens.',
         defaultValue: 300,
+        displayDescription:
+          'Shares tooltip timing behavior for nearby tooltip interactions.',
         displayName: 'Tooltip.Provider',
         propName: 'skipDelayDuration',
         type: 'number',
@@ -5996,6 +8039,7 @@ export const components = [
       {
         comments: 'Minimum viewport collision padding.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'boundaryPadding',
         type: 'number',
@@ -6005,6 +8049,7 @@ export const components = [
         comments:
           'Tooltip trigger/content composition or convenience child trigger element.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'children',
         type: 'ReactNode',
@@ -6013,6 +8058,7 @@ export const components = [
       {
         comments: 'Optional class name applied to convenience tooltip content.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'className',
         type: 'string',
@@ -6021,6 +8067,7 @@ export const components = [
       {
         comments: 'Delay before closing tooltip on pointer leave.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'closeDelay',
         type: 'number',
@@ -6030,6 +8077,7 @@ export const components = [
         comments:
           'Convenience content for `<Tooltip content="...">` usage.\n\nWhen provided, Tooltip automatically renders Trigger and Content internally.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'content',
         type: 'ReactNode',
@@ -6038,6 +8086,7 @@ export const components = [
       {
         comments: 'Initial open state for uncontrolled usage.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'defaultOpen',
         type: 'boolean',
@@ -6046,6 +8095,7 @@ export const components = [
       {
         comments: 'Delay before opening tooltip.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'delay',
         type: 'number',
@@ -6054,6 +8104,7 @@ export const components = [
       {
         comments: 'Disables tooltip behavior and forces closed state.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'disabled',
         type: 'boolean',
@@ -6062,6 +8113,7 @@ export const components = [
       {
         comments: 'Optional id used by tooltip content.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'id',
         type: 'string',
@@ -6070,6 +8122,7 @@ export const components = [
       {
         comments: 'Gap between trigger and tooltip content.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'offset',
         type: 'number',
@@ -6078,6 +8131,7 @@ export const components = [
       {
         comments: 'Called when open state changes.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'onOpenChange',
         type: '(open: boolean) => void',
@@ -6086,6 +8140,7 @@ export const components = [
       {
         comments: 'Controlled open state.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'open',
         type: 'boolean',
@@ -6094,6 +8149,7 @@ export const components = [
       {
         comments: 'Preferred tooltip placement relative to trigger.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'placement',
         type: 'TooltipPlacement',
@@ -6102,6 +8158,7 @@ export const components = [
       {
         comments: 'Renders content inside a portal by default.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'portal',
         type: 'boolean',
@@ -6110,6 +8167,7 @@ export const components = [
       {
         comments: 'Optional portal mount container.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'portalContainer',
         type: 'HTMLElement | null',
@@ -6118,6 +8176,7 @@ export const components = [
       {
         comments: 'Shows arrow in convenience mode when `content` is used.',
         defaultValue: true,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'showArrow',
         type: 'boolean',
@@ -6126,6 +8185,7 @@ export const components = [
       {
         comments: 'Skip-delay window override for this tooltip tree.',
         defaultValue: null,
+        displayDescription: 'Tooltip root state container.',
         displayName: 'Tooltip.Root',
         propName: 'skipDelayDuration',
         type: 'number',
@@ -6134,6 +8194,8 @@ export const components = [
       {
         comments: 'Render trigger behavior onto a single child element.',
         defaultValue: null,
+        displayDescription:
+          'Tooltip trigger that controls open/close interactions.',
         displayName: 'Tooltip.Trigger',
         propName: 'asChild',
         type: 'boolean',
@@ -6142,6 +8204,8 @@ export const components = [
       {
         comments: 'Trigger node or child element when `asChild` is enabled.',
         defaultValue: null,
+        displayDescription:
+          'Tooltip trigger that controls open/close interactions.',
         displayName: 'Tooltip.Trigger',
         propName: 'children',
         type: 'ReactNode',
