@@ -134,6 +134,10 @@
       "types": "./dist/components/Spinner/index.d.ts",
       "import": "./dist/components/Spinner/index.js"
     },
+    "./components/Status": {
+      "types": "./dist/components/Status/index.d.ts",
+      "import": "./dist/components/Status/index.js"
+    },
     "./components/Table": {
       "types": "./dist/components/Table/index.d.ts",
       "import": "./dist/components/Table/index.js"

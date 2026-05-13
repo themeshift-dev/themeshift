@@ -299,6 +299,9 @@ export default defineConfig({
         'components/Spinner/index': fileURLToPath(
           new URL('./src/entrypoints/components/Spinner.ts', import.meta.url)
         ),
+        'components/Status/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Status.ts', import.meta.url)
+        ),
         'components/Table/index': fileURLToPath(
           new URL('./src/entrypoints/components/Table.ts', import.meta.url)
         ),

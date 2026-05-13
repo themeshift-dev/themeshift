@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react';
 import { themeShift } from '@themeshift/vite-plugin';
 import { defineConfig } from 'vite';
 
+const isVitest = Boolean(process.env.VITEST);
+
 // https://vite.dev/config/
 export default defineConfig({
   build: {
@@ -22,14 +24,15 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    themeShift({
-      extends: [
-        {
-          package: '@themeshift/ui',
-          tokensGlob: 'tokens/**/*.json',
-        },
-      ],
-      cssVarPrefix: 'themeshift',
-    }),
-  ],
+    !isVitest &&
+      themeShift({
+        extends: [
+          {
+            package: '@themeshift/ui',
+            tokensGlob: 'tokens/**/*.json',
+          },
+        ],
+        cssVarPrefix: 'themeshift',
+      }),
+  ].filter(Boolean),
 });

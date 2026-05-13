@@ -23,6 +23,7 @@ export * from './SkeletonGuide';
 export * from './SkipLinkGuide';
 export * from './SidebarGuide';
 export * from './SpinnerGuide';
+export * from './StatusGuide';
 export * from './TableGuide';
 export * from './TabsGuide';
 export * from './TextareaGuide';

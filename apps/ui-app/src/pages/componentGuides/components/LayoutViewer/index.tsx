@@ -215,6 +215,27 @@ function getOpenHref(
   return openInNewTabHref;
 }
 
+function getViewportWidth({
+  mode,
+  viewport,
+}: {
+  mode: LayoutViewerMode;
+  viewport: LayoutViewerViewport;
+}) {
+  if (mode !== 'contained' && mode !== 'slot') {
+    return undefined;
+  }
+
+  const widthMap: Record<LayoutViewerViewport, string> = {
+    mobile: 'min(100%, 24rem)',
+    tablet: 'min(100%, 48rem)',
+    desktop: 'min(100%, 72rem)',
+    wide: 'min(100%, 96rem)',
+  };
+
+  return widthMap[viewport];
+}
+
 function LayoutViewerExample(props: LayoutViewerExampleProps) {
   void props;
   return null;
@@ -793,7 +814,7 @@ function usePreviewFocusBehavior() {
 }
 
 function InlineFrameContent() {
-  const { activeExample, dir, mode } =
+  const { activeExample, dir, mode, viewport } =
     useLayoutViewerContext('LayoutViewer.Frame');
 
   if (!activeExample) {
@@ -806,6 +827,12 @@ function InlineFrameContent() {
       data-layout-viewer-mode={mode}
       dir={dir}
       key={activeExample.id}
+      style={
+        {
+          marginInline: 'auto',
+          '--viewer-width': getViewportWidth({ mode, viewport }),
+        } as CSSProperties
+      }
     >
       {mode === 'region' ? (
         <RegionLayout>{activeExample.render}</RegionLayout>
@@ -817,8 +844,15 @@ function InlineFrameContent() {
 }
 
 function IframeFrameContent() {
-  const { activeExample, dir, isInteracting, mode, setInteracting, viewerId } =
-    useLayoutViewerContext('LayoutViewer.Frame');
+  const {
+    activeExample,
+    dir,
+    isInteracting,
+    mode,
+    setInteracting,
+    viewerId,
+    viewport,
+  } = useLayoutViewerContext('LayoutViewer.Frame');
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const lastAppliedHeightRef = useRef<number>(0);
   const [mountNode, setMountNode] = useState<HTMLElement | null>(null);
@@ -1139,6 +1173,12 @@ function IframeFrameContent() {
               data-layout-viewer-mode={mode}
               dir={dir}
               key={activeExample.id}
+              style={
+                {
+                  marginInline: 'auto',
+                  '--viewer-width': getViewportWidth({ mode, viewport }),
+                } as CSSProperties
+              }
             >
               {mode === 'region' ? (
                 <RegionLayout>{activeExample.render}</RegionLayout>

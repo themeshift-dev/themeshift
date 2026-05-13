@@ -3,7 +3,8 @@ import type { ReactNode } from 'react';
 
 import { TableOfContents } from '@/app/components';
 
-import { ExampleViewer, type ExampleViewerExample } from '../ExampleViewer';
+import { type ExampleViewerExample } from '../ExampleViewer';
+import { LayoutViewer, type LayoutViewerExample } from '../LayoutViewer';
 import {
   GuideExampleCard,
   GuideExampleText,
@@ -13,8 +14,8 @@ import {
 
 export type AccessibilityGuideline = {
   content: ReactNode;
-  example?: ExampleViewerExample;
-  examples?: ExampleViewerExample[];
+  example?: ExampleViewerExample | LayoutViewerExample;
+  examples?: Array<ExampleViewerExample | LayoutViewerExample>;
   tocLabel?: string;
   title: ReactNode;
 };
@@ -50,6 +51,42 @@ const toMarkerSlug = (value: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
+function isLayoutViewerExample(
+  example: ExampleViewerExample | LayoutViewerExample
+): example is LayoutViewerExample {
+  return 'id' in example && 'render' in example;
+}
+
+function toLayoutViewerExample({
+  example,
+  index,
+}: {
+  example: ExampleViewerExample | LayoutViewerExample;
+  index: number;
+}): LayoutViewerExample {
+  if (isLayoutViewerExample(example)) {
+    return example;
+  }
+
+  const { args, label, sample } = example;
+  const id = `${toMarkerSlug(label)}-${index + 1}`;
+  const render =
+    typeof sample === 'function'
+      ? (() => {
+          const Sample = sample;
+
+          return <Sample {...(args ?? {})} />;
+        })()
+      : sample;
+
+  return {
+    code: example.code,
+    id,
+    label,
+    render,
+  };
+}
+
 export const AccessibilityGuidelines = ({
   items,
 }: AccessibilityGuidelinesProps) => {
@@ -80,10 +117,17 @@ export const AccessibilityGuidelines = ({
 
             {(example || examples) && (
               <GuideExampleViewer>
-                <ExampleViewer
-                  defaultCodeExpanded={true}
-                  example={example}
-                  examples={examples}
+                <LayoutViewer
+                  defaultCodeOpen
+                  examples={(
+                    examples ?? (example ? [example] : undefined)
+                  )?.map((viewerExample, viewerIndex) =>
+                    toLayoutViewerExample({
+                      example: viewerExample,
+                      index: viewerIndex,
+                    })
+                  )}
+                  mode="contained"
                 />
               </GuideExampleViewer>
             )}

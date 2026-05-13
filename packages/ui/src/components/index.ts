@@ -24,6 +24,7 @@ export * from './Sidebar';
 export * from './Skeleton';
 export * from './SkipLink';
 export * from './Spinner';
+export * from './Status';
 export * from './Table';
 export * from './Tabs';
 export * from './Textarea';

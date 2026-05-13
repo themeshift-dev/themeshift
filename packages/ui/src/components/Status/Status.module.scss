@@ -1,0 +1,179 @@
+@use '@/sass/mixins/typography';
+
+.root {
+  --status-gap: #{token('space.3')};
+  --status-icon-color: currentcolor;
+  --status-max-inline-size: 44rem;
+  --status-padding-block: #{token('space.4')};
+  --status-padding-inline: #{token('space.4')};
+  --status-panel-background: #{token('components.card.surface.default')};
+  --status-panel-border: #{token('components.card.border')};
+  --status-subtle-background: #{token('components.card.surface.elevated')};
+  --status-subtle-border: #{token('components.card.border')};
+
+  align-items: center;
+  color: token('text.primary');
+  display: flex;
+  flex-direction: column;
+  gap: var(--status-gap);
+  inline-size: 100%;
+  margin-inline: auto;
+  max-inline-size: var(--status-max-inline-size);
+  padding: var(--status-padding-block) var(--status-padding-inline);
+}
+
+.alignStart {
+  align-items: flex-start;
+  text-align: start;
+}
+
+.alignCenter {
+  align-items: center;
+  text-align: center;
+}
+
+.alignEnd {
+  align-items: flex-end;
+  text-align: end;
+}
+
+.densityCompact {
+  --status-gap: #{token('space.2')};
+  --status-max-inline-size: 34rem;
+  --status-padding-block: #{token('space.3')};
+  --status-padding-inline: #{token('space.3')};
+}
+
+.densityComfortable {
+  --status-gap: #{token('space.3')};
+  --status-max-inline-size: 44rem;
+  --status-padding-block: #{token('space.4')};
+  --status-padding-inline: #{token('space.4')};
+}
+
+.densitySpacious {
+  --status-gap: #{token('space.4')};
+  --status-max-inline-size: 54rem;
+  --status-padding-block: #{token('space.6')};
+  --status-padding-inline: #{token('space.5')};
+}
+
+.variantPlain {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: token('radius.medium');
+}
+
+.variantPanel {
+  background-color: var(--status-panel-background);
+  border: 1px solid var(--status-panel-border);
+  border-radius: token('radius.medium');
+}
+
+.variantSubtle {
+  background-color: var(--status-subtle-background);
+  border: 1px solid var(--status-subtle-border);
+  border-radius: token('radius.medium');
+}
+
+.intentNeutral {
+  color: token('text.primary');
+}
+
+.intentInfo {
+  color: token('text.primary');
+  --status-icon-color: #{token('intent.primary.hover')};
+  --status-panel-border: #{token('intent.primary.hover')};
+  --status-subtle-background: #{token('intent.primary.background')};
+  --status-subtle-border: #{token('intent.primary.hover')};
+}
+
+.intentSuccess {
+  color: token('text.primary');
+  --status-icon-color: #{token('text.success')};
+  --status-panel-border: #{token('intent.constructive.hover')};
+  --status-subtle-background: #{token('intent.constructive.background')};
+  --status-subtle-border: #{token('intent.constructive.hover')};
+}
+
+.intentWarning {
+  color: token('text.primary');
+  --status-icon-color: #{token('components.badge.colors.yellow.text')};
+  --status-panel-border: #{token('components.badge.colors.yellow.border')};
+  --status-subtle-background: #{token(
+      'components.badge.colors.yellow.background'
+    )};
+  --status-subtle-border: #{token('components.badge.colors.yellow.border')};
+}
+
+.intentDanger {
+  color: token('text.primary');
+  --status-icon-color: #{token('text.destructive')};
+  --status-panel-border: #{token('intent.destructive.hover')};
+  --status-subtle-background: #{token('intent.destructive.background')};
+  --status-subtle-border: #{token('intent.destructive.hover')};
+}
+
+.intentInfo .title {
+  color: token('intent.primary.hover');
+}
+
+.intentSuccess .title {
+  color: token('text.success');
+}
+
+.intentWarning .title {
+  color: token('components.badge.colors.yellow.text');
+}
+
+.intentDanger .title {
+  color: token('text.destructive');
+}
+
+.icon {
+  align-items: center;
+  color: var(--status-icon-color);
+  display: inline-flex;
+  justify-content: center;
+  opacity: 0.8;
+}
+
+.content {
+  align-items: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: token('space.2');
+  min-inline-size: 0;
+}
+
+.title {
+  @include typography.style('body.strong');
+
+  color: currentcolor;
+  margin: 0;
+}
+
+.description {
+  @include typography.style('caption.default');
+
+  color: token('text.muted');
+  margin: 0;
+  max-inline-size: 65ch;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: token('space.2');
+  justify-content: center;
+  margin-block-start: token('space.4');
+}
+
+.alignStart .actions {
+  justify-content: flex-start;
+}
+
+.alignEnd .actions {
+  justify-content: flex-end;
+}
