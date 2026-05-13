@@ -128,6 +128,44 @@ describe('Status', () => {
     expect(screen.getByText('Custom description')).toBeInTheDocument();
   });
 
+  it('renders all remaining presets with default copy and default intents', () => {
+    const { rerender } = render(<Status.PageNotFound data-testid="preset" />);
+
+    expect(screen.getByText('Page not found')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "The page you're looking for doesn't exist or has moved."
+      )
+    ).toBeInTheDocument();
+    expect(screen.getByTestId('preset')).toHaveClass(styles.intentNeutral);
+
+    rerender(<Status.Disconnected data-testid="preset" />);
+
+    expect(screen.getByText("You're disconnected")).toBeInTheDocument();
+    expect(
+      screen.getByText('You appear to be offline. Reconnect and try again.')
+    ).toBeInTheDocument();
+    expect(screen.getByTestId('preset')).toHaveClass(styles.intentWarning);
+
+    rerender(<Status.NoResults data-testid="preset" />);
+
+    expect(screen.getByText('No results')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'No matching items were found. Adjust filters and try again.'
+      )
+    ).toBeInTheDocument();
+    expect(screen.getByTestId('preset')).toHaveClass(styles.intentNeutral);
+
+    rerender(<Status.PermissionDenied data-testid="preset" />);
+
+    expect(screen.getByText('Permission denied')).toBeInTheDocument();
+    expect(
+      screen.getByText("You don't have permission to view this content.")
+    ).toBeInTheDocument();
+    expect(screen.getByTestId('preset')).toHaveClass(styles.intentWarning);
+  });
+
   it('uses description, then children, then default description precedence', () => {
     const { rerender } = render(
       <Status.Empty children="Child copy" description="Description copy" />
@@ -179,5 +217,17 @@ describe('Status', () => {
     );
 
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('throws a clear error when asChild receives a non-element child', () => {
+    expect(() =>
+      render(
+        <Status>
+          <Status.Title asChild>{'invalid-child'}</Status.Title>
+        </Status>
+      )
+    ).toThrow(
+      'ThemeShift Status.Title with asChild expects a single React element child.'
+    );
   });
 });
