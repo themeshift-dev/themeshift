@@ -4801,16 +4801,6 @@ export const components = [
         values: [],
       },
       {
-        comments: 'Tooltip content for collapsed footer affordances.',
-        defaultValue: null,
-        displayDescription:
-          'Places content in a footer region at the bottom of the sidebar.',
-        displayName: 'Sidebar.Footer',
-        propName: 'collapsedTooltip',
-        type: 'ReactNode',
-        values: [],
-      },
-      {
         comments: 'Hides footer content when the sidebar is collapsed.',
         defaultValue: false,
         displayDescription:
@@ -4909,16 +4899,6 @@ export const components = [
         displayName: 'Sidebar.GroupAction',
         propName: 'as',
         type: 'ElementType',
-        values: [],
-      },
-      {
-        comments: 'Renders action behavior onto a single child element.',
-        defaultValue: null,
-        displayDescription:
-          'Renders an auxiliary action control associated with a sidebar group heading.',
-        displayName: 'Sidebar.GroupAction',
-        propName: 'asChild',
-        type: 'boolean',
         values: [],
       },
       {
@@ -5129,16 +5109,6 @@ export const components = [
         values: [],
       },
       {
-        comments: 'Renders action behavior onto a single child element.',
-        defaultValue: null,
-        displayDescription:
-          'Renders a secondary action for a menu item, optionally revealed on hover.',
-        displayName: 'Sidebar.MenuAction',
-        propName: 'asChild',
-        type: 'boolean',
-        values: [],
-      },
-      {
         comments: 'Action icon or custom content.',
         defaultValue: null,
         displayDescription:
@@ -5249,16 +5219,6 @@ export const components = [
         values: [],
       },
       {
-        comments: 'Renders menu-button behavior onto a single child element.',
-        defaultValue: null,
-        displayDescription:
-          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
-        displayName: 'Sidebar.MenuButton',
-        propName: 'asChild',
-        type: 'boolean',
-        values: [],
-      },
-      {
         comments:
           'Optional trailing badge content rendered within the button row.',
         defaultValue: null,
@@ -5330,17 +5290,6 @@ export const components = [
         values: ['small', 'medium', 'large'],
       },
       {
-        comments:
-          'Optional tooltip content shown in collapsed/icon-only views.',
-        defaultValue: null,
-        displayDescription:
-          'Renders an interactive menu control with optional badge, sizing, variants, and collapsed tooltip support.',
-        displayName: 'Sidebar.MenuButton',
-        propName: 'tooltip',
-        type: 'ReactNode',
-        values: [],
-      },
-      {
         comments: 'Visual button variant.',
         defaultValue: 'default',
         displayDescription:
@@ -5392,12 +5341,74 @@ export const components = [
       },
       {
         comments:
+          'Icon used by the collapse toggle. Defaults to a chevron-right icon.',
+        defaultValue: null,
+        displayDescription:
+          'Provides item-level active and disabled state for menu content.',
+        displayName: 'Sidebar.MenuItem',
+        propName: 'collapseIcon',
+        type: 'ReactNode | ((open: boolean) => ReactNode)',
+        values: [],
+      },
+      {
+        comments: 'Accessible name for the collapse toggle button.',
+        defaultValue: 'Toggle submenu',
+        displayDescription:
+          'Provides item-level active and disabled state for menu content.',
+        displayName: 'Sidebar.MenuItem',
+        propName: 'collapseToggleLabel',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Enables inline expand/collapse behavior for nested menu content.',
+        defaultValue: false,
+        displayDescription:
+          'Provides item-level active and disabled state for menu content.',
+        displayName: 'Sidebar.MenuItem',
+        propName: 'collapsible',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Initial open state for uncontrolled usage when collapsible.',
+        defaultValue: false,
+        displayDescription:
+          'Provides item-level active and disabled state for menu content.',
+        displayName: 'Sidebar.MenuItem',
+        propName: 'defaultOpen',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments:
           'Disables interactive descendants through context-aware styles.',
         defaultValue: false,
         displayDescription:
           'Provides item-level active and disabled state for menu content.',
         displayName: 'Sidebar.MenuItem',
         propName: 'disabled',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Called when collapsible open state changes.',
+        defaultValue: null,
+        displayDescription:
+          'Provides item-level active and disabled state for menu content.',
+        displayName: 'Sidebar.MenuItem',
+        propName: 'onOpenChange',
+        type: '(open: boolean) => void',
+        values: [],
+      },
+      {
+        comments: 'Controlled open state when collapsible.',
+        defaultValue: null,
+        displayDescription:
+          'Provides item-level active and disabled state for menu content.',
+        displayName: 'Sidebar.MenuItem',
+        propName: 'open',
         type: 'boolean',
         values: [],
       },
@@ -5737,16 +5748,6 @@ export const components = [
         displayName: 'Sidebar.Trigger',
         propName: 'as',
         type: 'ElementType',
-        values: [],
-      },
-      {
-        comments: 'Renders trigger behavior onto a single child element.',
-        defaultValue: null,
-        displayDescription:
-          'Provides a trigger button that can toggle, open, close, expand, or collapse the sidebar.',
-        displayName: 'Sidebar.Trigger',
-        propName: 'asChild',
-        type: 'boolean',
         values: [],
       },
       {
@@ -6188,6 +6189,430 @@ export const components = [
     sourceCodeUrl:
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Spinner',
     typesReference: [],
+    type: 'component',
+  },
+  {
+    apiReference: [
+      {
+        comments:
+          'Visual alignment of the block. Uses logical alignment so start/end mirror in LTR and RTL.',
+        defaultValue: 'center',
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status',
+        propName: 'align',
+        type: 'StatusAlign',
+        values: ['start', 'center', 'end'],
+      },
+      {
+        comments:
+          'Announcement mode used when the status should be read by assistive tech.',
+        defaultValue: null,
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status',
+        propName: 'aria-live',
+        type: "'off' | 'polite' | 'assertive'",
+        values: ['off', 'polite', 'assertive'],
+      },
+      {
+        comments:
+          'HTML element or component to render instead of the default element.',
+        defaultValue: null,
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Status primitives and custom contents.',
+        defaultValue: null,
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the root element.',
+        defaultValue: null,
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Controls spacing scale and maximum content width.',
+        defaultValue: 'comfortable',
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status',
+        propName: 'density',
+        type: 'StatusDensity',
+        values: ['compact', 'comfortable', 'spacious'],
+      },
+      {
+        comments: 'Semantic status type used for tone-aware styling.',
+        defaultValue: 'neutral',
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status',
+        propName: 'intent',
+        type: 'StatusIntent',
+        values: ['neutral', 'info', 'success', 'warning', 'danger'],
+      },
+      {
+        comments:
+          'Optional ARIA role when the status should be announced semantically.',
+        defaultValue: null,
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status',
+        propName: 'role',
+        type: 'AriaRole',
+        values: [],
+      },
+      {
+        comments: 'Optional visual treatment for the container.',
+        defaultValue: 'plain',
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status',
+        propName: 'variant',
+        type: 'StatusVariant',
+        values: ['plain', 'panel', 'subtle'],
+      },
+      {
+        comments:
+          'Visual alignment of the block. Uses logical alignment so start/end mirror in LTR and RTL.',
+        defaultValue: 'center',
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status.Root',
+        propName: 'align',
+        type: 'StatusAlign',
+        values: ['start', 'center', 'end'],
+      },
+      {
+        comments:
+          'Announcement mode used when the status should be read by assistive tech.',
+        defaultValue: null,
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status.Root',
+        propName: 'aria-live',
+        type: "'off' | 'polite' | 'assertive'",
+        values: ['off', 'polite', 'assertive'],
+      },
+      {
+        comments:
+          'HTML element or component to render instead of the default element.',
+        defaultValue: null,
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status.Root',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Status primitives and custom contents.',
+        defaultValue: null,
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status.Root',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the root element.',
+        defaultValue: null,
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status.Root',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Controls spacing scale and maximum content width.',
+        defaultValue: 'comfortable',
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status.Root',
+        propName: 'density',
+        type: 'StatusDensity',
+        values: ['compact', 'comfortable', 'spacious'],
+      },
+      {
+        comments: 'Semantic status type used for tone-aware styling.',
+        defaultValue: 'neutral',
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status.Root',
+        propName: 'intent',
+        type: 'StatusIntent',
+        values: ['neutral', 'info', 'success', 'warning', 'danger'],
+      },
+      {
+        comments:
+          'Optional ARIA role when the status should be announced semantically.',
+        defaultValue: null,
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status.Root',
+        propName: 'role',
+        type: 'AriaRole',
+        values: [],
+      },
+      {
+        comments: 'Optional visual treatment for the container.',
+        defaultValue: 'plain',
+        displayDescription:
+          'Root wrapper for structured empty, error, and no-results experiences.',
+        displayName: 'Status.Root',
+        propName: 'variant',
+        type: 'StatusVariant',
+        values: ['plain', 'panel', 'subtle'],
+      },
+      {
+        comments:
+          'HTML element or component to render instead of the default element.',
+        defaultValue: null,
+        displayDescription: 'Icon slot for visual context in status blocks.',
+        displayName: 'Status.Icon',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments:
+          'Applies slot styling to a single child element instead of rendering a native wrapper.',
+        defaultValue: null,
+        displayDescription: 'Icon slot for visual context in status blocks.',
+        displayName: 'Status.Icon',
+        propName: 'asChild',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Slot contents.',
+        defaultValue: null,
+        displayDescription: 'Icon slot for visual context in status blocks.',
+        displayName: 'Status.Icon',
+        propName: 'children',
+        type: 'ReactNode | ReactElement',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the rendered element.',
+        defaultValue: null,
+        displayDescription: 'Icon slot for visual context in status blocks.',
+        displayName: 'Status.Icon',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'HTML element or component to render instead of the default element.',
+        defaultValue: null,
+        displayDescription:
+          'Content wrapper that stacks title and description copy.',
+        displayName: 'Status.Content',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments: 'Content region children, usually title and description.',
+        defaultValue: null,
+        displayDescription:
+          'Content wrapper that stacks title and description copy.',
+        displayName: 'Status.Content',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the content slot.',
+        defaultValue: null,
+        displayDescription:
+          'Content wrapper that stacks title and description copy.',
+        displayName: 'Status.Content',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'HTML element or component to render instead of the default element.',
+        defaultValue: null,
+        displayDescription: 'Title slot for the status heading.',
+        displayName: 'Status.Title',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments:
+          'Applies slot styling to a single child element instead of rendering a native wrapper.',
+        defaultValue: null,
+        displayDescription: 'Title slot for the status heading.',
+        displayName: 'Status.Title',
+        propName: 'asChild',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Slot contents.',
+        defaultValue: null,
+        displayDescription: 'Title slot for the status heading.',
+        displayName: 'Status.Title',
+        propName: 'children',
+        type: 'ReactNode | ReactElement',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the rendered element.',
+        defaultValue: null,
+        displayDescription: 'Title slot for the status heading.',
+        displayName: 'Status.Title',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'HTML element or component to render instead of the default element.',
+        defaultValue: null,
+        displayDescription:
+          'Description slot for supporting guidance and next steps.',
+        displayName: 'Status.Description',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments:
+          'Applies slot styling to a single child element instead of rendering a native wrapper.',
+        defaultValue: null,
+        displayDescription:
+          'Description slot for supporting guidance and next steps.',
+        displayName: 'Status.Description',
+        propName: 'asChild',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Slot contents.',
+        defaultValue: null,
+        displayDescription:
+          'Description slot for supporting guidance and next steps.',
+        displayName: 'Status.Description',
+        propName: 'children',
+        type: 'ReactNode | ReactElement',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the rendered element.',
+        defaultValue: null,
+        displayDescription:
+          'Description slot for supporting guidance and next steps.',
+        displayName: 'Status.Description',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'HTML element or component to render instead of the default element.',
+        defaultValue: null,
+        displayDescription: 'Actions slot for retry/create/help controls.',
+        displayName: 'Status.Actions',
+        propName: 'as',
+        type: 'ElementType',
+        values: [],
+      },
+      {
+        comments:
+          'Applies slot styling to a single child element instead of rendering a native wrapper.',
+        defaultValue: null,
+        displayDescription: 'Actions slot for retry/create/help controls.',
+        displayName: 'Status.Actions',
+        propName: 'asChild',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Slot contents.',
+        defaultValue: null,
+        displayDescription: 'Actions slot for retry/create/help controls.',
+        displayName: 'Status.Actions',
+        propName: 'children',
+        type: 'ReactNode | ReactElement',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the rendered element.',
+        defaultValue: null,
+        displayDescription: 'Actions slot for retry/create/help controls.',
+        displayName: 'Status.Actions',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+    ],
+    name: 'Status',
+    exportName: 'Status',
+    importPath: '@themeshift/ui/components/Status',
+    importString: "import { Status } from '@themeshift/ui/components/Status';",
+    meta: {
+      category: 'feedback-status',
+      description:
+        'Builds empty, error, and no-results states using composable slots and ready-made presets.',
+      tags: ['status', 'empty state', 'error state', 'no results', 'feedback'],
+      order: 70,
+      status: 'stable',
+      related: ['Button', 'Heading', 'Card', 'Spinner', 'Link'],
+      type: 'component',
+    },
+    slug: 'status',
+    routeSlug: 'status',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Status',
+    typesReference: [
+      {
+        comments: 'Alignment options for the overall status block.',
+        defaultValue: null,
+        typeName: 'StatusAlign',
+        values: ['start', 'center', 'end'],
+      },
+      {
+        comments: 'Density options for spacing and text measure.',
+        defaultValue: null,
+        typeName: 'StatusDensity',
+        values: ['compact', 'comfortable', 'spacious'],
+      },
+      {
+        comments: 'Semantic tone options for status intent.',
+        defaultValue: null,
+        typeName: 'StatusIntent',
+        values: ['neutral', 'info', 'success', 'warning', 'danger'],
+      },
+      {
+        comments: 'Visual treatment options for the status container.',
+        defaultValue: null,
+        typeName: 'StatusVariant',
+        values: ['plain', 'panel', 'subtle'],
+      },
+    ],
     type: 'component',
   },
   {

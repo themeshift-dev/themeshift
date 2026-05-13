@@ -787,6 +787,32 @@ const AppRoutes = () => (
           />
         </Route>
 
+        <Route path="status">
+          <Route index element={<ComponentGuides.StatusGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Status"
+                componentPath="/ui/component/status"
+                description="Status customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Status"
+                componentPath="/ui/component/status"
+                description="An interactive Status playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
         <Route path="table">
           <Route index element={<ComponentGuides.TableGuide />} />
           <Route
