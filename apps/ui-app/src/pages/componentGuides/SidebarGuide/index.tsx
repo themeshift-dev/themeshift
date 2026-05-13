@@ -281,9 +281,9 @@ export const SidebarGuide = () => {
             />
             <Heading level={4}>Trigger with tooltip</Heading>
             <p>
-              Compose <code>Sidebar.Trigger</code> with <code>Tooltip</code>{' '}
-              using <code>asChild</code> so the tooltip and trigger share one
-              interactive element.
+              Compose <code>Sidebar.Trigger</code> with <code>Tooltip</code> by
+              rendering Trigger <code>as</code> your button component so the
+              tooltip and trigger share one interactive element.
             </p>
           </GuideExampleText>
           <GuideExampleViewer>

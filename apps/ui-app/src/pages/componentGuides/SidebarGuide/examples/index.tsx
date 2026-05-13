@@ -1,4 +1,11 @@
-import { type MouseEvent, useState } from 'react';
+import {
+  type ComponentProps,
+  type MouseEvent,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { Badge } from '@themeshift/ui/components/Badge';
 import { Button } from '@themeshift/ui/components/Button';
@@ -19,6 +26,55 @@ function preventDocsNavigation(event: MouseEvent<HTMLAnchorElement>) {
   event.preventDefault();
 }
 
+function GuideTooltipMenuButton({
+  iconOnlyLabel,
+  tooltip,
+  ...props
+}: ComponentProps<typeof Sidebar.MenuButton> & {
+  tooltip?: ReactNode;
+}) {
+  const triggerWrapperRef = useRef<HTMLSpanElement>(null);
+  const [placement, setPlacement] = useState<'left' | 'right'>('right');
+
+  useEffect(() => {
+    const wrapper = triggerWrapperRef.current;
+
+    if (!wrapper) {
+      return;
+    }
+
+    const doc = wrapper.ownerDocument;
+    const sidebar = wrapper.closest<HTMLElement>('[data-side]');
+    const side = sidebar?.getAttribute('data-side') === 'end' ? 'end' : 'start';
+    const direction =
+      doc.defaultView?.getComputedStyle(wrapper).direction ??
+      doc.documentElement.dir ??
+      'ltr';
+    const isRtl = direction === 'rtl';
+    const nextPlacement =
+      side === 'start' ? (isRtl ? 'left' : 'right') : isRtl ? 'right' : 'left';
+
+    setPlacement(nextPlacement);
+  }, []);
+
+  const content = (
+    <Sidebar.MenuButton iconOnlyLabel={iconOnlyLabel} {...props} />
+  );
+
+  const resolvedTooltip =
+    tooltip ?? (typeof iconOnlyLabel === 'string' ? iconOnlyLabel : undefined);
+
+  if (!resolvedTooltip) {
+    return content;
+  }
+
+  return (
+    <Tooltip content={resolvedTooltip} placement={placement}>
+      <span ref={triggerWrapperRef}>{content}</span>
+    </Tooltip>
+  );
+}
+
 export const quickStart = {
   code: `<Sidebar.Provider defaultCollapsed={false}>
   <Sidebar>
@@ -37,7 +93,7 @@ export const quickStart = {
         <Sidebar.GroupLabel>Platform</Sidebar.GroupLabel>
         <Sidebar.Menu>
           <Sidebar.MenuItem active>
-            <Sidebar.MenuButton iconOnlyLabel="Dashboard" tooltip="Dashboard">
+            <Sidebar.MenuButton iconOnlyLabel="Dashboard">
               <span>Dashboard</span>
             </Sidebar.MenuButton>
           </Sidebar.MenuItem>
@@ -47,7 +103,7 @@ export const quickStart = {
 
     <Sidebar.Footer
       collapsedContent={<LuUser aria-hidden />}
-      collapsedTooltip="Account"
+
       hideWhenCollapsed
     >
       Account
@@ -79,12 +135,9 @@ export const quickStart = {
               <Sidebar.GroupLabel>Platform</Sidebar.GroupLabel>
               <Sidebar.Menu>
                 <Sidebar.MenuItem active>
-                  <Sidebar.MenuButton
-                    iconOnlyLabel="Dashboard"
-                    tooltip="Dashboard"
-                  >
+                  <GuideTooltipMenuButton iconOnlyLabel="Dashboard">
                     <span>Dashboard</span>
-                  </Sidebar.MenuButton>
+                  </GuideTooltipMenuButton>
                 </Sidebar.MenuItem>
               </Sidebar.Menu>
             </Sidebar.Group>
@@ -92,7 +145,6 @@ export const quickStart = {
 
           <Sidebar.Footer
             collapsedContent={<LuUser aria-hidden />}
-            collapsedTooltip="Account"
             hideWhenCollapsed
           >
             Account
@@ -194,7 +246,7 @@ export const rtlSideAware = {
       <Sidebar.Content>
         <Sidebar.Menu>
           <Sidebar.MenuItem>
-            <Sidebar.MenuButton iconOnlyLabel="التقارير" tooltip="التقارير">
+            <Sidebar.MenuButton iconOnlyLabel="التقارير">
               <span>التقارير</span>
             </Sidebar.MenuButton>
           </Sidebar.MenuItem>
@@ -220,10 +272,7 @@ export const rtlSideAware = {
             <Sidebar.Content>
               <Sidebar.Menu>
                 <Sidebar.MenuItem>
-                  <Sidebar.MenuButton
-                    iconOnlyLabel="التقارير"
-                    tooltip="التقارير"
-                  >
+                  <Sidebar.MenuButton iconOnlyLabel="التقارير">
                     <span>التقارير</span>
                   </Sidebar.MenuButton>
                 </Sidebar.MenuItem>
@@ -419,10 +468,7 @@ export const commonPatternExamples = [
                 <Sidebar.GroupLabel>Catalog</Sidebar.GroupLabel>
                 <Sidebar.Menu>
                   <Sidebar.MenuItem collapsible defaultOpen>
-                    <Sidebar.MenuButton
-                      iconOnlyLabel="Products"
-                      tooltip="Products"
-                    >
+                    <Sidebar.MenuButton iconOnlyLabel="Products">
                       <LuFolder aria-hidden />
                       <span>Products</span>
                     </Sidebar.MenuButton>
@@ -480,7 +526,7 @@ export const commonPatternExamples = [
                 <Sidebar.GroupLabel>Operations</Sidebar.GroupLabel>
                 <Sidebar.Menu>
                   <Sidebar.MenuItem>
-                    <Sidebar.MenuButton iconOnlyLabel="Builds" tooltip="Builds">
+                    <Sidebar.MenuButton iconOnlyLabel="Builds">
                       <LuHammer aria-hidden />
                       <span>Builds</span>
                       <Badge tone="info" variant="soft">
@@ -489,10 +535,7 @@ export const commonPatternExamples = [
                     </Sidebar.MenuButton>
                   </Sidebar.MenuItem>
                   <Sidebar.MenuItem>
-                    <Sidebar.MenuButton
-                      iconOnlyLabel="Incidents"
-                      tooltip="Incidents"
-                    >
+                    <Sidebar.MenuButton iconOnlyLabel="Incidents">
                       <LuTriangle aria-hidden />
                       <span>Incidents</span>
                       <Badge tone="danger" variant="soft">
@@ -540,19 +583,13 @@ export const commonPatternExamples = [
             <Sidebar.Content>
               <Sidebar.Menu>
                 <Sidebar.MenuItem>
-                  <Sidebar.MenuButton
-                    iconOnlyLabel="Dashboard"
-                    tooltip="Dashboard"
-                  >
+                  <Sidebar.MenuButton iconOnlyLabel="Dashboard">
                     <LuGauge aria-hidden />
                     <span>Dashboard</span>
                   </Sidebar.MenuButton>
                 </Sidebar.MenuItem>
                 <Sidebar.MenuItem>
-                  <Sidebar.MenuButton
-                    iconOnlyLabel="Projects"
-                    tooltip="Projects"
-                  >
+                  <Sidebar.MenuButton iconOnlyLabel="Projects">
                     <LuFolder aria-hidden />
                     <span>Projects</span>
                   </Sidebar.MenuButton>
@@ -578,7 +615,7 @@ export const realisticSidebarExamples = [
       <Sidebar.Content>{/* Product workspace navigation */}</Sidebar.Content>
       <Sidebar.Footer
         collapsedContent={<LuUser aria-hidden />}
-        collapsedTooltip="Signed in as Taylor"
+
         hideWhenCollapsed
       >
         Signed in as Taylor
@@ -619,7 +656,6 @@ export const realisticSidebarExamples = [
             </Sidebar.Content>
             <Sidebar.Footer
               collapsedContent={<LuUser aria-hidden />}
-              collapsedTooltip="Signed in as Taylor"
               hideWhenCollapsed
             >
               Signed in as Taylor
@@ -786,16 +822,16 @@ const sidebarShellMenu = (
       <Sidebar.GroupLabel>Platform</Sidebar.GroupLabel>
       <Sidebar.Menu>
         <Sidebar.MenuItem active>
-          <Sidebar.MenuButton iconOnlyLabel="Dashboard" tooltip="Dashboard">
+          <GuideTooltipMenuButton iconOnlyLabel="Dashboard">
             <LuGauge aria-hidden />
             <span>Dashboard</span>
-          </Sidebar.MenuButton>
+          </GuideTooltipMenuButton>
         </Sidebar.MenuItem>
         <Sidebar.MenuItem>
-          <Sidebar.MenuButton iconOnlyLabel="Projects" tooltip="Projects">
+          <GuideTooltipMenuButton iconOnlyLabel="Projects">
             <LuFolder aria-hidden />
             <span>Projects</span>
-          </Sidebar.MenuButton>
+          </GuideTooltipMenuButton>
         </Sidebar.MenuItem>
       </Sidebar.Menu>
     </Sidebar.Group>
@@ -803,22 +839,22 @@ const sidebarShellMenu = (
       <Sidebar.GroupLabel>Operations</Sidebar.GroupLabel>
       <Sidebar.Menu>
         <Sidebar.MenuItem>
-          <Sidebar.MenuButton iconOnlyLabel="Builds" tooltip="Builds">
+          <GuideTooltipMenuButton iconOnlyLabel="Builds">
             <LuHammer aria-hidden />
             <span>Builds</span>
             <Badge tone="info" variant="soft">
               9
             </Badge>
-          </Sidebar.MenuButton>
+          </GuideTooltipMenuButton>
         </Sidebar.MenuItem>
         <Sidebar.MenuItem>
-          <Sidebar.MenuButton iconOnlyLabel="Incidents" tooltip="Incidents">
+          <GuideTooltipMenuButton iconOnlyLabel="Incidents">
             <LuTriangle aria-hidden />
             <span>Incidents</span>
             <Badge tone="danger" variant="soft">
               3
             </Badge>
-          </Sidebar.MenuButton>
+          </GuideTooltipMenuButton>
         </Sidebar.MenuItem>
       </Sidebar.Menu>
     </Sidebar.Group>
@@ -837,7 +873,7 @@ export const layoutShellExamples = [
       <Sidebar.Content>{/* groups + menu items */}</Sidebar.Content>
       <Sidebar.Footer
         collapsedContent={<LuUser aria-hidden />}
-        collapsedTooltip="Signed in as Buzz"
+
       >
         <span
           style={{ alignItems: 'center', display: 'inline-flex', gap: '0.5rem' }}
@@ -868,10 +904,7 @@ export const layoutShellExamples = [
               />
             </Sidebar.Header>
             <Sidebar.Content>{sidebarShellMenu}</Sidebar.Content>
-            <Sidebar.Footer
-              collapsedContent={<LuUser aria-hidden />}
-              collapsedTooltip="Signed in as Buzz"
-            >
+            <Sidebar.Footer collapsedContent={<LuUser aria-hidden />}>
               <span
                 style={{
                   alignItems: 'center',
@@ -905,7 +938,7 @@ export const layoutShellExamples = [
       <Sidebar.Content>{/* icon-first navigation */}</Sidebar.Content>
       <Sidebar.Footer
         collapsedContent={<LuUser aria-hidden />}
-        collapsedTooltip="Account"
+
       >
         Account
       </Sidebar.Footer>
@@ -931,10 +964,7 @@ export const layoutShellExamples = [
               />
             </Sidebar.Header>
             <Sidebar.Content>{sidebarShellMenu}</Sidebar.Content>
-            <Sidebar.Footer
-              collapsedContent={<LuUser aria-hidden />}
-              collapsedTooltip="Account"
-            >
+            <Sidebar.Footer collapsedContent={<LuUser aria-hidden />}>
               Account
             </Sidebar.Footer>
             <Sidebar.Rail label="Expand sidebar" />
@@ -956,7 +986,7 @@ export const layoutShellExamples = [
           <Sidebar.GroupLabel>Catalog</Sidebar.GroupLabel>
           <Sidebar.Menu>
             <Sidebar.MenuItem collapsible defaultOpen>
-              <Sidebar.MenuButton iconOnlyLabel="Products" tooltip="Products">
+              <Sidebar.MenuButton iconOnlyLabel="Products">
                 <LuFolder aria-hidden />
                 <span>Products</span>
               </Sidebar.MenuButton>
@@ -979,7 +1009,7 @@ export const layoutShellExamples = [
               </ul>
             </Sidebar.MenuItem>
             <Sidebar.MenuItem>
-              <Sidebar.MenuButton iconOnlyLabel="Dashboard" tooltip="Dashboard">
+              <Sidebar.MenuButton iconOnlyLabel="Dashboard">
                 <LuGauge aria-hidden />
                 <span>Dashboard</span>
               </Sidebar.MenuButton>
@@ -989,7 +1019,7 @@ export const layoutShellExamples = [
       </Sidebar.Content>
       <Sidebar.Footer
         collapsedContent={<LuFolder aria-hidden />}
-        collapsedTooltip="Catalog workspace"
+
         hideWhenCollapsed
       >
         Catalog workspace
@@ -1020,10 +1050,7 @@ export const layoutShellExamples = [
                 <Sidebar.GroupLabel>Catalog</Sidebar.GroupLabel>
                 <Sidebar.Menu>
                   <Sidebar.MenuItem collapsible defaultOpen>
-                    <Sidebar.MenuButton
-                      iconOnlyLabel="Products"
-                      tooltip="Products"
-                    >
+                    <Sidebar.MenuButton iconOnlyLabel="Products">
                       <LuFolder aria-hidden />
                       <span>Products</span>
                     </Sidebar.MenuButton>
@@ -1058,10 +1085,7 @@ export const layoutShellExamples = [
                     </ul>
                   </Sidebar.MenuItem>
                   <Sidebar.MenuItem>
-                    <Sidebar.MenuButton
-                      iconOnlyLabel="Dashboard"
-                      tooltip="Dashboard"
-                    >
+                    <Sidebar.MenuButton iconOnlyLabel="Dashboard">
                       <LuGauge aria-hidden />
                       <span>Dashboard</span>
                     </Sidebar.MenuButton>
@@ -1071,7 +1095,6 @@ export const layoutShellExamples = [
             </Sidebar.Content>
             <Sidebar.Footer
               collapsedContent={<LuFolder aria-hidden />}
-              collapsedTooltip="Catalog workspace"
               hideWhenCollapsed
             >
               Catalog workspace
@@ -1115,10 +1138,7 @@ export const layoutShellExamples = [
               />
             </Sidebar.Header>
             <Sidebar.Content>{sidebarShellMenu}</Sidebar.Content>
-            <Sidebar.Footer
-              collapsedContent={<LuUser aria-hidden />}
-              collapsedTooltip="Account"
-            >
+            <Sidebar.Footer collapsedContent={<LuUser aria-hidden />}>
               Rail demo
             </Sidebar.Footer>
             <Sidebar.Rail label="Toggle rail" />
@@ -1153,7 +1173,7 @@ export const layoutRegionExample = {
     <Sidebar.Content>{/* region-focused sidebar */}</Sidebar.Content>
     <Sidebar.Footer
       collapsedContent={<LuUser aria-hidden />}
-      collapsedTooltip="Workspace settings"
+
       hideWhenCollapsed
     >
       Workspace settings
@@ -1177,7 +1197,6 @@ export const layoutRegionExample = {
         <Sidebar.Content>{sidebarShellMenu}</Sidebar.Content>
         <Sidebar.Footer
           collapsedContent={<LuUser aria-hidden />}
-          collapsedTooltip="Workspace settings"
           hideWhenCollapsed
         >
           Workspace settings
@@ -1193,15 +1212,15 @@ export const triggerWithTooltip = {
     <Sidebar>
       <Sidebar.Header>
         <Tooltip content="Toggle sidebar" portal={false}>
-          <Sidebar.Trigger asChild label="Toggle sidebar" placement="inside">
-            <Button
-              aria-label="Toggle sidebar"
-              icon={<VscLayoutSidebarLeftDock aria-hidden />}
-              size="small"
-              style={{ borderRadius: '0.25rem' }}
-              variant="link"
-            />
-          </Sidebar.Trigger>
+          <Sidebar.Trigger
+            as={Button}
+            icon={<VscLayoutSidebarLeftDock aria-hidden />}
+            label="Toggle sidebar"
+            placement="inside"
+            size="small"
+            style={{ borderRadius: '0.25rem' }}
+            variant="link"
+          />
         </Tooltip>
       </Sidebar.Header>
       <Sidebar.Content>{/* menu content */}</Sidebar.Content>
@@ -1220,18 +1239,14 @@ export const triggerWithTooltip = {
           <Sidebar.Header>
             <Tooltip content="Toggle sidebar" portal={false}>
               <Sidebar.Trigger
-                asChild
+                as={Button}
+                icon={<VscLayoutSidebarLeftDock aria-hidden />}
                 label="Toggle sidebar"
                 placement="inside"
-              >
-                <Button
-                  aria-label="Toggle sidebar"
-                  icon={<VscLayoutSidebarLeftDock aria-hidden />}
-                  size="small"
-                  style={{ borderRadius: '0.25rem' }}
-                  variant="link"
-                />
-              </Sidebar.Trigger>
+                size="small"
+                style={{ borderRadius: '0.25rem' }}
+                variant="link"
+              />
             </Tooltip>
           </Sidebar.Header>
           <Sidebar.Content>{sidebarShellMenu}</Sidebar.Content>

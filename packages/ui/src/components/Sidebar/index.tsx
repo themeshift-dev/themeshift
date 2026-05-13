@@ -1,11 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Slot } from '@radix-ui/react-slot';
 import classNames from 'classnames';
-import { FaChevronRight } from 'react-icons/fa';
-import {
-  VscLayoutSidebarLeftDock,
-  VscLayoutSidebarRightDock,
-} from 'react-icons/vsc';
 import {
   Children,
   createContext,
@@ -30,7 +24,7 @@ import {
   type FocusLockAdapterComponent,
   type FocusLockAdapterProps,
 } from '@/components/FocusLock';
-import { Tooltip } from '@/components/Tooltip';
+import { IconSidebarCollapse, IconSidebarExpand } from '@/icons';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { useScrollLock } from '@/hooks/useScrollLock';
 
@@ -154,12 +148,8 @@ const menuBadgeToneClassMap = {
   danger: styles.menuBadgeDanger,
 } satisfies Record<NonNullable<SidebarMenuBadgeProps['tone']>, string>;
 
-function resolveCollapsedTooltipPlacement(side: SidebarSide, isRtl: boolean) {
-  if (side === 'start') {
-    return isRtl ? 'left' : 'right';
-  }
-
-  return isRtl ? 'right' : 'left';
+function DefaultChevronIcon() {
+  return <IconSidebarCollapse aria-hidden size={20} />;
 }
 
 function useSidebarContext(component: string) {
@@ -308,12 +298,14 @@ export const SidebarProvider = ({
     onChange: onOpenChange,
     value: open,
   });
-  const triggerElementRef = useRef<HTMLElement | null>(null);
+  const [triggerElement, setTriggerElement] = useState<HTMLElement | null>(
+    null
+  );
   const previousLocationKeyRef = useRef(locationKey);
   const warnedLocationKeyRef = useRef(false);
 
   const registerTrigger = useCallback((element: HTMLElement | null) => {
-    triggerElementRef.current = element;
+    setTriggerElement(element);
   }, []);
 
   useEffect(() => {
@@ -362,7 +354,7 @@ export const SidebarProvider = ({
       setCollapsed,
       setOpen,
       side,
-      triggerElement: triggerElementRef.current,
+      triggerElement,
     }),
     [
       collapseMode,
@@ -373,6 +365,7 @@ export const SidebarProvider = ({
       setCollapsed,
       setOpen,
       side,
+      triggerElement,
     ]
   );
 
@@ -551,7 +544,6 @@ const SidebarContent = <T extends ElementType = 'div'>({
 const SidebarFooter = <T extends ElementType = 'footer'>({
   as,
   collapsedContent,
-  collapsedTooltip,
   children,
   className,
   hideWhenCollapsed = false,
@@ -561,28 +553,19 @@ const SidebarFooter = <T extends ElementType = 'footer'>({
   const root = useSidebarRootContextOptional();
   const Component = (as ?? 'footer') as ElementType;
   const isCollapsed = root?.isCollapsed ?? false;
-  const collapsedTooltipPlacement = root?.side === 'end' ? 'left' : 'right';
 
   if (isCollapsed && hideWhenCollapsed && !collapsedContent) {
     return <></>;
   }
 
   const content = isCollapsed && collapsedContent ? collapsedContent : children;
-  const wrappedContent =
-    isCollapsed && collapsedTooltip ? (
-      <Tooltip content={collapsedTooltip} placement={collapsedTooltipPlacement}>
-        <span>{content}</span>
-      </Tooltip>
-    ) : (
-      content
-    );
 
   return (
     <Component
       {...props}
       className={classNames(styles.footer, sticky && styles.sticky, className)}
     >
-      {wrappedContent}
+      {content}
     </Component>
   );
 };
@@ -661,14 +644,13 @@ const SidebarGroupLabel = <T extends ElementType = 'h3'>({
 /** Renders an auxiliary action control associated with a sidebar group heading. */
 const SidebarGroupAction = <T extends ElementType = 'button'>({
   as,
-  asChild = false,
   children,
   className,
   iconOpacity = DEFAULT_ICON_OPACITY,
   label,
   ...props
 }: SidebarGroupActionProps<T>) => {
-  const Component = asChild ? Slot : ((as ?? 'button') as ElementType);
+  const Component = (as ?? 'button') as ElementType;
 
   return (
     <Component
@@ -676,7 +658,7 @@ const SidebarGroupAction = <T extends ElementType = 'button'>({
       aria-label={label}
       className={classNames(styles.groupAction, styles.iconOpacity, className)}
       style={resolveIconOpacityStyle(props.style as CSSProperties, iconOpacity)}
-      type={asChild ? undefined : 'button'}
+      type={as ? undefined : 'button'}
     >
       {children}
     </Component>
@@ -729,7 +711,7 @@ const SidebarMenuItem = <T extends ElementType = 'li'>({
   const resolvedCollapseIcon =
     typeof collapseIcon === 'function'
       ? collapseIcon(resolvedOpen)
-      : (collapseIcon ?? <FaChevronRight />);
+      : (collapseIcon ?? <DefaultChevronIcon />);
 
   const handleToggleSubmenu = useCallback(() => {
     const nextOpen = !resolvedOpen;
@@ -794,7 +776,6 @@ const SidebarMenuItem = <T extends ElementType = 'li'>({
 const SidebarMenuButton = <T extends ElementType = 'button'>({
   active,
   as,
-  asChild = false,
   badge,
   children,
   className,
@@ -802,56 +783,19 @@ const SidebarMenuButton = <T extends ElementType = 'button'>({
   iconOpacity = DEFAULT_ICON_OPACITY,
   iconOnlyLabel,
   size = 'medium',
-  tooltip,
   variant = 'default',
   ...props
 }: SidebarMenuButtonProps<T>) => {
   const item = useSidebarItemContext();
   const root = useSidebarRootContext('Sidebar.MenuButton');
-  const Component = asChild ? Slot : ((as ?? 'button') as ElementType);
-  const { ref: triggerRef, ...restProps } =
-    props as SidebarMenuButtonProps<T> & {
-      ref?: Ref<HTMLElement>;
-    };
+  const Component = (as ?? 'button') as ElementType;
   const isActive = active ?? item?.active ?? false;
   const isDisabled = disabled ?? item?.disabled ?? false;
   const isCollapsed = root.isCollapsed;
-  const [isRtlDirection, setIsRtlDirection] = useState(false);
-  const triggerElementRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const element = triggerElementRef.current;
-
-    if (!element) {
-      return;
-    }
-
-    const direction =
-      element.ownerDocument.defaultView?.getComputedStyle(element).direction ??
-      element.ownerDocument.documentElement.dir ??
-      'ltr';
-
-    setIsRtlDirection(direction === 'rtl');
-  }, [isCollapsed, root.side]);
-
-  const setTriggerElementRef = useMemo(
-    () =>
-      mergeRefs<HTMLElement>([
-        triggerRef,
-        (element) => {
-          triggerElementRef.current = element;
-        },
-      ]),
-    [triggerRef]
-  );
-  const collapsedTooltipPlacement = resolveCollapsedTooltipPlacement(
-    root.side,
-    isRtlDirection
-  );
 
   const content = (
     <Component
-      {...restProps}
+      {...props}
       aria-current={isActive ? 'page' : undefined}
       aria-label={iconOnlyLabel}
       className={classNames(
@@ -865,22 +809,14 @@ const SidebarMenuButton = <T extends ElementType = 'button'>({
       )}
       data-active={isActive || undefined}
       data-collapsed={isCollapsed || undefined}
-      disabled={asChild ? undefined : isDisabled}
-      ref={setTriggerElementRef}
+      disabled={as ? undefined : isDisabled}
       style={resolveIconOpacityStyle(props.style as CSSProperties, iconOpacity)}
+      type={as ? undefined : 'button'}
     >
       <span className={styles.menuButtonContent}>{children}</span>
       {badge ? <span className={styles.menuButtonBadge}>{badge}</span> : null}
     </Component>
   );
-
-  if (isCollapsed && tooltip) {
-    return (
-      <Tooltip content={tooltip} placement={collapsedTooltipPlacement}>
-        {content as never}
-      </Tooltip>
-    );
-  }
 
   return content;
 };
@@ -914,7 +850,6 @@ const SidebarMenuBadge = <T extends ElementType = 'span'>({
 /** Renders a secondary action for a menu item, optionally revealed on hover. */
 const SidebarMenuAction = <T extends ElementType = 'button'>({
   as,
-  asChild = false,
   children,
   className,
   iconOpacity = DEFAULT_ICON_OPACITY,
@@ -922,7 +857,7 @@ const SidebarMenuAction = <T extends ElementType = 'button'>({
   showOnHover = true,
   ...props
 }: SidebarMenuActionProps<T>) => {
-  const Component = asChild ? Slot : ((as ?? 'button') as ElementType);
+  const Component = (as ?? 'button') as ElementType;
 
   return (
     <Component
@@ -935,7 +870,7 @@ const SidebarMenuAction = <T extends ElementType = 'button'>({
         className
       )}
       style={resolveIconOpacityStyle(props.style as CSSProperties, iconOpacity)}
-      type={asChild ? undefined : 'button'}
+      type={as ? undefined : 'button'}
     >
       {children}
     </Component>
@@ -1101,7 +1036,6 @@ const SidebarTrigger = <T extends ElementType = 'button'>({
   action = 'toggle',
   'aria-controls': ariaControls,
   as,
-  asChild = false,
   children,
   className,
   iconOpacity = DEFAULT_ICON_OPACITY,
@@ -1112,7 +1046,7 @@ const SidebarTrigger = <T extends ElementType = 'button'>({
 }: SidebarTriggerProps<T>) => {
   const provider = useSidebarContext('Sidebar.Trigger');
   const root = useSidebarRootContextOptional();
-  const Component = asChild ? Slot : ((as ?? 'button') as ElementType);
+  const Component = (as ?? 'button') as ElementType;
   const localRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -1175,14 +1109,14 @@ const SidebarTrigger = <T extends ElementType = 'button'>({
         props.ref as Ref<HTMLElement> | undefined,
       ])}
       style={resolveIconOpacityStyle(props.style as CSSProperties, iconOpacity)}
-      type={asChild ? undefined : 'button'}
+      type={as ? undefined : 'button'}
     >
       {children ?? (
         <span aria-hidden className={styles.triggerIcon}>
           {expanded ? (
-            <VscLayoutSidebarLeftDock size={16} />
+            <IconSidebarCollapse aria-hidden size={16} />
           ) : (
-            <VscLayoutSidebarRightDock size={16} />
+            <IconSidebarExpand aria-hidden size={16} />
           )}
         </span>
       )}

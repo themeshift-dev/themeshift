@@ -178,17 +178,14 @@ describe('Sidebar', () => {
     );
   });
 
-  it('shows collapsed footer content with tooltip while collapsed', async () => {
+  it('shows collapsed footer content while collapsed', async () => {
     const user = userEvent.setup();
 
     render(
       <Sidebar.Provider>
         <Sidebar>
           <Sidebar.Trigger label="Toggle sidebar" placement="inside" />
-          <Sidebar.Footer
-            collapsedContent={<span aria-hidden>User</span>}
-            collapsedTooltip="Signed in as Buzz"
-          >
+          <Sidebar.Footer collapsedContent={<span aria-hidden>User</span>}>
             Signed in as Buzz
           </Sidebar.Footer>
         </Sidebar>

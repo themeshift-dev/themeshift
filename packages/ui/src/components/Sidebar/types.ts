@@ -31,7 +31,7 @@ export type SidebarTriggerAction =
 export type PolymorphicProps<T extends ElementType, Props = object> = Props & {
   /** Render this primitive as a different element. */
   as?: T;
-} & Omit<ComponentPropsWithoutRef<T>, keyof Props | 'as'>;
+} & Omit<ComponentPropsWithoutRef<T>, keyof Props | 'as' | 'asChild'>;
 
 /**
  * Shared state and behavior controls for a sidebar tree.
@@ -165,9 +165,6 @@ export type SidebarFooterProps<T extends ElementType = 'footer'> =
       /** Content shown when the sidebar is collapsed. */
       collapsedContent?: ReactNode;
 
-      /** Tooltip content for collapsed footer affordances. */
-      collapsedTooltip?: ReactNode;
-
       /** Footer content, such as account actions or settings. */
       children: ReactNode;
 
@@ -228,9 +225,6 @@ export type SidebarGroupActionProps<T extends ElementType = 'button'> =
   PolymorphicProps<
     T,
     {
-      /** Renders action behavior onto a single child element. */
-      asChild?: boolean;
-
       /** Action icon or custom content. */
       children: ReactNode;
 
@@ -305,9 +299,6 @@ export type SidebarMenuButtonProps<T extends ElementType = 'button'> =
       /** Marks this menu button as active. */
       active?: boolean;
 
-      /** Renders menu-button behavior onto a single child element. */
-      asChild?: boolean;
-
       /** Optional trailing badge content rendered within the button row. */
       badge?: ReactNode;
 
@@ -328,9 +319,6 @@ export type SidebarMenuButtonProps<T extends ElementType = 'button'> =
 
       /** Size preset for button spacing and height. */
       size?: 'small' | 'medium' | 'large';
-
-      /** Optional tooltip content shown in collapsed/icon-only views. */
-      tooltip?: ReactNode;
 
       /** Visual button variant. */
       variant?: 'default' | 'subtle' | 'ghost';
@@ -358,9 +346,6 @@ export type SidebarMenuActionProps<T extends ElementType = 'button'> =
   PolymorphicProps<
     T,
     {
-      /** Renders action behavior onto a single child element. */
-      asChild?: boolean;
-
       /** Action icon or custom content. */
       children: ReactNode;
 
@@ -455,9 +440,6 @@ export type SidebarTriggerProps<T extends ElementType = 'button'> =
     {
       /** Trigger action behavior. */
       action?: SidebarTriggerAction;
-
-      /** Renders trigger behavior onto a single child element. */
-      asChild?: boolean;
 
       /** Optional trigger content. */
       children?: ReactNode;
