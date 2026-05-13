@@ -10,7 +10,7 @@
       "@/*": ["./src/*"],
       "@themeshift/ui/hooks/*": ["../../packages/ui/src/hooks/*/index.ts"]
     },
-    "types": ["vite/client"],
+    "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom"],
     "skipLibCheck": true,
 
     /* Bundler mode */
