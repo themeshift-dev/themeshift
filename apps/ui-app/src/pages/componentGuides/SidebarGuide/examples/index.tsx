@@ -1,9 +1,8 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   type ComponentProps,
   type MouseEvent,
   type ReactNode,
-  useEffect,
-  useRef,
   useState,
 } from 'react';
 
@@ -26,37 +25,31 @@ function preventDocsNavigation(event: MouseEvent<HTMLAnchorElement>) {
   event.preventDefault();
 }
 
-function GuideTooltipMenuButton({
+function resolveTooltipPlacement({
+  dir = 'ltr',
+  side = 'start',
+}: {
+  dir?: 'ltr' | 'rtl';
+  side?: 'start' | 'end';
+}) {
+  if (side === 'start') {
+    return dir === 'rtl' ? 'left' : 'right';
+  }
+
+  return dir === 'rtl' ? 'right' : 'left';
+}
+
+function renderGuideTooltipMenuButton({
+  dir,
   iconOnlyLabel,
+  side,
   tooltip,
   ...props
 }: ComponentProps<typeof Sidebar.MenuButton> & {
+  dir?: 'ltr' | 'rtl';
+  side?: 'start' | 'end';
   tooltip?: ReactNode;
 }) {
-  const triggerWrapperRef = useRef<HTMLSpanElement>(null);
-  const [placement, setPlacement] = useState<'left' | 'right'>('right');
-
-  useEffect(() => {
-    const wrapper = triggerWrapperRef.current;
-
-    if (!wrapper) {
-      return;
-    }
-
-    const doc = wrapper.ownerDocument;
-    const sidebar = wrapper.closest<HTMLElement>('[data-side]');
-    const side = sidebar?.getAttribute('data-side') === 'end' ? 'end' : 'start';
-    const direction =
-      doc.defaultView?.getComputedStyle(wrapper).direction ??
-      doc.documentElement.dir ??
-      'ltr';
-    const isRtl = direction === 'rtl';
-    const nextPlacement =
-      side === 'start' ? (isRtl ? 'left' : 'right') : isRtl ? 'right' : 'left';
-
-    setPlacement(nextPlacement);
-  }, []);
-
   const content = (
     <Sidebar.MenuButton iconOnlyLabel={iconOnlyLabel} {...props} />
   );
@@ -69,9 +62,82 @@ function GuideTooltipMenuButton({
   }
 
   return (
-    <Tooltip content={resolvedTooltip} placement={placement}>
-      <span ref={triggerWrapperRef}>{content}</span>
+    <Tooltip
+      content={resolvedTooltip}
+      placement={resolveTooltipPlacement({ dir, side })}
+    >
+      {content}
     </Tooltip>
+  );
+}
+
+function OffcanvasWithLocationKeySample() {
+  const [locationKey, setLocationKey] = useState('/dashboard');
+
+  return (
+    <Sidebar.Provider
+      closeOnRouteChange
+      collapseMode="offcanvas"
+      defaultOpen={false}
+      locationKey={locationKey}
+    >
+      <div style={{ display: 'flex', minHeight: 320 }}>
+        <Sidebar mode="offcanvas">
+          <Sidebar.Header>
+            <Sidebar.Trigger
+              as={Button}
+              label="Toggle navigation"
+              size="small"
+              variant="link"
+            />
+          </Sidebar.Header>
+          <Sidebar.Content>
+            <Sidebar.Menu>
+              <Sidebar.MenuItem>
+                <Sidebar.MenuButton iconOnlyLabel="Dashboard">
+                  <span>Dashboard</span>
+                </Sidebar.MenuButton>
+              </Sidebar.MenuItem>
+            </Sidebar.Menu>
+          </Sidebar.Content>
+        </Sidebar>
+
+        <Sidebar.Inset>
+          <div style={{ padding: '1rem' }}>
+            <p>Current locationKey: {locationKey}</p>
+            <button type="button" onClick={() => setLocationKey('/projects')}>
+              Navigate to /projects
+            </button>
+          </div>
+        </Sidebar.Inset>
+      </div>
+    </Sidebar.Provider>
+  );
+}
+
+function CollapsibleMenuItemControlledSample() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Sidebar.Provider defaultCollapsed={false}>
+      <div style={{ display: 'flex', minHeight: 280 }}>
+        <Sidebar>
+          <Sidebar.Content>
+            <Sidebar.Menu>
+              <Sidebar.MenuItem collapsible onOpenChange={setOpen} open={open}>
+                <Sidebar.MenuButton iconOnlyLabel="Models">
+                  <span>Models</span>
+                </Sidebar.MenuButton>
+                <ul>
+                  <Sidebar.SubMenuItem>Genesis</Sidebar.SubMenuItem>
+                  <Sidebar.SubMenuItem>Explorer</Sidebar.SubMenuItem>
+                </ul>
+              </Sidebar.MenuItem>
+            </Sidebar.Menu>
+          </Sidebar.Content>
+        </Sidebar>
+      </div>
+    </Sidebar.Provider>
   );
 }
 
@@ -135,9 +201,10 @@ export const quickStart = {
               <Sidebar.GroupLabel>Platform</Sidebar.GroupLabel>
               <Sidebar.Menu>
                 <Sidebar.MenuItem active>
-                  <GuideTooltipMenuButton iconOnlyLabel="Dashboard">
-                    <span>Dashboard</span>
-                  </GuideTooltipMenuButton>
+                  {renderGuideTooltipMenuButton({
+                    children: <span>Dashboard</span>,
+                    iconOnlyLabel: 'Dashboard',
+                  })}
                 </Sidebar.MenuItem>
               </Sidebar.Menu>
             </Sidebar.Group>
@@ -186,49 +253,7 @@ export const offcanvasWithLocationKey = {
   </Sidebar.Inset>
 </Sidebar.Provider>`,
   label: 'Offcanvas + locationKey',
-  sample: () => {
-    const [locationKey, setLocationKey] = useState('/dashboard');
-
-    return (
-      <Sidebar.Provider
-        closeOnRouteChange
-        collapseMode="offcanvas"
-        defaultOpen={false}
-        locationKey={locationKey}
-      >
-        <div style={{ display: 'flex', minHeight: 320 }}>
-          <Sidebar mode="offcanvas">
-            <Sidebar.Header>
-              <Sidebar.Trigger
-                as={Button}
-                label="Toggle navigation"
-                size="small"
-                variant="link"
-              />
-            </Sidebar.Header>
-            <Sidebar.Content>
-              <Sidebar.Menu>
-                <Sidebar.MenuItem>
-                  <Sidebar.MenuButton iconOnlyLabel="Dashboard">
-                    <span>Dashboard</span>
-                  </Sidebar.MenuButton>
-                </Sidebar.MenuItem>
-              </Sidebar.Menu>
-            </Sidebar.Content>
-          </Sidebar>
-
-          <Sidebar.Inset>
-            <div style={{ padding: '1rem' }}>
-              <p>Current locationKey: {locationKey}</p>
-              <button type="button" onClick={() => setLocationKey('/projects')}>
-                Navigate to /projects
-              </button>
-            </div>
-          </Sidebar.Inset>
-        </div>
-      </Sidebar.Provider>
-    );
-  },
+  sample: <OffcanvasWithLocationKeySample />,
 };
 
 export const rtlSideAware = {
@@ -351,35 +376,7 @@ export const collapsibleMenuItemControlled = {
   </ul>
 </Sidebar.MenuItem>`,
   label: 'MenuItem collapsible (controlled)',
-  sample: () => {
-    const [open, setOpen] = useState(false);
-
-    return (
-      <Sidebar.Provider defaultCollapsed={false}>
-        <div style={{ display: 'flex', minHeight: 280 }}>
-          <Sidebar>
-            <Sidebar.Content>
-              <Sidebar.Menu>
-                <Sidebar.MenuItem
-                  collapsible
-                  onOpenChange={setOpen}
-                  open={open}
-                >
-                  <Sidebar.MenuButton iconOnlyLabel="Models">
-                    <span>Models</span>
-                  </Sidebar.MenuButton>
-                  <ul>
-                    <Sidebar.SubMenuItem>Genesis</Sidebar.SubMenuItem>
-                    <Sidebar.SubMenuItem>Explorer</Sidebar.SubMenuItem>
-                  </ul>
-                </Sidebar.MenuItem>
-              </Sidebar.Menu>
-            </Sidebar.Content>
-          </Sidebar>
-        </div>
-      </Sidebar.Provider>
-    );
-  },
+  sample: <CollapsibleMenuItemControlledSample />,
 };
 
 export const collapsibleMenuItemCustomChevron = {
@@ -822,16 +819,26 @@ const sidebarShellMenu = (
       <Sidebar.GroupLabel>Platform</Sidebar.GroupLabel>
       <Sidebar.Menu>
         <Sidebar.MenuItem active>
-          <GuideTooltipMenuButton iconOnlyLabel="Dashboard">
-            <LuGauge aria-hidden />
-            <span>Dashboard</span>
-          </GuideTooltipMenuButton>
+          {renderGuideTooltipMenuButton({
+            children: (
+              <>
+                <LuGauge aria-hidden />
+                <span>Dashboard</span>
+              </>
+            ),
+            iconOnlyLabel: 'Dashboard',
+          })}
         </Sidebar.MenuItem>
         <Sidebar.MenuItem>
-          <GuideTooltipMenuButton iconOnlyLabel="Projects">
-            <LuFolder aria-hidden />
-            <span>Projects</span>
-          </GuideTooltipMenuButton>
+          {renderGuideTooltipMenuButton({
+            children: (
+              <>
+                <LuFolder aria-hidden />
+                <span>Projects</span>
+              </>
+            ),
+            iconOnlyLabel: 'Projects',
+          })}
         </Sidebar.MenuItem>
       </Sidebar.Menu>
     </Sidebar.Group>
@@ -839,22 +846,32 @@ const sidebarShellMenu = (
       <Sidebar.GroupLabel>Operations</Sidebar.GroupLabel>
       <Sidebar.Menu>
         <Sidebar.MenuItem>
-          <GuideTooltipMenuButton iconOnlyLabel="Builds">
-            <LuHammer aria-hidden />
-            <span>Builds</span>
-            <Badge tone="info" variant="soft">
-              9
-            </Badge>
-          </GuideTooltipMenuButton>
+          {renderGuideTooltipMenuButton({
+            children: (
+              <>
+                <LuHammer aria-hidden />
+                <span>Builds</span>
+                <Badge tone="info" variant="soft">
+                  9
+                </Badge>
+              </>
+            ),
+            iconOnlyLabel: 'Builds',
+          })}
         </Sidebar.MenuItem>
         <Sidebar.MenuItem>
-          <GuideTooltipMenuButton iconOnlyLabel="Incidents">
-            <LuTriangle aria-hidden />
-            <span>Incidents</span>
-            <Badge tone="danger" variant="soft">
-              3
-            </Badge>
-          </GuideTooltipMenuButton>
+          {renderGuideTooltipMenuButton({
+            children: (
+              <>
+                <LuTriangle aria-hidden />
+                <span>Incidents</span>
+                <Badge tone="danger" variant="soft">
+                  3
+                </Badge>
+              </>
+            ),
+            iconOnlyLabel: 'Incidents',
+          })}
         </Sidebar.MenuItem>
       </Sidebar.Menu>
     </Sidebar.Group>

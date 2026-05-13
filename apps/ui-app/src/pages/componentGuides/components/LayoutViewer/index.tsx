@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { LuAlignEndVertical, LuAlignStartVertical } from 'react-icons/lu';
 import {
   Children,
+  useCallback,
   createContext,
   type FocusEvent,
   isValidElement,
@@ -214,7 +215,8 @@ function getOpenHref(
   return openInNewTabHref;
 }
 
-function LayoutViewerExample(_props: LayoutViewerExampleProps) {
+function LayoutViewerExample(props: LayoutViewerExampleProps) {
+  void props;
   return null;
 }
 
@@ -305,13 +307,20 @@ function LayoutViewerRoot({
   );
 
   const [isCodeOpen, setCodeOpen] = useState(defaultCodeOpen);
-  const [isInteracting, setInteracting] = useState(focusMode === 'direct');
+  const [isInteractingState, setInteractingState] = useState(
+    focusMode === 'direct'
+  );
+  const isInteracting = focusMode === 'direct' ? true : isInteractingState;
+  const setInteracting = useCallback(
+    (next: boolean) => {
+      if (focusMode === 'direct') {
+        return;
+      }
 
-  useEffect(() => {
-    if (focusMode === 'direct') {
-      setInteracting(true);
-    }
-  }, [focusMode]);
+      setInteractingState(next);
+    },
+    [focusMode]
+  );
 
   const currentExample = useMemo(() => {
     if (!normalizedExamples.length) {
@@ -372,6 +381,7 @@ function LayoutViewerRoot({
       currentState,
       focusMode,
       frameDescription,
+      frameLabel,
       frameTitle,
       height,
       isCodeOpen,
@@ -386,6 +396,7 @@ function LayoutViewerRoot({
       restoreFocusOnExit,
       setActiveDir,
       setActiveExampleId,
+      setInteracting,
       setActiveViewport,
       showCode,
       title,
@@ -681,7 +692,6 @@ function usePreviewFocusBehavior() {
 
   useEffect(() => {
     if (isolation !== 'iframe') {
-      setIframeFocusWithin(false);
       return;
     }
 
@@ -772,7 +782,7 @@ function usePreviewFocusBehavior() {
     ariaLabel: `${frameLabel}. ${frameDescription} Press Enter to interact. Press Escape to return.`,
     focusMode,
     isInteracting,
-    isIframeFocusWithin,
+    isIframeFocusWithin: isolation === 'iframe' && isIframeFocusWithin,
     isKeyboardFocusVisible,
     onBlur,
     onFocus,
