@@ -237,17 +237,23 @@ export const AvatarImage = ({
   ...imageProps
 }: AvatarImageProps) => {
   const { decorative, name, setImageStatus } = useAvatarContext('Avatar.Image');
-  const [status, setStatus] = useState<AvatarImageLoadingStatus>(
-    src ? 'loading' : 'idle'
+  const [eventStatus, setEventStatus] = useState<'loaded' | 'error' | null>(
+    null
+  );
+  const [eventStatusSrc, setEventStatusSrc] = useState<string | undefined>(
+    undefined
   );
 
-  useEffect(() => {
-    const nextStatus = src ? 'loading' : 'idle';
+  const status: AvatarImageLoadingStatus = !src
+    ? 'idle'
+    : eventStatusSrc === src
+      ? (eventStatus ?? 'loading')
+      : 'loading';
 
-    setStatus(nextStatus);
-    setImageStatus(nextStatus);
-    onLoadingStatusChange?.(nextStatus);
-  }, [onLoadingStatusChange, setImageStatus, src]);
+  useEffect(() => {
+    setImageStatus(status);
+    onLoadingStatusChange?.(status);
+  }, [onLoadingStatusChange, setImageStatus, status]);
 
   if (!src) {
     return null;
@@ -266,13 +272,15 @@ export const AvatarImage = ({
         className
       )}
       onError={(event) => {
-        setStatus('error');
+        setEventStatus('error');
+        setEventStatusSrc(src);
         setImageStatus('error');
         onLoadingStatusChange?.('error');
         onError?.(event);
       }}
       onLoad={(event) => {
-        setStatus('loaded');
+        setEventStatus('loaded');
+        setEventStatusSrc(src);
         setImageStatus('loaded');
         onLoadingStatusChange?.('loaded');
         onLoad?.(event);
@@ -296,9 +304,7 @@ export const AvatarFallback = ({
   const [isDelayed, setIsDelayed] = useState(delayMs > 0);
 
   useEffect(() => {
-    if (delayMs <= 0) {
-      setIsDelayed(false);
-
+    if (!isDelayed || delayMs <= 0) {
       return;
     }
 
@@ -307,7 +313,7 @@ export const AvatarFallback = ({
     return () => {
       window.clearTimeout(timer);
     };
-  }, [delayMs]);
+  }, [delayMs, isDelayed]);
 
   if (imageStatus === 'loaded') {
     return null;

@@ -40,7 +40,7 @@ export const AvatarGuide = () => {
     useDescription:
       'Start with shorthand props for the common case, then compose Root/Image/Fallback/Badge for advanced behavior.',
     useExample: (
-      <ExampleViewer defaultCodeExpanded={true} example={examples.quickStart} />
+      <ExampleViewer defaultCodeExpanded={true} example={examples.basicUsage} />
     ),
   });
 
