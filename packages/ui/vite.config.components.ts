@@ -212,6 +212,9 @@ export default defineConfig({
     cssCodeSplit: true,
     lib: {
       entry: {
+        'components/Avatar/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Avatar.ts', import.meta.url)
+        ),
         'components/Badge/index': fileURLToPath(
           new URL('./src/entrypoints/components/Badge.ts', import.meta.url)
         ),

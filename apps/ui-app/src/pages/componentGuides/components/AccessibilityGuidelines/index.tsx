@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 
 import { TableOfContents } from '@/app/components';
 
-import { type ExampleViewerExample } from '../ExampleViewer';
+import { ExampleViewer, type ExampleViewerExample } from '../ExampleViewer';
 import { LayoutViewer, type LayoutViewerExample } from '../LayoutViewer';
 import {
   GuideExampleCard,
@@ -12,16 +12,20 @@ import {
   GuideExamplesGrid,
 } from '../GuideExamples';
 
+export type AccessibilityGuidelineViewer = 'example' | 'layout';
+
 export type AccessibilityGuideline = {
   content: ReactNode;
   example?: ExampleViewerExample | LayoutViewerExample;
   examples?: Array<ExampleViewerExample | LayoutViewerExample>;
+  viewer?: AccessibilityGuidelineViewer;
   tocLabel?: string;
   title: ReactNode;
 };
 
 export type AccessibilityGuidelinesProps = {
   items: AccessibilityGuideline[];
+  viewer?: AccessibilityGuidelineViewer;
 };
 
 const getAccessibilityMarkerLabel = ({
@@ -87,8 +91,23 @@ function toLayoutViewerExample({
   };
 }
 
+function toExampleViewerExample(
+  example: ExampleViewerExample | LayoutViewerExample
+): ExampleViewerExample {
+  if (!isLayoutViewerExample(example)) {
+    return example;
+  }
+
+  return {
+    code: example.code,
+    label: example.label,
+    sample: example.render,
+  };
+}
+
 export const AccessibilityGuidelines = ({
   items,
+  viewer = 'example',
 }: AccessibilityGuidelinesProps) => {
   if (items.length === 0) {
     return null;
@@ -96,44 +115,58 @@ export const AccessibilityGuidelines = ({
 
   return (
     <GuideExamplesGrid>
-      {items.map(({ content, example, examples, title, tocLabel }, index) => {
-        const markerLabel = getAccessibilityMarkerLabel({
-          index,
-          title,
-          tocLabel,
-        });
+      {items.map(
+        (
+          { content, example, examples, title, tocLabel, viewer: itemViewer },
+          index
+        ) => {
+          const resolvedViewer = itemViewer ?? viewer;
+          const resolvedExamples =
+            examples ?? (example ? [example] : undefined);
+          const markerLabel = getAccessibilityMarkerLabel({
+            index,
+            title,
+            tocLabel,
+          });
 
-        return (
-          <GuideExampleCard key={index}>
-            <GuideExampleText>
-              <TableOfContents.Marker
-                id={`accessibility-${index + 1}-${toMarkerSlug(markerLabel)}`}
-                label={markerLabel}
-                level={2}
-              />
-              <Heading level={4}>{title}</Heading>
-              {content}
-            </GuideExampleText>
-
-            {(example || examples) && (
-              <GuideExampleViewer>
-                <LayoutViewer
-                  defaultCodeOpen
-                  examples={(
-                    examples ?? (example ? [example] : undefined)
-                  )?.map((viewerExample, viewerIndex) =>
-                    toLayoutViewerExample({
-                      example: viewerExample,
-                      index: viewerIndex,
-                    })
-                  )}
-                  mode="contained"
+          return (
+            <GuideExampleCard key={index}>
+              <GuideExampleText>
+                <TableOfContents.Marker
+                  id={`accessibility-${index + 1}-${toMarkerSlug(markerLabel)}`}
+                  label={markerLabel}
+                  level={2}
                 />
-              </GuideExampleViewer>
-            )}
-          </GuideExampleCard>
-        );
-      })}
+                <Heading level={4}>{title}</Heading>
+                {content}
+              </GuideExampleText>
+
+              {resolvedExamples && (
+                <GuideExampleViewer>
+                  {resolvedViewer === 'layout' ? (
+                    <LayoutViewer
+                      defaultCodeOpen
+                      examples={resolvedExamples.map(
+                        (viewerExample, viewerIndex) =>
+                          toLayoutViewerExample({
+                            example: viewerExample,
+                            index: viewerIndex,
+                          })
+                      )}
+                      mode="contained"
+                    />
+                  ) : (
+                    <ExampleViewer
+                      defaultCodeExpanded={true}
+                      examples={resolvedExamples.map(toExampleViewerExample)}
+                    />
+                  )}
+                </GuideExampleViewer>
+              )}
+            </GuideExampleCard>
+          );
+        }
+      )}
     </GuideExamplesGrid>
   );
 };

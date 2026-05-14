@@ -1,3 +1,4 @@
+export * from './AvatarGuide';
 export * from './BadgeGuide';
 export * from './BoxGuide';
 export * from './ButtonGuide';

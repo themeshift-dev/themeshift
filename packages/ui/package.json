@@ -30,6 +30,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./components/Avatar": {
+      "types": "./dist/components/Avatar/index.d.ts",
+      "import": "./dist/components/Avatar/index.js"
+    },
     "./components/Badge": {
       "types": "./dist/components/Badge/index.d.ts",
       "import": "./dist/components/Badge/index.js"

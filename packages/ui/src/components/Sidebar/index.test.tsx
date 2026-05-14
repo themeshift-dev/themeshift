@@ -543,4 +543,107 @@ describe('Sidebar', () => {
 
     await expect(axe(container)).resolves.toHaveNoViolations();
   });
+
+  it('toggles Sidebar.SubMenu in uncontrolled mode', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Sidebar.Provider>
+        <Sidebar>
+          <Sidebar.Content>
+            <Sidebar.SubMenu defaultOpen={false}>
+              <Sidebar.SubMenuItem>Nested item</Sidebar.SubMenuItem>
+            </Sidebar.SubMenu>
+          </Sidebar.Content>
+        </Sidebar>
+      </Sidebar.Provider>
+    );
+
+    const toggle = screen.getByRole('button', { name: 'Toggle submenu' });
+    expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.queryByText('Nested item')).not.toBeInTheDocument();
+
+    await user.click(toggle);
+
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getByText('Nested item')).toBeInTheDocument();
+  });
+
+  it('supports controlled Sidebar.SubMenu state', async () => {
+    const user = userEvent.setup();
+    const onOpenChange = vi.fn();
+
+    render(
+      <Sidebar.Provider>
+        <Sidebar>
+          <Sidebar.Content>
+            <Sidebar.SubMenu onOpenChange={onOpenChange} open>
+              <Sidebar.SubMenuItem>Controlled nested</Sidebar.SubMenuItem>
+            </Sidebar.SubMenu>
+          </Sidebar.Content>
+        </Sidebar>
+      </Sidebar.Provider>
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Toggle submenu' }));
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+    expect(screen.getByText('Controlled nested')).toBeInTheDocument();
+  });
+
+  it('renders menu badge and action style variants', () => {
+    render(
+      <Sidebar.Provider defaultCollapsed>
+        <Sidebar>
+          <Sidebar.Content>
+            <Sidebar.Menu>
+              <Sidebar.MenuItem>
+                <Sidebar.MenuButton badge="8" iconOnlyLabel="Inbox">
+                  <span>Inbox</span>
+                </Sidebar.MenuButton>
+                <Sidebar.MenuBadge tone="danger">99+</Sidebar.MenuBadge>
+                <Sidebar.MenuAction label="More actions" showOnHover={false}>
+                  •••
+                </Sidebar.MenuAction>
+              </Sidebar.MenuItem>
+            </Sidebar.Menu>
+          </Sidebar.Content>
+        </Sidebar>
+      </Sidebar.Provider>
+    );
+
+    expect(screen.getByText('99+')).toHaveClass(styles.menuBadgeDanger);
+    expect(screen.getByText('99+')).toHaveAttribute('aria-hidden', 'true');
+    expect(screen.getByLabelText('More actions')).not.toHaveClass(
+      styles.menuActionOnHover
+    );
+    expect(screen.getByText('8')).toHaveClass(styles.menuButtonBadge);
+  });
+
+  it('supports non-decorative separator and inset padding opt-out', () => {
+    render(
+      <Sidebar.Provider>
+        <Sidebar>
+          <Sidebar.Separator decorative={false} />
+          <Sidebar.Inset padded={false}>Page body</Sidebar.Inset>
+        </Sidebar>
+      </Sidebar.Provider>
+    );
+
+    const separator = screen.getByRole('separator');
+    expect(separator).not.toHaveAttribute('aria-hidden', 'true');
+    expect(separator).not.toHaveAttribute('role', 'presentation');
+    expect(screen.getByText('Page body')).not.toHaveClass(styles.insetPadded);
+  });
+
+  it('supports persisted collapsed state from localStorage', () => {
+    window.localStorage.setItem('themeshift.sidebar.collapsed', 'true');
+
+    render(
+      <Sidebar.Provider persistCollapsed>
+        <Sidebar>Menu</Sidebar>
+      </Sidebar.Provider>
+    );
+
+    expect(screen.getByRole('complementary')).toHaveClass(styles.collapsed);
+  });
 });

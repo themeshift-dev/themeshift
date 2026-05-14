@@ -29,6 +29,7 @@
     "make:tokens": "pnpm -C packages/ui run make:tokens",
     "prepare": "husky",
     "precommit:ui-app-coverage": "node scripts/check-ui-app-changed-file-coverage.mjs",
+    "prepush:ui-coverage": "node scripts/check-ui-changed-file-coverage.mjs",
     "pr:check-conventions": "node scripts/check-pr-conventions.mjs",
     "release:preflight:verbose": "node scripts/preflight.ts --verbose",
     "release:preflight": "node scripts/preflight.ts",

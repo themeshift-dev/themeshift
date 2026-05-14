@@ -2,7 +2,11 @@ import { createElement, type ReactNode } from 'react';
 
 import type { ComponentGuideSection } from '@/templates/ComponentGuide';
 
-import { AccessibilityGuidelines, type AccessibilityGuideline } from './index';
+import {
+  AccessibilityGuidelines,
+  type AccessibilityGuideline,
+  type AccessibilityGuidelineViewer,
+} from './index';
 import { createAccessibilitySection } from '../GuideSections';
 
 export type CreateAccessibilityGuidelinesSectionOptions = {
@@ -11,10 +15,12 @@ export type CreateAccessibilityGuidelinesSectionOptions = {
   items: AccessibilityGuideline[];
   label?: string;
   title?: ReactNode;
+  viewer?: AccessibilityGuidelineViewer;
 };
 
 export const createAccessibilityGuidelinesSection = ({
   items,
+  viewer,
   ...options
 }: CreateAccessibilityGuidelinesSectionOptions):
   | ComponentGuideSection
@@ -24,7 +30,7 @@ export const createAccessibilityGuidelinesSection = ({
   }
 
   return createAccessibilitySection({
-    content: createElement(AccessibilityGuidelines, { items }),
+    content: createElement(AccessibilityGuidelines, { items, viewer }),
     ...options,
   });
 };
