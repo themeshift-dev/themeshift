@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -45,6 +45,28 @@ describe('Avatar', () => {
     expect(screen.queryByLabelText('Mae Jemison')).not.toBeInTheDocument();
   });
 
+  it('throws when compound slots are rendered outside Avatar.Root', () => {
+    expect(() => render(<Avatar.Image src="/avatar.png" />)).toThrow(
+      'Avatar.Image must be used within Avatar.Root.'
+    );
+  });
+
+  it('supports neutral, accent, and custom colors', () => {
+    const { rerender } = render(
+      <Avatar color="neutral" data-testid="avatar" />
+    );
+    expect(screen.getByTestId('avatar')).toHaveClass(styles.colorNeutral);
+
+    rerender(<Avatar color="accent" data-testid="avatar" />);
+    expect(screen.getByTestId('avatar')).toHaveClass(styles.colorAccent);
+
+    rerender(<Avatar color="#123456" data-testid="avatar" />);
+    expect(screen.getByTestId('avatar')).toHaveClass(styles.colorCustom);
+    expect(screen.getByTestId('avatar')).toHaveStyle({
+      '--avatar-custom-background': '#123456',
+    });
+  });
+
   it('calls onLoadingStatusChange across image transitions', () => {
     const onLoadingStatusChange = vi.fn();
 
@@ -69,6 +91,18 @@ describe('Avatar', () => {
     expect(onLoadingStatusChange).toHaveBeenCalledWith('loaded');
   });
 
+  it('returns idle loading status and no image element when src is not provided', () => {
+    const onLoadingStatusChange = vi.fn();
+    const { container } = render(
+      <Avatar.Root>
+        <Avatar.Image onLoadingStatusChange={onLoadingStatusChange} />
+      </Avatar.Root>
+    );
+
+    expect(container.querySelector('img')).toBeNull();
+    expect(onLoadingStatusChange).toHaveBeenCalledWith('idle');
+  });
+
   it('shows fallback when image errors', () => {
     const { container } = render(
       <Avatar.Root name="Neil Armstrong">
@@ -83,6 +117,36 @@ describe('Avatar', () => {
     image?.dispatchEvent(new Event('error'));
 
     expect(screen.getByText('NA')).toBeInTheDocument();
+  });
+
+  it('hides fallback after image loads', async () => {
+    const { container } = render(
+      <Avatar.Root name="Neil Armstrong">
+        <Avatar.Image src="/neil.png" />
+        <Avatar.Fallback>NA</Avatar.Fallback>
+      </Avatar.Root>
+    );
+
+    const image = container.querySelector('img');
+    expect(image).not.toBeNull();
+    if (image) {
+      fireEvent.load(image);
+    }
+
+    await waitFor(() => {
+      expect(screen.queryByText('NA')).not.toBeInTheDocument();
+    });
+  });
+
+  it('hides fallback during delayed loading', () => {
+    render(
+      <Avatar.Root name="Neil Armstrong">
+        <Avatar.Image src="/loading.png" />
+        <Avatar.Fallback delayMs={1000}>NA</Avatar.Fallback>
+      </Avatar.Root>
+    );
+
+    expect(screen.queryByText('NA')).not.toBeInTheDocument();
   });
 
   it('supports explicit initials and custom fallback content precedence', () => {
@@ -103,6 +167,26 @@ describe('Avatar', () => {
     expect(screen.getByText('Custom')).toBeInTheDocument();
   });
 
+  it('shows generic fallback icon when no name, initials, icon, or children are provided', () => {
+    const { container } = render(
+      <Avatar.Root>
+        <Avatar.Fallback />
+      </Avatar.Root>
+    );
+
+    expect(container.querySelector(`.${styles.genericIcon}`)).not.toBeNull();
+  });
+
+  it('supports punctuation-only names by falling back to generic icon', () => {
+    const { container } = render(
+      <Avatar.Root name="!!!">
+        <Avatar.Fallback />
+      </Avatar.Root>
+    );
+
+    expect(container.querySelector(`.${styles.genericIcon}`)).not.toBeNull();
+  });
+
   it('renders group overflow and accessible label', () => {
     render(
       <Avatar.Group aria-label="Crew members" max={3} total={5}>
@@ -119,6 +203,20 @@ describe('Avatar', () => {
     );
     expect(screen.getByText('+2')).toBeInTheDocument();
     expect(screen.getByLabelText('2 more members')).toBeInTheDocument();
+  });
+
+  it('supports string overlap and custom list role on Avatar.Group', () => {
+    render(
+      <Avatar.Group data-testid="group" overlap="0.75rem" role="presentation">
+        <Avatar name="Neil Armstrong" />
+        <Avatar name="Buzz Aldrin" />
+      </Avatar.Group>
+    );
+
+    expect(screen.getByTestId('group')).toHaveStyle({
+      '--avatar-group-overlap': '0.75rem',
+    });
+    expect(screen.getByTestId('group')).toHaveAttribute('role', 'presentation');
   });
 
   it('supports custom overlap on Avatar.Group', () => {
@@ -169,6 +267,38 @@ describe('Avatar', () => {
       styles.bottomEnd
     );
     expect(screen.getByTestId('dot')).toBeInTheDocument();
+  });
+
+  it('supports badge label fallback, inset mode, and numeric offset', () => {
+    render(
+      <Avatar.Root>
+        <Avatar.Fallback>MJ</Avatar.Fallback>
+        <Avatar.Badge inset label="Busy" offset={6} placement="top-start">
+          <span data-testid="busy-dot">•</span>
+        </Avatar.Badge>
+      </Avatar.Root>
+    );
+
+    const badge = screen.getByLabelText('Busy');
+    expect(badge).toHaveClass(styles.badgeInset, styles.topStart);
+    expect(badge).toHaveStyle({
+      '--avatar-badge-offset': '6px',
+    });
+  });
+
+  it('supports string badge offset values', () => {
+    render(
+      <Avatar.Root>
+        <Avatar.Fallback>MJ</Avatar.Fallback>
+        <Avatar.Badge aria-label="Away" offset="0.25rem">
+          <span>•</span>
+        </Avatar.Badge>
+      </Avatar.Root>
+    );
+
+    expect(screen.getByLabelText('Away')).toHaveStyle({
+      '--avatar-badge-offset': '0.25rem',
+    });
   });
 
   it('maps Avatar.Root to Avatar shorthand for DX aliasing', () => {
