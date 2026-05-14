@@ -1,0 +1,103 @@
+{
+  "components": {
+    "avatar": {
+      "auto": {
+        "palette": {
+          "c01": {
+            "background": { "$value": "#E57373" },
+            "foreground": { "$value": "#FFFFFF" }
+          },
+
+          "c02": {
+            "background": { "$value": "#F06292" },
+            "foreground": { "$value": "#FFFFFF" }
+          },
+
+          "c03": {
+            "background": { "$value": "#BA68C8" },
+            "foreground": { "$value": "#FFFFFF" }
+          },
+
+          "c04": {
+            "background": { "$value": "#9575CD" },
+            "foreground": { "$value": "#FFFFFF" }
+          },
+
+          "c05": {
+            "background": { "$value": "#7986CB" },
+            "foreground": { "$value": "#FFFFFF" }
+          },
+
+          "c06": {
+            "background": { "$value": "#64B5F6" },
+            "foreground": { "$value": "#FFFFFF" }
+          },
+
+          "c07": {
+            "background": { "$value": "#4FC3F7" },
+            "foreground": { "$value": "#003049" }
+          },
+
+          "c08": {
+            "background": { "$value": "#4DB6AC" },
+            "foreground": { "$value": "#003049" }
+          },
+
+          "c09": {
+            "background": { "$value": "#81C784" },
+            "foreground": { "$value": "#1B4332" }
+          },
+
+          "c10": {
+            "background": { "$value": "#AED581" },
+            "foreground": { "$value": "#1B4332" }
+          },
+
+          "c11": {
+            "background": { "$value": "#DCE775" },
+            "foreground": { "$value": "#1B4332" }
+          },
+
+          "c12": {
+            "background": { "$value": "#FFF176" },
+            "foreground": { "$value": "#5F4B00" }
+          },
+
+          "c13": {
+            "background": { "$value": "#FFD54F" },
+            "foreground": { "$value": "#5F4B00" }
+          },
+
+          "c14": {
+            "background": { "$value": "#FFB74D" },
+            "foreground": { "$value": "#5F3700" }
+          },
+
+          "c15": {
+            "background": { "$value": "#A1887F" },
+            "foreground": { "$value": "#FFFFFF" }
+          },
+
+          "c16": {
+            "background": { "$value": "#90A4AE" },
+            "foreground": { "$value": "#FFFFFF" }
+          }
+        }
+      },
+
+      "group": { "separator": { "width": { "$value": "2px" } } },
+
+      "light": {
+        "group": {
+          "separator": { "color": { "$value": "{border.light.default}" } }
+        }
+      },
+
+      "dark": {
+        "group": {
+          "separator": { "color": { "$value": "{border.dark.default}" } }
+        }
+      }
+    }
+  }
+}

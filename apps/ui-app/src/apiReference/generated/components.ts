@@ -5,6 +5,626 @@ export const components = [
     apiReference: [
       {
         comments:
+          'Optional fallback children for advanced shorthand composition.',
+        defaultValue: null,
+        displayDescription:
+          'Shorthand avatar API for the common identity avatar case.',
+        displayName: 'Avatar',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the root.',
+        defaultValue: null,
+        displayDescription:
+          'Shorthand avatar API for the common identity avatar case.',
+        displayName: 'Avatar',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Controls fallback palette. Use `auto` for deterministic name-based colors.',
+        defaultValue: 'auto',
+        displayDescription:
+          'Shorthand avatar API for the common identity avatar case.',
+        displayName: 'Avatar',
+        propName: 'color',
+        type: "'auto' | 'neutral' | 'accent' | string",
+        values: [],
+      },
+      {
+        comments:
+          'Marks the avatar as decorative when adjacent visible text already conveys the same identity.',
+        defaultValue: false,
+        displayDescription:
+          'Shorthand avatar API for the common identity avatar case.',
+        displayName: 'Avatar',
+        propName: 'decorative',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Explicit initials override.',
+        defaultValue: null,
+        displayDescription:
+          'Shorthand avatar API for the common identity avatar case.',
+        displayName: 'Avatar',
+        propName: 'initials',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Name used for accessibility labels and initials generation.',
+        defaultValue: null,
+        displayDescription:
+          'Shorthand avatar API for the common identity avatar case.',
+        displayName: 'Avatar',
+        propName: 'name',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Shape treatment for the avatar frame.',
+        defaultValue: 'circle',
+        displayDescription:
+          'Shorthand avatar API for the common identity avatar case.',
+        displayName: 'Avatar',
+        propName: 'shape',
+        type: 'AvatarShape',
+        values: ['circle', 'rounded', 'square'],
+      },
+      {
+        comments: 'Size scale for root dimensions.',
+        defaultValue: 'medium',
+        displayDescription:
+          'Shorthand avatar API for the common identity avatar case.',
+        displayName: 'Avatar',
+        propName: 'size',
+        type: 'AvatarSize',
+        values: ['xSmall', 'small', 'medium', 'large', 'xLarge'],
+      },
+      {
+        comments: 'Image source used by Avatar.Image.',
+        defaultValue: null,
+        displayDescription:
+          'Shorthand avatar API for the common identity avatar case.',
+        displayName: 'Avatar',
+        propName: 'src',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Optional image source set for responsive loading.',
+        defaultValue: null,
+        displayDescription:
+          'Shorthand avatar API for the common identity avatar case.',
+        displayName: 'Avatar',
+        propName: 'srcSet',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Inline style overrides for the root.',
+        defaultValue: null,
+        displayDescription:
+          'Shorthand avatar API for the common identity avatar case.',
+        displayName: 'Avatar',
+        propName: 'style',
+        type: 'CSSProperties',
+        values: [],
+      },
+      {
+        comments:
+          'Accessible name when badge content itself is not descriptive.',
+        defaultValue: null,
+        displayDescription:
+          'Adornment slot for placing badges or indicators on an avatar.',
+        displayName: 'Avatar.Badge',
+        propName: 'aria-label',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Badge or indicator content.',
+        defaultValue: null,
+        displayDescription:
+          'Adornment slot for placing badges or indicators on an avatar.',
+        displayName: 'Avatar.Badge',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the badge slot.',
+        defaultValue: null,
+        displayDescription:
+          'Adornment slot for placing badges or indicators on an avatar.',
+        displayName: 'Avatar.Badge',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Applies inset positioning so the badge hugs the avatar edge.',
+        defaultValue: false,
+        displayDescription:
+          'Adornment slot for placing badges or indicators on an avatar.',
+        displayName: 'Avatar.Badge',
+        propName: 'inset',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Optional text label for non-visual users.',
+        defaultValue: null,
+        displayDescription:
+          'Adornment slot for placing badges or indicators on an avatar.',
+        displayName: 'Avatar.Badge',
+        propName: 'label',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Badge offset from its logical corner.',
+        defaultValue: null,
+        displayDescription:
+          'Adornment slot for placing badges or indicators on an avatar.',
+        displayName: 'Avatar.Badge',
+        propName: 'offset',
+        type: 'number | string',
+        values: [],
+      },
+      {
+        comments: 'Logical corner where the badge is anchored.',
+        defaultValue: 'bottom-end',
+        displayDescription:
+          'Adornment slot for placing badges or indicators on an avatar.',
+        displayName: 'Avatar.Badge',
+        propName: 'placement',
+        type: 'AvatarPlacement',
+        values: ['top-start', 'top-end', 'bottom-start', 'bottom-end'],
+      },
+      {
+        comments: 'Custom content that overrides initials/icon fallback.',
+        defaultValue: null,
+        displayDescription:
+          'Fallback slot that renders custom content, initials, or a generic icon.',
+        displayName: 'Avatar.Fallback',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the fallback slot.',
+        defaultValue: null,
+        displayDescription:
+          'Fallback slot that renders custom content, initials, or a generic icon.',
+        displayName: 'Avatar.Fallback',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Delay before fallback appears when loading images.',
+        defaultValue: 0,
+        displayDescription:
+          'Fallback slot that renders custom content, initials, or a generic icon.',
+        displayName: 'Avatar.Fallback',
+        propName: 'delayMs',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Custom icon to render when no text fallback is available.',
+        defaultValue: null,
+        displayDescription:
+          'Fallback slot that renders custom content, initials, or a generic icon.',
+        displayName: 'Avatar.Fallback',
+        propName: 'icon',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Explicit initials value, for example `MJ`.',
+        defaultValue: null,
+        displayDescription:
+          'Fallback slot that renders custom content, initials, or a generic icon.',
+        displayName: 'Avatar.Fallback',
+        propName: 'initials',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Optional name override used to derive initials.',
+        defaultValue: null,
+        displayDescription:
+          'Fallback slot that renders custom content, initials, or a generic icon.',
+        displayName: 'Avatar.Fallback',
+        propName: 'name',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Accessible group label, for example “Project members”.',
+        defaultValue: null,
+        displayDescription:
+          'Visual grouping wrapper that handles stacking and overflow.',
+        displayName: 'Avatar.Group',
+        propName: 'aria-label',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Avatar children to stack within the group.',
+        defaultValue: null,
+        displayDescription:
+          'Visual grouping wrapper that handles stacking and overflow.',
+        displayName: 'Avatar.Group',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the group wrapper.',
+        defaultValue: null,
+        displayDescription:
+          'Visual grouping wrapper that handles stacking and overflow.',
+        displayName: 'Avatar.Group',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Maximum avatars to render before showing overflow.',
+        defaultValue: null,
+        displayDescription:
+          'Visual grouping wrapper that handles stacking and overflow.',
+        displayName: 'Avatar.Group',
+        propName: 'max',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Produces an accessible overflow label from hidden count.',
+        defaultValue: null,
+        displayDescription:
+          'Visual grouping wrapper that handles stacking and overflow.',
+        displayName: 'Avatar.Group',
+        propName: 'overflowLabel',
+        type: '(count: number) => string',
+        values: [],
+      },
+      {
+        comments:
+          'Controls how much group items overlap. Number values are interpreted as pixels.',
+        defaultValue: null,
+        displayDescription:
+          'Visual grouping wrapper that handles stacking and overflow.',
+        displayName: 'Avatar.Group',
+        propName: 'overlap',
+        type: 'number | string',
+        values: [],
+      },
+      {
+        comments:
+          'Adds a surface-color separator ring so overlapped avatars remain visually distinct.',
+        defaultValue: true,
+        displayDescription:
+          'Visual grouping wrapper that handles stacking and overflow.',
+        displayName: 'Avatar.Group',
+        propName: 'separated',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Total number of people represented by the group.',
+        defaultValue: null,
+        displayDescription:
+          'Visual grouping wrapper that handles stacking and overflow.',
+        displayName: 'Avatar.Group',
+        propName: 'total',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Avatar content for this group item.',
+        defaultValue: null,
+        displayDescription:
+          'Group item wrapper used for consistent overlap spacing and stacking.',
+        displayName: 'Avatar.GroupItem',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the item wrapper.',
+        defaultValue: null,
+        displayDescription:
+          'Group item wrapper used for consistent overlap spacing and stacking.',
+        displayName: 'Avatar.GroupItem',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Optional index used for deterministic stacking order overrides.',
+        defaultValue: 0,
+        displayDescription:
+          'Group item wrapper used for consistent overlap spacing and stacking.',
+        displayName: 'Avatar.GroupItem',
+        propName: 'index',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Alternate text for identity announcements.',
+        defaultValue: null,
+        displayDescription:
+          'Image slot with built-in loading and failure state handling.',
+        displayName: 'Avatar.Image',
+        propName: 'alt',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the image slot.',
+        defaultValue: null,
+        displayDescription:
+          'Image slot with built-in loading and failure state handling.',
+        displayName: 'Avatar.Image',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Decoding strategy for the image element.',
+        defaultValue: null,
+        displayDescription:
+          'Image slot with built-in loading and failure state handling.',
+        displayName: 'Avatar.Image',
+        propName: 'decoding',
+        type: "'sync' | 'async' | 'auto'",
+        values: ['sync', 'async', 'auto'],
+      },
+      {
+        comments: 'Browser loading hint.',
+        defaultValue: null,
+        displayDescription:
+          'Image slot with built-in loading and failure state handling.',
+        displayName: 'Avatar.Image',
+        propName: 'loading',
+        type: "'eager' | 'lazy'",
+        values: ['eager', 'lazy'],
+      },
+      {
+        comments: 'Notifies consumers when image state changes.',
+        defaultValue: null,
+        displayDescription:
+          'Image slot with built-in loading and failure state handling.',
+        displayName: 'Avatar.Image',
+        propName: 'onLoadingStatusChange',
+        type: '(status: AvatarImageLoadingStatus) => void',
+        values: [],
+      },
+      {
+        comments: 'Referrer policy for the image request.',
+        defaultValue: null,
+        displayDescription:
+          'Image slot with built-in loading and failure state handling.',
+        displayName: 'Avatar.Image',
+        propName: 'referrerPolicy',
+        type: "ComponentPropsWithoutRef<'img'>['referrerPolicy']",
+        values: [],
+      },
+      {
+        comments: 'Responsive image size hints.',
+        defaultValue: null,
+        displayDescription:
+          'Image slot with built-in loading and failure state handling.',
+        displayName: 'Avatar.Image',
+        propName: 'sizes',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Image source URL.',
+        defaultValue: null,
+        displayDescription:
+          'Image slot with built-in loading and failure state handling.',
+        displayName: 'Avatar.Image',
+        propName: 'src',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Responsive image source set.',
+        defaultValue: null,
+        displayDescription:
+          'Image slot with built-in loading and failure state handling.',
+        displayName: 'Avatar.Image',
+        propName: 'srcSet',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Accessible name that explains hidden member count.',
+        defaultValue: null,
+        displayDescription: 'Overflow slot for hidden group members.',
+        displayName: 'Avatar.Overflow',
+        propName: 'aria-label',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Custom overflow content. Defaults to `+{count}`.',
+        defaultValue: null,
+        displayDescription: 'Overflow slot for hidden group members.',
+        displayName: 'Avatar.Overflow',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the overflow slot.',
+        defaultValue: null,
+        displayDescription: 'Overflow slot for hidden group members.',
+        displayName: 'Avatar.Overflow',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Hidden member count.',
+        defaultValue: 0,
+        displayDescription: 'Overflow slot for hidden group members.',
+        displayName: 'Avatar.Overflow',
+        propName: 'count',
+        type: 'number',
+        values: [],
+      },
+      {
+        comments: 'Optional overflow label text for assistive technology.',
+        defaultValue: null,
+        displayDescription: 'Overflow slot for hidden group members.',
+        displayName: 'Avatar.Overflow',
+        propName: 'label',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Children for composed usage such as Avatar.Image and Avatar.Fallback.',
+        defaultValue: null,
+        displayDescription:
+          'Root avatar primitive used for composed image/fallback/badge patterns.',
+        displayName: 'Avatar.Root',
+        propName: 'children',
+        type: 'ReactNode',
+        values: [],
+      },
+      {
+        comments: 'Additional class names to append to the root.',
+        defaultValue: null,
+        displayDescription:
+          'Root avatar primitive used for composed image/fallback/badge patterns.',
+        displayName: 'Avatar.Root',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Controls fallback palette. Use `auto` for deterministic name-based colors.',
+        defaultValue: 'auto',
+        displayDescription:
+          'Root avatar primitive used for composed image/fallback/badge patterns.',
+        displayName: 'Avatar.Root',
+        propName: 'color',
+        type: "'auto' | 'neutral' | 'accent' | string",
+        values: [],
+      },
+      {
+        comments:
+          'Marks the avatar as decorative when adjacent visible text already conveys the same identity.',
+        defaultValue: false,
+        displayDescription:
+          'Root avatar primitive used for composed image/fallback/badge patterns.',
+        displayName: 'Avatar.Root',
+        propName: 'decorative',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Name used for accessibility labels and initials generation.',
+        defaultValue: null,
+        displayDescription:
+          'Root avatar primitive used for composed image/fallback/badge patterns.',
+        displayName: 'Avatar.Root',
+        propName: 'name',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Shape treatment for the avatar frame.',
+        defaultValue: 'circle',
+        displayDescription:
+          'Root avatar primitive used for composed image/fallback/badge patterns.',
+        displayName: 'Avatar.Root',
+        propName: 'shape',
+        type: 'AvatarShape',
+        values: ['circle', 'rounded', 'square'],
+      },
+      {
+        comments: 'Size scale for root dimensions.',
+        defaultValue: 'medium',
+        displayDescription:
+          'Root avatar primitive used for composed image/fallback/badge patterns.',
+        displayName: 'Avatar.Root',
+        propName: 'size',
+        type: 'AvatarSize',
+        values: ['xSmall', 'small', 'medium', 'large', 'xLarge'],
+      },
+      {
+        comments: 'Inline style overrides for the root.',
+        defaultValue: null,
+        displayDescription:
+          'Root avatar primitive used for composed image/fallback/badge patterns.',
+        displayName: 'Avatar.Root',
+        propName: 'style',
+        type: 'CSSProperties',
+        values: [],
+      },
+    ],
+    name: 'Avatar',
+    exportName: 'Avatar',
+    importPath: '@themeshift/ui/components/Avatar',
+    importString: "import { Avatar } from '@themeshift/ui/components/Avatar';",
+    meta: {
+      category: 'data-display',
+      description:
+        'Renders identity visuals with composable image, fallback, grouping, and badge primitives.',
+      tags: ['avatar', 'profile', 'identity', 'group', 'fallback'],
+      order: 45,
+      status: 'stable',
+      related: ['Badge', 'Status', 'Skeleton'],
+      type: 'component',
+    },
+    slug: 'avatar',
+    routeSlug: 'avatar',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Avatar',
+    typesReference: [
+      {
+        comments: 'Shape options for avatar roots and grouped avatars.',
+        defaultValue: null,
+        typeName: 'AvatarShape',
+        values: ['circle', 'rounded', 'square'],
+      },
+      {
+        comments: 'Shared size options for avatar primitives.',
+        defaultValue: null,
+        typeName: 'AvatarSize',
+        values: ['xSmall', 'small', 'medium', 'large', 'xLarge'],
+      },
+      {
+        comments:
+          'Placement options for badge overlays using logical directions.',
+        defaultValue: null,
+        typeName: 'AvatarPlacement',
+        values: ['top-start', 'top-end', 'bottom-start', 'bottom-end'],
+      },
+    ],
+    type: 'component',
+  },
+  {
+    apiReference: [
+      {
+        comments:
           'HTML element or component to render instead of the default element.',
         defaultValue: null,
         displayDescription: 'Root badge primitive for metadata labels.',

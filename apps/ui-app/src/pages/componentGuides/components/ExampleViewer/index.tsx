@@ -154,33 +154,26 @@ export const ExampleViewer = <Props extends ExampleArgs = ExampleArgs>({
 
   return (
     <div className={classNames(styles.container, className)}>
-      <div className={styles.preview}>
-        {hasMultipleExamples && (
-          <div className={styles.examplesContainer}>
-            <div className={styles.examples}>
-              {normalizedExamples.map(({ label }) => (
-                <button
-                  aria-pressed={currentExample.label === label}
-                  className={styles.exampleButton}
-                  key={label}
-                  onClick={() => setActiveExample(label)}
-                  type="button"
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
+      {hasMultipleExamples && (
+        <div className={styles.examplesContainer}>
+          <div className={styles.examples}>
+            {normalizedExamples.map(({ label }) => (
+              <button
+                aria-pressed={currentExample.label === label}
+                className={styles.exampleButton}
+                key={label}
+                onClick={() => setActiveExample(label)}
+                type="button"
+              >
+                {label}
+              </button>
+            ))}
           </div>
-        )}
-
-        <div
-          className={classNames(
-            styles.content,
-            hasMultipleExamples && styles.multipleExamples
-          )}
-        >
-          {sample}
         </div>
+      )}
+
+      <div className={styles.preview}>
+        <div className={styles.content}>{sample}</div>
       </div>
 
       <div className={styles.code} data-expanded={isCodeExpanded}>

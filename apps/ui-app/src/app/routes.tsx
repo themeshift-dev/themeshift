@@ -159,6 +159,32 @@ const AppRoutes = () => (
       </Route>
 
       <Route path="/ui/component">
+        <Route path="avatar">
+          <Route index element={<ComponentGuides.AvatarGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Avatar"
+                componentPath="/ui/component/avatar"
+                description="Avatar customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Avatar"
+                componentPath="/ui/component/avatar"
+                description="An interactive Avatar playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
         <Route path="badge">
           <Route index element={<ComponentGuides.BadgeGuide />} />
           <Route

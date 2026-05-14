@@ -343,6 +343,45 @@
   --themeshift-radius-x-small: 0.25rem;
 
   /* Components */
+  --themeshift-components-avatar-auto-palette-c01-background: #e57373;
+  --themeshift-components-avatar-auto-palette-c01-foreground: #ffffff;
+  --themeshift-components-avatar-auto-palette-c02-background: #f06292;
+  --themeshift-components-avatar-auto-palette-c02-foreground: #ffffff;
+  --themeshift-components-avatar-auto-palette-c03-background: #ba68c8;
+  --themeshift-components-avatar-auto-palette-c03-foreground: #ffffff;
+  --themeshift-components-avatar-auto-palette-c04-background: #9575cd;
+  --themeshift-components-avatar-auto-palette-c04-foreground: #ffffff;
+  --themeshift-components-avatar-auto-palette-c05-background: #7986cb;
+  --themeshift-components-avatar-auto-palette-c05-foreground: #ffffff;
+  --themeshift-components-avatar-auto-palette-c06-background: #64b5f6;
+  --themeshift-components-avatar-auto-palette-c06-foreground: #ffffff;
+  --themeshift-components-avatar-auto-palette-c07-background: #4fc3f7;
+  --themeshift-components-avatar-auto-palette-c07-foreground: #003049;
+  --themeshift-components-avatar-auto-palette-c08-background: #4db6ac;
+  --themeshift-components-avatar-auto-palette-c08-foreground: #003049;
+  --themeshift-components-avatar-auto-palette-c09-background: #81c784;
+  --themeshift-components-avatar-auto-palette-c09-foreground: #1b4332;
+  --themeshift-components-avatar-auto-palette-c10-background: #aed581;
+  --themeshift-components-avatar-auto-palette-c10-foreground: #1b4332;
+  --themeshift-components-avatar-auto-palette-c11-background: #dce775;
+  --themeshift-components-avatar-auto-palette-c11-foreground: #1b4332;
+  --themeshift-components-avatar-auto-palette-c12-background: #fff176;
+  --themeshift-components-avatar-auto-palette-c12-foreground: #5f4b00;
+  --themeshift-components-avatar-auto-palette-c13-background: #ffd54f;
+  --themeshift-components-avatar-auto-palette-c13-foreground: #5f4b00;
+  --themeshift-components-avatar-auto-palette-c14-background: #ffb74d;
+  --themeshift-components-avatar-auto-palette-c14-foreground: #5f3700;
+  --themeshift-components-avatar-auto-palette-c15-background: #a1887f;
+  --themeshift-components-avatar-auto-palette-c15-foreground: #ffffff;
+  --themeshift-components-avatar-auto-palette-c16-background: #90a4ae;
+  --themeshift-components-avatar-auto-palette-c16-foreground: #ffffff;
+  --themeshift-components-avatar-group-separator-color: rgba(
+    255,
+    255,
+    255,
+    0.05
+  );
+  --themeshift-components-avatar-group-separator-width: 2px;
   --themeshift-components-badge-colors-blue-background: #1a237e;
   --themeshift-components-badge-colors-blue-border: #283593;
   --themeshift-components-badge-colors-blue-text: rgba(255, 255, 255, 0.9);
@@ -1054,6 +1093,7 @@
   --themeshift-font-weight: 300;
 
   /* Components */
+  --themeshift-components-avatar-group-separator-color: rgba(0, 0, 0, 0.1);
   --themeshift-components-badge-colors-blue-background: #c5cae9;
   --themeshift-components-badge-colors-blue-border: #9fa8da;
   --themeshift-components-badge-colors-blue-text: #283593;
@@ -1317,6 +1357,12 @@
 
 :root[data-theme='dark'] {
   /* Components */
+  --themeshift-components-avatar-group-separator-color: rgba(
+    255,
+    255,
+    255,
+    0.05
+  );
   --themeshift-components-badge-colors-blue-background: #1a237e;
   --themeshift-components-badge-colors-blue-border: #283593;
   --themeshift-components-badge-colors-blue-text: rgba(255, 255, 255, 0.9);
