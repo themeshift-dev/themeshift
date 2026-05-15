@@ -94,6 +94,10 @@
       "types": "./dist/components/Link/index.d.ts",
       "import": "./dist/components/Link/index.js"
     },
+    "./components/Menu": {
+      "types": "./dist/components/Menu/index.d.ts",
+      "import": "./dist/components/Menu/index.js"
+    },
     "./components/Navbar": {
       "types": "./dist/components/Navbar/index.d.ts",
       "import": "./dist/components/Navbar/index.js"

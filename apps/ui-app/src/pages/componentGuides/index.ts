@@ -14,6 +14,7 @@ export * from './HeadingGuide';
 export * from './InputGuide';
 export * from './LabelGuide';
 export * from './LinkGuide';
+export * from './MenuGuide';
 export * from './NavbarGuide';
 export * from './ProgressBarGuide';
 export * from './RadiosGuide';

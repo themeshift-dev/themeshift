@@ -47,6 +47,17 @@ describe('AppRoutes', () => {
     ).toBeInTheDocument();
   }, 15000);
 
+  it('renders the Menu guide route', () => {
+    renderRoutes('/ui/component/menu');
+
+    expect(screen.getByRole('heading', { name: 'Docs' })).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Implementation guidance, API details, and copy-paste examples for accessible, composable menu primitives.'
+      )
+    ).toBeInTheDocument();
+  }, 15000);
+
   it('renders plugin placeholder route', () => {
     renderRoutes('/plugin');
 

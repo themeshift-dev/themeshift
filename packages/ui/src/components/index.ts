@@ -14,6 +14,7 @@ export * from './Heading';
 export * from './Input';
 export * from './Label';
 export * from './Link';
+export * from './Menu';
 export * from './Navbar';
 export * from './Portal';
 export * from './ProgressBar';

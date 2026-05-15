@@ -1,0 +1,36 @@
+{
+  "components": {
+    "menu": {
+      "layout": {
+        "minWidth": { "$value": "12rem" },
+        "paddingBlock": { "$value": "{space.2}" },
+        "paddingInline": { "$value": "{space.2}" },
+        "radius": { "$value": "{radius.medium}" }
+      },
+
+      "light": {
+        "surface": { "$value": "{color.white}" },
+        "text": { "$value": "{color.black.90}" },
+        "border": { "$value": "{color.black.20}" },
+        "separator": { "$value": "{color.black.20}" },
+        "meta": { "$value": "{color.black.70}" },
+        "label": { "$value": "{color.black.70}" },
+        "description": { "$value": "{color.black.70}" },
+        "highlight": { "$value": "{color.black.10}" },
+        "destructive": { "$value": "{intent.light.destructive.background}" }
+      },
+
+      "dark": {
+        "surface": { "$value": "{color.black.90}" },
+        "text": { "$value": "{color.white.90}" },
+        "border": { "$value": "{color.white.20}" },
+        "separator": { "$value": "{color.white.20}" },
+        "meta": { "$value": "{color.white.70}" },
+        "label": { "$value": "{color.white.70}" },
+        "description": { "$value": "{color.white.70}" },
+        "highlight": { "$value": "{color.white.20}" },
+        "destructive": { "$value": "{intent.dark.destructive.background}" }
+      }
+    }
+  }
+}
