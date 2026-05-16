@@ -627,6 +627,32 @@ const AppRoutes = () => (
           />
         </Route>
 
+        <Route path="menu">
+          <Route index element={<ComponentGuides.MenuGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Menu"
+                componentPath="/ui/component/menu"
+                description="Menu customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Menu"
+                componentPath="/ui/component/menu"
+                description="An interactive Menu playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
         <Route path="navbar">
           <Route index element={<ComponentGuides.NavbarGuide />} />
           <Route

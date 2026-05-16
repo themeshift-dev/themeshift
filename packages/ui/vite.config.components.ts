@@ -263,6 +263,9 @@ export default defineConfig({
         'components/Link/index': fileURLToPath(
           new URL('./src/entrypoints/components/Link.ts', import.meta.url)
         ),
+        'components/Menu/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Menu.ts', import.meta.url)
+        ),
         'components/Navbar/index': fileURLToPath(
           new URL('./src/entrypoints/components/Navbar.ts', import.meta.url)
         ),
