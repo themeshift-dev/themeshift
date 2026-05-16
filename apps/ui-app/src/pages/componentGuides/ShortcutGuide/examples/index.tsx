@@ -96,6 +96,26 @@ export const compactSpacing = {
   ),
 };
 
+const directionCode = `<Shortcut keys="ctrl+shift+p" platform="windows" separator="plus" />`;
+
+export const directionLTR = {
+  code: directionCode,
+  label: 'LTR',
+  sample: <Shortcut keys="ctrl+shift+p" platform="windows" separator="plus" />,
+};
+
+export const directionRTL = {
+  code: directionCode,
+  label: 'RTL',
+  sample: (
+    <div dir="rtl">
+      <Shortcut keys="ctrl+shift+p" platform="windows" separator="plus" />
+    </div>
+  ),
+};
+
+export const directionExamples = [directionLTR, directionRTL];
+
 export const menuAndInputUsage = {
   label: 'Menu and Input composition',
   code: `<Menu.Root closeOnSelect={false} defaultOpen onEscapeKeyDown={(event) => event.preventDefault()}>

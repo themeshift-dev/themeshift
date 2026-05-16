@@ -104,6 +104,28 @@ describe('Shortcut', () => {
     expect(root).toHaveAttribute('aria-disabled', 'true');
   });
 
+  it('renders consistently in rtl containers without changing accessible label order', () => {
+    render(
+      <div dir="rtl">
+        <Shortcut
+          data-testid="rtl-shortcut"
+          keys="ctrl+shift+p"
+          platform="windows"
+          separator="plus"
+        />
+      </div>
+    );
+
+    const root = screen.getByTestId('rtl-shortcut');
+    const keys = root.querySelectorAll('kbd');
+
+    expect(root).toHaveAttribute('aria-label', 'Ctrl Shift P');
+    expect(keys).toHaveLength(3);
+    expect(keys[0]).toHaveTextContent('Ctrl');
+    expect(keys[1]).toHaveTextContent('Shift');
+    expect(keys[2]).toHaveTextContent('P');
+  });
+
   it('renders cleanly inside Menu.ItemMeta and Input adornments', () => {
     render(
       <>
