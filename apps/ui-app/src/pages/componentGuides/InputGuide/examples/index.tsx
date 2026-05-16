@@ -1,6 +1,7 @@
 import { Button } from '@themeshift/ui/components/Button';
 import { Field } from '@themeshift/ui/components/Field';
 import { Input } from '@themeshift/ui/components/Input';
+import { Shortcut } from '@themeshift/ui/components/Shortcut';
 import { IconMoon } from '@themeshift/ui/icons';
 import { FaSearch } from 'react-icons/fa';
 
@@ -73,6 +74,11 @@ export const adornments = {
   aria-label="Domain"
   placeholder="your-handle"
   endAdornment={<span>.com</span>}
+/>
+<Input
+  aria-label="Search"
+  placeholder="Search…"
+  endAdornment={<Shortcut keys="mod+k" />}
 />`,
   label: 'Adornments',
   sample: (
@@ -91,6 +97,11 @@ export const adornments = {
         placeholder="your-handle"
         endAdornment={<span>.com</span>}
       />
+      <Input
+        aria-label="Search"
+        placeholder="Search…"
+        endAdornment={<Shortcut keys="mod+k" />}
+      />
     </ResponsiveStackInline>
   ),
 };
@@ -103,7 +114,7 @@ const directionCode = `<Input
 <Input
   aria-label="Domain"
   placeholder="your-handle"
-  endAdornment={<span>.com</span>}
+  endAdornment={<Shortcut keys="mod+k" />}
 />`;
 
 export const directionLTR = {
@@ -123,7 +134,7 @@ export const directionLTR = {
       <Input
         aria-label="Domain"
         placeholder="your-handle"
-        endAdornment={<span>.com</span>}
+        endAdornment={<Shortcut keys="mod+k" />}
       />
     </ResponsiveStackInline>
   ),
@@ -147,7 +158,7 @@ export const directionRTL = {
         <Input
           aria-label="Domain"
           placeholder="your-handle"
-          endAdornment={<span>.com</span>}
+          endAdornment={<Shortcut keys="mod+k" />}
         />
       </ResponsiveStackInline>
     </div>
