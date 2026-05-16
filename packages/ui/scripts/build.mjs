@@ -124,6 +124,9 @@ async function removeNonPublishedArtifacts() {
 
 await rm(distDir, { recursive: true, force: true });
 
+const headlessDir = path.resolve(rootDir, '../headless');
+await run('pnpm', ['-C', headlessDir, 'run', 'build']);
+
 const viteArgs = [
   'exec',
   'vite',
