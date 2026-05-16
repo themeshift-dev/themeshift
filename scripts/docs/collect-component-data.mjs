@@ -399,6 +399,19 @@ function getHeadlessTypeDeclarations(componentName) {
 }
 
 function getLocalTypeDeclarations(componentName, sourceFiles) {
+  const componentTypesSourceFile = sourceFiles.find(
+    (sourceFile) =>
+      normalizePath(sourceFile.fileName) ===
+      normalizePath(path.join(componentsDir, componentName, 'types.ts'))
+  );
+
+  if (
+    componentTypesSourceFile &&
+    isHeadlessTypesReExport(componentTypesSourceFile, componentName)
+  ) {
+    return getHeadlessTypeDeclarations(componentName);
+  }
+
   const declarations = new Map();
 
   for (const sourceFile of sourceFiles) {
@@ -410,6 +423,18 @@ function getLocalTypeDeclarations(componentName, sourceFiles) {
   }
 
   return declarations;
+}
+
+function isHeadlessTypesReExport(sourceFile, componentName) {
+  const expectedModuleSpecifier = `@themeshift/headless/components/${componentName}`;
+
+  return sourceFile.statements.some(
+    (statement) =>
+      ts.isExportDeclaration(statement) &&
+      !!statement.moduleSpecifier &&
+      ts.isStringLiteral(statement.moduleSpecifier) &&
+      statement.moduleSpecifier.text === expectedModuleSpecifier
+  );
 }
 
 function getComponentDefaults(sourceFiles, targets, typeChecker) {

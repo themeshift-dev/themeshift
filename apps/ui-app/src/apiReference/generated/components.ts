@@ -3385,8 +3385,7 @@ export const components = [
       {
         comments: 'Menu primitives composed under this root.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'children',
         type: 'ReactNode',
@@ -3394,9 +3393,8 @@ export const components = [
       },
       {
         comments: 'Default close behavior for selectable items.',
-        defaultValue: true,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'closeOnSelect',
         type: 'boolean',
@@ -3404,9 +3402,8 @@ export const components = [
       },
       {
         comments: 'Initial open state for uncontrolled usage.',
-        defaultValue: false,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'defaultOpen',
         type: 'boolean',
@@ -3415,8 +3412,7 @@ export const components = [
       {
         comments: 'Visual density for descendant primitives.',
         defaultValue: 'normal',
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'density',
         type: 'MenuDensity',
@@ -3425,9 +3421,8 @@ export const components = [
       {
         comments:
           'Reading direction used for submenu side and arrow-key behavior.',
-        defaultValue: 'ltr',
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'dir',
         type: 'MenuDir',
@@ -3435,9 +3430,8 @@ export const components = [
       },
       {
         comments: 'Disables all interactive descendants.',
-        defaultValue: false,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'disabled',
         type: 'boolean',
@@ -3445,9 +3439,8 @@ export const components = [
       },
       {
         comments: 'Loops keyboard navigation when reaching list boundaries.',
-        defaultValue: true,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'loop',
         type: 'boolean',
@@ -3456,9 +3449,8 @@ export const components = [
       {
         comments:
           'Enables modal focus/outside-interaction behavior in floating mode.',
-        defaultValue: true,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'modal',
         type: 'boolean',
@@ -3467,8 +3459,7 @@ export const components = [
       {
         comments: 'Called when Escape is pressed from active content.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'onEscapeKeyDown',
         type: '(event: KeyboardEvent<HTMLElement>) => void',
@@ -3477,8 +3468,7 @@ export const components = [
       {
         comments: 'Called when focus moves outside floating content.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'onFocusOutside',
         type: '(event: FocusEvent<HTMLElement>) => void',
@@ -3487,8 +3477,7 @@ export const components = [
       {
         comments: 'Called when pointer or focus interaction happens outside.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'onInteractOutside',
         type: '(event: Event) => void',
@@ -3497,8 +3486,7 @@ export const components = [
       {
         comments: 'Called whenever open state changes.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'onOpenChange',
         type: '(open: boolean) => void',
@@ -3508,8 +3496,7 @@ export const components = [
         comments:
           'Called when pointer interaction happens outside floating content.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'onPointerDownOutside',
         type: '(event: PointerEvent<HTMLElement>) => void',
@@ -3518,8 +3505,7 @@ export const components = [
       {
         comments: 'Controlled open state.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'open',
         type: 'boolean',
@@ -3528,8 +3514,7 @@ export const components = [
       {
         comments: 'Navigation orientation for arrow-key behavior.',
         defaultValue: 'vertical',
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'orientation',
         type: 'MenuOrientation',
@@ -3537,9 +3522,8 @@ export const components = [
       },
       {
         comments: 'Selection intent metadata for future wrapper conveniences.',
-        defaultValue: 'none',
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'selectionMode',
         type: 'MenuSelectionMode',
@@ -3547,19 +3531,17 @@ export const components = [
       },
       {
         comments: 'Visual size for descendant primitives.',
-        defaultValue: 'md',
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: 'medium',
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'size',
         type: 'MenuSize',
-        values: ['sm', 'md', 'lg'],
+        values: ['small', 'medium', 'large'],
       },
       {
         comments: 'Enables character typeahead navigation.',
-        defaultValue: true,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu',
         propName: 'typeahead',
         type: 'boolean',
@@ -3568,8 +3550,7 @@ export const components = [
       {
         comments: 'Menu primitives composed under this root.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'children',
         type: 'ReactNode',
@@ -3577,9 +3558,8 @@ export const components = [
       },
       {
         comments: 'Default close behavior for selectable items.',
-        defaultValue: true,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'closeOnSelect',
         type: 'boolean',
@@ -3587,9 +3567,8 @@ export const components = [
       },
       {
         comments: 'Initial open state for uncontrolled usage.',
-        defaultValue: false,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'defaultOpen',
         type: 'boolean',
@@ -3598,8 +3577,7 @@ export const components = [
       {
         comments: 'Visual density for descendant primitives.',
         defaultValue: 'normal',
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'density',
         type: 'MenuDensity',
@@ -3608,9 +3586,8 @@ export const components = [
       {
         comments:
           'Reading direction used for submenu side and arrow-key behavior.',
-        defaultValue: 'ltr',
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'dir',
         type: 'MenuDir',
@@ -3618,9 +3595,8 @@ export const components = [
       },
       {
         comments: 'Disables all interactive descendants.',
-        defaultValue: false,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'disabled',
         type: 'boolean',
@@ -3628,9 +3604,8 @@ export const components = [
       },
       {
         comments: 'Loops keyboard navigation when reaching list boundaries.',
-        defaultValue: true,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'loop',
         type: 'boolean',
@@ -3639,9 +3614,8 @@ export const components = [
       {
         comments:
           'Enables modal focus/outside-interaction behavior in floating mode.',
-        defaultValue: true,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'modal',
         type: 'boolean',
@@ -3650,8 +3624,7 @@ export const components = [
       {
         comments: 'Called when Escape is pressed from active content.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'onEscapeKeyDown',
         type: '(event: KeyboardEvent<HTMLElement>) => void',
@@ -3660,8 +3633,7 @@ export const components = [
       {
         comments: 'Called when focus moves outside floating content.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'onFocusOutside',
         type: '(event: FocusEvent<HTMLElement>) => void',
@@ -3670,8 +3642,7 @@ export const components = [
       {
         comments: 'Called when pointer or focus interaction happens outside.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'onInteractOutside',
         type: '(event: Event) => void',
@@ -3680,8 +3651,7 @@ export const components = [
       {
         comments: 'Called whenever open state changes.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'onOpenChange',
         type: '(open: boolean) => void',
@@ -3691,8 +3661,7 @@ export const components = [
         comments:
           'Called when pointer interaction happens outside floating content.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'onPointerDownOutside',
         type: '(event: PointerEvent<HTMLElement>) => void',
@@ -3701,8 +3670,7 @@ export const components = [
       {
         comments: 'Controlled open state.',
         defaultValue: null,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'open',
         type: 'boolean',
@@ -3711,8 +3679,7 @@ export const components = [
       {
         comments: 'Navigation orientation for arrow-key behavior.',
         defaultValue: 'vertical',
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'orientation',
         type: 'MenuOrientation',
@@ -3720,9 +3687,8 @@ export const components = [
       },
       {
         comments: 'Selection intent metadata for future wrapper conveniences.',
-        defaultValue: 'none',
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'selectionMode',
         type: 'MenuSelectionMode',
@@ -3730,19 +3696,17 @@ export const components = [
       },
       {
         comments: 'Visual size for descendant primitives.',
-        defaultValue: 'md',
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: 'medium',
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'size',
         type: 'MenuSize',
-        values: ['sm', 'md', 'lg'],
+        values: ['small', 'medium', 'large'],
       },
       {
         comments: 'Enables character typeahead navigation.',
-        defaultValue: true,
-        displayDescription:
-          'Root menu primitive that provides state, direction, and interaction context for all menu descendants.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Root',
         propName: 'typeahead',
         type: 'boolean',
@@ -3751,8 +3715,7 @@ export const components = [
       {
         comments: 'Floating cross-axis alignment preference.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'align',
         type: 'MenuAlign',
@@ -3761,8 +3724,7 @@ export const components = [
       {
         comments: 'Cross-axis offset for floating mode.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'alignOffset',
         type: 'number',
@@ -3771,8 +3733,7 @@ export const components = [
       {
         comments: 'Accessible label for standalone menu content.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'aria-label',
         type: 'string',
@@ -3781,8 +3742,7 @@ export const components = [
       {
         comments: 'External labeling target for accessible naming.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'aria-labelledby',
         type: 'string',
@@ -3791,8 +3751,7 @@ export const components = [
       {
         comments: 'Renders behavior into a child element.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'asChild',
         type: 'boolean',
@@ -3801,8 +3760,7 @@ export const components = [
       {
         comments: 'Enables collision handling for floating mode.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'avoidCollisions',
         type: 'boolean',
@@ -3811,8 +3769,7 @@ export const components = [
       {
         comments: 'Menu body content.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'children',
         type: 'ReactNode',
@@ -3821,8 +3778,7 @@ export const components = [
       {
         comments: 'Viewport padding used by collision handling.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'collisionPadding',
         type: 'number',
@@ -3831,8 +3787,7 @@ export const components = [
       {
         comments: 'Explicit portal container override.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'container',
         type: 'HTMLElement | null',
@@ -3841,8 +3796,7 @@ export const components = [
       {
         comments: 'Forces mounted content even when closed.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'forceMount',
         type: 'boolean',
@@ -3851,8 +3805,7 @@ export const components = [
       {
         comments: 'Optional DOM id.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'id',
         type: 'string',
@@ -3861,8 +3814,7 @@ export const components = [
       {
         comments: 'Explicit max-height override.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'maxHeight',
         type: 'number | string',
@@ -3871,8 +3823,7 @@ export const components = [
       {
         comments: 'Explicit max-width override.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'maxWidth',
         type: 'number | string',
@@ -3881,8 +3832,7 @@ export const components = [
       {
         comments: 'Explicit min-width override.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'minWidth',
         type: 'number | string',
@@ -3890,9 +3840,8 @@ export const components = [
       },
       {
         comments: 'Rendering strategy for this content instance.',
-        defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        defaultValue: 'inline',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'mode',
         type: 'MenuContentMode',
@@ -3901,8 +3850,7 @@ export const components = [
       {
         comments: 'Called before focus is restored when closing content.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'onCloseAutoFocus',
         type: '(event: Event) => void',
@@ -3911,8 +3859,7 @@ export const components = [
       {
         comments: 'Called before focus is moved when opening content.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'onOpenAutoFocus',
         type: '(event: Event) => void',
@@ -3921,8 +3868,7 @@ export const components = [
       {
         comments: 'Renders floating content into a portal when enabled.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'portal',
         type: 'boolean | HTMLElement',
@@ -3931,8 +3877,7 @@ export const components = [
       {
         comments: 'Semantic role used for this content container.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'role',
         type: "'menu' | 'menubar'",
@@ -3941,8 +3886,7 @@ export const components = [
       {
         comments: 'Floating side placement preference.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'side',
         type: 'MenuPlacement',
@@ -3951,8 +3895,7 @@ export const components = [
       {
         comments: 'Main-axis offset for floating mode.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'sideOffset',
         type: 'number',
@@ -3961,8 +3904,7 @@ export const components = [
       {
         comments: 'Sticky strategy for future floating behavior variants.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'sticky',
         type: "'partial' | 'always'",
@@ -3971,8 +3913,7 @@ export const components = [
       {
         comments: 'Explicit width override.',
         defaultValue: null,
-        displayDescription:
-          'Primary container for menu items and composed content.',
+        displayDescription: '',
         displayName: 'Menu.Content',
         propName: 'width',
         type: 'number | string',
@@ -3981,8 +3922,7 @@ export const components = [
       {
         comments: 'Renders behavior into a child element.',
         defaultValue: null,
-        displayDescription:
-          'Optional scroll viewport wrapper for menu content.',
+        displayDescription: '',
         displayName: 'Menu.Viewport',
         propName: 'asChild',
         type: 'boolean',
@@ -3991,8 +3931,7 @@ export const components = [
       {
         comments: 'Viewport children, usually items/groups/labels.',
         defaultValue: null,
-        displayDescription:
-          'Optional scroll viewport wrapper for menu content.',
+        displayDescription: '',
         displayName: 'Menu.Viewport',
         propName: 'children',
         type: 'ReactNode',
@@ -4001,8 +3940,7 @@ export const components = [
       {
         comments: 'Maximum viewport block size.',
         defaultValue: null,
-        displayDescription:
-          'Optional scroll viewport wrapper for menu content.',
+        displayDescription: '',
         displayName: 'Menu.Viewport',
         propName: 'maxHeight',
         type: 'number | string',
@@ -4011,8 +3949,7 @@ export const components = [
       {
         comments: 'Scroll event callback from the viewport element.',
         defaultValue: null,
-        displayDescription:
-          'Optional scroll viewport wrapper for menu content.',
+        displayDescription: '',
         displayName: 'Menu.Viewport',
         propName: 'onScroll',
         type: 'UIEventHandler<HTMLElement>',
@@ -4021,8 +3958,7 @@ export const components = [
       {
         comments: 'Overscroll behavior used for touch and wheel input.',
         defaultValue: null,
-        displayDescription:
-          'Optional scroll viewport wrapper for menu content.',
+        displayDescription: '',
         displayName: 'Menu.Viewport',
         propName: 'overscrollBehavior',
         type: "'auto' | 'contain' | 'none'",
@@ -4030,9 +3966,8 @@ export const components = [
       },
       {
         comments: 'Enables vertical scrolling for long lists.',
-        defaultValue: null,
-        displayDescription:
-          'Optional scroll viewport wrapper for menu content.',
+        defaultValue: true,
+        displayDescription: '',
         displayName: 'Menu.Viewport',
         propName: 'scrollable',
         type: 'boolean',
@@ -4041,7 +3976,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Grouping container for related menu items.',
+        displayDescription: '',
         displayName: 'Menu.Group',
         propName: 'aria-label',
         type: 'string',
@@ -4050,7 +3985,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Grouping container for related menu items.',
+        displayDescription: '',
         displayName: 'Menu.Group',
         propName: 'aria-labelledby',
         type: 'string',
@@ -4059,7 +3994,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Grouping container for related menu items.',
+        displayDescription: '',
         displayName: 'Menu.Group',
         propName: 'asChild',
         type: 'boolean',
@@ -4068,7 +4003,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Grouping container for related menu items.',
+        displayDescription: '',
         displayName: 'Menu.Group',
         propName: 'children',
         type: 'ReactNode',
@@ -4076,8 +4011,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription: 'Grouping container for related menu items.',
+        defaultValue: false,
+        displayDescription: '',
         displayName: 'Menu.Group',
         propName: 'disabled',
         type: 'boolean',
@@ -4086,7 +4021,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Grouping container for related menu items.',
+        displayDescription: '',
         displayName: 'Menu.Group',
         propName: 'id',
         type: 'string',
@@ -4095,7 +4030,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Grouping container for related menu items.',
+        displayDescription: '',
         displayName: 'Menu.Group',
         propName: 'inset',
         type: 'boolean',
@@ -4104,8 +4039,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Non-interactive label used to title groups or sections.',
+        displayDescription: '',
         displayName: 'Menu.Label',
         propName: 'asChild',
         type: 'boolean',
@@ -4114,8 +4048,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Non-interactive label used to title groups or sections.',
+        displayDescription: '',
         displayName: 'Menu.Label',
         propName: 'children',
         type: 'ReactNode',
@@ -4124,8 +4057,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Non-interactive label used to title groups or sections.',
+        displayDescription: '',
         displayName: 'Menu.Label',
         propName: 'id',
         type: 'string',
@@ -4133,9 +4065,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription:
-          'Non-interactive label used to title groups or sections.',
+        defaultValue: false,
+        displayDescription: '',
         displayName: 'Menu.Label',
         propName: 'inset',
         type: 'boolean',
@@ -4143,9 +4074,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription:
-          'Non-interactive label used to title groups or sections.',
+        defaultValue: false,
+        displayDescription: '',
         displayName: 'Menu.Label',
         propName: 'muted',
         type: 'boolean',
@@ -4154,7 +4084,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'asChild',
         type: 'boolean',
@@ -4163,7 +4093,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'children',
         type: 'ReactNode',
@@ -4172,7 +4102,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'closeOnSelect',
         type: 'boolean',
@@ -4180,8 +4110,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        defaultValue: false,
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'destructive',
         type: 'boolean',
@@ -4190,7 +4120,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'disabled',
         type: 'boolean',
@@ -4199,7 +4129,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'disabledBehavior',
         type: 'MenuItemDisabledBehavior',
@@ -4208,7 +4138,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'highlighted',
         type: 'boolean',
@@ -4217,7 +4147,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'id',
         type: 'string',
@@ -4225,8 +4155,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        defaultValue: false,
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'inset',
         type: 'boolean',
@@ -4235,7 +4165,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'onSelect',
         type: '(event: MenuSelectEvent) => void',
@@ -4244,7 +4174,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'textValue',
         type: 'string',
@@ -4253,7 +4183,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Action item primitive for standard menu commands.',
+        displayDescription: '',
         displayName: 'Menu.Item',
         propName: 'value',
         type: 'string',
@@ -4262,8 +4192,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Optional text slot with secondary description support.',
+        displayDescription: '',
         displayName: 'Menu.ItemText',
         propName: 'asChild',
         type: 'boolean',
@@ -4272,8 +4201,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Optional text slot with secondary description support.',
+        displayDescription: '',
         displayName: 'Menu.ItemText',
         propName: 'children',
         type: 'ReactNode',
@@ -4282,8 +4210,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Optional text slot with secondary description support.',
+        displayDescription: '',
         displayName: 'Menu.ItemText',
         propName: 'description',
         type: 'ReactNode',
@@ -4291,9 +4218,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription:
-          'Optional text slot with secondary description support.',
+        defaultValue: false,
+        displayDescription: '',
         displayName: 'Menu.ItemText',
         propName: 'truncate',
         type: 'boolean',
@@ -4302,7 +4228,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Leading icon slot for menu items.',
+        displayDescription: '',
         displayName: 'Menu.ItemIcon',
         propName: 'aria-label',
         type: 'string',
@@ -4311,7 +4237,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Leading icon slot for menu items.',
+        displayDescription: '',
         displayName: 'Menu.ItemIcon',
         propName: 'asChild',
         type: 'boolean',
@@ -4320,7 +4246,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Leading icon slot for menu items.',
+        displayDescription: '',
         displayName: 'Menu.ItemIcon',
         propName: 'children',
         type: 'ReactNode',
@@ -4329,7 +4255,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Leading icon slot for menu items.',
+        displayDescription: '',
         displayName: 'Menu.ItemIcon',
         propName: 'decorative',
         type: 'boolean',
@@ -4337,18 +4263,17 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription: 'Leading icon slot for menu items.',
+        defaultValue: 'medium',
+        displayDescription: '',
         displayName: 'Menu.ItemIcon',
         propName: 'size',
-        type: "'sm' | 'md' | 'lg'",
-        values: ['sm', 'md', 'lg'],
+        type: "'small' | 'medium' | 'large'",
+        values: ['small', 'medium', 'large'],
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription:
-          'Trailing metadata slot for shortcuts, badges, and hints.',
+        defaultValue: 'end',
+        displayDescription: '',
         displayName: 'Menu.ItemMeta',
         propName: 'align',
         type: "'start' | 'end'",
@@ -4357,8 +4282,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Trailing metadata slot for shortcuts, badges, and hints.',
+        displayDescription: '',
         displayName: 'Menu.ItemMeta',
         propName: 'asChild',
         type: 'boolean',
@@ -4367,8 +4291,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Trailing metadata slot for shortcuts, badges, and hints.',
+        displayDescription: '',
         displayName: 'Menu.ItemMeta',
         propName: 'children',
         type: 'ReactNode',
@@ -4376,9 +4299,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription:
-          'Trailing metadata slot for shortcuts, badges, and hints.',
+        defaultValue: false,
+        displayDescription: '',
         displayName: 'Menu.ItemMeta',
         propName: 'muted',
         type: 'boolean',
@@ -4387,7 +4309,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Visual separator between menu sections.',
+        displayDescription: '',
         displayName: 'Menu.Separator',
         propName: 'asChild',
         type: 'boolean',
@@ -4396,7 +4318,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Visual separator between menu sections.',
+        displayDescription: '',
         displayName: 'Menu.Separator',
         propName: 'decorative',
         type: 'boolean',
@@ -4404,8 +4326,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription: 'Visual separator between menu sections.',
+        defaultValue: 'horizontal',
+        displayDescription: '',
         displayName: 'Menu.Separator',
         propName: 'orientation',
         type: "'horizontal' | 'vertical'",
@@ -4413,12 +4335,12 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription: 'Visual separator between menu sections.',
+        defaultValue: 'medium',
+        displayDescription: '',
         displayName: 'Menu.Separator',
         propName: 'spacing',
-        type: "'none' | 'sm' | 'md' | 'lg'",
-        values: ['none', 'sm', 'md', 'lg'],
+        type: "'none' | 'small' | 'medium' | 'large'",
+        values: ['none', 'small', 'medium', 'large'],
       },
       {
         comments: '',
@@ -4467,6 +4389,15 @@ export const components = [
       },
       {
         comments: '',
+        defaultValue: false,
+        displayDescription: '',
+        displayName: 'Menu.CheckboxItem',
+        propName: 'destructive',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: '',
         defaultValue: null,
         displayDescription: '',
         displayName: 'Menu.CheckboxItem',
@@ -4488,8 +4419,26 @@ export const components = [
         defaultValue: null,
         displayDescription: '',
         displayName: 'Menu.CheckboxItem',
+        propName: 'highlighted',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: '',
+        defaultValue: null,
+        displayDescription: '',
+        displayName: 'Menu.CheckboxItem',
         propName: 'id',
         type: 'string',
+        values: [],
+      },
+      {
+        comments: '',
+        defaultValue: false,
+        displayDescription: '',
+        displayName: 'Menu.CheckboxItem',
+        propName: 'inset',
+        type: 'boolean',
         values: [],
       },
       {
@@ -4531,8 +4480,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Container that coordinates radio-style menu item selection.',
+        displayDescription: '',
         displayName: 'Menu.RadioGroup',
         propName: 'aria-label',
         type: 'string',
@@ -4541,8 +4489,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Container that coordinates radio-style menu item selection.',
+        displayDescription: '',
         displayName: 'Menu.RadioGroup',
         propName: 'aria-labelledby',
         type: 'string',
@@ -4551,8 +4498,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Container that coordinates radio-style menu item selection.',
+        displayDescription: '',
         displayName: 'Menu.RadioGroup',
         propName: 'children',
         type: 'ReactNode',
@@ -4561,8 +4507,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Container that coordinates radio-style menu item selection.',
+        displayDescription: '',
         displayName: 'Menu.RadioGroup',
         propName: 'defaultValue',
         type: 'string',
@@ -4571,8 +4516,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Container that coordinates radio-style menu item selection.',
+        displayDescription: '',
         displayName: 'Menu.RadioGroup',
         propName: 'disabled',
         type: 'boolean',
@@ -4581,8 +4525,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Container that coordinates radio-style menu item selection.',
+        displayDescription: '',
         displayName: 'Menu.RadioGroup',
         propName: 'onValueChange',
         type: '(value: string) => void',
@@ -4591,8 +4534,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Container that coordinates radio-style menu item selection.',
+        displayDescription: '',
         displayName: 'Menu.RadioGroup',
         propName: 'value',
         type: 'string',
@@ -4601,8 +4543,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Radio-like selectable menu item associated with `Menu.RadioGroup`.',
+        displayDescription: '',
         displayName: 'Menu.RadioItem',
         propName: 'asChild',
         type: 'boolean',
@@ -4611,8 +4552,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Radio-like selectable menu item associated with `Menu.RadioGroup`.',
+        displayDescription: '',
         displayName: 'Menu.RadioItem',
         propName: 'children',
         type: 'ReactNode',
@@ -4621,8 +4561,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Radio-like selectable menu item associated with `Menu.RadioGroup`.',
+        displayDescription: '',
         displayName: 'Menu.RadioItem',
         propName: 'closeOnSelect',
         type: 'boolean',
@@ -4630,9 +4569,17 @@ export const components = [
       },
       {
         comments: '',
+        defaultValue: false,
+        displayDescription: '',
+        displayName: 'Menu.RadioItem',
+        propName: 'destructive',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: '',
         defaultValue: null,
-        displayDescription:
-          'Radio-like selectable menu item associated with `Menu.RadioGroup`.',
+        displayDescription: '',
         displayName: 'Menu.RadioItem',
         propName: 'disabled',
         type: 'boolean',
@@ -4641,8 +4588,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Radio-like selectable menu item associated with `Menu.RadioGroup`.',
+        displayDescription: '',
         displayName: 'Menu.RadioItem',
         propName: 'disabledBehavior',
         type: 'MenuItemDisabledBehavior',
@@ -4651,8 +4597,16 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Radio-like selectable menu item associated with `Menu.RadioGroup`.',
+        displayDescription: '',
+        displayName: 'Menu.RadioItem',
+        propName: 'highlighted',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: '',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.RadioItem',
         propName: 'id',
         type: 'string',
@@ -4660,9 +4614,17 @@ export const components = [
       },
       {
         comments: '',
+        defaultValue: false,
+        displayDescription: '',
+        displayName: 'Menu.RadioItem',
+        propName: 'inset',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: '',
         defaultValue: null,
-        displayDescription:
-          'Radio-like selectable menu item associated with `Menu.RadioGroup`.',
+        displayDescription: '',
         displayName: 'Menu.RadioItem',
         propName: 'onSelect',
         type: '(event: MenuSelectEvent) => void',
@@ -4671,8 +4633,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Radio-like selectable menu item associated with `Menu.RadioGroup`.',
+        displayDescription: '',
         displayName: 'Menu.RadioItem',
         propName: 'textValue',
         type: 'string',
@@ -4681,8 +4642,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Radio-like selectable menu item associated with `Menu.RadioGroup`.',
+        displayDescription: '',
         displayName: 'Menu.RadioItem',
         propName: 'value',
         type: 'string',
@@ -4691,8 +4651,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Indicator slot for checkbox/radio/submenu state visuals.',
+        displayDescription: '',
         displayName: 'Menu.ItemIndicator',
         propName: 'asChild',
         type: 'boolean',
@@ -4701,8 +4660,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Indicator slot for checkbox/radio/submenu state visuals.',
+        displayDescription: '',
         displayName: 'Menu.ItemIndicator',
         propName: 'children',
         type: 'ReactNode',
@@ -4711,8 +4669,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Indicator slot for checkbox/radio/submenu state visuals.',
+        displayDescription: '',
         displayName: 'Menu.ItemIndicator',
         propName: 'forceMount',
         type: 'boolean',
@@ -4720,9 +4677,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription:
-          'Indicator slot for checkbox/radio/submenu state visuals.',
+        defaultValue: 'start',
+        displayDescription: '',
         displayName: 'Menu.ItemIndicator',
         propName: 'position',
         type: "'start' | 'end'",
@@ -4731,8 +4687,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Submenu state boundary for nested menu interactions.',
+        displayDescription: '',
         displayName: 'Menu.Sub',
         propName: 'children',
         type: 'ReactNode',
@@ -4740,9 +4695,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: 300,
-        displayDescription:
-          'Submenu state boundary for nested menu interactions.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Sub',
         propName: 'closeDelay',
         type: 'number',
@@ -4750,9 +4704,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: false,
-        displayDescription:
-          'Submenu state boundary for nested menu interactions.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Sub',
         propName: 'defaultOpen',
         type: 'boolean',
@@ -4760,9 +4713,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: false,
-        displayDescription:
-          'Submenu state boundary for nested menu interactions.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Sub',
         propName: 'disabled',
         type: 'boolean',
@@ -4771,8 +4723,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Submenu state boundary for nested menu interactions.',
+        displayDescription: '',
         displayName: 'Menu.Sub',
         propName: 'onOpenChange',
         type: '(open: boolean) => void',
@@ -4781,8 +4732,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Submenu state boundary for nested menu interactions.',
+        displayDescription: '',
         displayName: 'Menu.Sub',
         propName: 'open',
         type: 'boolean',
@@ -4790,9 +4740,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: 100,
-        displayDescription:
-          'Submenu state boundary for nested menu interactions.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Sub',
         propName: 'openDelay',
         type: 'number',
@@ -4800,9 +4749,8 @@ export const components = [
       },
       {
         comments: 'Enables hover-driven submenu open/close intent handling.',
-        defaultValue: true,
-        displayDescription:
-          'Submenu state boundary for nested menu interactions.',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.Sub',
         propName: 'openOnHover',
         type: 'boolean',
@@ -4811,8 +4759,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Item primitive that controls nested submenu open/close interactions.',
+        displayDescription: '',
         displayName: 'Menu.SubTrigger',
         propName: 'asChild',
         type: 'boolean',
@@ -4821,8 +4768,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Item primitive that controls nested submenu open/close interactions.',
+        displayDescription: '',
         displayName: 'Menu.SubTrigger',
         propName: 'children',
         type: 'ReactNode',
@@ -4830,9 +4776,17 @@ export const components = [
       },
       {
         comments: '',
+        defaultValue: false,
+        displayDescription: '',
+        displayName: 'Menu.SubTrigger',
+        propName: 'destructive',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: '',
         defaultValue: null,
-        displayDescription:
-          'Item primitive that controls nested submenu open/close interactions.',
+        displayDescription: '',
         displayName: 'Menu.SubTrigger',
         propName: 'disabled',
         type: 'boolean',
@@ -4841,8 +4795,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Item primitive that controls nested submenu open/close interactions.',
+        displayDescription: '',
         displayName: 'Menu.SubTrigger',
         propName: 'disabledBehavior',
         type: 'MenuItemDisabledBehavior',
@@ -4851,8 +4804,16 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Item primitive that controls nested submenu open/close interactions.',
+        displayDescription: '',
+        displayName: 'Menu.SubTrigger',
+        propName: 'highlighted',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: '',
+        defaultValue: null,
+        displayDescription: '',
         displayName: 'Menu.SubTrigger',
         propName: 'id',
         type: 'string',
@@ -4862,8 +4823,7 @@ export const components = [
         comments:
           'Optional submenu indicator content. Defaults to `IconChevronRight`; pass `null` to hide it.',
         defaultValue: null,
-        displayDescription:
-          'Item primitive that controls nested submenu open/close interactions.',
+        displayDescription: '',
         displayName: 'Menu.SubTrigger',
         propName: 'indicator',
         type: 'ReactNode',
@@ -4871,9 +4831,8 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: null,
-        displayDescription:
-          'Item primitive that controls nested submenu open/close interactions.',
+        defaultValue: false,
+        displayDescription: '',
         displayName: 'Menu.SubTrigger',
         propName: 'inset',
         type: 'boolean',
@@ -4882,8 +4841,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Item primitive that controls nested submenu open/close interactions.',
+        displayDescription: '',
         displayName: 'Menu.SubTrigger',
         propName: 'onSelect',
         type: '(event: MenuSelectEvent) => void',
@@ -4892,8 +4850,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Item primitive that controls nested submenu open/close interactions.',
+        displayDescription: '',
         displayName: 'Menu.SubTrigger',
         propName: 'textValue',
         type: 'string',
@@ -4902,8 +4859,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Item primitive that controls nested submenu open/close interactions.',
+        displayDescription: '',
         displayName: 'Menu.SubTrigger',
         propName: 'value',
         type: 'string',
@@ -4912,8 +4868,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'alignOffset',
         type: 'number',
@@ -4922,8 +4877,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'aria-label',
         type: 'string',
@@ -4932,8 +4886,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'aria-labelledby',
         type: 'string',
@@ -4942,8 +4895,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'asChild',
         type: 'boolean',
@@ -4952,8 +4904,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'avoidCollisions',
         type: 'boolean',
@@ -4962,8 +4913,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'children',
         type: 'ReactNode',
@@ -4972,8 +4922,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'collisionPadding',
         type: 'number',
@@ -4982,8 +4931,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'container',
         type: 'HTMLElement | null',
@@ -4992,8 +4940,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'forceMount',
         type: 'boolean',
@@ -5002,8 +4949,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'id',
         type: 'string',
@@ -5012,8 +4958,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'maxHeight',
         type: 'number | string',
@@ -5022,8 +4967,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'maxWidth',
         type: 'number | string',
@@ -5032,8 +4976,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'minWidth',
         type: 'number | string',
@@ -5042,8 +4985,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'onCloseAutoFocus',
         type: '(event: Event) => void',
@@ -5052,8 +4994,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'onOpenAutoFocus',
         type: '(event: Event) => void',
@@ -5062,8 +5003,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'portal',
         type: 'boolean | HTMLElement',
@@ -5072,8 +5012,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'sideOffset',
         type: 'number',
@@ -5082,8 +5021,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription:
-          'Floating submenu content container rendered from a `Menu.Sub` scope.',
+        displayDescription: '',
         displayName: 'Menu.SubContent',
         propName: 'width',
         type: 'number | string',
@@ -5110,6 +5048,12 @@ export const components = [
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Menu',
     typesReference: [
       {
+        comments: '',
+        defaultValue: null,
+        typeName: 'ReactNode',
+        values: [],
+      },
+      {
         comments:
           'Reading direction used for directional keyboard and submenu behavior.',
         defaultValue: null,
@@ -5126,7 +5070,7 @@ export const components = [
         comments: 'Visual size options for menu primitives.',
         defaultValue: null,
         typeName: 'MenuSize',
-        values: ['sm', 'md', 'lg'],
+        values: ['small', 'medium', 'large'],
       },
       {
         comments: 'Density scale used for item spacing.',
@@ -5157,6 +5101,12 @@ export const components = [
         defaultValue: null,
         typeName: 'MenuAlign',
         values: ['start', 'center', 'end'],
+      },
+      {
+        comments: '',
+        defaultValue: null,
+        typeName: 'UIEventHandler',
+        values: [],
       },
       {
         comments:
@@ -7091,13 +7041,13 @@ export const components = [
       },
       {
         comments: 'Size scale for keycaps.',
-        defaultValue: 'sm',
+        defaultValue: 'small',
         displayDescription:
           'Inline keyboard shortcut renderer with platform-aware key normalization.',
         displayName: 'Shortcut',
         propName: 'size',
         type: 'ShortcutSize',
-        values: ['xs', 'sm', 'md', 'lg'],
+        values: ['xSmall', 'small', 'medium', 'large'],
       },
       {
         comments: 'Keycap color tone.',
@@ -7207,7 +7157,7 @@ export const components = [
         comments: 'Visual size scale for keycaps.',
         defaultValue: null,
         typeName: 'ShortcutSize',
-        values: ['xs', 'sm', 'md', 'lg'],
+        values: ['xSmall', 'small', 'medium', 'large'],
       },
       {
         comments: 'Surface style for keycaps.',

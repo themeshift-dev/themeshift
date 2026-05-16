@@ -13,7 +13,7 @@ export const MenuSeparator = forwardRef<HTMLDivElement, MenuSeparatorProps>(
       className,
       decorative = true,
       orientation = 'horizontal',
-      spacing = 'md',
+      spacing = 'medium',
       ...separatorProps
     },
     ref
@@ -28,9 +28,9 @@ export const MenuSeparator = forwardRef<HTMLDivElement, MenuSeparatorProps>(
           styles.separator,
           orientation === 'vertical' && styles.separatorVertical,
           spacing === 'none' && styles.separatorSpacingNONE,
-          spacing === 'sm' && styles.separatorSpacingSM,
-          spacing === 'md' && styles.separatorSpacingMD,
-          spacing === 'lg' && styles.separatorSpacingLG,
+          spacing === 'small' && styles.separatorSpacingSM,
+          spacing === 'medium' && styles.separatorSpacingMD,
+          spacing === 'large' && styles.separatorSpacingLG,
           className
         )}
         ref={ref}

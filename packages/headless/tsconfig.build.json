@@ -1,6 +1,8 @@
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": { "@/*": ["src/*"] },
     "noEmit": false,
     "emitDeclarationOnly": true,
     "declaration": true,
@@ -15,5 +17,5 @@
     "src/components/**/*.tsx",
     "src/hooks/**/*.ts"
   ],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/**/*.meta.ts"]
 }

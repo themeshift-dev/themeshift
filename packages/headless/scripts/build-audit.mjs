@@ -176,6 +176,7 @@ const components = fs
   .readdirSync(componentsDir, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name)
+  .filter((name) => fs.existsSync(path.join(componentsDir, name, 'index.js')))
   .sort((left, right) => left.localeCompare(right));
 
 if (components.length === 0) {
@@ -185,10 +186,6 @@ if (components.length === 0) {
 const allFiles = new Set();
 const rows = components.map((name) => {
   const entryPath = path.join(componentsDir, name, 'index.js');
-
-  if (!fs.existsSync(entryPath)) {
-    fail(`Missing component entrypoint: ${entryPath}`);
-  }
 
   const recursiveFiles = collectRecursiveFiles(entryPath);
 

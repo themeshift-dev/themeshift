@@ -40,7 +40,7 @@ export type ShortcutFormat = 'symbols' | 'text';
 /**
  * Visual size scale for keycaps.
  */
-export type ShortcutSize = 'xs' | 'sm' | 'md' | 'lg';
+export type ShortcutSize = 'xSmall' | 'small' | 'medium' | 'large';
 
 /**
  * Surface style for keycaps.

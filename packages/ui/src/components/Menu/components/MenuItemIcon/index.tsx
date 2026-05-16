@@ -12,7 +12,7 @@ export const MenuItemIcon = forwardRef<HTMLSpanElement, MenuItemIconProps>(
       asChild = false,
       className,
       decorative = true,
-      size = 'md',
+      size = 'medium',
       ...iconProps
     },
     ref
@@ -25,9 +25,9 @@ export const MenuItemIcon = forwardRef<HTMLSpanElement, MenuItemIconProps>(
         aria-hidden={decorative ? true : iconProps['aria-hidden']}
         className={classNames(
           styles.itemIcon,
-          size === 'sm' && styles.itemIconSM,
-          size === 'md' && styles.itemIconMD,
-          size === 'lg' && styles.itemIconLG,
+          size === 'small' && styles.itemIconSM,
+          size === 'medium' && styles.itemIconMD,
+          size === 'large' && styles.itemIconLG,
           className
         )}
         ref={ref}

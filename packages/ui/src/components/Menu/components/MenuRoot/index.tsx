@@ -39,7 +39,7 @@ export const MenuRoot = ({
   open,
   orientation = 'vertical',
   selectionMode = 'none',
-  size = 'md',
+  size = 'medium',
   typeahead = true,
   ...rootProps
 }: MenuRootProps) => {

@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { Tabs } from './index';
+import { Tabs } from '../index';
 
 const BasicTabs = () => (
   <Tabs>

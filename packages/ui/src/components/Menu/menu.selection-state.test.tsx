@@ -79,38 +79,38 @@ describe('Menu - selection/state', () => {
       name: /Dense mode/,
     });
     const denseIndicator = screen.getByTestId('dense-indicator');
-    const denseCheckedClass = denseIndicator.className;
+    const denseCheckedState = denseIndicator.getAttribute('data-state');
     expect(checkbox).toHaveAttribute('aria-checked', 'true');
     fireEvent.click(checkbox);
     expect(checkbox).toHaveAttribute('aria-checked', 'false');
-    const denseUncheckedClass = denseIndicator.className;
-    expect(denseUncheckedClass).not.toBe(denseCheckedClass);
+    const denseUncheckedState = denseIndicator.getAttribute('data-state');
+    expect(denseUncheckedState).not.toBe(denseCheckedState);
     checkbox.focus();
     fireEvent.keyDown(checkbox, { key: 'Enter' });
     expect(checkbox).toHaveAttribute('aria-checked', 'true');
-    expect(denseIndicator.className).toBe(denseCheckedClass);
+    expect(denseIndicator).toHaveAttribute('data-state', denseCheckedState);
 
     const system = screen.getByRole('menuitemradio', { name: /System/ });
     const light = screen.getByRole('menuitemradio', { name: /Light/ });
     const systemIndicator = screen.getByTestId('system-indicator');
     const lightIndicator = screen.getByTestId('light-indicator');
-    const checkedRadioClass = systemIndicator.className;
-    const uncheckedRadioClass = lightIndicator.className;
+    const checkedRadioState = systemIndicator.getAttribute('data-state');
+    const uncheckedRadioState = lightIndicator.getAttribute('data-state');
 
     expect(system).toHaveAttribute('aria-checked', 'true');
     expect(light).toHaveAttribute('aria-checked', 'false');
-    expect(checkedRadioClass).not.toBe(uncheckedRadioClass);
+    expect(checkedRadioState).not.toBe(uncheckedRadioState);
     fireEvent.click(light);
     expect(system).toHaveAttribute('aria-checked', 'false');
     expect(light).toHaveAttribute('aria-checked', 'true');
-    expect(systemIndicator.className).toBe(uncheckedRadioClass);
-    expect(lightIndicator.className).toBe(checkedRadioClass);
+    expect(systemIndicator).toHaveAttribute('data-state', uncheckedRadioState);
+    expect(lightIndicator).toHaveAttribute('data-state', checkedRadioState);
     system.focus();
     fireEvent.keyDown(system, { key: 'Enter' });
     expect(system).toHaveAttribute('aria-checked', 'true');
     expect(light).toHaveAttribute('aria-checked', 'false');
-    expect(systemIndicator.className).toBe(checkedRadioClass);
-    expect(lightIndicator.className).toBe(uncheckedRadioClass);
+    expect(systemIndicator).toHaveAttribute('data-state', checkedRadioState);
+    expect(lightIndicator).toHaveAttribute('data-state', uncheckedRadioState);
   });
 
   it('updates checkbox and radio checked states', () => {

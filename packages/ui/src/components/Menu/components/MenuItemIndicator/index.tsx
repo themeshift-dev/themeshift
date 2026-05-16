@@ -37,9 +37,9 @@ export const MenuItemIndicator = forwardRef<
         className={classNames(
           styles.itemIndicator,
           position === 'end' ? styles.indicatorEnd : styles.indicatorStart,
-          !visible && styles.itemIndicatorHidden,
           className
         )}
+        data-state={visible ? 'visible' : 'hidden'}
         ref={ref}
       >
         {children}
