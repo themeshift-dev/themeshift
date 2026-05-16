@@ -147,6 +147,9 @@ const rows = [...componentNames]
       metric(headHeadlessRow, 'brotliTotal') -
       metric(baseHeadlessRow, 'brotliTotal');
 
+    const totalHeadRaw =
+      metric(headUiRow, 'rawTotal') + metric(headHeadlessRow, 'rawTotal');
+
     return {
       name,
       status: statusFor(
@@ -162,6 +165,7 @@ const rows = [...componentNames]
       rawDelta: uiRawDelta + headlessRawDelta,
       gzipDelta: uiGzipDelta + headlessGzipDelta,
       brotliDelta: uiBrotliDelta + headlessBrotliDelta,
+      totalHeadRaw,
     };
   });
 
@@ -218,12 +222,12 @@ const lines = [
 if (rows.length === 0) {
   lines.push('No component-level bundle changes detected.');
 } else {
-  lines.push('| Component | Status | Raw Δ | Gzip Δ | Brotli Δ |');
-  lines.push('|---|---:|---:|---:|---:|');
+  lines.push('| Component | Status | Total Size | Raw Δ | Gzip Δ | Brotli Δ |');
+  lines.push('|---|---:|---:|---:|---:|---:|');
 
   for (const row of rows) {
     lines.push(
-      `| ${row.name} | ${row.status} | ${formatDelta(row.rawDelta)} | ${formatDelta(row.gzipDelta)} | ${formatDelta(row.brotliDelta)} |`
+      `| ${row.name} | ${row.status} | ${bytesToHuman(row.totalHeadRaw)} | ${formatDelta(row.rawDelta)} | ${formatDelta(row.gzipDelta)} | ${formatDelta(row.brotliDelta)} |`
     );
   }
 }
