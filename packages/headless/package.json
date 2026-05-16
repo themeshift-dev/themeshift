@@ -1,0 +1,59 @@
+{
+  "name": "@themeshift/headless",
+  "version": "0.1.0",
+  "description": "ThemeShift headless React primitives.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:themeshift-dev/themeshift.git",
+    "directory": "packages/headless"
+  },
+  "homepage": "https://github.com/themeshift-dev/themeshift/tree/main/packages/headless",
+  "bugs": {
+    "url": "https://github.com/themeshift-dev/themeshift/issues"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components/Tabs": {
+      "types": "./dist/components/Tabs/index.d.ts",
+      "import": "./dist/components/Tabs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "vite build --config vite.config.components.ts && tsc -p tsconfig.build.json",
+    "build:audit": "pnpm run build && node scripts/build-audit.mjs",
+    "dev": "vite build --watch --config vite.config.components.ts",
+    "test": "vitest run --config vitest.config.ts",
+    "test:coverage": "vitest run --coverage --config vitest.config.ts",
+    "typecheck": "tsc -p tsconfig.build.json --pretty false --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "jest-axe": "^10.0.0",
+    "jsdom": "^27.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12",
+    "vitest": "^4.0.18"
+  }
+}

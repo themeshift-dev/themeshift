@@ -143,7 +143,10 @@ function createAnalyzer(program) {
         componentName,
         componentSourceFiles
       );
-      const declarations = getLocalTypeDeclarations(componentSourceFiles);
+      const declarations = getLocalTypeDeclarations(
+        componentName,
+        componentSourceFiles
+      );
       const defaults = getComponentDefaults(
         componentSourceFiles,
         targets,
@@ -355,20 +358,55 @@ function unwrapExpression(expression) {
   return expression;
 }
 
-function getLocalTypeDeclarations(sourceFiles) {
+function collectTypeDeclarationsFromSourceFile(sourceFile, declarations) {
+  ts.forEachChild(sourceFile, function visit(node) {
+    if (
+      (ts.isTypeAliasDeclaration(node) || ts.isInterfaceDeclaration(node)) &&
+      ts.isIdentifier(node.name)
+    ) {
+      declarations.set(node.name.text, node);
+    }
+
+    ts.forEachChild(node, visit);
+  });
+}
+
+function getHeadlessTypeDeclarations(componentName) {
+  const headlessTypesPath = path.join(
+    rootDir,
+    'packages/headless/src/components',
+    componentName,
+    'types.ts'
+  );
+  const sourceText = ts.sys.readFile(headlessTypesPath);
+
+  if (!sourceText) {
+    return new Map();
+  }
+
+  const sourceFile = ts.createSourceFile(
+    headlessTypesPath,
+    sourceText,
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TS
+  );
+  const declarations = new Map();
+
+  collectTypeDeclarationsFromSourceFile(sourceFile, declarations);
+
+  return declarations;
+}
+
+function getLocalTypeDeclarations(componentName, sourceFiles) {
   const declarations = new Map();
 
   for (const sourceFile of sourceFiles) {
-    ts.forEachChild(sourceFile, function visit(node) {
-      if (
-        (ts.isTypeAliasDeclaration(node) || ts.isInterfaceDeclaration(node)) &&
-        ts.isIdentifier(node.name)
-      ) {
-        declarations.set(node.name.text, node);
-      }
+    collectTypeDeclarationsFromSourceFile(sourceFile, declarations);
+  }
 
-      ts.forEachChild(node, visit);
-    });
+  if (declarations.size === 0) {
+    return getHeadlessTypeDeclarations(componentName);
   }
 
   return declarations;

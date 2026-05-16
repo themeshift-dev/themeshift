@@ -10207,7 +10207,7 @@ export const components = [
     apiReference: [
       {
         comments: 'Keyboard activation model for arrow navigation.',
-        defaultValue: 'automatic',
+        defaultValue: null,
         displayDescription:
           'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
@@ -10248,7 +10248,7 @@ export const components = [
       },
       {
         comments: 'Makes triggers share equal inline size in the list.',
-        defaultValue: false,
+        defaultValue: null,
         displayDescription:
           'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
@@ -10258,7 +10258,7 @@ export const components = [
       },
       {
         comments: 'Delays inactive panel mounting until first activation.',
-        defaultValue: false,
+        defaultValue: null,
         displayDescription:
           'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
@@ -10269,7 +10269,7 @@ export const components = [
       {
         comments:
           'Allows focus navigation to wrap from end-to-start and start-to-end.',
-        defaultValue: true,
+        defaultValue: null,
         displayDescription:
           'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
@@ -10289,7 +10289,7 @@ export const components = [
       },
       {
         comments: 'Orientation used for layout and keyboard behavior.',
-        defaultValue: 'horizontal',
+        defaultValue: null,
         displayDescription:
           'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
@@ -10299,7 +10299,7 @@ export const components = [
       },
       {
         comments: 'Unmounts inactive panels when they become hidden.',
-        defaultValue: false,
+        defaultValue: null,
         displayDescription:
           'Root wrapper for composable Tabs interactions and state.',
         displayName: 'Tabs',
@@ -10330,7 +10330,7 @@ export const components = [
       {
         comments:
           'Forces indicator to render even when no active trigger is available.',
-        defaultValue: false,
+        defaultValue: null,
         displayDescription:
           'Decorative active-tab indicator that follows selected trigger bounds.',
         displayName: 'Tabs.Indicator',
@@ -10423,7 +10423,7 @@ export const components = [
       {
         comments:
           'Forces panel to stay mounted regardless of lazy/unmount settings.',
-        defaultValue: false,
+        defaultValue: null,
         displayDescription:
           'Panel region associated to a trigger via matching `value`.',
         displayName: 'Tabs.Panel',
@@ -10503,7 +10503,7 @@ export const components = [
       },
       {
         comments: 'Disables pointer and keyboard activation for this trigger.',
-        defaultValue: false,
+        defaultValue: null,
         displayDescription:
           'Selectable trigger linked to a panel by shared `value`.',
         displayName: 'Tabs.Trigger',
@@ -10542,6 +10542,12 @@ export const components = [
       'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Tabs',
     typesReference: [
       {
+        comments: '',
+        defaultValue: null,
+        typeName: 'ReactNode',
+        values: [],
+      },
+      {
         comments:
           'Layout direction for the tab list and keyboard navigation model.',
         defaultValue: null,
@@ -10554,6 +10560,12 @@ export const components = [
         defaultValue: null,
         typeName: 'TabsActivationMode',
         values: ['automatic', 'manual'],
+      },
+      {
+        comments: '',
+        defaultValue: null,
+        typeName: 'ElementType',
+        values: [],
       },
       {
         comments:

@@ -82,7 +82,20 @@ describe('Tabs', () => {
   });
 
   it('renders no active tab or panel for invalid controlled values', () => {
-    render(
+    const { rerender } = render(
+      <Tabs value="overview">
+        <Tabs.List aria-label="Sections">
+          <Tabs.Indicator data-testid="indicator" />
+          <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+          <Tabs.Trigger value="reports">Reports</Tabs.Trigger>
+        </Tabs.List>
+
+        <Tabs.Panel value="overview">Overview panel</Tabs.Panel>
+        <Tabs.Panel value="reports">Reports panel</Tabs.Panel>
+      </Tabs>
+    );
+
+    rerender(
       <Tabs value="missing">
         <Tabs.List aria-label="Sections">
           <Tabs.Indicator data-testid="indicator" />
@@ -104,6 +117,10 @@ describe('Tabs', () => {
       'data-state',
       'hidden'
     );
+    expect(screen.getByTestId('indicator')).toHaveStyle({
+      '--tabs-indicator-offset': '0px',
+      '--tabs-indicator-size': '0px',
+    });
   });
 
   it('supports automatic activation with arrow keys', async () => {
@@ -257,6 +274,63 @@ describe('Tabs', () => {
     );
   });
 
+  it('exposes styling data attributes across primitives', () => {
+    render(
+      <Tabs
+        activationMode="manual"
+        defaultValue="overview"
+        fitted
+        lazyMount
+        loop={false}
+        orientation="vertical"
+        unmountOnExit
+      >
+        <Tabs.List aria-label="Sections" data-testid="tabs-list">
+          <Tabs.Trigger data-testid="tabs-trigger" value="overview">
+            Overview
+          </Tabs.Trigger>
+          <Tabs.Trigger value="reports">Reports</Tabs.Trigger>
+        </Tabs.List>
+
+        <Tabs.Panels data-testid="tabs-panels" lazyMount unmountOnExit>
+          <Tabs.Panel data-testid="tabs-panel" value="overview">
+            Overview panel
+          </Tabs.Panel>
+          <Tabs.Panel value="reports">Reports panel</Tabs.Panel>
+        </Tabs.Panels>
+      </Tabs>
+    );
+
+    const root = screen.getByTestId('tabs-list').closest('[data-slot="root"]');
+
+    expect(root).toHaveAttribute('data-activation-mode', 'manual');
+    expect(root).toHaveAttribute('data-fitted');
+    expect(root).toHaveAttribute('data-lazy-mount');
+    expect(root).toHaveAttribute('data-orientation', 'vertical');
+    expect(root).toHaveAttribute('data-selected-value', 'overview');
+    expect(root).toHaveAttribute('data-unmount-on-exit');
+    expect(root).not.toHaveAttribute('data-loop');
+
+    expect(screen.getByTestId('tabs-list')).toHaveAttribute(
+      'data-activation-mode',
+      'manual'
+    );
+    expect(screen.getByTestId('tabs-trigger')).toHaveAttribute(
+      'data-value',
+      'overview'
+    );
+    expect(screen.getByTestId('tabs-panels')).toHaveAttribute(
+      'data-lazy-mount'
+    );
+    expect(screen.getByTestId('tabs-panels')).toHaveAttribute(
+      'data-unmount-on-exit'
+    );
+    expect(screen.getByTestId('tabs-panel')).toHaveAttribute(
+      'data-value',
+      'overview'
+    );
+  });
+
   it('renders indicator with orientation and state data attributes', () => {
     render(
       <Tabs defaultValue="overview" orientation="vertical">
@@ -325,8 +399,8 @@ describe('Tabs', () => {
       );
     });
     expect(screen.getByTestId('indicator-medium')).toHaveAttribute(
-      'class',
-      expect.stringContaining('indicatorSizeMedium')
+      'data-orientation',
+      'horizontal'
     );
   });
 
@@ -527,12 +601,8 @@ describe('Tabs', () => {
     });
 
     expect(screen.getByTestId('indicator-large-medium-inset')).toHaveAttribute(
-      'class',
-      expect.stringContaining('indicatorInsetMedium')
-    );
-    expect(screen.getByTestId('indicator-large-medium-inset')).toHaveAttribute(
-      'class',
-      expect.stringContaining('indicatorSizeLarge')
+      'data-orientation',
+      'horizontal'
     );
   });
 

@@ -173,7 +173,9 @@ export const ExampleViewer = <Props extends ExampleArgs = ExampleArgs>({
       )}
 
       <div className={styles.preview}>
-        <div className={styles.content}>{sample}</div>
+        <div className={styles.content} key={currentExample.label}>
+          {sample}
+        </div>
       </div>
 
       <div className={styles.code} data-expanded={isCodeExpanded}>
