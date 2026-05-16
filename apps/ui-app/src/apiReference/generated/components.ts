@@ -3981,7 +3981,8 @@ export const components = [
       {
         comments: 'Renders behavior into a child element.',
         defaultValue: null,
-        displayDescription: 'Scrollable viewport wrapper for long menu lists.',
+        displayDescription:
+          'Optional scroll viewport wrapper for menu content.',
         displayName: 'Menu.Viewport',
         propName: 'asChild',
         type: 'boolean',
@@ -3990,7 +3991,8 @@ export const components = [
       {
         comments: 'Viewport children, usually items/groups/labels.',
         defaultValue: null,
-        displayDescription: 'Scrollable viewport wrapper for long menu lists.',
+        displayDescription:
+          'Optional scroll viewport wrapper for menu content.',
         displayName: 'Menu.Viewport',
         propName: 'children',
         type: 'ReactNode',
@@ -3999,7 +4001,8 @@ export const components = [
       {
         comments: 'Maximum viewport block size.',
         defaultValue: null,
-        displayDescription: 'Scrollable viewport wrapper for long menu lists.',
+        displayDescription:
+          'Optional scroll viewport wrapper for menu content.',
         displayName: 'Menu.Viewport',
         propName: 'maxHeight',
         type: 'number | string',
@@ -4008,7 +4011,8 @@ export const components = [
       {
         comments: 'Scroll event callback from the viewport element.',
         defaultValue: null,
-        displayDescription: 'Scrollable viewport wrapper for long menu lists.',
+        displayDescription:
+          'Optional scroll viewport wrapper for menu content.',
         displayName: 'Menu.Viewport',
         propName: 'onScroll',
         type: 'UIEventHandler<HTMLElement>',
@@ -4017,7 +4021,8 @@ export const components = [
       {
         comments: 'Overscroll behavior used for touch and wheel input.',
         defaultValue: null,
-        displayDescription: 'Scrollable viewport wrapper for long menu lists.',
+        displayDescription:
+          'Optional scroll viewport wrapper for menu content.',
         displayName: 'Menu.Viewport',
         propName: 'overscrollBehavior',
         type: "'auto' | 'contain' | 'none'",
@@ -4026,7 +4031,8 @@ export const components = [
       {
         comments: 'Enables vertical scrolling for long lists.',
         defaultValue: null,
-        displayDescription: 'Scrollable viewport wrapper for long menu lists.',
+        displayDescription:
+          'Optional scroll viewport wrapper for menu content.',
         displayName: 'Menu.Viewport',
         propName: 'scrollable',
         type: 'boolean',
@@ -4035,7 +4041,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Group container for related menu items.',
+        displayDescription: 'Grouping container for related menu items.',
         displayName: 'Menu.Group',
         propName: 'aria-label',
         type: 'string',
@@ -4044,7 +4050,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Group container for related menu items.',
+        displayDescription: 'Grouping container for related menu items.',
         displayName: 'Menu.Group',
         propName: 'aria-labelledby',
         type: 'string',
@@ -4053,7 +4059,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Group container for related menu items.',
+        displayDescription: 'Grouping container for related menu items.',
         displayName: 'Menu.Group',
         propName: 'asChild',
         type: 'boolean',
@@ -4062,7 +4068,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Group container for related menu items.',
+        displayDescription: 'Grouping container for related menu items.',
         displayName: 'Menu.Group',
         propName: 'children',
         type: 'ReactNode',
@@ -4071,7 +4077,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Group container for related menu items.',
+        displayDescription: 'Grouping container for related menu items.',
         displayName: 'Menu.Group',
         propName: 'disabled',
         type: 'boolean',
@@ -4080,7 +4086,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Group container for related menu items.',
+        displayDescription: 'Grouping container for related menu items.',
         displayName: 'Menu.Group',
         propName: 'id',
         type: 'string',
@@ -4089,7 +4095,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Group container for related menu items.',
+        displayDescription: 'Grouping container for related menu items.',
         displayName: 'Menu.Group',
         propName: 'inset',
         type: 'boolean',
@@ -4098,7 +4104,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Text label for item groups and menu sections.',
+        displayDescription:
+          'Non-interactive label used to title groups or sections.',
         displayName: 'Menu.Label',
         propName: 'asChild',
         type: 'boolean',
@@ -4107,7 +4114,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Text label for item groups and menu sections.',
+        displayDescription:
+          'Non-interactive label used to title groups or sections.',
         displayName: 'Menu.Label',
         propName: 'children',
         type: 'ReactNode',
@@ -4116,7 +4124,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Text label for item groups and menu sections.',
+        displayDescription:
+          'Non-interactive label used to title groups or sections.',
         displayName: 'Menu.Label',
         propName: 'id',
         type: 'string',
@@ -4125,7 +4134,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Text label for item groups and menu sections.',
+        displayDescription:
+          'Non-interactive label used to title groups or sections.',
         displayName: 'Menu.Label',
         propName: 'inset',
         type: 'boolean',
@@ -4134,7 +4144,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Text label for item groups and menu sections.',
+        displayDescription:
+          'Non-interactive label used to title groups or sections.',
         displayName: 'Menu.Label',
         propName: 'muted',
         type: 'boolean',
@@ -4376,7 +4387,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Visual separator between menu regions.',
+        displayDescription: 'Visual separator between menu sections.',
         displayName: 'Menu.Separator',
         propName: 'asChild',
         type: 'boolean',
@@ -4385,7 +4396,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Visual separator between menu regions.',
+        displayDescription: 'Visual separator between menu sections.',
         displayName: 'Menu.Separator',
         propName: 'decorative',
         type: 'boolean',
@@ -4394,7 +4405,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Visual separator between menu regions.',
+        displayDescription: 'Visual separator between menu sections.',
         displayName: 'Menu.Separator',
         propName: 'orientation',
         type: "'horizontal' | 'vertical'",
@@ -4403,7 +4414,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Visual separator between menu regions.',
+        displayDescription: 'Visual separator between menu sections.',
         displayName: 'Menu.Separator',
         propName: 'spacing',
         type: "'none' | 'sm' | 'md' | 'lg'",
@@ -4559,7 +4570,7 @@ export const components = [
       },
       {
         comments: '',
-        defaultValue: false,
+        defaultValue: null,
         displayDescription:
           'Container that coordinates radio-style menu item selection.',
         displayName: 'Menu.RadioGroup',

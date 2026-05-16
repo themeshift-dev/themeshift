@@ -40,10 +40,7 @@ export const MenuGuide = () => {
     useDescription:
       'Start with Root + Content + Item, then layer Sub/Checkbox/Radio primitives as behavior expands.',
     useExample: (
-      <ExampleViewer
-        defaultCodeExpanded={true}
-        example={examples.basicComposition}
-      />
+      <ExampleViewer defaultCodeExpanded={true} example={examples.basicUsage} />
     ),
   });
 
@@ -90,7 +87,27 @@ export const MenuGuide = () => {
             </p>
           </GuideExampleText>
           <GuideExampleViewer>
-            <ExampleViewer example={examples.submenuIntent} />
+            <ExampleViewer example={examples.subMenus} />
+          </GuideExampleViewer>
+        </GuideExampleCard>
+
+        <GuideExampleCard>
+          <GuideExampleText>
+            <TableOfContents.Marker
+              id="examples-direction"
+              label="Direction (LTR/RTL)"
+              level={2}
+            />
+            <Heading level={4}>Direction (LTR/RTL)</Heading>
+            <p>
+              Use a shared menu composition and flip only the <code>dir</code>{' '}
+              prop to validate mirrored layout and directional keyboard
+              behavior. In RTL mode, submenu arrow keys reverse: use Left Arrow
+              to open and Right Arrow to close.
+            </p>
+          </GuideExampleText>
+          <GuideExampleViewer>
+            <ExampleViewer examples={examples.directionExamples} />
           </GuideExampleViewer>
         </GuideExampleCard>
 
@@ -188,9 +205,9 @@ export const MenuGuide = () => {
         ),
         example: {
           id: 'a11y-name',
-          label: examples.basicComposition.label,
-          code: examples.basicComposition.code,
-          render: examples.basicComposition.sample,
+          label: examples.basicUsage.label,
+          code: examples.basicUsage.code,
+          render: examples.basicUsage.sample,
         },
       },
       {

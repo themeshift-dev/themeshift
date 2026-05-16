@@ -30,6 +30,16 @@ type PlacementAlign = 'center' | 'start' | 'end';
 
 export type UseAnchoredPositionOptions = {
   /**
+   * Optional ref object for the anchor/trigger element.
+   */
+  anchorRef?: RefObject<HTMLElement | null>;
+
+  /**
+   * Optional ref object for the floating/content element.
+   */
+  floatingRef?: RefObject<HTMLElement | null>;
+
+  /**
    * Enables measurements and updates while the floating element is visible.
    */
   open: boolean;
@@ -332,6 +342,7 @@ function getArrowStyle({
  * Positions a floating element relative to an anchor with collision handling.
  */
 export function useAnchoredPosition({
+  anchorRef: anchorRefOverride,
   open,
   placement = DEFAULT_PLACEMENT,
   offset = DEFAULT_OFFSET,
@@ -341,9 +352,12 @@ export function useAnchoredPosition({
   flip = true,
   shift = true,
   arrowRef,
+  floatingRef: floatingRefOverride,
 }: UseAnchoredPositionOptions): UseAnchoredPositionReturn {
-  const anchorRef = useRef<HTMLElement | null>(null);
-  const floatingRef = useRef<HTMLElement | null>(null);
+  const internalAnchorRef = useRef<HTMLElement | null>(null);
+  const internalFloatingRef = useRef<HTMLElement | null>(null);
+  const anchorRef = anchorRefOverride ?? internalAnchorRef;
+  const floatingRef = floatingRefOverride ?? internalFloatingRef;
   const rafRef = useRef<number | null>(null);
   const [actualPlacement, setActualPlacement] = useState<Placement>(placement);
   const [style, setStyle] = useState<CSSProperties>(() => ({
@@ -457,9 +471,11 @@ export function useAnchoredPosition({
       );
     }
   }, [
+    anchorRef,
     arrowRef,
     boundaryPadding,
     flip,
+    floatingRef,
     matchTriggerWidth,
     offset,
     open,
@@ -494,7 +510,7 @@ export function useAnchoredPosition({
 
     anchorObserver.ref(anchorRef.current);
     floatingObserver.ref(floatingRef.current);
-  }, [anchorObserver, floatingObserver, open]);
+  }, [anchorObserver, floatingObserver, open, anchorRef, floatingRef]);
 
   useEffect(() => {
     if (!open || typeof window === 'undefined') {

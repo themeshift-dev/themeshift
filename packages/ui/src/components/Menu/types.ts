@@ -282,7 +282,6 @@ export type MenuRadioGroupProps = {
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
-  name?: string;
   disabled?: boolean;
   'aria-label'?: string;
   'aria-labelledby'?: string;
