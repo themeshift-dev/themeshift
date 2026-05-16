@@ -10,7 +10,7 @@
     "audit:tokens": "node scripts/audit-tokens.mjs",
     "build": "turbo run build",
     "build-storybook": "turbo run build-storybook --filter=@themeshift/ui",
-    "build:audit": "pnpm -C packages/ui run build:audit && pnpm -C packages/headless run build:audit",
+    "build:audit": "pnpm -C packages/headless run build:audit && pnpm -C packages/ui run build:audit",
     "build:ui": "turbo run build --filter=@themeshift/ui...",
     "build:ui-app": "turbo run build --filter=@themeshift/ui-app...",
     "build:ui-demo": "turbo run build --filter=@themeshift/ui-demo...",
