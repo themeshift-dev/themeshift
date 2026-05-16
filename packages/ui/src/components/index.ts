@@ -22,6 +22,7 @@ export * from './Radio';
 export * from './Responsive';
 export * from './SafetyButton';
 export * from './Select';
+export * from './Shortcut';
 export * from './Sidebar';
 export * from './Skeleton';
 export * from './SkipLink';

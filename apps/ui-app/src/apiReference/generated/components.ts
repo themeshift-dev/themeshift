@@ -4423,7 +4423,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'asChild',
         type: 'boolean',
@@ -4432,7 +4432,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'checked',
         type: "boolean | 'indeterminate'",
@@ -4441,7 +4441,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'children',
         type: 'ReactNode',
@@ -4450,7 +4450,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'closeOnSelect',
         type: 'boolean',
@@ -4459,7 +4459,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'defaultChecked',
         type: 'boolean',
@@ -4468,7 +4468,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'disabled',
         type: 'boolean',
@@ -4477,7 +4477,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'disabledBehavior',
         type: 'MenuItemDisabledBehavior',
@@ -4486,7 +4486,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'id',
         type: 'string',
@@ -4495,7 +4495,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'onCheckedChange',
         type: '(checked: boolean) => void',
@@ -4504,7 +4504,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'onSelect',
         type: '(event: MenuSelectEvent) => void',
@@ -4513,7 +4513,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'textValue',
         type: 'string',
@@ -4522,7 +4522,7 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Checkbox-like selectable menu item.',
+        displayDescription: '',
         displayName: 'Menu.CheckboxItem',
         propName: 'value',
         type: 'string',
@@ -4576,16 +4576,6 @@ export const components = [
         displayName: 'Menu.RadioGroup',
         propName: 'disabled',
         type: 'boolean',
-        values: [],
-      },
-      {
-        comments: '',
-        defaultValue: null,
-        displayDescription:
-          'Container that coordinates radio-style menu item selection.',
-        displayName: 'Menu.RadioGroup',
-        propName: 'name',
-        type: 'string',
         values: [],
       },
       {
@@ -4821,7 +4811,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Item primitive that opens nested submenu content.',
+        displayDescription:
+          'Item primitive that controls nested submenu open/close interactions.',
         displayName: 'Menu.SubTrigger',
         propName: 'asChild',
         type: 'boolean',
@@ -4830,7 +4821,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Item primitive that opens nested submenu content.',
+        displayDescription:
+          'Item primitive that controls nested submenu open/close interactions.',
         displayName: 'Menu.SubTrigger',
         propName: 'children',
         type: 'ReactNode',
@@ -4839,7 +4831,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Item primitive that opens nested submenu content.',
+        displayDescription:
+          'Item primitive that controls nested submenu open/close interactions.',
         displayName: 'Menu.SubTrigger',
         propName: 'disabled',
         type: 'boolean',
@@ -4848,7 +4841,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Item primitive that opens nested submenu content.',
+        displayDescription:
+          'Item primitive that controls nested submenu open/close interactions.',
         displayName: 'Menu.SubTrigger',
         propName: 'disabledBehavior',
         type: 'MenuItemDisabledBehavior',
@@ -4857,7 +4851,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Item primitive that opens nested submenu content.',
+        displayDescription:
+          'Item primitive that controls nested submenu open/close interactions.',
         displayName: 'Menu.SubTrigger',
         propName: 'id',
         type: 'string',
@@ -4867,7 +4862,8 @@ export const components = [
         comments:
           'Optional submenu indicator content. Defaults to `IconChevronRight`; pass `null` to hide it.',
         defaultValue: null,
-        displayDescription: 'Item primitive that opens nested submenu content.',
+        displayDescription:
+          'Item primitive that controls nested submenu open/close interactions.',
         displayName: 'Menu.SubTrigger',
         propName: 'indicator',
         type: 'ReactNode',
@@ -4876,7 +4872,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Item primitive that opens nested submenu content.',
+        displayDescription:
+          'Item primitive that controls nested submenu open/close interactions.',
         displayName: 'Menu.SubTrigger',
         propName: 'inset',
         type: 'boolean',
@@ -4885,7 +4882,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Item primitive that opens nested submenu content.',
+        displayDescription:
+          'Item primitive that controls nested submenu open/close interactions.',
         displayName: 'Menu.SubTrigger',
         propName: 'onSelect',
         type: '(event: MenuSelectEvent) => void',
@@ -4894,7 +4892,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Item primitive that opens nested submenu content.',
+        displayDescription:
+          'Item primitive that controls nested submenu open/close interactions.',
         displayName: 'Menu.SubTrigger',
         propName: 'textValue',
         type: 'string',
@@ -4903,7 +4902,8 @@ export const components = [
       {
         comments: '',
         defaultValue: null,
-        displayDescription: 'Item primitive that opens nested submenu content.',
+        displayDescription:
+          'Item primitive that controls nested submenu open/close interactions.',
         displayName: 'Menu.SubTrigger',
         propName: 'value',
         type: 'string',
@@ -7001,6 +7001,225 @@ export const components = [
         defaultValue: null,
         typeName: 'SelectValidationState',
         values: ['none', 'invalid', 'valid', 'warning'],
+      },
+    ],
+    type: 'component',
+  },
+  {
+    apiReference: [
+      {
+        comments: 'Class name applied to the outer shortcut wrapper.',
+        defaultValue: null,
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'className',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments: 'Compacts keycap padding and inter-key spacing.',
+        defaultValue: false,
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'compact',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Disables emphasis and interaction affordance styles.',
+        defaultValue: false,
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'disabled',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Visual formatting style for key output.',
+        defaultValue: 'symbols',
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'format',
+        type: 'ShortcutFormat',
+        values: ['symbols', 'text'],
+      },
+      {
+        comments: 'Class name applied to each `kbd` keycap.',
+        defaultValue: null,
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'keyClassName',
+        type: 'string',
+        values: [],
+      },
+      {
+        comments:
+          'Shortcut input as a `+`-delimited string or explicit key token list.',
+        defaultValue: null,
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'keys',
+        type: 'string | ShortcutKey[]',
+        values: [],
+      },
+      {
+        comments:
+          'Platform used for `mod` normalization and key formatting behavior.',
+        defaultValue: 'auto',
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'platform',
+        type: 'ShortcutPlatform',
+        values: ['auto', 'mac', 'windows', 'linux'],
+      },
+      {
+        comments: 'Separator style rendered between keys.',
+        defaultValue: 'none',
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'separator',
+        type: 'ShortcutSeparator',
+        values: ['none', 'plus', 'space'],
+      },
+      {
+        comments: 'Size scale for keycaps.',
+        defaultValue: 'sm',
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'size',
+        type: 'ShortcutSize',
+        values: ['xs', 'sm', 'md', 'lg'],
+      },
+      {
+        comments: 'Keycap color tone.',
+        defaultValue: 'neutral',
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'tone',
+        type: 'ShortcutTone',
+        values: ['neutral', 'muted', 'inverse'],
+      },
+      {
+        comments: 'Controls alphanumeric output casing.',
+        defaultValue: true,
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'uppercase',
+        type: 'boolean',
+        values: [],
+      },
+      {
+        comments: 'Keycap surface variant.',
+        defaultValue: 'solid',
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'variant',
+        type: 'ShortcutVariant',
+        values: ['solid', 'soft', 'outline', 'ghost'],
+      },
+      {
+        comments: 'Allows the shortcut row to wrap across lines.',
+        defaultValue: false,
+        displayDescription:
+          'Inline keyboard shortcut renderer with platform-aware key normalization.',
+        displayName: 'Shortcut',
+        propName: 'wrap',
+        type: 'boolean',
+        values: [],
+      },
+    ],
+    name: 'Shortcut',
+    exportName: 'Shortcut',
+    importPath: '@themeshift/ui/components/Shortcut',
+    importString:
+      "import { Shortcut } from '@themeshift/ui/components/Shortcut';",
+    meta: {
+      category: 'navigation-structure',
+      description:
+        'Displays platform-aware keyboard shortcut hints with accessible labels and compact keycap styling.',
+      tags: ['shortcut', 'keyboard', 'command', 'a11y', 'menu'],
+      order: 50,
+      status: 'stable',
+      related: ['Menu', 'Input', 'Button'],
+      type: 'component',
+    },
+    slug: 'shortcut',
+    routeSlug: 'shortcut',
+    sourceCodeUrl:
+      'https://github.com/themeshift-dev/themeshift/tree/develop/packages/ui/src/components/Shortcut',
+    typesReference: [
+      {
+        comments:
+          'A normalized shortcut key token recognized by ThemeShift `Shortcut`.',
+        defaultValue: null,
+        typeName: 'ShortcutKey',
+        values: [
+          'mod',
+          'cmd',
+          'ctrl',
+          'alt',
+          'option',
+          'shift',
+          'enter',
+          'escape',
+          'backspace',
+          'delete',
+          'space',
+          'tab',
+          'arrowup',
+          'arrowdown',
+          'arrowleft',
+          'arrowright',
+        ],
+      },
+      {
+        comments:
+          'Platform targets used to resolve `mod` and platform-specific key labels.',
+        defaultValue: null,
+        typeName: 'ShortcutPlatform',
+        values: ['auto', 'mac', 'windows', 'linux'],
+      },
+      {
+        comments: 'Visual separator style rendered between keycaps.',
+        defaultValue: null,
+        typeName: 'ShortcutSeparator',
+        values: ['none', 'plus', 'space'],
+      },
+      {
+        comments: 'Output style for rendered keys.',
+        defaultValue: null,
+        typeName: 'ShortcutFormat',
+        values: ['symbols', 'text'],
+      },
+      {
+        comments: 'Visual size scale for keycaps.',
+        defaultValue: null,
+        typeName: 'ShortcutSize',
+        values: ['xs', 'sm', 'md', 'lg'],
+      },
+      {
+        comments: 'Surface style for keycaps.',
+        defaultValue: null,
+        typeName: 'ShortcutVariant',
+        values: ['solid', 'soft', 'outline', 'ghost'],
+      },
+      {
+        comments: 'Tone for keycap color treatment.',
+        defaultValue: null,
+        typeName: 'ShortcutTone',
+        values: ['neutral', 'muted', 'inverse'],
       },
     ],
     type: 'component',

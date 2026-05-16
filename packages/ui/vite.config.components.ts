@@ -293,6 +293,9 @@ export default defineConfig({
         'components/Select/index': fileURLToPath(
           new URL('./src/entrypoints/components/Select.ts', import.meta.url)
         ),
+        'components/Shortcut/index': fileURLToPath(
+          new URL('./src/entrypoints/components/Shortcut.ts', import.meta.url)
+        ),
         'components/Sidebar/index': fileURLToPath(
           new URL('./src/entrypoints/components/Sidebar.ts', import.meta.url)
         ),

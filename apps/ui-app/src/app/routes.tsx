@@ -813,6 +813,32 @@ const AppRoutes = () => (
           />
         </Route>
 
+        <Route path="shortcut">
+          <Route index element={<ComponentGuides.ShortcutGuide />} />
+          <Route
+            path="customize"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Shortcut"
+                componentPath="/ui/component/shortcut"
+                description="Shortcut customization guidance will live here."
+                title="Customize"
+              />
+            }
+          />
+          <Route
+            path="playground"
+            element={
+              <ComponentSubpagePlaceholder
+                componentName="Shortcut"
+                componentPath="/ui/component/shortcut"
+                description="An interactive Shortcut playground will live here."
+                title="Playground"
+              />
+            }
+          />
+        </Route>
+
         <Route path="spinner">
           <Route index element={<ComponentGuides.SpinnerGuide />} />
           <Route

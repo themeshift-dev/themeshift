@@ -126,6 +126,10 @@
       "types": "./dist/components/Select/index.d.ts",
       "import": "./dist/components/Select/index.js"
     },
+    "./components/Shortcut": {
+      "types": "./dist/components/Shortcut/index.d.ts",
+      "import": "./dist/components/Shortcut/index.js"
+    },
     "./components/Sidebar": {
       "types": "./dist/components/Sidebar/index.d.ts",
       "import": "./dist/components/Sidebar/index.js"

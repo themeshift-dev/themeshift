@@ -1,5 +1,6 @@
-import { Menu } from '@themeshift/ui/components/Menu';
 import { Link } from '@themeshift/ui/components/Link';
+import { Menu } from '@themeshift/ui/components/Menu';
+import { Shortcut } from '@themeshift/ui/components/Shortcut';
 
 export const basicUsage = {
   label: 'Basic usage',
@@ -12,7 +13,7 @@ export const basicUsage = {
     <Menu.Separator />
     <Menu.Item>
       <Menu.ItemText>Log out</Menu.ItemText>
-      <Menu.ItemMeta>⌘Q</Menu.ItemMeta>
+      <Menu.ItemMeta><Shortcut keys="mod+q" /></Menu.ItemMeta>
     </Menu.Item>
   </Menu.Content>
 </Menu.Root>`,
@@ -30,7 +31,9 @@ export const basicUsage = {
         <Menu.Separator />
         <Menu.Item>
           <Menu.ItemText>Log out</Menu.ItemText>
-          <Menu.ItemMeta>⌘Q</Menu.ItemMeta>
+          <Menu.ItemMeta>
+            <Shortcut keys="mod+q" />
+          </Menu.ItemMeta>
         </Menu.Item>
       </Menu.Content>
     </Menu.Root>
@@ -46,12 +49,12 @@ export const fullComposition = {
       <Menu.Item>
         <Menu.ItemIcon>📁</Menu.ItemIcon>
         <Menu.ItemText>Open project</Menu.ItemText>
-        <Menu.ItemMeta>↵</Menu.ItemMeta>
+        <Menu.ItemMeta><Shortcut keys="enter" /></Menu.ItemMeta>
       </Menu.Item>
       <Menu.Item>
         <Menu.ItemIcon>✏️</Menu.ItemIcon>
         <Menu.ItemText>Edit details</Menu.ItemText>
-        <Menu.ItemMeta>⌘E</Menu.ItemMeta>
+        <Menu.ItemMeta><Shortcut keys="mod+e" /></Menu.ItemMeta>
       </Menu.Item>
       <Menu.Item disabled>Export as PDF</Menu.Item>
     </Menu.Group>
@@ -86,7 +89,7 @@ export const fullComposition = {
       <Menu.SubContent aria-label="More tools">
         <Menu.Item textValue="Rename project">
           <Menu.ItemText>Rename</Menu.ItemText>
-          <Menu.ItemMeta>⌘R</Menu.ItemMeta>
+          <Menu.ItemMeta><Shortcut keys="mod+r" /></Menu.ItemMeta>
         </Menu.Item>
         <Menu.Item>Duplicate</Menu.Item>
         <Menu.Item>Move to folder</Menu.Item>
@@ -95,7 +98,7 @@ export const fullComposition = {
     <Menu.Separator />
     <Menu.Item destructive>
       <Menu.ItemText>Archive project</Menu.ItemText>
-      <Menu.ItemMeta>⌘⌫</Menu.ItemMeta>
+      <Menu.ItemMeta><Shortcut keys="mod+backspace" /></Menu.ItemMeta>
     </Menu.Item>
   </Menu.Content>
 </Menu.Root>`,
@@ -111,12 +114,16 @@ export const fullComposition = {
           <Menu.Item>
             <Menu.ItemIcon>📁</Menu.ItemIcon>
             <Menu.ItemText>Open project</Menu.ItemText>
-            <Menu.ItemMeta>↵</Menu.ItemMeta>
+            <Menu.ItemMeta>
+              <Shortcut keys="enter" />
+            </Menu.ItemMeta>
           </Menu.Item>
           <Menu.Item>
             <Menu.ItemIcon>✏️</Menu.ItemIcon>
             <Menu.ItemText>Edit details</Menu.ItemText>
-            <Menu.ItemMeta>⌘E</Menu.ItemMeta>
+            <Menu.ItemMeta>
+              <Shortcut keys="mod+e" />
+            </Menu.ItemMeta>
           </Menu.Item>
           <Menu.Item disabled>Export as PDF</Menu.Item>
         </Menu.Group>
@@ -151,7 +158,9 @@ export const fullComposition = {
           <Menu.SubContent aria-label="More tools">
             <Menu.Item textValue="Rename project">
               <Menu.ItemText>Rename</Menu.ItemText>
-              <Menu.ItemMeta>⌘R</Menu.ItemMeta>
+              <Menu.ItemMeta>
+                <Shortcut keys="mod+r" />
+              </Menu.ItemMeta>
             </Menu.Item>
             <Menu.Item>Duplicate</Menu.Item>
             <Menu.Item>Move to folder</Menu.Item>
@@ -160,7 +169,9 @@ export const fullComposition = {
         <Menu.Separator />
         <Menu.Item destructive>
           <Menu.ItemText>Archive project</Menu.ItemText>
-          <Menu.ItemMeta>⌘⌫</Menu.ItemMeta>
+          <Menu.ItemMeta>
+            <Shortcut keys="mod+backspace" />
+          </Menu.ItemMeta>
         </Menu.Item>
       </Menu.Content>
     </Menu.Root>
@@ -268,11 +279,11 @@ export const subMenus = {
   <Menu.Content aria-label="Actions">
     <Menu.Item>
       <Menu.ItemText>Open project</Menu.ItemText>
-      <Menu.ItemMeta>↵</Menu.ItemMeta>
+      <Menu.ItemMeta><Shortcut keys="enter" /></Menu.ItemMeta>
     </Menu.Item>
     <Menu.Item>
       <Menu.ItemText>Edit details</Menu.ItemText>
-      <Menu.ItemMeta>⌘E</Menu.ItemMeta>
+      <Menu.ItemMeta><Shortcut keys="mod+e" /></Menu.ItemMeta>
     </Menu.Item>
     <Menu.Separator />
     <Menu.Sub>
@@ -294,7 +305,7 @@ export const subMenus = {
     <Menu.Separator />
     <Menu.Item destructive>
       <Menu.ItemText>Archive project</Menu.ItemText>
-      <Menu.ItemMeta>⌘⌫</Menu.ItemMeta>
+      <Menu.ItemMeta><Shortcut keys="mod+backspace" /></Menu.ItemMeta>
     </Menu.Item>
   </Menu.Content>
 </Menu.Root>`,
@@ -307,11 +318,15 @@ export const subMenus = {
       <Menu.Content aria-label="Actions">
         <Menu.Item>
           <Menu.ItemText>Open project</Menu.ItemText>
-          <Menu.ItemMeta>↵</Menu.ItemMeta>
+          <Menu.ItemMeta>
+            <Shortcut keys="enter" />
+          </Menu.ItemMeta>
         </Menu.Item>
         <Menu.Item>
           <Menu.ItemText>Edit details</Menu.ItemText>
-          <Menu.ItemMeta>⌘E</Menu.ItemMeta>
+          <Menu.ItemMeta>
+            <Shortcut keys="mod+e" />
+          </Menu.ItemMeta>
         </Menu.Item>
         <Menu.Separator />
         <Menu.Sub>
@@ -333,7 +348,9 @@ export const subMenus = {
         <Menu.Separator />
         <Menu.Item destructive>
           <Menu.ItemText>Archive project</Menu.ItemText>
-          <Menu.ItemMeta>⌘⌫</Menu.ItemMeta>
+          <Menu.ItemMeta>
+            <Shortcut keys="mod+backspace" />
+          </Menu.ItemMeta>
         </Menu.Item>
       </Menu.Content>
     </Menu.Root>
@@ -484,31 +501,31 @@ export const typeaheadTextValue = {
     <Menu.Content aria-label="Commands">
       <Menu.Item textValue="Activity feed">
         <Menu.ItemText>Activity</Menu.ItemText>
-        <Menu.ItemMeta>G A</Menu.ItemMeta>
+        <Menu.ItemMeta><Shortcut keys="g+a" format="text" separator="space" /></Menu.ItemMeta>
       </Menu.Item>
       <Menu.Item textValue="Account settings">
         <Menu.ItemText>Account settings</Menu.ItemText>
-        <Menu.ItemMeta>⌘,</Menu.ItemMeta>
+        <Menu.ItemMeta><Shortcut keys="mod+," /></Menu.ItemMeta>
       </Menu.Item>
       <Menu.Item textValue="Billing portal">
         <Menu.ItemText>Billing</Menu.ItemText>
-        <Menu.ItemMeta>G B</Menu.ItemMeta>
+        <Menu.ItemMeta><Shortcut keys="g+b" format="text" separator="space" /></Menu.ItemMeta>
       </Menu.Item>
       <Menu.Item textValue="Command palette">
         <Menu.ItemText>Quick actions</Menu.ItemText>
-        <Menu.ItemMeta>⌘K</Menu.ItemMeta>
+        <Menu.ItemMeta><Shortcut keys="mod+k" /></Menu.ItemMeta>
       </Menu.Item>
       <Menu.Item textValue="Invite collaborators">
         <Menu.ItemText>Invite team</Menu.ItemText>
-        <Menu.ItemMeta>G I</Menu.ItemMeta>
+        <Menu.ItemMeta><Shortcut keys="g+i" format="text" separator="space" /></Menu.ItemMeta>
       </Menu.Item>
       <Menu.Item textValue="Project settings">
         <Menu.ItemText>Project</Menu.ItemText>
-        <Menu.ItemMeta>G P</Menu.ItemMeta>
+        <Menu.ItemMeta><Shortcut keys="g+p" format="text" separator="space" /></Menu.ItemMeta>
       </Menu.Item>
       <Menu.Item textValue="Workspace preferences">
         <Menu.ItemText>Preferences</Menu.ItemText>
-        <Menu.ItemMeta>G W</Menu.ItemMeta>
+        <Menu.ItemMeta><Shortcut keys="g+w" format="text" separator="space" /></Menu.ItemMeta>
       </Menu.Item>
     </Menu.Content>
   </Menu.Root>
@@ -524,31 +541,45 @@ export const typeaheadTextValue = {
           <Menu.Content aria-label="Commands">
             <Menu.Item textValue="Activity feed">
               <Menu.ItemText>Activity</Menu.ItemText>
-              <Menu.ItemMeta>G A</Menu.ItemMeta>
+              <Menu.ItemMeta>
+                <Shortcut keys="g+a" format="text" separator="space" />
+              </Menu.ItemMeta>
             </Menu.Item>
             <Menu.Item textValue="Account settings">
               <Menu.ItemText>Account settings</Menu.ItemText>
-              <Menu.ItemMeta>⌘,</Menu.ItemMeta>
+              <Menu.ItemMeta>
+                <Shortcut keys="mod+," />
+              </Menu.ItemMeta>
             </Menu.Item>
             <Menu.Item textValue="Billing portal">
               <Menu.ItemText>Billing</Menu.ItemText>
-              <Menu.ItemMeta>G B</Menu.ItemMeta>
+              <Menu.ItemMeta>
+                <Shortcut keys="g+b" format="text" separator="space" />
+              </Menu.ItemMeta>
             </Menu.Item>
             <Menu.Item textValue="Command palette">
               <Menu.ItemText>Quick actions</Menu.ItemText>
-              <Menu.ItemMeta>⌘K</Menu.ItemMeta>
+              <Menu.ItemMeta>
+                <Shortcut keys="mod+k" />
+              </Menu.ItemMeta>
             </Menu.Item>
             <Menu.Item textValue="Invite collaborators">
               <Menu.ItemText>Invite team</Menu.ItemText>
-              <Menu.ItemMeta>G I</Menu.ItemMeta>
+              <Menu.ItemMeta>
+                <Shortcut keys="g+i" format="text" separator="space" />
+              </Menu.ItemMeta>
             </Menu.Item>
             <Menu.Item textValue="Project settings">
               <Menu.ItemText>Project</Menu.ItemText>
-              <Menu.ItemMeta>G P</Menu.ItemMeta>
+              <Menu.ItemMeta>
+                <Shortcut keys="g+p" format="text" separator="space" />
+              </Menu.ItemMeta>
             </Menu.Item>
             <Menu.Item textValue="Workspace preferences">
               <Menu.ItemText>Preferences</Menu.ItemText>
-              <Menu.ItemMeta>G W</Menu.ItemMeta>
+              <Menu.ItemMeta>
+                <Shortcut keys="g+w" format="text" separator="space" />
+              </Menu.ItemMeta>
             </Menu.Item>
           </Menu.Content>
         </Menu.Root>

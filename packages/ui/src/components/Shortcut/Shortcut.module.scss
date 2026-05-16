@@ -1,0 +1,165 @@
+@use '@/sass/mixins/typography';
+@use '@/sass/tokens.static' as *;
+
+.root {
+  @include typography.style('caption.default');
+
+  align-items: center;
+  color: token('components.shortcut.text');
+  display: inline-flex;
+  gap: token('components.shortcut.layout.gap');
+  user-select: none;
+  white-space: nowrap;
+}
+
+.wrap {
+  flex-wrap: wrap;
+  white-space: normal;
+}
+
+.item {
+  align-items: center;
+  display: inline-flex;
+  gap: token('components.shortcut.layout.separatorGap');
+}
+
+.plus {
+  color: token('components.shortcut.separator');
+  font-weight: 600;
+  line-height: 1;
+}
+
+.key {
+  @include typography.style('button.small');
+
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: token('components.shortcut.layout.keyRadius');
+  display: inline-flex;
+  justify-content: center;
+  min-block-size: token('components.shortcut.size.sm.height');
+  min-inline-size: token('components.shortcut.size.sm.minWidth');
+  padding-inline: token('components.shortcut.size.sm.paddingInline');
+}
+
+.compact {
+  gap: token('components.shortcut.layout.compactGap');
+
+  .item {
+    gap: token('components.shortcut.layout.compactSeparatorGap');
+  }
+}
+
+.uppercaseOff {
+  .key {
+    text-transform: none;
+  }
+}
+
+.disabled {
+  opacity: token('components.shortcut.disabled.opacity');
+}
+
+.sizeXs {
+  .key {
+    @include typography.style('caption.default');
+
+    min-block-size: token('components.shortcut.size.xs.height');
+    min-inline-size: token('components.shortcut.size.xs.minWidth');
+    padding-inline: token('components.shortcut.size.xs.paddingInline');
+  }
+}
+
+.sizeSm {
+  .key {
+    @include typography.style('button.small');
+
+    min-block-size: token('components.shortcut.size.sm.height');
+    min-inline-size: token('components.shortcut.size.sm.minWidth');
+    padding-inline: token('components.shortcut.size.sm.paddingInline');
+  }
+}
+
+.sizeMd {
+  .key {
+    @include typography.style('button.medium');
+
+    min-block-size: token('components.shortcut.size.md.height');
+    min-inline-size: token('components.shortcut.size.md.minWidth');
+    padding-inline: token('components.shortcut.size.md.paddingInline');
+  }
+}
+
+.sizeLg {
+  .key {
+    @include typography.style('button.large');
+
+    min-block-size: token('components.shortcut.size.lg.height');
+    min-inline-size: token('components.shortcut.size.lg.minWidth');
+    padding-inline: token('components.shortcut.size.lg.paddingInline');
+  }
+}
+
+.variantSolid {
+  .key {
+    background: var(--shortcut-surface-background);
+    border-color: var(--shortcut-surface-border);
+    color: var(--shortcut-surface-text);
+  }
+}
+
+.variantSoft {
+  .key {
+    background: var(--shortcut-surface-background);
+    border-color: transparent;
+    color: var(--shortcut-surface-text);
+  }
+}
+
+.variantOutline {
+  .key {
+    background: transparent;
+    border-color: var(--shortcut-surface-border);
+    color: var(--shortcut-surface-text);
+  }
+}
+
+.variantGhost {
+  .key {
+    background: transparent;
+    border-color: transparent;
+    color: var(--shortcut-surface-text-ghost, var(--shortcut-surface-text));
+  }
+}
+
+.toneNeutral {
+  --shortcut-surface-background: #{token(
+      'components.shortcut.tone.neutral.background'
+    )};
+  --shortcut-surface-border: #{token('components.shortcut.tone.neutral.border')};
+  --shortcut-surface-text: #{token('components.shortcut.tone.neutral.text')};
+  --shortcut-surface-text-ghost: #{token(
+      'components.shortcut.tone.neutral.text'
+    )};
+}
+
+.toneMuted {
+  --shortcut-surface-background: #{token(
+      'components.shortcut.tone.muted.background'
+    )};
+  --shortcut-surface-border: #{token('components.shortcut.tone.muted.border')};
+  --shortcut-surface-text: #{token('components.shortcut.tone.muted.text')};
+  --shortcut-surface-text-ghost: #{token('components.shortcut.tone.muted.text')};
+}
+
+.toneInverse {
+  --shortcut-surface-background: #{token(
+      'components.shortcut.tone.inverse.background'
+    )};
+  --shortcut-surface-border: #{token('components.shortcut.tone.inverse.border')};
+  --shortcut-surface-text: #{token('components.shortcut.tone.inverse.text')};
+  --shortcut-surface-text-ghost: #{token(
+      'components.shortcut.tone.neutral.text'
+    )};
+}

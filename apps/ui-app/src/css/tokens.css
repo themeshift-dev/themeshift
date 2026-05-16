@@ -749,6 +749,72 @@
   --themeshift-components-select-validation-invalid-border: #ef5350;
   --themeshift-components-select-validation-valid-border: #66bb6a;
   --themeshift-components-select-validation-warning-border: #29b6f6;
+  --themeshift-components-shortcut-disabled-opacity: 0.45;
+  --themeshift-components-shortcut-layout-compact-gap: 0;
+  --themeshift-components-shortcut-layout-compact-separator-gap: 0;
+  --themeshift-components-shortcut-layout-gap: 0.25rem;
+  --themeshift-components-shortcut-layout-key-radius: 0.5rem;
+  --themeshift-components-shortcut-layout-separator-gap: 0.25rem;
+  --themeshift-components-shortcut-separator: rgba(255, 255, 255, 0.7);
+  --themeshift-components-shortcut-size-lg-height: 2rem;
+  --themeshift-components-shortcut-size-lg-min-width: 2rem;
+  --themeshift-components-shortcut-size-lg-padding-inline: 0.5rem;
+  --themeshift-components-shortcut-size-md-height: 1.75rem;
+  --themeshift-components-shortcut-size-md-min-width: 1.75rem;
+  --themeshift-components-shortcut-size-md-padding-inline: 0.5rem;
+  --themeshift-components-shortcut-size-sm-height: 1.5rem;
+  --themeshift-components-shortcut-size-sm-min-width: 1.5rem;
+  --themeshift-components-shortcut-size-sm-padding-inline: 0.5rem;
+  --themeshift-components-shortcut-size-xs-height: 1.125rem;
+  --themeshift-components-shortcut-size-xs-min-width: 1.125rem;
+  --themeshift-components-shortcut-size-xs-padding-inline: 0.25rem;
+  --themeshift-components-shortcut-text: rgba(255, 255, 255, 0.8);
+  --themeshift-components-shortcut-tone-inverse-background: rgba(
+    255,
+    255,
+    255,
+    0.9
+  );
+  --themeshift-components-shortcut-tone-inverse-border: rgba(
+    255,
+    255,
+    255,
+    0.7
+  );
+  --themeshift-components-shortcut-tone-inverse-text: rgba(0, 0, 0, 0.9);
+  --themeshift-components-shortcut-tone-muted-background: rgba(
+    255,
+    255,
+    255,
+    0.1
+  );
+  --themeshift-components-shortcut-tone-muted-border: rgba(255, 255, 255, 0.2);
+  --themeshift-components-shortcut-tone-muted-text: rgba(255, 255, 255, 0.7);
+  --themeshift-components-shortcut-tone-neutral-background: rgba(
+    255,
+    255,
+    255,
+    0.2
+  );
+  --themeshift-components-shortcut-tone-neutral-border: rgba(
+    255,
+    255,
+    255,
+    0.2
+  );
+  --themeshift-components-shortcut-tone-neutral-text: rgba(255, 255, 255, 0.9);
+  --themeshift-components-shortcut-variant-ghost-background: transparent;
+  --themeshift-components-shortcut-variant-ghost-border: transparent;
+  --themeshift-components-shortcut-variant-ghost-text: rgba(0, 0, 0, 0.9);
+  --themeshift-components-shortcut-variant-outline-background: transparent;
+  --themeshift-components-shortcut-variant-outline-border: rgba(0, 0, 0, 0.3);
+  --themeshift-components-shortcut-variant-outline-text: rgba(0, 0, 0, 0.9);
+  --themeshift-components-shortcut-variant-soft-background: rgba(0, 0, 0, 0.1);
+  --themeshift-components-shortcut-variant-soft-border: rgba(0, 0, 0, 0.1);
+  --themeshift-components-shortcut-variant-soft-text: rgba(0, 0, 0, 0.8);
+  --themeshift-components-shortcut-variant-solid-background: rgba(0, 0, 0, 0.1);
+  --themeshift-components-shortcut-variant-solid-border: rgba(0, 0, 0, 0.2);
+  --themeshift-components-shortcut-variant-solid-text: rgba(0, 0, 0, 0.9);
   --themeshift-components-skeleton-pulse-background: rgba(255, 255, 255, 0.1);
   --themeshift-components-skeleton-shimmer-band: rgba(255, 255, 255, 0.06);
   --themeshift-components-skeleton-shimmer-base: rgba(255, 255, 255, 0.02);
@@ -1306,6 +1372,18 @@
   --themeshift-components-select-validation-invalid-border: #ef5350;
   --themeshift-components-select-validation-valid-border: #66bb6a;
   --themeshift-components-select-validation-warning-border: #29b6f6;
+  --themeshift-components-shortcut-disabled-opacity: 0.55;
+  --themeshift-components-shortcut-separator: rgba(0, 0, 0, 0.7);
+  --themeshift-components-shortcut-text: rgba(0, 0, 0, 0.8);
+  --themeshift-components-shortcut-tone-inverse-background: rgba(0, 0, 0, 0.8);
+  --themeshift-components-shortcut-tone-inverse-border: rgba(0, 0, 0, 0.9);
+  --themeshift-components-shortcut-tone-inverse-text: rgba(255, 255, 255, 0.9);
+  --themeshift-components-shortcut-tone-muted-background: #eeeeee;
+  --themeshift-components-shortcut-tone-muted-border: rgba(0, 0, 0, 0.1);
+  --themeshift-components-shortcut-tone-muted-text: rgba(0, 0, 0, 0.7);
+  --themeshift-components-shortcut-tone-neutral-background: rgba(0, 0, 0, 0.1);
+  --themeshift-components-shortcut-tone-neutral-border: rgba(0, 0, 0, 0.2);
+  --themeshift-components-shortcut-tone-neutral-text: rgba(0, 0, 0, 0.8);
   --themeshift-components-skeleton-pulse-background: rgba(0, 0, 0, 0.1);
   --themeshift-components-skeleton-shimmer-band: rgba(0, 0, 0, 0.04);
   --themeshift-components-skeleton-shimmer-base: rgba(0, 0, 0, 0.02);
@@ -1654,6 +1732,43 @@
   --themeshift-components-select-validation-invalid-border: #ef5350;
   --themeshift-components-select-validation-valid-border: #66bb6a;
   --themeshift-components-select-validation-warning-border: #29b6f6;
+  --themeshift-components-shortcut-disabled-opacity: 0.45;
+  --themeshift-components-shortcut-separator: rgba(255, 255, 255, 0.7);
+  --themeshift-components-shortcut-text: rgba(255, 255, 255, 0.8);
+  --themeshift-components-shortcut-tone-inverse-background: rgba(
+    255,
+    255,
+    255,
+    0.9
+  );
+  --themeshift-components-shortcut-tone-inverse-border: rgba(
+    255,
+    255,
+    255,
+    0.7
+  );
+  --themeshift-components-shortcut-tone-inverse-text: rgba(0, 0, 0, 0.9);
+  --themeshift-components-shortcut-tone-muted-background: rgba(
+    255,
+    255,
+    255,
+    0.1
+  );
+  --themeshift-components-shortcut-tone-muted-border: rgba(255, 255, 255, 0.2);
+  --themeshift-components-shortcut-tone-muted-text: rgba(255, 255, 255, 0.7);
+  --themeshift-components-shortcut-tone-neutral-background: rgba(
+    255,
+    255,
+    255,
+    0.2
+  );
+  --themeshift-components-shortcut-tone-neutral-border: rgba(
+    255,
+    255,
+    255,
+    0.2
+  );
+  --themeshift-components-shortcut-tone-neutral-text: rgba(255, 255, 255, 0.9);
   --themeshift-components-skeleton-pulse-background: rgba(255, 255, 255, 0.1);
   --themeshift-components-skeleton-shimmer-band: rgba(255, 255, 255, 0.06);
   --themeshift-components-skeleton-shimmer-base: rgba(255, 255, 255, 0.02);
