@@ -133,6 +133,7 @@ jobs:
           pnpm -C base --filter @themeshift/core build
           pnpm -C base --filter @themeshift/vite-plugin build
           pnpm -C base --filter @themeshift/vite-plugin-themeshift build
+          pnpm -C base/packages/headless run build
           pnpm -C base/packages/ui run build:components
 
       - name: Checkout head commit
@@ -149,6 +150,7 @@ jobs:
           pnpm -C head --filter @themeshift/core build
           pnpm -C head --filter @themeshift/vite-plugin build
           pnpm -C head --filter @themeshift/vite-plugin-themeshift build
+          pnpm -C head/packages/headless run build
           pnpm -C head/packages/ui run build:components
 
       - name: Generate audit JSON for base and head
