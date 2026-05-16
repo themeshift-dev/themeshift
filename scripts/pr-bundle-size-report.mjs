@@ -64,7 +64,8 @@ function shortSha(sha) {
 }
 
 function toComponentMap(report) {
-  const rows = report?.groups?.components?.rows ?? [];
+  const rows =
+    report?.groups?.components?.rows ?? report?.group?.components?.rows ?? [];
 
   return new Map(rows.map((row) => [row.name, row]));
 }
@@ -217,14 +218,12 @@ const lines = [
 if (rows.length === 0) {
   lines.push('No component-level bundle changes detected.');
 } else {
-  lines.push(
-    '| Component | Status | UI Raw Δ | Headless Raw Δ | Combined Raw Δ | UI Gzip Δ | Headless Gzip Δ | Combined Gzip Δ | UI Brotli Δ | Headless Brotli Δ | Combined Brotli Δ |'
-  );
-  lines.push('|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|');
+  lines.push('| Component | Status | Raw Δ | Gzip Δ | Brotli Δ |');
+  lines.push('|---|---:|---:|---:|---:|');
 
   for (const row of rows) {
     lines.push(
-      `| ${row.name} | ${row.status} | ${formatDelta(row.uiRawDelta)} | ${formatDelta(row.headlessRawDelta)} | ${formatDelta(row.rawDelta)} | ${formatDelta(row.uiGzipDelta)} | ${formatDelta(row.headlessGzipDelta)} | ${formatDelta(row.gzipDelta)} | ${formatDelta(row.uiBrotliDelta)} | ${formatDelta(row.headlessBrotliDelta)} | ${formatDelta(row.brotliDelta)} |`
+      `| ${row.name} | ${row.status} | ${formatDelta(row.rawDelta)} | ${formatDelta(row.gzipDelta)} | ${formatDelta(row.brotliDelta)} |`
     );
   }
 }
