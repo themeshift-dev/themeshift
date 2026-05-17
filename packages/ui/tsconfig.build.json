@@ -2,9 +2,7 @@
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
+    "paths": { "@/*": ["src/*"] },
     "noEmit": false,
     "emitDeclarationOnly": true,
     "declaration": true,
@@ -33,6 +31,11 @@
     "src/**/*.stories.tsx",
     "src/**/*.test.ts",
     "src/**/*.test.tsx",
+    "src/components/Menu/components/**/*.ts",
+    "src/components/Menu/components/**/*.tsx",
+    "src/components/Menu/internal/**/*.ts",
+    "src/components/Menu/internal/**/*.tsx",
+    "src/components/Menu/test-utils.tsx",
     ".storybook/**"
   ]
 }

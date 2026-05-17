@@ -53,16 +53,16 @@ export const separatorsAndFormats = {
 
 export const visualVariants = {
   label: 'Size, variant, and tone',
-  code: `<Shortcut keys="mod+k" size="xs" variant="soft" />
-<Shortcut keys="mod+k" size="sm" variant="solid" />
-<Shortcut keys="mod+k" size="md" variant="outline" tone="muted" />
-<Shortcut keys="mod+k" size="lg" variant="ghost" tone="inverse" />`,
+  code: `<Shortcut keys="mod+k" size="xSmall" variant="soft" />
+<Shortcut keys="mod+k" size="small" variant="solid" />
+<Shortcut keys="mod+k" size="medium" variant="outline" tone="muted" />
+<Shortcut keys="mod+k" size="large" variant="ghost" tone="inverse" />`,
   sample: (
     <div style={{ display: 'grid', gap: '0.75rem', justifyItems: 'center' }}>
-      <Shortcut keys="mod+k" size="xs" variant="soft" />
-      <Shortcut keys="mod+k" size="sm" variant="solid" />
-      <Shortcut keys="mod+k" size="md" tone="muted" variant="outline" />
-      <Shortcut keys="mod+k" size="lg" tone="inverse" variant="ghost" />
+      <Shortcut keys="mod+k" size="xSmall" variant="soft" />
+      <Shortcut keys="mod+k" size="small" variant="solid" />
+      <Shortcut keys="mod+k" size="medium" tone="muted" variant="outline" />
+      <Shortcut keys="mod+k" size="large" tone="inverse" variant="ghost" />
     </div>
   ),
 };

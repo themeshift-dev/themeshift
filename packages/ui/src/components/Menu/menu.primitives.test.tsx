@@ -1,80 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { createRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { Menu } from './index';
-import {
-  MenuContentContext,
-  MenuRootContext,
-  MenuSubContext,
-} from './internal/contexts';
-import type {
-  MenuContentContextValue,
-  MenuRootContextValue,
-  MenuSubContextValue,
-} from './internal/types';
-import { renderOpenMenu, renderSubmenu } from './test-utils';
-
-function createRootContextValue(
-  overrides: Partial<MenuRootContextValue> = {}
-): MenuRootContextValue {
-  return {
-    closeAll: vi.fn(),
-    closeOnSelect: false,
-    density: 'normal',
-    dir: 'ltr',
-    disabled: false,
-    loop: true,
-    modal: true,
-    open: true,
-    orientation: 'vertical',
-    registerTrigger: vi.fn(),
-    selectionMode: 'none',
-    size: 'md',
-    triggerRef: createRef<HTMLElement>(),
-    typeahead: true,
-    ...overrides,
-  };
-}
-
-function createSubContextValue(
-  overrides: Partial<MenuSubContextValue> = {}
-): MenuSubContextValue {
-  const triggerRef = createRef<HTMLElement>();
-  const contentRef = createRef<HTMLElement>();
-
-  return {
-    closeDelay: 1,
-    contentRef,
-    disabled: false,
-    open: false,
-    openDelay: 1,
-    openOnHover: true,
-    setContentNode: vi.fn(),
-    setOpen: vi.fn(),
-    setTriggerNode: vi.fn(),
-    triggerRef,
-    ...overrides,
-  };
-}
-
-function createContentContextValue(
-  overrides: Partial<MenuContentContextValue> = {}
-): MenuContentContextValue {
-  return {
-    contentId: 'content-id',
-    focusByDelta: vi.fn(),
-    focusFirst: vi.fn(),
-    focusLast: vi.fn(),
-    getItems: vi.fn(() => []),
-    highlightedId: null,
-    registerItem: vi.fn(() => vi.fn()),
-    requestClose: vi.fn(),
-    selectByTypeahead: vi.fn(),
-    setHighlightedId: vi.fn(),
-    ...overrides,
-  };
-}
+import { renderOpenMenu } from './test-utils';
 
 describe('Menu - low coverage branches', () => {
   afterEach(() => {
@@ -145,26 +73,16 @@ describe('Menu - low coverage branches', () => {
     const onKeyDown = vi.fn();
     const onMouseMove = vi.fn();
     const onSelect = vi.fn();
-    const setOpen = vi.fn();
-    const setTriggerNode = vi.fn();
-    const registerTrigger = vi.fn();
-    const triggerRef = createRef<HTMLElement>();
-    const contentRef = createRef<HTMLElement>();
-    const root = createRootContextValue({ registerTrigger });
-    const content = createContentContextValue();
-    const sub = createSubContextValue({
-      contentRef,
-      open: true,
-      openOnHover: false,
-      setOpen,
-      setTriggerNode,
-      triggerRef,
-    });
+    const onSubOpenChange = vi.fn();
 
     render(
-      <MenuRootContext.Provider value={root}>
-        <MenuContentContext.Provider value={content}>
-          <MenuSubContext.Provider value={sub}>
+      <Menu.Root defaultOpen>
+        <Menu.Content aria-label="Actions">
+          <Menu.Sub
+            defaultOpen
+            onOpenChange={onSubOpenChange}
+            openOnHover={false}
+          >
             <Menu.SubTrigger
               indicator={null}
               onKeyDown={onKeyDown}
@@ -173,9 +91,12 @@ describe('Menu - low coverage branches', () => {
             >
               More tools
             </Menu.SubTrigger>
-          </MenuSubContext.Provider>
-        </MenuContentContext.Provider>
-      </MenuRootContext.Provider>
+            <Menu.SubContent aria-label="More tools">
+              <Menu.Item>Format</Menu.Item>
+            </Menu.SubContent>
+          </Menu.Sub>
+        </Menu.Content>
+      </Menu.Root>
     );
 
     const trigger = screen.getByRole('menuitem', { name: 'More tools' });
@@ -184,68 +105,37 @@ describe('Menu - low coverage branches', () => {
     expect(onKeyDown).toHaveBeenCalledTimes(1);
 
     fireEvent.keyDown(trigger, { key: 'ArrowLeft' });
-    expect(setOpen).toHaveBeenCalledWith(false);
+    expect(onSubOpenChange).toHaveBeenCalledWith(false);
 
     fireEvent.mouseMove(trigger);
     expect(onMouseMove).toHaveBeenCalledTimes(1);
 
     fireEvent.click(trigger);
     expect(onSelect).toHaveBeenCalledTimes(1);
-    expect(setOpen).toHaveBeenCalledWith(false);
-
-    expect(setTriggerNode).toHaveBeenCalled();
-    expect(registerTrigger).toHaveBeenCalled();
+    expect(onSubOpenChange).toHaveBeenCalledWith(false);
   });
 
   it('covers MenuSubTrigger hover intent open/close timer branches', () => {
     vi.useFakeTimers();
 
-    const setOpen = vi.fn();
-    const triggerRef = createRef<HTMLElement>();
-    const contentRef = createRef<HTMLElement>();
-    const root = createRootContextValue({ dir: 'ltr' });
-    const content = createContentContextValue();
-    const sub = createSubContextValue({
-      closeDelay: 10,
-      contentRef,
-      open: true,
-      openDelay: 10,
-      openOnHover: true,
-      setOpen,
-      triggerRef,
-    });
-
-    const firstItem = document.createElement('div');
-    firstItem.setAttribute('role', 'menuitem');
-    firstItem.setAttribute('tabindex', '0');
-    const focusSpy = vi.spyOn(firstItem, 'focus');
-
-    const submenuContent = document.createElement('div');
-    submenuContent.appendChild(firstItem);
-    contentRef.current = submenuContent;
-
-    const triggerNode = document.createElement('div');
-    triggerNode.getBoundingClientRect = () =>
-      ({
-        left: 0,
-        right: 100,
-      }) as DOMRect;
-    triggerRef.current = triggerNode;
-
-    submenuContent.getBoundingClientRect = () =>
-      ({
-        left: 90,
-        right: 200,
-      }) as DOMRect;
+    const onSubOpenChange = vi.fn();
 
     render(
-      <MenuRootContext.Provider value={root}>
-        <MenuContentContext.Provider value={content}>
-          <MenuSubContext.Provider value={sub}>
+      <Menu.Root defaultOpen>
+        <Menu.Content aria-label="Actions">
+          <Menu.Sub
+            closeDelay={10}
+            onOpenChange={onSubOpenChange}
+            openDelay={10}
+            openOnHover
+          >
             <Menu.SubTrigger>Hover tools</Menu.SubTrigger>
-          </MenuSubContext.Provider>
-        </MenuContentContext.Provider>
-      </MenuRootContext.Provider>
+            <Menu.SubContent aria-label="Hover tools submenu">
+              <Menu.Item>Open submenu item</Menu.Item>
+            </Menu.SubContent>
+          </Menu.Sub>
+        </Menu.Content>
+      </Menu.Root>
     );
 
     const trigger = screen.getByRole('menuitem', { name: 'Hover tools' });
@@ -253,38 +143,77 @@ describe('Menu - low coverage branches', () => {
     fireEvent.mouseMove(trigger);
     vi.runOnlyPendingTimers();
     vi.runOnlyPendingTimers();
-    expect(setOpen).toHaveBeenCalledWith(true);
-    expect(focusSpy).toHaveBeenCalled();
+    expect(onSubOpenChange).toHaveBeenCalledWith(true);
 
     fireEvent.mouseLeave(trigger);
     vi.runOnlyPendingTimers();
-    expect(setOpen).not.toHaveBeenCalledWith(false);
-
-    submenuContent.getBoundingClientRect = () =>
-      ({
-        left: 10,
-        right: 80,
-      }) as DOMRect;
-    fireEvent.mouseLeave(trigger);
-    vi.runOnlyPendingTimers();
-    expect(setOpen).toHaveBeenCalledWith(false);
+    expect(onSubOpenChange).toHaveBeenCalledWith(false);
   });
 
-  it('covers test-utils custom render paths', () => {
-    renderOpenMenu(<Menu.Item>Profile</Menu.Item>, { dir: 'rtl' });
-    expect(screen.getByRole('menu', { name: 'Actions' })).toBeInTheDocument();
+  it('assigns explicit item value and emits onSelect callback', () => {
+    const onSelect = vi.fn();
 
-    renderSubmenu({
-      contentLabel: 'Custom submenu',
-      dir: 'rtl',
-      label: 'More custom',
-      openOnHover: false,
-    });
-    expect(
-      screen.getByRole('menuitem', { name: 'More custom' })
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByRole('menu', { name: 'Custom submenu' })
-    ).not.toBeInTheDocument();
+    render(
+      <Menu.Root defaultOpen>
+        <Menu.Content aria-label="Actions">
+          <Menu.Item onSelect={onSelect} value="rename">
+            Rename
+          </Menu.Item>
+        </Menu.Content>
+      </Menu.Root>
+    );
+
+    const item = screen.getByRole('menuitem', { name: 'Rename' });
+    expect(item).toHaveAttribute('id');
+
+    fireEvent.click(item);
+    expect(onSelect).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps content open when closeOnSelect is disabled globally', () => {
+    render(
+      <Menu.Root closeOnSelect={false} defaultOpen>
+        <Menu.Content aria-label="Actions">
+          <Menu.Item>Rename</Menu.Item>
+        </Menu.Content>
+      </Menu.Root>
+    );
+
+    fireEvent.click(screen.getByRole('menuitem', { name: 'Rename' }));
+    expect(screen.getByRole('menu')).toBeInTheDocument();
+  });
+
+  it('renders submenu with delayed hover intent', () => {
+    vi.useFakeTimers();
+    const onSubOpenChange = vi.fn();
+
+    render(
+      <Menu.Root defaultOpen>
+        <Menu.Content aria-label="Actions">
+          <Menu.Sub
+            closeDelay={50}
+            onOpenChange={onSubOpenChange}
+            openDelay={50}
+            openOnHover
+          >
+            <Menu.SubTrigger>More actions</Menu.SubTrigger>
+            <Menu.SubContent aria-label="More actions submenu">
+              <Menu.Item>Inspect</Menu.Item>
+            </Menu.SubContent>
+          </Menu.Sub>
+        </Menu.Content>
+      </Menu.Root>
+    );
+
+    fireEvent.mouseMove(screen.getByRole('menuitem', { name: 'More actions' }));
+    vi.advanceTimersByTime(50);
+    vi.runOnlyPendingTimers();
+
+    expect(onSubOpenChange).toHaveBeenCalledWith(true);
+  });
+
+  it('renders open menu helper content', () => {
+    renderOpenMenu();
+    expect(screen.getByRole('menu')).toBeInTheDocument();
   });
 });

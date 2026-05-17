@@ -330,7 +330,7 @@ describe('Tabs', () => {
     );
   });
 
-  it('applies the fitted list class when fitted is enabled', () => {
+  it('marks the list as fitted when fitted is enabled', () => {
     render(
       <Tabs fitted>
         <Tabs.List aria-label="Sections" data-testid="tabs-list">
@@ -343,10 +343,7 @@ describe('Tabs', () => {
       </Tabs>
     );
 
-    expect(screen.getByTestId('tabs-list')).toHaveAttribute(
-      'class',
-      expect.stringContaining('listFitted')
-    );
+    expect(screen.getByTestId('tabs-list')).toHaveAttribute('data-fitted');
   });
 
   it('does not render indicator when there is no selected value and forceMount is false', () => {

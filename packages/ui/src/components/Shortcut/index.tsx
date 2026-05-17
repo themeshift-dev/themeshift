@@ -17,10 +17,10 @@ import type {
 } from './types';
 
 const sizeClassMap = {
-  xs: styles.sizeXs,
-  sm: styles.sizeSm,
-  md: styles.sizeMd,
-  lg: styles.sizeLg,
+  xSmall: styles.sizeXs,
+  small: styles.sizeSm,
+  medium: styles.sizeMd,
+  large: styles.sizeLg,
 } satisfies Record<ShortcutSize, string>;
 
 const variantClassMap = {
@@ -48,7 +48,7 @@ export const Shortcut = ({
   keys,
   platform = 'auto',
   separator = 'none',
-  size = 'sm',
+  size = 'small',
   tone = 'neutral',
   uppercase = true,
   variant = 'solid',

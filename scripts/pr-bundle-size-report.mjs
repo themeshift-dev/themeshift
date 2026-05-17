@@ -15,15 +15,19 @@ function getArgValue(name) {
   return arg.slice(name.length + 1);
 }
 
-const basePath = getArgValue('--base');
-const headPath = getArgValue('--head');
+const baseUiPath = getArgValue('--base-ui') ?? getArgValue('--base');
+const headUiPath = getArgValue('--head-ui') ?? getArgValue('--head');
+const baseHeadlessPath = getArgValue('--base-headless');
+const headHeadlessPath = getArgValue('--head-headless');
 const outPath = getArgValue('--out');
 const changedArg = getArgValue('--changed') ?? '';
 const baseSha = getArgValue('--base-sha') ?? 'unknown';
 const headSha = getArgValue('--head-sha') ?? 'unknown';
 
-if (!basePath || !headPath || !outPath) {
-  fail('Missing required args. Use --base=... --head=... --out=...');
+if (!baseUiPath || !headUiPath || !outPath) {
+  fail(
+    'Missing required args. Use --base-ui=... --head-ui=... --out=... (or legacy --base/--head).'
+  );
 }
 
 const changedComponents = changedArg
@@ -60,7 +64,8 @@ function shortSha(sha) {
 }
 
 function toComponentMap(report) {
-  const rows = report?.groups?.components?.rows ?? [];
+  const rows =
+    report?.groups?.components?.rows ?? report?.group?.components?.rows ?? [];
 
   return new Map(rows.map((row) => [row.name, row]));
 }
@@ -86,20 +91,34 @@ function statusFor(baseRow, headRow) {
   return 'Changed';
 }
 
-const baseReport = readJson(basePath);
-const headReport = readJson(headPath);
+const baseUiReport = readJson(baseUiPath);
+const headUiReport = readJson(headUiPath);
+const baseHeadlessReport = baseHeadlessPath ? readJson(baseHeadlessPath) : null;
+const headHeadlessReport = headHeadlessPath ? readJson(headHeadlessPath) : null;
 
-const baseMap = toComponentMap(baseReport);
-const headMap = toComponentMap(headReport);
+const baseUiMap = toComponentMap(baseUiReport);
+const headUiMap = toComponentMap(headUiReport);
+const baseHeadlessMap = toComponentMap(baseHeadlessReport);
+const headHeadlessMap = toComponentMap(headHeadlessReport);
 
 const componentNames = new Set(changedComponents);
-for (const name of baseMap.keys()) {
-  if (!headMap.has(name)) {
+for (const name of baseUiMap.keys()) {
+  if (!headUiMap.has(name)) {
     componentNames.add(name);
   }
 }
-for (const name of headMap.keys()) {
-  if (!baseMap.has(name)) {
+for (const name of headUiMap.keys()) {
+  if (!baseUiMap.has(name)) {
+    componentNames.add(name);
+  }
+}
+for (const name of baseHeadlessMap.keys()) {
+  if (!headHeadlessMap.has(name)) {
+    componentNames.add(name);
+  }
+}
+for (const name of headHeadlessMap.keys()) {
+  if (!baseHeadlessMap.has(name)) {
     componentNames.add(name);
   }
 }
@@ -107,22 +126,46 @@ for (const name of headMap.keys()) {
 const rows = [...componentNames]
   .sort((left, right) => left.localeCompare(right))
   .map((name) => {
-    const baseRow = baseMap.get(name);
-    const headRow = headMap.get(name);
-    const rawDelta = metric(headRow, 'rawTotal') - metric(baseRow, 'rawTotal');
-    const gzipDelta =
-      metric(headRow, 'gzipTotal') - metric(baseRow, 'gzipTotal');
-    const brotliDelta =
-      metric(headRow, 'brotliTotal') - metric(baseRow, 'brotliTotal');
+    const baseUiRow = baseUiMap.get(name);
+    const headUiRow = headUiMap.get(name);
+    const baseHeadlessRow = baseHeadlessMap.get(name);
+    const headHeadlessRow = headHeadlessMap.get(name);
+
+    const uiRawDelta =
+      metric(headUiRow, 'rawTotal') - metric(baseUiRow, 'rawTotal');
+    const uiGzipDelta =
+      metric(headUiRow, 'gzipTotal') - metric(baseUiRow, 'gzipTotal');
+    const uiBrotliDelta =
+      metric(headUiRow, 'brotliTotal') - metric(baseUiRow, 'brotliTotal');
+
+    const headlessRawDelta =
+      metric(headHeadlessRow, 'rawTotal') - metric(baseHeadlessRow, 'rawTotal');
+    const headlessGzipDelta =
+      metric(headHeadlessRow, 'gzipTotal') -
+      metric(baseHeadlessRow, 'gzipTotal');
+    const headlessBrotliDelta =
+      metric(headHeadlessRow, 'brotliTotal') -
+      metric(baseHeadlessRow, 'brotliTotal');
+
+    const totalHeadRaw =
+      metric(headUiRow, 'rawTotal') + metric(headHeadlessRow, 'rawTotal');
 
     return {
       name,
-      baseRow,
-      headRow,
-      status: statusFor(baseRow, headRow),
-      rawDelta,
-      gzipDelta,
-      brotliDelta,
+      status: statusFor(
+        baseUiRow ?? baseHeadlessRow,
+        headUiRow ?? headHeadlessRow
+      ),
+      uiRawDelta,
+      uiGzipDelta,
+      uiBrotliDelta,
+      headlessRawDelta,
+      headlessGzipDelta,
+      headlessBrotliDelta,
+      rawDelta: uiRawDelta + headlessRawDelta,
+      gzipDelta: uiGzipDelta + headlessGzipDelta,
+      brotliDelta: uiBrotliDelta + headlessBrotliDelta,
+      totalHeadRaw,
     };
   });
 
@@ -135,14 +178,32 @@ rows.sort((left, right) => {
   return left.name.localeCompare(right.name);
 });
 
-const baseUnion = baseReport?.groups?.components?.unionSizes ?? {};
-const headUnion = headReport?.groups?.components?.unionSizes ?? {};
-const unionRawDelta =
-  metric(headUnion, 'rawTotal') - metric(baseUnion, 'rawTotal');
-const unionGzipDelta =
-  metric(headUnion, 'gzipTotal') - metric(baseUnion, 'gzipTotal');
-const unionBrotliDelta =
-  metric(headUnion, 'brotliTotal') - metric(baseUnion, 'brotliTotal');
+const baseUiUnion = baseUiReport?.groups?.components?.unionSizes ?? {};
+const headUiUnion = headUiReport?.groups?.components?.unionSizes ?? {};
+const baseHeadlessUnion =
+  baseHeadlessReport?.group?.components?.unionSizes ?? {};
+const headHeadlessUnion =
+  headHeadlessReport?.group?.components?.unionSizes ?? {};
+
+const uiUnionRawDelta =
+  metric(headUiUnion, 'rawTotal') - metric(baseUiUnion, 'rawTotal');
+const uiUnionGzipDelta =
+  metric(headUiUnion, 'gzipTotal') - metric(baseUiUnion, 'gzipTotal');
+const uiUnionBrotliDelta =
+  metric(headUiUnion, 'brotliTotal') - metric(baseUiUnion, 'brotliTotal');
+
+const headlessUnionRawDelta =
+  metric(headHeadlessUnion, 'rawTotal') - metric(baseHeadlessUnion, 'rawTotal');
+const headlessUnionGzipDelta =
+  metric(headHeadlessUnion, 'gzipTotal') -
+  metric(baseHeadlessUnion, 'gzipTotal');
+const headlessUnionBrotliDelta =
+  metric(headHeadlessUnion, 'brotliTotal') -
+  metric(baseHeadlessUnion, 'brotliTotal');
+
+const unionRawDelta = uiUnionRawDelta + headlessUnionRawDelta;
+const unionGzipDelta = uiUnionGzipDelta + headlessUnionGzipDelta;
+const unionBrotliDelta = uiUnionBrotliDelta + headlessUnionBrotliDelta;
 
 const marker = '<!-- bundle-size-report -->';
 const lines = [
@@ -151,19 +212,22 @@ const lines = [
   '',
   `Base: \`${shortSha(baseSha)}\`  Head: \`${shortSha(headSha)}\``,
   '',
-  `Overall deduped components union deltas: Raw ${formatDelta(unionRawDelta)}, Gzip ${formatDelta(unionGzipDelta)}, Brotli ${formatDelta(unionBrotliDelta)}.`,
+  `Overall deduped components union deltas (UI + headless combined): Raw ${formatDelta(unionRawDelta)}, Gzip ${formatDelta(unionGzipDelta)}, Brotli ${formatDelta(unionBrotliDelta)}.`,
+  '',
+  `UI-only union deltas: Raw ${formatDelta(uiUnionRawDelta)}, Gzip ${formatDelta(uiUnionGzipDelta)}, Brotli ${formatDelta(uiUnionBrotliDelta)}.`,
+  `Headless-only union deltas: Raw ${formatDelta(headlessUnionRawDelta)}, Gzip ${formatDelta(headlessUnionGzipDelta)}, Brotli ${formatDelta(headlessUnionBrotliDelta)}.`,
   '',
 ];
 
 if (rows.length === 0) {
   lines.push('No component-level bundle changes detected.');
 } else {
-  lines.push('| Component | Status | Raw Δ | Gzip Δ | Brotli Δ |');
-  lines.push('|---|---:|---:|---:|---:|');
+  lines.push('| Component | Status | Total Size | Raw Δ | Gzip Δ | Brotli Δ |');
+  lines.push('|---|---:|---:|---:|---:|---:|');
 
   for (const row of rows) {
     lines.push(
-      `| ${row.name} | ${row.status} | ${formatDelta(row.rawDelta)} | ${formatDelta(row.gzipDelta)} | ${formatDelta(row.brotliDelta)} |`
+      `| ${row.name} | ${row.status} | ${bytesToHuman(row.totalHeadRaw)} | ${formatDelta(row.rawDelta)} | ${formatDelta(row.gzipDelta)} | ${formatDelta(row.brotliDelta)} |`
     );
   }
 }

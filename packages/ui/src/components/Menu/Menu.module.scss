@@ -95,6 +95,13 @@
   margin-block-start: 0.125rem;
 }
 
+.itemText [data-slot='description'] {
+  color: token('components.menu.description');
+  display: block;
+  font-size: 0.75rem;
+  margin-block-start: 0.125rem;
+}
+
 .itemIcon {
   align-items: center;
   display: inline-flex;
@@ -161,7 +168,7 @@
   justify-content: center;
 }
 
-.itemIndicatorHidden {
+.itemIndicator[data-state='hidden'] {
   visibility: hidden;
 }
 

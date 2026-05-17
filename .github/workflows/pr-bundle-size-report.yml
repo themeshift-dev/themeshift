@@ -133,6 +133,9 @@ jobs:
           pnpm -C base --filter @themeshift/core build
           pnpm -C base --filter @themeshift/vite-plugin build
           pnpm -C base --filter @themeshift/vite-plugin-themeshift build
+          if [ -d base/packages/headless ]; then
+            pnpm -C base/packages/headless run build
+          fi
           pnpm -C base/packages/ui run build:components
 
       - name: Checkout head commit
@@ -149,6 +152,9 @@ jobs:
           pnpm -C head --filter @themeshift/core build
           pnpm -C head --filter @themeshift/vite-plugin build
           pnpm -C head --filter @themeshift/vite-plugin-themeshift build
+          if [ -d head/packages/headless ]; then
+            pnpm -C head/packages/headless run build
+          fi
           pnpm -C head/packages/ui run build:components
 
       - name: Generate audit JSON for base and head
@@ -156,13 +162,43 @@ jobs:
         run: |
           node head/packages/ui/scripts/build-audit.mjs --json --root=base/packages/ui > /tmp/base-audit.json
           node head/packages/ui/scripts/build-audit.mjs --json --root=head/packages/ui > /tmp/head-audit.json
+          if [ -d base/packages/headless ] && [ -f head/packages/headless/scripts/build-audit.mjs ]; then
+            node head/packages/headless/scripts/build-audit.mjs --json --root=base/packages/headless > /tmp/base-headless-audit.json
+          else
+            cat <<'EOF' > /tmp/base-headless-audit.json
+          {
+            "group": {
+              "components": {
+                "rows": [],
+                "unionSizes": { "rawTotal": 0, "gzipTotal": 0, "brotliTotal": 0 }
+              }
+            }
+          }
+          EOF
+          fi
+          if [ -d head/packages/headless ] && [ -f head/packages/headless/scripts/build-audit.mjs ]; then
+            node head/packages/headless/scripts/build-audit.mjs --json --root=head/packages/headless > /tmp/head-headless-audit.json
+          else
+            cat <<'EOF' > /tmp/head-headless-audit.json
+          {
+            "group": {
+              "components": {
+                "rows": [],
+                "unionSizes": { "rawTotal": 0, "gzipTotal": 0, "brotliTotal": 0 }
+              }
+            }
+          }
+          EOF
+          fi
 
       - name: Generate report markdown
         if: steps.changed.outputs.components_changed == 'true'
         run: |
           node head/scripts/pr-bundle-size-report.mjs \
-            --base=/tmp/base-audit.json \
-            --head=/tmp/head-audit.json \
+            --base-ui=/tmp/base-audit.json \
+            --head-ui=/tmp/head-audit.json \
+            --base-headless=/tmp/base-headless-audit.json \
+            --head-headless=/tmp/head-headless-audit.json \
             --out=/tmp/bundle-size-comment.md \
             --changed="${{ steps.changed.outputs.changed_components }}" \
             --base-sha="${{ github.event.pull_request.base.sha }}" \
